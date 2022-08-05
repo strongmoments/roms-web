@@ -70,22 +70,29 @@ export class MainLayoutComponent implements OnInit {
     this.navItems.push({ displayName: 'Dashboard', iconName: 'dashboard', route: '/' },
       {
         displayName: 'Employee ', iconName: 'settings', route: '/', children: [
-          { displayName: 'List', iconName: 'account_box', route: '/employee' },
-          { displayName: 'Add', iconName: 'settings', route: '/employee/form' }
+          { displayName: 'Employee List', iconName: 'account_box', route: '/employee' },
+          { displayName: 'Leave', iconName: 'account_box', route: '/employee' },
+          { displayName: 'Announcement', iconName: 'settings', route: '' }
+        ]
+      },
+      {
+        displayName: 'Operation', iconName: 'settings', route: '/', children: [
+          { displayName: 'Asset', iconName: 'account_box', route: '/' },
+          { displayName: 'Inspection', iconName: 'account_box', route: '/' },
         ]
       }
     );
 
 
-    const accountSetting = {
-      displayName: 'Account Settings ', iconName: 'settings', route: '/', children: [
-        { displayName: 'Profile', iconName: 'account_box', route: '/profile' },
-        { displayName: 'Change Password', iconName: 'settings', route: '/changePassword' }
-      ]
-    }
+    // const accountSetting = {
+    //   displayName: 'Account Settings ', iconName: 'settings', route: '/', children: [
+    //     { displayName: 'Profile', iconName: 'account_box', route: '/profile' },
+    //     { displayName: 'Change Password', iconName: 'settings', route: '/changePassword' }
+    //   ]
+    // }
 
 
-    this.navItems.push(accountSetting);
+    // this.navItems.push(accountSetting);
 
 
   }
