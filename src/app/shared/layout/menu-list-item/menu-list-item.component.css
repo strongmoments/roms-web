@@ -1,0 +1,12 @@
+a.mat-list-item.mat-focus-indicator.menu-list-item  {
+    color: #ffffff;
+    font-size: 12px;
+}
+
+.mat-list-item-content .mat-icon {
+    margin-right: 5px ;
+}
+.item-icon{
+    font-size: 19px;
+    margin-right: 5px;
+}

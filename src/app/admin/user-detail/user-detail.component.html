@@ -1,0 +1,99 @@
+<div class="modal-dialog " role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">{{title}}</h5>
+      <button type="button" mat-icon-button color="primary" class="close" (click)="onNoClick()">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="addFormGroup">
+        <div class="form-group">
+          <label for="fullName">Full Name <span class="text-danger">*</span></label>
+          <input class="form-control" type="text" formControlName="fullName" fullName
+            [ngClass]="{ 'is-invalid':  f['fullName'].errors && submitted }">
+          <span class="error-message" *ngIf="checkError('fullName', 'maxlength')">
+            Name should be less than 256 characters
+          </span>
+          <span class="error-message" *ngIf="checkError('fullName', 'required')  && submitted">
+            Name is required
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email <span class="text-danger">*</span></label>
+          <input id="email" class="form-control" type="text" formControlName="email" email
+            [ngClass]="{ 'is-invalid':  f['email'].errors && submitted }">
+          <span class="error-message" *ngIf="checkError('email', 'email')">
+           Invalid email address
+          </span>
+          <span class="error-message" *ngIf="checkError('email', 'required')  && submitted">
+            Email is required
+          </span>
+        </div>
+
+        <!-- <div class="form-group">
+          <label for="fullName">Comapny <span class="text-danger">*</span></label>
+          <select id=active class="form-control" formControlName="companyId" companyId
+            [ngClass]="{ 'is-invalid':  f['companyId'].errors && submitted }">
+            <option *ngFor="let obj of companyList" [value]="obj.id">
+              {{ obj.companyName }}
+            </option>
+          </select>
+
+          <span class="error-message" *ngIf="checkError('companyId', 'required')  && submitted">
+            Comapny is required
+          </span>
+        </div> -->
+
+        <div class="form-group">
+          <label for="fullName">Password <span class="text-danger">*</span></label>
+          <input id="password" class="form-control" type="text" formControlName="password" password
+            [ngClass]="{ 'is-invalid':  f['password'].errors && submitted }">
+
+          <span class="error-message" *ngIf="checkError('password', 'pattern')">
+            {{globals.passwordHint}}
+          </span>
+          <span class="error-message" *ngIf="checkError('password', 'required')  && submitted">
+            Password is required
+          </span>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label for="role">Role</label>
+            <select id=active class="form-control" formControlName="role" role
+              [ngClass]="{ 'is-invalid':  f['role'].errors && submitted }">
+              <option *ngFor="let obj of globals.role" [value]="obj.value">
+                {{ obj.name }}
+              </option>
+            </select>
+            <span class="error-message" *ngIf="checkError('role', 'required')  && submitted">
+              Role is required
+            </span>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label for="active">Status</label>
+            <select id=active class="form-control" formControlName="active" active>
+              <option *ngFor="let obj of globals.status" [value]="obj.value">
+                {{ obj.viewValue }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="isChangePasswrod" style="padding-right: 5px;">Change Passwrod</label>
+          <input type="checkbox" formControlName="isChangePasswrod" isChangePasswrod>
+          <i class="la la-info-circle" style="font-size: 18px; padding-left: 11px;"
+            matTooltip="User must change password at next logon."></i>
+        </div>
+        
+        <div class="submit-section">
+          <button class="btn btn-primary submit-btn" (click)="onSubmit()">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+ 
+  .nav-brand {
+    text-align: center;
+  }
+ 
+  .nav-spacer {
+    flex: 1 1 auto;
+  }
+  
+  .visible-md {
+    display: none;
+  }
+  .visible-sm {
+    display: none;
+  }
+  @media screen and (max-width: 992px) {
+    .visible-md {
+        display: block;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .visible-sm {
+        display: block;
+    }
+    .nav-brand {
+        width: 100%;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .hidden-sm {
+        display: none;
+    }
+  }
+  .mat-toolbar-row, .mat-toolbar-single-row{
+    background-color: #fff;
+    height: 61px;
+  }
+ 

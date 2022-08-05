@@ -1,0 +1,8 @@
+.snack-bar{
+    position: relative;
+}
+.snack-bar .dismiss{
+    position: absolute;
+    top: -11px;
+    right: -13px;
+}

@@ -1,0 +1,35 @@
+<h3 class="account-title">Login</h3>
+<form [formGroup]="firstFormGroup">
+  <div class="form-group">
+    <label>Email Address</label>
+    <input class="form-control" type="text" formControlName="email" email
+      [ngClass]="{ 'is-invalid': checkError('email', 'required')  && submitted }">
+    <span class="error-message" *ngIf="checkError('email', 'pattern' )">
+      Invalid email address
+    </span>
+    <span class="error-message" *ngIf="checkError('email', 'required')  && submitted">
+      Email is required</span>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col">
+        <label>Password</label>
+      </div>
+      <div class="col-auto">
+        <a class="text-muted" [routerLink]="['/forgot-password']">
+          Forgot password?
+        </a>
+      </div>
+    </div>
+    <div class="position-relative">
+      <input class="form-control" type="password" formControlName="password" password
+        [ngClass]="{ 'is-invalid': checkError('password', 'required')  && submitted }">
+      <span class="fa fa-eye-slash" id="toggle-password"></span>
+      <span class="error-message" *ngIf="checkError('password', 'required')  && submitted">
+        Password is required</span>
+    </div>
+  </div>
+  <div class="form-group text-center">
+    <button class="btn btn-primary account-btn" (click)="onSubmit()" type="submit">Login</button>
+  </div>
+</form>
