@@ -1,4 +1,49 @@
-<h3 class="account-title">Login</h3>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Login Page</mat-card-title>
+    </mat-card-header>
+    <mat-card-content fxLayout="column">
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="Email" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input type="password" matInput placeholder="password" />
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-raised-button class="login-btn">Login</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<!-- <div class="form-container">
+  <div class="title">Login</div>
+  <form>
+    <mat-form-field appearance="outline">
+      <mat-label>
+        USERNAME
+        <mat-icon>account_circle</mat-icon>
+      </mat-label>
+      <input matInput />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label
+        ><mat-icon>lock</mat-icon>
+        PASSWORD
+        <mat-icon>visibility</mat-icon>
+      </mat-label>
+      <input type="password" matInput />
+    </mat-form-field>
+  </form>
+  <div class="button-container">
+    <button mat-stroked-button class="login-button">Login</button>
+    <button mat-button>Forget Password ?</button>
+  </div>
+</div> -->
+<!-- </div> -->
+
+<!-- <h3 class="account-title">Login</h3>
 <form [formGroup]="firstFormGroup">
   <div class="form-group">
     <label>Email Address</label>
@@ -32,4 +77,4 @@
   <div class="form-group text-center">
     <button class="btn btn-primary account-btn" (click)="onSubmit()" type="submit">Login</button>
   </div>
-</form>
+</form> -->

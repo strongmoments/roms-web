@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormControl,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
 import { AlertService } from 'src/app/core/services';
@@ -9,29 +13,38 @@ import { Globals } from 'src/app/globals';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-
   firstFormGroup: any;
   submitted = false;
-  constructor(private formBuilder: UntypedFormBuilder, private alertService: AlertService,
-    private router: Router, public util: Utils, globals: Globals, private route: ActivatedRoute,
-    private authService: AuthenticationService,) {
-
+  constructor(
+    private formBuilder: UntypedFormBuilder,
+    private alertService: AlertService,
+    private router: Router,
+    public util: Utils,
+    globals: Globals,
+    private route: ActivatedRoute,
+    private authService: AuthenticationService
+  ) {
     this.firstFormGroup = this.formBuilder.group({
-      email: new UntypedFormControl('', [Validators.required, Validators.pattern(util.emailRegex), Validators.maxLength(256)]),
+      email: new UntypedFormControl('', [
+        Validators.required,
+        Validators.pattern(util.emailRegex),
+        Validators.maxLength(256),
+      ]),
       password: new UntypedFormControl('', [Validators.required]),
     });
-
   }
 
-  ngOnInit() {
+  ngOnInit() {}
+  get t() {
+    return this.firstFormGroup.controls;
   }
-  get t() { return this.firstFormGroup.controls; }
   public checkError = (controlName: string, errorName: string) => {
     return this.firstFormGroup.controls[controlName].hasError(errorName);
-  }
+  };
   async onSubmit() {
     this.submitted = true;
     if (this.firstFormGroup.invalid) {
@@ -40,14 +53,16 @@ export class LoginComponent implements OnInit {
     }
     var formData = this.firstFormGroup.value;
 
-
-    this.authService.login(formData.email, formData.password, false).pipe(first()).subscribe({
-      next: (result: any) => {
-        this.router.navigate(['/']);
-      },
-      error: (error: any) => {
-        this.alertService.openSnackBar(error);
-      }
-    })
+    this.authService
+      .login(formData.email, formData.password, false)
+      .pipe(first())
+      .subscribe({
+        next: (result: any) => {
+          this.router.navigate(['/']);
+        },
+        error: (error: any) => {
+          this.alertService.openSnackBar(error);
+        },
+      });
   }
 }
