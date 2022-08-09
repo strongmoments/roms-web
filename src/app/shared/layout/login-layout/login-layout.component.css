@@ -1,6 +1,10 @@
 mat-card {
   min-width: 80%;
 }
+/* *{
+  margin-bottom: 30%;
+  background-color: #A89073;;
+} */
 
 .container {
   /* background-color: #fff8e3; */
@@ -10,19 +14,38 @@ mat-card {
   height: 100%;
   justify-content: center;
   align-items: center;
-  background-color: #fff8e3;
+  background-color: #FFFFFF;
 }
 
 .logo {
-  /* position: absolute;
+  position: absolute;
   width: 182.52px;
   height: 100px;
-  left: 126px;
-  top: 93px; */
+  left: 136px;
+  top: 53px;
   background-image: url("../../../../assets/img/rtl-logo.svg");
 }
 .layer {
   background-image: url("../../../../assets/img/layer.svg");
-  /* height: 50%; */
-  /* width: fit-content; */
+  position: absolute;
+  /* left: -3.68;
+  right: -7.78%;
+  top: 31%;
+  bottom: -1.58%; */
+  /* opacity: 0.5; */
+  background-position: center;
+  /* background-size: cover; */
+  background-repeat: no-repeat;
+  /* background-size: contain; */
+  width: 1440px;
+  height: 489px;
+  top: 216px;
+  /* bottom: -1.79%; */
+  
+
+
+
+    /* width: fit-content;   */
+
+  
 }
