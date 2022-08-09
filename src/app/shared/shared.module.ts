@@ -12,6 +12,7 @@ import { SpinnerOverlayComponent } from './spinner-overlay/spinner-overlay.compo
 import { SnackbarComponent } from './snackbar.component/snackbar.component.component';
 import { TopNavComponent } from './layout/top-nav/top-nav.component';
 import { MenuListItemComponent } from './layout/menu-list-item/menu-list-item.component';
+import { TextMaskModule } from 'angular2-text-mask';
  
 @NgModule({
     imports: [
@@ -20,6 +21,7 @@ import { MenuListItemComponent } from './layout/menu-list-item/menu-list-item.co
         CustomMaterialModule,
         FormsModule,
         ReactiveFormsModule,
+        TextMaskModule
     ],
     declarations: [
         AlertDialogComponent,
@@ -36,7 +38,8 @@ import { MenuListItemComponent } from './layout/menu-list-item/menu-list-item.co
         ReactiveFormsModule,
         CustomMaterialModule,
         SnackbarComponent,
-        TopNavComponent
+        TopNavComponent,
+        TextMaskModule
     ]
 })
 export class SharedModule { }

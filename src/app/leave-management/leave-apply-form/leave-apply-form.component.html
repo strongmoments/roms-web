@@ -1,0 +1,107 @@
+<mat-card>
+    <mat-tab-group mat-stretch-tabs>
+        <mat-tab label="Apply Leave">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+                <mat-card>
+                    <mat-icon>calendar_today</mat-icon>
+                    Day
+                </mat-card>
+                <!-- <mat-divider> </mat-divider> -->
+
+                <mat-card>
+                    <button mat-button type="button" class="custom-grey-button" color="primary"
+                        (click)="calculateDate('-1')">yesterday</button>
+                    <button mat-button type="button" class="custom-grey-button" color="primary"
+                        (click)="calculateDate('0')">today</button>
+                    <button mat-button type="button" class="custom-grey-button" color="primary"
+                        (click)="calculateDate('1')">tomorrow</button>
+                    <button mat-button type="button" class="custom-grey-button" color="primary"
+                        (click)="calculateDate('2')">day
+                        after</button>
+                    <button mat-button type="button" class="custom-grey-button" color="primary"
+                        (click)="calculateDate('fri')">this
+                        friday</button>
+                    <button mat-button type="button" class="custom-grey-button" color="primary"
+                        (click)="calculateDate('mon')">next
+                        monday</button>
+
+
+                </mat-card>
+
+                <mat-card>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Enter a date range</mat-label>
+                        <mat-date-range-input [rangePicker]="picker"
+                            [ngClass]="{ 'is-invalid':submitted && (checkError('startDate', 'required') || checkError('endDate', 'required')) }">
+                            <input matStartDate formControlName="startDate" placeholder="Start date">
+                            <input matEndDate formControlName="endDate" placeholder="End date">
+                        </mat-date-range-input>
+                        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #picker></mat-date-range-picker>
+
+                        <mat-error
+                            *ngIf="submitted && (checkError('startDate', 'required') || checkError('endDate', 'required'))">
+                            Invalid dates
+                        </mat-error>
+                    </mat-form-field>
+
+                    <button mat-button type="button" class="custom-grey-button" (click)="calculateHours(1)"
+                        color="primary">1
+                        hr</button>
+                    <button mat-button type="button" class="custom-grey-button" (click)="calculateHours(2)"
+                        color="primary">2
+                        hr</button>
+                    <button mat-button type="button" class="custom-grey-button" (click)="calculateHours(3)"
+                        color="primary">3
+                        hr</button>
+                    <button mat-button type="button" class="custom-grey-button" (click)="calculateHours(4)"
+                        color="primary">4
+                        hr</button>
+                    Or
+                    <mat-form-field appearance="fill">
+                        <!-- <mat-label>--:--:--</mat-label> -->
+                        <input formControlName="startTime" [textMask]="{mask: util.timeMask}" matInput
+                            placeholder="--:--:--" [type]="'text'">
+                    </mat-form-field>
+                    to
+                    <mat-form-field appearance="fill">
+                        <!-- <mat-label>--:--:--</mat-label> -->
+                        <input formControlName="endTime" [textMask]="{mask: util.timeMask}" placeholder="--:--:--"
+                            matInput [type]=" 'text'">
+
+                    </mat-form-field>
+                    <button mat-button class="custom-grey-button" disabled>{{leaveHours}}</button> hours
+                </mat-card>
+                <mat-card>
+                    <mat-icon>calendar_today</mat-icon>
+                    Type
+                </mat-card>
+                <mat-card>
+                    <ng-container *ngFor="let leave of globals.leaveTypes">
+                        <button mat-button type="button" class="custom-grey-button" color="primary"
+                            (click)="calculateDate(leave.value)">{{leave.name}}</button>
+                    </ng-container>
+                </mat-card>
+                <mat-card>
+                    <mat-icon>calendar_today</mat-icon>
+                    Approval
+                    <mat-card-actions>
+                        <p>Leave Balance <button mat-button class="custom-grey-button" disabled>{{leaveHours}}</button>
+                            Manager's Name <button mat-button color="warn" type="submit">REQUEST FOR APPROVAL<mat-icon>
+                                    arrow_right_alt
+                                </mat-icon>
+                            </button>
+                        </p>
+                    </mat-card-actions>
+                </mat-card>
+            </form>
+        </mat-tab>
+        <mat-tab label="History">
+
+        </mat-tab>
+
+    </mat-tab-group>
+</mat-card>

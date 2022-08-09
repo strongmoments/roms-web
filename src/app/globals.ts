@@ -34,6 +34,21 @@ export class Globals {
         { value: true, viewValue: 'Active' },
         { value: false, viewValue: 'Inactive' }
     ];
+
+
+    leaveTypes = [
+        { name: 'sick', value: 'sick' },
+        { name: 'rostered day off', value: 'roster_day_off' },
+        { name: 'carer\'s', value: 'carer' },
+        { name: 'annual', value: 'annual' },
+        { name: 'without pay', value: 'without_pay' },
+        { name: 'bereavement', value: 'bereavement' },
+        { name: 'domestic voilence', value: 'domestic_voilence' },
+        { name: 'community service', value: 'community_service' },
+        { name: 'parental', value: 'parental' },
+        { name: 'long service', value: 'long_service' },
+    ]
+
     department = [
         { name: 'SEO', value: DepartmentId.seo, listTitle: 'seo' },
         { name: 'Node DEPARTMENT', value: DepartmentId.node, listTitle: 'node' },
