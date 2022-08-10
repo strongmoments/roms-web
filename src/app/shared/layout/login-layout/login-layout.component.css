@@ -1,6 +1,6 @@
-mat-card {
+/* mat-card {
   min-width: 80%;
-}
+} */
 
 
 .container {
@@ -15,28 +15,31 @@ mat-card {
 }
 
 .logo {
-  position: absolute;
-  width: 182.52px;
-  height: 100px;
-  left: 136px;
-  top: 53px;
+   position: absolute;
+   width: 182.52px;
+   height: 100px; 
+   left: 145px; 
+   top: 55px;
   background-image: url("../../../../assets/img/rtl-logo.svg");
 }
 .layer {
   background-image: url("../../../../assets/img/layer.svg");
-  position: absolute;
+  /* background-repeat: no-repeat;
+  background-position: center; */
+  background-size: cover;
+   position: relative; 
   /* left: -3.68;
   right: -7.78%;
   top: 31%;
   bottom: -1.58%; */
   /* opacity: 0.5; */
-  background-position: center;
+  
   /* background-size: cover; */
-  background-repeat: no-repeat;
+  
   /* background-size: contain; */
-  width: 1440px;
-  height: 489px;
-  top: 216px;
+  width: 1440vh;
+  height: 468px;
+  top: 16%;
   /* bottom: -1.79%; */
   
 

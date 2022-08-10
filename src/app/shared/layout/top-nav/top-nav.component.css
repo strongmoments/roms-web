@@ -1,6 +1,8 @@
  
   .nav-brand {
     text-align: center;
+    margin-left: 2%;
+    height:48px;
   }
  
   .nav-spacer {
@@ -34,5 +36,8 @@
   .mat-toolbar-row, .mat-toolbar-single-row{
     background-color: #fff;
     height: 61px;
+  }
+  .icon{
+    margin-right: 1%;
   }
  

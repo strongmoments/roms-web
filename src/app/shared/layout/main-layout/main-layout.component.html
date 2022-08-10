@@ -1,5 +1,5 @@
 <app-top-nav (sideNavToggled)="snav.toggle()"></app-top-nav>
-
+<div style="overflow:auto">
 <mat-sidenav-container>
 
 
@@ -10,14 +10,15 @@
                     <app-menu-list-item *ngFor="let item of navItems" [item]="item">
                     </app-menu-list-item>
                     <hr />
-                    <a mat-list-item (click)="onLoggedOut()" class="menu-list-item">
+                    <!-- <a mat-list-item (click)="onLoggedOut()" class="menu-list-item">
                         <mat-icon class="routeIcon">exit_to_app</mat-icon>
                         Logout
-                   </a>
+                   </a> -->
                 </div>
             </div>
         </mat-nav-list>
     </mat-sidenav>
+
 
 
     <mat-sidenav-content>
@@ -28,3 +29,4 @@
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>
+</div>

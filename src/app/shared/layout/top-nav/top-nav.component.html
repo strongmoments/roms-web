@@ -2,25 +2,37 @@
   <button type="button" mat-icon-button class="" (click)="toggleSidebar()">
     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
   </button>
+  
   <div class="nav-brand">
     <div class="logo">
-      <img src="../assets/img/logo.png" height="50">
+      <img src="../assets/img/logo.png" height="50" >
     </div>
   </div>
   <span class="nav-spacer"></span>
+  <mat-icon class="icon"> chat</mat-icon  >
+  <mat-icon class="icon">notifications</mat-icon>
+  <mat-icon class="icon">account_circle</mat-icon>
 
   <button class="hidden-sm" mat-icon-button [matMenuTriggerFor]="profile">
-    <mat-icon>account_circle</mat-icon>
+    <mat-icon>keyboard_arrow_down</mat-icon>
   </button>
   <mat-menu #profile="matMenu" [overlapTrigger]="false">
     <button mat-menu-item (click)="changeProfile()">
       <mat-icon>person</mat-icon>
       <span>Profile</span>
     </button>
-    <button mat-menu-item (click)="changePassword()">
+    <button mat-menu-item>
+      <mat-icon>account_balance_wallet</mat-icon>
+      <span>Pay</span>
+    </button>
+    <button mat-menu-item >
+      <mat-icon>settings</mat-icon>
+      <span>Settings</span>
+    </button>
+    <!-- <button mat-menu-item (click)="changePassword()">
       <mat-icon>inbox</mat-icon>
       <span>Change Password</span>
-    </button>
+    </button> -->
     <button title="Logout" [ngClass]="{red: rememberMe ==='yes'}" mat-menu-item (click)="onLoggedout()">
       <mat-icon>exit_to_app</mat-icon>
       <span>Logout</span>
