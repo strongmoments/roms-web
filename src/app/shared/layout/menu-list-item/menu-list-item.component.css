@@ -1,12 +1,18 @@
-a.mat-list-item.mat-focus-indicator.menu-list-item  {
-    color: #ffffff;
-    font-size: 12px;
+a.mat-list-item.mat-focus-indicator.menu-list-item {
+    color: #656565;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+
 }
 
+
 .mat-list-item-content .mat-icon {
-    margin-right: 5px ;
+    margin-right: 5px;
 }
-.item-icon{
+
+.item-icon {
     font-size: 19px;
     margin-right: 5px;
 }

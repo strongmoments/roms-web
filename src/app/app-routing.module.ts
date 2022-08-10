@@ -19,6 +19,13 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'leave',
+    loadChildren: () => import('./leave-management/leave-management.module').then(m => m.LeaveManagementModule),
+    canActivate: [AuthGuard]
+  },
+
+
+  {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
     canActivate: [SuperAdminGuard]

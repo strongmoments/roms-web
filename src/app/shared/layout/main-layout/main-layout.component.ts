@@ -69,14 +69,18 @@ export class MainLayoutComponent implements OnInit {
 
     this.navItems.push({ displayName: 'Dashboard', iconName: 'dashboard', route: '/' },
       {
-        displayName: 'Employee ', iconName: 'settings', route: '/', children: [
-          { displayName: 'Employee List', iconName: 'account_box', route: '/employee' },
-          { displayName: 'Leave', iconName: 'account_box', route: '/employee' },
-          { displayName: 'Announcement', iconName: 'settings', route: '' }
+        displayName: 'Time Off', iconName: 'calendar_today', route: '/', children: [
+          { displayName: 'My Leaves', iconName: '', route: '/leave' },
+          { displayName: 'Holidays', iconName: '', route: '/' },
         ]
       },
       {
-        displayName: 'Operation', iconName: 'settings', route: '/', children: [
+        displayName: 'My Staff', iconName: 'dashboard', route: '/', children: [
+          { displayName: 'Leave Request', iconName: 'account_box', route: '/leave' },
+        ]
+      },
+      {
+        displayName: 'Operation', iconName: 'dashboard', route: '/', children: [
           { displayName: 'Asset', iconName: 'account_box', route: '/' },
           { displayName: 'Inspection', iconName: 'account_box', route: '/' },
         ]
