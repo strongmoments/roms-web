@@ -47,18 +47,20 @@ const NAMES: string[] = [
     'Elizabeth',
 ];
 @Component({
-    selector: 'app-leave-apply-form',
-    templateUrl: './leave-apply-form.component.html',
-    styleUrls: ['./leave-apply-form.component.scss']
+    selector: 'app-leave-request-list',
+    templateUrl: './leave-request-list.component.html',
+    styleUrls: ['./leave-request-list.component.scss']
 })
-export class LeaveApplyFormComponent implements OnInit {
+export class LeaveRequestListComponent implements OnInit {
     globals: Globals;
     leaveHours: number = 0;
     form: FormGroup;
     submitted: boolean = false;
-    displayedColumns: string[] = ['sno', 'dates', 'days', 'time','hours','manager','leave_type','status'];
+    displayedColumnsLeave: string[] = ['staffName', 'dates', 'days', 'time', 'hours', 'manager', 'leave_type', 'action'];
+    displayedColumnsHistory: string[] = ['sno', 'dates', 'days', 'time', 'hours', 'manager', 'leave_type', 'status'];
+    displayedColumns: string[] = [];
     dataSource: MatTableDataSource<UserData>;
-
+    selectedTabIndex: number = 0;
     @ViewChild(MatPaginator) paginator!: MatPaginator;
     @ViewChild(MatSort) sort!: MatSort;
 
@@ -110,8 +112,14 @@ export class LeaveApplyFormComponent implements OnInit {
 
 
     ngOnInit(): void {
+        this.displayedColumns = this.displayedColumnsLeave;
     }
 
+    onTabChanged(index: number) {
+        this.selectedTabIndex = index;
+        this.displayedColumns=index==0?this.displayedColumnsLeave:this.displayedColumnsHistory;
+        console.log(event, 'event')
+    }
     calculateDate(value: string) {
         console.log((value), 'parseInt(value)');
         let currentDate = new Date(new Date().getTime());

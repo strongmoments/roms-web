@@ -76,7 +76,7 @@ export class MainLayoutComponent implements OnInit {
       },
       {
         displayName: 'My Staff', iconName: 'dashboard', route: '/', children: [
-          { displayName: 'Leave Request', iconName: 'account_box', route: '/leave' },
+          { displayName: 'Leave Request', iconName: 'account_box', route: '/leave/leave-request' },
         ]
       },
       {

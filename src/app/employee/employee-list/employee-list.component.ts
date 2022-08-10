@@ -56,19 +56,19 @@ export class EmployeeListComponent implements OnInit {
 
   constructor() {
     // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => this.createNewUser(k + 1));
+    const users = Array.from({ length: 100 }, (_, k) => this.createNewUser(k + 1));
 
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(users);
   }
 
-   createNewUser(id: number): UserData {
+  createNewUser(id: number): UserData {
     const name =
       NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
       ' ' +
       NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
       '.';
-  
+
     return {
       id: id.toString(),
       name: name,
@@ -77,12 +77,15 @@ export class EmployeeListComponent implements OnInit {
     };
   }
   ngOnInit(): void {
-    
+
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.sort.sortChange.subscribe((sort) => {
+      // this.refresh(this.getDefaultOptions());
+    });
   }
 
   applyFilter(event: Event) {

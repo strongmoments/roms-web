@@ -9,6 +9,10 @@
   background-color: #d51e1e;
 }
 
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+  width: 10%;
+}
+
 html,
 body {
   height: 100%;
