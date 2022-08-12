@@ -1,5 +1,5 @@
 <mat-card>
-    <mat-tab-group mat-stretch-tabs>
+    <mat-tab-group mat-stretch-tabs (selectedIndexChange)="onTabChanged($event);">
         <mat-tab label="Apply Leave">
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
@@ -64,13 +64,13 @@
                     <mat-form-field appearance="fill">
                         <!-- <mat-label>--:--:--</mat-label> -->
                         <input formControlName="startTime" [textMask]="{mask: util.timeMask}" matInput
-                            placeholder="--:--:--" [type]="'text'">
+                            placeholder="--:--:--" [type]="'text'" (change)="calculateHoursByField()">
                     </mat-form-field>
                     to
                     <mat-form-field appearance="fill">
                         <!-- <mat-label>--:--:--</mat-label> -->
                         <input formControlName="endTime" [textMask]="{mask: util.timeMask}" placeholder="--:--:--"
-                            matInput [type]=" 'text'">
+                            matInput [type]=" 'text'" (change)="calculateHoursByField()">
 
                     </mat-form-field>
                     <button mat-button class="custom-grey-button" disabled>{{leaveHours}}</button> hours
@@ -80,21 +80,32 @@
                     Type
                 </mat-card>
                 <mat-card>
-                    <ng-container *ngFor="let leave of globals.leaveTypes">
+                    <input type="hidden" formControlName="leaveType">
+                    <ng-container *ngFor="let leave of leaveTypeList">
                         <button mat-button type="button" class="custom-grey-button" color="primary"
-                            (click)="calculateDate(leave.value)">{{leave.name}}</button>
+                            [ngClass]="{ 'active': leave.id == selectedLeaveType}"
+                            (click)="setLeaveType(leave)">{{leave?.leaveDescription}}</button>
                     </ng-container>
                 </mat-card>
                 <mat-card>
                     <mat-icon>calendar_today</mat-icon>
                     Approval
                     <mat-card-actions>
-                        <p>Leave Balance <button mat-button class="custom-grey-button" disabled>{{leaveHours}}</button>
-                            Manager's Name <button mat-button color="warn" type="submit">REQUEST FOR APPROVAL<mat-icon>
-                                    arrow_right_alt
-                                </mat-icon>
-                            </button>
-                        </p>
+                        <mat-form-field appearance="outline">
+                            <!-- <mat-label>Outline form field</mat-label> -->
+                            <input [ngClass]="{ 'is-invalid':submitted && checkError('leaveReason', 'required')}"
+                                matInput formControlName="leaveReason" placeholder="Comment">
+                            <mat-error *ngIf="submitted && checkError('leaveReason', 'required')">
+                                Comment is required
+                            </mat-error>
+                        </mat-form-field>
+                        <!-- <p> -->
+                        <!-- Leave Balance <button mat-button class="custom-grey-button" disabled>{{availableLeaveCount}}</button> -->
+                        Manager's Name <button mat-button color="warn" type="submit">REQUEST FOR APPROVAL<mat-icon>
+                                arrow_right_alt
+                            </mat-icon>
+                        </button>
+                        <!-- </p> -->
                     </mat-card-actions>
                 </mat-card>
             </form>
@@ -104,11 +115,11 @@
                 <mat-card-title align="right">
                     August 2022<mat-form-field style="display:none;text-align: right;">
                         <mat-label>Choose a date</mat-label>
-                        <input matInput [matDatepicker]="picker">
+                        <input matInput [matDatepicker]="pickerList" [(ngModel)]="historyMonth">
                         <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
-                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-datepicker #pickerList></mat-datepicker>
                     </mat-form-field>
-                    <mat-icon (click)="picker.open()">calendar_today</mat-icon>
+                    <mat-icon (click)="pickerList.open()">calendar_today</mat-icon>
 
                 </mat-card-title>
                 <mat-card-content>

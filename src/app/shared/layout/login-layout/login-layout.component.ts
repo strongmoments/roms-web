@@ -11,15 +11,15 @@ import { Globals } from 'src/app/globals';
 export class LoginLayoutComponent implements OnInit {
 
   globals: Globals;
-  constructor(globals: Globals, private router: Router,  private authService: AuthenticationService,) {
+  constructor(globals: Globals, private router: Router, private authService: AuthenticationService,) {
     this.globals = globals;
   }
 
   ngOnInit() {
-    // const user = this.authService.getCurrentUser();
-    // if (user !== null && user !== undefined) {
-    //   this.router.navigate(['/dashboard']);
-    // }
+    const user = this.authService.getCurrentUser();
+    if (user !== null && user !== undefined) {
+      this.router.navigate(['/dashboard']);
+    }
   }
 
 }

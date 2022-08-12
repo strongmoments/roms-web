@@ -26,7 +26,7 @@ export class MainLayoutComponent implements OnInit {
   toolBarHeight = 64;
   navItems: NavItem[] = [];
   companyName!: string;
-
+  userPermissions: any = {};
 
   private readonly mediaWatcher!: Subscription;
 
@@ -57,35 +57,72 @@ export class MainLayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.authService.getCurrentUser();
-
-    // if (this.user === null || this.user === undefined) {
-    //   this.authService.logout();
-    //   this.router.navigate(['/']);
-    // }
-
+    this.userPermissions = this.authService.getUserPermission()?.menus;
+    console.log(this.userPermissions, 'this.userPermissions')
+    if (this.user === null || this.user === undefined) {
+      this.authService.logout();
+      this.router.navigate(['/']);
+    }
+    console.log(this.user)
     this.userName = this.user.fullName;
     this.email = this.user.email;
     this.companyName = this.user.companyName;
 
-    this.navItems.push({ displayName: 'Dashboard', iconName: 'dashboard', route: '/' },
-      {
-        displayName: 'Time Off', iconName: 'calendar_today', route: '/', children: [
-          { displayName: 'My Leaves', iconName: '', route: '/leave' },
-          { displayName: 'Holidays', iconName: '', route: '/' },
-        ]
-      },
-      {
-        displayName: 'My Staff', iconName: 'dashboard', route: '/', children: [
-          { displayName: 'Leave Request', iconName: 'account_box', route: '/leave/leave-request' },
-        ]
-      },
-      {
-        displayName: 'Operation', iconName: 'dashboard', route: '/', children: [
-          { displayName: 'Asset', iconName: 'account_box', route: '/' },
-          { displayName: 'Inspection', iconName: 'account_box', route: '/' },
-        ]
+    let menuItem = [];
+
+    menuItem.push({ displayName: 'Dashboard', iconName: 'dashboard', route: '/dashboard' });
+
+    if (this.userPermissions) {
+      //condition for menu of operatins
+      if (this.userPermissions.operations && this.userPermissions.operations.length > 0) {
+        let subMenu = [];
+        if (this.userPermissions.operations.includes('assets')) {
+          subMenu.push({ displayName: 'Asset', iconName: '', route: '/' });
+        }
+        if (this.userPermissions.operations.includes('inspection')) {
+          subMenu.push({ displayName: 'Inspection', iconName: '', route: '/' });
+        }
+        menuItem.push({
+          displayName: 'Operation', iconName: 'dashboard', route: '/', children: subMenu
+        })
       }
-    );
+
+      //condition for menu of timeoff
+      if (this.userPermissions.timeoff && this.userPermissions.timeoff.length > 0) {
+        let subMenu = [];
+        if (this.userPermissions.timeoff.includes('applyleave')) {
+          subMenu.push({ displayName: 'My Leaves', iconName: '', route: '/leave' });
+        }
+        if (this.userPermissions.timeoff.includes('history')) {
+          subMenu.push({ displayName: 'Holidays', iconName: '', route: '/' });
+        }
+        menuItem.push({
+          displayName: 'Time Off', iconName: 'calendar_today', route: '/', children: subMenu
+        })
+      }
+
+      //condition for menu of my staff
+      if (this.userPermissions.mystaff && this.userPermissions.mystaff.length >= 0) {
+        let subMenu: any = [];
+        // if (this.userPermissions.timeoff.includes('applyleave')) {
+          subMenu.push({ displayName: 'Leave Request', iconName: 'account_box', route: '/leave/leave-request' });
+        // }
+        // if (this.userPermissions.timeoff.includes('history')) {
+        //   subMenu.push({ displayName: 'Holidays', iconName: '', route: '/' });
+        // }
+        menuItem.push({
+          displayName: 'My Staff', iconName: 'dashboard', route: '/', children: subMenu
+        })
+      }
+    }
+
+    // this.navItems.push({ displayName: 'Dashboard', iconName: 'dashboard', route: '/' },
+    //   {
+    //     displayName: 'My Staff', iconName: 'dashboard', route: '/', children: [
+    //       { displayName: 'Leave Request', iconName: 'account_box', route: '/leave/leave-request' },
+    //     ]
+    //   },
+    // );
 
 
     // const accountSetting = {
@@ -94,7 +131,8 @@ export class MainLayoutComponent implements OnInit {
     //     { displayName: 'Change Password', iconName: 'settings', route: '/changePassword' }
     //   ]
     // }
-
+    console.log(menuItem)
+    this.navItems = menuItem;
 
     // this.navItems.push(accountSetting);
 

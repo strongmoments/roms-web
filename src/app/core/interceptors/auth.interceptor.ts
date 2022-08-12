@@ -15,21 +15,23 @@ export class AuthInterceptor implements HttpInterceptor {
 
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        // const user = this.authService.getCurrentUser();
-        // if (user && user.token) {    
-        //     const cloned = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + user.token) });
-        //     return next.handle(cloned).pipe(tap(() => { }, (err: any) => {
+        const user = this.authService.getCurrentUser();
+        if (user && user.token) {    
+            // const cloned = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + user.token) });
+            const cloned = req.clone({setHeaders:{'Authorization':'Bearer ' + user.token,'Content-Type':'application/json'} });    
+            return next.handle(cloned).pipe(tap(() => { }, (err: any) => {
 
-        //         if (err instanceof HttpErrorResponse) {
-        //             if (err.status === 401 || err.status === 0) {
-        //                 this.authService.logout();
-        //                 this.router.navigate(['/']);
-        //             }
-        //         }
-        //     }));
+                if (err instanceof HttpErrorResponse) {
+                    if (err.status === 401 || err.status === 403) {
+                    // if (err.status === 401 || err.status === 0) {
+                        this.authService.logout();
+                        this.router.navigate(['/']);
+                    }
+                }
+            }));
 
-        // } else {
+        } else {
             return next.handle(req);
-        // }
+        }
     }
 }

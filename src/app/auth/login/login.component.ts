@@ -9,6 +9,7 @@ import { first } from 'rxjs';
 import { AlertService } from 'src/app/core/services';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { Utils } from 'src/app/core/_helpers/util';
+import { CustomMessage } from 'src/app/custom-message';
 import { Globals } from 'src/app/globals';
 
 @Component({
@@ -29,16 +30,16 @@ export class LoginComponent implements OnInit {
     private authService: AuthenticationService
   ) {
     this.firstFormGroup = this.formBuilder.group({
-      email: new UntypedFormControl('', [
+      username: new UntypedFormControl('', [
         Validators.required,
-        Validators.pattern(util.emailRegex),
+        // Validators.pattern(util.emailRegex),
         Validators.maxLength(256),
       ]),
       password: new UntypedFormControl('', [Validators.required]),
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
   get t() {
     return this.firstFormGroup.controls;
   }
@@ -54,14 +55,16 @@ export class LoginComponent implements OnInit {
     var formData = this.firstFormGroup.value;
 
     this.authService
-      .login(formData.email, formData.password, false)
+      .login(formData.username, formData.password, false)
       .pipe(first())
       .subscribe({
         next: (result: any) => {
-          this.router.navigate(['/']);
+          this.alertService.openSnackBar(CustomMessage.loginSuccess,false);
+          this.router.navigate(['/dashboard']);
         },
         error: (error: any) => {
-          this.alertService.openSnackBar(error);
+          console.log(error, 'error')
+          this.alertService.openSnackBar(CustomMessage.invalidCredential);
         },
       });
   }

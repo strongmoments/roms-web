@@ -23,17 +23,17 @@ export class AuthenticationService {
     getUserData() {
         const userData = localStorage.getItem(environment.localStorage) || sessionStorage.getItem(environment.localStorage);
         //const userData = JSON.parse(this.localStorage.getItem(environment.localStorage)!);
-        
+
         return JSON.parse(userData!)
     }
     saveUserData(user: any) {
-        const rememberMe = this.localStorage.getItem('rememberMe') || 'no';
-        delete user.message;
-        if (rememberMe === 'yes') {
-            this.localStorage.setItem(environment.localStorage, JSON.stringify(user));
-        } else {
-            sessionStorage.setItem(environment.localStorage, JSON.stringify(user));
-        }
+        // const rememberMe = this.localStorage.getItem('rememberMe') || 'no';
+        // delete user.message;
+        // if (rememberMe === 'yes') {
+        this.localStorage.setItem(environment.localStorage, JSON.stringify(user));
+        // } else {
+        // sessionStorage.setItem(environment.localStorage, JSON.stringify(user));
+        // }
         // this.localStorage.setItem(environment.localStorage, JSON.stringify(user));
     }
     public getRememberMe() {
@@ -44,19 +44,20 @@ export class AuthenticationService {
         return this.userSubject.value;
     }
 
-    login(email: string, password: string, rememberMe: boolean) {
-        return this.http.post<any>(`${environment.apiUrl}/users/login`, { email, password }, { withCredentials: true })
+    login(username: string, password: string, rememberMe: boolean) {
+        return this.http.post<any>(`${environment.apiUrl}/authenticate`, { username: username, password: password, orgId: "ab905406-79a3-4e54-8244-d79fc0e60937" })
             .pipe(map(user => {
-                let useData = jwt_decode(user.accessToken) as any;
-                if (useData !== null && useData !== undefined) {
-                    console.log(useData);
-                    console.log("data", useData)
-                    user.email = useData.email;
-                    user.id = useData.id;
-                    user.role = useData.role;
-                    user.fullName = useData.fullName;
-                }
-                this.localStorage.setItem('rememberMe', rememberMe ? 'yes' : 'no');
+                console.log(user)
+                // let useData = jwt_decode(user.accessToken) as any;
+                // if (useData !== null && useData !== undefined) {
+                //     console.log(useData);
+                //     console.log("data", useData)
+                //     user.email = useData.email;
+                //     user.id = useData.id;
+                //     user.role = useData.role;
+                //     user.fullName = useData.fullName;
+                // }
+                // this.localStorage.setItem('rememberMe', rememberMe ? 'yes' : 'no');
                 this.saveUserData(user);
                 this.userSubject.next(user);
                 return user;
@@ -96,7 +97,7 @@ export class AuthenticationService {
 
 
     logout(): void {
-        this.http.post<any>(`${environment.apiUrl}/users/revoke-token`, {}, { withCredentials: true });
+        // this.http.post<any>(`${environment.apiUrl}/users/revoke-token`, {}, { withCredentials: true });
         this.localStorage.clear();
         sessionStorage.clear();
         this.router.navigate(['/']);
@@ -115,21 +116,26 @@ export class AuthenticationService {
         this.saveUserData(userData);
     }
 
-    getCurrentUser(): any {
-        return {
-            token:'token',
-            isSuperAdmin: 'isSuperAdmin',
-            isAdmin: true,
-            role: 'role',
-            email: 'test@hmasil.com',
-            companyId: 'companyId',
-            id: 'id',
-            department: 'department',
-            companyName: 'companyName',
-            expiration: 'expiration',
-            fullName: 'John wick',
-            image: 'image'
+    getUserPermission() {
+        const userData = this.getUserData();
+        if (userData) {
+            return {
+                menus: userData.menus
+            }
+        } else {
+            return {};
+        }
+    }
 
+    getCurrentUser(): any {
+        const userData = this.getUserData();
+        // console.log(userData,'userData')
+        if (userData) {
+            return {
+                token: userData.token,
+                ...userData.userDetail
+
+            }
         }
         // const userData = this.getUserData();
         // if (userData !== null) {
