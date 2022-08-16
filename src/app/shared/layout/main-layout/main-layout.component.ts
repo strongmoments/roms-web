@@ -102,11 +102,11 @@ export class MainLayoutComponent implements OnInit {
       }
 
       //condition for menu of my staff
-      if (this.userPermissions.mystaff && this.userPermissions.mystaff.length >= 0) {
+      if (this.userPermissions.dashboard && this.userPermissions.dashboard.length > 0) {
         let subMenu: any = [];
-        // if (this.userPermissions.timeoff.includes('applyleave')) {
+        if (this.userPermissions.dashboard.includes('mystaff')) {
           subMenu.push({ displayName: 'Leave Request', iconName: 'account_box', route: '/leave/leave-request' });
-        // }
+        }
         // if (this.userPermissions.timeoff.includes('history')) {
         //   subMenu.push({ displayName: 'Holidays', iconName: '', route: '/' });
         // }

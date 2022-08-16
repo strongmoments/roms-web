@@ -3,4 +3,7 @@ export enum CustomMessage {
     loginSuccess = 'Logged in sucessfully',
     leaveApplySuccess = 'Leave applied succesfully',
     error = 'Something went wrong. Please try again.',
+    commentRequired = 'Please enter comment',
+    leaveAccepted = 'Leave accepted succesfully',
+    leaveRejected = 'Leave rejected succesfully',
 }
