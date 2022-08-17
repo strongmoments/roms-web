@@ -33,10 +33,10 @@
 
                     <mat-form-field appearance="fill">
                         <mat-label>Enter a date range</mat-label>
-                        <mat-date-range-input [rangePicker]="picker"
+                        <mat-date-range-input [rangePicker]="picker" 
                             [ngClass]="{ 'is-invalid':submitted && (checkError('startDate', 'required') || checkError('endDate', 'required')) }">
-                            <input matStartDate formControlName="startDate" placeholder="Start date">
-                            <input matEndDate formControlName="endDate" placeholder="End date">
+                            <input matStartDate formControlName="startDate" (dateChange)="calculateDaysByField()" placeholder="Start date">
+                            <input matEndDate (dateChange)="calculateDaysByField()" formControlName="endDate" placeholder="End date">
                         </mat-date-range-input>
                         <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -47,7 +47,8 @@
                             Invalid dates
                         </mat-error>
                     </mat-form-field>
-
+                    <button mat-button class="custom-grey-button" disabled>{{leaveDays}}</button> days
+                    <br>
                     <button mat-button type="button" class="custom-grey-button" (click)="calculateHours(1)"
                         color="primary">1
                         hr</button>
@@ -135,40 +136,40 @@
                             <!-- Progress Column -->
                             <ng-container matColumnDef="dates">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> dates </th>
-                                <td mat-cell *matCellDef="let row">08-06-2022 to 08-06-2022 </td>
+                                <td mat-cell *matCellDef="let row">{{row.startDateTime | date}} to {{row.endDateTime | date}} </td>
                             </ng-container>
 
                             <!-- Name Column -->
                             <ng-container matColumnDef="days">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> days </th>
-                                <td mat-cell *matCellDef="let row"> 1 </td>
+                                <td mat-cell *matCellDef="let row">{{calculateDays(row?.startDateTime,row?.endDateTime)}}</td>
                             </ng-container>
 
                             <!-- Fruit Column -->
                             <ng-container matColumnDef="time">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> time </th>
-                                <td mat-cell *matCellDef="let row"> </td>
+                                <td mat-cell *matCellDef="let row">{{row?.totalHour}} </td>
                             </ng-container>
 
                             <ng-container matColumnDef="hours">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> hours</th>
-                                <td mat-cell *matCellDef="let row"> 0 </td>
+                                <td mat-cell *matCellDef="let row"> {{row?.totalHour}}</td>
                             </ng-container>
 
                             <ng-container matColumnDef="manager">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> manager</th>
-                                <td mat-cell *matCellDef="let row"> Mick </td>
+                                <td mat-cell *matCellDef="let row"> {{row?.approver?.firstName}} {{row?.approver?.lastName}}</td>
                             </ng-container>
 
 
                             <ng-container matColumnDef="leave_type">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> leave type</th>
-                                <td mat-cell *matCellDef="let row"> sick </td>
+                                <td mat-cell *matCellDef="let row"> {{row?.leaveType?.leaveDescription}} </td>
                             </ng-container>
 
                             <ng-container matColumnDef="status">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> status</th>
-                                <td mat-cell *matCellDef="let row"> pending </td>
+                                <td mat-cell *matCellDef="let row">{{getStatus(row?.leaveStatus)}} </td>
                             </ng-container>
 
 

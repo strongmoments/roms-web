@@ -21,8 +21,8 @@ export class LeaveRequestListComponent implements OnInit {
     // leaveHours: number = 0;
     // form: FormGroup;
     submitted: boolean = false;
-    displayedColumnsLeave: string[] = ['staffName', 'dates', 'days', 'time', 'hours', 'manager', 'leave_type', 'comments', 'action'];
-    displayedColumnsHistory: string[] = ['sno', 'dates', 'days', 'time', 'hours', 'manager', 'leave_type', 'status', 'comments'];
+    displayedColumnsLeave: string[] = ['staffName', 'dates', 'days', 'time', 'hours', 'leave_type', 'comments', 'action'];
+    displayedColumnsHistory: string[] = ['sno', 'dates', 'days', 'time', 'hours', 'leave_type', 'status', 'comments'];
     displayedColumns: string[] = [];
     dataSource = new MatTableDataSource<any>();
     selectedTabIndex: number = 0;
@@ -31,6 +31,7 @@ export class LeaveRequestListComponent implements OnInit {
     pagesize = 10;
     totalRecords: number = 0;
     search: string = '1';//by default 0 for pending list
+    comments: any = [];
     constructor(public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private leaveService: LeaveService) {
         this.globals = globals;
     }
@@ -55,6 +56,7 @@ export class LeaveRequestListComponent implements OnInit {
 
     ngOnInit(): void {
         this.displayedColumns = this.displayedColumnsLeave;
+        this.refresh(this.getDefaultOptions());
     }
 
     onTabChanged(index: number) {
@@ -72,6 +74,12 @@ export class LeaveRequestListComponent implements OnInit {
         this.leaveService.staffLeaveHistory(options).pipe(first()).subscribe((result: any) => {
             this.totalRecords = result.totalCount;
             this.dataSource.data = result.data;
+            console.log(result.data, 'result.data')
+            this.comments = [];
+            result.data.map(() => {
+                this.comments.push('');
+            });
+
         });
 
     }
@@ -79,10 +87,11 @@ export class LeaveRequestListComponent implements OnInit {
     getDefaultOptions() {
         let obj = this.paginator;
         let sort = this.sort;
+        // console.warn(obj.pageIndex)
         const options: ViewOptions = {
             sortField: (sort !== undefined ? sort.active : 'fullName'),
             sortDirection: (sort !== undefined ? sort.direction : 'asc'),
-            page: (obj != undefined ? (obj.pageIndex == null ? 0 : obj.pageIndex + 1) : 0),
+            page: (obj != undefined ? (obj.pageIndex == null || obj.pageIndex == 0 ? 0 : obj.pageIndex + 1) : 0),
             search: this.search,
             query: '',
             pageSize: (obj != undefined ? (obj.pageSize == null ? this.pagesize : obj.pageSize) : this.pagesize)
@@ -90,5 +99,64 @@ export class LeaveRequestListComponent implements OnInit {
         return options;
     }
 
+
+    calculateDays(startDay: any, endDay: any) {
+        let days = 0;
+        // console.log('sads', startDay, endDay)
+        if (startDay && endDay) {
+
+            var date1 = new Date(startDay);
+            var date2 = new Date(endDay);
+
+            // To calculate the time difference of two dates
+            var Difference_In_Time = date2.getTime() - date1.getTime();
+            // To calculate the no. of days between two dates
+            var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+            // console.log(startDay, endDay, endDay < startDay)
+            days = Math.round(Difference_In_Days);
+            days = days == 0 ? 1 : days;
+        } else {
+            days = 0;
+        }
+        return days;
+    }
+
+    getStatus(status: any) {
+        return this.globals.leaveStatus.find((elem: any) => {
+            return elem.value == status
+        })?.name;
+    }
+
+    addComment(index: number, comment: any) {
+        if (this.comments && this.comments.length > 0) {
+            this.comments[index] = comment;
+        }
+    }
+
+    approveReject(type: number, index: number, id: any) {
+        //         if (index && this.comments && this.comments.length > 0 && (this.comments[index] != undefined || this.comments[index] != '')) {
+
+        //         } else {
+        // this.alertService.openSnackBar(CustomMessage.error)
+        //         }
+        if (type == 0) {
+            this.leaveService.approveLeave({ id: id, reviewerRemark: (this.comments[index] ? this.comments[index] : '') }).subscribe((res) => {
+                this.alertService.openSnackBar(CustomMessage.leaveAccepted, false);
+                this.refresh(this.getDefaultOptions());
+                // this.router.navigate(['/dashboard']);
+            }, (error) => {
+                this.alertService.openSnackBar(CustomMessage.error);
+            });
+        } else if (type == 1) {
+
+            this.leaveService.rejectLeave({ id: id, reviewerRemark: (this.comments[index] ? this.comments[index] : '') }).subscribe((res) => {
+                this.alertService.openSnackBar(CustomMessage.leaveAccepted, false);
+                this.refresh(this.getDefaultOptions());
+                // this.router.navigate(['/dashboard']);
+            }, (error) => {
+                this.alertService.openSnackBar(CustomMessage.error);
+            });
+        }
+    }
 
 }

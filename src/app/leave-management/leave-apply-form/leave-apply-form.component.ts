@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { AlertService } from 'src/app/core/services';
 import { LeaveService } from 'src/app/core/services/leave.service';
@@ -19,6 +20,7 @@ import { ViewOptions } from 'src/app/_models';
 export class LeaveApplyFormComponent implements OnInit {
     globals: Globals;
     leaveHours: number = 0;
+    leaveDays: number = 0;
     form: FormGroup;
     submitted: boolean = false;
     displayedColumns: string[] = ['sno', 'dates', 'days', 'time', 'hours', 'manager', 'leave_type', 'status'];
@@ -31,7 +33,7 @@ export class LeaveApplyFormComponent implements OnInit {
     leaveTypeList: any = [];
     availableLeaveCount: number = 0;
     selectedLeaveType: string = '';
-    constructor(public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private leaveService: LeaveService) {
+    constructor(public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private leaveService: LeaveService, private router: Router) {
         this.globals = globals;
         this.form = this.fb.group({
             startDate: new FormControl('', [Validators.required]),
@@ -102,6 +104,7 @@ export class LeaveApplyFormComponent implements OnInit {
             );
             this.form.controls['startDate'].setValue(nextFriday);
             this.form.controls['endDate'].setValue(nextFriday);
+            this.leaveDays = 1;
         } else if (value == 'mon') {
             const nextMonday = new Date(
                 currentDate.setDate(
@@ -111,25 +114,59 @@ export class LeaveApplyFormComponent implements OnInit {
             console.log(currentDate, 'nextMonday')
             this.form.controls['startDate'].setValue(nextMonday);
             this.form.controls['endDate'].setValue(nextMonday);
+            this.leaveDays = 1;
         } else if (value == '-1' || value == '1' || value == '0' || value == '2') {
             // console.log(currentDate, parseInt(value), 'parseInt(value)');
             currentDate.setDate(currentDate.getDate() + parseInt(value));
             this.form.controls['startDate'].setValue(currentDate);
             this.form.controls['endDate'].setValue(currentDate);
-
+            this.leaveDays = 1;
         }
-        // const currentDate = new Date(new Date('2022-08-04').getTime());
-        // console.log(currentDate, 'adbace')
-        // const nextMonday = new Date(
-        //     currentDate.setDate(
-        //         currentDate.getDate() + ((4 - currentDate.getDay() + 1) % 7 || 7),
-        //     ),
-        // );
-
-        // console.log(currentDate, currentDate.getDay());
-        // return nextMonday;
         return;
+    }
 
+    calculateDaysByField() {
+        let startDay = (this.form.controls['startDate'].value);
+        let endDay = (this.form.controls['endDate'].value);
+        console.log('sads', startDay, endDay)
+        if (startDay && endDay) {
+
+            var date1 = new Date(startDay);
+            var date2 = new Date(endDay);
+
+            // To calculate the time difference of two dates
+            var Difference_In_Time = date2.getTime() - date1.getTime();
+
+            // To calculate the no. of days between two dates
+            var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+            // console.log(startDay, endDay, endDay < startDay)
+
+            this.leaveDays = Math.round(Difference_In_Days);
+        } else {
+            this.leaveDays = 0;
+        }
+        return;
+    }
+
+    calculateDays(startDay: any, endDay: any) {
+        let days = 0;
+        // console.log('sads', startDay, endDay)
+        if (startDay && endDay) {
+
+            var date1 = new Date(startDay);
+            var date2 = new Date(endDay);
+
+            // To calculate the time difference of two dates
+            var Difference_In_Time = date2.getTime() - date1.getTime();
+            // To calculate the no. of days between two dates
+            var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+            // console.log(startDay, endDay, endDay < startDay)
+            days = Math.round(Difference_In_Days);
+            days = days == 0 ? 1 : days;
+        } else {
+            days = 0;
+        }
+        return days;
     }
 
     calculateHours(value: number) {
@@ -184,13 +221,17 @@ export class LeaveApplyFormComponent implements OnInit {
         }
 
         let formValue = this.form.value;
-        let data = { strStartDateTime: formValue.startDate, strEndDateTime: formValue.endDate, totalHour: this.leaveHours, leaveReason: formValue.leaveReason, leaveType: { id: formValue.leaveType } };
+        let data = {
+            strStartDateTime: formValue.startDate.toISOString().slice(0, 19).replace('T', ' '),
+            strEndDateTime: formValue.endDate.toISOString().slice(0, 19).replace('T', ' '), totalHour: this.leaveHours, leaveReason: formValue.leaveReason, leaveType: { id: formValue.leaveType }
+        };
         // if (data.leaveType) {
         //     data.leaveType = { id: data.leaveType };
         // }
 
         this.leaveService.applyLeave(data).subscribe((res) => {
             this.alertService.openSnackBar(CustomMessage.leaveApplySuccess, false);
+            this.router.navigate(['/dashboard']);
         }, (error) => {
             this.alertService.openSnackBar(CustomMessage.error);
         });
@@ -201,6 +242,7 @@ export class LeaveApplyFormComponent implements OnInit {
         this.leaveService.myLeaveHistory(options).pipe(first()).subscribe((result: any) => {
             this.totalRecords = result.totalCount;
             this.dataSource.data = result.data;
+            console.log(result.data, 'result.data')
         });
 
     }
@@ -212,7 +254,7 @@ export class LeaveApplyFormComponent implements OnInit {
             sortField: (sort !== undefined ? sort.active : 'fullName'),
             sortDirection: (sort !== undefined ? sort.direction : 'asc'),
             // page: (obj != undefined ? (obj.pageIndex == null ? 1 : obj.pageIndex + 1) : 1),
-            page: (obj != undefined ? (obj.pageIndex == null ? 0 : obj.pageIndex + 1) : 0),
+            page: (obj != undefined ? (obj.pageIndex == null || obj.pageIndex == 0 ? 0 : obj.pageIndex + 1) : 0),
             search: '',
             query: '',
             pageSize: (obj != undefined ? (obj.pageSize == null ? this.pagesize : obj.pageSize) : this.pagesize)
@@ -220,4 +262,10 @@ export class LeaveApplyFormComponent implements OnInit {
         return options;
     }
 
+    getStatus(status: any) {
+        return this.globals.leaveStatus.find((elem: any) => {
+            return elem.value == status
+        })?.name;
+    }
+    
 }

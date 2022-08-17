@@ -18,10 +18,19 @@ export class LeaveService {
     }
 
     myLeaveHistory(options: ViewOptions) {
-        return this.http.get<any>(`${environment.apiUrl}/v1/leave/applied?leaveStatus=0&page=${options.page}&size=${options.pageSize}`)
+        return this.http.get<any>(`${environment.apiUrl}/v1/leave/applied?page=${options.page}&size=${options.pageSize}`)
     }
 
     staffLeaveHistory(options: ViewOptions) {
-        return this.http.get<any>(`${environment.apiUrl}/v1/leave/applied?appliedToMe=${options.search}&page=${options.page}&size=${options.pageSize}`)
+        return this.http.get<any>(`${environment.apiUrl}/v1/leave/appliedToMe?leaveStatus=${options.search}&page=${options.page}&size=${options.pageSize}`)
+    }
+
+    approveLeave(data: any) {
+        return this.http.post<any>(`${environment.apiUrl}/v1/leave/approve`, data)
+
+    }
+
+    rejectLeave(data: any) {
+        return this.http.post<any>(`${environment.apiUrl}/v1/leave/reject`, data)
     }
 }

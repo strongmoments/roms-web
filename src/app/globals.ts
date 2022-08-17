@@ -25,6 +25,13 @@ export class Globals {
         );
     }
 
+leaveStatus=[
+    {name:'Pending',value:1},
+    {name:'Approved',value:2},
+    {name:'Rejected',value:3},
+
+]
+
     role = [
         { name: 'Admin', value: Role.Admin, listTitle: 'Admin' },
         { name: 'Super Admin', value: Role.SuperAdmin, listTitle: 'SuperAdmin' },
