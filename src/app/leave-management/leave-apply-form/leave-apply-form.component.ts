@@ -23,7 +23,7 @@ export class LeaveApplyFormComponent implements OnInit {
     leaveDays: number = 0;
     form: FormGroup;
     submitted: boolean = false;
-    displayedColumns: string[] = ['sno', 'dates', 'days', 'time', 'hours', 'manager', 'leave_type', 'status'];
+    displayedColumns: string[] = ['sno', 'dates', 'days', 'time', 'hours', 'manager', 'leave_type', 'status','reviewerRemark'];
     dataSource = new MatTableDataSource<any>();
     pagesize = 10;
     totalRecords: number = 0;

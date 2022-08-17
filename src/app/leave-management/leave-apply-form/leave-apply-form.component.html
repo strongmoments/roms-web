@@ -167,11 +167,18 @@
                                 <td mat-cell *matCellDef="let row"> {{row?.leaveType?.leaveDescription}} </td>
                             </ng-container>
 
+
                             <ng-container matColumnDef="status">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> status</th>
                                 <td mat-cell *matCellDef="let row">{{getStatus(row?.leaveStatus)}} </td>
                             </ng-container>
 
+
+                            <ng-container matColumnDef="reviewerRemark">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>comments</th>
+                                <td mat-cell *matCellDef="let row">{{row?.reviewerRemark}} </td>
+                            </ng-container>
+                            
 
                             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

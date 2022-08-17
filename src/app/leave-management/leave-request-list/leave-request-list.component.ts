@@ -127,9 +127,9 @@ export class LeaveRequestListComponent implements OnInit {
         })?.name;
     }
 
-    addComment(index: number, comment: any) {
+    addComment(index: number,event: any) {
         if (this.comments && this.comments.length > 0) {
-            this.comments[index] = comment;
+            this.comments[index] = event.target.value;
         }
     }
 
