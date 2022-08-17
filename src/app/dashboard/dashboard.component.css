@@ -22,12 +22,42 @@ background: #FFFFFF;
 box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.05);
 border-radius: 5px;
 }
-.tasks-data{
+.employee-no{
+    position: absolute;
+    width: 12%;
+    height: 58%;
+    left: 2%;
+    top: 186%;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+}
+.employee-age{
+    position: absolute;
+    width: 12%;
+    height: 58%;
+    left: 20%;
+    top: 186%;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+}
+.task-data{
 position: absolute;
 width: 50%;
-height: 70%;
+height: 160%;
 left: 36%;
 top: 85%;
+background: #FFFFFF;
+box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.05);
+border-radius: 5px;
+}
+.tasks-data{
+position: absolute;
+width: 84%;
+height: 170%;
+left: 2%;
+top: 280%;
 background: #FFFFFF;
 box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.05);
 border-radius: 5px;
