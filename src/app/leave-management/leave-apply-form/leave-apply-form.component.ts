@@ -215,12 +215,14 @@ export class LeaveApplyFormComponent implements OnInit {
     onSubmit() {
         this.submitted = true;
         console.log(this.form, 'data')
+        let formValue = this.form.value;
+        console.log(formValue.startTime);
+        
         if (this.form.invalid) {
             this.alertService.openSnackBar('Form invalid.');
             return;
         }
 
-        let formValue = this.form.value;
         let data = {
             strStartDateTime: formValue.startDate.toISOString().slice(0, 19).replace('T', ' '),
             strEndDateTime: formValue.endDate.toISOString().slice(0, 19).replace('T', ' '), totalHour: this.leaveHours, leaveReason: formValue.leaveReason, leaveType: { id: formValue.leaveType }
