@@ -33,4 +33,8 @@ export class LeaveService {
     rejectLeave(data: any) {
         return this.http.post<any>(`${environment.apiUrl}/v1/leave/reject`, data)
     }
+
+    getManager(){
+        return this.http.get<any>(`${environment.apiUrl}/v1/leave/approver`);
+    }
 }

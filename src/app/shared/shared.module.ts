@@ -13,6 +13,7 @@ import { SnackbarComponent } from './snackbar.component/snackbar.component.compo
 import { TopNavComponent } from './layout/top-nav/top-nav.component';
 import { MenuListItemComponent } from './layout/menu-list-item/menu-list-item.component';
 import { TextMaskModule } from 'angular2-text-mask';
+import { CustomJavaDatePipe } from '../core/_helpers/custom-java-date-pipe';
  
 @NgModule({
     imports: [
@@ -31,7 +32,8 @@ import { TextMaskModule } from 'angular2-text-mask';
         MainLayoutComponent,
         SnackbarComponent,
         TopNavComponent,
-        MenuListItemComponent
+        MenuListItemComponent,
+        CustomJavaDatePipe
     ],
     exports: [
         FormsModule,
@@ -39,7 +41,8 @@ import { TextMaskModule } from 'angular2-text-mask';
         CustomMaterialModule,
         SnackbarComponent,
         TopNavComponent,
-        TextMaskModule
+        TextMaskModule,
+        CustomJavaDatePipe
     ]
 })
 export class SharedModule { }
