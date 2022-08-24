@@ -3,37 +3,37 @@
         <mat-tab label="Apply Leave">
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-                <mat-card>
+                <mat-card class="topic">
                     <mat-icon>calendar_today</mat-icon>
-                    Day
+                   Choose Day
                 </mat-card>
                 <!-- <mat-divider> </mat-divider> -->
 
                 <mat-card>
                     <button mat-button type="button" class="custom-grey-button" color="primary"
-                        (click)="calculateDate('-1')">yesterday</button>
+                        (click)="calculateDate('-1')">Yesterday</button>
                     <button mat-button type="button" class="custom-grey-button" color="primary"
-                        (click)="calculateDate('0')">today</button>
+                        (click)="calculateDate('0')">Today</button>
                     <button mat-button type="button" class="custom-grey-button" color="primary"
-                        (click)="calculateDate('1')">tomorrow</button>
+                        (click)="calculateDate('1')">Tomorrow</button>
                     <button mat-button type="button" class="custom-grey-button" color="primary"
-                        (click)="calculateDate('2')">day
-                        after</button>
+                        (click)="calculateDate('2')">Day
+                        After</button>
                     <button mat-button type="button" class="custom-grey-button" color="primary"
-                        (click)="calculateDate('fri')">this
-                        friday</button>
+                        (click)="calculateDate('fri')">This
+                        Friday</button>
                     <button mat-button type="button" class="custom-grey-button" color="primary"
-                        (click)="calculateDate('mon')">next
-                        monday</button>
+                        (click)="calculateDate('mon')">Next
+                        Monday</button>
 
 
                 </mat-card>
 
-                <mat-card>
+                <mat-card > 
 
                     <mat-form-field appearance="fill">
                         <mat-label>Enter a date range</mat-label>
-                        <mat-date-range-input [rangePicker]="picker"
+                        <mat-date-range-input [rangePicker]="picker" 
                             [ngClass]="{ 'is-invalid':submitted && (checkError('startDate', 'required') || checkError('endDate', 'required')) }">
                             <input matStartDate formControlName="startDate" (dateChange)="calculateDaysByField()"
                                 placeholder="Start date" readonly (click)="picker.open()">
@@ -49,7 +49,7 @@
                             Invalid dates
                         </mat-error>
                     </mat-form-field>
-                    <button mat-button class="custom-grey-button" disabled>{{leaveDays}}</button> days
+                    <button mat-button class="custom-grey-button" disabled>{{leaveDays}}</button> Days
                     <br>
                     <button mat-button type="button" [disabled]="isTimeInputDisabled" class="custom-grey-button"
                         (click)="calculateHours(1)" color="primary">1
@@ -80,9 +80,9 @@
                     </mat-form-field>
                     <button mat-button class="custom-grey-button" disabled>{{leaveHours}}</button> hours
                 </mat-card>
-                <mat-card>
+                <mat-card class="topic">
                     <mat-icon>calendar_today</mat-icon>
-                    Type
+                    Choose Type
                 </mat-card>
                 <mat-card>
                     <input type="hidden" formControlName="leaveType">
@@ -92,9 +92,11 @@
                             (click)="setLeaveType(leave)">{{leave?.leaveDescription}}</button>
                     </ng-container>
                 </mat-card>
-                <mat-card>
+                <mat-card class="topic">
                     <mat-icon>calendar_today</mat-icon>
                     Approval
+                </mat-card>
+                <mat-card>
                     <mat-card-actions>
                         <mat-form-field appearance="outline">
                             <!-- <mat-label>Outline form field</mat-label> -->
@@ -106,8 +108,7 @@
                         </mat-form-field>
                         <!-- <p> -->
                         <!-- Leave Balance <button mat-button class="custom-grey-button" disabled>{{availableLeaveCount}}</button> -->
-                        {{managerData?.firstName}} {{managerData?.lastName}} <button mat-button color="warn"
-                            type="submit">REQUEST FOR APPROVAL<mat-icon>
+                        Manager's Name <button mat-button color="warn" type="submit">REQUEST FOR APPROVAL<mat-icon>
                                 arrow_right_alt
                             </mat-icon>
                         </button>
