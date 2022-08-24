@@ -70,6 +70,10 @@ export const MY_FORMATS = {
             provide: MAT_DATE_LOCALE,
             useValue: MY_FORMATS
         },
+        {
+            provide: MAT_DATE_LOCALE,
+            useValue: 'en-GB'
+        },
         { provide: LOCALE_ID, useValue: 'en-gb' }
     ],
     declarations: []

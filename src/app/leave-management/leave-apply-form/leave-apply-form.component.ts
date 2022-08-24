@@ -24,7 +24,7 @@ export class LeaveApplyFormComponent implements OnInit {
     leaveDays: number = 0;
     form: FormGroup;
     submitted: boolean = false;
-    displayedColumns: string[] = ['applyDate', 'dates', 'days', 'time', 'hours', 'manager', 'leave_type', 'status','leaveReason' ,'reviewerRemark'];
+    displayedColumns: string[] = ['applyDate', 'dates', 'days', 'time', 'hours', 'manager', 'leave_type', 'status', 'leaveReason', 'reviewerRemark'];
     dataSource = new MatTableDataSource<any>();
     pagesize = 10;
     totalRecords: number = 0;
@@ -48,8 +48,6 @@ export class LeaveApplyFormComponent implements OnInit {
         });
 
 
-
-
         this.leaveService.getLeaveTypes().subscribe((res) => {
             this.leaveTypeList = res && res.data ? res.data : [];
             console.log(res)
@@ -61,8 +59,11 @@ export class LeaveApplyFormComponent implements OnInit {
     }
 
     ngAfterViewInit() {
-        this.dataSource.paginator = this.paginator;
+        // this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.paginator.page.subscribe((page: PageEvent) => {
+            this.refresh(this.getDefaultOptions());
+        });
     }
 
 
@@ -73,6 +74,13 @@ export class LeaveApplyFormComponent implements OnInit {
     }
 
 
+    convertTimeMoment(value: any, format: string) {
+        try {
+            return moment(value).utc().format(format);
+        } catch (e) {
+            return;
+        }
+    }
     ngOnInit(): void {
     }
 
@@ -283,8 +291,8 @@ export class LeaveApplyFormComponent implements OnInit {
 
         // console.warn(startDate, endDate);
         let data = {
-            strStartDateTime:moment(startDate).format('DD-MM-YYYY HH:mm:ss'),
-            strEndDateTime:moment(endDate).format('DD-MM-YYYY HH:mm:ss'), totalHour: this.leaveHours, leaveReason: formValue.leaveReason, leaveType: { id: formValue.leaveType },
+            strStartDateTime: moment(startDate).format('DD-MM-YYYY HH:mm:ss'),
+            strEndDateTime: moment(endDate).format('DD-MM-YYYY HH:mm:ss'), totalHour: this.leaveHours, leaveReason: formValue.leaveReason, leaveType: { id: formValue.leaveType },
             totalDay: this.leaveDays
         };
 
@@ -304,9 +312,9 @@ export class LeaveApplyFormComponent implements OnInit {
 
     refresh(options: ViewOptions) {
         this.leaveService.myLeaveHistory(options).pipe(first()).subscribe((result: any) => {
-            this.totalRecords = result.totalCount;
+            this.totalRecords = result.totalElement;
             this.dataSource.data = result.data;
-            console.log(result.data, 'result.data')
+            console.log(result, 'result.data')
         });
 
     }
@@ -314,11 +322,13 @@ export class LeaveApplyFormComponent implements OnInit {
     getDefaultOptions() {
         let obj = this.paginator;
         let sort = this.sort;
+        let pageSize = (obj != undefined ? (obj.pageIndex == null ? 1 : obj.pageIndex + 1) : 1);
+
         const options: ViewOptions = {
             sortField: (sort !== undefined ? sort.active : 'fullName'),
             sortDirection: (sort !== undefined ? sort.direction : 'asc'),
             // page: (obj != undefined ? (obj.pageIndex == null ? 1 : obj.pageIndex + 1) : 1),
-            page: (obj != undefined ? (obj.pageIndex == null || obj.pageIndex == 0 ? 0 : obj.pageIndex + 1) : 0),
+            page:  pageSize -1,
             search: '',
             query: '',
             pageSize: (obj != undefined ? (obj.pageSize == null ? this.pagesize : obj.pageSize) : this.pagesize)

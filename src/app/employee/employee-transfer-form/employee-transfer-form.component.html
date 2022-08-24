@@ -1,56 +1,117 @@
 <mat-card class="tasks-data">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
     <mat-card-title class="title">TRANSFER / CHANGE OF RATE</mat-card-title>
-    <mat-divider> </mat-divider> 
-    <mat-radio-group aria-label="Select an option">
-        <mat-radio-button value="1">Permanent Transfer</mat-radio-button>
-        <mat-radio-button value="2">Temporary Transfer</mat-radio-button>
-      </mat-radio-group>
-      <div class="container">
-        <p class="text-name">Name:</p><mat-card class="input">Matthew Mcconaughey</mat-card>
-        <p class="text">Employee Number:</p><mat-card class="input">RTL1199</mat-card>
-      </div>
-      <div class="container">
-        <p class="text">From:</p><mat-card class="input">GR3</mat-card>
-        <p class="text">At:</p><mat-card class="input">YALLOURN</mat-card>
-        <p class="text">Rate:</p><mat-card class="input">23211</mat-card>
-        <p class="text">Supervisor:</p><mat-card class="input">Matt Damon</mat-card>
-      </div>
-      <div class="container">
-        <p class="text-to">To:</p><mat-card class="input">GR3CAS</mat-card>
-        <p class="text">At:</p><mat-card class="input">-------</mat-card>
-        <p class="text">Rate:</p><mat-card class="input">-------</mat-card>
-        <p class="text">Supervisor:</p><mat-card class="input">-------</mat-card>
-      </div>
-      <div class="container">
-        <p class="text">Date Effective:</p>
-        <mat-form-field class="date" appearance="fill">
-            <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-          <button mat-button type="button" class="custom-grey-button" color="primary"
-                        >Today</button>
-                    <button mat-button type="button" class="custom-grey-button" color="primary"
-                        >Tomorrow</button>
-                    <button mat-button type="button" class="custom-grey-button" color="primary"
-                        >Day
-                        After</button>
-                    <button mat-button type="button" class="custom-grey-button" color="primary"
-                       >This
-                        Friday</button>
-                    <button mat-button type="button" class="custom-grey-button" color="primary"
-                        >Next
-                        Monday</button>
-      </div>
-      <div class="container">
-        <p class="text">Date:</p><mat-card class="input">22 August 2022 </mat-card>
-        <button mat-raised-button color="warn" >REQUEST ACCEPTANCE <mat-icon>
-            arrow_right_alt
+    <mat-divider> </mat-divider>
+    <mat-radio-group aria-label="Select an option" formControlName="type">
+      <mat-radio-button value="1">Permanent Transfer</mat-radio-button>
+      <mat-radio-button value="2">Temporary Transfer</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-error *ngIf="submitted && checkError('type', 'required')">
+      Type is required
+    </mat-error>
+    <div class="container">
+      <p class="text-name">Name:</p>
+      <!-- <mat-card class="input">Matthew Mcconaughey</mat-card> -->
+      <!-- <mat-card class="input"> -->
+      <mat-form-field appearance="fill">
+        <mat-label>Employee</mat-label>
+        <mat-select formControlName="employee">
+          <input mat-input aria-label="Employee">
+          <!-- <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"> -->
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option}}
+          </mat-option>
+          <!-- </mat-autocomplete> -->
+        </mat-select>
+        <mat-error *ngIf="submitted && checkError('employee', 'required')">
+          Employee is required
+        </mat-error>
+        <!-- <input type="text" placeholder="Pick one" aria-label="Number" formControlName="employee" matInput
+          [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete> -->
+      </mat-form-field>
+      <!-- </mat-card> -->
+      <p class="text">Employee Number:</p>
+      <mat-card class="input"></mat-card>
+    </div>
+    <div class="container">
+      <p class="text">From:</p>
+      <mat-card class="input">GR3</mat-card>
+      <p class="text">At:</p>
+      <mat-card class="input">YALLOURN</mat-card>
+      <p class="text">Rate:</p>
+      <mat-card class="input">23211</mat-card>
+      <p class="text">Supervisor:</p>
+      <mat-card class="input">Matt Damon</mat-card>
+    </div>
+    <div class="container">
+      <p class="text-to">To:</p>
+      <mat-card class="input">GR3CAS</mat-card>
+      <p class="text">At:</p>
+      <mat-card class="input">-------</mat-card>
+      <p class="text">Rate:</p>
+      <!-- <mat-card > -->
+      <mat-form-field class="input" appearance="fill">
+        <mat-label>Rate</mat-label>
+        <input matInput formControlName="rate">
+        <mat-error *ngIf="submitted && checkError('rate', 'required')">
+          Rate is required
+        </mat-error>
+        <mat-error *ngIf="checkError('rate', 'pattern')">
+          Invalid value
+        </mat-error>
+      </mat-form-field>
+      <!-- </mat-card> -->
+      <p class="text">Supervisor:</p>
+      <mat-card class="input">-------</mat-card>
+    </div>
+    <div class="container">
+      <p class="text">Date Effective:</p>
+      <mat-form-field class="date" appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="transferDate">
+        <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <!-- <button mat-button type="button" class="custom-grey-button" color="primary"
+                        (click)="calculateDate('-1')">Yesterday</button> -->
+      <button mat-button type="button" class="custom-grey-button" color="primary"
+        (click)="calculateDate('0')">Today</button>
+      <button mat-button type="button" class="custom-grey-button" color="primary"
+        (click)="calculateDate('1')">Tomorrow</button>
+      <button mat-button type="button" class="custom-grey-button" color="primary" (click)="calculateDate('2')">Day
+        After</button>
+      <button mat-button type="button" class="custom-grey-button" color="primary" (click)="calculateDate('fri')">This
+        Friday</button>
+      <button mat-button type="button" class="custom-grey-button" color="primary" (click)="calculateDate('mon')">Next
+        Monday</button>
+
+      <!-- 
+      <button mat-button type="button" class="custom-grey-button" color="primary">Today</button>
+      <button mat-button type="button" class="custom-grey-button" color="primary">Tomorrow</button>
+      <button mat-button type="button" class="custom-grey-button" color="primary">Day
+        After</button>
+      <button mat-button type="button" class="custom-grey-button" color="primary">This
+        Friday</button>
+      <button mat-button type="button" class="custom-grey-button" color="primary">Next
+        Monday</button> -->
+    </div>
+    <div class="container">
+      <p class="text">Date:</p>
+      <mat-card class="input">{{todayDate | date:'d MMMM y' }} </mat-card>
+      <button mat-raised-button color="warn" type="submit">REQUEST ACCEPTANCE <mat-icon>
+          arrow_right_alt
         </mat-icon></button>
 
-      </div>
+    </div>
+  </form>
 
-     
-  </mat-card>
+</mat-card>
