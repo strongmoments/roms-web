@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { map, Observable, startWith } from 'rxjs';
-import { AlertService } from 'src/app/core/services';
+import { AlertService, EmployeeService } from 'src/app/core/services';
 import { Utils } from 'src/app/core/_helpers/util';
 import { Globals } from 'src/app/globals';
 
@@ -18,7 +18,7 @@ export class EmployeeTransferFormComponent implements OnInit {
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions!: Observable<string[]>;
   todayDate: Date = new Date();
-  constructor(public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private router: Router) {
+  constructor(public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private router: Router, private employeeService: EmployeeService) {
 
     this.globals = globals;
     this.form = this.fb.group({
@@ -40,6 +40,10 @@ export class EmployeeTransferFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // this.employeeService.getAll().subscribe((result: any) => {
+    //   console.log(result)
+    // });
+
     this.filteredOptions = this.form.controls['employee'].valueChanges.pipe(
       startWith(''),
       map((value: any) => this._filter(value || '')),
