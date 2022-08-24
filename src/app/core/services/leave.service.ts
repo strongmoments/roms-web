@@ -9,8 +9,8 @@ export class LeaveService {
     constructor(private http: HttpClient) { }
 
     getLeaveTypes() {
-        return this.http.get<any>('https://virtserver.swaggerhub.com/strongmoments/leave-type/1.0.0/v1/leave/types');
-        // return this.http.get<any>(`${environment.apiUrl}/v1/leave/types`);
+        // return this.http.get<any>('https://virtserver.swaggerhub.com/strongmoments/leave-type/1.0.0/v1/leave/types');
+        return this.http.get<any>(`${environment.apiUrl}/v1/leave/types`);
     }
 
     applyLeave(data: any) {
@@ -32,5 +32,9 @@ export class LeaveService {
 
     rejectLeave(data: any) {
         return this.http.post<any>(`${environment.apiUrl}/v1/leave/reject`, data)
+    }
+
+    getManager(){
+        return this.http.get<any>(`${environment.apiUrl}/v1/leave/approver`);
     }
 }

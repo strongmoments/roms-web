@@ -21,8 +21,8 @@ export class LeaveRequestListComponent implements OnInit {
     // leaveHours: number = 0;
     // form: FormGroup;
     submitted: boolean = false;
-    displayedColumnsLeave: string[] = ['staffName', 'dates', 'days', 'time', 'hours', 'leave_type', 'comments', 'action'];
-    displayedColumnsHistory: string[] = ['sno', 'dates', 'days', 'time', 'hours', 'leave_type', 'status', 'comments'];
+    displayedColumnsLeave: string[] = ['staffName','applyDate', 'dates', 'days', 'time', 'hours', 'leave_type', 'leaveReason', 'action'];
+    displayedColumnsHistory: string[] = ['staffName','applyDate', 'dates', 'days', 'time', 'hours', 'leave_type', 'status', 'leaveReason','reviewerRemark'];
     displayedColumns: string[] = [];
     dataSource = new MatTableDataSource<any>();
     selectedTabIndex: number = 0;
@@ -127,9 +127,9 @@ export class LeaveRequestListComponent implements OnInit {
         })?.name;
     }
 
-    addComment(index: number, comment: any) {
+    addComment(index: number,event: any) {
         if (this.comments && this.comments.length > 0) {
-            this.comments[index] = comment;
+            this.comments[index] = event.target.value;
         }
     }
 
