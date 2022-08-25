@@ -27,6 +27,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 export const MY_FORMATS = {
     parse: {
@@ -52,7 +53,7 @@ export const MY_FORMATS = {
         MatSidenavModule, MatSlideToggleModule, MatMenuModule,
         MatChipsModule, MatNativeDateModule, MatExpansionModule,
         FlexLayoutModule,
-        MatTabsModule,MatRadioModule
+        MatTabsModule,MatRadioModule,MatFormFieldModule
     ],
     exports: [
         CommonModule,
@@ -63,7 +64,7 @@ export const MY_FORMATS = {
         MatListModule, MatToolbarModule, MatTooltipModule, MatCardModule,
         MatSidenavModule, MatSlideToggleModule, MatMenuModule,
         MatChipsModule, MatNativeDateModule, MatExpansionModule,FlexLayoutModule ,
-        MatTabsModule,MatRadioModule
+        MatTabsModule,MatRadioModule,MatFormFieldModule
     ],
     providers: [
         {
