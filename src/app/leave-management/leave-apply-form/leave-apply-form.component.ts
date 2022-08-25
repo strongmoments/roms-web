@@ -36,7 +36,10 @@ export class LeaveApplyFormComponent implements OnInit {
     selectedLeaveType: string = '';
     managerData: any = {};
     isTimeInputDisabled: boolean = false;
+    minDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 2));
+    maxDate: Date = new Date(new Date().setMonth(new Date().getMonth() + 12));
     constructor(public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private leaveService: LeaveService, private router: Router) {
+        console.log(this.minDate, this.maxDate)
         this.globals = globals;
         this.form = this.fb.group({
             startDate: new FormControl('', [Validators.required]),
@@ -91,8 +94,9 @@ export class LeaveApplyFormComponent implements OnInit {
     }
 
     calculateHoursByField() {
-        let startTime = parseInt(this.form.controls['startTime'].value);
-        let endTime = parseInt(this.form.controls['endTime'].value);
+        let startTime = (this.form.controls['startTime'].value);
+        let endTime = (this.form.controls['endTime'].value);
+        console.log(startTime, endTime, endTime < startTime)
 
         if (this.isTimeInputDisabled) {
             this.form.controls['startTime'].setValue('');
@@ -100,10 +104,26 @@ export class LeaveApplyFormComponent implements OnInit {
             this.alertService.openSnackBar(CustomMessage.timeWarningWithDate);
             return;
         }
-        if (startTime && endTime) {
+        let regex = /^(0[0]|0[0]):[0-5][0-9]$/;
+        if (startTime != '' && regex.test(startTime) == true) {
+            startTime = 0;
+        }
+        if (endTime != '' && regex.test(endTime) == true) {
+            endTime = 0;
+        }
+        startTime = parseInt(startTime);
+        endTime = parseInt(endTime);
+        if ((startTime || startTime == 0) && (endTime || endTime == 0)) {
             console.log(startTime, endTime, endTime < startTime)
             if (endTime < startTime) {
-                this.leaveHours = 24 - (startTime - endTime);
+                if ((endTime - startTime + 24) > 4) {
+                    this.form.controls['endTime'].setValue('');
+                    this.leaveHours = 0;
+                    this.leaveDays = 1;
+                    this.alertService.openSnackBar(CustomMessage.maxShiftTimeWarning);
+                } else {
+                    this.leaveHours = 24 - (startTime - endTime);
+                }
             } else {
                 this.leaveHours = endTime - startTime;
             }
@@ -168,13 +188,14 @@ export class LeaveApplyFormComponent implements OnInit {
             // console.log(,'Difference_In_Days')
 
             let dayDifference = Math.round(Difference_In_Days);
-            if (dayDifference > 1) {
+            if (dayDifference > 0) {
                 this.leaveDays = dayDifference;
                 this.isTimeInputDisabled = true;
 
                 if (this.form.controls['startTime'].value != '' || this.form.controls['endTime'].value != '') {
                     this.form.controls['startTime'].setValue('');
                     this.form.controls['endTime'].setValue('');
+                    this.leaveHours = 0;
                     this.alertService.openSnackBar(CustomMessage.dateWarningWithTime);
                 }
             } else {
@@ -278,28 +299,37 @@ export class LeaveApplyFormComponent implements OnInit {
             var dt = new Date(startDate);
             dt.setHours(startTime[0]);
             dt.setMinutes(startTime[1]);
-            startDate = new Date(dt);
+            startDate = new Date(dt).toUTCString();
         }
 
         if (formValue.endTime) {
             let endTime = formValue.endTime.split(":");
             var dt = new Date(endDate);
+
+            if (parseInt(formValue.endTime) < parseInt(formValue.startTime)) {
+                dt = new Date(dt.setDate(dt.getDate() + 1));
+
+            }
+            // console.log('out')
             dt.setHours(endTime[0]);
             dt.setMinutes(endTime[1]);
-            endDate = new Date(dt);
+            // console.log(dt)
+            endDate = new Date(dt).toUTCString();
+            // console.log(endDate)
         }
 
-        // console.warn(startDate, endDate);
+        // console.log(startDate, endDate)
+
         let data = {
-            strStartDateTime: moment(startDate).format('DD-MM-YYYY HH:mm:ss'),
-            strEndDateTime: moment(endDate).format('DD-MM-YYYY HH:mm:ss'), totalHour: this.leaveHours, leaveReason: formValue.leaveReason, leaveType: { id: formValue.leaveType },
+            strStartDateTime: moment(startDate).utc().format('DD-MM-YYYY HH:mm:ss'),
+            strEndDateTime: moment(endDate).utc().format('DD-MM-YYYY HH:mm:ss'), totalHour: this.leaveHours, leaveReason: formValue.leaveReason, leaveType: { id: formValue.leaveType },
             totalDay: this.leaveDays
         };
 
-        console.log(data, 'data')
+        // console.log(data, 'data')
+        // return;
 
-
-        console.log(data, 'dataaa')
+        // console.log(data, 'dataaa')
 
         this.leaveService.applyLeave(data).subscribe((res) => {
             this.alertService.openSnackBar(CustomMessage.leaveApplySuccess, false);
@@ -328,7 +358,7 @@ export class LeaveApplyFormComponent implements OnInit {
             sortField: (sort !== undefined ? sort.active : 'fullName'),
             sortDirection: (sort !== undefined ? sort.direction : 'asc'),
             // page: (obj != undefined ? (obj.pageIndex == null ? 1 : obj.pageIndex + 1) : 1),
-            page:  pageSize -1,
+            page: pageSize - 1,
             search: '',
             query: '',
             pageSize: (obj != undefined ? (obj.pageSize == null ? this.pagesize : obj.pageSize) : this.pagesize)

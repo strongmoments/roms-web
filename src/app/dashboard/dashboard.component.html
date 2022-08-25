@@ -3,10 +3,10 @@
     <!-- <button mat-raised-button class="submit-button" color="warn">Update Now</button> -->
     <!-- <span matPrefix><mat-icon>warning</mat-icon></span> -->
     <mat-card-title>Hi {{user?.firstName}} {{user?.lastName}}</mat-card-title>
-    <mat-card-content>
+    <!-- <mat-card-content>
       <p>You have not updated today's job sheet</p>
-    </mat-card-content>
-  
+    </mat-card-content> -->
+
   </mat-card>
 
   <mat-card class="employee-data">
@@ -14,21 +14,23 @@
     <mat-icon>settings</mat-icon> -->
     <mat-card-title>Tasks</mat-card-title>
     <mat-card-content>
-      <p>This card has divider and indeterminate progress as footer</p>
+      <!-- <p>This card has divider and indeterminate progress as footer</p> -->
     </mat-card-content>
-    <span matPrefix><mat-icon>motorcycle</mat-icon></span>
+    <span matPrefix>
+      <mat-icon>motorcycle</mat-icon>
+    </span>
     <!-- <mat-card-content>
       <p>This card has divider and indeterminate progress as footer</p>
     </mat-card-content> -->
   </mat-card>
   <mat-card class="employee-no">
-    <mat-card-title>73</mat-card-title>
+    <mat-card-title>{{dashboardData?.employeeCount}}</mat-card-title>
     <mat-card-content>
       <p>Team No</p>
     </mat-card-content>
   </mat-card>
   <mat-card class="employee-age">
-    <mat-card-title>43</mat-card-title>
+    <mat-card-title>{{dashboardData?.employeeDobAverage}}</mat-card-title>
     <mat-card-content>
       <p>Average Age</p>
     </mat-card-content>
@@ -36,18 +38,20 @@
 
   <mat-card class="task-data">
     <mat-card-title>Announcements</mat-card-title>
-    <mat-card >Simple card</mat-card>
-    <mat-card>Simple card</mat-card>
-    <mat-card>Simple card</mat-card>
+    <mat-card>Welcome to the RTL digital transformation</mat-card>
+    <mat-card>Taking care of plants and people</mat-card>
+    <mat-card>RTL is committed to the local community</mat-card>
+    <mat-card>RTL aims for zero loss time injuries</mat-card>
+    <!-- <mat-card>RTL is based in the Latrobe Valley</mat-card> -->
   </mat-card>
   <mat-card class="tasks-data">
     <mat-card-title>My Tasks</mat-card-title>
     <mat-list>
-      <mat-list-item>Item 1</mat-list-item>
+      <!-- <mat-list-item>Item 1</mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>Item 2</mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item>Item 3</mat-list-item>
+      <mat-list-item>Item 3</mat-list-item> -->
     </mat-list>
   </mat-card>
 </div>

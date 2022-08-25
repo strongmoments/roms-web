@@ -33,7 +33,7 @@
 
                     <mat-form-field appearance="fill">
                         <mat-label>Enter a date range</mat-label>
-                        <mat-date-range-input [rangePicker]="picker"
+                        <mat-date-range-input [min]="minDate" [max]="maxDate" [rangePicker]="picker"
                             [ngClass]="{ 'is-invalid':submitted && (checkError('startDate', 'required') || checkError('endDate', 'required')) }">
                             <input matStartDate formControlName="startDate" (dateChange)="calculateDaysByField()"
                                 placeholder="Start date" readonly (click)="picker.open()">
@@ -144,7 +144,11 @@
                             <!-- Progress Column -->
                             <ng-container matColumnDef="dates">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Dates </th>
-                                <td mat-cell *matCellDef="let row">{{convertTimeMoment(row.startDateTime,'DD/MM/YYYY' )}} to {{convertTimeMoment(row.endDateTime,'DD/MM/YYYY' )}} </td>
+                                <td mat-cell *matCellDef="let row">
+                                    {{row?.startDateTime| date:'d/M/y'}} to {{row?.endDateTime| date:'d/M/y'}}
+                                    <!-- {{convertTimeMoment(row.startDateTime,'DD/MM/YYYY'
+                                    )}} to {{convertTimeMoment(row.endDateTime,'DD/MM/YYYY' )}}  -->
+                                </td>
                             </ng-container>
 
                             <!-- Name Column -->
@@ -158,8 +162,8 @@
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Time </th>
                                 <td mat-cell *matCellDef="let row">
                                     <ng-container *ngIf="row && row.totalHour>0">
-                                        {{convertTimeMoment(row.startDateTime,'hh:mm A' )}} to
-                                        {{convertTimeMoment(row.endDateTime,'hh:mm A' )}}
+                                        {{row?.startDateTime| date:'shortTime'}} to {{row?.endDateTime|
+                                        date:'shortTime'}}
                                     </ng-container>
                                 </td>
                             </ng-container>

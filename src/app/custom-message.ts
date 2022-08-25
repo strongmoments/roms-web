@@ -6,6 +6,7 @@ export enum CustomMessage {
     commentRequired = 'Please enter comment',
     leaveAccepted = 'Leave accepted succesfully',
     leaveRejected = 'Leave rejected succesfully',
-    dateWarningWithTime='More than one day\'s leave can not be generated with time.',
-    timeWarningWithDate='You can not select time when you are applying for leave more than one day.'
+    dateWarningWithTime = 'More than one day\'s leave can not be generated with time.',
+    timeWarningWithDate = 'You can not select time when you are applying for leave more than one day.',
+    maxShiftTimeWarning = 'You can not apply leave for more than 4 hour.'
 }

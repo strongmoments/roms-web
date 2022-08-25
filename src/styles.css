@@ -9,8 +9,20 @@
   background-color: #d51e1e;
 }
 
-th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+th.mat-header-cell,
+td.mat-cell,
+td.mat-footer-cell {
   width: 10%;
+}
+
+table {
+  width: 100%;
+}
+
+th.mat-header-cell:first-of-type,
+td.mat-cell:first-of-type,
+td.mat-footer-cell:first-of-type {
+  padding-left: 17px !important;
 }
 
 html,
@@ -37,16 +49,16 @@ table {
 
 
 
-td,
+/* td,
 th {
   width: 25%;
-}
+} */
 
 .mat-nav-list a.active {
   background: #EF6D35;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 0px 20px 20px 0px;
-  width: 91%;
+  width: 98%;
   height: 32px;
   left: 0px;
   color: #FFFFFF;
