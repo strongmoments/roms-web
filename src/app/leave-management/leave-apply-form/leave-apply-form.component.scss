@@ -26,3 +26,8 @@
  .active {
     background: #3A93D4;
 }
+
+
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+    width:auto;
+  }

@@ -10,6 +10,7 @@ import { Utils } from 'src/app/core/_helpers/util';
 import { CustomMessage } from 'src/app/custom-message';
 import { Globals } from 'src/app/globals';
 import { ViewOptions } from 'src/app/_models';
+import * as moment from 'moment';
 
 @Component({
     selector: 'app-leave-request-list',
@@ -21,8 +22,8 @@ export class LeaveRequestListComponent implements OnInit {
     // leaveHours: number = 0;
     // form: FormGroup;
     submitted: boolean = false;
-    displayedColumnsLeave: string[] = ['staffName','applyDate', 'dates', 'days', 'time', 'hours', 'leave_type', 'leaveReason', 'action'];
-    displayedColumnsHistory: string[] = ['staffName','applyDate', 'dates', 'days', 'time', 'hours', 'leave_type', 'status', 'leaveReason','reviewerRemark'];
+    displayedColumnsLeave: string[] = ['staffName', 'applyDate', 'dates', 'days', 'time', 'hours', 'leave_type', 'leaveReason', 'action'];
+    displayedColumnsHistory: string[] = ['staffName', 'applyDate', 'dates', 'days', 'time', 'hours', 'leave_type', 'status', 'leaveReason', 'reviewerRemark'];
     displayedColumns: string[] = [];
     dataSource = new MatTableDataSource<any>();
     selectedTabIndex: number = 0;
@@ -39,9 +40,10 @@ export class LeaveRequestListComponent implements OnInit {
 
 
     ngAfterViewInit() {
-        // this.dataSource.paginator = this.paginator;
+        // this..paginator = this.paginator;
         // this.dataSource.sort = this.sort;
         this.paginator.page.subscribe((page: PageEvent) => {
+            console.log('test')
             this.refresh(this.getDefaultOptions());
         });
         this.dataSource.sort = this.sort;
@@ -53,6 +55,13 @@ export class LeaveRequestListComponent implements OnInit {
 
     // F
 
+    convertTimeMoment(value: any, format: string) {
+        try {
+            return moment(value).utc().format(format);
+        } catch (e) {
+            return;
+        }
+    }
 
     ngOnInit(): void {
         this.displayedColumns = this.displayedColumnsLeave;
@@ -62,6 +71,7 @@ export class LeaveRequestListComponent implements OnInit {
     onTabChanged(index: number) {
         this.dataSource.data = [];
         this.totalRecords = 0;
+        this.paginator.pageIndex = 0;
         this.search = index == 0 ? '1' : '0';
         this.selectedTabIndex = index;
         this.displayedColumns = index == 0 ? this.displayedColumnsLeave : this.displayedColumnsHistory;
@@ -72,9 +82,9 @@ export class LeaveRequestListComponent implements OnInit {
 
     refresh(options: ViewOptions) {
         this.leaveService.staffLeaveHistory(options).pipe(first()).subscribe((result: any) => {
-            this.totalRecords = result.totalCount;
+            this.totalRecords = result.totalElement;
             this.dataSource.data = result.data;
-            console.log(result.data, 'result.data')
+            console.log(this.totalRecords, 'result.data')
             this.comments = [];
             result.data.map(() => {
                 this.comments.push('');
@@ -87,11 +97,12 @@ export class LeaveRequestListComponent implements OnInit {
     getDefaultOptions() {
         let obj = this.paginator;
         let sort = this.sort;
+        let pageSize = (obj != undefined ? (obj.pageIndex == null ? 1 : obj.pageIndex + 1) : 1);
         // console.warn(obj.pageIndex)
         const options: ViewOptions = {
             sortField: (sort !== undefined ? sort.active : 'fullName'),
             sortDirection: (sort !== undefined ? sort.direction : 'asc'),
-            page: (obj != undefined ? (obj.pageIndex == null || obj.pageIndex == 0 ? 0 : obj.pageIndex + 1) : 0),
+            page: pageSize -1,
             search: this.search,
             query: '',
             pageSize: (obj != undefined ? (obj.pageSize == null ? this.pagesize : obj.pageSize) : this.pagesize)
@@ -127,7 +138,7 @@ export class LeaveRequestListComponent implements OnInit {
         })?.name;
     }
 
-    addComment(index: number,event: any) {
+    addComment(index: number, event: any) {
         if (this.comments && this.comments.length > 0) {
             this.comments[index] = event.target.value;
         }

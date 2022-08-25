@@ -82,6 +82,15 @@ export class MainLayoutComponent implements OnInit {
         if (this.userPermissions.operations.includes('inspection')) {
           subMenu.push({ displayName: 'Inspection', iconName: '', route: '/' });
         }
+        // if (this.userPermissions.operations.includes('inspection')) {
+        subMenu.push({
+          displayName: 'People', iconName: '', route: '/', children: [
+            {
+              displayName: 'Transfer', iconName: '', route: '/employee/transfer'
+            }
+          ]
+        });
+        // }
         menuItem.push({
           displayName: 'Operation', iconName: 'dashboard', route: '/', children: subMenu
         })
