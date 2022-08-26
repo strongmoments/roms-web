@@ -1,228 +1,380 @@
 <mat-card>
-    <mat-tab-group mat-stretch-tabs (selectedIndexChange)="onTabChanged($event);">
-        <mat-tab label="Apply Leave">
-            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-tab-group mat-stretch-tabs (selectedIndexChange)="onTabChanged($event)">
+    <mat-tab label="Apply Leave">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-card class="topic">
+          <mat-icon class="icon">insert_invitation</mat-icon>
+          Choose Day
+        </mat-card>
+        <!-- <mat-divider> </mat-divider> -->
 
-                <mat-card class="topic" >
-                    <mat-icon class="icon">insert_invitation</mat-icon>
-                    Choose Day
-                </mat-card>
-                <!-- <mat-divider> </mat-divider> -->
+        <mat-card>
+          <button
+            mat-button
+            type="button"
+            class="custom-grey-button"
+            color="primary"
+            (click)="calculateDate('-1')"
+          >
+            Yesterday
+          </button>
+          <button
+            mat-button
+            type="button"
+            class="custom-grey-button"
+            color="primary"
+            (click)="calculateDate('0')"
+          >
+            Today
+          </button>
+          <button
+            mat-button
+            type="button"
+            class="custom-grey-button"
+            color="primary"
+            (click)="calculateDate('1')"
+          >
+            Tomorrow
+          </button>
+          <button
+            mat-button
+            type="button"
+            class="custom-grey-button"
+            color="primary"
+            (click)="calculateDate('2')"
+          >
+            Day After
+          </button>
+          <button
+            mat-button
+            type="button"
+            class="custom-grey-button"
+            color="primary"
+            (click)="calculateDate('fri')"
+          >
+            This Friday
+          </button>
+          <button
+            mat-button
+            type="button"
+            class="custom-grey-button"
+            color="primary"
+            (click)="calculateDate('mon')"
+          >
+            Next Monday
+          </button>
+        </mat-card>
 
-                <mat-card>
-                    <button mat-button type="button" class="custom-grey-button" color="primary"
-                        (click)="calculateDate('-1')">Yesterday</button>
-                    <button mat-button type="button" class="custom-grey-button" color="primary"
-                        (click)="calculateDate('0')">Today</button>
-                    <button mat-button type="button" class="custom-grey-button" color="primary"
-                        (click)="calculateDate('1')">Tomorrow</button>
-                    <button mat-button type="button" class="custom-grey-button" color="primary"
-                        (click)="calculateDate('2')">Day
-                        After</button>
-                    <button mat-button type="button" class="custom-grey-button" color="primary"
-                        (click)="calculateDate('fri')">This
-                        Friday</button>
-                    <button mat-button type="button" class="custom-grey-button" color="primary"
-                        (click)="calculateDate('mon')">Next
-                        Monday</button>
-
-
-                </mat-card>
-
-                <mat-card class="timeform">
-                    
-                    <!-- <div class="header">
+        <mat-card class="timeform">
+          <!-- <div class="header">
                         <div class="mat-body-2">Date Range</div>
                         <div class="mat-body-2">Duration(Optional)</div>
                     </div> -->
-                    
 
-                    <mat-form-field class="calender" appearance="outline">
-                        <mat-label>Enter a date range</mat-label>
-                        <mat-date-range-input [rangePicker]="picker"
-                            [ngClass]="{ 'is-invalid':submitted && (checkError('startDate', 'required') || checkError('endDate', 'required')) }">
-                            <input matStartDate formControlName="startDate" (dateChange)="calculateDaysByField()"
-                                placeholder="Start date" readonly (click)="picker.open()">
-                            <input matEndDate (dateChange)="calculateDaysByField()" formControlName="endDate"
-                                placeholder="End date" readonly (click)="picker.open()">
-                        </mat-date-range-input>
-                        <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-date-range-picker #picker></mat-date-range-picker>
+          <mat-form-field class="calender" appearance="outline">
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input
+              [rangePicker]="picker"
+              [ngClass]="{
+                'is-invalid':
+                  submitted &&
+                  (checkError('startDate', 'required') ||
+                    checkError('endDate', 'required'))
+              }"
+            >
+              <input
+                matStartDate
+                formControlName="startDate"
+                (dateChange)="calculateDaysByField()"
+                placeholder="Start date"
+                readonly
+                (click)="picker.open()"
+              />
+              <input
+                matEndDate
+                (dateChange)="calculateDaysByField()"
+                formControlName="endDate"
+                placeholder="End date"
+                readonly
+                (click)="picker.open()"
+              />
+            </mat-date-range-input>
+            <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
 
-                        <mat-error
-                            *ngIf="submitted && (checkError('startDate', 'required') || checkError('endDate', 'required'))">
-                            Invalid dates
-                        </mat-error>
-                    </mat-form-field>
-                    <button mat-button class="custom-grey-button" disabled>{{leaveDays}}</button><div class="mat-body-2">Days</div>
-                    <!-- <br> -->
-                    <button mat-button type="button" [disabled]="isTimeInputDisabled" class="custom-grey-button"
-                        (click)="calculateHours(1)" color="primary">1
-                        Hr</button>
-                    <button mat-button type="button" [disabled]="isTimeInputDisabled" class="custom-grey-button"
-                        (click)="calculateHours(2)" color="primary">2
-                        Hr</button>
-                    <button mat-button type="button" [disabled]="isTimeInputDisabled" class="custom-grey-button"
-                        (click)="calculateHours(3)" color="primary">3
-                        Hr</button>
-                    <button mat-button type="button" [disabled]="isTimeInputDisabled" class="custom-grey-button"
-                        (click)="calculateHours(4)" color="primary">4
-                        Hr</button>
-                        <div class="mat-body-2">Or</div>
-                    <mat-form-field class="hours" appearance="outline">
-                        <!-- <mat-label>--:--:--</mat-label> -->
-                        <input [readonly]="isTimeInputDisabled" formControlName="startTime"
-                            [textMask]="{mask: util.timeMask}" matInput placeholder="--:--:--" [type]="'text'"
-                            (change)="calculateHoursByField()">
-                    </mat-form-field>
-                    <div class="mat-body-2">To</div>
-                    <mat-form-field class="hours" appearance="outline">
-                        <!-- <mat-label>--:--:--</mat-label> -->
-                        <input formControlName="endTime" [readonly]="isTimeInputDisabled"
-                            [textMask]="{mask: util.timeMask}" placeholder="--:--:--" matInput [type]=" 'text'"
-                            (change)="calculateHoursByField()">
+            <mat-error
+              *ngIf="
+                submitted &&
+                (checkError('startDate', 'required') ||
+                  checkError('endDate', 'required'))
+              "
+            >
+              Invalid dates
+            </mat-error>
+          </mat-form-field>
+          <button mat-button class="custom-grey-button" disabled>
+            {{ leaveDays }}
+          </button>
+          <div class="mat-body-2">Days</div>
+          <!-- <br> -->
+          <button
+            mat-button
+            type="button"
+            [disabled]="isTimeInputDisabled"
+            class="custom-grey-button"
+            (click)="calculateHours(1)"
+            color="primary"
+          >
+            1 Hr
+          </button>
+          <button
+            mat-button
+            type="button"
+            [disabled]="isTimeInputDisabled"
+            class="custom-grey-button"
+            (click)="calculateHours(2)"
+            color="primary"
+          >
+            2 Hr
+          </button>
+          <button
+            mat-button
+            type="button"
+            [disabled]="isTimeInputDisabled"
+            class="custom-grey-button"
+            (click)="calculateHours(3)"
+            color="primary"
+          >
+            3 Hr
+          </button>
+          <button
+            mat-button
+            type="button"
+            [disabled]="isTimeInputDisabled"
+            class="custom-grey-button"
+            (click)="calculateHours(4)"
+            color="primary"
+          >
+            4 Hr
+          </button>
+          <div class="mat-body-2">Or</div>
+          <mat-form-field class="hours" appearance="outline">
+            <!-- <mat-label>--:--:--</mat-label> -->
+            <input
+              [readonly]="isTimeInputDisabled"
+              formControlName="startTime"
+              [textMask]="{ mask: util.timeMask }"
+              matInput
+              placeholder="--:--:--"
+              [type]="'text'"
+              (change)="calculateHoursByField()"
+            />
+          </mat-form-field>
+          <div class="mat-body-2">To</div>
+          <mat-form-field class="hours" appearance="outline">
+            <!-- <mat-label>--:--:--</mat-label> -->
+            <input
+              formControlName="endTime"
+              [readonly]="isTimeInputDisabled"
+              [textMask]="{ mask: util.timeMask }"
+              placeholder="--:--:--"
+              matInput
+              [type]="'text'"
+              (change)="calculateHoursByField()"
+            />
+          </mat-form-field>
 
-                    </mat-form-field>
-                
-                    <button mat-button class="custom-grey-button" disabled>{{leaveHours}}</button><div class="mat-body-2">Hours</div>
-                </mat-card>
-                <mat-card class="topic">
-                    <mat-icon class="icon">category</mat-icon>
-                    Choose Type
-                </mat-card>
-                <mat-card>
-                    <input type="hidden" formControlName="leaveType">
-                    <ng-container *ngFor="let leave of leaveTypeList">
-                        <button mat-button type="button" class="custom-grey-button" color="primary"
-                            [ngClass]="{ 'active': leave.id == selectedLeaveType}"
-                            (click)="setLeaveType(leave)">{{leave?.leaveDescription}}</button>
-                    </ng-container>
-                </mat-card>
-                <mat-card class="topic">
-                    <mat-icon class="icon">thumb_up_alt</mat-icon>
-                    Approval
-                </mat-card>
-                <mat-card>
-                    <mat-card-actions class="approval">
-                        <mat-form-field class="comment" appearance="outline">
-                            <!-- <mat-label>Outline form field</mat-label> -->
-                            <input [ngClass]="{ 'is-invalid':submitted && checkError('leaveReason', 'required')}"
-                                matInput formControlName="leaveReason" placeholder="Comment">
-                            <mat-error *ngIf="submitted && checkError('leaveReason', 'required')">
-                                Comment is required
-                            </mat-error>
-                        </mat-form-field>
-                        <!-- <p> -->
-                        <!-- Leave Balance <button mat-button class="custom-grey-button" disabled>{{availableLeaveCount}}</button> -->
-                       <div class="mat-body-2" > Manager's Name <button class="button" mat-raised-button color="warn" type="submit">REQUEST FOR APPROVAL<mat-icon>
-                                arrow_right_alt
-                            </mat-icon>
-                        </button></div> 
-                        <!-- </p> -->
-                    </mat-card-actions>
-                </mat-card>
-            </form>
-        </mat-tab>
-        <mat-tab label="History">
-            <mat-card>
-                <mat-card-title align="right">
-                    August 2022<mat-form-field style="display:none;text-align: right;">
-                        <mat-label>Choose a date</mat-label>
-                        <input matInput [matDatepicker]="pickerList" [(ngModel)]="historyMonth">
-                        <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
-                        <mat-datepicker #pickerList></mat-datepicker>
-                    </mat-form-field>
-                    <mat-icon (click)="pickerList.open()">calendar_today</mat-icon>
+          <button mat-button class="custom-grey-button" disabled>
+            {{ leaveHours }}
+          </button>
+          <div class="mat-body-2">Hours</div>
+        </mat-card>
+        <mat-card class="topic">
+          <mat-icon class="icon">category</mat-icon>
+          Choose Type
+        </mat-card>
+        <mat-card>
+          <input type="hidden" formControlName="leaveType" />
+          <ng-container *ngFor="let leave of leaveTypeList">
+            <button
+              mat-button
+              type="button"
+              class="custom-grey-button"
+              color="primary"
+              [ngClass]="{ active: leave.id == selectedLeaveType }"
+              (click)="setLeaveType(leave)"
+            >
+              {{ leave?.leaveDescription }}
+            </button>
+          </ng-container>
+        </mat-card>
+        <mat-card class="topic">
+          <mat-icon class="icon">thumb_up_alt</mat-icon>
+          Approval
+        </mat-card>
+        <mat-card>
+          <mat-card-actions class="approval">
+            <mat-form-field class="comment" appearance="outline">
+              <!-- <mat-label>Outline form field</mat-label> -->
+              <input
+                [ngClass]="{
+                  'is-invalid':
+                    submitted && checkError('leaveReason', 'required')
+                }"
+                matInput
+                formControlName="leaveReason"
+                placeholder="Comment"
+              />
+              <mat-error
+                *ngIf="submitted && checkError('leaveReason', 'required')"
+              >
+                Comment is required
+              </mat-error>
+            </mat-form-field>
+            <!-- <p> -->
+            <!-- Leave Balance <button mat-button class="custom-grey-button" disabled>{{availableLeaveCount}}</button> -->
+            <div class="mat-body-2">
+              Manager's Name
+              <button
+                class="button"
+                mat-raised-button
+                color="warn"
+                type="submit"
+              >
+                REQUEST FOR APPROVAL<mat-icon> arrow_right_alt </mat-icon>
+              </button>
+            </div>
+            <!-- </p> -->
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </mat-tab>
+    <mat-tab label="History">
+      <mat-card>
+        <mat-card-title align="right">
+          August 2022<mat-form-field style="display: none; text-align: right">
+            <mat-label>Choose a date</mat-label>
+            <input
+              matInput
+              [matDatepicker]="pickerList"
+              [(ngModel)]="historyMonth"
+            />
+            <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+            <mat-datepicker #pickerList></mat-datepicker>
+          </mat-form-field>
+          <mat-icon (click)="pickerList.open()">calendar_today</mat-icon>
+        </mat-card-title>
+        <mat-card-content>
+          <div class="mat-elevation-z8">
+            <table width="100%" mat-table [dataSource]="dataSource" matSort>
+              <!-- ID Column -->
+              <ng-container matColumnDef="applyDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Applied On
+                </th>
+                <td mat-cell *matCellDef="let row; let i = index">
+                  {{ row?.applyDate | date: "dd/MM/yyyy" }}
+                </td>
+              </ng-container>
 
-                </mat-card-title>
-                <mat-card-content>
-                    <div class="mat-elevation-z8">
-                        <table width="100%" mat-table [dataSource]="dataSource" matSort>
+              <!-- Progress Column -->
+              <ng-container matColumnDef="dates">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Dates</th>
+                <td mat-cell *matCellDef="let row">
+                  {{ convertTimeMoment(row.startDateTime, "DD/MM/YYYY") }} to
+                  {{ convertTimeMoment(row.endDateTime, "DD/MM/YYYY") }}
+                </td>
+              </ng-container>
 
-                            <!-- ID Column -->
-                            <ng-container matColumnDef="applyDate">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Applied On </th>
-                                <td mat-cell *matCellDef="let row;let i=index;"> {{row?.applyDate | date:'dd/MM/yyyy'}}
-                                </td>
-                            </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="days">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Days</th>
+                <td mat-cell *matCellDef="let row">{{ row?.totalDay }}</td>
+              </ng-container>
 
+              <!-- Fruit Column -->
+              <ng-container matColumnDef="time">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
+                <td mat-cell *matCellDef="let row">
+                  <ng-container *ngIf="row && row.totalHour > 0">
+                    {{ convertTimeMoment(row.startDateTime, "hh:mm A") }} to
+                    {{ convertTimeMoment(row.endDateTime, "hh:mm A") }}
+                  </ng-container>
+                </td>
+              </ng-container>
 
-                            <!-- Progress Column -->
-                            <ng-container matColumnDef="dates">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Dates </th>
-                                <td mat-cell *matCellDef="let row">{{convertTimeMoment(row.startDateTime,'DD/MM/YYYY' )}} to {{convertTimeMoment(row.endDateTime,'DD/MM/YYYY' )}} </td>
-                            </ng-container>
+              <ng-container matColumnDef="hours">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Hours</th>
+                <td mat-cell *matCellDef="let row">{{ row?.totalHour }}</td>
+              </ng-container>
 
-                            <!-- Name Column -->
-                            <ng-container matColumnDef="days">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Days </th>
-                                <td mat-cell *matCellDef="let row">{{row?.totalDay}}</td>
-                            </ng-container>
+              <ng-container matColumnDef="manager">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Manager
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{ row?.approver?.firstName }} {{ row?.approver?.lastName }}
+                </td>
+              </ng-container>
 
-                            <!-- Fruit Column -->
-                            <ng-container matColumnDef="time">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Time </th>
-                                <td mat-cell *matCellDef="let row">
-                                    <ng-container *ngIf="row && row.totalHour>0">
-                                        {{convertTimeMoment(row.startDateTime,'hh:mm A' )}} to
-                                        {{convertTimeMoment(row.endDateTime,'hh:mm A' )}}
-                                    </ng-container>
-                                </td>
-                            </ng-container>
+              <ng-container matColumnDef="leave_type">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Leave type
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{ row?.leaveType?.leaveDescription }}
+                </td>
+              </ng-container>
 
-                            <ng-container matColumnDef="hours">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Hours</th>
-                                <td mat-cell *matCellDef="let row"> {{row?.totalHour}}</td>
-                            </ng-container>
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Status
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{ getStatus(row?.leaveStatus) }}
+                </td>
+              </ng-container>
 
-                            <ng-container matColumnDef="manager">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Manager</th>
-                                <td mat-cell *matCellDef="let row"> {{row?.approver?.firstName}}
-                                    {{row?.approver?.lastName}}</td>
-                            </ng-container>
+              <ng-container matColumnDef="leaveReason">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Reason
+                </th>
+                <td mat-cell *matCellDef="let row">{{ row?.leaveReason }}</td>
+              </ng-container>
 
+              <ng-container matColumnDef="reviewerRemark">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Comments
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{ row?.reviewerRemark }}
+                </td>
+              </ng-container>
 
-                            <ng-container matColumnDef="leave_type">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Leave type</th>
-                                <td mat-cell *matCellDef="let row"> {{row?.leaveType?.leaveDescription}} </td>
-                            </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
+              <!-- Row shown when there is no matching data. -->
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="8">No record</td>
+              </tr>
+            </table>
 
-                            <ng-container matColumnDef="status">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-                                <td mat-cell *matCellDef="let row">{{getStatus(row?.leaveStatus)}} </td>
-                            </ng-container>
-
-                            <ng-container matColumnDef="leaveReason">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Reason</th>
-                                <td mat-cell *matCellDef="let row">{{row?.leaveReason}} </td>
-                            </ng-container>
-
-
-                            <ng-container matColumnDef="reviewerRemark">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Comments</th>
-                                <td mat-cell *matCellDef="let row">{{row?.reviewerRemark}} </td>
-                            </ng-container>
-
-
-                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-                            <!-- Row shown when there is no matching data. -->
-                            <tr class="mat-row" *matNoDataRow>
-                                <td class="mat-cell" colspan="8">No record</td>
-                            </tr>
-                        </table>
-
-
-                        <mat-paginator [length]="totalRecords" [pageIndex]="0" [pageSizeOptions]="[5, 10, 20]"
-                            [pageSize]="pagesize" aria-label="Select page">
-                        </mat-paginator>
-                    </div>
-                </mat-card-content>
-            </mat-card>
-        </mat-tab>
-
-    </mat-tab-group>
+            <mat-paginator
+              [length]="totalRecords"
+              [pageIndex]="0"
+              [pageSizeOptions]="[5, 10, 20]"
+              [pageSize]="pagesize"
+              aria-label="Select page"
+            >
+            </mat-paginator>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-tab>
+  </mat-tab-group>
 </mat-card>
