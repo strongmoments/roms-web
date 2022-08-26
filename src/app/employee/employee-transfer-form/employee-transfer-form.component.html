@@ -18,7 +18,7 @@
       <mat-form-field appearance="fill">
         <mat-label>Employee</mat-label>
         <mat-select formControlName="employee">
-          <input mat-input aria-label="Employee">
+          <input mat-input class="search-box-select" aria-label="Employee" (keyup)="searchEmployee($event)">
           <!-- <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"> -->
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
             {{option}}
@@ -28,13 +28,6 @@
         <mat-error *ngIf="submitted && checkError('employee', 'required')">
           Employee is required
         </mat-error>
-        <!-- <input type="text" placeholder="Pick one" aria-label="Number" formControlName="employee" matInput
-          [matAutocomplete]="auto">
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-            {{option}}
-          </mat-option>
-        </mat-autocomplete> -->
       </mat-form-field>
       <!-- </mat-card> -->
       <p class="text">Employee Number:</p>
@@ -52,7 +45,21 @@
     </div>
     <div class="container">
       <p class="text-to">To:</p>
-      <mat-card class="input">GR3CAS</mat-card>
+      <mat-form-field appearance="fill">
+        <!-- <mat-label>To:</mat-label> -->
+        <mat-select formControlName="transferTo">
+          <input mat-input class="search-box-select" aria-label="Gang" (keyup)="searchEmployee($event)">
+          <!-- <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"> -->
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option}}
+          </mat-option>
+          <!-- </mat-autocomplete> -->
+        </mat-select>
+        <mat-error *ngIf="submitted && checkError('transferTo', 'required')">
+          Gang is required
+        </mat-error>
+      </mat-form-field>
+      <!-- <mat-card class="input">GR3CAS</mat-card> -->
       <p class="text">At:</p>
       <mat-card class="input">-------</mat-card>
       <p class="text">Rate:</p>

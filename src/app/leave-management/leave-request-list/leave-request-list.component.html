@@ -135,9 +135,14 @@
                     </tr>
                 </table>
 
-                <mat-paginator [length]="totalRecords" [pageIndex]="0" [pageSizeOptions]="[5, 10, 20]"
-                    [pageSize]="pagesize" aria-label="Select page">
+                <mat-paginator [length]="totalRecords" [pageIndex]="pageNo" (page)="handlePageChange($event)"
+                    [pageSizeOptions]="[5, 10, 20]" [pageSize]="pagesize" aria-label="Select page">
                 </mat-paginator>
+
+                <!-- <mat-paginator #MatPaginator1 *ngIf="selectedTabIndex==1" [length]="totalRecords" [pageIndex]="0"
+                        [pageSizeOptions]="[5, 10, 20]" [pageSize]="pagesize" aria-label="Select page">
+                    </mat-paginator> -->
+
             </div>
         </mat-card-content>
     </mat-card>

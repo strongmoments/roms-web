@@ -141,11 +141,17 @@ export class LeaveApplyFormComponent implements OnInit {
         this.isTimeInputDisabled = false;
         let currentDate = new Date(new Date().getTime());
         if (value == 'fri') {
-            const nextFriday = new Date(
-                currentDate.setDate(
-                    currentDate.getDate() + ((4 - currentDate.getDay() + 1) % 7 || 7),
-                ),
-            );
+            console.log(currentDate.getDay())
+            let nextFriday = new Date();
+            if (currentDate.getDay() == 5) {
+                nextFriday = currentDate;
+            } else {
+                nextFriday = new Date(
+                    currentDate.setDate(
+                        currentDate.getDate() + ((4 - currentDate.getDay() + 1) % 7 || 7),
+                    ),
+                );
+            }
             this.form.controls['startDate'].setValue(nextFriday);
             this.form.controls['endDate'].setValue(nextFriday);
             this.leaveDays = 1;

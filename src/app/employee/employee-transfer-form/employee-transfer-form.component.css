@@ -1,63 +1,76 @@
-.tasks-data{
-    
-    position: relative;
-    width: 94%;
-    /* height: 170%; */
-    left: 2%;
-    top: 18%;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.05);
-    border-radius: 5px;
-    }
-    .container{
-        display: flex;
-        flex-direction: row;
-        /* padding: %; */
-        margin-top: 2.5%;
-        /* margin-left: 3%; */
-        /* margin: 1% 2% 1% 0; */
-        
-    }
-    .text{
-      margin-right: 3%;
-    }
-    .text-name{
-      margin-right: 6%;
-    }
-    .text-to{
-      margin-right: 5%;
-    }
-    .date{
-      margin-right: 5%;
-    }
-  
-    .title{
-        align-items: center;
-        padding: 1rem;
-        margin-left: 33%;
-        /* margin-bottom: 2%; */
-    }
-    .mat-radio-button ~ .mat-radio-button {
-        padding: 1rem;
-        margin-top: 3%;
-        margin-left: 76px;
-      }
-      .input{
-        margin-right: 4%;
-        
-        width: 16%;
-      }
-      .date{
-        width: 16%
-      }
-      .custom-grey-button {
-        background: #D9D9D9;
-        border-radius: 5px;
-        font-style: normal;
-        font-weight: 300;
-        font-size: 16px;
-        /* line-height: 2em; */
-        color: #000000;
-        margin: 0% 2% 2% 0;
-    }
-    
+.tasks-data {
+
+  position: relative;
+  width: 94%;
+  /* height: 170%; */
+  left: 2%;
+  top: 18%;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  /* padding: %; */
+  margin-top: 2.5%;
+  /* margin-left: 3%; */
+  /* margin: 1% 2% 1% 0; */
+
+}
+
+.text {
+  margin-right: 3%;
+}
+
+.text-name {
+  margin-right: 6%;
+}
+
+.text-to {
+  margin-right: 5%;
+}
+
+.date {
+  margin-right: 5%;
+}
+
+.title {
+  align-items: center;
+  padding: 1rem;
+  margin-left: 33%;
+  /* margin-bottom: 2%; */
+}
+
+.mat-radio-button~.mat-radio-button {
+  padding: 1rem;
+  margin-top: 3%;
+  margin-left: 76px;
+}
+
+.input {
+  margin-right: 4%;
+
+  width: 16%;
+}
+
+.date {
+  width: 16%
+}
+
+.custom-grey-button {
+  background: #D9D9D9;
+  border-radius: 5px;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  /* line-height: 2em; */
+  color: #000000;
+  margin: 0% 2% 2% 0;
+}
+
+
+.search-box-select {
+  width: 98%;
+}

@@ -50,15 +50,32 @@ export class EmployeeTransferFormComponent implements OnInit {
     );
   }
 
+  searchEmployee(event: any) {
+    console.log(event, 'test')
+    // this.employeeService.searchEmployee('a').subscribe((result: any) => {
+    //   console.log(result, 'resukt employee')
+    // });
+  }
+
 
   calculateDate(value: string) {
     let currentDate = new Date(new Date().getTime());
     if (value == 'fri') {
-      const nextFriday = new Date(
-        currentDate.setDate(
-          currentDate.getDate() + ((4 - currentDate.getDay() + 1) % 7 || 7),
-        ),
-      );
+      // const nextFriday = new Date(
+      //   currentDate.setDate(
+      //     currentDate.getDate() + ((4 - currentDate.getDay() + 1) % 7 || 7),
+      //   ),
+      // );
+      let nextFriday = new Date();
+      if (currentDate.getDay() == 5) {
+        nextFriday = currentDate;
+      } else {
+        nextFriday = new Date(
+          currentDate.setDate(
+            currentDate.getDate() + ((4 - currentDate.getDay() + 1) % 7 || 7),
+          ),
+        );
+      }
       this.form.controls['transferDate'].setValue(nextFriday);
       // this.form.controls['endDate'].setValue(nextFriday);
     } else if (value == 'mon') {
