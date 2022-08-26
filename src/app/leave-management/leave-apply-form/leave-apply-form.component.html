@@ -72,9 +72,11 @@
                     </div> -->
 
           <mat-form-field class="calender" appearance="outline">
-            <mat-label>Enter a date range</mat-label>
+            <mat-label (click)="picker.open()">Enter a date range</mat-label>
             <mat-date-range-input
               [rangePicker]="picker"
+              [min]="minDate"
+              [max]="maxDate"
               [ngClass]="{
                 'is-invalid':
                   submitted &&
@@ -238,7 +240,7 @@
             <!-- <p> -->
             <!-- Leave Balance <button mat-button class="custom-grey-button" disabled>{{availableLeaveCount}}</button> -->
             <div class="mat-body-2">
-              Manager's Name
+              {{ managerData?.firstName }} {{ managerData?.lastName }}
               <button
                 class="button"
                 mat-raised-button

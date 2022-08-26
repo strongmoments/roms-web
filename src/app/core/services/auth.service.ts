@@ -181,5 +181,10 @@ export class AuthenticationService {
     }
 
 
+    getDashboard() {
+        return this.http.get<any>(`${environment.apiUrl}/v1/dashboard/load`)
+
+    }
+
 
 }

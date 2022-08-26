@@ -28,6 +28,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 
 export const MY_FORMATS = {
     parse: {
@@ -67,6 +68,7 @@ export const MY_FORMATS = {
         MatTabsModule,MatRadioModule,MatFormFieldModule
     ],
     providers: [
+        { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
         {
             provide: MAT_DATE_LOCALE,
             useValue: MY_FORMATS
