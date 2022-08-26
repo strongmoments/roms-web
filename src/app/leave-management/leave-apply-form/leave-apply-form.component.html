@@ -3,8 +3,8 @@
         <mat-tab label="Apply Leave">
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-                <mat-card class="topic">
-                    <mat-icon>calendar_today</mat-icon>
+                <mat-card class="topic" >
+                    <mat-icon class="icon">insert_invitation</mat-icon>
                     Choose Day
                 </mat-card>
                 <!-- <mat-divider> </mat-divider> -->
@@ -29,9 +29,15 @@
 
                 </mat-card>
 
-                <mat-card>
+                <mat-card class="timeform">
+                    
+                    <!-- <div class="header">
+                        <div class="mat-body-2">Date Range</div>
+                        <div class="mat-body-2">Duration(Optional)</div>
+                    </div> -->
+                    
 
-                    <mat-form-field appearance="fill">
+                    <mat-form-field class="calender" appearance="outline">
                         <mat-label>Enter a date range</mat-label>
                         <mat-date-range-input [rangePicker]="picker"
                             [ngClass]="{ 'is-invalid':submitted && (checkError('startDate', 'required') || checkError('endDate', 'required')) }">
@@ -49,39 +55,40 @@
                             Invalid dates
                         </mat-error>
                     </mat-form-field>
-                    <button mat-button class="custom-grey-button" disabled>{{leaveDays}}</button> Days
-                    <br>
+                    <button mat-button class="custom-grey-button" disabled>{{leaveDays}}</button><div class="mat-body-2">Days</div>
+                    <!-- <br> -->
                     <button mat-button type="button" [disabled]="isTimeInputDisabled" class="custom-grey-button"
                         (click)="calculateHours(1)" color="primary">1
-                        hr</button>
+                        Hr</button>
                     <button mat-button type="button" [disabled]="isTimeInputDisabled" class="custom-grey-button"
                         (click)="calculateHours(2)" color="primary">2
-                        hr</button>
+                        Hr</button>
                     <button mat-button type="button" [disabled]="isTimeInputDisabled" class="custom-grey-button"
                         (click)="calculateHours(3)" color="primary">3
-                        hr</button>
+                        Hr</button>
                     <button mat-button type="button" [disabled]="isTimeInputDisabled" class="custom-grey-button"
                         (click)="calculateHours(4)" color="primary">4
-                        hr</button>
-                    Or
-                    <mat-form-field appearance="fill">
+                        Hr</button>
+                        <div class="mat-body-2">Or</div>
+                    <mat-form-field class="hours" appearance="outline">
                         <!-- <mat-label>--:--:--</mat-label> -->
                         <input [readonly]="isTimeInputDisabled" formControlName="startTime"
                             [textMask]="{mask: util.timeMask}" matInput placeholder="--:--:--" [type]="'text'"
                             (change)="calculateHoursByField()">
                     </mat-form-field>
-                    to
-                    <mat-form-field appearance="fill">
+                    <div class="mat-body-2">To</div>
+                    <mat-form-field class="hours" appearance="outline">
                         <!-- <mat-label>--:--:--</mat-label> -->
                         <input formControlName="endTime" [readonly]="isTimeInputDisabled"
                             [textMask]="{mask: util.timeMask}" placeholder="--:--:--" matInput [type]=" 'text'"
                             (change)="calculateHoursByField()">
 
                     </mat-form-field>
-                    <button mat-button class="custom-grey-button" disabled>{{leaveHours}}</button> hours
+                
+                    <button mat-button class="custom-grey-button" disabled>{{leaveHours}}</button><div class="mat-body-2">Hours</div>
                 </mat-card>
                 <mat-card class="topic">
-                    <mat-icon>calendar_today</mat-icon>
+                    <mat-icon class="icon">category</mat-icon>
                     Choose Type
                 </mat-card>
                 <mat-card>
@@ -93,12 +100,12 @@
                     </ng-container>
                 </mat-card>
                 <mat-card class="topic">
-                    <mat-icon>calendar_today</mat-icon>
+                    <mat-icon class="icon">thumb_up_alt</mat-icon>
                     Approval
                 </mat-card>
                 <mat-card>
-                    <mat-card-actions>
-                        <mat-form-field appearance="outline">
+                    <mat-card-actions class="approval">
+                        <mat-form-field class="comment" appearance="outline">
                             <!-- <mat-label>Outline form field</mat-label> -->
                             <input [ngClass]="{ 'is-invalid':submitted && checkError('leaveReason', 'required')}"
                                 matInput formControlName="leaveReason" placeholder="Comment">
@@ -108,10 +115,10 @@
                         </mat-form-field>
                         <!-- <p> -->
                         <!-- Leave Balance <button mat-button class="custom-grey-button" disabled>{{availableLeaveCount}}</button> -->
-                        Manager's Name <button mat-button color="warn" type="submit">REQUEST FOR APPROVAL<mat-icon>
+                       <div class="mat-body-2" > Manager's Name <button class="button" mat-raised-button color="warn" type="submit">REQUEST FOR APPROVAL<mat-icon>
                                 arrow_right_alt
                             </mat-icon>
-                        </button>
+                        </button></div> 
                         <!-- </p> -->
                     </mat-card-actions>
                 </mat-card>
