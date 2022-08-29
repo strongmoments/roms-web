@@ -1,0 +1,36 @@
+<mat-card class="tasks-data">
+    <mat-card-title class="title">RESIGNATION ADVICE</mat-card-title>
+    <mat-divider> </mat-divider> 
+    
+    <div class="container">
+        <div class="mat-body-2">Name:</div><mat-card class="input">Matthew Mcconaughey</mat-card>
+        <div class="mat-body-2">Employee Number:</div><mat-card class="input">RTL1199</mat-card>
+      </div>
+     <div class="written">
+        <div class="mat-body-2">Please accept this resignation advice of my intention to cease my employment with RTL Mining and Earthworks Pvt.Ltd.</div>
+        <div class="mat-body-2">My last working day will be :  <mat-form-field class="date" appearance="outline">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker">
+            <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+         </div>
+       </div>
+     <div class="container">
+        <div class="mat-body-2">Take a Selfie</div>
+        <mat-icon class="logo">add_a_photo</mat-icon>
+        <div class="mat-body-2">Add Signature</div>
+        <mat-icon class="logo">create</mat-icon>
+     </div>
+     <mat-divider> </mat-divider> 
+      <div class="container">
+        <div class="mat-body-2">Date:</div><mat-card class="input">22 August 2022 </mat-card>
+        <button class="button" mat-raised-button color="warn" >RESIGN <mat-icon>
+            arrow_right_alt
+        </mat-icon></button>
+
+      </div>
+
+     
+  </mat-card>

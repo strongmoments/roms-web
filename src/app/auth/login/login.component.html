@@ -1,0 +1,167 @@
+<div class="login-register" style="background-image: url(assets/img/layer.svg)">
+  <div class="login-register-box">
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="firstFormGroup" (ngSubmit)="onSubmit()">
+          <div class="text-center">
+            <img alt="homepage" src="assets/img/rtl-logo.svg" />
+            <h4 class="m-t-0">Login to App</h4>
+          </div>
+
+          <div fxLayout="row wrap">
+            <!-- col full-->
+            <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+              <mat-form-field>
+                <input matInput placeholder="USERNAME" formControlName="username" username
+                  [ngClass]="{ 'is-invalid': checkError('username', 'required')  && submitted }" />
+              </mat-form-field>
+              <small *ngIf="checkError('username', 'required')  && submitted" class="text-danger support-text">Username
+                is required.</small>
+              <small *ngIf="checkError('username', 'pattern')" class="text-danger support-text">Invalid username.
+              </small>
+            </div>
+            <!-- col full-->
+            <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+              <mat-form-field>
+                <input type="password" matInput placeholder="PASSWORD" formControlName="password" password />
+                <mat-icon matSuffix>visibility</mat-icon>
+              </mat-form-field>
+              <small *ngIf="checkError('password', 'required')  && submitted" class="text-danger support-text">Password
+                is required.</small>
+            </div>
+            <!-- col half-->
+            <!-- <div fxFlex.gt-sm="50" fxFlex.gt-xs="50">
+              <mat-checkbox color="warn">Remember me</mat-checkbox>
+            </div> -->
+            <!-- col half-->
+            <!-- <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" class="text-right">
+              <a [routerLink]="['/authentication/forgot']" class="link">Forgot pwd?</a>
+            </div> -->
+            <!-- col full-->
+            <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+              <button mat-raised-button color="primary" class="btn-block btn-lg m-t-20 m-b-20" type="submit">
+                Login
+              </button>
+            </div>
+            <!-- col full-->
+            <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100" class="text-right">
+              <span>
+                <p class="forget">Forget Password?</p>
+                <!-- <a [routerLink]="['/authentication/register']" class="text-info link">Register</a> -->
+              </span>
+            </div>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+
+<!-- <div fxLayout="row" fxLayoutAlign="center center">
+
+  <mat-card class="form-container">
+    <form [formGroup]="firstFormGroup">
+
+      <mat-card-header>
+        <mat-card-title>Login</mat-card-title>
+      </mat-card-header>
+      <mat-card-content fxLayout="column">
+
+        <mat-form-field class="input" appearance="outline">
+          <span matPrefix>
+            <mat-icon>person</mat-icon>
+          </span>
+
+          <input matInput placeholder="USERNAME" formControlName="username" username
+            [ngClass]="{ 'is-invalid': checkError('username', 'required')  && submitted }" />
+          <mat-error *ngIf="checkError('username', 'pattern' )">
+            Invalid username
+          </mat-error>
+
+          <mat-error *ngIf="checkError('username', 'required')  && submitted">
+            Username is required</mat-error>
+        </mat-form-field>
+        <mat-form-field class="input" appearance="outline">
+          <span matPrefix>
+            <mat-icon>lock</mat-icon>
+          </span>
+          <input type="password" matInput placeholder="PASSWORD" formControlName="password" password />
+          <mat-icon matSuffix>visibility</mat-icon>
+          <mat-error class="error-message" *ngIf="checkError('password', 'required')  && submitted">
+            Password is required
+          </mat-error>
+        </mat-form-field>
+
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button type="submit" (click)="onSubmit()" mat-raised-button class="login-btn">Login</button>
+        <p class="forget">Forget Password?</p>
+      </mat-card-actions>
+    </form>
+
+  </mat-card>
+
+</div> -->
+
+<!-- <div class="form-container">
+  <div class="title">Login</div>
+  <form>
+    <mat-form-field appearance="outline">
+      <mat-label>
+        USERNAME
+        <mat-icon>account_circle</mat-icon>
+      </mat-label>
+      <input matInput />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label
+        ><mat-icon>lock</mat-icon>
+        PASSWORD
+        <mat-icon>visibility</mat-icon>
+      </mat-label>
+      <input type="password" matInput />
+    </mat-form-field>
+  </form>
+  <div class="button-container">
+    <button mat-stroked-button class="login-button">Login</button>
+    <button mat-button>Forget Password ?</button>
+  </div>
+</div> -->
+<!-- </div> -->
+
+<!-- <h3 class="account-title">Login</h3>
+<form [formGroup]="firstFormGroup">
+  <div class="form-group">
+    <label>Email Address</label>
+    <input class="form-control" type="text" formControlName="email" email
+      [ngClass]="{ 'is-invalid': checkError('email', 'required')  && submitted }">
+    <span class="error-message" *ngIf="checkError('email', 'pattern' )">
+      Invalid email address
+    </span>
+    <span class="error-message" *ngIf="checkError('email', 'required')  && submitted">
+      Email is required</span>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col">
+        <label>Password</label>
+      </div>
+      <div class="col-auto">
+        <a class="text-muted" [routerLink]="['/forgot-password']">
+          Forgot password?
+        </a>
+      </div>
+    </div>
+    <div class="position-relative">
+      <input class="form-control" type="password" formControlName="password" password
+        [ngClass]="{ 'is-invalid': checkError('password', 'required')  && submitted }">
+      <span class="fa fa-eye-slash" id="toggle-password"></span>
+      <span class="error-message" *ngIf="checkError('password', 'required')  && submitted">
+        Password is required</span>
+    </div>
+  </div>
+  <div class="form-group text-center">
+    <button class="btn btn-primary account-btn" (click)="onSubmit()" type="submit">Login</button>
+  </div>
+</form> -->
