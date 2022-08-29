@@ -28,7 +28,6 @@ export const AppRoutes: Routes = [
     path: '',
     component: AppBlankComponent,
     children: [
-
       {
         path: '',
         loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
