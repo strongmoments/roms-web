@@ -65,7 +65,7 @@ export class VisitorComponent {
       legend: {
         show: false,
       },
-      labels: ['Mobile', 'Tablet', 'Desktop', 'Other'],
+      labels: ['Personal Leave', 'Annual Leave', 'RDO Leave', 'Other'],
       colors: ['#1e88e5', '#26c6da', '#745af2', '#eceff1'],
       responsive: [
         {

@@ -75,18 +75,17 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
 
     let menuItem: Menu[] = [];
 
-    menuItem.push({ state: 'dashboard', name: 'Dashboard', type: 'link', icon: 'dashboard' });
+    menuItem.push({ state: 'dashboard', name: 'Dashboard', type: 'link', icon: 'av_timer' });
 
     if (this.userPermissions) {
       //condition for menu of operatins
       if (this.userPermissions.operations && this.userPermissions.operations.length > 0) {
         let subMenu = [];
         if (this.userPermissions.operations.includes('assets')) {
-          subMenu.push({ state: 'asset', name: 'Assets', type: 'link', icon: '' });
+          subMenu.push({ state: 'asset', name: 'Assets', type: 'link', icon: 'commute' });
         }
         if (this.userPermissions.operations.includes('inspection')) {
-          subMenu.push(
-            { state: 'inspection', name: 'Inspection', type: 'link', icon: '' });
+          subMenu.push({ state: 'inspection', name: 'Inspection', type: 'link', icon: 'description' });
         }
         // if (this.userPermissions.operations.includes('inspection')) {
         // subMenu.push({
@@ -97,7 +96,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         //   ]
         // });
         // }
-        menuItem.push({ state: 'operation', name: 'Operation', type: 'sub', icon: 'dashboard', children: subMenu });
+        menuItem.push({ state: 'operation', name: 'Operation', type: 'sub', icon: 'commute', children: subMenu });
       }
 
       //condition for menu of timeoff
@@ -114,7 +113,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
           // subMenu.push({ displayName: 'Holidays', iconName: '', route: '/' });
         }
         menuItem.push(
-          { state: '', name: 'Time Off', type: 'sub', icon: 'calendar_today', children: subMenu });
+          { state: '', name: 'Personal', type: 'sub', icon: 'perm_contact_calendar', children: subMenu });
       }
 
       //condition for menu of my staff
@@ -127,7 +126,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         // if (this.userPermissions.timeoff.includes('history')) {
         //   subMenu.push({ displayName: 'Holidays', iconName: '', route: '/' });
         // }
-        menuItem.push({ state: '', name: 'My Staff', type: 'sub', icon: 'dashboard', children: subMenu });
+        menuItem.push({ state: '', name: 'My Staff', type: 'sub', icon: 'people', children: subMenu });
       }
     }
 

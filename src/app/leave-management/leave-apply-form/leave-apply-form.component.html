@@ -147,10 +147,10 @@
               <!-- <p> -->
               <!-- Leave Balance <button mat-button class="custom-grey-button" disabled>{{availableLeaveCount}}</button> -->
               <div class="mat-body-2">
-                {{ managerData?.firstName }} {{ managerData?.lastName }}
                 <button class="button" mat-raised-button color="warn" type="submit">
-                  REQUEST FOR APPROVAL<mat-icon> arrow_right_alt </mat-icon>
-                </button>
+                REQUEST FOR APPROVAL<mat-icon> arrow_right_alt </mat-icon></button>
+                {{ managerData?.firstName }} {{ managerData?.lastName }}
+                
               </div>
               <!-- </p> -->
             </mat-card-actions>
@@ -176,7 +176,7 @@
               <!-- ID Column -->
               <ng-container matColumnDef="applyDate">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                  Applied On
+                  Date
                 </th>
                 <td mat-cell *matCellDef="let row; let i = index">
                   <span class="header-label">applyDate:</span>
@@ -186,7 +186,7 @@
 
               <!-- Progress Column -->
               <ng-container matColumnDef="dates">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Dates</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>leave</th>
                 <td mat-cell *matCellDef="let row">
                   <span class="header-label">dates:</span>
                   {{ convertTimeMoment(row.startDateTime, "DD/MM/YYYY") }} to
