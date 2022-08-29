@@ -3,12 +3,32 @@ import { Routes } from '@angular/router';
 import { FullComponent } from './layouts/full/full.component';
 import { AppBlankComponent } from './layouts/blank/blank.component';
 import { AuthGuard } from './core/_helpers';
+import { ReleaseNoteComponent } from './release-note/release-note.component';
+import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 
 export const AppRoutes: Routes = [
+
+  {
+    path: '',
+    component: FullComponent,
+    children: [
+      {
+        path: 'release-note',
+        pathMatch: 'full',
+        component: ReleaseNoteComponent
+      },
+      {
+        path: 'coming-soon',
+        pathMatch: 'full',
+        component: ComingSoonComponent
+      }
+    ]
+  },
   {
     path: '',
     component: AppBlankComponent,
     children: [
+
       {
         path: '',
         loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)

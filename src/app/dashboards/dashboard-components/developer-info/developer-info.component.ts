@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-developer-info',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./developer-info.component.scss'],
 })
 export class DeveloperInfoComponent {
-  constructor() {}
+  user:any={};
+  constructor(private authService:AuthenticationService) {
+    this.user=this.authService.getCurrentUser()
+  }
 }

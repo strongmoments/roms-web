@@ -82,10 +82,10 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
       if (this.userPermissions.operations && this.userPermissions.operations.length > 0) {
         let subMenu = [];
         if (this.userPermissions.operations.includes('assets')) {
-          subMenu.push({ state: 'asset', name: 'Assets', type: 'link', icon: 'commute' });
+          subMenu.push({ state: 'coming-soon', name: 'Assets', type: 'link', icon: 'commute' });
         }
         if (this.userPermissions.operations.includes('inspection')) {
-          subMenu.push({ state: 'inspection', name: 'Inspection', type: 'link', icon: 'description' });
+          subMenu.push({ state: 'coming-soon', name: 'Inspection', type: 'link', icon: 'description' });
         }
         // if (this.userPermissions.operations.includes('inspection')) {
         // subMenu.push({
@@ -108,12 +108,12 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
           // subMenu.push({ displayName: 'My Leaves', iconName: '', route: '/leave' });
         }
         if (this.userPermissions.timeoff.includes('history')) {
-          subMenu.push({ state: 'holiday', name: 'Holidays', type: 'link', icon: '' });
+          subMenu.push({ state: 'coming-soon', name: 'Holidays', type: 'link', icon: '' });
 
           // subMenu.push({ displayName: 'Holidays', iconName: '', route: '/' });
         }
         menuItem.push(
-          { state: '', name: 'Personal', type: 'sub', icon: 'perm_contact_calendar', children: subMenu });
+          { state: 'personal', name: 'Personal', type: 'sub', icon: 'perm_contact_calendar', children: subMenu });
       }
 
       //condition for menu of my staff
@@ -126,7 +126,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         // if (this.userPermissions.timeoff.includes('history')) {
         //   subMenu.push({ displayName: 'Holidays', iconName: '', route: '/' });
         // }
-        menuItem.push({ state: '', name: 'My Staff', type: 'sub', icon: 'people', children: subMenu });
+        menuItem.push({ state: 'staff', name: 'My Staff', type: 'sub', icon: 'people', children: subMenu });
       }
     }
 

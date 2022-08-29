@@ -53,9 +53,13 @@
                   Invalid dates
                 </mat-error>
               </mat-form-field>
-              <button mat-button class="custom-grey-button" disabled>
-                {{ leaveDays }}
-              </button>
+              <mat-form-field style="width: 4em;">
+                <input type="number" matInput formControlName="leaveDays" (change)="checkLeaveDays($event)">
+                <!-- <button mat-button class="custom-grey-button" disabled> -->
+                <!-- {{ leaveDays }} -->
+                <!-- </button> -->
+              </mat-form-field>
+
               <div class="mat-body-2">Days</div>
               <!-- <br> -->
               <button mat-button type="button" [disabled]="isTimeInputDisabled" class="custom-grey-button"
@@ -148,9 +152,9 @@
               <!-- Leave Balance <button mat-button class="custom-grey-button" disabled>{{availableLeaveCount}}</button> -->
               <div class="mat-body-2">
                 <button class="button" mat-raised-button color="warn" type="submit">
-                REQUEST FOR APPROVAL<mat-icon> arrow_right_alt </mat-icon></button>
+                  REQUEST FOR APPROVAL<mat-icon> arrow_right_alt </mat-icon></button>
                 {{ managerData?.firstName }} {{ managerData?.lastName }}
-                
+
               </div>
               <!-- </p> -->
             </mat-card-actions>

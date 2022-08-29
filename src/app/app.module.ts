@@ -41,6 +41,8 @@ import { VerticalAppSidebarComponent } from './layouts/full/vertical-sidebar/ver
 import { AppBlankComponent } from './layouts/blank/blank.component';
 import { VerticalAppHeaderComponent } from './layouts/full/vertical-header/vertical-header.component';
 import { FullComponent } from './layouts/full/full.component';
+import { ReleaseNoteComponent } from './release-note/release-note.component';
+import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 
 export function HttpLoaderFactory(http: HttpClient): any {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -63,6 +65,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AppBreadcrumbComponent,
     HorizontalAppHeaderComponent,
     HorizontalAppSidebarComponent,
+    ReleaseNoteComponent,
+    ComingSoonComponent,
   ],
   imports: [
     BrowserModule,
