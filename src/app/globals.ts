@@ -25,12 +25,12 @@ export class Globals {
         );
     }
 
-leaveStatus=[
-    {name:'Pending',value:1},
-    {name:'Approved',value:2},
-    {name:'Rejected',value:3},
+    leaveStatus = [
+        { name: 'Pending', value: 1, colorClass: 'pending' },
+        { name: 'Approved', value: 2, colorClass: 'approved' },
+        { name: 'Rejected', value: 3, colorClass: 'rejected' },
 
-]
+    ]
 
     role = [
         { name: 'Admin', value: Role.Admin, listTitle: 'Admin' },

@@ -19,7 +19,7 @@ import { Globals } from 'src/app/globals';
 })
 export class LoginComponent implements OnInit {
   user!: any;
-
+  passwordInputType: string = 'password';
   firstFormGroup: any;
   submitted = false;
   constructor(
@@ -77,5 +77,10 @@ export class LoginComponent implements OnInit {
           this.alertService.openSnackBar(CustomMessage.invalidCredential);
         },
       });
+  }
+
+  showHidePassword(type: string) {
+    this.passwordInputType = type;
+
   }
 }

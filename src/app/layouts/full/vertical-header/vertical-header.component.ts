@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vertical-header',
@@ -108,7 +109,7 @@ export class VerticalAppHeaderComponent {
     },
   ];
 
-  constructor(private translate: TranslateService, private authService: AuthenticationService) {
+  constructor(private translate: TranslateService, private authService: AuthenticationService,private router:Router) {
     translate.setDefaultLang('en');
   }
 
@@ -117,6 +118,11 @@ export class VerticalAppHeaderComponent {
     this.selectedLanguage = lang;
   }
 
+  redirect(type:string){
+if(type =='release'){
+this.router.navigate(['release-note']);
+}
+  }
   logOut() {
     this.authService.logout();
   }

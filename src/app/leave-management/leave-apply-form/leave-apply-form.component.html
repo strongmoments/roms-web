@@ -9,22 +9,28 @@
           </mat-card-title>
           <mat-divider></mat-divider>
           <mat-card-content>
-            <button mat-button type="button" class="custom-grey-button" color="primary" (click)="calculateDate('-1')">
+            <button mat-button type="button" class="custom-button-grey custom-grey-button"
+              (click)="calculateDate('-1')">
               Yesterday
             </button>
-            <button mat-button type="button" class="custom-grey-button" color="primary" (click)="calculateDate('0')">
+            <button mat-button type="button" class="custom-button-purple custom-grey-button"
+              (click)="calculateDate('0')">
               Today
             </button>
-            <button mat-button type="button" class="custom-grey-button" color="primary" (click)="calculateDate('1')">
+            <button mat-button type="button" class="custom-button-light-grey custom-grey-button"
+              (click)="calculateDate('1')">
               Tomorrow
             </button>
-            <button mat-button type="button" class="custom-grey-button" color="primary" (click)="calculateDate('2')">
+            <button mat-button type="button" class="custom-button-light-pink custom-grey-button"
+              (click)="calculateDate('2')">
               Day After
             </button>
-            <button mat-button type="button" class="custom-grey-button" color="primary" (click)="calculateDate('fri')">
+            <button mat-button type="button" class="custom-button-ligh-green custom-grey-button"
+              (click)="calculateDate('fri')">
               This Friday
             </button>
-            <button mat-button type="button" class="custom-grey-button" color="primary" (click)="calculateDate('mon')">
+            <button mat-button type="button" class="custom-button-ligh-orange custom-grey-button"
+              (click)="calculateDate('mon')">
               Next Monday
             </button>
             <div class="timeform">
@@ -53,8 +59,8 @@
                   Invalid dates
                 </mat-error>
               </mat-form-field>
-              <mat-form-field style="width: 4em;">
-                <input type="number" matInput formControlName="leaveDays" (change)="checkLeaveDays($event)">
+              <mat-form-field style="width:2em;">
+                <input type="text" maxlength="3" matInput formControlName="leaveDays" (change)="checkLeaveDays($event)">
                 <!-- <button mat-button class="custom-grey-button" disabled> -->
                 <!-- {{ leaveDays }} -->
                 <!-- </button> -->
@@ -62,20 +68,20 @@
 
               <div class="mat-body-2">Days</div>
               <!-- <br> -->
-              <button mat-button type="button" [disabled]="isTimeInputDisabled" class="custom-grey-button"
-                (click)="calculateHours(1)" color="primary">
+              <button mat-button type="button" [disabled]="isTimeInputDisabled"
+                class="custom-button-light-blue  custom-grey-button" (click)="calculateHours(1)">
                 1 Hr
               </button>
-              <button mat-button type="button" [disabled]="isTimeInputDisabled" class="custom-grey-button"
-                (click)="calculateHours(2)" color="primary">
+              <button mat-button type="button" [disabled]="isTimeInputDisabled"
+                class="custom-button-light-blue-1 custom-grey-button" (click)="calculateHours(2)">
                 2 Hr
               </button>
-              <button mat-button type="button" [disabled]="isTimeInputDisabled" class="custom-grey-button"
-                (click)="calculateHours(3)" color="primary">
+              <button mat-button type="button" [disabled]="isTimeInputDisabled"
+                class="custom-button-ligh-green custom-grey-button" (click)="calculateHours(3)">
                 3 Hr
               </button>
-              <button mat-button type="button" [disabled]="isTimeInputDisabled" class="custom-grey-button"
-                (click)="calculateHours(4)" color="primary">
+              <button mat-button type="button" [disabled]="isTimeInputDisabled"
+                class="custom-button-brown custom-grey-button" (click)="calculateHours(4)">
                 4 Hr
               </button>
               <div class="mat-body-2">Or</div>
@@ -91,7 +97,7 @@
                   placeholder="--:--:--" matInput [type]="'text'" (change)="calculateHoursByField()" />
               </mat-form-field>
 
-              <button mat-button class="custom-grey-button" disabled>
+              <button mat-button class="hour-custom-grey-button" disabled>
                 {{ leaveHours }}
               </button>
               <div class="mat-body-2">Hours</div>
@@ -120,9 +126,9 @@
           <mat-divider></mat-divider>
           <mat-card-content>
             <input type="hidden" formControlName="leaveType" />
-            <ng-container *ngFor="let leave of leaveTypeList">
-              <button mat-button type="button" class="custom-grey-button" color="primary"
-                [ngClass]="{ active: leave.id == selectedLeaveType }" (click)="setLeaveType(leave)">
+            <ng-container *ngFor="let leave of leaveTypeList;let i=index;">
+              <button mat-button type="button" (click)="setLeaveType(leave)" [ngClass]="getColor(i,leave.id)">
+                <!-- [ngClass]="{ active: leave.id == selectedLeaveType }"  -->
                 {{ leave?.leaveDescription }}
               </button>
             </ng-container>
@@ -140,10 +146,11 @@
             <mat-card-actions class="approval">
               <mat-form-field class="comment" appearance="outline">
                 <!-- <mat-label>Outline form field</mat-label> -->
-                <input [ngClass]="{
+                <textarea [ngClass]="{
                   'is-invalid':
                     submitted && checkError('leaveReason', 'required')
-                }" matInput formControlName="leaveReason" placeholder="Comment" />
+                }" matInput formControlName="leaveReason" placeholder="Comment">
+                </textarea>
                 <mat-error *ngIf="submitted && checkError('leaveReason', 'required')">
                   Comment is required
                 </mat-error>
@@ -165,7 +172,7 @@
     <mat-tab label="History">
       <mat-card>
         <mat-card-title align="right">
-          August 2022<mat-form-field style="display: none; text-align: right">
+          {{currentDate| date:'MMMM y'}}<mat-form-field style="display: none; text-align: right">
             <mat-label>Choose a date</mat-label>
             <input matInput [matDatepicker]="pickerList" [(ngModel)]="historyMonth" />
             <mat-datepicker #pickerList></mat-datepicker>
@@ -173,9 +180,8 @@
           <mat-icon (click)="pickerList.open()">calendar_today</mat-icon>
         </mat-card-title>
         <mat-card-content>
-          <div class="responsive-table">
-
-            <mat-table #table [dataSource]="dataSource" matSort>
+          <div class="table-responsive">
+            <table mat-table [dataSource]="dataSource" class="table employee-list no-wrap" matSort>
               <!-- <table width="100%" mat-table [dataSource]="dataSource" matSort> -->
               <!-- ID Column -->
               <ng-container matColumnDef="applyDate">
@@ -183,7 +189,7 @@
                   Date
                 </th>
                 <td mat-cell *matCellDef="let row; let i = index">
-                  <span class="header-label">applyDate:</span>
+                  <!-- <span class="header-label">applyDate:</span> -->
                   {{ row?.applyDate | date: "dd/MM/yyyy" }}
                 </td>
               </ng-container>
@@ -192,9 +198,9 @@
               <ng-container matColumnDef="dates">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>leave</th>
                 <td mat-cell *matCellDef="let row">
-                  <span class="header-label">dates:</span>
-                  {{ convertTimeMoment(row.startDateTime, "DD/MM/YYYY") }} to
-                  {{ convertTimeMoment(row.endDateTime, "DD/MM/YYYY") }}
+                  <!-- <span class="header-label">dates:</span> -->
+                  {{ row.startDateTime| date: "MMM d" }} to
+                  {{ row.endDateTime |date: "MMM d, y" }}
                 </td>
               </ng-container>
 
@@ -202,7 +208,7 @@
               <ng-container matColumnDef="days">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Days</th>
                 <td mat-cell *matCellDef="let row">
-                  <span class="header-label">days:</span>
+                  <!-- <span class="header-label">days:</span> -->
                   {{ row?.totalDay }}
                 </td>
               </ng-container>
@@ -211,10 +217,12 @@
               <ng-container matColumnDef="time">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
                 <td mat-cell *matCellDef="let row">
-                  <span class="header-label">time:</span>
+                  <!-- <span class="header-label">time:</span> -->
                   <ng-container *ngIf="row && row.totalHour > 0">
-                    {{ convertTimeMoment(row.startDateTime, "hh:mm A") }} to
-                    {{ convertTimeMoment(row.endDateTime, "hh:mm A") }}
+                    {{ row.startDateTime | date: "shortTime" }} to
+                    {{row.endDateTime| date: "shortTime" }}
+                    <!-- {{ convertTimeMoment(row.startDateTime, "hh:mm A") }} to -->
+                    <!-- {{ convertTimeMoment(row.endDateTime, "hh:mm A") }} -->
                   </ng-container>
                 </td>
               </ng-container>
@@ -222,7 +230,7 @@
               <ng-container matColumnDef="hours">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Hours</th>
                 <td mat-cell *matCellDef="let row">
-                  <span class="header-label">hours:</span>
+                  <!-- <span class="header-label">hours:</span> -->
                   {{ row?.totalHour }}
                 </td>
               </ng-container>
@@ -232,7 +240,7 @@
                   Manager
                 </th>
                 <td mat-cell *matCellDef="let row">
-                  <span class="header-label">manager:</span>
+                  <!-- <span class="header-label">manager:</span> -->
                   {{ row?.approver?.firstName }} {{ row?.approver?.lastName }}
                 </td>
               </ng-container>
@@ -242,7 +250,7 @@
                   Leave type
                 </th>
                 <td mat-cell *matCellDef="let row">
-                  <span class="header-label">leave_type:</span>
+                  <!-- <span class="header-label">leave_type:</span> -->
                   {{ row?.leaveType?.leaveDescription }}
                 </td>
               </ng-container>
@@ -252,8 +260,9 @@
                   Status
                 </th>
                 <td mat-cell *matCellDef="let row">
-                  <span class="header-label">status:</span>
-                  {{ getStatus(row?.leaveStatus) }}
+                  <span [ngClass]="getStatusColor(row?.leaveStatus)">
+                    {{ getStatus(row?.leaveStatus) }}
+                  </span>
                 </td>
               </ng-container>
 
@@ -262,7 +271,7 @@
                   Reason
                 </th>
                 <td mat-cell *matCellDef="let row">
-                  <span class="header-label">leaveReason:</span>
+                  <!-- <span class="header-label">leaveReason:</span> -->
                   {{ row?.leaveReason }}
                 </td>
               </ng-container>
@@ -272,7 +281,7 @@
                   Comments
                 </th>
                 <td mat-cell *matCellDef="let row">
-                  <span class="header-label">reviewerRemark:</span>
+                  <!-- <span class="header-label">reviewerRemark:</span> -->
                   {{ row?.reviewerRemark }}
                 </td>
               </ng-container>
@@ -284,7 +293,7 @@
               <!-- <tr class="mat-row" *matNoDataRow>
                 <td class="mat-cell" colspan="8">No record</td>
               </tr> -->
-            </mat-table>
+            </table>
             <!-- </table> -->
 
             <mat-paginator [length]="totalRecords" [pageIndex]="0" [pageSizeOptions]="[5, 10, 20]" [pageSize]="pagesize"

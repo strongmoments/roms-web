@@ -69,7 +69,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.user = this.authService.getCurrentUser();
-    console.log(this.user ,'')
+    console.log(this.user, '')
     this.userPermissions = this.authService.getUserPermission()?.menus;
     console.log(this.userPermissions, 'this.userPermissions')
 
@@ -113,7 +113,9 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
           // subMenu.push({ displayName: 'Holidays', iconName: '', route: '/' });
         }
         menuItem.push(
-          { state: 'personal', name: 'Personal', type: 'sub', icon: 'perm_contact_calendar', children: subMenu });
+          {
+            state: 'personal', name: 'Personal', type: 'sub', icon: 'perm_contact_calendar', children: subMenu, badge: [{ type: 'warning', value: 'new' }],
+          });
       }
 
       //condition for menu of my staff
@@ -126,7 +128,9 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         // if (this.userPermissions.timeoff.includes('history')) {
         //   subMenu.push({ displayName: 'Holidays', iconName: '', route: '/' });
         // }
-        menuItem.push({ state: 'staff', name: 'My Staff', type: 'sub', icon: 'people', children: subMenu });
+        menuItem.push({
+          state: 'staff', name: 'My Staff', type: 'sub', icon: 'people', children: subMenu, badge: [{ type: 'warning', value: 'new' }],
+        });
       }
     }
 

@@ -38,6 +38,8 @@ export class LeaveApplyFormComponent implements OnInit {
     isTimeInputDisabled: boolean = false;
     minDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 2));
     maxDate: Date = new Date(new Date().setMonth(new Date().getMonth() + 12));
+    classArray = ['custom-button-grey', 'custom-button-light-grey', 'custom-button-purple', 'custom-button-light-pink', 'custom-button-ligh-green', 'custom-button-ligh-orange', 'custom-button-light-blue', 'custom-button-light-blue-1', 'custom-button-brown'];
+    currentDate: any = new Date();
     constructor(public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private leaveService: LeaveService, private router: Router) {
         console.log(this.minDate, this.maxDate)
         this.globals = globals;
@@ -46,7 +48,7 @@ export class LeaveApplyFormComponent implements OnInit {
             endDate: new FormControl('', [Validators.required]),
             startTime: new FormControl('', []),
             endTime: new FormControl('', []),
-            leaveDays: new FormControl('', [Validators.required]),
+            leaveDays: new FormControl('', [Validators.required, Validators.pattern(this.util.intRegex)]),
             leaveType: new FormControl('', [Validators.required]),
             leaveReason: new FormControl('', [Validators.required]),
         });
@@ -54,6 +56,7 @@ export class LeaveApplyFormComponent implements OnInit {
 
         this.leaveService.getLeaveTypes().subscribe((res) => {
             this.leaveTypeList = res && res.data ? res.data : [];
+            this.selectedLeaveType = this.leaveTypeList && this.leaveTypeList.length > 0 ? this.leaveTypeList[0].id : '';
             console.log(res)
         });
         this.leaveService.getManager().subscribe((res) => {
@@ -106,11 +109,18 @@ export class LeaveApplyFormComponent implements OnInit {
 
             // To calculate the no. of days between two dates
             var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-            // console.log(,'Difference_In_Days')
+            console.log(Difference_In_Days, 'Difference_In_Days')
             let dayDifference = Math.round(Difference_In_Days);
+
+            let startTime = (this.form.controls['startTime'].value);
+            let endTime = (this.form.controls['endTime'].value);
+            if (!startTime && !endTime && dayDifference == 0) {
+                dayDifference = 1;
+            }
             if (dayDifference >= event.target.value) {
                 this.leaveDays = event.target.value;
             } else {
+
                 this.form.controls['leaveDays'].setValue(0);
                 this.leaveDays = 0;
                 this.alertService.openSnackBar(`You can not enter days more than ${dayDifference} days`);
@@ -149,19 +159,24 @@ export class LeaveApplyFormComponent implements OnInit {
         if ((startTime || startTime == 0) && (endTime || endTime == 0)) {
             console.log(startTime, endTime, endTime < startTime)
             if (endTime < startTime) {
-                if ((endTime - startTime + 24) > 4) {
-                    this.form.controls['endTime'].setValue('');
-                    this.leaveHours = 0;
-                    this.form.controls['leaveDays'].setValue(1);
-                    this.leaveDays = 1;
-                    this.alertService.openSnackBar(CustomMessage.maxShiftTimeWarning);
-                } else {
-                    this.leaveHours = 24 - (startTime - endTime);
-                }
+                // if ((endTime - startTime + 24) > 4) {
+
+                //     // this.alertService.openSnackBar(CustomMessage.maxShiftTimeWarning);
+                // } else {
+                this.leaveHours = 24 - (startTime - endTime);
+                // }
             } else {
                 this.leaveHours = endTime - startTime;
             }
 
+            if (this.leaveHours > 4) {
+                this.form.controls['endTime'].setValue('');
+                this.leaveHours = 0;
+                this.form.controls['leaveDays'].setValue(1);
+                this.leaveDays = 1;
+                this.alertService.openSnackBar(CustomMessage.maxShiftTimeWarning);
+
+            }
             this.form.controls['leaveDays'].setValue(0);
             this.leaveDays = 0;
         } else {
@@ -176,8 +191,14 @@ export class LeaveApplyFormComponent implements OnInit {
 
     calculateDate(value: string) {
         // console.log((value), 'parseInt(value)');
+        let startDay = (this.form.controls['startDate'].value);
+        let endDay = (this.form.controls['endDate'].value);
         this.isTimeInputDisabled = false;
         let currentDate = new Date(new Date().getTime());
+        let leaveDays = 1;
+        if (this.form.controls['startTime'].value != '' || this.form.controls['endTime'].value != '') {
+            leaveDays = 0;
+        }
         if (value == 'fri') {
             console.log(currentDate.getDay())
             let nextFriday = new Date();
@@ -193,8 +214,8 @@ export class LeaveApplyFormComponent implements OnInit {
             this.form.controls['startDate'].setValue(nextFriday);
             this.form.controls['endDate'].setValue(nextFriday);
 
-            this.form.controls['leaveDays'].setValue(1);
-            this.leaveDays = 1;
+            this.form.controls['leaveDays'].setValue(leaveDays);
+            this.leaveDays = leaveDays;
         } else if (value == 'mon') {
             const nextMonday = new Date(
                 currentDate.setDate(
@@ -205,16 +226,16 @@ export class LeaveApplyFormComponent implements OnInit {
             this.form.controls['startDate'].setValue(nextMonday);
             this.form.controls['endDate'].setValue(nextMonday);
 
-            this.form.controls['leaveDays'].setValue(1);
-            this.leaveDays = 1;
+            this.form.controls['leaveDays'].setValue(leaveDays);
+            this.leaveDays = leaveDays;
         } else if (value == '-1' || value == '1' || value == '0' || value == '2') {
             // console.log(currentDate, parseInt(value), 'parseInt(value)');
             currentDate.setDate(currentDate.getDate() + parseInt(value));
             this.form.controls['startDate'].setValue(currentDate);
             this.form.controls['endDate'].setValue(currentDate);
 
-            this.form.controls['leaveDays'].setValue(1);
-            this.leaveDays = 1;
+            this.form.controls['leaveDays'].setValue(leaveDays);
+            this.leaveDays = leaveDays;
         }
         return;
     }
@@ -428,6 +449,29 @@ export class LeaveApplyFormComponent implements OnInit {
         return this.globals.leaveStatus.find((elem: any) => {
             return elem.value == status
         })?.name;
+    }
+
+    getStatusColor(status: any) {
+        return this.globals.leaveStatus.find((elem: any) => {
+            return elem.value == status
+        })?.colorClass;
+    }
+
+
+
+    getColor(index: number, id: string) {
+        let className: any = 'custom-grey-button';
+        let classArraySize = this.classArray.length;
+        if (index < classArraySize) {
+            className = `${this.classArray[index]} ${className}`;
+        }
+        // console.log(this.selectedLeaveType, 'id', id)
+        if (id == this.selectedLeaveType) {
+            className = `${this.classArray[index]} ${className} active`;
+
+        }
+        // console.log(className)
+        return className;
     }
 
 }

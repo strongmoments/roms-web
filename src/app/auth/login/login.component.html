@@ -23,8 +23,9 @@
             <!-- col full-->
             <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
               <mat-form-field>
-                <input type="password" matInput placeholder="PASSWORD" formControlName="password" password />
-                <mat-icon matSuffix>visibility</mat-icon>
+                <input [type]="passwordInputType" matInput placeholder="PASSWORD" formControlName="password" password />
+                <mat-icon *ngIf="passwordInputType == 'password'" matSuffix (click)="showHidePassword('text')">visibility</mat-icon>
+                <mat-icon (click)="showHidePassword('password')" *ngIf="passwordInputType == 'text'" matSuffix>visibility_off</mat-icon>
               </mat-form-field>
               <small *ngIf="checkError('password', 'required')  && submitted" class="text-danger support-text">Password
                 is required.</small>

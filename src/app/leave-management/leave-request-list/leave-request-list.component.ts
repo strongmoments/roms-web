@@ -11,6 +11,7 @@ import { CustomMessage } from 'src/app/custom-message';
 import { Globals } from 'src/app/globals';
 import { ViewOptions } from 'src/app/_models';
 import * as moment from 'moment';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-leave-request-list',
@@ -22,8 +23,8 @@ export class LeaveRequestListComponent implements OnInit, AfterViewInit {
     // leaveHours: number = 0;
     // form: FormGroup;
     submitted: boolean = false;
-    displayedColumnsLeave: string[] = ['staffName', 'applyDate', 'dates', 'days', 'time', 'hours', 'leave_type', 'leaveReason', 'action'];
-    displayedColumnsHistory: string[] = ['staffName', 'applyDate', 'dates', 'days', 'time', 'hours', 'leave_type', 'status', 'leaveReason', 'reviewerRemark'];
+    displayedColumnsLeave: string[] = ['staffName', 'applyDate', 'leave_type', 'dates', 'days', 'time', 'hours', 'leaveReason', 'action'];
+    displayedColumnsHistory: string[] = ['staffName', 'applyDate', 'leave_type', 'dates', 'days', 'time', 'hours', 'leaveReason', 'reviewerRemark', 'status'];
     displayedColumns: string[] = [];
     dataSource = new MatTableDataSource<any>();
     selectedTabIndex: number = 0;
@@ -36,7 +37,8 @@ export class LeaveRequestListComponent implements OnInit, AfterViewInit {
     totalRecords: number = 0;
     search: string = '1';//by default 0 for pending list
     comments: any = [];
-    constructor(public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private leaveService: LeaveService) {
+    currentDate: any = new Date();
+    constructor(public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private leaveService: LeaveService, private datePipe: DatePipe) {
         this.globals = globals;
     }
 
@@ -193,6 +195,32 @@ export class LeaveRequestListComponent implements OnInit, AfterViewInit {
         return this.globals.leaveStatus.find((elem: any) => {
             return elem.value == status
         })?.name;
+    }
+
+    getStatusColor(status: any) {
+        return this.globals.leaveStatus.find((elem: any) => {
+            return elem.value == status
+        })?.colorClass;
+    }
+
+    getShortDate(startDate: any, endDate: any) {
+        let dateLabel = '';
+        if (startDate && endDate) {
+            startDate = new Date(startDate);
+            endDate = new Date(endDate);
+            let today = new Date();
+            var startDateDiff = (startDate.getTime() - today.getTime()) / (1000 * 3600 * 24);
+            startDateDiff = Math.round(startDateDiff);
+            var endDateDiff = (endDate.getTime() - today.getTime()) / (1000 * 3600 * 24);
+            endDateDiff = Math.round(endDateDiff);
+
+            if (startDate) {
+
+            }
+            console.log(startDate, 'startDate')
+        } else {
+            return dateLabel;
+        }
     }
 
     addComment(index: number, event: any) {
