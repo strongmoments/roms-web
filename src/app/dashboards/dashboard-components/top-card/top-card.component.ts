@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-top-card',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./top-card.component.scss'],
 })
 export class TopCardComponent {
-  constructor() {}
+  dashboardData: any = {};
+  constructor(private authService: AuthenticationService) {
+    this.authService.getDashboard().subscribe((result: any) => {
+      console.log(result)
+    });
+  }
 }
