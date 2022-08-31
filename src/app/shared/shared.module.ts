@@ -24,6 +24,7 @@ import { HorizontalAppHeaderComponent } from '../layouts/full/horizontal-header/
 import { HorizontalAppSidebarComponent } from '../layouts/full/horizontal-sidebar/horizontal-sidebar.component';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { Base64ImagePipe } from '../core/_helpers/base64-image-pipe';
 // import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
 // import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 // import { MenuListItemComponent } from './layout/menu-list-item/menu-list-item.component';
@@ -37,7 +38,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ReactiveFormsModule,
     TextMaskModule,
     PerfectScrollbarModule,
-    
+
   ],
   declarations: [
     // SpinnerComponent,
@@ -49,6 +50,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     SnackbarComponent,
     // MenuListItemComponent,
     CustomJavaDatePipe,
+    Base64ImagePipe,
     AccordionAnchorDirective, AccordionLinkDirective, AccordionDirective,
     // FullComponent,
     // VerticalAppHeaderComponent,
@@ -65,6 +67,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     SnackbarComponent,
     TextMaskModule,
     CustomJavaDatePipe,
+    Base64ImagePipe,
     AccordionAnchorDirective, AccordionLinkDirective, AccordionDirective,
     PerfectScrollbarModule,
     FlexLayoutModule

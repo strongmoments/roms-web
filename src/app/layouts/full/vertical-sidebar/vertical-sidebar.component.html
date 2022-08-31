@@ -1,17 +1,19 @@
 <!-- ============================================================== -->
 <!-- sidebar -->
 <!-- ============================================================== -->
-<div class="user-profile" style="background: url(/assets/images/background/user-info.jpg) no-repeat;background-size: cover !important;">
+<div class="user-profile"
+  style="background: url(/assets/images/background/user-info.jpg) no-repeat;background-size: cover !important;">
   <!-- User profile image -->
   <div class="profile-img">
-    <img src="../../../../assets/img/favicon.png" alt="user" (click)="handleNotify()" />
+    <img onerror="this.onerror=null;this.src='../../../../assets/img/favicon.png';"
+      [src]="user.profileImage|base64Image" alt="user" (click)="handleNotify()" />
   </div>
   <!-- User profile text-->
   <!-- ============================================================== -->
   <!-- Profile - style you can find in header.scss -->
   <!-- ============================================================== -->
   <div class="profile-text">
-    <a href="javascript:void(0)"  class="d-flex align-items-center">
+    <a href="javascript:void(0)" class="d-flex align-items-center">
       <!-- <a [matMenuTriggerFor]="sdprofile" class="d-flex align-items-center"> -->
       {{user?.firstName}} {{user?.lastName}}
       <!-- <i class="ti-angle-down font-12 ml-auto"></i> -->

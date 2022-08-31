@@ -32,6 +32,37 @@
                 <table mat-table [dataSource]="dataSource" class="table employee-list no-wrap" matSort>
                     <!-- <table width="100%" mat-table [dataSource]="dataSource" matSort> -->
                     <!-- ID Column -->
+                    <!-- <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef>Name</th>
+                        <td mat-cell *matCellDef="let element">
+                          <div class="d-flex">
+                            <img class="mat-card-avatar" [src]="element.imagePath" />
+                            <div class="m-l-15">
+                              <p class="font-medium m-b-0 m-t-0">{{ element.Name }}</p>
+                              <small class="text-muted">{{ element.Position }}</small>
+                            </div>
+                          </div>
+                        </td>
+                      </ng-container> -->
+
+
+                    <ng-container matColumnDef="staffName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Staff name </th>
+                        <td mat-cell *matCellDef="let row;let i=index;">
+                            <div class="d-flex">
+                                <img class="mat-card-avatar" [src]="row?.employe?.profileImage|base64Image" />
+                                <div class="m-l-15">
+                                    <p class="font-medium m-b-0 m-t-0">{{row?.employe?.firstName}}
+                                        {{row?.employe?.lastName}}</p>
+                                    <!-- <small class="text-muted">{{ }}</small> -->
+                                </div>
+                            </div>
+                            <!-- <span class="header-label">staffName:</span> -->
+
+                        </td>
+                    </ng-container>
+
+
                     <ng-container matColumnDef="applyDate">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>
                             Applied On
@@ -42,14 +73,6 @@
                         </td>
                     </ng-container>
 
-
-                    <ng-container matColumnDef="staffName">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Staff name </th>
-                        <td mat-cell *matCellDef="let row;let i=index;">
-                            <!-- <span class="header-label">staffName:</span> -->
-                            {{row?.employe?.firstName}} {{row?.employe?.lastName}}
-                        </td>
-                    </ng-container>
 
                     <!-- Progress Column -->
                     <ng-container matColumnDef="dates">

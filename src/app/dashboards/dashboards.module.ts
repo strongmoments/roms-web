@@ -31,6 +31,7 @@ import {
 } from './dashboard-components';
 import { DashboardEmpComponent } from './dashboard-components/dashboard-emp/dashboard-emp.component';
 import { EmpDialogComponent } from './dashboard-components/dashboard-emp/emp-dialog/emp-dialog.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     imports: [
@@ -43,6 +44,7 @@ import { EmpDialogComponent } from './dashboard-components/dashboard-emp/emp-dia
         RouterModule.forChild(DashboardsRoutes),
         FormsModule,
         ReactiveFormsModule,
+        SharedModule
     ],
     declarations: [
         Dashboard1Component,

@@ -1,3 +1,9 @@
+# Build Command
+ng build  --aot 
+ng build  --aot  --build-optimizer
+ng build  --aot  --build-optimizer --configuration client
+
+
 # Project
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.0-next.1.

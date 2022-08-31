@@ -108,9 +108,11 @@ export class VerticalAppHeaderComponent {
       icon: 'de',
     },
   ];
-
+user:any={};
   constructor(private translate: TranslateService, private authService: AuthenticationService,private router:Router) {
     translate.setDefaultLang('en');
+    this.user = this.authService.getCurrentUser();
+
   }
 
   changeLanguage(lang: any): void {
