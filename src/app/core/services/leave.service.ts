@@ -26,7 +26,7 @@ export class LeaveService {
     }
 
     staffLeaveHistory(options: ViewOptions) {
-        return this.http.get<any>(`${environment.apiUrl}/v1/leave/appliedToMe?page=${options.page}&size=${options.pageSize}`)
+        return this.http.get<any>(`${environment.apiUrl}/v1/leave/appliedToMeHistory?page=${options.page}&size=${options.pageSize}`)
     }
 
 
