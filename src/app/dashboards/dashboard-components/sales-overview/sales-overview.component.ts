@@ -43,11 +43,11 @@ export class SalesOverviewComponent {
     this.chartOptions = {
       series: [
         {
-          name: 'Pixel',
+          name: 'Personal',
           data: [44, 55, 57, 56, 61, 58],
         },
         {
-          name: 'Ample',
+          name: 'Non-Personal',
           data: [76, 85, 101, 98, 87, 105],
         },
       ],

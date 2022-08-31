@@ -10,7 +10,8 @@ export class TopCardComponent {
   dashboardData: any = {};
   constructor(private authService: AuthenticationService) {
     this.authService.getDashboard().subscribe((result: any) => {
-      console.log(result)
+      this.dashboardData = result;
+      console.log(result);
     });
   }
 }

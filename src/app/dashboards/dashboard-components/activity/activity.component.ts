@@ -14,7 +14,7 @@ export class ActivityComponent {
       image: '../../../../assets/img/rtl-logo-new-icon.jpg',
      // attachment: 'assets/images/big/img2.jpg',
       content:
-        'Welcome to RTL Digital Transformation. We are committed to provide better work environment for all our staff.....',
+        'Welcome to The RTL Digital Transformation. We are committed to provide better work environment for all our staff.....',
     },
     {
       from: 'Mick Moroney',
@@ -25,7 +25,7 @@ export class ActivityComponent {
       // buttons: 'primary',
     },
     {
-      from: 'Dhram Yadav',
+      from: 'Dharm Yadav',
       time: '(August 30, 2022)',
       image: '../../../../assets/img/rtl-logo-new-icon.jpg',
       // attachment: 'assets/images/big/img1.jpg',
