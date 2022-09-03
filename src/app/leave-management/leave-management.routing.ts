@@ -9,7 +9,7 @@ const routes: Routes = [
         path: '',
         component: FullComponent,
         children: [
-            { path: '', component: LeaveApplyFormComponent, pathMatch: 'full' },
+            { path: 'apply-leave', component: LeaveApplyFormComponent, pathMatch: 'full' },
             { path: 'leave-request', component: LeaveRequestListComponent },
         ]
     },

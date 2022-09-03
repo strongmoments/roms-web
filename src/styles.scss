@@ -30,7 +30,7 @@
     color: #F56D91 !important;
 }
 
-.custom-button-ligh-green {
+.custom-button-light-green {
     background: #ECF0EC !important;
     color: #92BA92 !important;
 }
@@ -67,3 +67,67 @@
 .rejected {
     color: #d51e1e;
 }
+
+
+// .approve-button {
+//     color: green;
+// }
+
+// .reject-button {
+//     color: red;
+// }
+
+
+
+
+// copied from listing of tempalte for expand table  start from here
+table {
+    width: 100%;
+}
+
+tr.example-detail-row {
+    height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+}
+
+.example-element-row td {
+    border-bottom-width: 0;
+}
+
+.example-element-detail {
+    overflow: hidden;
+    display: flex;
+}
+
+.example-element-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: auto;
+}
+
+.example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+}
+
+.example-element-description {
+    padding: 16px;
+}
+
+.example-element-description-attribution {
+    opacity: 0.5;
+}
+
+
+// copied from listing of tempalte for expand table  end here

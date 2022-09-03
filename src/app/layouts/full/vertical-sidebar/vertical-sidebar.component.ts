@@ -104,7 +104,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         let subMenu = [];
         if (this.userPermissions.timeoff.includes('applyleave')) {
 
-          subMenu.push({ state: 'leave', name: 'My Leaves', type: 'link', icon: '' });
+          subMenu.push({ state: 'leave/apply-leave', name: 'My Leaves', type: 'link', icon: '' });
           // subMenu.push({ displayName: 'My Leaves', iconName: '', route: '/leave' });
         }
         if (this.userPermissions.timeoff.includes('history')) {

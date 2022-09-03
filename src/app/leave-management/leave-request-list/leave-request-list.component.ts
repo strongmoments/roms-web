@@ -12,11 +12,19 @@ import { Globals } from 'src/app/globals';
 import { ViewOptions } from 'src/app/_models';
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
     selector: 'app-leave-request-list',
     templateUrl: './leave-request-list.component.html',
-    styleUrls: ['./leave-request-list.component.scss']
+    styleUrls: ['./leave-request-list.component.scss'],
+    animations: [
+        trigger('detailExpand', [
+            state('collapsed', style({ height: '0px', minHeight: '0' })),
+            state('expanded', style({ height: '*' })),
+            transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+        ]),
+    ],
 })
 export class LeaveRequestListComponent implements OnInit, AfterViewInit {
     globals: Globals;
@@ -24,7 +32,7 @@ export class LeaveRequestListComponent implements OnInit, AfterViewInit {
     // form: FormGroup;
     submitted: boolean = false;
     displayedColumnsLeave: string[] = ['staffName', 'applyDate', 'leave_type', 'dates', 'days', 'time', 'hours', 'leaveReason', 'action'];
-    displayedColumnsHistory: string[] = ['staffName', 'applyDate', 'leave_type', 'dates', 'days', 'time', 'hours', 'leaveReason', 'reviewerRemark', 'status'];
+    displayedColumnsHistory: string[] = ['staffName', 'applyDate', 'leave_type', 'dates', 'days', 'time', 'hours', 'leaveReason'];
     displayedColumns: string[] = [];
     dataSource = new MatTableDataSource<any>();
     selectedTabIndex: number = 0;
@@ -38,6 +46,8 @@ export class LeaveRequestListComponent implements OnInit, AfterViewInit {
     search: string = '1';//by default 0 for pending list
     comments: any = [];
     currentDate: any = new Date();
+    expandedElement: any = null;
+
     constructor(public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private leaveService: LeaveService, private datePipe: DatePipe) {
         this.globals = globals;
     }

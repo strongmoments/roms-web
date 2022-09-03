@@ -12,11 +12,19 @@ import { CustomMessage } from 'src/app/custom-message';
 import { Globals } from 'src/app/globals';
 import { ViewOptions } from 'src/app/_models';
 import * as moment from 'moment';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
     selector: 'app-leave-apply-form',
     templateUrl: './leave-apply-form.component.html',
-    styleUrls: ['./leave-apply-form.component.scss']
+    styleUrls: ['./leave-apply-form.component.scss'],
+    animations: [
+        trigger('detailExpand', [
+            state('collapsed', style({ height: '0px', minHeight: '0' })),
+            state('expanded', style({ height: '*' })),
+            transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+        ]),
+    ],
 })
 export class LeaveApplyFormComponent implements OnInit {
     globals: Globals;
@@ -24,7 +32,7 @@ export class LeaveApplyFormComponent implements OnInit {
     leaveDays: number = 0;
     form: FormGroup;
     submitted: boolean = false;
-    displayedColumns: string[] = ['applyDate', 'leave_type', 'dates', 'days', 'time', 'hours', 'manager', 'leaveReason', 'reviewerRemark', 'status'];
+    displayedColumns: string[] = ['applyDate', 'leave_type', 'dates', 'days', 'time', 'hours', 'manager', 'leaveReason'];
     dataSource = new MatTableDataSource<any>();
     pagesize = 10;
     totalRecords: number = 0;
@@ -38,8 +46,10 @@ export class LeaveApplyFormComponent implements OnInit {
     isTimeInputDisabled: boolean = false;
     minDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 2));
     maxDate: Date = new Date(new Date().setMonth(new Date().getMonth() + 12));
-    classArray = ['custom-button-grey', 'custom-button-light-grey', 'custom-button-purple', 'custom-button-light-pink', 'custom-button-ligh-green', 'custom-button-ligh-orange', 'custom-button-light-blue', 'custom-button-light-blue-1', 'custom-button-brown'];
+    classArray = ['custom-button-grey', 'custom-button-light-grey', 'custom-button-purple', 'custom-button-light-pink', 'custom-button-light-green', 'custom-button-ligh-orange', 'custom-button-light-blue', 'custom-button-light-blue-1', 'custom-button-brown'];
     currentDate: any = new Date();
+    // columnsToDisplay: string[] = ['leaveReason', 'reviewerRemark'];
+    expandedElement: any = null;
     constructor(public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private leaveService: LeaveService, private router: Router) {
         console.log(this.minDate, this.maxDate)
         this.globals = globals;
@@ -460,17 +470,22 @@ export class LeaveApplyFormComponent implements OnInit {
 
 
     getColor(index: number, id: string) {
-        let className: any = 'custom-grey-button';
+        let className: any = 'm-t-5 m-r-5';
         let classArraySize = this.classArray.length;
         if (index < classArraySize) {
             className = `${this.classArray[index]} ${className}`;
+        } else if (index >= classArraySize) {
+            let i = (index % classArraySize);
+            i = i > 0 ? i - 1 : 0;
+            // console.log(index, classArraySize,this.classArray[i], i, '')
+            className = `${this.classArray[i]} ${className}`;
         }
+
         // console.log(this.selectedLeaveType, 'id', id)
         if (id == this.selectedLeaveType) {
-            className = `${this.classArray[index]} ${className} active`;
-
+            className = `${className} active`;
         }
-        // console.log(className)
+        console.log(className, index)
         return className;
     }
 
