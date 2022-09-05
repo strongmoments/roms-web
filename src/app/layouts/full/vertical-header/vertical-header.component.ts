@@ -3,6 +3,7 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
+import { SseService } from 'src/app/core/services/sse.service';
 
 @Component({
   selector: 'app-vertical-header',
@@ -108,10 +109,45 @@ export class VerticalAppHeaderComponent {
       icon: 'de',
     },
   ];
-user:any={};
-  constructor(private translate: TranslateService, private authService: AuthenticationService,private router:Router) {
+  user: any = {};
+  eve: any;
+  constructor(private translate: TranslateService, private authService: AuthenticationService, private router: Router, private sseService: SseService) {
     translate.setDefaultLang('en');
     this.user = this.authService.getCurrentUser();
+    this.sseService.getServerSentEvent(`http://13.234.56.70:8081/subscription/${this.user.email}`)
+      .subscribe((data: any) => {
+        //  data;
+        console.log(data, 'askdsalkd')
+      }, error => console.log(error, 'ererer'));
+
+    // let eventSource = new EventSource(`http://13.234.56.70:8081/subscription/${this.user.email}`);
+    // eventSource.addEventListener('join', event => {
+    //   alert(`Joined ${event.data}`);
+    // });
+
+    // eventSource.onopen = (ev: any) => {
+    //   console.log('Connection to server opened.', ev);
+    // };
+    // eventSource.onerror = (ev: any) => {
+    //   console.log('EventSource failed.', ev);
+    // };
+
+    // eventSource.onmessage = (ev: any) => {
+    //   console.log('message.', ev.data);
+    // };
+
+    // eventSource.addEventListener('message', event => {
+    //   alert(`Said: ${event.data}`);
+    // });
+
+    // eventSource.addEventListener('leave', event => {
+    //   alert(`Left ${event.data}`);
+    // });
+
+    // eventSource.onmessage = function (event) {
+    //   console.log("New message", event.data);
+    //   // will log 3 times for the data stream above
+    // };
 
   }
 
@@ -120,10 +156,10 @@ user:any={};
     this.selectedLanguage = lang;
   }
 
-  redirect(type:string){
-if(type =='release'){
-this.router.navigate(['release-note']);
-}
+  redirect(type: string) {
+    if (type == 'release') {
+      this.router.navigate(['release-note']);
+    }
   }
   logOut() {
     this.authService.logout();
