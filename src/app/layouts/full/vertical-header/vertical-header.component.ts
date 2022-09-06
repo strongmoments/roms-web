@@ -3,7 +3,7 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
-import { SseService } from 'src/app/core/services/sse.service';
+import { AlertService, NotificationService, SseService } from 'src/app/core/services';
 
 @Component({
   selector: 'app-vertical-header',
@@ -16,34 +16,34 @@ export class VerticalAppHeaderComponent {
   // This is for Notifications
   // tslint:disable-next-line - Disables all
   notifications: Object[] = [
-    {
-      round: 'round-danger',
-      icon: 'ti-link',
-      title: 'Launch Admin',
-      subject: 'Just see the my new admin!',
-      time: '9:30 AM',
-    },
-    {
-      round: 'round-success',
-      icon: 'ti-calendar',
-      title: 'Event today',
-      subject: 'Just a reminder that you have event',
-      time: '9:10 AM',
-    },
-    {
-      round: 'round-info',
-      icon: 'ti-settings',
-      title: 'Settings',
-      subject: 'You can customize this template as you want',
-      time: '9:08 AM',
-    },
-    {
-      round: 'round-primary',
-      icon: 'ti-user',
-      title: 'Pavan kumar',
-      subject: 'Just see the my admin!',
-      time: '9:00 AM',
-    },
+    // {
+    //   round: 'round-danger',
+    //   icon: 'ti-link',
+    //   title: 'Launch Admin',
+    //   subject: 'Just see the my new admin!',
+    //   time: '9:30 AM',
+    // },
+    // {
+    //   round: 'round-success',
+    //   icon: 'ti-calendar',
+    //   title: 'Event today',
+    //   subject: 'Just a reminder that you have event',
+    //   time: '9:10 AM',
+    // },
+    // {
+    //   round: 'round-info',
+    //   icon: 'ti-settings',
+    //   title: 'Settings',
+    //   subject: 'You can customize this template as you want',
+    //   time: '9:08 AM',
+    // },
+    // {
+    //   round: 'round-primary',
+    //   icon: 'ti-user',
+    //   title: 'Pavan kumar',
+    //   subject: 'Just see the my admin!',
+    //   time: '9:00 AM',
+    // },
   ];
 
   // This is for Mymessages
@@ -111,16 +111,27 @@ export class VerticalAppHeaderComponent {
   ];
   user: any = {};
   eve: any;
-  constructor(private translate: TranslateService, private authService: AuthenticationService, private router: Router, private sseService: SseService) {
+  constructor(private translate: TranslateService, private authService: AuthenticationService, private router: Router, private sseService: SseService, private notificationService: NotificationService, private alertService: AlertService) {
     translate.setDefaultLang('en');
     this.user = this.authService.getCurrentUser();
-    this.sseService.getServerSentEvent(`http://13.234.56.70:8081/subscription/${this.user.email}`)
+
+    this.sseService.getServerSentEvent(`http://13.234.56.70:8081/subscription/${this.user.id}`)
       .subscribe((data: any) => {
         //  data;
+        if (data) {
+          console.log();
+          data = JSON.parse(data);
+          this.alertService.openSnackBar(data.message, false, 5000, 'New Leave request', true, { profileImage: data.profileImage, url: '/leave/leave-request' });
+
+        }
         console.log(data, 'askdsalkd')
       }, error => console.log(error, 'ererer'));
 
-    // let eventSource = new EventSource(`http://13.234.56.70:8081/subscription/${this.user.email}`);
+    this.notificationService.getAll().subscribe((result: any) => {
+      this.notifications = result.data;
+      console.log(this.notifications, 'this.notifications')
+    });
+    // let eventSource = new EventSource(`http://13.234.56.70:8081/subscription/${this.user.id}`);
     // eventSource.addEventListener('join', event => {
     //   alert(`Joined ${event.data}`);
     // });
@@ -156,6 +167,10 @@ export class VerticalAppHeaderComponent {
     this.selectedLanguage = lang;
   }
 
+  redirectNotification(item: object) {
+    this.router.navigate(['/leave/leave-request']);
+
+  }
   redirect(type: string) {
     if (type == 'release') {
       this.router.navigate(['release-note']);

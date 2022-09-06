@@ -18,14 +18,14 @@ export class SseService {
 
             eventSource.onopen = event => {
                 this._zone.run(() => {
-                    console.log(event, 'akjshdkj')
-                      observer.next(event)
+                    // console.log(event, 'akjshdkj')
+                    //   observer.next(event)
                 })
             }
 
             eventSource.onerror = event => {
                 this._zone.run(() => {
-                    observer.error(event)
+                    // observer.error(event)
                 })
             }
 

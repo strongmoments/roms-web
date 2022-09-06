@@ -22,22 +22,31 @@
   <div class="mailbox">
     <ul>
       <li>
-        <div class="drop-title text-muted">Notifications coming soon</div>
+        <div class="drop-title text-muted">Notifications</div>
       </li>
       <li>
         <div class="message-center">
           <perfect-scrollbar [config]="config">
             <!-- Message -->
-            <!-- <a href="#" *ngFor="let notification of notifications">
-              <div class="round {{ notification.round }}">
-                <i class="{{ notification.icon }}"></i>
-              </div>
-              <div class="mail-content">
-                <h5>{{ notification.title }}</h5>
-                <span class="mail-desc text-muted">{{ notification.subject }}</span>
-                <span class="time text-muted">{{ notification.time }}</span>
-              </div>
-            </a> -->
+            <ng-container *ngIf="notifications && notifications.length>0">
+              <a href="javscript:void(0)" (click)="redirectNotification(notification)" *ngFor="let notification of notifications">
+                <div class="user-img">
+                  <!-- <img  class="profile-image"/> -->
+                  <img [src]="notification?.body?.profileImage|base64Image" alt="user" class="img-circle" width="40" />
+                  <!-- <span class="profile-status {{ mymessage.status }} pull-right"></span> -->
+                  <!-- <i class="{{ notification.icon }}"></i> -->
+                </div>
+                <div class="mail-content">
+                  <h5>{{ notification?.message }}</h5>
+                  <!-- <span class="mail-desc text-muted">{{ notification.subject }}</span> -->
+                  <span class="time text-muted">{{ notification.time }}</span>
+                </div>
+              </a>
+            </ng-container>
+
+            <ng-container *ngIf="!notifications ||(notifications && notifications.length <=0)">
+              <h5>No new notification.</h5>
+            </ng-container>
           </perfect-scrollbar>
         </div>
       </li>
@@ -86,12 +95,20 @@
 <!-- Profile - style you can find in header.scss -->
 <!-- ============================================================== -->
 <button [matMenuTriggerFor]="profile" mat-icon-button class="m-r-5">
-  <img onerror="this.onerror=null;this.src='../../../../assets/img/favicon.png';"
-  [src]="user.profileImage|base64Image" alt="user" class="profile-pic" />
+  <img onerror="this.onerror=null;this.src='../../../../assets/img/favicon.png';" [src]="user.profileImage|base64Image"
+    alt="user" class="profile-pic" />
 </button>
 <mat-menu #profile="matMenu" class="mymegamenu">
-  <button mat-menu-item><mat-icon>settings</mat-icon> Settings</button>
-  <button mat-menu-item><mat-icon>account_box</mat-icon> Profile</button>
-  <button mat-menu-item (click)="redirect('release')"><mat-icon>assessment</mat-icon>Release Note</button>
-  <button mat-menu-item (click)="logOut()"><mat-icon>exit_to_app</mat-icon> Sign Out</button>
+  <button mat-menu-item>
+    <mat-icon>settings</mat-icon> Settings
+  </button>
+  <button mat-menu-item>
+    <mat-icon>account_box</mat-icon> Profile
+  </button>
+  <button mat-menu-item (click)="redirect('release')">
+    <mat-icon>assessment</mat-icon>Release Note
+  </button>
+  <button mat-menu-item (click)="logOut()">
+    <mat-icon>exit_to_app</mat-icon> Sign Out
+  </button>
 </mat-menu>
