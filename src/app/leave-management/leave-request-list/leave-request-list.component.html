@@ -1,5 +1,5 @@
 <mat-card>
-    <mat-tab-group mat-stretch-tabs (selectedIndexChange)="onTabChanged($event);">
+    <mat-tab-group [selectedIndex]="tabIndex" mat-stretch-tabs (selectedIndexChange)="onTabChanged($event);">
         <mat-tab label="Leave Request">
             <ng-container [ngTemplateOutlet]="tableTemplate"></ng-container>
         </mat-tab>
@@ -188,10 +188,10 @@
                                 <div class="example-element-description" *ngIf="element?.leaveStatus == 1">
 
                                     <!-- <p> -->
-                                    <a class="approved" (click)="approveReject(0,i,row.id)" href="javascript:void(0)">
+                                    <a class="approved" (click)="approveReject(0,i,element.id)" href="javascript:void(0)">
                                         <mat-icon>check</mat-icon>Approve
                                     </a>
-                                    <a class="rejected" href="javascript:void(0)" (click)="approveReject(1,i,row.id)">
+                                    <a class="rejected" href="javascript:void(0)" (click)="approveReject(1,i,element.id)">
                                         &nbsp;
                                         <mat-icon>cancel</mat-icon>Decline
                                     </a>

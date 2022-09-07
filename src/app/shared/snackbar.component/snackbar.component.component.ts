@@ -14,9 +14,10 @@ export class SnackbarComponent {
 
   redirect() {
     // console.log(url, 'url')
-    if(this.data && this.data.url){
-      this.router.navigate([this.data.url]);
+    if (this.data && this.data.url) {
+      this.router.navigate([this.data.url], { queryParams: this.data.params });
+    this.snackBar.dismiss();
     }
-    
+
   }
 }

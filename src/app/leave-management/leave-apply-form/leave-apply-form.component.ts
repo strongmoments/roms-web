@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
 import { AlertService } from 'src/app/core/services';
 import { LeaveService } from 'src/app/core/services/leave.service';
@@ -50,7 +50,9 @@ export class LeaveApplyFormComponent implements OnInit {
     currentDate: any = new Date();
     // columnsToDisplay: string[] = ['leaveReason', 'reviewerRemark'];
     expandedElement: any = null;
-    constructor(public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private leaveService: LeaveService, private router: Router) {
+    tabIndex: number = 0;
+    selectedId: any;
+    constructor(public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private leaveService: LeaveService, private router: Router, private activatedRoute: ActivatedRoute) {
         console.log(this.minDate, this.maxDate)
         this.globals = globals;
         this.form = this.fb.group({
@@ -67,12 +69,19 @@ export class LeaveApplyFormComponent implements OnInit {
         this.leaveService.getLeaveTypes().subscribe((res) => {
             this.leaveTypeList = res && res.data ? res.data : [];
             this.selectedLeaveType = this.leaveTypeList && this.leaveTypeList.length > 0 ? this.leaveTypeList[0].id : '';
-            console.log(res)
+            // console.log(res)
         });
         this.leaveService.getManager().subscribe((res) => {
             this.managerData = res;
-            console.log(res, 's');
-        })
+            // console.log(res, 's');
+        });
+
+        this.activatedRoute.queryParams.subscribe(queryParams => {
+            if (queryParams['id']) {
+                this.selectedId = queryParams['id'];
+                this.onTabChanged(1);
+            }
+        });
     }
 
     ngAfterViewInit() {
@@ -108,7 +117,7 @@ export class LeaveApplyFormComponent implements OnInit {
 
         // this.form.controls['leaveDays'].setValue(0);
         // this.leaveDays = 0;
-        console.log('sads', startDay, endDay)
+        // console.log('sads', startDay, endDay)
         if (startDay && endDay) {
 
             var date1 = new Date(startDay);
@@ -119,7 +128,7 @@ export class LeaveApplyFormComponent implements OnInit {
 
             // To calculate the no. of days between two dates
             var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-            console.log(Difference_In_Days, 'Difference_In_Days')
+            // console.log(Difference_In_Days, 'Difference_In_Days')
             let dayDifference = Math.round(Difference_In_Days);
 
             let startTime = (this.form.controls['startTime'].value);
@@ -137,7 +146,7 @@ export class LeaveApplyFormComponent implements OnInit {
                 return;
             }
         }
-        console.log(event)
+        // console.log(event)
     }
 
     setLeaveType(data: any) {
@@ -239,7 +248,7 @@ export class LeaveApplyFormComponent implements OnInit {
             this.form.controls['leaveDays'].setValue(leaveDays);
             this.leaveDays = leaveDays;
         } else if (value == '-1' || value == '1' || value == '0' || value == '2') {
-            // console.log(currentDate, parseInt(value), 'parseInt(value)');
+            console.log(currentDate, parseInt(value), 'parseInt(value)');
             currentDate.setDate(currentDate.getDate() + parseInt(value));
             this.form.controls['startDate'].setValue(currentDate);
             this.form.controls['endDate'].setValue(currentDate);
@@ -257,7 +266,7 @@ export class LeaveApplyFormComponent implements OnInit {
 
         this.form.controls['leaveDays'].setValue(0);
         this.leaveDays = 0;
-        console.log('sads', startDay, endDay)
+        // console.log('sads', startDay, endDay)
         if (startDay && endDay) {
 
             var date1 = new Date(startDay);
@@ -331,7 +340,7 @@ export class LeaveApplyFormComponent implements OnInit {
         // this.startTime = `${currentDateHour}:${currentDate.getMinutes()}`;
         // console.log(this.startTime, 'this.startTime')
         let time = new Date(currentDate.setHours(currentDate.getHours() + value));
-        console.log(time, time.getHours(), time.getMinutes());
+        // console.log(time, time.getHours(), time.getMinutes());
         let endHour: any = time.getHours();
         let endHourEnd: any = time.getMinutes();
         endHourEnd = endHourEnd == 0 ? '00' : endHourEnd < 10 ? `0${endHourEnd}` : endHourEnd;
@@ -348,22 +357,23 @@ export class LeaveApplyFormComponent implements OnInit {
     }
 
     onTabChanged(index: number) {
+        this.tabIndex = index;
         if (index == 0) {
             this.submitted = false;
             this.form.reset();
         } else if (index == 1) {
             this.refresh(this.getDefaultOptions());
-            this.paginator.page.subscribe((page: PageEvent) => {
+            this.paginator?.page.subscribe((page: PageEvent) => {
                 this.refresh(this.getDefaultOptions());
             });
             this.dataSource.sort = this.sort;
-            this.sort.sortChange.subscribe((sort) => {
+            this.sort?.sortChange.subscribe((sort) => {
                 this.refresh(this.getDefaultOptions());
             });
         }
-        // this.selectedTabIndex = index;
+
         // this.displayedColumns = index == 0 ? this.displayedColumnsLeave : this.displayedColumnsHistory;
-        // console.log(event, 'event')
+        console.log(event, 'event')
     }
 
     onSubmit() {
@@ -399,7 +409,7 @@ export class LeaveApplyFormComponent implements OnInit {
                 dt = new Date(dt.setDate(dt.getDate() + 1));
 
             }
-            // console.log('out')
+            console.log('out')
             dt.setHours(endTime[0]);
             dt.setMinutes(endTime[1]);
             // console.log(dt)
@@ -434,6 +444,12 @@ export class LeaveApplyFormComponent implements OnInit {
             this.totalRecords = result.totalElement;
             this.dataSource.data = result.data;
             console.log(result, 'result.data')
+            let selected = this.dataSource.data.find((elem: any) => {
+                return elem.id == this.selectedId
+            })
+            if (selected) {
+                this.expandedElement = selected;
+            }
         });
 
     }
@@ -485,7 +501,7 @@ export class LeaveApplyFormComponent implements OnInit {
         if (id == this.selectedLeaveType) {
             className = `${className} active`;
         }
-        console.log(className, index)
+        // console.log(className, index)
         return className;
     }
 

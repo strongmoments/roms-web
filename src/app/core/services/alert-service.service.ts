@@ -14,11 +14,14 @@ export class AlertService {
         let notificationHtml = '';
         if (isLinkNotitication) {
             notificationHtml =
-                `<div fxLayout="row wrap" fxFlexAlign="center" class="row">
-<span href="javascript:void(0);"><img [src]='data?.profileImage|base64Image' 
-alt="user" class="profile-pic"/ align="left">
-<div class="row">
-<h5 class="pop-error-title">${title}<small><br>${message}</small></h5></div></div>`
+                `<img src='${data?.profileImage}' 
+                class="profile-pic" style="border-radius:12px;max-height:30px;max-width:32px;" height="28px" width="29px" align="left"><p class="toastr-message">${message}</p>`;
+
+            // <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+            // <span href="javascript:void(0);"><img [src]='${data?.profileImage}' 
+            //  class="profile-pic" align="left">
+            // <div class="row">
+            // <h5 class="pop-error-title">${title}<small><br>${message}</small></h5></div></div>
         } else {
             notificationHtml = title === '' ?
                 `<p class="toastr-message">${message}</p>` :
@@ -28,7 +31,8 @@ alt="user" class="profile-pic"/ align="left">
         this.snackBar.openFromComponent(SnackbarComponent, {
             data: {
                 html: notificationHtml,
-                url: isLinkNotitication ? data.url : ''
+                url: isLinkNotitication ? data.url : '',
+                params: isLinkNotitication ? { id: data.eventId } : {}
             },
             panelClass: (isError ? 'snackbarError' : 'snackbarSuccess'),
             duration: time,

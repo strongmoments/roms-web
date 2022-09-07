@@ -1,7 +1,7 @@
 <div fxLayout="row wrap">
   <div fxFlex.gt-sm="100" fxFlex="100">
     <mat-card>
-      <mat-tab-group mat-stretch-tabs (selectedIndexChange)="onTabChanged($event)">
+      <mat-tab-group [selectedIndex]="tabIndex" mat-stretch-tabs (selectedIndexChange)="onTabChanged($event)">
         <mat-tab label="Apply Leave">
           <form [formGroup]="form" (ngSubmit)="onSubmit()" class="basic-form">
             <mat-card>

@@ -13,7 +13,7 @@ export class NotificationService {
 
     markAsRead(id: string) {
 
-        return this.http.post<any>(`${environment.apiUrl}/v1/notification/load`, { eventId: id });
+        return this.http.post<any>(`${environment.apiUrl}/v1/notification/delete`, { eventId: id });
 
     }
 }

@@ -4,6 +4,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
 import { AlertService, NotificationService, SseService } from 'src/app/core/services';
+import { Base64ImagePipe } from 'src/app/core/_helpers';
+// import { Base64ImagePipe } from 'src/app/core/_helpers/base64-image-pipe';
 
 @Component({
   selector: 'app-vertical-header',
@@ -111,7 +113,7 @@ export class VerticalAppHeaderComponent {
   ];
   user: any = {};
   eve: any;
-  constructor(private translate: TranslateService, private authService: AuthenticationService, private router: Router, private sseService: SseService, private notificationService: NotificationService, private alertService: AlertService) {
+  constructor(private translate: TranslateService, private authService: AuthenticationService, private router: Router, private sseService: SseService, private notificationService: NotificationService, private alertService: AlertService, private base64ImagePipe: Base64ImagePipe) {
     translate.setDefaultLang('en');
     this.user = this.authService.getCurrentUser();
 
@@ -119,18 +121,27 @@ export class VerticalAppHeaderComponent {
       .subscribe((data: any) => {
         //  data;
         if (data) {
-          console.log();
+          // console.log(data);
           data = JSON.parse(data);
-          this.alertService.openSnackBar(data.message, false, 5000, 'New Leave request', true, { profileImage: data.profileImage, url: '/leave/leave-request' });
-
+          console.log(data, 'askdsalkd')
+          if (data.profileImage) {
+            let img:any= this.base64ImagePipe.transform(data.profileImage);
+            console.log(img.changingThisBreaksApplicationSecurity)
+            data.profileImage =img.changingThisBreaksApplicationSecurity;
+          }
+          // console.log(data, 'askdsalkd')
+          let url = '';
+          if (data.type == 'leave_request') {
+            url = '/leave/leave-request';
+          } else if (data.type == 'leave_approve' || data.type == 'leave_reject') {
+            url = '/leave/apply-leave';
+            // this.router.navigate(['/leave/apply-leave'], { queryParams: { id: item.eventId } });
+          }
+          this.alertService.openSnackBar(data.message, false, 0, '', true, { profileImage: data.profileImage, url: url, eventId: data.eventId });
+          this.getAllNotification();
         }
-        console.log(data, 'askdsalkd')
       }, error => console.log(error, 'ererer'));
 
-    this.notificationService.getAll().subscribe((result: any) => {
-      this.notifications = result.data;
-      console.log(this.notifications, 'this.notifications')
-    });
     // let eventSource = new EventSource(`http://13.234.56.70:8081/subscription/${this.user.id}`);
     // eventSource.addEventListener('join', event => {
     //   alert(`Joined ${event.data}`);
@@ -167,8 +178,28 @@ export class VerticalAppHeaderComponent {
     this.selectedLanguage = lang;
   }
 
-  redirectNotification(item: object) {
-    this.router.navigate(['/leave/leave-request']);
+
+  getAllNotification() {
+
+    this.notificationService.getAll().subscribe((result: any) => {
+      this.notifications = result.data;
+      this.notifications.sort((x: any, y: any) => +new Date(parseInt(y.body.time)) - +new Date(parseInt(x.body.time)));
+
+      console.log(this.notifications, 'this.notifications')
+    });
+  }
+
+  markRead(id: string) {
+    this.notificationService.markAsRead(id).subscribe();
+    return;
+  }
+  redirectNotification(item: any) {
+    this.markRead(item.eventId);
+    if (item.type == 'leave_request') {
+      this.router.navigate(['/leave/leave-request'], { queryParams: { id: item.eventId } });
+    } else if (item.type == 'leave_approve' || item.type == 'leave_reject') {
+      this.router.navigate(['/leave/apply-leave'], { queryParams: { id: item.eventId } });
+    }
 
   }
   redirect(type: string) {
