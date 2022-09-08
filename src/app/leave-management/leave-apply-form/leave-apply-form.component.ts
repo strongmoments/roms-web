@@ -76,6 +76,10 @@ export class LeaveApplyFormComponent implements OnInit {
             // console.log(res, 's');
         });
 
+        this.router.routeReuseStrategy.shouldReuseRoute = function () {
+            return false;
+        };
+
         this.activatedRoute.queryParams.subscribe(queryParams => {
             if (queryParams['id']) {
                 this.selectedId = queryParams['id'];

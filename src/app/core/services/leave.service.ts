@@ -14,32 +14,39 @@ export class LeaveService {
     }
 
     applyLeave(data: any) {
-        return this.http.post<any>(`${environment.apiUrl}/v1/leave/request`, data)
+        return this.http.post<any>(`${environment.apiUrl}/v1/leave/request`, data);
     }
 
     myLeaveHistory(options: ViewOptions) {
-        return this.http.get<any>(`${environment.apiUrl}/v1/leave/applied?page=${options.page}&size=${options.pageSize}`)
+        return this.http.get<any>(`${environment.apiUrl}/v1/leave/applied?page=${options.page}&size=${options.pageSize}`);
     }
 
     staffLeavePending(options: ViewOptions) {
-        return this.http.get<any>(`${environment.apiUrl}/v1/leave/appliedToMe?leaveStatus=${options.search}&page=${options.page}&size=${options.pageSize}`)
+        return this.http.get<any>(`${environment.apiUrl}/v1/leave/appliedToMe?leaveStatus=${options.search}&page=${options.page}&size=${options.pageSize}`);
     }
 
     staffLeaveHistory(options: ViewOptions) {
-        return this.http.get<any>(`${environment.apiUrl}/v1/leave/appliedToMeHistory?page=${options.page}&size=${options.pageSize}`)
+        return this.http.get<any>(`${environment.apiUrl}/v1/leave/appliedToMeHistory?page=${options.page}&size=${options.pageSize}`);
     }
 
 
     approveLeave(data: any) {
-        return this.http.post<any>(`${environment.apiUrl}/v1/leave/approve`, data)
+        return this.http.post<any>(`${environment.apiUrl}/v1/leave/approve`, data);
 
     }
 
     rejectLeave(data: any) {
-        return this.http.post<any>(`${environment.apiUrl}/v1/leave/reject`, data)
+        return this.http.post<any>(`${environment.apiUrl}/v1/leave/reject`, data);
     }
 
     getManager() {
         return this.http.get<any>(`${environment.apiUrl}/v1/leave/approver`);
+    }
+
+
+    getAllEmployeeLeaves(options: ViewOptions, queryData: any) {
+        return this.http.get<any>(`${environment.apiUrl}/v1/leave/loadAll?page=${options.page}&size=${options.pageSize}`);
+        // return this.http.post<any>(`${environment.apiUrl}/v1/leave/loadAll?page=${options.page}&size=${options.pageSize}`,queryData);
+        // http://13.234.56.70:8080/v1/leave/loadAll?page=0&size=5
     }
 }

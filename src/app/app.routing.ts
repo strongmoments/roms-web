@@ -8,7 +8,7 @@ import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 
 export const AppRoutes: Routes = [
 
- 
+
   {
     path: '',
     component: AppBlankComponent,
@@ -40,6 +40,11 @@ export const AppRoutes: Routes = [
       {
         path: 'leave',
         loadChildren: () => import('./leave-management/leave-management.module').then(m => m.LeaveManagementModule),
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'report',
+        loadChildren: () => import('./report/report.module').then(m => m.ReportModule),
         canActivate: [AuthGuard]
       },
       // {
