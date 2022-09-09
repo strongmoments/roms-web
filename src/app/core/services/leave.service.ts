@@ -49,4 +49,8 @@ export class LeaveService {
         return this.http.post<any>(`${environment.apiUrl}/v1/leave/loadAll?page=${options.page}&size=${options.pageSize}`, queryData);
         // http://13.234.56.70:8080/v1/leave/loadAll?page=0&size=5
     }
+
+    getAllExportHistory(options: ViewOptions) {
+        return this.http.get<any>(`${environment.apiUrl}/v1/leaveexport/loadhistory?page=${options.page}&size=${options.pageSize}`);
+    }
 }

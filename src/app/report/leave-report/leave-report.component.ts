@@ -35,11 +35,16 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
   submitted: boolean = false;
   // displayedColumnsLeave: string[] = 
   displayedColumns: string[] = ['staffName', 'applyDate', 'leave_type', 'dates', 'days', 'time', 'hours', 'leaveReason', 'action'];
-  ;
+  displayedColumnsHistory: string[] = ['reportName', 'dateRange', 'exportedOn'];
+
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
+  dataSourceHistory: MatTableDataSource<any> = new MatTableDataSource<any>();
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator = Object.create(null);
+  @ViewChild(MatPaginator, { static: false }) paginatorHistory: MatPaginator = Object.create(null);
+
   @ViewChild(MatSort, { static: false }) sort: MatSort = Object.create(null);
+  @ViewChild(MatSort, { static: false }) sortHistory: MatSort = Object.create(null);
   pagesize = 10;
   pageNo = 0;
   pageSize = 10;
@@ -82,11 +87,15 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     // this.dataSource.paginator = this.paginator;
     // this.dataSource.sort = this.sort;
+    this.dataSourceHistory.sort = this.sortHistory;
     this.dataSource.sort = this.sort;
     this.paginator.page.subscribe((page: PageEvent) => {
       this.refresh(this.getDefaultOptions());
     });
 
+    this.paginatorHistory.page.subscribe((page: PageEvent) => {
+      this.refresh(this.getDefaultOptions());
+    });
   }
 
 
@@ -101,14 +110,17 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
       this.totalRecords = result.totalElement;
       this.dataSource.data = result.data;
       console.log(result, 'result.data')
-      // let selected = this.dataSource.data.find((elem: any) => {
-      //     return elem.id == this.selectedId
-      // })
-      // if (selected) {
-      //     this.expandedElement = selected;
-      // }
     });
+  }
 
+
+  refreshHistory(options: ViewOptions) {
+
+    this.leaveService.getAllExportHistory(options).pipe(first()).subscribe((result: any) => {
+      this.totalRecords = result.totalElement;
+      this.dataSourceHistory.data = result.data;
+      console.log(result, 'result.data')
+    });
   }
 
   getDefaultOptions() {
