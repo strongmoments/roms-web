@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
 import { AlertService } from 'src/app/core/services';
 import { LeaveService } from 'src/app/core/services/leave.service';
@@ -27,79 +27,66 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   ],
 })
 export class LeaveApplyFormComponent implements OnInit {
-  globals: Globals;
-  leaveHours: number = 0;
-  leaveDays: number = 0;
-  form: FormGroup;
-  submitted: boolean = false;
-  displayedColumns: string[] = [
-    'applyDate',
-    'leave_type',
-    'dates',
-    'days',
-    'time',
-    'hours',
-    'manager',
-    'leaveReason',
-  ];
-  dataSource = new MatTableDataSource<any>();
-  pagesize = 10;
-  totalRecords: number = 0;
-  @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
-  @ViewChild(MatSort, { static: false }) sort!: MatSort;
-  historyMonth!: string;
-  leaveTypeList: any = [];
-  availableLeaveCount: number = 0;
-  selectedLeaveType: string = '';
-  managerData: any = {};
-  isTimeInputDisabled: boolean = false;
-  minDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 2));
-  maxDate: Date = new Date(new Date().setMonth(new Date().getMonth() + 12));
-  classArray = [
-    'custom-button-grey',
-    'custom-button-light-grey',
-    'custom-button-purple',
-    'custom-button-light-pink',
-    'custom-button-light-green',
-    'custom-button-ligh-orange',
-    'custom-button-light-blue',
-    'custom-button-light-blue-1',
-    'custom-button-brown',
-  ];
-  currentDate: any = new Date();
-  // columnsToDisplay: string[] = ['leaveReason', 'reviewerRemark'];
-  expandedElement: any = null;
-  constructor(
-    public util: Utils,
-    globals: Globals,
-    private fb: FormBuilder,
-    private alertService: AlertService,
-    private leaveService: LeaveService,
-    private router: Router,
-  ) {
-    console.log(this.minDate, this.maxDate);
-    this.globals = globals;
-    this.form = this.fb.group({
-      startDate: new FormControl('', [Validators.required]),
-      endDate: new FormControl('', [Validators.required]),
-      startTime: new FormControl('', []),
-      endTime: new FormControl('', []),
-      leaveDays: new FormControl('', [Validators.required, Validators.pattern(this.util.intRegex)]),
-      leaveType: new FormControl('', [Validators.required]),
-      leaveReason: new FormControl('', [Validators.required]),
-    });
+    globals: Globals;
+    leaveHours: number = 0;
+    leaveDays: number = 0;
+    form: FormGroup;
+    submitted: boolean = false;
+    displayedColumns: string[] = ['applyDate', 'leave_type', 'dates', 'days', 'time', 'hours', 'manager', 'leaveReason'];
+    dataSource = new MatTableDataSource<any>();
+    pagesize = 10;
+    totalRecords: number = 0;
+    @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
+    @ViewChild(MatSort, { static: false }) sort!: MatSort;
+    historyMonth!: string;
+    leaveTypeList: any = [];
+    availableLeaveCount: number = 0;
+    selectedLeaveType: string = '';
+    managerData: any = {};
+    isTimeInputDisabled: boolean = false;
+    minDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 2));
+    maxDate: Date = new Date(new Date().setMonth(new Date().getMonth() + 12));
+    classArray = ['custom-button-grey', 'custom-button-light-grey', 'custom-button-purple', 'custom-button-light-pink', 'custom-button-light-green', 'custom-button-ligh-orange', 'custom-button-light-blue', 'custom-button-light-blue-1', 'custom-button-brown'];
+    currentDate: any = new Date();
+    // columnsToDisplay: string[] = ['leaveReason', 'reviewerRemark'];
+    expandedElement: any = null;
+    tabIndex: number = 0;
+    selectedId: any;
+    constructor(public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private leaveService: LeaveService, private router: Router, private activatedRoute: ActivatedRoute) {
+        console.log(this.minDate, this.maxDate)
+        this.globals = globals;
+        this.form = this.fb.group({
+            startDate: new FormControl('', [Validators.required]),
+            endDate: new FormControl('', [Validators.required]),
+            startTime: new FormControl('', []),
+            endTime: new FormControl('', []),
+            leaveDays: new FormControl('', [Validators.required, Validators.pattern(this.util.intRegex)]),
+            leaveType: new FormControl('', [Validators.required]),
+            leaveReason: new FormControl('', [Validators.required]),
+        });
 
-    this.leaveService.getLeaveTypes().subscribe((res) => {
-      this.leaveTypeList = res && res.data ? res.data : [];
-      this.selectedLeaveType =
-        this.leaveTypeList && this.leaveTypeList.length > 0 ? this.leaveTypeList[0].id : '';
-      console.log(res);
-    });
-    this.leaveService.getManager().subscribe((res) => {
-      this.managerData = res;
-      console.log(res, 's');
-    });
-  }
+
+        this.leaveService.getLeaveTypes().subscribe((res) => {
+            this.leaveTypeList = res && res.data ? res.data : [];
+            this.selectedLeaveType = this.leaveTypeList && this.leaveTypeList.length > 0 ? this.leaveTypeList[0].id : '';
+            // console.log(res)
+        });
+        this.leaveService.getManager().subscribe((res) => {
+            this.managerData = res;
+            // console.log(res, 's');
+        });
+
+        this.router.routeReuseStrategy.shouldReuseRoute = function () {
+            return false;
+        };
+
+        this.activatedRoute.queryParams.subscribe(queryParams => {
+            if (queryParams['id']) {
+                this.selectedId = queryParams['id'];
+                this.onTabChanged(1);
+            }
+        });
+    }
 
   ngAfterViewInit() {
     // this.dataSource.paginator = this.paginator;
@@ -141,27 +128,28 @@ export class LeaveApplyFormComponent implements OnInit {
       // To calculate the time difference of two dates
       var Difference_In_Time = date2.getTime() - date1.getTime();
 
-      // To calculate the no. of days between two dates
-      var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-      console.log(Difference_In_Days, 'Difference_In_Days');
-      let dayDifference = Math.round(Difference_In_Days);
+            // To calculate the no. of days between two dates
+            var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+            // console.log(Difference_In_Days, 'Difference_In_Days')
+            let dayDifference = Math.round(Difference_In_Days);
 
-      let startTime = this.form.controls['startTime'].value;
-      let endTime = this.form.controls['endTime'].value;
-      if (!startTime && !endTime && dayDifference == 0) {
-        dayDifference = 1;
-      }
-      if (dayDifference >= event.target.value) {
-        this.leaveDays = event.target.value;
-      } else {
-        this.form.controls['leaveDays'].setValue(0);
-        this.leaveDays = 0;
-        this.alertService.openSnackBar(`You can not enter days more than ${dayDifference} days`);
-        return;
-      }
+            let startTime = (this.form.controls['startTime'].value);
+            let endTime = (this.form.controls['endTime'].value);
+            if (!startTime && !endTime && dayDifference == 0) {
+                dayDifference = 1;
+            }
+            if (dayDifference >= event.target.value) {
+                this.leaveDays = event.target.value;
+            } else {
+
+                this.form.controls['leaveDays'].setValue(0);
+                this.leaveDays = 0;
+                this.alertService.openSnackBar(`You can not enter days more than ${dayDifference} days`);
+                return;
+            }
+        }
+        // console.log(event)
     }
-    console.log(event);
-  }
 
   setLeaveType(data: any) {
     this.selectedLeaveType = data.id;
@@ -368,24 +356,25 @@ export class LeaveApplyFormComponent implements OnInit {
     this.leaveDays = 0;
   }
 
-  onTabChanged(index: number) {
-    if (index == 0) {
-      this.submitted = false;
-      this.form.reset();
-    } else if (index == 1) {
-      this.refresh(this.getDefaultOptions());
-      this.paginator.page.subscribe((page: PageEvent) => {
-        this.refresh(this.getDefaultOptions());
-      });
-      this.dataSource.sort = this.sort;
-      this.sort.sortChange.subscribe((sort) => {
-        this.refresh(this.getDefaultOptions());
-      });
+    onTabChanged(index: number) {
+        this.tabIndex = index;
+        if (index == 0) {
+            this.submitted = false;
+            this.form.reset();
+        } else if (index == 1) {
+            this.refresh(this.getDefaultOptions());
+            this.paginator?.page.subscribe((page: PageEvent) => {
+                this.refresh(this.getDefaultOptions());
+            });
+            this.dataSource.sort = this.sort;
+            this.sort?.sortChange.subscribe((sort) => {
+                this.refresh(this.getDefaultOptions());
+            });
+        }
+
+        // this.displayedColumns = index == 0 ? this.displayedColumnsLeave : this.displayedColumnsHistory;
+        console.log(event, 'event')
     }
-    // this.selectedTabIndex = index;
-    // this.displayedColumns = index == 0 ? this.displayedColumnsLeave : this.displayedColumnsHistory;
-    // console.log(event, 'event')
-  }
 
   onSubmit() {
     this.submitted = true;
@@ -461,6 +450,12 @@ export class LeaveApplyFormComponent implements OnInit {
         this.totalRecords = result.totalElement;
         this.dataSource.data = result.data;
         console.log(result, 'result.data');
+            let selected = this.dataSource.data.find((elem: any) => {
+                return elem.id == this.selectedId
+            })
+            if (selected) {
+                this.expandedElement = selected;
+            }
       });
   }
 
@@ -506,11 +501,12 @@ export class LeaveApplyFormComponent implements OnInit {
       className = `${this.classArray[i]} ${className}`;
     }
 
-    // console.log(this.selectedLeaveType, 'id', id)
-    if (id == this.selectedLeaveType) {
-      className = `${className} active`;
+        // console.log(this.selectedLeaveType, 'id', id)
+        if (id == this.selectedLeaveType) {
+            className = `${className} active`;
+        }
+        // console.log(className, index)
+        return className;
     }
-    console.log(className, index);
-    return className;
-  }
+
 }

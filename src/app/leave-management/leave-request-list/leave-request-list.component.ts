@@ -13,6 +13,7 @@ import { ViewOptions } from 'src/app/_models';
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-leave-request-list',
@@ -47,9 +48,19 @@ export class LeaveRequestListComponent implements OnInit, AfterViewInit {
     comments: any = [];
     currentDate: any = new Date();
     expandedElement: any = null;
-
-    constructor(public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private leaveService: LeaveService, private datePipe: DatePipe) {
+    selectedId: any;
+    tabIndex: number = 0;
+    constructor(public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private leaveService: LeaveService, private datePipe: DatePipe, private activatedRoute: ActivatedRoute, private router: Router) {
         this.globals = globals;
+        this.router.routeReuseStrategy.shouldReuseRoute = function () {
+            return false;
+        };
+        this.activatedRoute.queryParams.subscribe(queryParams => {
+            if (queryParams['id']) {
+                this.selectedId = queryParams['id'];
+                // this.onTabChanged(1);
+            }
+        });
     }
 
 
@@ -95,6 +106,7 @@ export class LeaveRequestListComponent implements OnInit, AfterViewInit {
     }
 
     onTabChanged(index: number) {
+        this.tabIndex = index;
         this.dataSource.data = [];
         this.totalRecords = 0;
         this.paginator.pageIndex = 0;
@@ -148,6 +160,12 @@ export class LeaveRequestListComponent implements OnInit, AfterViewInit {
         this.leaveService.staffLeavePending(options).pipe(first()).subscribe((result: any) => {
             this.totalRecords = result.totalElement;
             this.dataSource.data = result.data;
+            let selected = this.dataSource.data.find((elem: any) => {
+                return elem.id == this.selectedId
+            })
+            if (selected) {
+                this.expandedElement = selected;
+            }
             console.log(this.totalRecords, 'result.data')
             this.comments = [];
             result.data.map(() => {
