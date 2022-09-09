@@ -1,73 +1,83 @@
 /* You can add global styles to this file, and also import other style files */
 
 .snackbarSuccess {
-    background-color: seagreen !important;
-    font-weight: bold;
+  background-color: seagreen !important;
+  font-weight: bold;
 }
 
 .snackbarError {
-    background-color: #d51e1e !important;
+  background-color: #d51e1e !important;
 }
 
-
 .custom-button-grey {
-    background: #E9E4F5 !important;
-    color: #764AF1 !important;
+  background: #e9e4f5 !important;
+  color: #764af1 !important;
+  min-width: 125px !important;
 }
 
 .custom-button-light-grey {
-    background: #ECEAF0 !important;
-    color: #947EC3 !important;
+  background: #eceaf0 !important;
+  color: #947ec3 !important;
+  min-width: 125px !important;
 }
 
 .custom-button-purple {
-    background: #c4bad0 !important;
-    color: #fff !important;
+  background: #c4bad0 !important;
+  color: #fff !important;
+  min-width: 125px !important;
 }
 
 .custom-button-light-pink {
-    background: #F5E8EB !important;
-    color: #F56D91 !important;
+  background: #f5e8eb !important;
+  color: #f56d91 !important;
+  min-width: 125px !important;
 }
 
 .custom-button-light-green {
-    background: #ECF0EC !important;
-    color: #92BA92 !important;
+  background: #ecf0ec !important;
+  color: #92ba92 !important;
+  min-width: 125px !important;
 }
 
 .custom-button-ligh-orange {
-    background: #F6F1E2 !important;
-    color: #F8CB2E !important;
+  background: #f6f1e2 !important;
+  color: #f8cb2e !important;
+  min-width: 125px !important;
 }
 
 .custom-button-light-blue {
-    background: #E6EDFF !important;
-    color: #0047FF !important;
+  background: #e6edff !important;
+  color: #0047ff !important;
+  min-width: 125px !important;
 }
 
 .custom-button-light-blue-1 {
-    background: #E6F5FD !important;
-    color: #0092E4 !important;
+  background: #e6f5fd !important;
+  color: #0092e4 !important;
+  min-width: 125px !important;
 }
 
 .custom-button-brown {
-    background: #F2EDE9 !important;
-    color: #74461C !important;
+  background: #f2ede9 !important;
+  color: #74461c !important;
+  min-width: 125px !important;
 }
 
-
 .approved {
-    color: #2ACE58;
+  color: #2ace58;
 }
 
 .pending {
-    color: #E7B400;
+  color: #e7b400;
 }
 
 .rejected {
-    color: #d51e1e;
+  color: #d51e1e;
 }
 
+.custom-mat-form-field .mat-form-field-wrapper {
+  padding-bottom: 0em;
+}
 
 // .approve-button {
 //     color: green;
@@ -77,57 +87,57 @@
 //     color: red;
 // }
 
-
-
-
 // copied from listing of tempalte for expand table  start from here
 table {
-    width: 100%;
+  width: 100%;
 }
 
 tr.example-detail-row {
-    height: 0;
+  height: 0;
 }
 
 tr.example-element-row:not(.example-expanded-row):hover {
-    background: whitesmoke;
+  background: whitesmoke;
 }
 
 tr.example-element-row:not(.example-expanded-row):active {
-    background: #efefef;
+  background: #efefef;
 }
 
 .example-element-row td {
-    border-bottom-width: 0;
+  border-bottom-width: 0;
 }
 
 .example-element-detail {
-    overflow: hidden;
-    display: flex;
+  overflow: hidden;
+  display: flex;
 }
 
 .example-element-diagram {
-    min-width: 80px;
-    border: 2px solid black;
-    padding: 8px;
-    font-weight: lighter;
-    margin: 8px 0;
-    height: auto;
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: auto;
 }
 
 .example-element-symbol {
-    font-weight: bold;
-    font-size: 40px;
-    line-height: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
 }
 
 .example-element-description {
-    padding: 16px;
+  padding: 16px;
 }
 
 .example-element-description-attribution {
-    opacity: 0.5;
+  opacity: 0.5;
 }
 
+.mat-tab-list {
+  background-color: #fff;
+}
 
 // copied from listing of tempalte for expand table  end here
