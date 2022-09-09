@@ -45,8 +45,8 @@ export class LeaveService {
 
 
     getAllEmployeeLeaves(options: ViewOptions, queryData: any) {
-        return this.http.get<any>(`${environment.apiUrl}/v1/leave/loadAll?page=${options.page}&size=${options.pageSize}`);
-        // return this.http.post<any>(`${environment.apiUrl}/v1/leave/loadAll?page=${options.page}&size=${options.pageSize}`,queryData);
+        // return this.http.get<any>(`${environment.apiUrl}/v1/leave/loadAll?page=${options.page}&size=${options.pageSize}`);
+        return this.http.post<any>(`${environment.apiUrl}/v1/leave/loadAll?page=${options.page}&size=${options.pageSize}`, queryData);
         // http://13.234.56.70:8080/v1/leave/loadAll?page=0&size=5
     }
 }
