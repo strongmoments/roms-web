@@ -22,13 +22,14 @@ export const AppRoutes: Routes = [
       //   redirectTo: '/dashboards/dashboard1',
       //   pathMatch: 'full',
       // },
+      // {
+      //   path: 'dashboard',
+      //   redirectTo: '/dashboards/dashboard1',
+      //   pathMatch: 'full',
+      // },
       {
         path: 'dashboard',
-        redirectTo: '/dashboards/dashboard1',
         pathMatch: 'full',
-      },
-      {
-        path: 'dashboards',
         loadChildren: () =>
           import('./dashboards/dashboards.module').then((m) => m.DashboardsModule),
       },

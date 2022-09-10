@@ -1,5 +1,5 @@
-<div class="snack-bar" (click)="redirect()">
-  <div [innerHTML]="data.html"></div>
+<div class="snack-bar" >
+  <div [innerHTML]="data.html" (click)="redirect()"></div>
   <div class="dismiss">
       <button mat-icon-button (click)="snackBar.dismiss()">
           <mat-icon>highlight_off</mat-icon>

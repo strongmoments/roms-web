@@ -4,7 +4,7 @@ import { delay, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { of, EMPTY, BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { User } from 'src/app/_models';
+import { User, ViewOptions } from 'src/app/_models';
 // import jwt_decode from 'jwt-decode';
 import { Role } from 'src/app/globals';
 
@@ -182,9 +182,25 @@ export class AuthenticationService {
 
 
     getDashboard() {
-        return this.http.get<any>(`${environment.apiUrl}/v1/dashboard/load`)
+        return this.http.get<any>(`${environment.apiUrl}/v1/dashboard/load`);
 
     }
 
+
+    getAllEmployeeType() {
+        return this.http.get<any>(`${environment.apiUrl}/v1/employeetypes/load`);
+    }
+
+    getAllDepartmentType() {
+        return this.http.get<any>(`${environment.apiUrl}/v1/departments/load`);
+    }
+
+    saveExportHistory(data: any) {
+        return this.http.post<any>(`${environment.apiUrl}/v1/leaveexport/addhistory`, data);
+    }
+
+    getAllExportHistory(options: ViewOptions) {
+        return this.http.get<any>(`${environment.apiUrl}/v1/leaveexport/loadhistory?page=${options.page}&size=${options.pageSize}`);
+    }
 
 }

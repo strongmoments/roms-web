@@ -116,7 +116,7 @@ export class VerticalAppHeaderComponent {
   constructor(private translate: TranslateService, private authService: AuthenticationService, private router: Router, private sseService: SseService, private notificationService: NotificationService, private alertService: AlertService, private base64ImagePipe: Base64ImagePipe) {
     translate.setDefaultLang('en');
     this.user = this.authService.getCurrentUser();
-
+    this.getAllNotification();
     this.sseService.getServerSentEvent(`http://13.234.56.70:8081/subscription/${this.user.id}`)
       .subscribe((data: any) => {
         //  data;
@@ -125,9 +125,9 @@ export class VerticalAppHeaderComponent {
           data = JSON.parse(data);
           console.log(data, 'askdsalkd')
           if (data.profileImage) {
-            let img:any= this.base64ImagePipe.transform(data.profileImage);
+            let img: any = this.base64ImagePipe.transform(data.profileImage);
             console.log(img.changingThisBreaksApplicationSecurity)
-            data.profileImage =img.changingThisBreaksApplicationSecurity;
+            data.profileImage = img.changingThisBreaksApplicationSecurity;
           }
           // console.log(data, 'askdsalkd')
           let url = '';
@@ -138,7 +138,8 @@ export class VerticalAppHeaderComponent {
             // this.router.navigate(['/leave/apply-leave'], { queryParams: { id: item.eventId } });
           }
           this.alertService.openSnackBar(data.message, false, 0, '', true, { profileImage: data.profileImage, url: url, eventId: data.eventId });
-          this.getAllNotification();
+          this.notifications.push({});
+          // this.getAllNotification();
         }
       }, error => console.log(error, 'ererer'));
 
@@ -183,6 +184,9 @@ export class VerticalAppHeaderComponent {
 
     this.notificationService.getAll().subscribe((result: any) => {
       this.notifications = result.data;
+      this.notifications.map((elem: any) => {
+        return elem.body.time = new Date(parseInt(elem.body.time));
+      })
       this.notifications.sort((x: any, y: any) => +new Date(parseInt(y.body.time)) - +new Date(parseInt(x.body.time)));
 
       console.log(this.notifications, 'this.notifications')

@@ -25,6 +25,7 @@ import { HorizontalAppSidebarComponent } from '../layouts/full/horizontal-sideba
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { Base64ImagePipe, CustomJavaDatePipe } from '../core/_helpers';
+import { DateAgoPipe } from '../core/_helpers/date-ago-pipe';
 // import { Base64ImagePipe } from '../core/_helpers/base64-image-pipe';
 // import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
 // import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
@@ -51,6 +52,7 @@ import { Base64ImagePipe, CustomJavaDatePipe } from '../core/_helpers';
     SnackbarComponent,
     // MenuListItemComponent,
     CustomJavaDatePipe,
+    DateAgoPipe,
     Base64ImagePipe,
     AccordionAnchorDirective, AccordionLinkDirective, AccordionDirective,
     // FullComponent,
@@ -69,10 +71,11 @@ import { Base64ImagePipe, CustomJavaDatePipe } from '../core/_helpers';
     TextMaskModule,
     CustomJavaDatePipe,
     Base64ImagePipe,
+    DateAgoPipe,
     AccordionAnchorDirective, AccordionLinkDirective, AccordionDirective,
     PerfectScrollbarModule,
     FlexLayoutModule
   ],
-  providers: [MenuItems, HorizontalMenuItems,Base64ImagePipe],
+  providers: [MenuItems, HorizontalMenuItems,Base64ImagePipe,DateAgoPipe],
 })
 export class SharedModule { }

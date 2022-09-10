@@ -29,6 +29,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { MatBadgeModule } from '@angular/material/badge';
 
 export const MY_FORMATS = {
     parse: {
@@ -54,7 +55,8 @@ export const MY_FORMATS = {
         MatSidenavModule, MatSlideToggleModule, MatMenuModule,
         MatChipsModule, MatNativeDateModule, MatExpansionModule,
         FlexLayoutModule,
-        MatTabsModule,MatRadioModule,MatFormFieldModule
+        MatTabsModule,MatRadioModule,MatFormFieldModule,
+        MatBadgeModule
     ],
     exports: [
         CommonModule,
@@ -65,7 +67,8 @@ export const MY_FORMATS = {
         MatListModule, MatToolbarModule, MatTooltipModule, MatCardModule,
         MatSidenavModule, MatSlideToggleModule, MatMenuModule,
         MatChipsModule, MatNativeDateModule, MatExpansionModule,FlexLayoutModule ,
-        MatTabsModule,MatRadioModule,MatFormFieldModule
+        MatTabsModule,MatRadioModule,MatFormFieldModule,
+        MatBadgeModule
     ],
     providers: [
         { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },

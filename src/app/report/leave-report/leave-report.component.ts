@@ -15,6 +15,7 @@ import { Globals } from 'src/app/globals';
 import { ViewOptions } from 'src/app/_models';
 import { saveAs } from 'file-saver';
 import * as moment from 'moment';
+import { AuthenticationService } from 'src/app/core/services/auth.service';
 @Component({
   selector: 'app-leave-report',
   templateUrl: './leave-report.component.html',
@@ -34,8 +35,8 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
   // form: FormGroup;
   submitted: boolean = false;
   // displayedColumnsLeave: string[] = 
-  displayedColumns: string[] = ['staffName', 'applyDate', 'leave_type', 'dates', 'days', 'time', 'hours', 'leaveReason', 'action'];
-  displayedColumnsHistory: string[] = ['reportName', 'dateRange', 'exportedOn'];
+  displayedColumns: string[] = ['staffName', 'applyDate', 'leave_type', 'dates', 'days', 'time', 'hours', 'leaveReason', 'approver', 'dateOfApproval', 'action'];
+  displayedColumnsHistory: string[] = ['reportName', 'dateRange', 'createDate'];
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   dataSourceHistory: MatTableDataSource<any> = new MatTableDataSource<any>();
@@ -54,10 +55,22 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
   expandedElement: any = null;
   startDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 1));
   endDate: Date = new Date();
-
-  constructor(breakpointObserver: BreakpointObserver, public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private leaveService: LeaveService, private datePipe: DatePipe, private activatedRoute: ActivatedRoute) {
+  status: any = 2;
+  departmentId: any = '';
+  employeeType: any = '';
+  employeeTypeList: any = [];
+  departmentList: any = [];
+  constructor(breakpointObserver: BreakpointObserver, public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private leaveService: LeaveService, private datePipe: DatePipe, private activatedRoute: ActivatedRoute, private authService: AuthenticationService) {
     this.globals = globals;
 
+    this.authService.getAllEmployeeType().subscribe((result: any) => {
+      this.employeeTypeList = result && result.data && result.data.length > 0 ? result.data : [];
+    });
+
+
+    this.authService.getAllDepartmentType().subscribe((result: any) => {
+      this.departmentList = result && result.data && result.data.length > 0 ? result.data : [];
+    });
     // breakpointObserver.observe(['(max-width: 600px)']).subscribe((result) => {
     //   this.displayedColumns = result.matches
     //     ? ['id', 'name', 'progress', 'color']
@@ -99,16 +112,37 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
   }
 
 
-  refresh(options: ViewOptions) {
+  onTableScroll(e: any) {
+    const tableViewHeight = e.target.offsetHeight // viewport: ~500px
+    const tableScrollHeight = e.target.scrollHeight // length of all table
+    const scrollLocation = e.target.scrollTop; // how far user scrolled
+
+    // If the user has scrolled within 200px of the bottom, add more data
+    const buffer = 200;
+    const limit = tableScrollHeight - tableViewHeight - buffer;
+    console.log(scrollLocation, limit, 'scrollLocation > limit')
+    if (scrollLocation > limit) {
+      if (this.dataSource.data.length < this.totalRecords) {
+        this.refresh(this.getDefaultOptions(), true);
+      }
+      // this.dataSource = this.dataSource.concat(ELEMENT_DATA);
+    }
+  }
+
+  refresh(options: ViewOptions, isScrolled: boolean = false) {
     let startDate = this.startDate ? moment(new Date(this.startDate).toUTCString()).utc().format('DD-MM-YYYY') : '';
     let endDate = this.endDate ? moment(new Date(this.endDate).toUTCString()).utc().format('DD-MM-YYYY') : '';
 
-    let queryData = { toDate: startDate, fromDate: endDate, searchText: this.search, departmentId: '', employeeTypeId: '' };
+    let queryData = { toDate: startDate, fromDate: endDate, searchText: this.search, departmentId: this.departmentId, employeeTypeId: this.departmentId, leaveStatus: this.status };
 
 
     this.leaveService.getAllEmployeeLeaves(options, queryData).pipe(first()).subscribe((result: any) => {
       this.totalRecords = result.totalElement;
-      this.dataSource.data = result.data;
+      if (isScrolled == true) {
+        this.dataSource.data = [...this.dataSource.data, ...result.data];
+      } else {
+        this.dataSource.data = result.data;
+      }
       console.log(result, 'result.data')
     });
   }
@@ -116,7 +150,7 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
 
   refreshHistory(options: ViewOptions) {
 
-    this.leaveService.getAllExportHistory(options).pipe(first()).subscribe((result: any) => {
+    this.authService.getAllExportHistory(options).pipe(first()).subscribe((result: any) => {
       this.totalRecords = result.totalElement;
       this.dataSourceHistory.data = result.data;
       console.log(result, 'result.data')
@@ -124,6 +158,23 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
   }
 
   getDefaultOptions() {
+    let obj = this.paginator;
+    let sort = this.sort;
+    let pageSize = (obj != undefined ? (obj.pageIndex == null ? 1 : obj.pageIndex + 1) : 1);
+
+    const options: ViewOptions = {
+      sortField: (sort !== undefined ? sort.active : 'fullName'),
+      sortDirection: (sort !== undefined ? sort.direction : 'asc'),
+      // page: (obj != undefined ? (obj.pageIndex == null ? 1 : obj.pageIndex + 1) : 1),
+      page: pageSize - 1,
+      search: '',
+      query: '',
+      pageSize: (obj != undefined ? (obj.pageSize == null ? this.pagesize : obj.pageSize) : this.pagesize)
+    };
+    return options;
+  }
+
+  getDefaultOptionsHistory() {
     let obj = this.paginator;
     let sort = this.sort;
     let pageSize = (obj != undefined ? (obj.pageIndex == null ? 1 : obj.pageIndex + 1) : 1);
@@ -152,12 +203,46 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     })?.colorClass;
   }
 
-  applyFilter(): void {
+  applyFilter(isTextSearch: boolean = false): void {
     console.log(this.search, 'search', this.startDate, 'startdate', this.endDate, 'enddate');
-    // filterValue = filterValue.trim(); // Remove whitespace
-    // filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-    // this.dataSource.filter = filterValue;
-    this.refresh(this.getDefaultOptions());
+    this.search = this.search.trim(); // Remove whitespace
+    this.search = this.search.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataSource.filter = this.search;
+    if (isTextSearch) {
+
+    } else {
+      this.refresh(this.getDefaultOptions());
+    }
+  }
+
+
+
+
+  onTabChanged(index: number) {
+    // this.tabIndex = index;
+    this.dataSource.data = [];
+
+    this.totalRecords = 0;
+    this.paginator.pageIndex = 0;
+    this.pageNo = 0;
+    this.pageSize = 10;
+    this.search = '';
+    this.status = 2;
+    this.departmentId = '';
+    this.employeeType = '';
+    this.dataSourceHistory.data = [];
+    this.paginatorHistory.pageIndex = 0;
+    // this.selectedTabIndex = index;
+    // this.displayedColumns = index == 0 ? this.displayedColumnsLeave : this.displayedColumnsHistory;
+    // console.log(event, 'event')
+
+    if (index == 1) {
+      this.refreshHistory(this.getDefaultOptionsHistory());
+      // this.historyList();
+    } else {
+      this.refresh(this.getDefaultOptions());
+    }
+
   }
 
 
@@ -177,8 +262,22 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
       csvArray.push(row)
     }
     // console.log(csvArray)
-    var blob = new Blob(csvArray, { type: 'text/csv' })
-    saveAs(blob, "leave_report.csv");
+    let fileName = `leave_report_${new Date().getTime()
+      }.csv`;
+    let data = {
+      "reportName": fileName,
+      "dateRange": `${this.datePipe.transform(this.startDate, 'd MMMM y')} to ${this.datePipe.transform(this.endDate, 'd MMMM y')}`,
+      "filters": {
+        "empoyeeTyeId": this.employeeType,
+        "departmentId ": this.departmentId,
+        "leaveStatus": this.status
+      }
+    };
+
+    console.log(data)
+    this.authService.saveExportHistory(data).subscribe();
+    var blob = new Blob(csvArray, { type: 'text/csv' });
+    saveAs(blob, fileName);
 
   }
 }

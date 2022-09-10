@@ -12,10 +12,12 @@
 <!-- Notification - style you can find in header.scss -->
 <!-- ============================================================== -->
 <button [matMenuTriggerFor]="notification" (click)="getAllNotification()" mat-icon-button class="m-r-5">
-  <mat-icon>message</mat-icon>
+  <mat-icon [matBadge]="notifications && notifications.length>0 ? notifications.length:''" matBadgeColor="warn">
+    notifications
+  </mat-icon>
   <div class="notify">
-    <span class="heartbit"></span>
-    <span class="point"></span>
+    <!-- <span class="heartbit"></span> -->
+    <!-- <span class="point"></span> -->
   </div>
 </button>
 <mat-menu #notification="matMenu" class="mymegamenu">
@@ -38,10 +40,10 @@
                 </div>
                 <div class="mail-content">
                   <h5 (click)="redirectNotification(notification)">{{ notification?.message }}</h5>
-
                   <span class="time text-muted">
                     <mat-icon (click)="markRead(notification?.eventId)">delete_outline</mat-icon>
                   </span>
+                  <span class="time text-muted">{{notification?.body?.time | dateAgo }}</span>
                   <!-- <span class="mail-desc text-muted">{{ notification.subject }}</span> -->
 
                 </div>
