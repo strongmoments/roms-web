@@ -163,14 +163,6 @@ export class AuthenticationService {
         return of(true);
     }
 
-    changePassword(email: string, oldPwd: string, newPwd: string) {
-        return this.http.post(`${environment.apiUrl}/accounts/change-password`, {
-            email: email,
-            password: oldPwd,
-            newPassword: newPwd
-        })
-    }
-
 
     passwordReset(token: string, password: string, confirmPassword: string): any {
         return this.http.post(`${environment.apiUrl}/accounts/reset-password`, {
@@ -186,6 +178,10 @@ export class AuthenticationService {
 
     }
 
+    changePassword(data:any) {
+        return this.http.post<any>(`${environment.apiUrl}/v1/password/change`,data);
+        
+    }
 
     getAllEmployeeType() {
         return this.http.get<any>(`${environment.apiUrl}/v1/employeetypes/load`);

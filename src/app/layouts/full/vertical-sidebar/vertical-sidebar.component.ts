@@ -137,7 +137,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
       let subMenu: any = [];
       // if (this.userPermissions.dashboard.includes('mystaff')) {
       subMenu.push(
-        { state: 'report/leave', name: 'Satff Leaves', type: 'link', icon: 'account_box' });
+        { state: 'report/leave', name: 'Staff Leaves', type: 'link', icon: 'account_box' });
       // }
       // if (this.userPermissions.timeoff.includes('history')) {
       //   subMenu.push({ displayName: 'Holidays', iconName: '', route: '/' });
