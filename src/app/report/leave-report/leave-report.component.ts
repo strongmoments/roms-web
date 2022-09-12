@@ -28,15 +28,26 @@ import { AuthenticationService } from 'src/app/core/services/auth.service';
     ]),
   ],
 })
-
 export class LeaveReportComponent implements OnInit, AfterViewInit {
   globals: Globals;
   // leaveHours: number = 0;
   // form: FormGroup;
   submitted: boolean = false;
-  // displayedColumnsLeave: string[] = 
-  displayedColumns: string[] = ['staffName', 'applyDate', 'leave_type', 'dates', 'days', 'time', 'hours', 'leaveReason', 'approver', 'dateOfApproval', 'action'];
-  displayedColumnsHistory: string[] = ['reportName', 'dateRange', 'createDate'];
+  // displayedColumnsLeave: string[] =
+  displayedColumns: string[] = [
+    'staffName',
+    'applyDate',
+    'leave_type',
+    'dates',
+    'days',
+    'time',
+    'hours',
+    'action',
+    // 'leaveReason',
+    'approver',
+    'dateOfApproval',
+  ];
+  displayedColumnsHistory: string[] = ['createDate', 'dateRange', 'reportName'];
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   dataSourceHistory: MatTableDataSource<any> = new MatTableDataSource<any>();
@@ -50,7 +61,7 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
   pageNo = 0;
   pageSize = 10;
   totalRecords: number = 0;
-  search: string = '';//by default 0 for pending list
+  search: string = ''; //by default 0 for pending list
   currentDate: any = new Date();
   expandedElement: any = null;
   startDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 1));
@@ -60,13 +71,22 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
   employeeType: any = '';
   employeeTypeList: any = [];
   departmentList: any = [];
-  constructor(breakpointObserver: BreakpointObserver, public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private leaveService: LeaveService, private datePipe: DatePipe, private activatedRoute: ActivatedRoute, private authService: AuthenticationService) {
+  constructor(
+    breakpointObserver: BreakpointObserver,
+    public util: Utils,
+    globals: Globals,
+    private fb: FormBuilder,
+    private alertService: AlertService,
+    private leaveService: LeaveService,
+    private datePipe: DatePipe,
+    private activatedRoute: ActivatedRoute,
+    private authService: AuthenticationService,
+  ) {
     this.globals = globals;
 
     this.authService.getAllEmployeeType().subscribe((result: any) => {
       this.employeeTypeList = result && result.data && result.data.length > 0 ? result.data : [];
     });
-
 
     this.authService.getAllDepartmentType().subscribe((result: any) => {
       this.departmentList = result && result.data && result.data.length > 0 ? result.data : [];
@@ -86,7 +106,6 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     // Assign the data to the data source for the table to render
     // this.dataSource = new MatTableDataSource(users);
   }
-
 
   ngOnInit(): void {
     // this.displayedColumns = this.displayedColumnsLeave;
@@ -111,16 +130,15 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     });
   }
 
-
   onTableScroll(e: any) {
-    const tableViewHeight = e.target.offsetHeight // viewport: ~500px
-    const tableScrollHeight = e.target.scrollHeight // length of all table
+    const tableViewHeight = e.target.offsetHeight; // viewport: ~500px
+    const tableScrollHeight = e.target.scrollHeight; // length of all table
     const scrollLocation = e.target.scrollTop; // how far user scrolled
 
     // If the user has scrolled within 200px of the bottom, add more data
     const buffer = 200;
     const limit = tableScrollHeight - tableViewHeight - buffer;
-    console.log(scrollLocation, limit, 'scrollLocation > limit')
+    console.log(scrollLocation, limit, 'scrollLocation > limit');
     if (scrollLocation > limit) {
       if (this.dataSource.data.length < this.totalRecords) {
         this.refresh(this.getDefaultOptions(), true);
@@ -130,46 +148,61 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
   }
 
   refresh(options: ViewOptions, isScrolled: boolean = false) {
-    let startDate = this.startDate ? moment(new Date(this.startDate).toUTCString()).utc().format('DD-MM-YYYY') : '';
-    let endDate = this.endDate ? moment(new Date(this.endDate).toUTCString()).utc().format('DD-MM-YYYY') : '';
+    let startDate = this.startDate
+      ? moment(new Date(this.startDate).toUTCString()).format('DD-MM-YYYY')
+      : '';
+    let endDate = this.endDate
+      ? moment(new Date(this.endDate).toUTCString()).format('DD-MM-YYYY')
+      : '';
 
-    let queryData = { toDate: startDate, fromDate: endDate, searchText: this.search, departmentId: this.departmentId, employeeTypeId: this.departmentId, leaveStatus: this.status };
+    let queryData = {
+      toDate: endDate,
+      fromDate: startDate,
+      departmentId: this.departmentId,
+      employeeTypeId: this.employeeType,
+      leaveStatus: `${this.status}`,
+    };
+    console.log(queryData, 'queryData');
 
-
-    this.leaveService.getAllEmployeeLeaves(options, queryData).pipe(first()).subscribe((result: any) => {
-      this.totalRecords = result.totalElement;
-      if (isScrolled == true) {
-        this.dataSource.data = [...this.dataSource.data, ...result.data];
-      } else {
-        this.dataSource.data = result.data;
-      }
-      console.log(result, 'result.data')
-    });
+    this.leaveService
+      .getAllEmployeeLeaves(options, queryData)
+      .pipe(first())
+      .subscribe((result: any) => {
+        this.totalRecords = result.totalElement;
+        if (isScrolled == true) {
+          this.dataSource.data = [...this.dataSource.data, ...result.data];
+        } else {
+          this.dataSource.data = result.data;
+        }
+        console.log(result, 'result.data');
+      });
   }
 
-
   refreshHistory(options: ViewOptions) {
-
-    this.authService.getAllExportHistory(options).pipe(first()).subscribe((result: any) => {
-      this.totalRecords = result.totalElement;
-      this.dataSourceHistory.data = result.data;
-      console.log(result, 'result.data')
-    });
+    this.authService
+      .getAllExportHistory(options)
+      .pipe(first())
+      .subscribe((result: any) => {
+        this.totalRecords = result.totalElement;
+        this.dataSourceHistory.data = result.data;
+        console.log(result, 'result.data');
+      });
   }
 
   getDefaultOptions() {
     let obj = this.paginator;
     let sort = this.sort;
-    let pageSize = (obj != undefined ? (obj.pageIndex == null ? 1 : obj.pageIndex + 1) : 1);
+    let pageSize = obj != undefined ? (obj.pageIndex == null ? 1 : obj.pageIndex + 1) : 1;
 
     const options: ViewOptions = {
-      sortField: (sort !== undefined ? sort.active : 'fullName'),
-      sortDirection: (sort !== undefined ? sort.direction : 'asc'),
+      sortField: sort !== undefined ? sort.active : 'fullName',
+      sortDirection: sort !== undefined ? sort.direction : 'asc',
       // page: (obj != undefined ? (obj.pageIndex == null ? 1 : obj.pageIndex + 1) : 1),
       page: pageSize - 1,
       search: '',
       query: '',
-      pageSize: (obj != undefined ? (obj.pageSize == null ? this.pagesize : obj.pageSize) : this.pagesize)
+      pageSize:
+        obj != undefined ? (obj.pageSize == null ? this.pagesize : obj.pageSize) : this.pagesize,
     };
     return options;
   }
@@ -177,29 +210,30 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
   getDefaultOptionsHistory() {
     let obj = this.paginator;
     let sort = this.sort;
-    let pageSize = (obj != undefined ? (obj.pageIndex == null ? 1 : obj.pageIndex + 1) : 1);
+    let pageSize = obj != undefined ? (obj.pageIndex == null ? 1 : obj.pageIndex + 1) : 1;
 
     const options: ViewOptions = {
-      sortField: (sort !== undefined ? sort.active : 'fullName'),
-      sortDirection: (sort !== undefined ? sort.direction : 'asc'),
+      sortField: sort !== undefined ? sort.active : 'fullName',
+      sortDirection: sort !== undefined ? sort.direction : 'asc',
       // page: (obj != undefined ? (obj.pageIndex == null ? 1 : obj.pageIndex + 1) : 1),
       page: pageSize - 1,
       search: '',
       query: '',
-      pageSize: (obj != undefined ? (obj.pageSize == null ? this.pagesize : obj.pageSize) : this.pagesize)
+      pageSize:
+        obj != undefined ? (obj.pageSize == null ? this.pagesize : obj.pageSize) : this.pagesize,
     };
     return options;
   }
 
   getStatus(status: any) {
     return this.globals.leaveStatus.find((elem: any) => {
-      return elem.value == status
+      return elem.value == status;
     })?.name;
   }
 
   getStatusColor(status: any) {
     return this.globals.leaveStatus.find((elem: any) => {
-      return elem.value == status
+      return elem.value == status;
     })?.colorClass;
   }
 
@@ -209,14 +243,10 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     this.search = this.search.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = this.search;
     if (isTextSearch) {
-
     } else {
       this.refresh(this.getDefaultOptions());
     }
   }
-
-
-
 
   onTabChanged(index: number) {
     // this.tabIndex = index;
@@ -242,10 +272,7 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     } else {
       this.refresh(this.getDefaultOptions());
     }
-
   }
-
-
 
   exportCsv() {
     // const replacer = (key:any, value:any) => value === null ? '' : value; // specify how you want to handle null values here
@@ -253,32 +280,50 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     // let csv = this.dataSource.data.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','));
     // csv.unshift(header.join(','));
     // let csvArray = csv.join('\r\n');
-    let csvArray: any = ['Staff Name,Applied On,Leave Type,Dates,Days,Time,Hours,Reason,Comments,Status\r\n'];
+    let csvArray: any = [
+      'Staff Name,Applied On,Leave Type,Dates,Days,Time,Hours,Reason,Comments,Status\r\n',
+    ];
     for (let i = 0; i < this.dataSource.data.length; i++) {
       let item = this.dataSource.data[i];
-      console.log(this.dataSource.data[i], 'this.dataSource.data')
-      let row: string = `${item?.employe?.firstName} ${item?.employe?.firstName},${(this.datePipe.transform(item.applyDate, 'dd/MM/yyyy'))},${item.leaveType?.leaveDescription},${this.datePipe.transform(item.startDateTime, 'dd/MM/yyyy')} to ${this.datePipe.transform(item.endDateTime, 'dd/MM/yyyy')},${item.totalDay},${(item.totalHour > 0) ? (this.datePipe.transform(item.startDateTime, 'shortTime') + 'to' + (this.datePipe.transform(item.endDateTime, 'shortTime'))) : ''},${item.totalHour},${item.leaveReason},${item.reviewerRemark},${this.getStatus(item.leaveStatus)}\r\n`;
-      console.log(row)
-      csvArray.push(row)
+      console.log(this.dataSource.data[i], 'this.dataSource.data');
+      let row: string = `${item?.employe?.firstName} ${
+        item?.employe?.firstName
+      },${this.datePipe.transform(item.applyDate, 'dd/MM/yyyy')},${
+        item.leaveType?.leaveDescription
+      },${this.datePipe.transform(item.startDateTime, 'dd/MM/yyyy')} to ${this.datePipe.transform(
+        item.endDateTime,
+        'dd/MM/yyyy',
+      )},${item.totalDay},${
+        item.totalHour > 0
+          ? this.datePipe.transform(item.startDateTime, 'shortTime') +
+            'to' +
+            this.datePipe.transform(item.endDateTime, 'shortTime')
+          : ''
+      },${item.totalHour},${item.leaveReason},${item.reviewerRemark},${this.getStatus(
+        item.leaveStatus,
+      )}\r\n`;
+      console.log(row);
+      csvArray.push(row);
     }
     // console.log(csvArray)
-    let fileName = `leave_report_${new Date().getTime()
-      }.csv`;
+    let fileName = `leave_report_${new Date().getTime()}.csv`;
     let data = {
-      "reportName": fileName,
-      "dateRange": `${this.datePipe.transform(this.startDate, 'd MMMM y')} to ${this.datePipe.transform(this.endDate, 'd MMMM y')}`,
-      "filters": {
-        "empoyeeTyeId": this.employeeType,
-        "departmentId ": this.departmentId,
-        "leaveStatus": this.status
-      }
+      reportName: fileName,
+      dateRange: `${this.datePipe.transform(
+        this.startDate,
+        'd MMMM y',
+      )} to ${this.datePipe.transform(this.endDate, 'd MMMM y')}`,
+      filters: {
+        empoyeeTyeId: this.employeeType,
+        'departmentId ': this.departmentId,
+        leaveStatus: this.status,
+      },
     };
 
-    console.log(data)
+    console.log(data);
     this.authService.saveExportHistory(data).subscribe();
     var blob = new Blob(csvArray, { type: 'text/csv' });
     saveAs(blob, fileName);
-
   }
 }
 /** Builds and returns a new User. */

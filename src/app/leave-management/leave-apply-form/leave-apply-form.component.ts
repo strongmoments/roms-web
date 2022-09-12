@@ -32,7 +32,7 @@ export class LeaveApplyFormComponent implements OnInit {
     leaveDays: number = 0;
     form: FormGroup;
     submitted: boolean = false;
-    displayedColumns: string[] = ['applyDate', 'leave_type', 'dates', 'days', 'time', 'hours', 'manager', 'leaveReason'];
+    displayedColumns: string[] = ['applyDate', 'leave_type', 'dates', 'days', 'time', 'hours', 'manager', 'status'];
     dataSource = new MatTableDataSource<any>();
     pagesize = 10;
     totalRecords: number = 0;
@@ -46,7 +46,7 @@ export class LeaveApplyFormComponent implements OnInit {
     isTimeInputDisabled: boolean = false;
     minDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 2));
     maxDate: Date = new Date(new Date().setMonth(new Date().getMonth() + 12));
-    classArray = ['custom-button-grey', 'custom-button-light-grey', 'custom-button-purple', 'custom-button-light-pink', 'custom-button-light-green', 'custom-button-ligh-orange', 'custom-button-light-blue', 'custom-button-light-blue-1', 'custom-button-brown'];
+    classArray = ['custom-button-grey', 'custom-button-light-grey', 'custom-button-purple', 'custom-button-light-pink', 'custom-button-light-green', 'custom-button-grey', 'custom-button-light-blue', 'custom-button-light-blue-1', 'custom-button-brown'];
     currentDate: any = new Date();
     // columnsToDisplay: string[] = ['leaveReason', 'reviewerRemark'];
     expandedElement: any = null;

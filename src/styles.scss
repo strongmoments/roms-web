@@ -78,8 +78,8 @@
 .custom-mat-form-field .mat-form-field-wrapper {
   padding-bottom: 0em;
 }
-.pop-error-title{
-    font-size: 16px;
+.pop-error-title {
+  font-size: 16px;
 }
 // .approve-button {
 //     color: green;
@@ -143,3 +143,16 @@ tr.example-element-row:not(.example-expanded-row):active {
 }
 
 // copied from listing of tempalte for expand table  end here
+
+#snav .mat-nav-list .mat-list-item a h6 {
+  max-width: 94px;
+}
+
+.border1 {
+  border: 1px solid #e0e0e0;
+}
+
+// .cspace-0 .mat-form-field-wrapper {
+//   padding-bottom: 0;
+//   margin-bottom: 0;
+// }

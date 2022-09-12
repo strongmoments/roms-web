@@ -96,7 +96,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         //   ]
         // });
         // }
-        menuItem.push({ state: 'operation', name: 'Operation', type: 'sub', icon: 'commute', children: subMenu });
+        // menuItem.push({ state: 'operation', name: 'Operation', type: 'sub', icon: 'commute', children: subMenu });
       }
 
       //condition for menu of timeoff
@@ -108,13 +108,13 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
           // subMenu.push({ displayName: 'My Leaves', iconName: '', route: '/leave' });
         }
         if (this.userPermissions.timeoff.includes('history')) {
-          subMenu.push({ state: 'coming-soon', name: 'Holidays', type: 'link', icon: '' });
+          // subMenu.push({ state: 'coming-soon', name: 'Holidays', type: 'link', icon: '' });
 
           // subMenu.push({ displayName: 'Holidays', iconName: '', route: '/' });
         }
         menuItem.push(
           {
-            state: 'personal', name: 'Personal', type: 'sub', icon: 'perm_contact_calendar', children: subMenu, badge: [{ type: 'warning', value: 'new' }],
+            state: 'personal', name: 'Personal', type: 'sub', icon: 'perm_contact_calendar', children: subMenu, 
           });
       }
 
@@ -129,7 +129,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         //   subMenu.push({ displayName: 'Holidays', iconName: '', route: '/' });
         // }
         menuItem.push({
-          state: 'staff', name: 'My Staff', type: 'sub', icon: 'people', children: subMenu, badge: [{ type: 'warning', value: 'new' }],
+          state: 'staff', name: 'My Staff', type: 'sub', icon: 'people', children: subMenu, 
         });
       }
 
@@ -143,7 +143,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
       //   subMenu.push({ displayName: 'Holidays', iconName: '', route: '/' });
       // }
       menuItem.push({
-        state: 'report', name: 'People & Culture', type: 'sub', icon: 'list_alt', children: subMenu, badge: [{ type: 'warning', value: 'new' }],
+        state: 'report', name: 'People & Culture', type: 'sub', icon: 'people', children: subMenu, badge: [{ type: 'warning', value: 'new' }],
       });
       // }
     }
