@@ -274,7 +274,7 @@ export class LeaveRequestListComponent implements OnInit, AfterViewInit {
         } else if (type == 1) {
 
             this.leaveService.rejectLeave({ id: id, reviewerRemark: (this.comments[index] ? this.comments[index] : '') }).subscribe((res) => {
-                this.alertService.openSnackBar(CustomMessage.leaveAccepted, false);
+                this.alertService.openSnackBar(CustomMessage.leaveRejected, false);
                 this.refresh(this.getDefaultOptions());
                 // this.router.navigate(['/dashboard']);
             }, (error) => {

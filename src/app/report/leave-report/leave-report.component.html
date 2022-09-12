@@ -18,23 +18,14 @@
                 <div fxLayout="row wrap" fxFlexAlign="center" class="row">
                   <div fxFlex.gt-sm="20" class="">
                     <mat-form-field>
-                      <input
-                        matInput
-                        (keyup)="applyFilter(true)"
-                        [(ngModel)]="search"
-                        placeholder="Filter"
-                      />
+                      <input matInput (keyup)="applyFilter(true)" [(ngModel)]="search" placeholder="Filter" />
                       <mat-icon matSuffix>search</mat-icon>
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="20" class="p-l-10" fxFlex="100">
                     <!-- <mat-card-title class="mb-3">Basic Material select</mat-card-title> -->
                     <mat-form-field>
-                      <mat-select
-                        (selectionChange)="applyFilter()"
-                        [(ngModel)]="departmentId"
-                        placeholder="Department"
-                      >
+                      <mat-select (selectionChange)="applyFilter()" [(ngModel)]="departmentId" placeholder="Department">
                         <mat-option [value]="item.id" *ngFor="let item of departmentList">
                           {{ item.description }}
                         </mat-option>
@@ -45,11 +36,8 @@
                   <div fxFlex.gt-sm="20" class="p-l-10" fxFlex="100">
                     <!-- <mat-card-title class="mb-3">Basic Material select</mat-card-title> -->
                     <mat-form-field>
-                      <mat-select
-                        (selectionChange)="applyFilter()"
-                        [(ngModel)]="employeeType"
-                        placeholder="Employee Type"
-                      >
+                      <mat-select (selectionChange)="applyFilter()" [(ngModel)]="employeeType"
+                        placeholder="Employee Type">
                         <mat-option [value]="item.id" *ngFor="let item of employeeTypeList">
                           {{ item.name }}
                         </mat-option>
@@ -59,16 +47,9 @@
                   <div fxFlex.gt-sm="20" class="p-l-10" fxFlex="100">
                     <!-- <mat-card-title class="mb-3">Basic Material select</mat-card-title> -->
                     <mat-form-field>
-                      <mat-select
-                        (selectionChange)="applyFilter()"
-                        [(ngModel)]="status"
-                        placeholder="Status"
-                      >
+                      <mat-select (selectionChange)="applyFilter()" [(ngModel)]="status" placeholder="Status">
                         <mat-option value="0">Select Status</mat-option>
-                        <mat-option
-                          [value]="status.value"
-                          *ngFor="let status of globals.leaveStatus"
-                        >
+                        <mat-option [value]="status.value" *ngFor="let status of globals.leaveStatus">
                           {{ status.name }}
                         </mat-option>
                         <!-- <mat-option *ngFor="let food of foods" [value]="food.value">
@@ -113,22 +94,10 @@
                     <mat-form-field appearance="outline">
                       <mat-label (click)="picker.open()">Select Date Range</mat-label>
                       <mat-date-range-input [rangePicker]="picker">
-                        <input
-                          matStartDate
-                          [(ngModel)]="startDate"
-                          placeholder="Start date"
-                          readonly
-                          (dateChange)="applyFilter()"
-                          (click)="picker.open()"
-                        />
-                        <input
-                          matEndDate
-                          placeholder="End date"
-                          readonly
-                          [(ngModel)]="endDate"
-                          (dateChange)="applyFilter()"
-                          (click)="picker.open()"
-                        />
+                        <input matStartDate [(ngModel)]="startDate" placeholder="Start date" readonly
+                          (dateChange)="applyFilter()" (click)="picker.open()" />
+                        <input matEndDate placeholder="End date" readonly [(ngModel)]="endDate"
+                          (dateChange)="applyFilter()" (click)="picker.open()" />
                       </mat-date-range-input>
                       <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
                       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -152,14 +121,8 @@
           <mat-card class="m-0 m-t-10 m-b-5">
             <mat-card-content>
               <div class="table-responsive infinite-scroll">
-                <mat-table
-                  #table
-                  [dataSource]="dataSource"
-                  class="table employee-list no-wrap"
-                  matSort
-                  (scroll)="onTableScroll($event)"
-                  multiTemplateDataRows
-                >
+                <mat-table #table [dataSource]="dataSource" class="table employee-list no-wrap" matSort
+                  (scroll)="onTableScroll($event)" multiTemplateDataRows>
                   <!-- <table width="100%" mat-table [dataSource]="dataSource" matSort> -->
                   <!-- ID Column -->
                   <!-- <ng-container matColumnDef="name">
@@ -175,14 +138,28 @@
                                     </td>
                                 </ng-container> -->
 
+                  <ng-container matColumnDef="select">
+
+                    <th mat-header-cell *matHeaderCellDef>
+                      <!-- <mat-checkbox
+                                    (change)="$event ? masterToggle() : null"
+                                    > -->
+                      <!-- <mat-checkbox
+                                    
+                                    >
+                                  </mat-checkbox> -->
+                    </th>
+                    <td mat-cell *matCellDef="let row;let index=dataIndex">
+                      <mat-checkbox (click)="removeRow(row.id,index)">
+                      </mat-checkbox>
+                    </td>
+                  </ng-container>
+
                   <ng-container matColumnDef="staffName">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Staff name</th>
                     <td mat-cell *matCellDef="let row; let i = index">
                       <div class="d-flex">
-                        <img
-                          class="mat-card-avatar"
-                          [src]="row?.employe?.profileImage | base64Image"
-                        />
+                        <img class="mat-card-avatar" [src]="row?.employe?.profileImage | base64Image" />
                         <div class="m-l-15">
                           <p class="font-medium m-b-0 m-t-0">
                             {{ row?.employe?.firstName }} {{ row?.employe?.lastName }}
@@ -320,10 +297,8 @@
 
                   <ng-container matColumnDef="expandedDetail">
                     <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
-                      <div
-                        class="example-element-detail"
-                        [@detailExpand]="element === expandedElement ? 'expanded' : 'collapsed'"
-                      >
+                      <div class="example-element-detail"
+                        [@detailExpand]="element === expandedElement ? 'expanded' : 'collapsed'">
                         <!-- <div class="example-element-diagram"> -->
                         <!-- <div class="example-element-position">test</div> -->
                         <!-- <div class="example-element-symbol">{{ element.symbol }}</div> -->
@@ -343,22 +318,15 @@
                     </td>
                   </ng-container>
 
-                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
                   <!-- <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr> -->
 
                   <!-- <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr> -->
-                  <tr
-                    mat-row
-                    *matRowDef="let element; columns: displayedColumns"
-                    class="example-element-row"
+                  <tr mat-row *matRowDef="let element; columns: displayedColumns" class="example-element-row"
+                    [ngClass]="{'row-strike-through':removedRows.includes(element.id)}"
                     [class.example-expanded-row]="expandedElement === element"
-                    (click)="expandedElement = expandedElement === element ? null : element"
-                  ></tr>
-                  <tr
-                    mat-row
-                    *matRowDef="let row; columns: ['expandedDetail']"
-                    class="example-detail-row"
-                  ></tr>
+                    (click)="expandedElement = expandedElement === element ? null : element"></tr>
+                  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
 
                   <!-- Row shown when there is no matching data. -->
                   <tr class="mat-row" *matNoDataRow>
@@ -380,14 +348,8 @@
           <mat-card class="m-0 m-t-20 m-b-5">
             <mat-card-content>
               <div class="table-responsive">
-                <table
-                  mat-table
-                  [dataSource]="dataSourceHistory"
-                  class="table employee-list no-wrap"
-                  #sortHistory="matSort"
-                  matSort
-                  multiTemplateDataRows
-                >
+                <table mat-table [dataSource]="dataSourceHistory" class="table employee-list no-wrap"
+                  #sortHistory="matSort" matSort multiTemplateDataRows>
                   <ng-container matColumnDef="reportName">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Report Name</th>
                     <td mat-cell *matCellDef="let row">
@@ -421,14 +383,8 @@
                   </tr>
                 </table>
 
-                <mat-paginator
-                  #paginatorHistory="matPaginator"
-                  [length]="totalRecords"
-                  [pageIndex]="pageNo"
-                  [pageSizeOptions]="[5, 10, 20]"
-                  [pageSize]="pagesize"
-                  aria-label="Select page"
-                >
+                <mat-paginator #paginatorHistory="matPaginator" [length]="totalRecords" [pageIndex]="pageNo"
+                  [pageSizeOptions]="[5, 10, 20]" [pageSize]="pagesize" aria-label="Select page">
                 </mat-paginator>
               </div>
             </mat-card-content>

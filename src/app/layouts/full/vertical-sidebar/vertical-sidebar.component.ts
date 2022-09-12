@@ -114,7 +114,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         }
         menuItem.push(
           {
-            state: 'personal', name: 'Personal', type: 'sub', icon: 'perm_contact_calendar', children: subMenu, 
+            state: 'personal', name: 'Personal', type: 'sub', icon: 'perm_contact_calendar', children: subMenu,
           });
       }
 
@@ -129,23 +129,23 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         //   subMenu.push({ displayName: 'Holidays', iconName: '', route: '/' });
         // }
         menuItem.push({
-          state: 'staff', name: 'My Staff', type: 'sub', icon: 'people', children: subMenu, 
+          state: 'staff', name: 'My Staff', type: 'sub', icon: 'people', children: subMenu,
         });
       }
 
-      // if (this.userPermissions.dashboard && this.userPermissions.dashboard.length > 0) {
-      let subMenu: any = [];
-      // if (this.userPermissions.dashboard.includes('mystaff')) {
-      subMenu.push(
-        { state: 'report/leave', name: 'Staff Leaves', type: 'link', icon: 'account_box' });
-      // }
-      // if (this.userPermissions.timeoff.includes('history')) {
-      //   subMenu.push({ displayName: 'Holidays', iconName: '', route: '/' });
-      // }
-      menuItem.push({
-        state: 'report', name: 'People & Culture', type: 'sub', icon: 'people', children: subMenu, badge: [{ type: 'warning', value: 'new' }],
-      });
-      // }
+      if (this.userPermissions.reports && this.userPermissions.reports.length > 0) {
+        let subMenu: any = [];
+        if (this.userPermissions.reports.includes('leave_export')) {
+          subMenu.push(
+            { state: 'report/leave', name: 'Staff Leaves', type: 'link', icon: 'account_box' });
+        }
+        // if (this.userPermissions.reports.includes('leave_export')) {
+        //   subMenu.push({ displayName: 'Holidays', iconName: '', route: '/' });
+        // }
+        menuItem.push({
+          state: 'report', name: 'People & Culture', type: 'sub', icon: 'people', children: subMenu, badge: [{ type: 'warning', value: 'new' }],
+        });
+      }
     }
 
     // this.navItems.push({ displayName: 'Dashboard', iconName: 'dashboard', route: '/' },

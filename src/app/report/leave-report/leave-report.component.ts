@@ -16,6 +16,7 @@ import { ViewOptions } from 'src/app/_models';
 import { saveAs } from 'file-saver';
 import * as moment from 'moment';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
+import { element } from 'protractor';
 @Component({
   selector: 'app-leave-report',
   templateUrl: './leave-report.component.html',
@@ -35,6 +36,7 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
   submitted: boolean = false;
   // displayedColumnsLeave: string[] =
   displayedColumns: string[] = [
+    'select',
     'staffName',
     'applyDate',
     'leave_type',
@@ -71,6 +73,7 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
   employeeType: any = '';
   employeeTypeList: any = [];
   departmentList: any = [];
+  removedRows: any = [];
   constructor(
     breakpointObserver: BreakpointObserver,
     public util: Utils,
@@ -130,6 +133,20 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     });
   }
 
+  removeRow(id: string) {
+    // console.log(index, 'index');
+    let index=this.removedRows.indexOf(id);
+    if (this.removedRows && index === -1) {
+      this.removedRows.push(id);
+    }else{
+      this.removedRows.splice(index,1);
+    }
+    // let data=this.dataSource.data;
+
+    // console.log(index,data.splice(index,1))
+    // this.dataSource.data = this.dataSource.data.filter((elem: any) => elem.id != id);
+  }
+
   onTableScroll(e: any) {
     const tableViewHeight = e.target.offsetHeight; // viewport: ~500px
     const tableScrollHeight = e.target.scrollHeight; // length of all table
@@ -138,7 +155,7 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     // If the user has scrolled within 200px of the bottom, add more data
     const buffer = 200;
     const limit = tableScrollHeight - tableViewHeight - buffer;
-    console.log(scrollLocation, limit, 'scrollLocation > limit');
+    // console.log(scrollLocation, limit, 'scrollLocation > limit');
     if (scrollLocation > limit) {
       if (this.dataSource.data.length < this.totalRecords) {
         this.refresh(this.getDefaultOptions(), true);
@@ -286,22 +303,19 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < this.dataSource.data.length; i++) {
       let item = this.dataSource.data[i];
       console.log(this.dataSource.data[i], 'this.dataSource.data');
-      let row: string = `${item?.employe?.firstName} ${
-        item?.employe?.firstName
-      },${this.datePipe.transform(item.applyDate, 'dd/MM/yyyy')},${
-        item.leaveType?.leaveDescription
-      },${this.datePipe.transform(item.startDateTime, 'dd/MM/yyyy')} to ${this.datePipe.transform(
-        item.endDateTime,
-        'dd/MM/yyyy',
-      )},${item.totalDay},${
-        item.totalHour > 0
+      let row: string = `${item?.employe?.firstName} ${item?.employe?.firstName
+        },${this.datePipe.transform(item.applyDate, 'dd/MM/yyyy')},${item.leaveType?.leaveDescription
+        },${this.datePipe.transform(item.startDateTime, 'dd/MM/yyyy')} to ${this.datePipe.transform(
+          item.endDateTime,
+          'dd/MM/yyyy',
+        )},${item.totalDay},${item.totalHour > 0
           ? this.datePipe.transform(item.startDateTime, 'shortTime') +
-            'to' +
-            this.datePipe.transform(item.endDateTime, 'shortTime')
+          'to' +
+          this.datePipe.transform(item.endDateTime, 'shortTime')
           : ''
-      },${item.totalHour},${item.leaveReason},${item.reviewerRemark},${this.getStatus(
-        item.leaveStatus,
-      )}\r\n`;
+        },${item.totalHour},${item.leaveReason},${item.reviewerRemark},${this.getStatus(
+          item.leaveStatus,
+        )}\r\n`;
       console.log(row);
       csvArray.push(row);
     }

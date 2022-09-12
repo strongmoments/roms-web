@@ -187,7 +187,7 @@ export class VerticalAppHeaderComponent {
       this.notifications.map((elem: any) => {
         return elem.body.time = new Date(parseInt(elem.body.time));
       })
-      this.notifications.sort((x: any, y: any) => +new Date(parseInt(y.body.time)) - +new Date(parseInt(x.body.time)));
+      this.notifications.sort((x: any, y: any) => (y.body.time) - (x.body.time));
 
       console.log(this.notifications, 'this.notifications')
     });
@@ -195,6 +195,7 @@ export class VerticalAppHeaderComponent {
 
   markRead(id: string) {
     this.notificationService.markAsRead(id).subscribe();
+    this.notifications = this.notifications.filter((elem: any) => elem.eventId != id)
     return;
   }
   redirectNotification(item: any) {
@@ -208,7 +209,9 @@ export class VerticalAppHeaderComponent {
   }
   redirect(type: string) {
     if (type == 'release') {
-      this.router.navigate(['release-note']);
+      this.router.navigate(['change-password']);
+    } else if (type == 'change-password') {
+      this.router.navigate(['change-password']);
     }
   }
   logOut() {

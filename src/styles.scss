@@ -156,3 +156,8 @@ tr.example-element-row:not(.example-expanded-row):active {
 //   padding-bottom: 0;
 //   margin-bottom: 0;
 // }
+
+.row-strike-through{
+  text-decoration: line-through;
+  background-color: lavender !important;
+}

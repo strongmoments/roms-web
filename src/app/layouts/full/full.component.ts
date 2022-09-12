@@ -6,6 +6,7 @@ import { Menu, MenuItems } from '../../shared/menu-items/menu-items';
 import { PerfectScrollbarConfigInterface, PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
 import { Globals } from 'src/app/globals';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
+import { environment } from 'src/environments/environment';
 
 /** @title Responsive sidenav */
 @Component({
@@ -19,7 +20,7 @@ export class FullComponent implements OnDestroy, OnInit {
   user!: any;
   globals!: Globals;
   userPermissions: any = {};
-
+  server: string = environment.server;
   dir = 'ltr';
   dark = false;
   minisidebar = false;
@@ -59,7 +60,7 @@ export class FullComponent implements OnDestroy, OnInit {
 
   ngOnInit(): void {
     this.user = this.authService.getCurrentUser();
-    
+
     if (this.user === null || this.user === undefined) {
       this.authService.logout();
       this.router.navigate(['/']);

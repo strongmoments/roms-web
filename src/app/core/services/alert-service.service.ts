@@ -15,7 +15,7 @@ export class AlertService {
         if (isLinkNotitication) {
             notificationHtml =
                 `<img src='${data?.profileImage}' 
-                class="profile-pic" style="border-radius:12px;max-height:30px;max-width:32px;" height="28px" width="29px" align="left"><p class="toastr-message">${message}</p>`;
+                class="img-circle" style="border-radius:12px;max-height:30px;max-width:32px;" height="28px" width="29px" align="left"><p class="toastr-message">${message}</p>`;
 
             // <div fxLayout="row wrap" fxFlexAlign="center" class="row">
             // <span href="javascript:void(0);"><img [src]='${data?.profileImage}' 
