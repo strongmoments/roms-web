@@ -113,35 +113,51 @@ export class VerticalAppHeaderComponent {
   ];
   user: any = {};
   eve: any;
-  constructor(private translate: TranslateService, private authService: AuthenticationService, private router: Router, private sseService: SseService, private notificationService: NotificationService, private alertService: AlertService, private base64ImagePipe: Base64ImagePipe) {
+  constructor(
+    private translate: TranslateService,
+    private authService: AuthenticationService,
+    private router: Router,
+    private sseService: SseService,
+    private notificationService: NotificationService,
+    private alertService: AlertService,
+    private base64ImagePipe: Base64ImagePipe,
+  ) {
     translate.setDefaultLang('en');
     this.user = this.authService.getCurrentUser();
     this.getAllNotification();
-    this.sseService.getServerSentEvent(`http://13.234.56.70:8081/subscription/${this.user.id}`)
-      .subscribe((data: any) => {
-        //  data;
-        if (data) {
-          // console.log(data);
-          data = JSON.parse(data);
-          console.log(data, 'askdsalkd')
-          if (data.profileImage) {
-            let img: any = this.base64ImagePipe.transform(data.profileImage);
-            console.log(img.changingThisBreaksApplicationSecurity)
-            data.profileImage = img.changingThisBreaksApplicationSecurity;
+    this.sseService
+      .getServerSentEvent(`http://13.234.56.70:8081/subscription/${this.user.id}`)
+      .subscribe(
+        (data: any) => {
+          //  data;
+          if (data) {
+            // console.log(data);
+            data = JSON.parse(data);
+            console.log(data, 'askdsalkd');
+            if (data.profileImage) {
+              let img: any = this.base64ImagePipe.transform(data.profileImage);
+              console.log(img.changingThisBreaksApplicationSecurity);
+              data.profileImage = img.changingThisBreaksApplicationSecurity;
+            }
+            // console.log(data, 'askdsalkd')
+            let url = '';
+            if (data.type == 'leave_request') {
+              url = '/leave/leave-request';
+            } else if (data.type == 'leave_approve' || data.type == 'leave_reject') {
+              url = '/leave/apply-leave';
+              // this.router.navigate(['/leave/apply-leave'], { queryParams: { id: item.eventId } });
+            }
+            this.alertService.openSnackBar(data.message, false, 0, '', true, {
+              profileImage: data.profileImage,
+              url: url,
+              eventId: data.eventId,
+            });
+            this.notifications.push({});
+            // this.getAllNotification();
           }
-          // console.log(data, 'askdsalkd')
-          let url = '';
-          if (data.type == 'leave_request') {
-            url = '/leave/leave-request';
-          } else if (data.type == 'leave_approve' || data.type == 'leave_reject') {
-            url = '/leave/apply-leave';
-            // this.router.navigate(['/leave/apply-leave'], { queryParams: { id: item.eventId } });
-          }
-          this.alertService.openSnackBar(data.message, false, 0, '', true, { profileImage: data.profileImage, url: url, eventId: data.eventId });
-          this.notifications.push({});
-          // this.getAllNotification();
-        }
-      }, error => console.log(error, 'ererer'));
+        },
+        (error) => console.log(error, 'ererer'),
+      );
 
     // let eventSource = new EventSource(`http://13.234.56.70:8081/subscription/${this.user.id}`);
     // eventSource.addEventListener('join', event => {
@@ -171,7 +187,6 @@ export class VerticalAppHeaderComponent {
     //   console.log("New message", event.data);
     //   // will log 3 times for the data stream above
     // };
-
   }
 
   changeLanguage(lang: any): void {
@@ -179,23 +194,21 @@ export class VerticalAppHeaderComponent {
     this.selectedLanguage = lang;
   }
 
-
   getAllNotification() {
-
     this.notificationService.getAll().subscribe((result: any) => {
       this.notifications = result.data;
       this.notifications.map((elem: any) => {
-        return elem.body.time = new Date(parseInt(elem.body.time));
-      })
-      this.notifications.sort((x: any, y: any) => (y.body.time) - (x.body.time));
+        return (elem.body.time = new Date(parseInt(elem.body.time)));
+      });
+      this.notifications.sort((x: any, y: any) => y.body.time - x.body.time);
 
-      console.log(this.notifications, 'this.notifications')
+      console.log(this.notifications, 'this.notifications');
     });
   }
 
   markRead(id: string) {
     this.notificationService.markAsRead(id).subscribe();
-    this.notifications = this.notifications.filter((elem: any) => elem.eventId != id)
+    this.notifications = this.notifications.filter((elem: any) => elem.eventId != id);
     return;
   }
   redirectNotification(item: any) {
@@ -205,11 +218,10 @@ export class VerticalAppHeaderComponent {
     } else if (item.type == 'leave_approve' || item.type == 'leave_reject') {
       this.router.navigate(['/leave/apply-leave'], { queryParams: { id: item.eventId } });
     }
-
   }
   redirect(type: string) {
     if (type == 'release') {
-      this.router.navigate(['change-password']);
+      this.router.navigate(['release-note']);
     } else if (type == 'change-password') {
       this.router.navigate(['change-password']);
     }

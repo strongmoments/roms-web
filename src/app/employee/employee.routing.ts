@@ -4,7 +4,7 @@ import { EmployeeFormComponent } from './employee-form/employee-form.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeTransferFormComponent } from './employee-transfer-form/employee-transfer-form.component';
 import { EmployeeViewComponent } from './employee-view/employee-view.component';
-import { EmployeeRegignationComponent } from './employee-regignation/employee-regignation.component';
+import { EmployeeResignationComponent } from './employee-resignation/employee-resignation.component';
 import { FullComponent } from '../layouts/full/full.component';
 
 const routes: Routes = [
@@ -17,7 +17,7 @@ const routes: Routes = [
       { path: 'form', component: EmployeeFormComponent },
       { path: 'view:id', component: EmployeeViewComponent },
       { path: 'transfer', component: EmployeeTransferFormComponent },
-      { path: 'resignation', component: EmployeeRegignationComponent },
+      { path: 'resignation', component: EmployeeResignationComponent },
     ],
   },
 ];
@@ -26,4 +26,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class EmployeeRoutingModule { }
+export class EmployeeRoutingModule {}

@@ -1,15 +1,16 @@
 <div fxLayout="row wrap">
-  <div fxFlex.gt-sm="100" fxFlex="100">
+  <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
     <mat-card>
       <mat-card-content>
-        <mat-card-title class="title">TRANSFER / CHANGE OF RATE</mat-card-title>
+        <h2 class="title text-center">TRANSFER / CHANGE OF RATE</h2>
         <mat-divider> </mat-divider>
+        
         <form [formGroup]="form" class="basic-form" (ngSubmit)="onSubmit()">
           <div fxLayout="row wrap" fxFlexAlign="center" class="row">
             <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
               <mat-radio-group class="example-radio-group" aria-label="Select an option" formControlName="type">
-                <mat-radio-button class="example-radio-button p-10" value="1">Permanent Transfer</mat-radio-button>
-                <mat-radio-button class="example-radio-button" value="2">Temporary Transfer</mat-radio-button>
+                <mat-radio-button class="example-radio-button m-t-10" value="1">Permanent Transfer</mat-radio-button>
+                <mat-radio-button class="example-radio-button m-l-20" value="2">Temporary Transfer</mat-radio-button>
               </mat-radio-group>
 
               <mat-error *ngIf="submitted && checkError('type', 'required')">

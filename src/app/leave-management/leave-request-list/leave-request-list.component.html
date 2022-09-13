@@ -1,39 +1,73 @@
-<mat-card>
-    <mat-tab-group [selectedIndex]="tabIndex" mat-stretch-tabs (selectedIndexChange)="onTabChanged($event);">
-        <mat-tab label="Leave Request">
-            <ng-container [ngTemplateOutlet]="tableTemplate"></ng-container>
-        </mat-tab>
-        <mat-tab label="History">
-            <ng-container [ngTemplateOutlet]="tableTemplate"></ng-container>
-        </mat-tab>
-
-    </mat-tab-group>
-</mat-card>
-
-
+<div>
+  <mat-tab-group
+    [selectedIndex]="tabIndex"
+    mat-stretch-tabs
+    (selectedIndexChange)="onTabChanged($event)"
+  >
+    <mat-tab label="Leave Request">
+      <ng-container [ngTemplateOutlet]="tableTemplate"></ng-container>
+    </mat-tab>
+    <mat-tab label="History">
+      <ng-container [ngTemplateOutlet]="tableTemplate"></ng-container>
+    </mat-tab>
+  </mat-tab-group>
+</div>
 
 <!--#table is the Angular Template rReference variable name-->
 <ng-template #tableTemplate>
-    <mat-card>
-        <mat-card-title align="right">
+  <div class="m-t-20">
+    <mat-card class="m-0 m-b-20">
+      <div fxLayout="row wrap">
+        <div fxFlex.gt-sm="80" fxFlex="100" class="p-10"></div>
+        <div fxFlex.gt-sm="20" fxFlex="100" class="p-10">
+          <mat-form-field appearance="outline" class="dt-range">
+            <mat-label (click)="picker.open()"> {{currentDate| date:'MMMM y'}} </mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input
+                matStartDate
+                [(ngModel)]="startDate"
+                placeholder="Start date"
+                readonly
+                (dateChange)="applyFilter()"
+                (click)="picker.open()"
+              />
+              <input
+                matEndDate
+                placeholder="End date"
+                readonly
+                [(ngModel)]="endDate"
+                (dateChange)="applyFilter()"
+                (click)="picker.open()"
+              />
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card>
+    <!-- <mat-card-title align="right">
             {{currentDate| date:'MMMM y'}} <mat-form-field style="display:none;text-align: right;">
                 <mat-label>Choose a date</mat-label>
                 <input matInput [matDatepicker]="picker">
-                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
             <mat-icon (click)="picker.open()">calendar_today</mat-icon>
 
-        </mat-card-title>
-        <mat-card-content>
-
-
-            <div class="table-responsive">
-                <table mat-table [dataSource]="dataSource" class="table employee-list no-wrap" matSort
-                    multiTemplateDataRows>
-                    <!-- <table width="100%" mat-table [dataSource]="dataSource" matSort> -->
-                    <!-- ID Column -->
-                    <!-- <ng-container matColumnDef="name">
+        </mat-card-title> -->
+    <mat-card-content>
+      <div class="table-responsive">
+        <table
+          mat-table
+          [dataSource]="dataSource"
+          class="table employee-list no-wrap"
+          matSort
+          multiTemplateDataRows
+        >
+          <!-- <table width="100%" mat-table [dataSource]="dataSource" matSort> -->
+          <!-- ID Column -->
+          <!-- <ng-container matColumnDef="name">
                         <th mat-header-cell *matHeaderCellDef>Name</th>
                         <td mat-cell *matCellDef="let element">
                           <div class="d-flex">
@@ -46,76 +80,71 @@
                         </td>
                       </ng-container> -->
 
+          <ng-container matColumnDef="staffName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Staff Name</th>
+            <td mat-cell *matCellDef="let row; let i = index">
+              <div class="d-flex">
+                <img class="mat-card-avatar" [src]="row?.employe?.profileImage | base64Image" />
+                <div class="m-l-15">
+                  <p class="font-medium m-b-0 m-t-0">
+                    {{ row?.employe?.firstName }} {{ row?.employe?.lastName }}
+                  </p>
+                  <!-- <small class="text-muted">{{ }}</small> -->
+                </div>
+              </div>
+              <!-- <span class="header-label">staffName:</span> -->
+            </td>
+          </ng-container>
 
-                    <ng-container matColumnDef="staffName">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Staff name </th>
-                        <td mat-cell *matCellDef="let row;let i=index;">
-                            <div class="d-flex">
-                                <img class="mat-card-avatar" [src]="row?.employe?.profileImage|base64Image" />
-                                <div class="m-l-15">
-                                    <p class="font-medium m-b-0 m-t-0">{{row?.employe?.firstName}}
-                                        {{row?.employe?.lastName}}</p>
-                                    <!-- <small class="text-muted">{{ }}</small> -->
-                                </div>
-                            </div>
-                            <!-- <span class="header-label">staffName:</span> -->
+          <ng-container matColumnDef="applyDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Applied On</th>
+            <td mat-cell *matCellDef="let row; let i = index">
+              <!-- <span class="header-label">applyDate:</span> -->
+              {{ row?.applyDate | date: 'dd/MM/yyyy' }}
+            </td>
+          </ng-container>
 
-                        </td>
-                    </ng-container>
+          <!-- Progress Column -->
+          <ng-container matColumnDef="dates">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Dates</th>
+            <td mat-cell *matCellDef="let row">
+              <!-- {{getShortDate(row.startDateTime,row.endDateTime )}} -->
+              <!-- <span class="header-label">dates:</span> -->
+              {{ row.startDateTime | date: 'MMM d' }} to
+              {{ row.endDateTime | date: 'MMM d, y' }}
+            </td>
+          </ng-container>
 
+          <!-- Name Column -->
+          <ng-container matColumnDef="days">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Days</th>
+            <td mat-cell *matCellDef="let row">
+              <!-- <span class="header-label">days:</span> -->
+              {{ row?.totalDay }}
+            </td>
+          </ng-container>
 
-                    <ng-container matColumnDef="applyDate">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                            Applied On
-                        </th>
-                        <td mat-cell *matCellDef="let row; let i = index">
-                            <!-- <span class="header-label">applyDate:</span> -->
-                            {{ row?.applyDate | date: "dd/MM/yyyy" }}
-                        </td>
-                    </ng-container>
+          <!-- Fruit Column -->
+          <ng-container matColumnDef="time">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
+            <td mat-cell *matCellDef="let row">
+              <!-- <span class="header-label">time:</span> -->
+              <ng-container *ngIf="row && row.totalHour > 0">
+                {{ row.startDateTime | date: 'shortTime' }} to
+                {{ row.endDateTime | date: 'shortTime' }}
+              </ng-container>
+            </td>
+          </ng-container>
 
+          <ng-container matColumnDef="hours">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Hours</th>
+            <td mat-cell *matCellDef="let row">
+              <!-- <span class="header-label">hours:</span> -->
+              {{ row?.totalHour }}
+            </td>
+          </ng-container>
 
-                    <!-- Progress Column -->
-                    <ng-container matColumnDef="dates">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Dates</th>
-                        <td mat-cell *matCellDef="let row">
-                            <!-- {{getShortDate(row.startDateTime,row.endDateTime )}} -->
-                            <!-- <span class="header-label">dates:</span> -->
-                            {{ row.startDateTime| date: "MMM d" }} to
-                            {{ row.endDateTime |date: "MMM d, y" }}
-                        </td>
-                    </ng-container>
-
-                    <!-- Name Column -->
-                    <ng-container matColumnDef="days">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Days</th>
-                        <td mat-cell *matCellDef="let row">
-                            <!-- <span class="header-label">days:</span> -->
-                            {{ row?.totalDay }}
-                        </td>
-                    </ng-container>
-
-                    <!-- Fruit Column -->
-                    <ng-container matColumnDef="time">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
-                        <td mat-cell *matCellDef="let row">
-                            <!-- <span class="header-label">time:</span> -->
-                            <ng-container *ngIf="row && row.totalHour > 0">
-                                {{ row.startDateTime | date: "shortTime" }} to
-                                {{row.endDateTime| date: "shortTime" }}
-                            </ng-container>
-                        </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="hours">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Hours</th>
-                        <td mat-cell *matCellDef="let row">
-                            <!-- <span class="header-label">hours:</span> -->
-                            {{ row?.totalHour }}
-                        </td>
-                    </ng-container>
-
-                    <!-- <ng-container matColumnDef="manager">
+          <!-- <ng-container matColumnDef="manager">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>
                             Manager
                         </th>
@@ -125,119 +154,136 @@
                         </td>
                     </ng-container> -->
 
-                    <ng-container matColumnDef="leave_type">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                            Leave type
-                        </th>
-                        <td mat-cell *matCellDef="let row">
-                            <!-- <span class="header-label">leave_type:</span> -->
-                            {{ row?.leaveType?.leaveDescription }}
-                        </td>
-                    </ng-container>
+          <ng-container matColumnDef="leave_type">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Leave Type</th>
+            <td mat-cell *matCellDef="let row">
+              <!-- <span class="header-label">leave_type:</span> -->
+              {{ row?.leaveType?.leaveDescription }}
+            </td>
+          </ng-container>
 
-                    <ng-container matColumnDef="status">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                            Status
-                        </th>
-                        <td mat-cell *matCellDef="let row">
-                            <span [ngClass]="getStatusColor(row?.leaveStatus)">
-                                {{ getStatus(row?.leaveStatus) }}
-                            </span>
-                        </td>
-                    </ng-container>
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+            <td mat-cell *matCellDef="let row">
+              <span [ngClass]="getStatusColor(row?.leaveStatus)">
+                {{ getStatus(row?.leaveStatus) }}
+              </span>
+            </td>
+          </ng-container>
 
-                    <ng-container matColumnDef="leaveReason">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                            Reason
-                        </th>
-                        <td mat-cell *matCellDef="let row">
-                            <!-- <span class="header-label">leaveReason:</span> -->
-                            {{ row?.leaveReason }}
-                        </td>
-                    </ng-container>
+          <ng-container matColumnDef="leaveReason">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Reason</th>
+            <td mat-cell *matCellDef="let row">
+              <!-- <span class="header-label">leaveReason:</span> -->
+              {{ row?.leaveReason }}
+            </td>
+          </ng-container>
 
-                    <ng-container matColumnDef="reviewerRemark">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                            Comments
-                        </th>
-                        <td mat-cell *matCellDef="let row">
-                            <!-- <span class="header-label">reviewerRemark:</span> -->
-                            {{ row?.reviewerRemark }}
-                        </td>
-                    </ng-container>
+          <ng-container matColumnDef="reviewerRemark">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Comments</th>
+            <td mat-cell *matCellDef="let row">
+              <!-- <span class="header-label">reviewerRemark:</span> -->
+              {{ row?.reviewerRemark }}
+            </td>
+          </ng-container>
 
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+            <td mat-cell *matCellDef="let row; let i = index">
+              <!-- <span class="header-label">action:</span> -->
+            </td>
+          </ng-container>
 
-                    <ng-container matColumnDef="action">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
-                        <td mat-cell *matCellDef="let row;let i=index;">
-                            <!-- <span class="header-label">action:</span> -->
+          <ng-container matColumnDef="expandedDetail">
+            <td
+              mat-cell
+              *matCellDef="let element; let i = dataIndex"
+              [attr.colspan]="displayedColumns.length"
+            >
+              <div
+                class="example-element-detail"
+                [@detailExpand]="element === expandedElement ? 'expanded' : 'collapsed'"
+              >
+                <!-- <div class="example-element-diagram"> -->
+                <!-- <div class="example-element-position">test</div> -->
+                <!-- <div class="example-element-symbol">{{ element.symbol }}</div> -->
+                <!-- <div class="example-element-name">{{ element.name }}</div> -->
+                <!-- <div class="example-element-weight">{{ element.weight }}</div> -->
+                <!-- </div> -->
+                <div class="example-element-description" *ngIf="element?.leaveStatus == 1">
+                  <!-- <p> -->
+                  <a
+                    class="approved"
+                    (click)="approveReject(0, i, element.id)"
+                    href="javascript:void(0)"
+                  >
+                    <mat-icon>check</mat-icon>Approve
+                  </a>
+                  <a
+                    class="rejected"
+                    href="javascript:void(0)"
+                    (click)="approveReject(1, i, element.id)"
+                  >
+                    &nbsp;
+                    <mat-icon>cancel</mat-icon>Decline
+                  </a>
+                  <!-- </p> -->
+                  <mat-form-field appearance="outline">
+                    <!-- <mat-label>Outline form field</mat-label> -->
+                    <input matInput placeholder="Comment" (change)="addComment(i, $event)" />
+                  </mat-form-field>
+                </div>
 
-                        </td>
-                    </ng-container>
+                <div
+                  class="example-element-description"
+                  *ngIf="element && element.leaveStatus != 1"
+                >
+                  {{ element?.reviewerRemark }}
+                  <span>
+                    --
+                    <span [ngClass]="getStatusColor(element?.leaveStatus)">
+                      {{ getStatus(element?.leaveStatus) }}
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </td>
+          </ng-container>
 
-                    <ng-container matColumnDef="expandedDetail">
-                        <td mat-cell *matCellDef="let element;let i=dataIndex" [attr.colspan]="displayedColumns.length">
-                            <div class="example-element-detail"
-                                [@detailExpand]="element === expandedElement ? 'expanded' : 'collapsed'">
-                                <!-- <div class="example-element-diagram"> -->
-                                <!-- <div class="example-element-position">test</div> -->
-                                <!-- <div class="example-element-symbol">{{ element.symbol }}</div> -->
-                                <!-- <div class="example-element-name">{{ element.name }}</div> -->
-                                <!-- <div class="example-element-weight">{{ element.weight }}</div> -->
-                                <!-- </div> -->
-                                <div class="example-element-description" *ngIf="element?.leaveStatus == 1">
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <!-- <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr> -->
 
-                                    <!-- <p> -->
-                                    <a class="approved" (click)="approveReject(0,i,element.id)" href="javascript:void(0)">
-                                        <mat-icon>check</mat-icon>Approve
-                                    </a>
-                                    <a class="rejected" href="javascript:void(0)" (click)="approveReject(1,i,element.id)">
-                                        &nbsp;
-                                        <mat-icon>cancel</mat-icon>Decline
-                                    </a>
-                                    <!-- </p> -->
-                                    <mat-form-field appearance="outline">
-                                        <!-- <mat-label>Outline form field</mat-label> -->
-                                        <input matInput placeholder="Comment" (change)="addComment(i,$event)">
-                                    </mat-form-field>
+          <!-- <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr> -->
+          <tr
+            mat-row
+            *matRowDef="let element; columns: displayedColumns"
+            class="example-element-row"
+            [class.example-expanded-row]="expandedElement === element"
+            (click)="expandedElement = expandedElement === element ? null : element"
+          ></tr>
+          <tr
+            mat-row
+            *matRowDef="let row; columns: ['expandedDetail']"
+            class="example-detail-row"
+          ></tr>
 
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" [attr.colspan]="displayedColumns.length">No Leave request</td>
+          </tr>
+        </table>
+        <!-- </table> -->
 
-                                </div>
-
-
-                                <div class="example-element-description" *ngIf="element && element.leaveStatus != 1">
-                                    {{element?.reviewerRemark}}
-                                    <span> -- <span [ngClass]="getStatusColor(element?.leaveStatus)">
-                                            {{ getStatus(element?.leaveStatus) }}
-                                        </span> </span>
-                                </div>
-                            </div>
-                        </td>
-                    </ng-container>
-
-
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <!-- <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr> -->
-
-                    <!-- <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr> -->
-                    <tr mat-row *matRowDef="let element; columns: displayedColumns" class="example-element-row"
-                        [class.example-expanded-row]="expandedElement === element"
-                        (click)="expandedElement = expandedElement === element ? null : element"></tr>
-                    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
-
-
-                    <!-- Row shown when there is no matching data. -->
-                    <tr class="mat-row" *matNoDataRow>
-                        <td class="mat-cell" [attr.colspan]="displayedColumns.length">No Leave request</td>
-                    </tr>
-                </table>
-                <!-- </table> -->
-
-                <mat-paginator [length]="totalRecords" [pageIndex]="pageNo" (page)="handlePageChange($event)"
-                    [pageSizeOptions]="[5, 10, 20]" [pageSize]="pagesize" aria-label="Select page">
-                </mat-paginator>
-            </div>
-
-        </mat-card-content>
-    </mat-card>
+        <mat-paginator
+          [length]="totalRecords"
+          [pageIndex]="pageNo"
+          (page)="handlePageChange($event)"
+          [pageSizeOptions]="[5, 10, 20]"
+          [pageSize]="pagesize"
+          aria-label="Select page"
+        >
+        </mat-paginator>
+      </div>
+    </mat-card-content>
+  </div>
 </ng-template>

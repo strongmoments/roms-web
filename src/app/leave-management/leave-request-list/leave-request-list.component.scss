@@ -17,7 +17,6 @@
 //     background: #3A93D4;
 // }
 
-
 // .approve-button{
 //     color: green;
 // }
@@ -25,3 +24,21 @@
 // .reject-button{
 //     color:red;
 // }
+.example-element-row + .example-detail-row {
+  height: 0 !important;
+}
+.example-element-row + .example-detail-row td {
+  padding: 0px !important;
+}
+
+.example-element-row.example-expanded-row + .example-detail-row {
+  height: 48px !important;
+}
+
+.example-element-row.example-expanded-row + .example-detail-row td.mat-cel {
+  padding: 15px !important;
+}
+
+.dt-range .mat-form-field-wrapper {
+  padding-bottom: 0 !important;
+}

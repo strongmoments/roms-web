@@ -157,7 +157,19 @@ tr.example-element-row:not(.example-expanded-row):active {
 //   margin-bottom: 0;
 // }
 
-.row-strike-through{
+.row-strike-through {
   text-decoration: line-through;
   background-color: lavender !important;
+}
+
+.h-128 {
+  height: 128px;
+}
+
+.mat-table tr {
+  vertical-align: middle;
+}
+
+.dt-range .mat-form-field-wrapper {
+  padding-bottom: 0 !important;
 }

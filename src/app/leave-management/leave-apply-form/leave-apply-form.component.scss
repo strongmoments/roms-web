@@ -88,3 +88,17 @@
 // // th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
 // //     width:auto;
 // //   }
+.example-element-row + .example-detail-row {
+  height: 0 !important;
+}
+.example-element-row + .example-detail-row td {
+  padding: 0px !important;
+}
+
+.example-element-row.example-expanded-row + .example-detail-row {
+  height: 48px !important;
+}
+
+.example-element-row.example-expanded-row + .example-detail-row td.mat-cel {
+  padding: 15px !important;
+}

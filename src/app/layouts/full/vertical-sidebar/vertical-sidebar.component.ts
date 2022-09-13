@@ -58,8 +58,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
     private authService: AuthenticationService,
-    private router: Router
-    // public menuItems: MenuItems,
+    private router: Router, // public menuItems: MenuItems,
   ) {
     this.mobileQuery = media.matchMedia('(min-width: 768px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -69,9 +68,9 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.user = this.authService.getCurrentUser();
-    console.log(this.user, '')
+    console.log(this.user, '');
     this.userPermissions = this.authService.getUserPermission()?.menus;
-    console.log(this.userPermissions, 'this.userPermissions')
+    console.log(this.userPermissions, 'this.userPermissions');
 
     let menuItem: Menu[] = [];
 
@@ -85,7 +84,12 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
           subMenu.push({ state: 'coming-soon', name: 'Assets', type: 'link', icon: 'commute' });
         }
         if (this.userPermissions.operations.includes('inspection')) {
-          subMenu.push({ state: 'coming-soon', name: 'Inspection', type: 'link', icon: 'description' });
+          subMenu.push({
+            state: 'coming-soon',
+            name: 'Inspection',
+            type: 'link',
+            icon: 'description',
+          });
         }
         // if (this.userPermissions.operations.includes('inspection')) {
         // subMenu.push({
@@ -103,47 +107,77 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
       if (this.userPermissions.timeoff && this.userPermissions.timeoff.length > 0) {
         let subMenu = [];
         if (this.userPermissions.timeoff.includes('applyleave')) {
-
           subMenu.push({ state: 'leave/apply-leave', name: 'My Leaves', type: 'link', icon: '' });
           // subMenu.push({ displayName: 'My Leaves', iconName: '', route: '/leave' });
+          subMenu.push({
+            state: 'employee/resignation',
+            name: 'Resignation',
+            type: 'link',
+            icon: 'timer',
+          });
         }
         if (this.userPermissions.timeoff.includes('history')) {
           // subMenu.push({ state: 'coming-soon', name: 'Holidays', type: 'link', icon: '' });
-
           // subMenu.push({ displayName: 'Holidays', iconName: '', route: '/' });
         }
-        menuItem.push(
-          {
-            state: 'personal', name: 'Personal', type: 'sub', icon: 'perm_contact_calendar', children: subMenu,
-          });
+        menuItem.push({
+          state: 'personal',
+          name: 'Personal',
+          type: 'sub',
+          icon: 'perm_contact_calendar',
+          children: subMenu,
+        });
       }
 
       //condition for menu of my staff
       if (this.userPermissions.dashboard && this.userPermissions.dashboard.length > 0) {
         let subMenu: any = [];
         if (this.userPermissions.dashboard.includes('mystaff')) {
-          subMenu.push(
-            { state: 'leave/leave-request', name: 'Leave Request', type: 'link', icon: 'account_box' });
+          subMenu.push({
+            state: 'leave/leave-request',
+            name: 'Leave Request',
+            type: 'link',
+            icon: 'account_box',
+          });
+          subMenu.push({
+            state: 'report/resignation',
+            name: 'Resignations',
+            type: 'link',
+            icon: 'timer',
+          });
         }
         // if (this.userPermissions.timeoff.includes('history')) {
         //   subMenu.push({ displayName: 'Holidays', iconName: '', route: '/' });
         // }
         menuItem.push({
-          state: 'staff', name: 'My Staff', type: 'sub', icon: 'people', children: subMenu,
+          state: 'staff',
+          name: 'My Staff',
+          type: 'sub',
+          icon: 'people',
+          children: subMenu,
         });
       }
 
       if (this.userPermissions.reports && this.userPermissions.reports.length > 0) {
         let subMenu: any = [];
         if (this.userPermissions.reports.includes('leave_export')) {
-          subMenu.push(
-            { state: 'report/leave', name: 'Staff Leaves', type: 'link', icon: 'account_box' });
+          subMenu.push({
+            state: 'report/leave',
+            name: 'Staff Leaves',
+            type: 'link',
+            icon: 'account_box',
+          });
         }
         // if (this.userPermissions.reports.includes('leave_export')) {
         //   subMenu.push({ displayName: 'Holidays', iconName: '', route: '/' });
         // }
         menuItem.push({
-          state: 'report', name: 'People & Culture', type: 'sub', icon: 'people', children: subMenu, badge: [{ type: 'warning', value: 'new' }],
+          state: 'report',
+          name: 'People & Culture',
+          type: 'sub',
+          icon: 'people',
+          children: subMenu,
+          badge: [{ type: 'warning', value: 'new' }],
         });
       }
     }
@@ -156,14 +190,13 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
     //   },
     // );
 
-
     // const accountSetting = {
     //   displayName: 'Account Settings ', iconName: 'settings', route: '/', children: [
     //     { displayName: 'Profile', iconName: 'account_box', route: '/profile' },
     //     { displayName: 'Change Password', iconName: 'settings', route: '/changePassword' }
     //   ]
     // }
-    console.log(menuItem)
+    console.log(menuItem);
     this.menuItems = menuItem;
   }
 
