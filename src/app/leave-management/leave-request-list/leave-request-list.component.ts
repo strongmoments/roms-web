@@ -69,6 +69,9 @@ export class LeaveRequestListComponent implements OnInit, AfterViewInit {
   expandedElement: any = null;
   selectedId: any;
   tabIndex: number = 0;
+  startDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 1));
+  endDate: Date = new Date();
+
   constructor(
     public util: Utils,
     globals: Globals,

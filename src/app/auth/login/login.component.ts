@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe({
         next: (result: any) => {
-          this.alertService.openSnackBar(CustomMessage.loginSuccess, false);
+          // this.alertService.openSnackBar(CustomMessage.loginSuccess, false);
           this.router.navigate(['/dashboard']);
         },
         error: (error: any) => {

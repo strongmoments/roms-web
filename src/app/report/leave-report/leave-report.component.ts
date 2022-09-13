@@ -38,16 +38,16 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [
     'select',
     'staffName',
-    'applyDate',
-    'leave_type',
+    'convertedAppliedOn',
+    'leaveTypeName',
     'dates',
     'days',
     'time',
     'hours',
     'action',
     // 'leaveReason',
-    'approver',
-    'dateOfApproval',
+    'managerName',
+    'convertedApprovalDate',
   ];
   displayedColumnsHistory: string[] = ['createDate', 'dateRange', 'reportName'];
 
@@ -135,11 +135,11 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
 
   removeRow(id: string) {
     // console.log(index, 'index');
-    let index=this.removedRows.indexOf(id);
+    let index = this.removedRows.indexOf(id);
     if (this.removedRows && index === -1) {
       this.removedRows.push(id);
-    }else{
-      this.removedRows.splice(index,1);
+    } else {
+      this.removedRows.splice(index, 1);
     }
     // let data=this.dataSource.data;
 
@@ -153,11 +153,12 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     const scrollLocation = e.target.scrollTop; // how far user scrolled
 
     // If the user has scrolled within 200px of the bottom, add more data
-    const buffer = 200;
+    const buffer = 10;
     const limit = tableScrollHeight - tableViewHeight - buffer;
-    // console.log(scrollLocation, limit, 'scrollLocation > limit');
+    console.log(scrollLocation, limit, 'scrollLocation > limit');
     if (scrollLocation > limit) {
       if (this.dataSource.data.length < this.totalRecords) {
+        this.pageNo = this.pageNo + 1;
         this.refresh(this.getDefaultOptions(), true);
       }
       // this.dataSource = this.dataSource.concat(ELEMENT_DATA);
@@ -175,23 +176,39 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     let queryData = {
       toDate: endDate,
       fromDate: startDate,
-      departmentId: this.departmentId,
-      employeeTypeId: this.employeeType,
+      departmentId: this.departmentId == 'all' ? '' : this.departmentId,
+      employeeTypeId: this.employeeType == 'all' ? '' : this.employeeType,
       leaveStatus: `${this.status}`,
     };
-    console.log(queryData, 'queryData');
+    // console.log(queryData, 'queryData');
 
     this.leaveService
       .getAllEmployeeLeaves(options, queryData)
       .pipe(first())
       .subscribe((result: any) => {
         this.totalRecords = result.totalElement;
-        if (isScrolled == true) {
-          this.dataSource.data = [...this.dataSource.data, ...result.data];
-        } else {
-          this.dataSource.data = result.data;
+        let data: any = [];
+        for (let i = 0; i < result.data.length; i++) {
+          let staffName = `${result.data[i].employe?.firstName} ${result.data[i].employe?.lastName}`;
+          let managerName = `${result.data[i].approver?.firstName} ${result.data[i].approver?.lastName}`;
+          let convertedAppliedOn = this.datePipe.transform(result.data[i].applyDate, 'dd/MM/yyyy');
+          let convertedApprovalDate = result.data[i].dateOfApproval ? this.datePipe.transform(result.data[i].dateOfApproval, 'dd/MM/yyyy') : '';
+          let convertedStartDate = this.datePipe.transform(result.data[i].startDateTime, 'MMM d');
+          let convertedEndDate = this.datePipe.transform(result.data[i].endDateTime, 'MMM d,y');
+          let convertedStartTime = this.datePipe.transform(result.data[i].startDateTime, 'shortTime');
+          let convertedEndTime = this.datePipe.transform(result.data[i].endDateTime, 'shortTime');
+          let leaveTypeName = result.data[i]?.leaveType?.leaveDescription;
+          let status = this.getStatus(result.data[i]?.leaveStatus);
+
+          data.push({ ...result.data[i], leaveTypeName: leaveTypeName, status: status, convertedStartTime: convertedStartTime, convertedEndTime: convertedEndTime, convertedStartDate: convertedStartDate, convertedEndDate: convertedEndDate, convertedApprovalDate: convertedApprovalDate, managerName: managerName, convertedAppliedOn: convertedAppliedOn, staffName: staffName });
+
         }
-        console.log(result, 'result.data');
+        if (isScrolled == true) {
+          this.dataSource.data = [...this.dataSource.data, ...data];
+        } else {
+          this.dataSource.data = data;
+        }
+        // console.log(data, 'result.data');
       });
   }
 
@@ -202,7 +219,7 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
       .subscribe((result: any) => {
         this.totalRecords = result.totalElement;
         this.dataSourceHistory.data = result.data;
-        console.log(result, 'result.data');
+        // console.log(result, 'result.data');
       });
   }
 
@@ -248,14 +265,16 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     })?.name;
   }
 
-  getStatusColor(status: any) {
-    return this.globals.leaveStatus.find((elem: any) => {
+  getStatusColor(status: any, isCheckbox: boolean = false) {
+
+    let elem: any = this.globals.leaveStatus.find((elem: any) => {
       return elem.value == status;
-    })?.colorClass;
+    });
+    return elem ? (isCheckbox == true ? elem.checkboxColorClass : elem.colorClass) : '';
   }
 
   applyFilter(isTextSearch: boolean = false): void {
-    console.log(this.search, 'search', this.startDate, 'startdate', this.endDate, 'enddate');
+    // console.log(this.search, 'search', this.startDate, 'startdate', this.endDate, 'enddate');
     this.search = this.search.trim(); // Remove whitespace
     this.search = this.search.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = this.search;
@@ -298,25 +317,17 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     // csv.unshift(header.join(','));
     // let csvArray = csv.join('\r\n');
     let csvArray: any = [
-      'Staff Name,Applied On,Leave Type,Dates,Days,Time,Hours,Reason,Comments,Status\r\n',
+      'Staff Name,Applied On,Leave Type,Start Date,End Date,Days,Start Time,End Time,Hours,Reason,Comments,Status\r\n',
     ];
     for (let i = 0; i < this.dataSource.data.length; i++) {
       let item = this.dataSource.data[i];
-      console.log(this.dataSource.data[i], 'this.dataSource.data');
+      // console.log(this.dataSource.data[i], 'this.dataSource.data');
       let row: string = `${item?.employe?.firstName} ${item?.employe?.firstName
         },${this.datePipe.transform(item.applyDate, 'dd/MM/yyyy')},${item.leaveType?.leaveDescription
-        },${this.datePipe.transform(item.startDateTime, 'dd/MM/yyyy')} to ${this.datePipe.transform(
-          item.endDateTime,
-          'dd/MM/yyyy',
-        )},${item.totalDay},${item.totalHour > 0
-          ? this.datePipe.transform(item.startDateTime, 'shortTime') +
-          'to' +
-          this.datePipe.transform(item.endDateTime, 'shortTime')
-          : ''
-        },${item.totalHour},${item.leaveReason},${item.reviewerRemark},${this.getStatus(
-          item.leaveStatus,
-        )}\r\n`;
-      console.log(row);
+        },${this.datePipe.transform(item.startDateTime, 'dd/MM/yyyy')},${this.datePipe.transform(
+          item.endDateTime, 'dd/MM/yyyy')},${item.totalDay},${item.totalHour > 0
+            ? this.datePipe.transform(item.startDateTime, 'shortTime') : ''},${item.totalHour > 0 ? this.datePipe.transform(item.endDateTime, 'shortTime') : ''},${item.totalHour},${item.leaveReason},${item.reviewerRemark},${item.status}\r\n`;
+      // console.log(row);
       csvArray.push(row);
     }
     // console.log(csvArray)
@@ -334,7 +345,7 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
       },
     };
 
-    console.log(data);
+    // console.log(data);
     this.authService.saveExportHistory(data).subscribe();
     var blob = new Blob(csvArray, { type: 'text/csv' });
     saveAs(blob, fileName);
