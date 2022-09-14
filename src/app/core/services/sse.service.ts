@@ -52,4 +52,12 @@ export class SseService {
         this.eventSource = new EventSource(url);
         return this.eventSource;
     }
+
+    closeServer() {
+        if (this.eventSource) {
+            // console.log('EventSource closed.');
+            this.eventSource.close();
+        }
+        return true
+    }
 }

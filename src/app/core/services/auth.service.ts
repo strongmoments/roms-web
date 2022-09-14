@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { User, ViewOptions } from 'src/app/_models';
 // import jwt_decode from 'jwt-decode';
 import { Role } from 'src/app/globals';
+import { SseService } from './sse.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -15,7 +16,7 @@ export class AuthenticationService {
     public refreshTokenTimeout: any;
 
     constructor(private router: Router, private http: HttpClient,
-        @Inject('LOCALSTORAGE') private localStorage: Storage) {
+        @Inject('LOCALSTORAGE') private localStorage: Storage, private sseService: SseService) {
         const userData = this.getUserData();
         this.userSubject = new BehaviorSubject<User>(userData);
         this.user = this.userSubject.asObservable();
@@ -98,6 +99,7 @@ export class AuthenticationService {
 
     logout(): void {
         // this.http.post<any>(`${environment.apiUrl}/users/revoke-token`, {}, { withCredentials: true });
+        this.sseService.closeServer();
         this.localStorage.clear();
         sessionStorage.clear();
         this.router.navigate(['/']);
@@ -178,9 +180,9 @@ export class AuthenticationService {
 
     }
 
-    changePassword(data:any) {
-        return this.http.post<any>(`${environment.apiUrl}/v1/password/change`,data);
-        
+    changePassword(data: any) {
+        return this.http.post<any>(`${environment.apiUrl}/v1/password/change`, data);
+
     }
 
     getAllEmployeeType() {
@@ -195,8 +197,21 @@ export class AuthenticationService {
         return this.http.post<any>(`${environment.apiUrl}/v1/leaveexport/addhistory`, data);
     }
 
+
     getAllExportHistory(options: ViewOptions) {
         return this.http.get<any>(`${environment.apiUrl}/v1/leaveexport/loadhistory?page=${options.page}&size=${options.pageSize}`);
     }
+
+    saveResignationExportHistory(data: any) {
+        return this.http.post<any>(`${environment.apiUrl}/v1/resignation/export/addhistory`, data);
+    }
+
+
+    getAllResignationExportHistory(options: ViewOptions) {
+        return this.http.get<any>(`${environment.apiUrl}/v1/resignation/loadexporthistory?page=${options.page}&size=${options.pageSize}`);
+    }
+
+
+
 
 }

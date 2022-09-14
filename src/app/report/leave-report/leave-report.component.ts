@@ -45,11 +45,11 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     'time',
     'hours',
     'action',
-    'approveStatus',
+    // 'approveStatus',
     // 'leaveReason',
     'managerName',
     'convertedApprovalDate',
-    'approveStatus',
+    'status',
   ];
   displayedColumnsHistory: string[] = ['createDate', 'dateRange', 'reportName', 'sign'];
 
@@ -180,7 +180,7 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
       fromDate: startDate,
       departmentId: this.departmentId == 'all' ? '' : this.departmentId,
       employeeTypeId: this.employeeType == 'all' ? '' : this.employeeType,
-      leaveStatus: `${this.status}`,
+      status: `${this.status}`,
     };
     // console.log(queryData, 'queryData');
 

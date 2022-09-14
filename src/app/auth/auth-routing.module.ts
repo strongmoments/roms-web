@@ -7,6 +7,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 // import { LoginLayoutComponent } from '../shared/layout/login-layout/login-layout.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
     // pathMatch:'full',
     children: [
       { path: '', component: LoginComponent },
+      { path: 'register', component: RegisterComponent },
       //{ path: 'forgot-password', component: ForgotPasswordComponent },
     ],
   },
@@ -34,4 +36,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AuthRoutingModule {}
+export class AuthRoutingModule { }

@@ -9,7 +9,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs';
-import { AlertService } from 'src/app/core/services';
+import { AlertService, EmployeeService } from 'src/app/core/services';
 import { LeaveService } from 'src/app/core/services/leave.service';
 import { Utils } from 'src/app/core/_helpers/util';
 import { Globals } from 'src/app/globals';
@@ -38,14 +38,15 @@ export class ResignationReportComponent implements OnInit {
   submitted: boolean = false;
   // displayedColumnsLeave: string[] =
   displayedColumns: string[] = [
+    // 'select',
     'staffName',
-    'staffNo',
+    'employeeNo',
     'convertedAppliedOn',
     'gang',
-    'lastWorking',
+    'convertedLastDay',
     'convertedApprovalDate',
     // 'action',
-    'status',
+    'statusName',
 
     // 'leaveReason',
     'managerName',
@@ -68,8 +69,8 @@ export class ResignationReportComponent implements OnInit {
   currentDate: any = new Date();
   expandedElement: any = null;
   startDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 1));
-  endDate: Date = new Date();
-  status: any = 2;
+  endDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
+  status: any = 0;
   departmentId: any = '';
   employeeType: any = '';
   employeeTypeList: any = [];
@@ -85,6 +86,7 @@ export class ResignationReportComponent implements OnInit {
     private datePipe: DatePipe,
     private activatedRoute: ActivatedRoute,
     private authService: AuthenticationService,
+    private employeeService: EmployeeService
   ) {
     this.globals = globals;
 
@@ -125,11 +127,11 @@ export class ResignationReportComponent implements OnInit {
     // this.dataSource.sort = this.sort;
     this.dataSourceHistory.sort = this.sortHistory;
     this.dataSource.sort = this.sort;
-    this.paginator.page.subscribe((page: PageEvent) => {
+    this.paginator?.page.subscribe((page: PageEvent) => {
       this.refresh(this.getDefaultOptions());
     });
 
-    this.paginatorHistory.page.subscribe((page: PageEvent) => {
+    this.paginatorHistory?.page.subscribe((page: PageEvent) => {
       this.refresh(this.getDefaultOptions());
     });
   }
@@ -179,45 +181,54 @@ export class ResignationReportComponent implements OnInit {
       fromDate: startDate,
       departmentId: this.departmentId == 'all' ? '' : this.departmentId,
       employeeTypeId: this.employeeType == 'all' ? '' : this.employeeType,
-      leaveStatus: `${this.status}`,
+      status: `${this.status}`,
     };
     // console.log(queryData, 'queryData');
 
-    this.leaveService
-      .getAllEmployeeLeaves(options, queryData)
+    this.employeeService
+      .getAllEmployeeResignation(options, queryData)
       .pipe(first())
       .subscribe((result: any) => {
         this.totalRecords = result.totalElement;
         let data: any = [];
+        if (this.totalRecords > 0) {
+          this.displayedColumns = ['select', ...this.displayedColumns];
+        }
         for (let i = 0; i < result.data.length; i++) {
-          let staffName = `${result.data[i].employe?.firstName} ${result.data[i].employe?.lastName}`;
+          let staffName = `${result.data[i].employee?.firstName} ${result.data[i].employee?.lastName}`;
+          let employeeNo = result.data[i].employee?.employeeNo;
           let managerName = `${result.data[i].approver?.firstName} ${result.data[i].approver?.lastName}`;
           let convertedAppliedOn = this.datePipe.transform(result.data[i].applyDate, 'dd/MM/yyyy');
+          let convertedLastDay = this.datePipe.transform(result.data[i].lastWorkingDate, 'dd/MM/yyyy');
+
           let convertedApprovalDate = result.data[i].dateOfApproval
             ? this.datePipe.transform(result.data[i].dateOfApproval, 'dd/MM/yyyy')
             : '';
-          let convertedStartDate = this.datePipe.transform(result.data[i].startDateTime, 'MMM d');
-          let convertedEndDate = this.datePipe.transform(result.data[i].endDateTime, 'MMM d,y');
-          let convertedStartTime = this.datePipe.transform(
-            result.data[i].startDateTime,
-            'shortTime',
-          );
-          let convertedEndTime = this.datePipe.transform(result.data[i].endDateTime, 'shortTime');
-          let leaveTypeName = result.data[i]?.leaveType?.leaveDescription;
-          let status = this.getStatus(result.data[i]?.leaveStatus);
+          // let convertedStartDate = this.datePipe.transform(result.data[i].startDateTime, 'MMM d');
+          // let convertedEndDate = this.datePipe.transform(result.data[i].endDateTime, 'MMM d,y');
+          // let convertedStartTime = this.datePipe.transform(
+          //   result.data[i].startDateTime,
+          //   'shortTime',
+          // );
+          // let convertedEndTime = this.datePipe.transform(result.data[i].endDateTime, 'shortTime');
+          // let leaveTypeName = result.data[i]?.leaveType?.leaveDescription;
+          let statusName = this.getStatus(result.data[i]?.status);
 
           data.push({
             ...result.data[i],
-            leaveTypeName: leaveTypeName,
-            status: status,
-            convertedStartTime: convertedStartTime,
-            convertedEndTime: convertedEndTime,
-            convertedStartDate: convertedStartDate,
-            convertedEndDate: convertedEndDate,
+            // leaveTypeName: leaveTypeName,
+            statusName: statusName,
+            gang: '',
+            // convertedStartTime: convertedStartTime,
+            // convertedEndTime: convertedEndTime,
+            // convertedStartDate: convertedStartDate,
+            // convertedEndDate: convertedEndDate,
             convertedApprovalDate: convertedApprovalDate,
             managerName: managerName,
             convertedAppliedOn: convertedAppliedOn,
             staffName: staffName,
+            employeeNo: employeeNo,
+            convertedLastDay: convertedLastDay
           });
         }
         if (isScrolled == true) {
@@ -231,7 +242,7 @@ export class ResignationReportComponent implements OnInit {
 
   refreshHistory(options: ViewOptions) {
     this.authService
-      .getAllExportHistory(options)
+      .getAllResignationExportHistory(options)
       .pipe(first())
       .subscribe((result: any) => {
         this.totalRecords = result.totalElement;
@@ -333,28 +344,17 @@ export class ResignationReportComponent implements OnInit {
     // csv.unshift(header.join(','));
     // let csvArray = csv.join('\r\n');
     let csvArray: any = [
-      'Staff Name,Applied On,Leave Type,Start Date,End Date,Days,Start Time,End Time,Hours,Reason,Comments,Status\r\n',
+      'Emp Name,Emp no,Applied On,Gang,Last Working Day,Approved On,Status,Manager\r\n',
     ];
     for (let i = 0; i < this.dataSource.data.length; i++) {
       let item = this.dataSource.data[i];
       // console.log(this.dataSource.data[i], 'this.dataSource.data');
-      let row: string = `${item?.employe?.firstName} ${
-        item?.employe?.firstName
-      },${this.datePipe.transform(item.applyDate, 'dd/MM/yyyy')},${
-        item.leaveType?.leaveDescription
-      },${this.datePipe.transform(item.startDateTime, 'dd/MM/yyyy')},${this.datePipe.transform(
-        item.endDateTime,
-        'dd/MM/yyyy',
-      )},${item.totalDay},${
-        item.totalHour > 0 ? this.datePipe.transform(item.startDateTime, 'shortTime') : ''
-      },${item.totalHour > 0 ? this.datePipe.transform(item.endDateTime, 'shortTime') : ''},${
-        item.totalHour
-      },${item.leaveReason},${item.reviewerRemark},${item.status}\r\n`;
+      let row: string = `${item?.staffName},${item?.employeeNo},${this.datePipe.transform(item.applyDate, 'dd/MM/yyyy')},'',${item?.convertedLastDay},${item?.convertedApprovalDate},${item?.statusName},${item?.managerName}\r\n`;
       // console.log(row);
       csvArray.push(row);
     }
     // console.log(csvArray)
-    let fileName = `leave_report_${new Date().getTime()}.csv`;
+    let fileName = `resgination_report_${new Date().getTime()}.csv`;
     let data = {
       reportName: fileName,
       dateRange: `${this.datePipe.transform(
@@ -369,7 +369,7 @@ export class ResignationReportComponent implements OnInit {
     };
 
     // console.log(data);
-    this.authService.saveExportHistory(data).subscribe();
+    this.authService.saveResignationExportHistory(data).subscribe();
     var blob = new Blob(csvArray, { type: 'text/csv' });
     saveAs(blob, fileName);
   }
