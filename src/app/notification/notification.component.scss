@@ -1,0 +1,13 @@
+.employee-list td.mat-cell,
+.employee-list td.mat-footer-cell,
+.employee-list td.mat-header-cell {
+  padding: 5px 15px !important;
+}
+.no-wrap td,
+.no-wrap .ng-star-inserted {
+  white-space: inherit;
+  width: 100%;
+}
+.p-b-0 {
+  padding-bottom: 0px !important;
+}

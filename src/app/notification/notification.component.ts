@@ -20,18 +20,11 @@ import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { element } from 'protractor';
 
 @Component({
-  selector: 'app-resignation-report',
-  templateUrl: './resignation-report.component.html',
-  styleUrls: ['./resignation-report.component.scss'],
-  // animations: [
-  //   trigger('detailExpand', [
-  //     state('collapsed', style({ height: '0px', minHeight: '0' })),
-  //     state('expanded', style({ height: '*' })),
-  //     transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-  //   ]),
-  // ],
+  selector: 'app-notification',
+  templateUrl: './notification.component.html',
+  styleUrls: ['./notification.component.scss'],
 })
-export class ResignationReportComponent implements OnInit {
+export class NotificationComponent implements OnInit {
   globals: Globals;
   // leaveHours: number = 0`;
   // form: FormGroup;
@@ -39,15 +32,7 @@ export class ResignationReportComponent implements OnInit {
   // displayedColumnsLeave: string[] =
   displayedColumns: string[] = [
     'staffName',
-    'staffNo',
-    'convertedAppliedOn',
-    'gang',
-    'lastWorking',
     'convertedApprovalDate',
-    // 'action',
-    'status',
-
-    // 'leaveReason',
     'managerName',
   ];
   displayedColumnsHistory: string[] = ['createDate', 'dateRange', 'reportName'];

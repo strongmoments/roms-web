@@ -7,15 +7,13 @@ import { ReleaseNoteComponent } from './release-note/release-note.component';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 
 export const AppRoutes: Routes = [
-
-
   {
     path: '',
     component: AppBlankComponent,
     children: [
       {
         path: '',
-        loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+        loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
       },
       // {
       //   path: '',
@@ -35,18 +33,25 @@ export const AppRoutes: Routes = [
       },
       {
         path: 'employee',
-        loadChildren: () => import('./employee/employee.module').then(m => m.EmployeeModule),
-        canActivate: [AuthGuard]
+        loadChildren: () => import('./employee/employee.module').then((m) => m.EmployeeModule),
+        canActivate: [AuthGuard],
       },
       {
         path: 'leave',
-        loadChildren: () => import('./leave-management/leave-management.module').then(m => m.LeaveManagementModule),
-        canActivate: [AuthGuard]
+        loadChildren: () =>
+          import('./leave-management/leave-management.module').then((m) => m.LeaveManagementModule),
+        canActivate: [AuthGuard],
       },
       {
         path: 'report',
-        loadChildren: () => import('./report/report.module').then(m => m.ReportModule),
-        canActivate: [AuthGuard]
+        loadChildren: () => import('./report/report.module').then((m) => m.ReportModule),
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'notification',
+        loadChildren: () =>
+          import('./notification/notification.module').then((m) => m.NotificationModule),
+        canActivate: [AuthGuard],
       },
       // {
       //   path: 'material',
@@ -110,14 +115,14 @@ export const AppRoutes: Routes = [
       {
         path: 'release-note',
         // pathMatch: 'full',
-        component: ReleaseNoteComponent
+        component: ReleaseNoteComponent,
       },
       {
         path: 'coming-soon',
         // pathMatch: 'full',
-        component: ComingSoonComponent
-      }
-    ]
+        component: ComingSoonComponent,
+      },
+    ],
   },
   {
     path: '**',

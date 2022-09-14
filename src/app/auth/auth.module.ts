@@ -5,6 +5,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './login/login.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -13,6 +14,6 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     SharedModule,
     AuthRoutingModule
   ],
-  declarations: [LoginComponent, ChangePasswordComponent, ]
+  declarations: [LoginComponent, ChangePasswordComponent, ProfileComponent, ]
 })
 export class AuthModule { }

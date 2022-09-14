@@ -45,11 +45,13 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     'time',
     'hours',
     'action',
+    'approveStatus',
     // 'leaveReason',
     'managerName',
     'convertedApprovalDate',
+    'approveStatus',
   ];
-  displayedColumnsHistory: string[] = ['createDate', 'dateRange', 'reportName'];
+  displayedColumnsHistory: string[] = ['createDate', 'dateRange', 'reportName', 'sign'];
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   dataSourceHistory: MatTableDataSource<any> = new MatTableDataSource<any>();
@@ -192,16 +194,32 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
           let staffName = `${result.data[i].employe?.firstName} ${result.data[i].employe?.lastName}`;
           let managerName = `${result.data[i].approver?.firstName} ${result.data[i].approver?.lastName}`;
           let convertedAppliedOn = this.datePipe.transform(result.data[i].applyDate, 'dd/MM/yyyy');
-          let convertedApprovalDate = result.data[i].dateOfApproval ? this.datePipe.transform(result.data[i].dateOfApproval, 'dd/MM/yyyy') : '';
+          let convertedApprovalDate = result.data[i].dateOfApproval
+            ? this.datePipe.transform(result.data[i].dateOfApproval, 'dd/MM/yyyy')
+            : '';
           let convertedStartDate = this.datePipe.transform(result.data[i].startDateTime, 'MMM d');
           let convertedEndDate = this.datePipe.transform(result.data[i].endDateTime, 'MMM d,y');
-          let convertedStartTime = this.datePipe.transform(result.data[i].startDateTime, 'shortTime');
+          let convertedStartTime = this.datePipe.transform(
+            result.data[i].startDateTime,
+            'shortTime',
+          );
           let convertedEndTime = this.datePipe.transform(result.data[i].endDateTime, 'shortTime');
           let leaveTypeName = result.data[i]?.leaveType?.leaveDescription;
           let status = this.getStatus(result.data[i]?.leaveStatus);
 
-          data.push({ ...result.data[i], leaveTypeName: leaveTypeName, status: status, convertedStartTime: convertedStartTime, convertedEndTime: convertedEndTime, convertedStartDate: convertedStartDate, convertedEndDate: convertedEndDate, convertedApprovalDate: convertedApprovalDate, managerName: managerName, convertedAppliedOn: convertedAppliedOn, staffName: staffName });
-
+          data.push({
+            ...result.data[i],
+            leaveTypeName: leaveTypeName,
+            status: status,
+            convertedStartTime: convertedStartTime,
+            convertedEndTime: convertedEndTime,
+            convertedStartDate: convertedStartDate,
+            convertedEndDate: convertedEndDate,
+            convertedApprovalDate: convertedApprovalDate,
+            managerName: managerName,
+            convertedAppliedOn: convertedAppliedOn,
+            staffName: staffName,
+          });
         }
         if (isScrolled == true) {
           this.dataSource.data = [...this.dataSource.data, ...data];
@@ -266,7 +284,6 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
   }
 
   getStatusColor(status: any, isCheckbox: boolean = false) {
-
     let elem: any = this.globals.leaveStatus.find((elem: any) => {
       return elem.value == status;
     });
@@ -322,11 +339,18 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < this.dataSource.data.length; i++) {
       let item = this.dataSource.data[i];
       // console.log(this.dataSource.data[i], 'this.dataSource.data');
-      let row: string = `${item?.employe?.firstName} ${item?.employe?.firstName
-        },${this.datePipe.transform(item.applyDate, 'dd/MM/yyyy')},${item.leaveType?.leaveDescription
-        },${this.datePipe.transform(item.startDateTime, 'dd/MM/yyyy')},${this.datePipe.transform(
-          item.endDateTime, 'dd/MM/yyyy')},${item.totalDay},${item.totalHour > 0
-            ? this.datePipe.transform(item.startDateTime, 'shortTime') : ''},${item.totalHour > 0 ? this.datePipe.transform(item.endDateTime, 'shortTime') : ''},${item.totalHour},${item.leaveReason},${item.reviewerRemark},${item.status}\r\n`;
+      let row: string = `${item?.employe?.firstName} ${
+        item?.employe?.firstName
+      },${this.datePipe.transform(item.applyDate, 'dd/MM/yyyy')},${
+        item.leaveType?.leaveDescription
+      },${this.datePipe.transform(item.startDateTime, 'dd/MM/yyyy')},${this.datePipe.transform(
+        item.endDateTime,
+        'dd/MM/yyyy',
+      )},${item.totalDay},${
+        item.totalHour > 0 ? this.datePipe.transform(item.startDateTime, 'shortTime') : ''
+      },${item.totalHour > 0 ? this.datePipe.transform(item.endDateTime, 'shortTime') : ''},${
+        item.totalHour
+      },${item.leaveReason},${item.reviewerRemark},${item.status}\r\n`;
       // console.log(row);
       csvArray.push(row);
     }
