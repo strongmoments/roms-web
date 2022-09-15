@@ -178,3 +178,24 @@ tr.example-element-row:not(.example-expanded-row):active {
   padding-bottom: 0 !important;
 }
 
+@media (max-width: 767px) {
+  .mat-horizontal-stepper-header {
+    padding: 0 8px !important;
+  }
+  .mat-horizontal-content-container {
+    padding: 0px 10px 10px 10px !important;
+  }
+  .mat-step-label {
+    font-size: 12px !important;
+    font-weight: 400;
+  }
+  // .mob_m-t-120 {
+  //   margin-top: 120px !important;
+  // }
+  .mob_p_0 {
+    padding: 0 !important;
+  }
+  .login-register {
+    height: auto !important;
+  }
+}

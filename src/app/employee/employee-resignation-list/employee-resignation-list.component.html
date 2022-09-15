@@ -1,6 +1,6 @@
 <div>
     <mat-tab-group [selectedIndex]="tabIndex" mat-stretch-tabs (selectedIndexChange)="onTabChanged($event)">
-        <mat-tab label="Leave Request">
+        <mat-tab label="Resignation Request">
             <ng-container [ngTemplateOutlet]="tableTemplate"></ng-container>
         </mat-tab>
         <mat-tab label="History">
@@ -196,7 +196,7 @@
 
                     <!-- Row shown when there is no matching data. -->
                     <tr class="mat-row" *matNoDataRow>
-                        <td class="mat-cell" [attr.colspan]="displayedColumns.length">No Leave request</td>
+                        <td class="mat-cell" [attr.colspan]="displayedColumns.length">No resignation request</td>
                     </tr>
                 </table>
                 <!-- </table> -->
