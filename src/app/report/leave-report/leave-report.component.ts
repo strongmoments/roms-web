@@ -76,6 +76,8 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
   employeeTypeList: any = [];
   departmentList: any = [];
   removedRows: any = [];
+  selectedTabIndex: number = 0;
+
   constructor(
     breakpointObserver: BreakpointObserver,
     public util: Utils,
@@ -127,11 +129,15 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     this.dataSourceHistory.sort = this.sortHistory;
     this.dataSource.sort = this.sort;
     this.paginator.page.subscribe((page: PageEvent) => {
-      this.refresh(this.getDefaultOptions());
+      if (this.selectedTabIndex == 0) {
+        this.refresh(this.getDefaultOptions());
+      }
     });
 
     this.paginatorHistory.page.subscribe((page: PageEvent) => {
-      this.refresh(this.getDefaultOptions());
+      if (this.selectedTabIndex == 1) {
+        this.refreshHistory(this.getDefaultOptions());
+      }
     });
   }
 
@@ -315,7 +321,7 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     this.employeeType = '';
     this.dataSourceHistory.data = [];
     this.paginatorHistory.pageIndex = 0;
-    // this.selectedTabIndex = index;
+    this.selectedTabIndex = index;
     // this.displayedColumns = index == 0 ? this.displayedColumnsLeave : this.displayedColumnsHistory;
     // console.log(event, 'event')
 
@@ -339,18 +345,14 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < this.dataSource.data.length; i++) {
       let item = this.dataSource.data[i];
       // console.log(this.dataSource.data[i], 'this.dataSource.data');
-      let row: string = `${item?.employe?.firstName} ${
-        item?.employe?.firstName
-      },${this.datePipe.transform(item.applyDate, 'dd/MM/yyyy')},${
-        item.leaveType?.leaveDescription
-      },${this.datePipe.transform(item.startDateTime, 'dd/MM/yyyy')},${this.datePipe.transform(
-        item.endDateTime,
-        'dd/MM/yyyy',
-      )},${item.totalDay},${
-        item.totalHour > 0 ? this.datePipe.transform(item.startDateTime, 'shortTime') : ''
-      },${item.totalHour > 0 ? this.datePipe.transform(item.endDateTime, 'shortTime') : ''},${
-        item.totalHour
-      },${item.leaveReason},${item.reviewerRemark},${item.status}\r\n`;
+      let row: string = `${item?.employe?.firstName} ${item?.employe?.firstName
+        },${this.datePipe.transform(item.applyDate, 'dd/MM/yyyy')},${item.leaveType?.leaveDescription
+        },${this.datePipe.transform(item.startDateTime, 'dd/MM/yyyy')},${this.datePipe.transform(
+          item.endDateTime,
+          'dd/MM/yyyy',
+        )},${item.totalDay},${item.totalHour > 0 ? this.datePipe.transform(item.startDateTime, 'shortTime') : ''
+        },${item.totalHour > 0 ? this.datePipe.transform(item.endDateTime, 'shortTime') : ''},${item.totalHour
+        },${item.leaveReason},${item.reviewerRemark},${item.status}\r\n`;
       // console.log(row);
       csvArray.push(row);
     }

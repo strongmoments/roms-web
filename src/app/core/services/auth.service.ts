@@ -175,6 +175,10 @@ export class AuthenticationService {
     }
 
 
+    register(data: any) {
+        return this.http.post<any>(`${environment.apiUrl}/v1/password/change`, data);
+    }
+
     getDashboard() {
         return this.http.get<any>(`${environment.apiUrl}/v1/dashboard/load`);
 
@@ -203,7 +207,7 @@ export class AuthenticationService {
     }
 
     saveResignationExportHistory(data: any) {
-        return this.http.post<any>(`${environment.apiUrl}/v1/resignation/export/addhistory`, data);
+        return this.http.post<any>(`${environment.apiUrl}/v1/resignation/export`, data);
     }
 
 

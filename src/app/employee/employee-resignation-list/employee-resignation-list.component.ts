@@ -204,6 +204,7 @@ export class EmployeeResignationListComponent implements OnInit {
       .subscribe((result: any) => {
         this.totalRecords = result.totalElement;
         this.dataSource.data = result.data;
+        console.log(this.dataSource.data,'this.dataSource');
         let selected = this.dataSource.data.find((elem: any) => {
           return elem.id == this.selectedId;
         });

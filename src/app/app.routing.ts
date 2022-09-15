@@ -11,10 +11,7 @@ export const AppRoutes: Routes = [
     path: '',
     component: AppBlankComponent,
     children: [
-      {
-        path: '',
-        loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
-      },
+     
       // {
       //   path: '',
       //   redirectTo: '/dashboards/dashboard1',
@@ -52,6 +49,10 @@ export const AppRoutes: Routes = [
         loadChildren: () =>
           import('./notification/notification.module').then((m) => m.NotificationModule),
         canActivate: [AuthGuard],
+      },
+      {
+        path: '',
+        loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
       },
       // {
       //   path: 'material',

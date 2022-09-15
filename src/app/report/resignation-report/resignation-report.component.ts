@@ -76,6 +76,7 @@ export class ResignationReportComponent implements OnInit {
   employeeTypeList: any = [];
   departmentList: any = [];
   removedRows: any = [];
+  selectedTabIndex: number = 0;
   constructor(
     breakpointObserver: BreakpointObserver,
     public util: Utils,
@@ -128,11 +129,15 @@ export class ResignationReportComponent implements OnInit {
     this.dataSourceHistory.sort = this.sortHistory;
     this.dataSource.sort = this.sort;
     this.paginator?.page.subscribe((page: PageEvent) => {
-      this.refresh(this.getDefaultOptions());
+      if (this.selectedTabIndex == 0) {
+        this.refresh(this.getDefaultOptions());
+      }
     });
 
     this.paginatorHistory?.page.subscribe((page: PageEvent) => {
-      this.refresh(this.getDefaultOptions());
+      if (this.selectedTabIndex == 1) {
+        this.refreshHistory(this.getDefaultOptions());
+      }
     });
   }
 
@@ -191,8 +196,19 @@ export class ResignationReportComponent implements OnInit {
       .subscribe((result: any) => {
         this.totalRecords = result.totalElement;
         let data: any = [];
+
         if (this.totalRecords > 0) {
-          this.displayedColumns = ['select', ...this.displayedColumns];
+          if (this.displayedColumns.includes('select') === true) {
+            this.displayedColumns = [...this.displayedColumns];
+          } else {
+            this.displayedColumns = ['select', ...this.displayedColumns];
+
+          }
+        } else {
+          let i = this.displayedColumns.indexOf('select');
+          if (i != -1) {
+            this.displayedColumns.splice(i, 1);
+          }
         }
         for (let i = 0; i < result.data.length; i++) {
           let staffName = `${result.data[i].employee?.firstName} ${result.data[i].employee?.lastName}`;
@@ -231,6 +247,7 @@ export class ResignationReportComponent implements OnInit {
             convertedLastDay: convertedLastDay
           });
         }
+        console.log(data, 'data')
         if (isScrolled == true) {
           this.dataSource.data = [...this.dataSource.data, ...data];
         } else {
@@ -320,12 +337,12 @@ export class ResignationReportComponent implements OnInit {
     this.pageNo = 0;
     this.pageSize = 10;
     this.search = '';
-    this.status = 2;
+    this.status = 0;
     this.departmentId = '';
     this.employeeType = '';
     this.dataSourceHistory.data = [];
     this.paginatorHistory.pageIndex = 0;
-    // this.selectedTabIndex = index;
+    this.selectedTabIndex = index;
     // this.displayedColumns = index == 0 ? this.displayedColumnsLeave : this.displayedColumnsHistory;
     // console.log(event, 'event')
 
