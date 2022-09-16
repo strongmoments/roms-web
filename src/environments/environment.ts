@@ -9,6 +9,7 @@ export const environment = {
   apiUrl: 'http://13.234.56.70:8080',
   fileBaseUrl: 'http://localhost:8080/',
   imageUrl: 'http://localhost:8080/uploads/',
+  orgId: "ab905406-79a3-4e54-8244-d79fc0e60937"
 };
 /*
  * For easier debugging in development mode, you can import the following file

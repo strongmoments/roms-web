@@ -45,7 +45,7 @@
                   <mat-list-item role="listitem"><span class="m-r-20" style="font-size: 29px">
                       <mat-icon class="color_blue">pan_tool_alt</mat-icon>
                     </span>Download the ROMS app and read setup instructions given in step 3.
-                    </mat-list-item>
+                  </mat-list-item>
                   <mat-list-item role="listitem"><span class="m-r-20" style="font-size: 29px">
                       <mat-icon class="color_blue">pan_tool_alt</mat-icon>
                     </span>Your username and temporary password will be shared by the HR via
@@ -95,6 +95,9 @@
                       </mat-error>
                       <mat-error *ngIf="checkError('empNo', 'maxlength')">
                         Max 15 characters are allowed.
+                      </mat-error>
+                      <mat-error *ngIf="checkError('empNo', 'pattern')">
+                        Invalid value.
                       </mat-error>
                     </mat-form-field>
                   </div>
@@ -149,8 +152,8 @@
                       <mat-error *ngIf="checkError('contactNo', 'pattern')">
                         Contact No is invalid.
                       </mat-error>
-                      <mat-error *ngIf="checkError('contactNo', 'maxlength')">
-                        Max 15 characters are allowed.
+                      <mat-error *ngIf="checkError('contactNo', 'maxlength') || checkError('contactNo', 'minlength')">
+                        Contact no should be 10 digits.
                       </mat-error>
                     </mat-form-field>
                   </div>
@@ -243,9 +246,9 @@
               </div>
               <mat-divider></mat-divider>
               <div class="row wrap m-t-20" align="right">
-                <button mat-raised-button color="primary" class="p-l-30 p-r-30" matStepperPrevious>
+                <a routerLink="/" mat-raised-button color="primary" class="p-l-30 p-r-30" matStepperPrevious>
                   OK
-                </button>
+                </a>
               </div>
             </mat-step>
           </mat-horizontal-stepper>

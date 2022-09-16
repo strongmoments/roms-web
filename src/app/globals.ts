@@ -26,9 +26,16 @@ export class Globals {
     }
 
     leaveStatus = [
-        { name: 'Pending', value: 1, colorClass: 'pending',checkboxColorClass: 'pending-checkbox' },
-        { name: 'Approved', value: 2, colorClass: 'approved',checkboxColorClass: 'approved-checkbox' },
-        { name: 'Rejected', value: 3, colorClass: 'rejected',checkboxColorClass: 'rejected-checkbox' },
+        { name: 'Pending', value: 1, colorClass: 'pending', checkboxColorClass: 'pending-checkbox' },
+        { name: 'Approved', value: 2, colorClass: 'approved', checkboxColorClass: 'approved-checkbox' },
+        { name: 'Rejected', value: 3, colorClass: 'rejected', checkboxColorClass: 'rejected-checkbox' },
+
+    ]
+
+    userApplicationStatus = [
+        { name: 'Pending', value: 1, colorClass: 'pending' },
+        { name: 'Completed', value: 2, colorClass: 'approved' },
+        // { name: 'Rejected', value: 3, colorClass: 'rejected',checkboxColorClass: 'rejected-checkbox' },
 
     ]
 

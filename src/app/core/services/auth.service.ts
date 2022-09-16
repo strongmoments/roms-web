@@ -46,7 +46,7 @@ export class AuthenticationService {
     }
 
     login(username: string, password: string, rememberMe: boolean) {
-        return this.http.post<any>(`${environment.apiUrl}/authenticate`, { username: username, password: password, orgId: "ab905406-79a3-4e54-8244-d79fc0e60937" })
+        return this.http.post<any>(`${environment.apiUrl}/authenticate`, { username: username, password: password, orgId: environment.orgId })
             .pipe(map(user => {
                 console.log(user)
                 // let useData = jwt_decode(user.accessToken) as any;
@@ -176,7 +176,7 @@ export class AuthenticationService {
 
 
     register(data: any) {
-        return this.http.post<any>(`${environment.apiUrl}/v1/password/change`, data);
+        return this.http.post<any>(`${environment.apiUrl}/addUserRequest`, data);
     }
 
     getDashboard() {
@@ -216,6 +216,8 @@ export class AuthenticationService {
     }
 
 
-
+    getAllEmployeeRegisterReq() {
+        return this.http.get<any>(`${environment.apiUrl}/v1/user/loadPendingUsers`);
+    }
 
 }

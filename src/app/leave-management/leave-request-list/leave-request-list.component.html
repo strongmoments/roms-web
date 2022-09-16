@@ -184,6 +184,8 @@
                 <!-- </div> -->
                 <div class="example-element-description" *ngIf="element?.leaveStatus == 1">
                   <!-- <p> -->
+                  <span class="p-10">{{ element?.leaveReason }}
+                  </span>
                   <a class="approved" (click)="approveReject(0, i, element.id)" href="javascript:void(0)">
                     <mat-icon>check</mat-icon>Approve
                   </a>

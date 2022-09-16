@@ -4,8 +4,6 @@ import { SharedModule } from '../shared/shared.module';
 import { ReportRoutingModule } from './report.routing';
 import { LeaveReportComponent } from './leave-report/leave-report.component';
 import { ResignationReportComponent } from './resignation-report/resignation-report.component';
-import { RegistrationListComponent } from './registration-list/registration-list.component';
-import { CreateUserComponent } from './create-user/create-user.component';
 
 
 @NgModule({
@@ -16,9 +14,7 @@ import { CreateUserComponent } from './create-user/create-user.component';
     ],
     declarations: [
         LeaveReportComponent,
-        ResignationReportComponent,
-        RegistrationListComponent,
-        CreateUserComponent
+        ResignationReportComponent
     ]
 })
 export class ReportModule { }

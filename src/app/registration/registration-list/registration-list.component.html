@@ -1,0 +1,110 @@
+<div fxLayout="row wrap">
+  <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+    <div>
+      <mat-tab-group mat-stretch-tabs>
+        <mat-tab label="Registration List">
+          <mat-card class="m-0 m-t-20 m-b-5">
+            <mat-card-content class="p-15">
+              <div class="m-l-10 m-r-10">
+                <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                  <div fxFlex.gt-sm="60" class="p-r-10" fxFlex="100">
+                    <mat-form-field>
+                      <input matInput (keyup)="applyFilter(true)" [(ngModel)]="search" placeholder="Filter" />
+                      <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+                  </div>
+
+                  <div fxFlex.gt-sm="40" class="font-12"></div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="m-0 m-t-5 m-b-5">
+            <mat-card-content>
+              <div class="table-responsive infinite-scroll">
+                <mat-table #table [dataSource]="dataSource" class="table employee-list no-wrap" matSort>
+                  <ng-container matColumnDef="firstname">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
+                    <td mat-cell *matCellDef="let row">
+                      <!-- <span class="header-label">days:</span> -->
+                      {{ row?.firstName }}
+                    </td>
+                  </ng-container>
+
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="lastname">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
+                    <td mat-cell *matCellDef="let row">
+                      <!-- <span class="header-label">days:</span> -->
+                      {{ row?.lastName }}
+                    </td>
+                  </ng-container>
+
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="employeeNo">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee No</th>
+                    <td mat-cell *matCellDef="let row">
+                      <!-- <span class="header-label">days:</span> -->
+                      {{ row?.employeeNo }}
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Email id</th>
+                    <td mat-cell *matCellDef="let row">
+                      {{ row?.email }}
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="contactno">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact No</th>
+                    <td mat-cell *matCellDef="let row">
+                      {{ row?.phone }}
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="convertedAppliedOn">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Applied On</th>
+                    <td mat-cell *matCellDef="let row; let i = index">
+                      {{ row?.convertedAppliedOn }}
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="statusName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                    <td mat-cell *matCellDef="let row">
+                      <span [ngClass]="getStatusColor(row?.status)">
+                        {{ row?.statusName }}
+                      </span>
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                    <td mat-cell *matCellDef="let row">
+                      <button (click)="redirectForm(row)" mat-raised-button color="primary" class="p-l-30 p-r-30">Create
+                        User</button>
+                    </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let element; columns: displayedColumns" class="example-element-row"></tr>
+                  <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+                      No Registration Data
+                    </td>
+                  </tr>
+                </mat-table>
+
+                <mat-paginator [length]="totalRecords" [pageIndex]="pageNo" [pageSizeOptions]="[5, 10, 20]"
+                  [pageSize]="pagesize" aria-label="Select page">
+                </mat-paginator>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

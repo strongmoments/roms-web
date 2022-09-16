@@ -40,7 +40,7 @@ export class LeaveRequestListComponent implements OnInit, AfterViewInit {
     'days',
     'time',
     'hours',
-    'leaveReason',
+    // 'leaveReason',
     'action',
   ];
   displayedColumnsHistory: string[] = [
