@@ -461,7 +461,7 @@
                       matInput
                       formControlName="leaveReason"
                       placeholder="Comment"
-                      rows="16"
+                      rows="14"
                     >
                     </textarea>
                     <mat-error *ngIf="submitted && checkError('leaveReason', 'required')">
@@ -490,9 +490,11 @@
                         class="img-fluid img-circle"
                       />
                     </div>
-                    <h3 class="m-b-0">{{ managerData?.firstName }} {{ managerData?.lastName }}</h3>
+                    <h3 class="m-b-0 h-30">
+                      {{ managerData?.firstName }} {{ managerData?.lastName }}
+                    </h3>
                     <h6 class="m-t-0">Manager</h6>
-                    <mat-card-actions>
+                    <mat-card-actions class="m-b-10">
                       <button mat-raised-button color="warn" class="m-t-20" type="" submit>
                         REQUEST FOR APPROVAL
                         <mat-icon> arrow_right_alt </mat-icon>
