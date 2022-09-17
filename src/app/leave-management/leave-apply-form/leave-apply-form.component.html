@@ -643,7 +643,9 @@
                                 --
                                 <span [ngClass]="getStatusColor(element?.leaveStatus)">
                                   {{ getStatus(element?.leaveStatus) }}
-                                  
+                                </span>
+                                <span>
+                                  {{ element?.leaveReason }}
                                 </span>
                               </span>
                             </div>
