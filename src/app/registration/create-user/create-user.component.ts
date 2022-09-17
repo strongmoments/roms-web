@@ -12,10 +12,9 @@ import { UserCreatedSuccessDialogComponent } from '../user-created-success-dialo
 @Component({
   selector: 'app-create-user',
   templateUrl: './create-user.component.html',
-  styleUrls: ['./create-user.component.scss']
+  styleUrls: ['./create-user.component.scss'],
 })
 export class CreateUserComponent implements OnInit {
-
   requestId: any = '';
   userSessionData: any = {};
   form!: FormGroup;
@@ -31,7 +30,7 @@ export class CreateUserComponent implements OnInit {
       console.log('queryParams', params['requestId'])
       this.requestId = params['requestId'] || '';
       if (this.requestId == '') {
-        this.router.navigate(['/registration/list'])
+        this.router.navigate(['/registration/list']);
       }
     });
 
@@ -61,7 +60,7 @@ export class CreateUserComponent implements OnInit {
     if (data) {
       this.userSessionData = JSON.parse(data);
     } else {
-      this.router.navigate(['/registration/list'])
+      this.router.navigate(['/registration/list']);
     }
     this.form = this.fb.group({
       employeeNo: new FormControl(this.userSessionData?.employeeNo, [Validators.required, Validators.pattern(this.utils.intRegex), Validators.maxLength(15)]),
@@ -76,7 +75,7 @@ export class CreateUserComponent implements OnInit {
       employTypeId: new FormControl('', [Validators.required]),
       departmentId: new FormControl('', [Validators.required])
     });
-    console.log(this.userSessionData, 'this.userSessionData')
+    console.log(this.userSessionData, 'this.userSessionData');
   }
 
 
@@ -93,7 +92,8 @@ export class CreateUserComponent implements OnInit {
 
   openDialog(data: any) {
     const dialogRef = this.dialog.open(UserCreatedSuccessDialogComponent, {
-      width: '250px',
+      width: '35em',
+      height: '30em',
       data: data,
     });
 

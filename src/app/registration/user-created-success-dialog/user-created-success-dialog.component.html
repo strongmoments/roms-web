@@ -1,59 +1,97 @@
-<h1 mat-dialog-title>User Created !</h1>
-<div mat-dialog-content>
-    <p>Employee Name</p>
-    <mat-form-field>
-        <input matInput tabindex="1" [(ngModel)]="data.animal" />
-    </mat-form-field>
-</div>
-<div mat-dialog-content>
-    <p>Employee No</p>
-    <mat-form-field>
-        <input matInput tabindex="1" [(ngModel)]="data.animal" />
-    </mat-form-field>
-</div> 
-<div mat-dialog-content>
-    <p>Email id</p>
-    <mat-form-field>
-        <input matInput tabindex="1" [(ngModel)]="data.animal" />
-    </mat-form-field>
-</div>
-<!-- <div mat-dialog-content>
-    <p>Contact</p>
-    <mat-form-field>
-        <input matInput tabindex="1" [(ngModel)]="data.animal" />
-    </mat-form-field>
-</div>
-<div mat-dialog-content>
-    <p>Employee Role</p>
-    <mat-form-field>
-        <input matInput tabindex="1" [(ngModel)]="data.animal" />
-    </mat-form-field>
-</div>
-<div mat-dialog-content>
-    <p>Department</p>
-    <mat-form-field>
-        <input matInput tabindex="1" [(ngModel)]="data.animal" />
-    </mat-form-field>
-</div>
-<div mat-dialog-content>
-    <p>Manager</p>
-    <mat-form-field>
-        <input matInput tabindex="1" [(ngModel)]="data.animal" />
-    </mat-form-field>
-</div>
-<div mat-dialog-content>
-    <p>Username</p>
-    <mat-form-field>
-        <input matInput tabindex="1" [(ngModel)]="data.animal" />
-    </mat-form-field>
-</div>
-<div mat-dialog-content>
-    <p>Password</p>
-    <mat-form-field>
-        <input matInput tabindex="1" [(ngModel)]="data.animal" />
-    </mat-form-field>
-</div> -->
-<div mat-dialog-actions>
-    <button mat-button [mat-dialog-close]="data.animal" tabindex="2">Ok</button>
-    <button mat-button (click)="onNoClick()" tabindex="-1">No Thanks</button>
+<h1 mat-dialog-title align="center">User Created !</h1>
+<div fxLayout="row wrap">
+  <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
+    <form class="basic-form">
+      <div fxLayout="row wrap" fxFlexAlign="center" class="row m-0">
+        <div fxFlex.gt-sm="40" fxFlex="100">
+          <div mat-dialog-content>
+            <p>Employee Name</p>
+          </div>
+        </div>
+
+        <div fxFlex.gt-sm="60" fxFlex="100">
+            <p>kunal</p>
+        </div>
+
+        <div fxFlex.gt-sm="40" fxFlex="100">
+          <div mat-dialog-content>
+            <p>Employee No</p>
+          </div>
+        </div>
+
+        <div fxFlex.gt-sm="60" fxFlex="100">
+            <p>12324</p>
+        </div>
+        <div fxFlex.gt-sm="40" fxFlex="100">
+          <div mat-dialog-content>
+            <p>Email ID</p>
+          </div>
+        </div>
+
+        <div fxFlex.gt-sm="60" fxFlex="100">
+            <p>Email ID</p>
+        </div>
+        <div fxFlex.gt-sm="40" fxFlex="100">
+          <div mat-dialog-content>
+            <p>Contact</p>
+          </div>
+        </div>
+
+        <div fxFlex.gt-sm="60" fxFlex="100">
+            <p>Contact</p>
+        </div>
+        <div fxFlex.gt-sm="40" fxFlex="100">
+          <div mat-dialog-content>
+            <p>Employee Role</p>
+          </div>
+        </div>
+
+        <div fxFlex.gt-sm="60" fxFlex="100">
+            <p>Employee Role</p>
+        </div>
+        <div fxFlex.gt-sm="40" fxFlex="100">
+          <div mat-dialog-content>
+            <p>Department</p>
+          </div>
+        </div>
+
+        <div fxFlex.gt-sm="60" fxFlex="100">
+            <p>Department</p>
+        </div>
+        <div fxFlex.gt-sm="40" fxFlex="100">
+          <div mat-dialog-content>
+            <p>Manager</p>
+          </div>
+        </div>
+
+        <div fxFlex.gt-sm="60" fxFlex="100">
+            <p>Manager</p>
+        </div>
+        <div fxFlex.gt-sm="40" fxFlex="100">
+          <div mat-dialog-content>
+            <p>Username</p>
+          </div>
+        </div>
+
+        <div fxFlex.gt-sm="60" fxFlex="100">
+            <p>Username</p>
+        </div>
+        <div fxFlex.gt-sm="40" fxFlex="100">
+          <div mat-dialog-content>
+            <p>Password</p>
+          </div>
+        </div>
+        <div fxFlex.gt-sm="60" fxFlex="100">
+            <p>Password</p>
+        </div>
+        <div fxFlex.gt-sm="100" fxFlex="100" class="p-10 text-center">
+          <div class="m-0 m-t-15">
+            <button mat-raised-button color="primary" [mat-dialog-close]="data.animal" tabindex="2">
+              OK
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
