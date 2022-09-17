@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-user-created-success-dialog',
@@ -7,12 +8,19 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     styleUrls: ['./user-created-success-dialog.component.scss']
 })
 export class UserCreatedSuccessDialogComponent {
+    user: any = {};
     constructor(
         public dialogRef: MatDialogRef<UserCreatedSuccessDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any,
-    ) { }
+        @Inject(MAT_DIALOG_DATA) public data: any, private router: Router,
+    ) {
+        if (data.data) {
+            this.user = data.data;
+        }
+
+    }
 
     onNoClick(): void {
+        this.router.navigate(['/registration/list']);
         this.dialogRef.close();
     }
 }

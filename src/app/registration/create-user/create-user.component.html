@@ -109,13 +109,15 @@
 
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
-                <mat-select placeholder="Employee Role" formControlName="roleId" roleId
-                  [ngClass]="{'is-invalid':submitted && f.roleId.hasError}">
-                  <mat-option value="all">All</mat-option>
-                  <mat-option [value]="item.id" *ngFor="let item of roles">
+                <!-- <mat-select placeholder="Employee Role" > -->
+                <input type="text" placeholder="Role" aria-label="Role" matInput formControlName="roleId" roleId
+                  [matAutocomplete]="auto" [ngClass]="{'is-invalid':submitted && f.roleId.hasError}">
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option [value]="item.name" *ngFor="let item of roles">
                     {{ item.name }}
                   </mat-option>
-                </mat-select>
+                </mat-autocomplete>
+                <!-- </mat-select> -->
                 <mat-error *ngIf="submitted && checkError('roleId', 'required')">
                   Role is required.
                 </mat-error>
@@ -125,13 +127,18 @@
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
-                <mat-select placeholder="Department" formControlName="departmentId" departmentId
-                  [ngClass]="{'is-invalid':submitted && f.departmentId.hasError}">
-                  <mat-option value="">Select</mat-option>
-                  <mat-option [value]="item.id" *ngFor="let item of departments">
+                <input type="text" matInput placeholder="Department" formControlName="departmentId" departmentId
+                  [ngClass]="{'is-invalid':submitted && f.departmentId.hasError}"
+                  [matAutocomplete]="matAutocompleteDepartment">
+                <mat-autocomplete #matAutocompleteDepartment="matAutocomplete">
+                  <!-- <mat-select placeholder="Department" formControlName="departmentId" departmentId
+                  [ngClass]="{'is-invalid':submitted && f.departmentId.hasError}"> -->
+                  <!-- <mat-option value="">Select</mat-option> -->
+                  <mat-option [value]="item.description" *ngFor="let item of departments">
                     {{ item.description }}
                   </mat-option>
-                </mat-select>
+                </mat-autocomplete>
+                <!-- </mat-select> -->
 
                 <mat-error *ngIf="submitted && checkError('departmentId', 'required')">
                   Department is required.
@@ -144,7 +151,7 @@
               <mat-form-field appearance="outline">
                 <mat-select placeholder="Manager" formControlName="managerId" managerId
                   [ngClass]="{'is-invalid':submitted && f.managerId.hasError}">
-                  <mat-option value="all">All</mat-option>
+                  <mat-option value="">Select</mat-option>
                   <mat-option [value]="item.id" *ngFor="let item of managers">
                     {{ item.firstName }} {{ item.lastName }}
                   </mat-option>
@@ -160,16 +167,19 @@
             <!-- <div fxFlex.gt-sm="35" fxFlex="100"></div> -->
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
-                <mat-select placeholder="Employee Type" formControlName="employTypeId" employTypeId
-                  [ngClass]="{'is-invalid':submitted && f.employTypeId.hasError}">
-                  <mat-option value="">Select</mat-option>
-                  <mat-option [value]="item.id" *ngFor="let item of employeeType">
+                <input type="text" matInput placeholder="Employee Type" formControlName="employTypeId" employTypeId
+                  [ngClass]="{'is-invalid':submitted && f.employTypeId.hasError}"
+                  [matAutocomplete]="matAutocompleteEmpType">
+                <mat-autocomplete #matAutocompleteEmpType="matAutocomplete">
+
+                  <!-- <mat-select placeholder="Employee Type" formControlName="employTypeId" employTypeId
+                  [ngClass]="{'is-invalid':submitted && f.employTypeId.hasError}"> -->
+                  <!-- <mat-option value="">Select</mat-option> -->
+                  <mat-option [value]="item.name" *ngFor="let item of employeeType">
                     {{ item.name }}
                   </mat-option>
-                  <mat-option>
-                    <!-- {{ item.description }} -->
-                  </mat-option>
-                </mat-select>
+                </mat-autocomplete>
+                <!-- </mat-select> -->
                 <mat-error *ngIf="submitted && checkError('employTypeId', 'required')">
                   Employee Type is required.
                 </mat-error>

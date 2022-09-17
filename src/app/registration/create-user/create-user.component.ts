@@ -71,7 +71,7 @@ export class CreateUserComponent implements OnInit {
       dob: new FormControl('', [Validators.required]),
       isManager: new FormControl(false),
       roleId: new FormControl('', [Validators.required]),
-      managerId: new FormControl('', [Validators.required]),
+      managerId: new FormControl('', []),
       employTypeId: new FormControl('', [Validators.required]),
       departmentId: new FormControl('', [Validators.required])
     });
@@ -94,32 +94,52 @@ export class CreateUserComponent implements OnInit {
     const dialogRef = this.dialog.open(UserCreatedSuccessDialogComponent, {
       width: '35em',
       height: '30em',
-      data: data,
+      data: { data: data }
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
+      this.router.navigate(['/registration/list']);
       console.log('The dialog was closed');
     });
   }
 
+
   onSubmit() {
     this.submitted = true;
+    // console.log(this.form.value.roleId, 'this.form.value');
     if (this.form.invalid) {
       this.alertService.openSnackBar(CustomMessage.invalidForm);
       return;
     }
 
     let formValues = this.form.value;
-    console.log(formValues)
+    let roleName = formValues.roleId;
+    let departmentName = formValues.departmentId;
+    let role = this.roles.find((elem: any) => elem.name.toLowerCase() == formValues.roleId.trim().toLowerCase());
+    formValues['roleName'] = role ? '' : formValues.roleId;
+    formValues['roleId'] = role ? role.id : '';
+    let department = this.departments.find((elem: any) => elem.description.toLowerCase() == formValues.departmentId.trim().toLowerCase());
+    formValues['departmentName'] = department ? '' : formValues.departmentId;
+    formValues['departmentId'] = department ? department.id : '';
+
+    let employeeType = this.employeeType.find((elem: any) => elem.name.toLowerCase() == formValues.employTypeId.trim().toLowerCase());
+    formValues['employType'] = employeeType ? '' : formValues.employTypeId;
+    formValues['employTypeId'] = employeeType ? employeeType.id : '';
+
     formValues['orgId'] = environment.orgId;
-    formValues['roleName'] = '';
-    formValues['employType'] = '';
     formValues['gender'] = '';
+    console.log(formValues)
     this.authService.createUser(formValues).subscribe((result: any) => {
       if (result.status == "success") {
         this.submitted = false;
         this.alertService.openSnackBar(CustomMessage.userCreatedSuccess, false);
-        this.openDialog(result.data);
+        let data: any = result;
+        console.log(data, 'data', result);
+        data['roleName'] = roleName;
+        data['departmentName'] = departmentName;
+        this.openDialog(data);
+        this.form.reset();
+        sessionStorage.removeItem(this.requestId);
       } else if (result.status == "error" && result.error == "already_exist") {
         this.alertService.openSnackBar(CustomMessage.alreadyExist, false);
         this.router.navigate(['/registration/list']);

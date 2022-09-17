@@ -14,10 +14,11 @@ export class Base64ImagePipe implements PipeTransform {
         let objectURL = 'data:image/png;base64,' + value;
 
 
-        if (typeof (value) != 'undefined') {
+        // console.log(value,'value')
+        if (typeof (value) != 'undefined' && value) {
             return this.domSanitizer.bypassSecurityTrustUrl(objectURL);
         } else {
-            return this.domSanitizer.bypassSecurityTrustUrl('');
+            return '';
         }
     }
 }
