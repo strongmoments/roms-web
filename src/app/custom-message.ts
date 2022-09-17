@@ -15,5 +15,7 @@ export enum CustomMessage {
     passwordChangedSuccess = 'Password updated succesfully',
     invalidCurrentPassword = 'Current password is incorrect.',
     registerSuccess = 'Your request is submitted succesfully.Please wait while we verify your details.Thanks',
-    alreadyRegistered = 'Your request is already submitted.Please wait while we verify your details and get back to you.Thanks'
+    alreadyRegistered = 'Your request is already submitted.Please wait while we verify your details and get back to you.Thanks',
+    userCreatedSuccess = 'User created successfully',
+    alreadyExist = 'User already exist'
 }

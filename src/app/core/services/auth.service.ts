@@ -189,6 +189,15 @@ export class AuthenticationService {
 
     }
 
+    getAllRoles() {
+        return this.http.get<any>(`${environment.apiUrl}/v1/roles/load`);
+    }
+
+    getAllManagers() {
+        return this.http.get<any>(`${environment.apiUrl}/v1/managers/load`);
+    }
+
+
     getAllEmployeeType() {
         return this.http.get<any>(`${environment.apiUrl}/v1/employeetypes/load`);
     }
@@ -220,4 +229,7 @@ export class AuthenticationService {
         return this.http.get<any>(`${environment.apiUrl}/v1/user/loadPendingUsers`);
     }
 
+    createUser(data: any) {
+        return this.http.post<any>(`${environment.apiUrl}/v1/user/add`, data);
+    }
 }

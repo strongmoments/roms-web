@@ -171,9 +171,11 @@ export class RegistrationListComponent implements OnInit {
         let data: any = [];
         for (let i = 0; i < result.data.length; i++) {
           let statusName = this.getStatus(result.data[i]?.status);
+          let convertedAppliedOn = this.datePipe.transform(result.data[i].appliedOn, 'dd/MM/yyyy');
           data.push({
             ...result.data[i],
             statusName: statusName,
+            convertedAppliedOn: convertedAppliedOn
           });
         }
         // if (isScrolled == true) {
