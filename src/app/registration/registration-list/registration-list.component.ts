@@ -28,12 +28,12 @@ export class RegistrationListComponent implements OnInit {
   globals: Globals;
   submitted: boolean = false;
   displayedColumns: string[] = [
+    'convertedAppliedOn',
     'firstname',
     'lastname',
     'employeeNo',
     'email',
     'contactno',
-    'convertedAppliedOn',
     'statusName',
     'action'
   ];

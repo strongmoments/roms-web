@@ -1,8 +1,8 @@
 <mat-card>
   <mat-card-content class="create_user_page">
-    <h2 class="title text-center color_blue">CREATE USER</h2>
+    <h2 class="title text-center color_blue">Create User</h2>
     <mat-divider> </mat-divider>
-    <mat-card-title class="p-t-30 p-b-10 color_blue">Registration Details</mat-card-title>
+    <mat-card-title class="p-t-30 p-b-10 color_blue">User Details</mat-card-title>
     <div fxLayout="row wrap">
       <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
         <form class="basic-form">
@@ -50,7 +50,7 @@
             <div fxFlex.gt-sm="35" fxFlex="100" class="p-10"></div>
 
             <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
-              <mat-card-title class="p-b-10 color_blue">To Be Filled</mat-card-title>
+              <mat-card-title class="p-b-10 color_blue">Employee Details</mat-card-title>
               <mat-radio-button class="example-margin" value="after">Is Manager</mat-radio-button>
             </div>
 
@@ -87,11 +87,11 @@
             </div>
             <div fxFlex.gt-sm="50" fxFlex="100" class="p-10 text-center">
               <div class="m-0 m-t-15">
-                <button class="button" mat-raised-button color="primary">
+                <button class="button" mat-raised-button color="primary" (click)="openDialog()">
                   Grant Access
                   <!-- <mat-icon> arrow_right_alt </mat-icon> -->
                 </button>
-                <button mat-raised-button (click)="openDialog()">OPen modal</button>
+                <!-- <button mat-raised-button >OPen modal</button> -->
               </div>
             </div>
             <div fxFlex.gt-sm="25" fxFlex="100" class="p-10"></div>
