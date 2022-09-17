@@ -47,7 +47,14 @@
                 <!-- <mat-hint>Hint</mat-hint> -->
               </mat-form-field>
             </div>
-            <div fxFlex.gt-sm="35" fxFlex="100" class="p-10"></div>
+            <div fxFlex.gt-sm="5" fxFlex="100" class="p-10"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <input matInput [matDatepicker]="picker" placeholder="Date Of Birth" />
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
 
             <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
               <mat-card-title class="p-b-10 color_blue">Employee Details</mat-card-title>
@@ -55,28 +62,51 @@
             </div>
 
             <div fxFlex.gt-sm="30" fxFlex="100">
-              <mat-form-field appearance="outline" class="m-b-15">
-                <mat-label>Employee Role</mat-label>
-                <input matInput placeholder="Placeholder" />
-                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
-                <!-- <mat-hint>Hint</mat-hint> -->
+              <mat-form-field appearance="outline">
+                <mat-select  placeholder="Employee Role">
+                  <mat-option value="all">All</mat-option>
+                  <mat-option>
+                    <!-- {{ item.description }} -->
+                  </mat-option>
+                </mat-select>
               </mat-form-field>
             </div>
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
-                <mat-label>Department</mat-label>
-                <input matInput placeholder="Last Name" />
+                <mat-select  placeholder="Department">
+                  <mat-option value="all">All</mat-option>
+                  <mat-option>
+                    <!-- {{ item.description }} -->
+                  </mat-option>
+                </mat-select>
               </mat-form-field>
             </div>
 
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
-                <mat-label>Manager</mat-label>
-                <input matInput placeholder="Last Name" />
+                <mat-select  placeholder="Manager">
+                  <mat-option value="all">All</mat-option>
+                  <mat-option>
+                    <!-- {{ item.description }} -->
+                  </mat-option>
+                </mat-select>
               </mat-form-field>
             </div>
+
+            <!-- <div fxFlex.gt-sm="35" fxFlex="100"></div> -->
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-select  placeholder="Employee Type">
+                  <mat-option value="all">All</mat-option>
+                  <mat-option>
+                    <!-- {{ item.description }} -->
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-sm="70" fxFlex="100"></div>
 
             <div fxFlex.gt-sm="55" fxFlex="100" class="p-10"></div>
 

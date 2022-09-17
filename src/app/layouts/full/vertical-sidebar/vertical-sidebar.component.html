@@ -10,8 +10,8 @@
 >
   <!-- User profile image -->
   <div class="profile-img">
-    <img
-      onerror="this.onerror=null;this.src='../../../../assets/img/favicon.png';"
+    <img 
+     onerror="this.onerror=null;this.src='../../../../assets/img/favicon.png';"
       [src]="user.profileImage | base64Image"
       alt="user"
       (click)="handleNotify()"
