@@ -27,7 +27,7 @@ export class AlertService {
                 `<p class="toastr-message">${message}</p>` :
                 `<h5 class="pop-error-title">${title}<small><br>${message}</small></h5>`
         }
-
+console.log(notificationHtml,'notificationHtml')
         this.snackBar.openFromComponent(SnackbarComponent, {
             data: {
                 html: notificationHtml,

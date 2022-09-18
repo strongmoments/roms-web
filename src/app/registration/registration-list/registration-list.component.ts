@@ -178,6 +178,16 @@ export class RegistrationListComponent implements OnInit {
       .subscribe((result: any) => {
         this.totalRecords = result.data.length;
         let data: any = [];
+        result.data = result.data.sort((a: any, b: any) => {
+          return a.status - b.status;
+        });
+        result.data = result.data.sort((a: any, b: any) => {
+          var c: any = new Date(parseInt(a.appliedOn));
+          var d: any = new Date(parseInt(b.appliedOn));
+          // console.log(a,d);
+          return d - c;
+        });
+
         for (let i = 0; i < result.data.length; i++) {
           let statusName = this.getStatus(result.data[i]?.status);
           let convertedAppliedOn = this.datePipe.transform(result.data[i].appliedOn, 'dd/MM/yyyy');
