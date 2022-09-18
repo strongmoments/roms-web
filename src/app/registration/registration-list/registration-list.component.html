@@ -90,7 +90,8 @@
                   </ng-container>
 
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                  <tr mat-row *matRowDef="let element; columns: displayedColumns" class="example-element-row"></tr>
+                  <tr mat-row *matRowDef="let element; columns: displayedColumns" class="example-element-row"
+                    [ngClass]="{ 'selected-row': selectedId== element.id }"></tr>
                   <tr class="mat-row" *matNoDataRow>
                     <td class="mat-cell" [attr.colspan]="displayedColumns.length">
                       No Registration Data

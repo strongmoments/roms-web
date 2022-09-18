@@ -148,6 +148,8 @@ export class VerticalAppHeaderComponent {
               // this.router.navigate(['/leave/apply-leave'], { queryParams: { id: item.eventId } });
             } else if (data.type == "resigne_request") {
               url = '/employee/resignation-list';
+            } else if (data.type == "adduser_request") {
+              url = '/registration/list';
             }
             this.alertService.openSnackBar(data.message, false, 0, '', true, {
               profileImage: data.profileImage,
@@ -214,15 +216,17 @@ export class VerticalAppHeaderComponent {
     return;
   }
   redirectNotification(item: any) {
-    // console.log(item, 'item');
+    console.log(item, 'item');
     // return
-    this.markRead(item.eventId);
+    // this.markRead(item.eventId);
     if (item.type == 'leave_request') {
       this.router.navigate(['/leave/leave-request'], { queryParams: { id: item.eventId } });
     } else if (item.type == 'leave_approve' || item.type == 'leave_reject') {
       this.router.navigate(['/leave/apply-leave'], { queryParams: { id: item.eventId } });
     } else if (item.type == "resigne_request") {
       this.router.navigate(['/employee/resignation-list'], { queryParams: { id: item.eventId } });
+    } else if (item.type == "adduser_request") {
+      this.router.navigate(['/registration/list'], { queryParams: { id: item.eventId } });
     }
 
   }

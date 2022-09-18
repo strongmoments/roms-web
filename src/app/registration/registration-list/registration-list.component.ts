@@ -62,6 +62,7 @@ export class RegistrationListComponent implements OnInit {
   // departmentList: any = [];
   // removedRows: any = [];
   // selectedTabIndex: number = 0;
+  selectedId: string = '';
   constructor(
     breakpointObserver: BreakpointObserver,
     public util: Utils,
@@ -76,7 +77,15 @@ export class RegistrationListComponent implements OnInit {
     private router: Router
   ) {
     this.globals = globals;
-
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+    this.activatedRoute.queryParams.subscribe((queryParams) => {
+      if (queryParams['id']) {
+        this.selectedId = queryParams['id'];
+        // this.onTabChanged(1);
+      }
+    });
     // this.authService.getAllEmployeeType().subscribe((result: any) => {
     //   this.employeeTypeList = result && result.data && result.data.length > 0 ? result.data : [];
     // });
