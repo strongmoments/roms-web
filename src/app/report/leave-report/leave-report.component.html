@@ -161,7 +161,7 @@
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Staff Name</th>
                     <td mat-cell *matCellDef="let row; let i = index">
                       <div class="d-flex">
-                        <img class="mat-card-avatar" [src]="row?.employe?.profileImage | base64Image" />
+                        <img class="mat-card-avatar" onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"   [src]="row?.employe?.profileImage | base64Image" />
                         <div class="m-l-15">
                           <p class="font-medium m-b-0 m-t-0">
                             {{ row?.staffName }}
