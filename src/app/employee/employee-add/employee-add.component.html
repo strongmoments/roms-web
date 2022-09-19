@@ -1,0 +1,689 @@
+<!-- row -->
+<!-- ============================================================== -->
+<div fxLayout="row wrap" style="justify-content: center">
+  <!-- Card column -->
+
+  <div fxFlex.gt-sm="100%" fxFlex="100">
+    <mat-card align="center">
+      <mat-card-content>
+        <!-- <mat-card-title>Stepper</mat-card-title>
+          <mat-card-subtitle
+            >Check the
+            <code class=""
+              ><a href="https://material.angular.io/components/stepper/overview"
+                >Official Component</a
+              ></code
+            >
+          </mat-card-subtitle> -->
+        <!-- <button mat-raised-button (click)="isLinear = true" id="toggle-linear">
+            Enable linear mode
+          </button> -->
+        <div fxLayout="row wrap" class="row">
+          <div fxFlex.gt-sm="100%" fxFlex="100" class="text-center">
+            <a routerLink="/"
+              ><img
+                src="../../../assets/img/roms-logo-withtext.png"
+                alt="logo image"
+                width="150px"
+              />
+            </a>
+          </div>
+        </div>
+        <mat-horizontal-stepper [linear]="isLinear" #stepper class="add-emp-stepper">
+          <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+              <ng-template matStepLabel>Personal Info</ng-template>
+              <mat-divider class="m-t-20"></mat-divider>
+              <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20" align="left">
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                  <mat-label>Salut :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput
+                      placeholder="Select"
+                      empNo
+                    />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>Upload Picture :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput
+                      placeholder="Upload Picture"
+                    />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>Upload Signature :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput
+                    placeholder="Upload Picture"
+                  />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>First Name :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                      placeholder="First Name"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Middle Name :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                        placeholder="Middle Name"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Last Name :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                      placeholder="last Name"
+                    />
+                    </mat-form-field>
+                  </div>        <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>Gender :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                      placeholder="Gender"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Pronoun :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                        placeholder="Upload Picture"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Date Of Birth :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                      placeholder="Date Of Birth :"
+                    />
+                    </mat-form-field>
+                  </div>   
+                       <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>Location</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                        placeholder="Select State"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Select City :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                        placeholder="Select City"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Pcode :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                      placeholder="Pcode "
+                    />
+                    </mat-form-field>
+                  </div>    
+                      <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>Address Line 1:</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                        
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Address Line 2:</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                    
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Landmark :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                     
+                    />
+                    </mat-form-field>
+                  </div>        <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>Email Address :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                        
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Phone Number</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Mobile Number :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                      
+                    />
+                    </mat-form-field>
+                  </div>
+                
+              </div>
+             
+              <div class="row wrap m-t-20" align="right" style="display: flex; justify-content: space-between"
+              >
+                <div>
+                  <!-- <p class="m-0">
+                    Already Registered? <a routerLink="/" class="text-info link">Login </a>
+                  </p> -->
+                </div>
+                <button mat-raised-button color="primary" class="p-l-30 p-r-30" matStepperNext>
+                  Next
+                </button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+              <ng-template matStepLabel>Next Of Kin</ng-template>
+              <mat-divider class="m-t-20"></mat-divider>
+              <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20" align="left">
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                  <mat-label>Relationship</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput
+                      placeholder='Select'
+                    />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>Salut :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput
+                      placeholder="Select"
+                    />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="35" fxFlex="100" class=""></div>
+                
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>First Name :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                      placeholder="First Name"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Middle Name :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                        placeholder="Middle Name"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Last Name :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                      placeholder="last Name"
+                    />
+                    </mat-form-field>
+                  </div>        <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>Gender :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                      placeholder="Gender"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Pronoun :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                        placeholder="Upload Picture"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Date Of Birth :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                      placeholder="Date Of Birth :"
+                    />
+                    </mat-form-field>
+                  </div>   
+                       <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>Location</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                        placeholder="Select State"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Select City :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                        placeholder="Select City"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Pcode :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                      placeholder="Pcode "
+                    />
+                    </mat-form-field>
+                  </div>    
+                      <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>Address Line 1:</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                        
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Address Line 2:</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                    
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Landmark :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                     
+                    />
+                    </mat-form-field>
+                  </div>        <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>Email Address :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                        
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Phone Number</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Mobile Number :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                      placeholder="Upload Picture"
+                    />
+                    </mat-form-field>
+                  </div>
+                
+              </div>
+             
+              <div class="row wrap m-t-20" align="right" style="display: flex; justify-content: space-between"
+              >
+                <div>
+                  <!-- <p class="m-0">
+                    Already Registered? <a routerLink="/" class="text-info link">Login </a>
+                  </p> -->
+                </div>
+                <button mat-raised-button color="primary" class="p-l-30 p-r-30" matStepperNext>
+                    Previous
+                  </button>
+                <button mat-raised-button color="primary" class="p-l-30 p-r-30" matStepperNext>
+                  Next
+                </button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+              <ng-template matStepLabel>Dates & Bank</ng-template>
+              <mat-divider class="m-t-20"></mat-divider>
+              <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20" align="left">
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                  <mat-label>Employed From :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput
+                      placeholder="Select"
+                      empNo
+                    />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>To:</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput
+                      
+                    />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>Tax Spread :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput
+                    
+                  />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>Eft Start :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                     
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>EFt Paid on :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                       
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Sick Leave accures from :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                      
+                    />
+                    </mat-form-field>
+                  </div>        <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>Termination Type :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                      placeholder="Select"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="70" fxFlex="100" class=""></div>
+                       <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>Default BSB / Account</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                        
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>...... :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Amount :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                    />
+                    </mat-form-field>
+                  </div>   
+                
+              </div>
+             
+              <div class="row wrap m-t-20" align="right" style="display: flex; justify-content: space-between"
+              >
+                <div>
+                  <!-- <p class="m-0">
+                    Already Registered? <a routerLink="/" class="text-info link">Login </a>
+                  </p> -->
+                </div>
+                <button mat-raised-button color="primary" class="p-l-30 p-r-30" matStepperNext>
+                  Next
+                </button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+              <ng-template matStepLabel>Codes</ng-template>
+              <mat-divider class="m-t-20"></mat-divider>
+              <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20" align="left">
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                  <mat-label>Award :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput
+                      placeholder="Select"
+                      empNo
+                    />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>Pay Period Type :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput
+                      placeholder="Select"
+                    />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>Payroll Code :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput
+                    placeholder="Select"
+                  />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>Gang Code :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                      placeholder="Select"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Tax Scale :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                        placeholder="Select"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>TFN :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                      
+                    />
+                    </mat-form-field>
+                  </div>        <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>Annual Rebates :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                      placeholder="Select"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>In Database :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                        placeholder="Select"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Minimum Pay :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                      placeholder="Select"
+                    />
+                    </mat-form-field>
+                  </div>   
+                       <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>Long Service Account No</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                       
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Redundancy Account No :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                    
+                      />
+                    </mat-form-field>
+                </div>
+                
+              </div>
+             
+              <div class="row wrap m-t-20" align="right" style="display: flex; justify-content: space-between"
+              >
+                <div>
+                  <!-- <p class="m-0">
+                    Already Registered? <a routerLink="/" class="text-info link">Login </a>
+                  </p> -->
+                </div>
+                <button mat-raised-button color="primary" class="p-l-30 p-r-30" matStepperNext>
+                  Next
+                </button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+              <ng-template matStepLabel>Preview</ng-template>
+              <mat-divider class="m-t-20"></mat-divider>
+              <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20" align="left">
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                  <mat-label>Salut :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput
+                      placeholder="Select"
+                      empNo
+                    />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>Upload Picture :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput
+                      placeholder="Upload Picture"
+                    />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>Upload Signature :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput
+                    placeholder="Upload Picture"
+                  />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>First Name :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                      placeholder="First Name"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Middle Name :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                        placeholder="Middle Name"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                      <mat-label>Last Name :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                      placeholder="last Name"
+                    />
+                    </mat-form-field>
+                  </div>        <div fxFlex.gt-sm="30" fxFlex="100" class="p-10" >
+                    <mat-label>Gender :</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput
+                      placeholder="Gender"
+                      />
+                    </mat-form-field>
+                  </div>
+                 
+                
+              </div>
+             
+              <div class="row wrap m-t-20" align="right" style="display: flex; justify-content: space-between"
+              >
+                <div>
+                  <!-- <p class="m-0">
+                    Already Registered? <a routerLink="/" class="text-info link">Login </a>
+                  </p> -->
+                </div>
+                <button mat-raised-button color="primary" class="p-l-30 p-r-30" matStepperNext>
+                  Next
+                </button>
+              </div>
+            </form>
+          </mat-step>
+         
+        </mat-horizontal-stepper>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

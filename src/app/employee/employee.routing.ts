@@ -7,6 +7,7 @@ import { EmployeeViewComponent } from './employee-view/employee-view.component';
 import { EmployeeResignationComponent } from './employee-resignation/employee-resignation.component';
 import { FullComponent } from '../layouts/full/full.component';
 import { EmployeeResignationListComponent } from './employee-resignation-list/employee-resignation-list.component';
+import { EmployeeAddComponent } from './employee-add/employee-add.component';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
       { path: 'view:id', component: EmployeeViewComponent },
       { path: 'transfer', component: EmployeeTransferFormComponent },
       { path: 'resignation', component: EmployeeResignationComponent },
-      { path: 'resignation-list', component: EmployeeResignationListComponent }
+      { path: 'resignation-list', component: EmployeeResignationListComponent },
+      { path: 'employee-add', component: EmployeeAddComponent }
     ],
   },
 ];

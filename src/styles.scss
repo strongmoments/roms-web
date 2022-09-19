@@ -184,6 +184,14 @@ tr.example-element-row:not(.example-expanded-row):active {
 //   border-top: 0.084375em solid transparent !important;
 // }
 
+.mat-form-field {
+  line-height: inherit !important;
+}
+.add-emp-stepper .mat-form-field-infix {
+  padding: 0.5em 0 !important;
+  border-top: 3px solid transparent !important;
+}
+
 @media (max-width: 767px) {
   .mat-horizontal-stepper-header {
     padding: 0 8px !important;

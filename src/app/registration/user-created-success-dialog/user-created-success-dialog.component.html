@@ -1,92 +1,109 @@
-<h1 mat-dialog-title align="center">User Created !</h1>
+<h1 mat-dialog-title align="center" style="font-size: 28px; margin-bottom: 25px">User Created !</h1>
 <div fxLayout="row wrap">
   <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
     <form class="basic-form">
       <div fxLayout="row wrap" fxFlexAlign="center" class="row m-0">
         <div fxFlex.gt-sm="40" fxFlex="100">
           <div mat-dialog-content>
-            <p>Employee Name</p>
+            <h5 class="m-0 m-b-20"><b>Employee Name</b></h5>
           </div>
         </div>
 
         <div fxFlex.gt-sm="60" fxFlex="100">
-          <p>{{user?.employeeName}}</p>
+          <h5 class="m-0 m-b-20">{{ user?.employeeName }}</h5>
         </div>
 
         <div fxFlex.gt-sm="40" fxFlex="100">
           <div mat-dialog-content>
-            <p>Employee No</p>
+            <h5 class="m-0 m-b-20"><b>Employee No</b></h5>
           </div>
         </div>
 
         <div fxFlex.gt-sm="60" fxFlex="100">
-          <p>{{user?.employeeNo}}</p>
+          <h5 class="m-0 m-b-20">{{ user?.employeeNo }}</h5>
         </div>
         <div fxFlex.gt-sm="40" fxFlex="100">
           <div mat-dialog-content>
-            <p>Email ID</p>
+            <h5 class="m-0 m-b-20"><b>Email Id</b></h5>
           </div>
         </div>
 
         <div fxFlex.gt-sm="60" fxFlex="100">
-          <p>{{user?.email}}</p>
+          <h5 class="m-0 m-b-20">{{ user?.email }}</h5>
         </div>
         <div fxFlex.gt-sm="40" fxFlex="100">
           <div mat-dialog-content>
-            <p>Contact</p>
+            <h5 class="m-0 m-b-20"><b>Contact</b></h5>
           </div>
         </div>
 
         <div fxFlex.gt-sm="60" fxFlex="100">
-          <p>{{user?.contactNo}}</p>
+          <h5 class="m-0 m-b-20">{{ user?.contactNo }}</h5>
         </div>
         <div fxFlex.gt-sm="40" fxFlex="100">
           <div mat-dialog-content>
-            <p>Employee Role</p>
+            <h5 class="m-0 m-b-20"><b>Employee Role</b></h5>
           </div>
         </div>
 
         <div fxFlex.gt-sm="60" fxFlex="100">
-          <p>{{user?.roleName}}</p>
+          <h5 class="m-0 m-b-20">{{ user?.roleName }}</h5>
         </div>
         <div fxFlex.gt-sm="40" fxFlex="100">
           <div mat-dialog-content>
-            <p>Department</p>
+            <h5 class="m-0 m-b-20"><b>Department</b></h5>
           </div>
         </div>
 
         <div fxFlex.gt-sm="60" fxFlex="100">
-          <p>{{user?.departmentName}}</p>
+          <h5 class="m-0 m-b-20">{{ user?.departmentName }}</h5>
         </div>
         <div fxFlex.gt-sm="40" fxFlex="100">
           <div mat-dialog-content>
-            <p>Manager</p>
+            <h5 class="m-0 m-b-20"><b>Manager</b></h5>
           </div>
         </div>
 
         <div fxFlex.gt-sm="60" fxFlex="100">
-          <p>{{user?.managerName}}</p>
+          <h5 class="m-0 m-b-20">{{ user?.managerName }}</h5>
         </div>
         <div fxFlex.gt-sm="40" fxFlex="100">
           <div mat-dialog-content>
-            <p>Username</p>
+            <h5 class="m-0 m-b-20 m-t-10"><b>Username</b></h5>
           </div>
         </div>
 
         <div fxFlex.gt-sm="60" fxFlex="100">
-          <p>{{user?.userName}}</p>
+          <div class="copy_content">
+            <h5 class="m-0">{{ user?.userName }}</h5>
+            <a href="javascript:void(0);" class="copy_btn">
+              <mat-icon>content_copy</mat-icon>
+            </a>
+          </div>
+          <!-- <h5 class="m-0 m-b-20">{{ user?.userName }}</h5>  -->
         </div>
         <div fxFlex.gt-sm="40" fxFlex="100">
           <div mat-dialog-content>
-            <p>Password</p>
+            <h5 class="m-0 m-b-20 m-t-10"><b>Password</b></h5>
           </div>
         </div>
         <div fxFlex.gt-sm="60" fxFlex="100">
-          <p>{{user?.password}}</p>
+          <div class="copy_content">
+            <h5 class="m-0">{{ user?.password }}</h5>
+            <a href="javascript:void(0);" class="copy_btn">
+              <mat-icon>content_copy</mat-icon>
+            </a>
+          </div>
         </div>
         <div fxFlex.gt-sm="100" fxFlex="100" class="p-10 text-center">
           <div class="m-0 m-t-15">
-            <button mat-raised-button color="primary" [mat-dialog-close]="data.animal" tabindex="2">
+            <button
+              mat-raised-button
+              class="p-l-30 p-r-30"
+              color="primary"
+              [mat-dialog-close]="data.animal"
+              tabindex="2"
+            >
               OK
             </button>
           </div>
