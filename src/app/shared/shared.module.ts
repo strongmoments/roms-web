@@ -26,6 +26,8 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { Base64ImagePipe, CustomJavaDatePipe } from '../core/_helpers';
 import { DateAgoPipe } from '../core/_helpers/date-ago-pipe';
+import { QuillModule } from 'ngx-quill';
+
 // import { Base64ImagePipe } from '../core/_helpers/base64-image-pipe';
 // import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
 // import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
@@ -40,7 +42,7 @@ import { DateAgoPipe } from '../core/_helpers/date-ago-pipe';
     ReactiveFormsModule,
     TextMaskModule,
     PerfectScrollbarModule,
-
+    QuillModule.forRoot(),
   ],
   declarations: [
     // SpinnerComponent,
@@ -74,7 +76,8 @@ import { DateAgoPipe } from '../core/_helpers/date-ago-pipe';
     DateAgoPipe,
     AccordionAnchorDirective, AccordionLinkDirective, AccordionDirective,
     PerfectScrollbarModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    QuillModule
   ],
   providers: [MenuItems, HorizontalMenuItems,Base64ImagePipe,DateAgoPipe],
 })

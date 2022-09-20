@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
+import { MatDialog } from '@angular/material/dialog';
 export interface DemoColor {
   name: string;
   color: string;
@@ -11,6 +12,7 @@ export interface DemoColor {
   styleUrls: ['./recruitment.component.scss']
 })
 export class RecruitmentComponent {
+  @ViewChild('resourceDemandDialog') resourceDemandDialog!: TemplateRef<any>;
 
   visible = true;
   selectable = true;
@@ -29,6 +31,9 @@ export class RecruitmentComponent {
     { name: 'Warn', color: 'warn' },
   ];
 
+  constructor(private dialog: MatDialog){
+
+  }
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
@@ -50,5 +55,20 @@ export class RecruitmentComponent {
     if (index >= 0) {
       this.fruits.splice(index, 1);
     }
+  }
+
+  
+
+  openDialog(data: any) {
+    const dialogRef = this.dialog.open(this.resourceDemandDialog, {
+      width: '35em',
+      height: '30em',
+      data: { data: data }
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      // this.router.navigate(['/registration/list']);
+      console.log('The dialog was closed');
+    });
   }
 }
