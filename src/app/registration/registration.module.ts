@@ -6,6 +6,8 @@ import { CreateUserComponent } from '../registration/create-user/create-user.com
 import { RegistrationRoutingModule } from './registration.routing';
 import { UserCreatedSuccessDialogComponent } from './user-created-success-dialog/user-created-success-dialog.component';
 import { RecruitmentComponent } from './recruitment/recruitment.component';
+import { RecommendComponent } from './recommend/recommend.component';
+import { JobRecommendComponent } from './job-recommend/job-recommend.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { RecruitmentComponent } from './recruitment/recruitment.component';
         RegistrationListComponent,
         CreateUserComponent,
         UserCreatedSuccessDialogComponent,
-        RecruitmentComponent
+        RecruitmentComponent,
+        RecommendComponent,
+        JobRecommendComponent
     ]
 })
 export class RegistrationModule { }

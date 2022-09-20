@@ -6,11 +6,11 @@ export interface DemoColor {
   color: string;
 }
 @Component({
-  selector: 'app-recruitment',
-  templateUrl: './recruitment.component.html',
-  styleUrls: ['./recruitment.component.scss']
+  selector: 'app-recommend',
+  templateUrl: './recommend.component.html',
+  styleUrls: ['./recommend.component.scss']
 })
-export class RecruitmentComponent {
+export class RecommendComponent  {
 
   visible = true;
   selectable = true;

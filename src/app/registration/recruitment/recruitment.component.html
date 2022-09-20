@@ -9,10 +9,11 @@
             <div fxLayout="row wrap" fxFlexAlign="center" class="row m-0">
               <div fxFlex.gt-sm="30" fxFlex="100">
                 <mat-form-field appearance="outline">
-                  <mat-label>Hiring Manager</mat-label>
-                  <input matInput 
-                    placeholder="Hiring Manager" formControlName="Hiring Manager" employeeNo />
-                  
+                  <mat-select placeholder="Hiring Manager">
+                    <mat-option value="option">Option</mat-option>
+                    <mat-option value="option">Option2</mat-option>
+                    <mat-option value="option">Option3</mat-option>
+                  </mat-select>
                 </mat-form-field>
               </div>
               <div fxFlex.gt-sm="5" fxFlex="100"></div>
@@ -63,7 +64,7 @@
                   </button>
               </div>
               <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
-                
+                <!-- <quill-editor [style]="{ height: '200px' }"></quill-editor> -->
               </div>
               <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
               <mat-divider> </mat-divider>
@@ -73,8 +74,8 @@
               </div>
   
               <div fxFlex.gt-sm="30" fxFlex="100">
-                <mat-form-field>
-                    <mat-select placeholder="Hiring Manager">
+                <mat-form-field appearance="outline">
+                    <mat-select placeholder="Minimum Experiance">
                       <mat-option value="option">Option</mat-option>
                       <mat-option value="option">Option2</mat-option>
                       <mat-option value="option">Option3</mat-option>
@@ -83,48 +84,70 @@
               </div>
               <div fxFlex.gt-sm="70" fxFlex="100"></div>
               
-              <div fxFlex.gt-sm="30" fxFlex="100">
-                <mat-form-field appearance="outline">
-                    <mat-label>Hiring Manager</mat-label>
-                    <input matInput 
-                      placeholder="Hiring Manager" formControlName="Hiring Manager" employeeNo />
-                     </mat-form-field>
+              <div fxFlex.gt-sm="100" fxFlex="100" class="m-b-10">
+                <mat-form-field class="demo-chip-list" appearance="outline">
+                  <mat-chip-list #chipList>
+                    <mat-chip
+                      *ngFor="let fruit of fruits"
+                      [selectable]="selectable"
+                      [removable]="removable"
+                      (remove)="remove(fruit)"
+                    >
+                      {{ fruit.name }}
+                      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input
+                      placeholder="Certifications required......"
+                      [matChipInputFor]="chipList"
+                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                      [matChipInputAddOnBlur]="addOnBlur"
+                      (matChipInputTokenEnd)="add($event)"
+                    />
+                  </mat-chip-list>
+                </mat-form-field>
               </div>
-  
-              <div fxFlex.gt-sm="5" fxFlex="100"></div>
-              <div fxFlex.gt-sm="30" fxFlex="100">
-                <mat-form-field appearance="outline">
-                    <input type="text" matInput placeholder="Department" formControlName="departmentId" departmentId
-                    
-                      [matAutocomplete]="matAutocompleteDepartment">
-                    <mat-autocomplete #matAutocompleteDepartment="matAutocomplete">
-                      <!-- <mat-select placeholder="Department" formControlName="departmentId" departmentId
-                      [ngClass]="{'is-invalid':submitted && f.departmentId.hasError}"> -->
-                      <!-- <mat-option value="">Select</mat-option> -->
-                      
-                    </mat-autocomplete>
-                    <!-- </mat-select> -->
-    
-                    <mat-error >
-                      Department is required.
-                    </mat-error>
-                  </mat-form-field>
+              <div fxFlex.gt-sm="100" fxFlex="100" class="m-b-10">
+                <mat-form-field class="demo-chip-list" appearance="outline">
+                  <mat-chip-list #chipList>
+                    <mat-chip
+                      *ngFor="let fruit of fruits"
+                      [selectable]="selectable"
+                      [removable]="removable"
+                      (remove)="remove(fruit)"
+                    >
+                      {{ fruit.name }}
+                      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input
+                      placeholder="Certifications required......"
+                      [matChipInputFor]="chipList"
+                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                      [matChipInputAddOnBlur]="addOnBlur"
+                      (matChipInputTokenEnd)="add($event)"
+                    />
+                  </mat-chip-list>
+                </mat-form-field>
               </div>
-              <div fxFlex.gt-sm="5" fxFlex="100"></div>
-              <div fxFlex.gt-sm="30" fxFlex="100">
-                <mat-form-field appearance="outline">
-                  <input type="text" matInput placeholder="Employee Type" formControlName="employTypeId" employTypeId
-                   
-                    [matAutocomplete]="matAutocompleteEmpType">
-                  <mat-autocomplete #matAutocompleteEmpType="matAutocomplete">
-  
-                    <!-- <mat-select placeholder="Employee Type" formControlName="employTypeId" employTypeId
-                    [ngClass]="{'is-invalid':submitted && f.employTypeId.hasError}"> -->
-                    <!-- <mat-option value="">Select</mat-option> -->
-                    
-                  </mat-autocomplete>
-                  <!-- </mat-select> -->
-                  
+              <div fxFlex.gt-sm="100" fxFlex="100" class="m-b-10">
+                <mat-form-field class="demo-chip-list" appearance="outline">
+                  <mat-chip-list #chipList>
+                    <mat-chip
+                      *ngFor="let fruit of fruits"
+                      [selectable]="selectable"
+                      [removable]="removable"
+                      (remove)="remove(fruit)"
+                    >
+                      {{ fruit.name }}
+                      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input
+                      placeholder="Certifications required......"
+                      [matChipInputFor]="chipList"
+                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                      [matChipInputAddOnBlur]="addOnBlur"
+                      (matChipInputTokenEnd)="add($event)"
+                    />
+                  </mat-chip-list>
                 </mat-form-field>
               </div>
 
@@ -147,8 +170,8 @@
               </div>
               <div fxFlex.gt-sm="5" fxFlex="100"></div>
               <div fxFlex.gt-sm="30" fxFlex="100">
-                <mat-form-field>
-                    <mat-select placeholder="Select">
+                <mat-form-field appearance="outline">
+                    <mat-select placeholder="Location">
                       <mat-option value="option">Option</mat-option>
                       <mat-option value="option">Option2</mat-option>
                       <mat-option value="option">Option3</mat-option>
@@ -157,7 +180,7 @@
               </div>
               <div fxFlex.gt-sm="5" fxFlex="100"></div>
               <div fxFlex.gt-sm="30" fxFlex="100">
-                <mat-form-field>
+                <mat-form-field appearance="outline">
                     <mat-select placeholder="Contact">
                       <mat-option value="option">Option</mat-option>
                       <mat-option value="option">Option2</mat-option>
@@ -166,7 +189,7 @@
                   </mat-form-field>
               </div>
               <div fxFlex.gt-sm="30" fxFlex="100">
-                <mat-form-field>
+                <mat-form-field appearance="outline">
                     <mat-select placeholder="Classification">
                       <mat-option value="option">Option</mat-option>
                       <mat-option value="option">Option2</mat-option>
@@ -176,7 +199,7 @@
               </div>
               <div fxFlex.gt-sm="5" fxFlex="100"></div>
               <div fxFlex.gt-sm="30" fxFlex="100">
-                <mat-form-field>
+                <mat-form-field appearance="outline">
                     <mat-select placeholder="Role">
                       <mat-option value="option">Option</mat-option>
                       <mat-option value="option">Option2</mat-option>
@@ -187,30 +210,47 @@
               <div fxFlex.gt-sm="5" fxFlex="100"></div>
               <div fxFlex.gt-sm="30" fxFlex="100">
                 <mat-form-field appearance="outline">
-                    <mat-label>Hiring Manager</mat-label>
+                    <mat-label>Rate :</mat-label>
                     <input matInput 
                       placeholder="Hiring Manager" formControlName="Hiring Manager" employeeNo />
                      </mat-form-field>
               </div>
+              <div fxFlex.gt-sm="30" fxFlex="100">
+                <mat-form-field appearance="outline">
+                    <mat-select placeholder="Gang(optional)">
+                      <mat-option value="option">Option</mat-option>
+                      <mat-option value="option">Option2</mat-option>
+                      <mat-option value="option">Option3</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+              </div>
+              <div fxFlex.gt-sm="5" fxFlex="100"></div>
+              <div fxFlex.gt-sm="30" fxFlex="100">
+                <mat-form-field appearance="outline">
+                    <mat-select placeholder="Commitment">
+                      <mat-option value="option">Option</mat-option>
+                      <mat-option value="option">Option2</mat-option>
+                      <mat-option value="option">Option3</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+              </div>
+              <div fxFlex.gt-sm="35" fxFlex="100"></div>
               <mat-divider fxFlex.gt-sm="100" fxFlex="100"> </mat-divider>
               <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
-                <h4 class="m-0 m-t-20">Creator Name: <span class="p-l-25">Kunal</span></h4>
+                <h4 class="m-0 m-t-20">Creator Name:</h4>
               </div>
               <div fxFlex.gt-sm="5" fxFlex="100"></div>
               <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
-                <h4 class="m-0 m-t-20">Creator Role: <span class="p-l-25">Developer</span></h4>
+                <h4 class="m-0 m-t-20">Creator Role:</h4>
               </div>
               <div fxFlex.gt-sm="5" fxFlex="100"></div>
               <div fxFlex.gt-sm="30" fxFlex="100" class="p-10 text-center">
                 <div class="m-0 m-t-15">
                   <button class="button" mat-raised-button color="primary" >
-                    Grant Access
-                    <!-- <mat-icon> arrow_right_alt </mat-icon> -->
+                    Create
                   </button>
-                  <!-- <button mat-raised-button >OPen modal</button> -->
                 </div>
               </div>
-              <div fxFlex.gt-sm="25" fxFlex="100" class="p-10"></div>
             </div>
           </form>
         </div>
