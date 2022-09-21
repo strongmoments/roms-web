@@ -29,3 +29,12 @@
   border: 1px solid lightgray;
   border-radius: 8px;
 }
+.mat-flex {
+  display: flex;
+}
+.mat-flex h5:first-child {
+  width: 225px;
+}
+.mat-flex h5 {
+  margin: 7px 1px;
+}

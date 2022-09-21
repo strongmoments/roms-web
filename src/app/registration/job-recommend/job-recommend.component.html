@@ -1,57 +1,175 @@
 <div fxLayout="row wrap">
   <!-- Card column -->
-  <div fxFlex.gt-sm="30" fxFlex="100">
+  <div fxFlex.gt-sm="100" fxFlex="100">
     <mat-card>
       <form class="basic-form">
-        <div fxLayout="column wrap" fxFlexAlign="center">
-            <div fxFlex.gt-sm="100" fxFlex="100" class="p-15">
-              <mat-form-field>
-                <mat-label>Search(filter)</mat-label>
-                <input
-                  matInput
-                  placeholder="Search(filter)"
-                  formControlName="Search(filter)"
-                  employeeNo
-                />
-              </mat-form-field>
-            </div>
-            <div fxFlex.gt-sm="100" fxFlex="100" class="p-15">
-                <mat-form-field >
-                    <mat-select placeholder="Classifications">
-                      <mat-option value="option">Option</mat-option>
-                      <mat-option value="option">Option2</mat-option>
-                      <mat-option value="option">Option3</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-              </div>
-              <div fxFlex.gt-sm="100" fxFlex="100" class="p-15">
-                <mat-form-field >
-                    <mat-select placeholder="Demand Type">
-                      <mat-option value="option">Option</mat-option>
-                      <mat-option value="option">Option2</mat-option>
-                      <mat-option value="option">Option3</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-              </div>
-              <div fxFlex.gt-sm="100" fxFlex="100" class="p-15">
-                <mat-form-field >
-                    <mat-select placeholder="Location">
-                      <mat-option value="option">Option</mat-option>
-                      <mat-option value="option">Option2</mat-option>
-                      <mat-option value="option">Option3</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-              </div>
-              <button class="button p-10" mat-raised-button color="primary" >
-                Filter
-              </button>
+        <div fxLayout="row wrap" fxFlexAlign="center">
+          <div fxFlex.gt-sm="20" fxFlex="20" class="p-15">
+            <mat-form-field>
+              <mat-label>Search(filter)</mat-label>
+              <input
+                matInput
+                placeholder="Search(filter)"
+                formControlName="Search(filter)"
+                employeeNo
+              />
+            </mat-form-field>
           </div>
+          <div fxFlex.gt-sm="20" fxFlex="20" class="p-15">
+            <mat-form-field>
+              <mat-select placeholder="Classifications">
+                <mat-option value="option">Option</mat-option>
+                <mat-option value="option">Option2</mat-option>
+                <mat-option value="option">Option3</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxFlex.gt-sm="20" fxFlex="20" class="p-15">
+            <mat-form-field>
+              <mat-select placeholder="Demand Type">
+                <mat-option value="option">Option</mat-option>
+                <mat-option value="option">Option2</mat-option>
+                <mat-option value="option">Option3</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxFlex.gt-sm="20" fxFlex="20" class="p-15">
+            <mat-form-field>
+              <mat-select placeholder="Location">
+                <mat-option value="option">Option</mat-option>
+                <mat-option value="option">Option2</mat-option>
+                <mat-option value="option">Option3</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxFlex.gt-sm="20" fxFlex="20" class="p-15">
+            <button class="button p-10 w-100" mat-raised-button color="primary">Filter</button>
+          </div>
+        </div>
       </form>
     </mat-card>
   </div>
-  <div fxFlex.gt-sm="70" fxFlex="100">
+  <div fxFlex.gt-sm="100" fxFlex="100">
     <mat-card>
-      <h2 class="title text-center color_blue">Recommend Employee</h2>
+      <div fxLayout="column wrap" fxFlexAlign="center">
+        <div fxFlex.gt-sm="100" fxFlex="100" class="p-20 border-bottom-g">
+          <mat-label class="float-right"
+            ><small>Praposal Start Date : <b>20 Sep</b></small></mat-label
+          >
+          <h4>Operator</h4>
+          <div fxLayout="row wrap" fxFlexAlign="center">
+            <div fxFlex.gt-sm="20" fxFlex="100" class="p-20">
+              <mat-label><mat-icon>call</mat-icon>Project</mat-label>
+            </div>
+            <div fxFlex.gt-sm="20" fxFlex="100" class="p-20">
+              <mat-label><mat-icon>location_on</mat-icon>Location</mat-label>
+            </div>
+            <div fxFlex.gt-sm="20" fxFlex="100" class="p-20">
+              <mat-label><mat-icon>insert_comment</mat-icon>Contract</mat-label>
+            </div>
+            <div fxFlex.gt-sm="20" fxFlex="100" class="p-20">
+              <mat-label>Contract</mat-label>
+            </div>
+            <div fxFlex.gt-sm="20" fxFlex="100" class="p-20"></div>
+          </div>
+          <div fxLayout="row wrap" fxFlexAlign="center">
+            <div fxFlex.gt-sm="80" fxFlex="100" class="p-20">
+              <mat-label
+                >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt nesciunt tempora
+                nam corrupti cupiditate, perferendis esse doloribus possimus aut
+                voluptas.</mat-label
+              >
+            </div>
+            <div fxFlex.gt-sm="20" fxFlex="100" class="p-20">
+              <button class="button" mat-raised-button color="primary">View Details</button>
+            </div>
+          </div>
+          <label class="tag-active">Internal</label>
+          <label class="tag-active">Internal</label>
+          <label class="tag-default">Firm</label>
+          <label class="tag-default">Firm</label>
+          <label class="tag-default">Firm</label>
+        </div>
+        <div fxFlex.gt-sm="100" fxFlex="100" class="p-20 border-bottom-g">
+          <mat-label class="float-right"
+            ><small>Praposal Start Date : <b>20 Sep</b></small></mat-label
+          >
+          <h4>Operator</h4>
+          <div fxLayout="row wrap" fxFlexAlign="center">
+            <div fxFlex.gt-sm="20" fxFlex="100" class="p-20">
+              <mat-label><mat-icon>call</mat-icon>Project</mat-label>
+            </div>
+            <div fxFlex.gt-sm="20" fxFlex="100" class="p-20">
+              <mat-label><mat-icon>location_on</mat-icon>Location</mat-label>
+            </div>
+            <div fxFlex.gt-sm="20" fxFlex="100" class="p-20">
+              <mat-label><mat-icon>insert_comment</mat-icon>Contract</mat-label>
+            </div>
+            <div fxFlex.gt-sm="20" fxFlex="100" class="p-20">
+              <mat-label>Contract</mat-label>
+            </div>
+            <div fxFlex.gt-sm="20" fxFlex="100" class="p-20"></div>
+          </div>
+          <div fxLayout="row wrap" fxFlexAlign="center">
+            <div fxFlex.gt-sm="80" fxFlex="100" class="p-20">
+              <mat-label
+                >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt nesciunt tempora
+                nam corrupti cupiditate, perferendis esse doloribus possimus aut
+                voluptas.</mat-label
+              >
+            </div>
+            <div fxFlex.gt-sm="20" fxFlex="100" class="p-20">
+              <button class="button" mat-raised-button color="primary">View Details</button>
+            </div>
+          </div>
+          <label class="tag-active">Internal</label>
+          <label class="tag-active">Internal</label>
+          <label class="tag-default">Firm</label>
+          <label class="tag-default">Firm</label>
+          <label class="tag-default">Firm</label>
+        </div>
+        <div fxFlex.gt-sm="100" fxFlex="100" class="p-20 border-bottom-g">
+          <mat-label class="float-right"
+            ><small>Praposal Start Date : <b>20 Sep</b></small></mat-label
+          >
+          <h4>Operator</h4>
+          <div fxLayout="row wrap" fxFlexAlign="center">
+            <div fxFlex.gt-sm="20" fxFlex="100" class="p-20">
+              <mat-label><mat-icon>call</mat-icon>Project</mat-label>
+            </div>
+            <div fxFlex.gt-sm="20" fxFlex="100" class="p-20">
+              <mat-label><mat-icon>location_on</mat-icon>Location</mat-label>
+            </div>
+            <div fxFlex.gt-sm="20" fxFlex="100" class="p-20">
+              <mat-label><mat-icon>insert_comment</mat-icon>Contract</mat-label>
+            </div>
+            <div fxFlex.gt-sm="20" fxFlex="100" class="p-20">
+              <mat-label>Contract</mat-label>
+            </div>
+            <div fxFlex.gt-sm="20" fxFlex="100" class="p-20"></div>
+          </div>
+          <div fxLayout="row wrap" fxFlexAlign="center">
+            <div fxFlex.gt-sm="80" fxFlex="100" class="p-20">
+              <mat-label
+                >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt nesciunt tempora
+                nam corrupti cupiditate, perferendis esse doloribus possimus aut
+                voluptas.</mat-label
+              >
+            </div>
+            <div fxFlex.gt-sm="20" fxFlex="100" class="p-20">
+              <button class="button" mat-raised-button color="primary">View Details</button>
+            </div>
+          </div>
+          <label class="tag-active">Internal</label>
+          <label class="tag-active">Internal</label>
+          <label class="tag-default">Firm</label>
+          <label class="tag-default">Firm</label>
+          <label class="tag-default">Firm</label>
+        </div>
+        <!-- <div fxFlex.gt-sm="100" fxFlex="100" class="p-15">button</div> -->
+      </div>
+
+      <!-- <h2 class="title text-center color_blue">Recommend Employee</h2> -->
     </mat-card>
   </div>
 </div>

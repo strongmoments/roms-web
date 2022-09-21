@@ -6,6 +6,7 @@ import { CreateUserComponent } from '../registration/create-user/create-user.com
 import { RecruitmentComponent } from './recruitment/recruitment.component';
 import { RecommendComponent } from './recommend/recommend.component';
 import { JobRecommendComponent } from './job-recommend/job-recommend.component';
+import { RecruitmentDetailsComponent } from './recruitment-details/recruitment-details.component';
 
 const routes: Routes = [
     {
@@ -18,6 +19,7 @@ const routes: Routes = [
             { path: 'recruitment', component: RecruitmentComponent },
             { path: 'recommend', component: RecommendComponent },
             { path: 'job-recommend', component: JobRecommendComponent },
+            { path: 'recruitment-details', component: RecruitmentDetailsComponent },
             //   { path: 'form', component: EmployeeFormComponent },
             //   { path: 'view:id', component: EmployeeViewComponent },
             //   { path: 'transfer', component: EmployeeTransferFormComponent },

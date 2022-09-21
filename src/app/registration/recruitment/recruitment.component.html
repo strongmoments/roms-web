@@ -36,15 +36,18 @@
               <mat-form-field appearance="outline">
                 <mat-label>Email Id</mat-label>
                 <input matInput placeholder="Email Id" />
-
               </mat-form-field>
             </div>
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
 
-
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
-                <input matInput (click)="picker.open()" [matDatepicker]="picker" placeholder="Date Of Birth" />
+                <input
+                  matInput
+                  (click)="picker.open()"
+                  [matDatepicker]="picker"
+                  placeholder="Date Of Birth"
+                />
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
@@ -52,21 +55,14 @@
 
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100">
-              <button class="button" mat-raised-button color="Basic">
-                Today
-              </button>
-              <button class="button" mat-raised-button color="Basic">
-                Tomorrow
-              </button>
-              <button class="button" mat-raised-button color="Basic">
-                Next Monday
-              </button>
+              <button class="button" mat-raised-button color="Basic">Today</button>
+              <button class="button" mat-raised-button color="Basic">Tomorrow</button>
+              <button class="button" mat-raised-button color="Basic">Next Monday</button>
             </div>
-            <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
+            <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10 m-b-40">
               <quill-editor placeholder="Enter Description"></quill-editor>
-
             </div>
-            <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
+            <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10 m-t-0">
               <mat-divider> </mat-divider>
             </div>
             <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
@@ -87,45 +83,69 @@
             <div fxFlex.gt-sm="100" fxFlex="100" class="m-b-10">
               <mat-form-field class="demo-chip-list" appearance="outline">
                 <mat-chip-list #chipList>
-                  <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable"
-                    (remove)="remove(fruit)">
+                  <mat-chip
+                    *ngFor="let fruit of fruits"
+                    [selectable]="selectable"
+                    [removable]="removable"
+                    (remove)="remove(fruit)"
+                  >
                     {{ fruit.name }}
                     <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                   </mat-chip>
-                  <input placeholder="Certifications required......" [matChipInputFor]="chipList"
-                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-                    (matChipInputTokenEnd)="add($event)" />
+                  <input
+                    placeholder="Certifications required......"
+                    [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    [matChipInputAddOnBlur]="addOnBlur"
+                    (matChipInputTokenEnd)="add($event)"
+                  />
                 </mat-chip-list>
               </mat-form-field>
             </div>
             <div fxFlex.gt-sm="100" fxFlex="100" class="m-b-10">
               <mat-form-field class="demo-chip-list" appearance="outline">
                 <mat-chip-list #chipList>
-                  <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable"
-                    (remove)="remove(fruit)">
+                  <mat-chip
+                    *ngFor="let fruit of fruits2"
+                    [selectable]="selectable"
+                    [removable]="removable"
+                    (remove)="remove(fruit)"
+                  >
                     {{ fruit.name }}
                     <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                   </mat-chip>
-                  <input placeholder="Certifications required......" [matChipInputFor]="chipList"
-                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-                    (matChipInputTokenEnd)="add($event)" />
+                  <input
+                    placeholder="Certifications required......"
+                    [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    [matChipInputAddOnBlur]="addOnBlur"
+                    (matChipInputTokenEnd)="add($event)"
+                  />
                 </mat-chip-list>
               </mat-form-field>
             </div>
-            <div fxFlex.gt-sm="100" fxFlex="100" class="m-b-10">
+            <!-- <div fxFlex.gt-sm="100" fxFlex="100" class="m-b-10">
               <mat-form-field class="demo-chip-list" appearance="outline">
                 <mat-chip-list #chipList>
-                  <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable"
-                    (remove)="remove(fruit)">
+                  <mat-chip
+                    *ngFor="let fruit of fruits2"
+                    [selectable]="selectable"
+                    [removable]="removable"
+                    (remove)="remove(fruit)"
+                  >
                     {{ fruit.name }}
                     <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                   </mat-chip>
-                  <input placeholder="Certifications required......" [matChipInputFor]="chipList"
-                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-                    (matChipInputTokenEnd)="add($event)" />
+                  <input
+                    placeholder="Certifications required......"
+                    [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    [matChipInputAddOnBlur]="addOnBlur"
+                    (matChipInputTokenEnd)="add($event)"
+                  />
                 </mat-chip-list>
               </mat-form-field>
-            </div>
+            </div> -->
 
             <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
               <mat-divider> </mat-divider>
@@ -233,15 +253,24 @@
   </mat-card-content>
 </mat-card>
 
-
-
-
 <ng-template #resourceDemandDialog>
-  <h1 mat-dialog-title align="center" style="font-size: 28px; margin-bottom: 25px">Title !</h1>
-  <div fxLayout="row wrap">
+  <h1
+    mat-dialog-title
+    align="center"
+    class="color_blue"
+    style="font-size: 28px; margin-bottom: 25px"
+  >
+    Job Resource Demand Created !
+  </h1>
+  <div fxLayout="column wrap">
+    <!-- <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
+      <button class="m-b-20 button" mat-raised-button color="primary">Visit Job Board</button>
+    </div> -->
     <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
-
+      <button class="m-b-20 button" mat-raised-button color="primary">Visit Job Board</button>
+    </div>
+    <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
+      <button class="button" mat-raised-button color="primary">Recommend an Employee</button>
     </div>
   </div>
-
 </ng-template>

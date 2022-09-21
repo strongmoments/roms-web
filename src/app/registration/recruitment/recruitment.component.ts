@@ -9,7 +9,7 @@ export interface DemoColor {
 @Component({
   selector: 'app-recruitment',
   templateUrl: './recruitment.component.html',
-  styleUrls: ['./recruitment.component.scss']
+  styleUrls: ['./recruitment.component.scss'],
 })
 export class RecruitmentComponent {
   @ViewChild('resourceDemandDialog') resourceDemandDialog!: TemplateRef<any>;
@@ -23,6 +23,7 @@ export class RecruitmentComponent {
   separatorKeysCodes = [ENTER, COMMA];
 
   fruits = [{ name: 'Lemon' }, { name: 'Lime' }, { name: 'Apple' }];
+  fruits2 = [{ name: 'Lemon2' }, { name: 'Lime2' }, { name: 'Apple2' }];
 
   availableColors: DemoColor[] = [
     { name: 'none', color: '' },
@@ -31,9 +32,7 @@ export class RecruitmentComponent {
     { name: 'Warn', color: 'warn' },
   ];
 
-  constructor(private dialog: MatDialog){
-
-  }
+  constructor(private dialog: MatDialog) {}
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
@@ -41,6 +40,7 @@ export class RecruitmentComponent {
     // Add our fruit
     if ((value || '').trim()) {
       this.fruits.push({ name: value.trim() });
+      this.fruits2.push({ name: value.trim() });
     }
 
     // Reset the input value
@@ -51,19 +51,21 @@ export class RecruitmentComponent {
 
   remove(fruit: any): void {
     const index = this.fruits.indexOf(fruit);
+    const index2 = this.fruits2.indexOf(fruit);
 
     if (index >= 0) {
       this.fruits.splice(index, 1);
     }
+    if (index2 >= 0) {
+      this.fruits2.splice(index2, 1);
+    }
   }
-
-  
 
   openDialog(data: any) {
     const dialogRef = this.dialog.open(this.resourceDemandDialog, {
-      width: '35em',
-      height: '30em',
-      data: { data: data }
+      width: '30em',
+      height: '15em',
+      data: { data: data },
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {

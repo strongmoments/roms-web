@@ -8,6 +8,7 @@ import { UserCreatedSuccessDialogComponent } from './user-created-success-dialog
 import { RecruitmentComponent } from './recruitment/recruitment.component';
 import { RecommendComponent } from './recommend/recommend.component';
 import { JobRecommendComponent } from './job-recommend/job-recommend.component';
+import { RecruitmentDetailsComponent } from './recruitment-details/recruitment-details.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { JobRecommendComponent } from './job-recommend/job-recommend.component';
         UserCreatedSuccessDialogComponent,
         RecruitmentComponent,
         RecommendComponent,
-        JobRecommendComponent
+        JobRecommendComponent,
+        RecruitmentDetailsComponent
     ]
 })
 export class RegistrationModule { }
