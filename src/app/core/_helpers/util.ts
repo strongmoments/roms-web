@@ -11,6 +11,8 @@ export class Utils {
     intRegex = /^[0-9]*$/;
     mmYY = /^(0[1-9]|1[0-2])\/([0-9]{2})$/;
     mmYYYY = /^(0[1-9]|1[0-2])\/([0-9]{4})$/;
+    aplhaNumericeWithoutSpace= /^[A-Za-z0-9]*$/;
+
 
 
     timeMask = [/[0-2]/, /[0-9]/, ':', /[0-5]/, /[0-9]/]

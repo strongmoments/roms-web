@@ -14,6 +14,9 @@ export class AuthenticationService {
     private userSubject: BehaviorSubject<User>;
     public user: Observable<User>;
     public refreshTokenTimeout: any;
+    public newRegistrationData: any = {};
+    private newRegistrationSubject = new BehaviorSubject(this.newRegistrationData);
+    addedResigstration= this.newRegistrationSubject.asObservable();
 
     constructor(private router: Router, private http: HttpClient,
         @Inject('LOCALSTORAGE') private localStorage: Storage, private sseService: SseService) {
@@ -165,6 +168,12 @@ export class AuthenticationService {
         return of(true);
     }
 
+
+    passNewRegistration(data: any) {
+
+        console.log(data,'data.inssdkskjkd')
+        this.newRegistrationSubject.next(data)
+    }
 
     passwordReset(token: string, password: string, confirmPassword: string): any {
         return this.http.post(`${environment.apiUrl}/accounts/reset-password`, {

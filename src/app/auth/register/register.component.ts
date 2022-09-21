@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
       // firstCtrl: ['', Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
-      empNo: new FormControl('', [Validators.required, Validators.pattern(this.utils.intRegex), Validators.maxLength(15)]),
+      empNo: new FormControl('', [Validators.required, Validators.pattern(this.utils.aplhaNumericeWithoutSpace), Validators.maxLength(15)]),
       firstName: new FormControl('', [Validators.required, Validators.maxLength(25)]),
       lastName: new FormControl('', [Validators.required, Validators.maxLength(25)]),
       email: new FormControl('', [Validators.required, Validators.pattern(this.utils.emailRegex), Validators.maxLength(30)]),

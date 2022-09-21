@@ -15,7 +15,7 @@
                 <mat-error *ngIf="submitted && checkError('employeeNo', 'required')">
                   Employee No. is required.
                 </mat-error>
-                <mat-error *ngIf="submitted && checkError('employeeNo', 'pattern')">
+                <mat-error *ngIf="checkError('employeeNo', 'pattern')">
                   Employee No. is invalid.
                 </mat-error>
                 <mat-error *ngIf="checkError('employeeNo', 'maxlength')">
@@ -89,7 +89,7 @@
             </div>
             <div fxFlex.gt-sm="5" fxFlex="100" class="p-10"></div>
             <div fxFlex.gt-sm="30" fxFlex="100">
-              <mat-form-field appearance="outline">
+              <!-- <mat-form-field appearance="outline">
                 <input matInput (click)="picker.open()" [matDatepicker]="picker" placeholder="Date Of Birth"
                   formControlName="dob" dob [ngClass]="{'is-invalid':submitted && f.dob.hasError}" />
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -98,7 +98,7 @@
                   Date of Birth is required.
                 </mat-error>
 
-              </mat-form-field>
+              </mat-form-field> -->
             </div>
 
             <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">

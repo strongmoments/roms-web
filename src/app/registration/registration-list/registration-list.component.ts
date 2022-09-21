@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { DatePipe } from '@angular/common';
@@ -24,7 +24,7 @@ import { element } from 'protractor';
   templateUrl: './registration-list.component.html',
   styleUrls: ['./registration-list.component.scss'],
 })
-export class RegistrationListComponent implements OnInit {
+export class RegistrationListComponent implements OnInit, OnChanges {
   globals: Globals;
   submitted: boolean = false;
   displayedColumns: string[] = [
@@ -46,9 +46,9 @@ export class RegistrationListComponent implements OnInit {
 
   @ViewChild(MatSort, { static: false }) sort: MatSort = Object.create(null);
   // @ViewChild(MatSort, { static: false }) sortHistory: MatSort = Object.create(null);
-  pagesize = 10;
+  // pagesize = 10;
   pageNo = 0;
-  pageSize = 10;
+  pageSize = 9999999999;
   totalRecords: number = 0;
   search: string = ''; //by default 0 for pending list
   // currentDate: any = new Date();
@@ -112,6 +112,19 @@ export class RegistrationListComponent implements OnInit {
   ngOnInit(): void {
     // this.displayedColumns = this.displayedColumnsLeave;
     this.refresh(this.getDefaultOptions());
+    // console.log('in listing');
+    // this.authService.addedResigstration.subscribe((record: any) => (this.dataSource.data.unshift(record)));
+    this.authService.addedResigstration.subscribe((record: any) => {
+      console.log(record, 'in listing12');
+      if (record) {
+        this.totalRecords = this.totalRecords + 1;
+        this.dataSource.data = [record, ...this.dataSource.data];
+      }
+    });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+
   }
 
   /**
@@ -219,7 +232,7 @@ export class RegistrationListComponent implements OnInit {
       search: '',
       query: '',
       pageSize:
-        obj != undefined ? (obj.pageSize == null ? this.pagesize : obj.pageSize) : this.pagesize,
+        obj != undefined ? (obj.pageSize == null ? this.pageSize : obj.pageSize) : this.pageSize,
     };
     return options;
   }

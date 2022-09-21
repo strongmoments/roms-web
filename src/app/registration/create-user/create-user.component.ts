@@ -63,12 +63,12 @@ export class CreateUserComponent implements OnInit {
       this.router.navigate(['/registration/list']);
     }
     this.form = this.fb.group({
-      employeeNo: new FormControl(this.userSessionData?.employeeNo, [Validators.required, Validators.pattern(this.utils.intRegex), Validators.maxLength(15)]),
+      employeeNo: new FormControl(this.userSessionData?.employeeNo, [Validators.required, Validators.pattern(this.utils.aplhaNumericeWithoutSpace), Validators.maxLength(15)]),
       firstName: new FormControl(this.userSessionData?.firstName, [Validators.required, Validators.maxLength(25)]),
       lastName: new FormControl(this.userSessionData?.lastName, [Validators.required, Validators.maxLength(25)]),
       email: new FormControl(this.userSessionData?.email, [Validators.required, Validators.pattern(this.utils.emailRegex), Validators.maxLength(30)]),
       contactNo: new FormControl(this.userSessionData?.phone, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(this.utils.intRegex)]),
-      dob: new FormControl('', [Validators.required]),
+      // dob: new FormControl('', [Validators.required]),
       isManager: new FormControl(false),
       roleId: new FormControl('', [Validators.required]),
       managerId: new FormControl('', []),

@@ -5,30 +5,48 @@
     <mat-card-title class="p-t-30 p-b-10 color_blue">Requirement Details</mat-card-title>
     <div fxLayout="row wrap">
       <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
-        <form class="basic-form">
+        <form class="basic-form" [formGroup]="form">
           <div fxLayout="row wrap" fxFlexAlign="center" class="row m-0">
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
-                <mat-select placeholder="Hiring Manager">
+                <mat-select placeholder="Hiring Manager" formControlName="managerId" managerId
+                  [ngClass]="{'is-invalid':submitted && f.managerId.hasError}">
+                  <mat-option value="">Select</mat-option>
+                  <mat-option [value]="item.id" *ngFor="let item of managers">
+                    {{ item.firstName }} {{ item.lastName }}
+                  </mat-option>
+
+                </mat-select>
+                <!-- <mat-select placeholder="Hiring Manager">
                   <mat-option value="option">Option</mat-option>
                   <mat-option value="option">Option2</mat-option>
                   <mat-option value="option">Option3</mat-option>
-                </mat-select>
+                </mat-select> -->
+
+                <mat-error *ngIf="submitted && checkError('managerId', 'required')">
+                  Manager is required.
+                </mat-error>
               </mat-form-field>
             </div>
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="65" fxFlex="100">
               <section class="example-section">
                 <label class="example-margin">Demand Type:</label>
-                <mat-radio-group>
-                  <mat-radio-button class="example-margin" value="Internal">
-                    Internal
+                <mat-radio-group formControlName="demandType" demandType
+                  [ngClass]="{'is-invalid':submitted && f.demandType.hasError}">
+                  <mat-radio-button *ngFor="let item of globals.demandTypes" class="example-margin"
+                    [value]="item.value">
+                    {{item.name}}
                   </mat-radio-button>
-                  <mat-radio-button class="example-margin" value="External">
+                  <!-- <mat-radio-button class="example-margin" value="External">
                     External
                   </mat-radio-button>
-                  <mat-radio-button class="example-margin" value="Both"> Both </mat-radio-button>
+                  <mat-radio-button class="example-margin" value="Both"> Both </mat-radio-button> -->
                 </mat-radio-group>
+
+                <mat-error *ngIf="submitted && checkError('demandType', 'required')">
+                  Demand type is required.
+                </mat-error>
               </section>
             </div>
 
@@ -42,12 +60,7 @@
 
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
-                <input
-                  matInput
-                  (click)="picker.open()"
-                  [matDatepicker]="picker"
-                  placeholder="Date Of Birth"
-                />
+                <input matInput (click)="picker.open()" [matDatepicker]="picker" placeholder="Date Of Birth" />
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
@@ -82,70 +95,46 @@
 
             <div fxFlex.gt-sm="100" fxFlex="100" class="m-b-10">
               <mat-form-field class="demo-chip-list" appearance="outline">
-                <mat-chip-list #chipList>
-                  <mat-chip
-                    *ngFor="let fruit of fruits"
-                    [selectable]="selectable"
-                    [removable]="removable"
-                    (remove)="remove(fruit)"
-                  >
+                <mat-chip-list #chipListCertificate>
+                  <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable"
+                    (remove)="remove(fruit)">
                     {{ fruit.name }}
                     <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                   </mat-chip>
-                  <input
-                    placeholder="Certifications required......"
-                    [matChipInputFor]="chipList"
-                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                    [matChipInputAddOnBlur]="addOnBlur"
-                    (matChipInputTokenEnd)="add($event)"
-                  />
+                  <input placeholder="Certifications required......" [matChipInputFor]="chipListCertificate"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                    (matChipInputTokenEnd)="add($event)" />
                 </mat-chip-list>
               </mat-form-field>
             </div>
             <div fxFlex.gt-sm="100" fxFlex="100" class="m-b-10">
               <mat-form-field class="demo-chip-list" appearance="outline">
-                <mat-chip-list #chipList>
-                  <mat-chip
-                    *ngFor="let fruit of fruits2"
-                    [selectable]="selectable"
-                    [removable]="removable"
-                    (remove)="remove(fruit)"
-                  >
+                <mat-chip-list #chipListLicence>
+                  <mat-chip *ngFor="let fruit of fruits2" [selectable]="selectable" [removable]="removable"
+                    (remove)="remove(fruit)">
                     {{ fruit.name }}
                     <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                   </mat-chip>
-                  <input
-                    placeholder="Certifications required......"
-                    [matChipInputFor]="chipList"
-                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                    [matChipInputAddOnBlur]="addOnBlur"
-                    (matChipInputTokenEnd)="add($event)"
-                  />
+                  <input placeholder="Certifications required......" [matChipInputFor]="chipListLicence"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                    (matChipInputTokenEnd)="add($event)" />
                 </mat-chip-list>
               </mat-form-field>
             </div>
-            <!-- <div fxFlex.gt-sm="100" fxFlex="100" class="m-b-10">
+            <div fxFlex.gt-sm="100" fxFlex="100" class="m-b-10">
               <mat-form-field class="demo-chip-list" appearance="outline">
-                <mat-chip-list #chipList>
-                  <mat-chip
-                    *ngFor="let fruit of fruits2"
-                    [selectable]="selectable"
-                    [removable]="removable"
-                    (remove)="remove(fruit)"
-                  >
+                <mat-chip-list #chipListTicket>
+                  <mat-chip *ngFor="let fruit of fruits2" [selectable]="selectable" [removable]="removable"
+                    (remove)="remove(fruit)">
                     {{ fruit.name }}
                     <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                   </mat-chip>
-                  <input
-                    placeholder="Certifications required......"
-                    [matChipInputFor]="chipList"
-                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                    [matChipInputAddOnBlur]="addOnBlur"
-                    (matChipInputTokenEnd)="add($event)"
-                  />
+                  <input placeholder="Certifications required......" [matChipInputFor]="chipListTicket"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                    (matChipInputTokenEnd)="add($event)" />
                 </mat-chip-list>
               </mat-form-field>
-            </div> -->
+            </div>
 
             <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
               <mat-divider> </mat-divider>
@@ -196,11 +185,22 @@
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
-                <mat-select placeholder="Role">
+                <input type="text" placeholder="Role" aria-label="Role" matInput formControlName="roleId" roleId
+                  [matAutocomplete]="auto" [ngClass]="{'is-invalid':submitted && f.roleId.hasError}">
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option [value]="item.name" *ngFor="let item of roles">
+                    {{ item.name }}
+                  </mat-option>
+                </mat-autocomplete>
+                <!-- </mat-select> -->
+                <mat-error *ngIf="submitted && checkError('roleId', 'required')">
+                  Role is required.
+                </mat-error>
+                <!-- <mat-select placeholder="Role">
                   <mat-option value="option">Option</mat-option>
                   <mat-option value="option">Option2</mat-option>
                   <mat-option value="option">Option3</mat-option>
-                </mat-select>
+                </mat-select> -->
               </mat-form-field>
             </div>
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
@@ -241,7 +241,7 @@
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100" class="p-10 text-center">
               <div class="m-0 m-t-15">
-                <button class="button" (click)="openDialog({})" mat-raised-button color="primary">
+                <button class="button" (click)="onSubmit()" mat-raised-button color="primary">
                   Create
                 </button>
               </div>
@@ -254,12 +254,7 @@
 </mat-card>
 
 <ng-template #resourceDemandDialog>
-  <h1
-    mat-dialog-title
-    align="center"
-    class="color_blue"
-    style="font-size: 28px; margin-bottom: 25px"
-  >
+  <h1 mat-dialog-title align="center" class="color_blue" style="font-size: 28px; margin-bottom: 25px">
     Job Resource Demand Created !
   </h1>
   <div fxLayout="column wrap">

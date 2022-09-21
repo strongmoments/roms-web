@@ -31,7 +31,7 @@
               </a>
             </div>
           </div>
-          <mat-horizontal-stepper [linear]="isLinear" #stepper>
+          <mat-horizontal-stepper  #stepper>
             <mat-step [stepControl]="firstFormGroup">
               <form [formGroup]="firstFormGroup">
                 <mat-list role="list">
@@ -89,7 +89,7 @@
                       <mat-error *ngIf="submitted && checkError('empNo', 'required')">
                         Employee No. is required.
                       </mat-error>
-                      <mat-error *ngIf="submitted && checkError('empNo', 'pattern')">
+                      <mat-error *ngIf="checkError('empNo', 'pattern')">
                         Employee No. is invalid.
                       </mat-error>
                       <mat-error *ngIf="checkError('empNo', 'maxlength')">
@@ -204,7 +204,7 @@
                         <mat-icon>android</mat-icon>
                       </span>
                       Download the Roms Android app
-                      <a href="javascript:void(0);" class="m-l-10">here </a>
+                      <a download="ROMS_PRODUCTION.apk" href="/assets/ROMS_PRODUCTION.apk" class="m-l-10">here </a>
                     </p>
                   </mat-list-item>
                 </div>

@@ -24,6 +24,26 @@ export class Globals {
             }
         );
     }
+    getTitle(key: string, id: any) {
+        let instance: any = this;
+        if (key && id && instance[key] !== undefined && instance[key] !== null) {
+            let ele: any = instance[key].find((elem: any) => elem.value == id);
+            return ele && ele.name ? ele.name : '';
+        } else {
+            return '';
+        }
+    }
+
+    getClass(key: string, id: any) {
+        let instance: any = this;
+        if (key && id && instance[key] !== undefined && instance[key] !== null) {
+            let ele: any = instance[key].find((elem: any) => elem.value == id);
+            return ele && ele.class ? ele.class : '';
+        } else {
+            return '';
+        }
+    }
+
 
     leaveStatus = [
         { name: 'Pending', value: 1, colorClass: 'pending', checkboxColorClass: 'pending-checkbox' },
@@ -44,10 +64,10 @@ export class Globals {
         { name: 'Super Admin', value: Role.SuperAdmin, listTitle: 'SuperAdmin' },
     ];
 
-    status = [
-        { value: true, viewValue: 'Active' },
-        { value: false, viewValue: 'Inactive' }
-    ];
+    // status = [
+    //     { value: true, name: 'Active' },
+    //     { value: false, name: 'Inactive' }
+    // ];
 
 
     leaveTypes = [
@@ -63,10 +83,17 @@ export class Globals {
         { name: 'long service', value: 'long_service' },
     ]
 
-    department = [
-        { name: 'SEO', value: DepartmentId.seo, listTitle: 'seo' },
-        { name: 'Node DEPARTMENT', value: DepartmentId.node, listTitle: 'node' },
-    ];
+    // department = [
+    //     { name: 'SEO', value: DepartmentId.seo, listTitle: 'seo' },
+    //     { name: 'Node DEPARTMENT', value: DepartmentId.node, listTitle: 'node' },
+    // ];
+
+
+    demandTypes = [
+        { name: 'Internal', value: 'internal' },
+        { name: 'External', value: 'external' },
+        { name: 'Both', value: 'both' }
+    ]
 
 }
 

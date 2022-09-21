@@ -152,13 +152,19 @@ export class VerticalAppHeaderComponent {
             } else if (data.type == "resigne_request") {
               url = '/employee/resignation-list';
             } else if (data.type == "adduser_request") {
+
               url = '/registration/list';
             }
-            this.alertService.openSnackBar(data.message, false, 0, '', true, {
-              profileImage: data.profileImage,
-              url: url,
-              eventId: data.eventId,
-            });
+
+            if (data.type == "adduserlist__request") {
+              this.authService.passNewRegistration(data.data);
+            } else {
+              this.alertService.openSnackBar(data.message, false, 0, '', true, {
+                profileImage: data.profileImage,
+                url: url,
+                eventId: data.eventId,
+              });
+            }
             this.notifications.push({});
             // this.getAllNotification();
           }
