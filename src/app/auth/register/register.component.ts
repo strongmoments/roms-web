@@ -74,6 +74,9 @@ export class RegisterComponent implements OnInit {
       } else if (result.status == "errorsuccess" && result.error == "already_requested") {
         this.alertService.openSnackBar(CustomMessage.alreadyRegistered);
         this.router.navigate(['/']);
+      } else if (result.status == "errorsuccess" && result.error == "already_exist") {
+        this.alertService.openSnackBar(CustomMessage.alreadyExist);
+        this.router.navigate(['/']);
       }
       stepper.next();
     }, (error: any) => {
