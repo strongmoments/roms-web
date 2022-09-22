@@ -11,7 +11,7 @@
               <mat-form-field appearance="outline">
                 <mat-select placeholder="Hiring Manager" formControlName="managerId" managerId
                   [ngClass]="{'is-invalid':submitted && f.managerId.hasError}">
-                  <mat-option value="">Select</mat-option>
+                  <mat-option value="">Hiring Manager</mat-option>
                   <mat-option [value]="item.id" *ngFor="let item of managers">
                     {{ item.firstName }} {{ item.lastName }}
                   </mat-option>
@@ -52,15 +52,15 @@
 
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
-                <mat-label>Email Id</mat-label>
-                <input matInput placeholder="Email Id" />
+                <mat-label>Role Name :</mat-label>
+                <input matInput placeholder="Operator" />
               </mat-form-field>
             </div>
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
 
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
-                <input matInput (click)="picker.open()" [matDatepicker]="picker" placeholder="Date Of Birth" />
+                <input matInput (click)="picker.open()" [matDatepicker]="picker" placeholder="Proposed Start Date" />
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
