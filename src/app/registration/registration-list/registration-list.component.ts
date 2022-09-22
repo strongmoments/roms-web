@@ -118,6 +118,14 @@ export class RegistrationListComponent implements OnInit, OnChanges {
       console.log(record, 'in listing12');
       if (record) {
         this.totalRecords = this.totalRecords + 1;
+        record.statusName = this.getStatus(record?.status);
+        record.convertedAppliedOn = this.datePipe.transform(record.appliedOn, 'dd/MM/yyyy');
+        // data.push({
+        //   ...record,
+        //   statusName: statusName,
+        //   convertedAppliedOn: convertedAppliedOn
+        // });
+
         this.dataSource.data = [record, ...this.dataSource.data];
       }
     });

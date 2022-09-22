@@ -10,7 +10,7 @@ export interface DemoColor {
   templateUrl: './recommend.component.html',
   styleUrls: ['./recommend.component.scss']
 })
-export class RecommendComponent  {
+export class RecommendComponent {
 
   visible = true;
   selectable = true;
@@ -42,6 +42,10 @@ export class RecommendComponent  {
     if (input) {
       input.value = '';
     }
+  }
+
+  search(event: any) {
+    console.log(event, 'event')
   }
 
   remove(fruit: any): void {
