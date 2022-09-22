@@ -132,14 +132,14 @@
 
                   <div fxFlex.gt-sm="90" class="row p-l-10 p-t-0">
                     <div fxLayout="row wrap" style="align-items: center">
-                      <div fxFlex.gt-sm="45">
+                      <div fxFlex.gt-sm="50">
                         <div fxLayout="row wrap">
                           <!-- column -->
                           <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
                             <a href="javascript:void" (click)="calculateHours(1)">
                               <mat-card class="bg-info text-white text-center">
                                 <div class="p-20">
-                                  <h4 class="m-0">1 Hr</h4>
+                                  <h4 class="m-0">1 <span >Hr</span></h4>
                                 </div>
                               </mat-card>
                             </a>
@@ -149,7 +149,7 @@
                             <a href="javascript:void" (click)="calculateHours(2)">
                               <mat-card class="bg-purple text-white text-center">
                                 <div class="p-20">
-                                  <h4 class="m-0">2 Hr</h4>
+                                  <h4 class="m-0">2 <span >Hr</span></h4>
                                 </div>
                               </mat-card>
                             </a>
@@ -159,7 +159,7 @@
                             <a href="javascript:void" (click)="calculateHours(3)">
                               <mat-card class="bg-success text-white text-center">
                                 <div class="p-20">
-                                  <h4 class="m-0">3 Hr</h4>
+                                  <h4 class="m-0">3 <span >Hr</span></h4>
                                 </div>
                               </mat-card>
                             </a>
@@ -169,7 +169,7 @@
                             <a href="javascript:void" (click)="calculateHours(4)">
                               <mat-card class="bg-inverse text-white text-center">
                                 <div class="p-20">
-                                  <h4 class="m-0">4 Hr</h4>
+                                  <h4 class="m-0">4 <span >Hr</span></h4>
                                 </div>
                               </mat-card>
                             </a>
@@ -226,7 +226,7 @@
                           </div> -->
                         </div>
                       </div>
-                      <div fxFlex.gt-sm="55" style="align-items: center; flex-wrap: wrap">
+                      <div fxFlex.gt-sm="50" style="align-items: center; flex-wrap: wrap">
                         <div fxFlex.gt-sm="10" class="p-10">
                           <h3>Or</h3>
                         </div>
@@ -407,7 +407,7 @@
                     <!-- <mat-label>Outline form field</mat-label> -->
                     <textarea [ngClass]="{
                         'is-invalid': submitted && checkError('leaveReason', 'required')
-                      }" matInput formControlName="leaveReason" placeholder="Comment" rows="14">
+                      }" matInput formControlName="leaveReason" placeholder="Comment" rows="10">
                     </textarea>
                     <mat-error *ngIf="submitted && checkError('leaveReason', 'required')">
                       Comment is required
@@ -435,7 +435,7 @@
                       </span>
                     </h3>
                     <h6 class="m-t-0"><span *ngIf="managerData && managerData.firstName">Manager</span></h6>
-                    <mat-card-actions class="m-b-10">
+                    <mat-card-actions class="">
                       <button [disabled]="!managerData || (managerData && !managerData.firstName)" mat-raised-button
                         color="warn" class="m-t-20" type="" submit>
                         REQUEST FOR APPROVAL
@@ -453,9 +453,8 @@
           <div fxLayout="row wrap">
             <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
               <mat-card class="m-0 m-t-20 m-b-5">
-                <mat-card-title align="right" class="p-r-10 p-t-10">
-                  {{ currentDate | date: 'MMMM y'
-                  }}<mat-form-field style="display: none; text-align: right">
+                <mat-card-title align="right" class="p-r-20 p-t-10">
+                  {{ currentDate | date: 'MMMM y' }}<mat-form-field style="display: none; text-align: right">
                     <mat-label>Choose a date</mat-label>
                     <input matInput [matDatepicker]="pickerList" [(ngModel)]="historyMonth" />
                     <mat-datepicker #pickerList></mat-datepicker>
