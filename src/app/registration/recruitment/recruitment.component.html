@@ -9,9 +9,10 @@
           <div fxLayout="row wrap" fxFlexAlign="center" class="row m-0">
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
+                <mat-label>Hiring Manager</mat-label>
                 <mat-select placeholder="Hiring Manager" formControlName="managerId" managerId
                   [ngClass]="{'is-invalid':submitted && f.managerId.hasError}">
-                  <mat-option value="">Hiring Manager</mat-option>
+                  <!-- <mat-option value="">Hiring Manager</mat-option> -->
                   <mat-option [value]="item.id" *ngFor="let item of managers">
                     {{ item.firstName }} {{ item.lastName }}
                   </mat-option>
@@ -66,16 +67,17 @@
               </mat-form-field>
             </div>
 
-            <div fxFlex.gt-sm="5" fxFlex="100"></div>
-            <div fxFlex.gt-sm="30" fxFlex="100">
-              <button class="button" mat-raised-button color="Basic">Today</button>
-              <button class="button" mat-raised-button color="Basic">Tomorrow</button>
-              <button class="button" mat-raised-button color="Basic">Next Monday</button>
+            <div fxFlex.gt-sm="2" fxFlex="100"></div>
+            <div fxFlex.gt-sm="33" fxFlex="100">
+              <button class="button date-btn-default date-btn-active"  mat-raised-button >Today</button>
+              <button class="button date-btn-default" mat-raised-button >Tomorrow</button>
+              <button class="button date-btn-default" mat-raised-button >Next Monday</button>
             </div>
             <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10 m-b-40">
+              <mat-label>Description</mat-label>
               <quill-editor placeholder="Enter Description"></quill-editor>
             </div>
-            <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-30 m-t-0">
+            <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-30 m-t-30">
               <mat-divider> </mat-divider>
             </div>
             <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
@@ -84,6 +86,7 @@
 
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
+                <mat-label>Minimum Experiance</mat-label>
                 <mat-select placeholder="Minimum Experiance">
                   <mat-option value="option">Option</mat-option>
                   <mat-option value="option">Option2</mat-option>
@@ -95,6 +98,7 @@
 
             <div fxFlex.gt-sm="100" fxFlex="100" class="m-b-10">
               <mat-form-field class="demo-chip-list" appearance="outline">
+                <mat-label>Certification Required</mat-label>
                 <mat-chip-list #chipListCertificate>
                   <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable"
                     (remove)="remove(fruit)">
@@ -109,6 +113,7 @@
             </div>
             <div fxFlex.gt-sm="100" fxFlex="100" class="m-b-10">
               <mat-form-field class="demo-chip-list" appearance="outline">
+                <mat-label>License Required</mat-label>
                 <mat-chip-list #chipListLicence>
                   <mat-chip *ngFor="let fruit of fruits2" [selectable]="selectable" [removable]="removable"
                     (remove)="remove(fruit)">
@@ -123,6 +128,7 @@
             </div>
             <div fxFlex.gt-sm="100" fxFlex="100" class="m-b-10">
               <mat-form-field class="demo-chip-list" appearance="outline">
+                <mat-label>Plants Tickets</mat-label>
                 <mat-chip-list #chipListTicket>
                   <mat-chip *ngFor="let fruit of fruits2" [selectable]="selectable" [removable]="removable"
                     (remove)="remove(fruit)">
@@ -146,7 +152,8 @@
 
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
-                <mat-select placeholder="Project">
+                <mat-label>Project :</mat-label>
+                <mat-select >
                   <mat-option value="option">Option</mat-option>
                   <mat-option value="option">Option2</mat-option>
                   <mat-option value="option">Option3</mat-option>
@@ -156,7 +163,8 @@
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
-                <mat-select placeholder="Location">
+                <mat-label>Location :</mat-label>
+                <mat-select >
                   <mat-option value="option">Option</mat-option>
                   <mat-option value="option">Option2</mat-option>
                   <mat-option value="option">Option3</mat-option>
@@ -166,6 +174,7 @@
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
+                <mat-label>Contract :</mat-label>
                 <mat-select placeholder="Contact">
                   <mat-option value="option">Option</mat-option>
                   <mat-option value="option">Option2</mat-option>
@@ -175,6 +184,7 @@
             </div>
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
+                <mat-label>Classification :</mat-label>
                 <mat-select placeholder="Classification">
                   <mat-option value="option">Option</mat-option>
                   <mat-option value="option">Option2</mat-option>
@@ -185,6 +195,7 @@
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
+                <mat-label>Role :</mat-label>
                 <input type="text" placeholder="Role" aria-label="Role" matInput formControlName="roleId" roleId
                   [matAutocomplete]="auto" [ngClass]="{'is-invalid':submitted && f.roleId.hasError}">
                 <mat-autocomplete #auto="matAutocomplete">
@@ -212,6 +223,7 @@
             </div>
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
+                <mat-label>Gang (optional) :</mat-label>
                 <mat-select placeholder="Gang(optional)">
                   <mat-option value="option">Option</mat-option>
                   <mat-option value="option">Option2</mat-option>
@@ -222,6 +234,7 @@
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
+                <mat-label>Commitment :</mat-label>
                 <mat-select placeholder="Commitment">
                   <mat-option value="option">Option</mat-option>
                   <mat-option value="option">Option2</mat-option>
@@ -232,7 +245,7 @@
             <div fxFlex.gt-sm="35" fxFlex="100"></div>
             <mat-divider fxFlex.gt-sm="100" fxFlex="100"> </mat-divider>
             <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
-              <h4 class="m-0 m-t-20">Creator Name:</h4>
+              <h4 class="m-0 m-t-20">Creator Name: </h4>
             </div>
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
@@ -241,7 +254,7 @@
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100" class="p-10 text-center">
               <div class="m-0 m-t-15">
-                <button class="button" (click)="onSubmit()" mat-raised-button color="primary">
+                <button class="button p-5 p-l-40 p-r-40" (click)="onSubmit()" mat-raised-button color="primary">
                   Create
                 </button>
               </div>
