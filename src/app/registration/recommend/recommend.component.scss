@@ -29,3 +29,48 @@
   border: 1px solid lightgray;
   border-radius: 8px;
 }
+.my-mat-cardt{
+  padding: 0px 12px !important;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.my-mat-cardb{
+  padding: 0px 12px !important;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.my-mat-cardf{
+  padding: 0px 12px !important;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.l-h-26{
+  line-height: 26px;
+}
+.r-profileImg img{
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+}
+.emp-profileBottom img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.emp-mat-label{
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+}
+.emp-mat-label mat-icon{
+  font-size: 20px;
+  height:20px
+}
+.m-top-0{
+  margin-top: 0px;
+}
+.v-hidden{
+  visibility: hidden;
+}

@@ -7,7 +7,7 @@
     <form class="basic-form">
       <div fxLayout="row wrap" fxFlexAlign="center" class="row m-0 border-full">
         <div fxFlex.gt-sm="100" fxFlex="100" class="border-bottom-g">
-          <mat-card class="m-0 m-l-20 m-r-20">
+          <mat-card class="m-0 my-mat-cardt">
             <div fxFlex.gt-sm="20" fxFlex="100" class="p-b-10 p-t-10">
               <small>Role</small>
               <mat-label class="d-block">MAtt</mat-label>
@@ -39,7 +39,7 @@
           </mat-card>
         </div>
         <div fxFlex.gt-sm="100" fxFlex="100">
-          <mat-card class="m-0 m-l-20 m-r-20">
+          <mat-card class="m-0 my-mat-cardb">
             <div fxFlex.gt-sm="55" fxFlex="100" class="p-b-10 p-t-10">
               <mat-label>Hiring Manager- Robert Shephard</mat-label>
             </div>
@@ -47,18 +47,19 @@
               <mat-label><small>Praposal start date</small> 22 September</mat-label>
             </div>
             <div fxFlex.gt-sm="10" fxFlex="100" class="p-b-10 p-t-10">
-              <button class="button" mat-raised-button color="primary">Firm</button>
+              <button class="button p-0 p-l-20 p-r-20 l-h-26" mat-raised-button color="primary">Firm</button>
             </div>
           </mat-card>
         </div>
       </div>
 
       <div fxLayout="row wrap" fxFlexAlign="center">
-        <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
+        <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-5 p-t-30">
           <mat-card-title class="p-b-10 color_blue">Employee Details</mat-card-title>
         </div>
-        <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10">
+        <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-5">
           <mat-form-field appearance="outline">
+            <mat-label>Search Employee</mat-label>
             <mat-select placeholder="Search Employee">
               <mat-option value="option">Option</mat-option>
               <mat-option value="option">Option2</mat-option>
@@ -69,30 +70,43 @@
       </div>
       <div fxLayout="row wrap" fxFlexAlign="center" class="row m-0 border-full">
         <div fxFlex.gt-sm="100" fxFlex="100">
-          <mat-card class="m-0 m-l-20 m-r-20">
-            <div fxFlex.gt-sm="20" fxFlex="100" class="p-b-10 p-t-10">
-             <img src="../../../assets/img/favicon.png" alt="Manager Image">
+          <mat-card class="m-0 my-mat-cardf">
+            <div fxFlex.gt-sm="10" fxFlex="100" class="p-b-10 p-t-10 r-profileImg">
+             <img src="assets/images/users/1.jpg" alt="Manager Image">
             </div>
             <div fxFlex.gt-sm="30" fxFlex="100" class="p-b-10 p-t-10">
-              <small>Role</small>
-              <mat-label class="d-block">MAtt</mat-label>
-              <mat-label class="d-block"><mat-icon>brush</mat-icon>MAtt -24 September</mat-label>
+              <small class="text-muted">Name</small>
+              <mat-label class="d-block">MAtheaw Wed</mat-label>
+              <mat-label class="emp-mat-label">
+                <mat-icon>date_range</mat-icon>
+                <span>23/02/95</span>
+                <span class="p-l-30">45 Years</span>
+              </mat-label>
             </div>
-            <div fxFlex.gt-sm="30" fxFlex="100" class="p-b-10 p-t-10">
-              <small>Role</small>
-              <mat-label class="d-block">MAtt</mat-label>
-              <mat-label class="d-block"><mat-icon>mail</mat-icon>MAtheaw@fgmail.com</mat-label>
+            <div fxFlex.gt-sm="40" fxFlex="100" class="p-b-10 p-t-10">
+              <small class="text-muted">Employee Number</small>
+              <mat-label class="d-block">RTL1199</mat-label>
+              <mat-label class="emp-mat-label">
+                <mat-icon>mail</mat-icon>
+                <span class="p-l-5">nandkumar.alobhatechnology@gmail.com</span>
+              </mat-label>
             </div>
             <div fxFlex.gt-sm="20" fxFlex="100" class="p-b-10 p-t-10">
-              <small></small>
-              <mat-label class="d-block"><mat-icon>comment</mat-icon>male</mat-label>
-              <mat-label class="d-block"><mat-icon>call</mat-icon>624234567</mat-label>
+              <small class="text-muted v-hidden">hidden</small>
+              <mat-label class="emp-mat-label" >
+                <mat-icon>male</mat-icon>
+                <span class="p-l-10">male</span>
+              </mat-label>
+              <mat-label class="emp-mat-label m-top-0">
+                <mat-icon>call</mat-icon>
+                <span class="p-l-10">+61 85749 85749</span>
+              </mat-label>
             </div>
           </mat-card>
         </div>
       </div>
 
-      <div fxLayout="row wrap" fxFlexAlign="center" class="row m-0">
+      <div fxLayout="row wrap" fxFlexAlign="center" class="row m-0 m-t-15">
 
         <div fxFlex.gt-sm="30" fxFlex="100">
           <mat-form-field>
@@ -157,23 +171,27 @@
         </div>
         <div fxFlex.gt-sm="70" fxFlex="100"></div>
 
-        <div fxFlex.gt-sm="65" fxFlex="100" class="border-full">
-          <mat-card class="m-0 m-l-20 m-r-20">
-            <div fxFlex.gt-sm="30" fxFlex="100" class="p-b-10 p-t-10">
-             <img src="../../../assets/img/favicon.png" alt="Manager Image">
+        <div fxFlex.gt-sm="65" fxFlex="100" class="border-full m-t-10">
+          <mat-card class="m-0 my-mat-cardf">
+            <div fxFlex.gt-sm="20" fxFlex="100" class="p-b-10 p-t-10 emp-profileBottom">
+             <img src="assets/images/users/1.jpg" alt="Manager Image">
             </div>
             <div fxFlex.gt-sm="40" fxFlex="100" class="p-b-10 p-t-10">
-              <small>Role</small>
+              <small class="text-muted">Role</small>
               <mat-label class="d-block">MAtt Macunley </mat-label>
               
             </div>
-            <div fxFlex.gt-sm="30" fxFlex="100" class="p-b-10 p-t-10">
-              <mat-label class="d-block"><mat-icon>call</mat-icon>624234567</mat-label>
+            <div fxFlex.gt-sm="40" fxFlex="100" class="p-b-10 p-t-10">
+              <small class="text-muted v-hidden">hidden</small>
+              <mat-label class="emp-mat-label m-top-0">
+                <mat-icon>call</mat-icon>
+                <span class="p-l-10">+61 85749 85749</span>
+              </mat-label>
             </div>
           </mat-card>
         </div>
         <div fxFlex.gt-sm="35" fxFlex="100" >
-          <div class="m-0 m-t-15" align="center">
+          <div class="m-0 m-t-30" align="center">
             <button class="button" mat-raised-button color="primary">Recommend</button>
           </div>
         </div>
