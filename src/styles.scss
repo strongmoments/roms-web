@@ -231,5 +231,13 @@ flex-wrap: wrap;
   .login-register {
     height: auto !important;
   }
-
+  .email-lbl span{
+    word-break: break-word;
+  }
+  .email-lbl mat-icon{
+    margin-top:3px
+  }
+  .email-lbl{
+    align-items: flex-start !important;
+  }
 }
