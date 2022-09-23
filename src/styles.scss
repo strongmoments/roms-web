@@ -191,10 +191,29 @@ tr.example-element-row:not(.example-expanded-row):active {
   padding: 0.5em 0 !important;
   border-top: 3px solid transparent !important;
 }
-
+.d-wrap{
+flex-wrap: wrap;
+}  
+.ql-container{
+  height: 200px !important;
+}
+.w-300{
+  width: 300px;
+}
+@media (max-width: 340px) {
+  mat-card{
+    margin: 0 !important;
+  }
+}
 @media (max-width: 767px) {
   .mat-horizontal-stepper-header {
     padding: 0 8px !important;
+  }
+  .m-b-sm20{
+    margin-bottom: 20px;
+  }
+  .example-section{
+    height: auto !important;
   }
   .mat-horizontal-content-container {
     padding: 0px 10px 10px 10px !important;
@@ -212,4 +231,5 @@ tr.example-element-row:not(.example-expanded-row):active {
   .login-register {
     height: auto !important;
   }
+
 }

@@ -31,9 +31,9 @@
             </div>
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="65" fxFlex="100">
-              <section class="example-section">
+              <section class="example-section d-wrap">
                 <label class="example-margin">Demand Type:</label>
-                <mat-radio-group formControlName="demandType" demandType
+                <mat-radio-group formControlName="demandType" class="m-b-sm20" demandType
                   [ngClass]="{'is-invalid':submitted && f.demandType.hasError}">
                   <mat-radio-button *ngFor="let item of globals.demandTypes" class="example-margin"
                     [value]="item.value">
@@ -73,7 +73,7 @@
             </div>
 
             <div fxFlex.gt-sm="2" fxFlex="100"></div>
-            <div fxFlex.gt-sm="33" fxFlex="100">
+            <div fxFlex.gt-sm="33" fxFlex="100" class="m-b-sm20">
               <button class="button date-btn-default date-btn-active" mat-raised-button>Today</button>
               <button class="button date-btn-default" mat-raised-button>Tomorrow</button>
               <button class="button date-btn-default" mat-raised-button>Next Monday</button>
@@ -88,7 +88,7 @@
               </mat-error>
 
             </div>
-            <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-30 m-t-30">
+            <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10">
               <mat-divider> </mat-divider>
             </div>
             <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
@@ -329,7 +329,7 @@
 </mat-card>
 
 <ng-template #resourceDemandDialog>
-  <h1 mat-dialog-title align="center" class="color_blue" style="font-size: 28px; margin-bottom: 25px">
+  <h1 mat-dialog-title align="center" class="color_blue" style="font-size: 20px; margin-bottom: 25px">
     Job Resource Demand Created !
   </h1>
   <div fxLayout="column wrap">
@@ -337,10 +337,10 @@
       <button class="m-b-20 button" mat-raised-button color="primary">Visit Job Board</button>
     </div> -->
     <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
-      <button class="m-b-20 button" mat-raised-button color="primary">Visit Job Board</button>
+      <button class="m-b-20 m-t-20 button w-300" mat-raised-button color="primary">Visit Job Board</button>
     </div>
     <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
-      <button class="button" mat-raised-button color="primary">Recommend an Employee</button>
+      <button class="button w-300" mat-raised-button color="primary">Recommend an Employee</button>
     </div>
   </div>
 </ng-template>
