@@ -38,4 +38,9 @@ export class EmployeeService {
         return this.http.post<any>(`${environment.apiUrl}/v1/resignation/loadAll?page=${options.page}&size=${options.pageSize}`, queryData);
     }
 
+    searchEmployeeByName(value: string) {
+        return this.http.get<any>(`${environment.apiUrl}/v1/subteammember/search?name=${value}`);
+
+    }
+
 }
