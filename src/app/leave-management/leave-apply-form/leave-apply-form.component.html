@@ -402,6 +402,8 @@
               <!-- Card column -->
               <div fxFlex.gt-sm="60" fxFlex="100">
                 <mat-card class="m-0 m-t-20">
+                  <div fxLayout="row wrap">
+                  <div fxFlex.gt-sm="100" fxFlex="100">
                   <mat-card-title class="p-20 p-l-25">Comments</mat-card-title>
                   <mat-form-field appearance="outline" class="m-t-0 p-l-20 p-r-20">
                     <!-- <mat-label>Outline form field</mat-label> -->
@@ -413,15 +415,25 @@
                       Comment is required
                     </mat-error>
                   </mat-form-field>
-                  <button  mat-raised-button color="warn" class="m-20" type="" submit>
-                        Attachments
-                        <mat-icon>cloud_upload</mat-icon>
-                      </button>
-                  <img src="assets/images/users/1.jpg" alt="Documents">
-                  <img src="assets/images/users/1.jpg" alt="Documents">
-                  <img src="assets/images/users/1.jpg" alt="Documents">
-                  <img src="assets/images/users/1.jpg" alt="Documents">
-                </mat-card>
+                </div>
+                <div fxFlex.gt-sm="100" fxFlex="100">
+                  <div fxLayout="row wrap">
+                  <div fxFlex.gt-sm="30" fxFlex="100" align="center">
+                    <button  mat-raised-button color="warn" class="m-20" type="" submit>
+                      Attachments
+                      <mat-icon>cloud_upload</mat-icon>
+                    </button>
+                  </div>
+                  <div fxFlex.gt-sm="70" fxFlex="100" class="m-b-20 r-Img">
+                  <img class="m-r-20" src="assets/images/users/1.jpg" alt="Documents">
+                  <img class="m-r-20" src="assets/images/users/1.jpg" alt="Documents">
+                  <img class="m-r-20" src="assets/images/users/1.jpg" alt="Documents">
+                  <img class="m-r-20" src="assets/images/users/1.jpg" alt="Documents">
+                </div>
+              </div>
+              </div>
+              </div>
+              </mat-card>
               </div>
               <!-- Card column -->
               <div fxFlex.gt-sm="40" fxFlex="100">
