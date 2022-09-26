@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { ENTER, COMMA, F } from '@angular/cdk/keycodes';
+import { ENTER, COMMA, F, E } from '@angular/cdk/keycodes';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Utils } from 'src/app/core/_helpers/util';
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { AlertService } from 'src/app/core/services';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { Globals } from 'src/app/globals';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 export interface DemoColor {
   name: string;
   color: string;
@@ -30,8 +31,7 @@ export class RecruitmentComponent implements OnInit {
   selectedCertifications: any = [];
   selectedTickets: any = [];
   selectedLicenses: any = [];
-
-
+  certificateList: any = [];
 
 
   visible = true;
@@ -70,6 +70,12 @@ export class RecruitmentComponent implements OnInit {
       this.roles = result && result.data && result.data.length > 0 ? result.data : [];
     });
 
+    this.authService.getCertificationsList('').subscribe((result) => {
+      // console.log(result, 'sdsselectedCertifications')
+      this.certificateList = result;
+    });
+
+
     this.form = this.fb.group({
       managerId: new FormControl('', [Validators.required]),
       roleId: new FormControl('', [Validators.required]),
@@ -95,10 +101,11 @@ export class RecruitmentComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  add(event: MatChipInputEvent, type: string): void {
-    const input = event.input;
-    const value = event.value;
 
+  selected(event: MatAutocompleteSelectedEvent, type: string) {
+
+    console.log(event.option.value, 'qqqqqqqqqqqqq')
+    const value = event.option.viewValue;
     if (type == 'certification' && (value || '').trim()) {
       this.selectedCertifications.push((value).trim())
     } else if (type == 'licence' && (value || '').trim()) {
@@ -106,6 +113,34 @@ export class RecruitmentComponent implements OnInit {
 
     } else if (type == 'ticket' && (value || '').trim()) {
       this.selectedTickets.push((value).trim())
+
+    }
+
+  }
+  add(event: MatChipInputEvent, type: string): void {
+    console.log('asdsad')
+    // const input = event.input;
+    const value = event.value.trim();
+
+    if (type == 'certification' && value) {
+      if (!this.certificateList.some((elem: any) => value == elem.code)) {
+        this.authService.createCertification({ code: value, name: value }).subscribe((result) => {
+          if (result && result.status == 'success') {
+            this.selectedCertifications.push(value);
+            this.certificateList.push({ code: value, name: value });
+          }
+          console.log(result, 'asdcreateate');
+        });
+      } else {
+        if (!this.selectedCertifications.includes(value)) {
+          this.selectedCertifications.push(value);
+        }
+      }
+    } else if (type == 'licence' && value) {
+      this.selectedLicenses.push(value);
+
+    } else if (type == 'ticket' && value) {
+      this.selectedTickets.push(value);
 
     }
 

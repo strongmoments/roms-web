@@ -16,7 +16,7 @@ export class AuthenticationService {
     public refreshTokenTimeout: any;
     public newRegistrationData: any = {};
     private newRegistrationSubject = new BehaviorSubject(this.newRegistrationData);
-    addedResigstration= this.newRegistrationSubject.asObservable();
+    addedResigstration = this.newRegistrationSubject.asObservable();
 
     constructor(private router: Router, private http: HttpClient,
         @Inject('LOCALSTORAGE') private localStorage: Storage, private sseService: SseService) {
@@ -171,7 +171,7 @@ export class AuthenticationService {
 
     passNewRegistration(data: any) {
 
-        console.log(data,'data.inssdkskjkd')
+        console.log(data, 'data.inssdkskjkd')
         this.newRegistrationSubject.next(data)
     }
 
@@ -243,18 +243,29 @@ export class AuthenticationService {
     }
 
 
-    
     getTicketsList(value: string) {
         return this.http.get<any>(`${environment.apiUrl}/v1/employeecetoken/search?name=${value}`);
     }
 
-    
+    cretaTicket(data: any) {
+        return this.http.post<any>(`${environment.apiUrl}/v1/employeecetoken`, data);
+    }
+
     getLicenseList(value: string) {
         return this.http.get<any>(`${environment.apiUrl}/v1/employeelicence/search?name=${value}`);
     }
-    
+
+
+    createLicence(data: any) {
+        return this.http.post<any>(`${environment.apiUrl}/v1/employeecetoken`, data);
+    }
+
     getCertificationsList(value: string) {
         return this.http.get<any>(`${environment.apiUrl}/v1/employeecertificates/search?name=${value}`);
     }
-    
+
+    createCertification(data: any) {
+        return this.http.post<any>(`${environment.apiUrl}/v1/employeecertificates`, data);
+    }
+
 }

@@ -124,8 +124,14 @@
                   </mat-chip>
                   <input placeholder="Certifications required......" [matChipInputFor]="chipListCertificate"
                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-                    (matChipInputTokenEnd)="add($event,'certification')" />
+                    (matChipInputTokenEnd)="add($event,'certification')" [matAutocomplete]="autoCertificate" />
                 </mat-chip-list>
+                <mat-autocomplete #autoCertificate="matAutocomplete"
+                  (optionSelected)="selected($event,'certification')">
+                  <mat-option *ngFor="let item of certificateList" [value]="item.code">
+                    {{item.name}}
+                  </mat-option>
+                </mat-autocomplete>
 
                 <mat-error *ngIf="submitted && checkError('certifications', 'required')">
                   Certification is required.
@@ -316,7 +322,8 @@
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100" class="p-10 text-center">
               <div class="m-0 m-t-15">
-                <button class="button p-5 p-l-40 p-r-40 p-t-15 p-b-15" (click)="onSubmit()" mat-raised-button color="primary">
+                <button class="button p-5 p-l-40 p-r-40 p-t-15 p-b-15" (click)="onSubmit()" mat-raised-button
+                  color="primary">
                   Create
                 </button>
               </div>
@@ -330,7 +337,7 @@
 
 <ng-template #resourceDemandDialog>
   <h1 mat-dialog-title align="center" class="color_blue" style="font-size: 20px; margin-bottom: 25px">
-    Job Resource Demand Created 
+    Job Resource Demand Created
   </h1>
   <div fxLayout="column wrap">
     <!-- <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
