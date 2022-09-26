@@ -407,12 +407,20 @@
                     <!-- <mat-label>Outline form field</mat-label> -->
                     <textarea [ngClass]="{
                         'is-invalid': submitted && checkError('leaveReason', 'required')
-                      }" matInput formControlName="leaveReason" placeholder="Comment" rows="10">
+                      }" matInput formControlName="leaveReason" placeholder="Comment" rows="6">
                     </textarea>
                     <mat-error *ngIf="submitted && checkError('leaveReason', 'required')">
                       Comment is required
                     </mat-error>
                   </mat-form-field>
+                  <button  mat-raised-button color="warn" class="m-20" type="" submit>
+                        Attachments
+                        <mat-icon>cloud_upload</mat-icon>
+                      </button>
+                  <img src="assets/images/users/1.jpg" alt="Documents">
+                  <img src="assets/images/users/1.jpg" alt="Documents">
+                  <img src="assets/images/users/1.jpg" alt="Documents">
+                  <img src="assets/images/users/1.jpg" alt="Documents">
                 </mat-card>
               </div>
               <!-- Card column -->

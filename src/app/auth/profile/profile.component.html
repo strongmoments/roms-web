@@ -1,1 +1,38 @@
-<p>profile works!</p>
+<div fxLayout="row wrap">
+    <!-- Card column -->
+    <div fxFlex.gt-sm="30" fxFlex="100">
+      <mat-card class="oh text-center little-profile m-t-20">
+        <div class="mh-130">
+          <img mat-card-image src="assets/images/background/profile-bg.jpg" alt="Background Image" />
+        </div>
+        <mat-card-content>
+          <div class="pro-img h-128">
+            <img onerror="this.onerror=null;this.src='../../../../assets/img/user-default-img.jpg';"
+              width="100" class="img-fluid img-circle" />
+          </div>
+          <h3 class="m-b-0 h-30">
+            <span >ku
+            </span>
+            <span >
+              No Manager found.
+            </span>
+          </h3>
+          <h6 class="m-t-0"><span >Manager</span></h6>
+          <mat-card-actions class="">
+            <button  mat-raised-button
+              color="warn" class="m-t-20" type="" submit>
+              REQUEST FOR APPROVAL
+              <mat-icon> arrow_right_alt </mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <!-- Card column -->
+    <!-- Card column -->
+    <div fxFlex.gt-sm="70" fxFlex="100">
+        <mat-card class="m-0 m-t-20">
+          <mat-card-title class="p-20 p-l-25">My Activity</mat-card-title>
+        </mat-card>
+      </div>
+  </div>
