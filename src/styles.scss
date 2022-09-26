@@ -200,6 +200,9 @@ flex-wrap: wrap;
 .w-300{
   width: 300px;
 }
+.card-wrap div .mat-card{
+  margin:10px !important;
+}
 @media (max-width: 340px) {
   mat-card{
     margin: 0 !important;
