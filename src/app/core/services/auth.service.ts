@@ -241,4 +241,20 @@ export class AuthenticationService {
     createUser(data: any) {
         return this.http.post<any>(`${environment.apiUrl}/v1/user/add`, data);
     }
+
+
+    
+    getTicketsList(value: string) {
+        return this.http.get<any>(`${environment.apiUrl}/v1/employeecetoken/search?name=${value}`);
+    }
+
+    
+    getLicenseList(value: string) {
+        return this.http.get<any>(`${environment.apiUrl}/v1/employeelicence/search?name=${value}`);
+    }
+    
+    getCertificationsList(value: string) {
+        return this.http.get<any>(`${environment.apiUrl}/v1/employeecertificates/search?name=${value}`);
+    }
+    
 }
