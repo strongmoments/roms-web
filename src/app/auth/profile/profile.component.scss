@@ -1,7 +1,8 @@
 .profile-mat-list{
     padding:0 !important;
 }
-.profile-mat-list .mat-list-text{
+mat-list-item .mat-list-text{
+    display: flex;
     align-items: flex-start !important;
 }
 .profile-mat-list .mat-list-item{
@@ -9,4 +10,12 @@
 }
 .mat-card{
     margin:10px !important;
+}
+.list-space{
+    display: flex;
+    justify-content:space-between;
+    flex-wrap: wrap;
+}
+.all-btn button{
+    border-radius: 50px;
 }

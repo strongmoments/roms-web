@@ -203,6 +203,9 @@ flex-wrap: wrap;
 .card-wrap div .mat-card{
   margin:10px !important;
 }
+.mat-list-base .profile-mat-list.mat-list-item span.mat-list-text{
+  align-items: flex-start !important;
+}
 @media (max-width: 340px) {
   mat-card{
     margin: 0 !important;
