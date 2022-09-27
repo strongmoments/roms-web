@@ -23,4 +23,11 @@ export class UserCreatedSuccessDialogComponent {
         this.router.navigate(['/registration/list']);
         this.dialogRef.close();
     }
+
+    
+  copyInputMessage(inputElement:any){
+    inputElement.select();
+    document.execCommand('copy');
+    inputElement.setSelectionRange(0, 0);
+  }
 }

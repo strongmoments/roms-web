@@ -53,6 +53,9 @@ export class CreateUserComponent implements OnInit {
       this.roles = result && result.data && result.data.length > 0 ? result.data : [];
     });
 
+    this.openDialog({});
+
+
   }
 
   ngOnInit(): void {
@@ -73,9 +76,10 @@ export class CreateUserComponent implements OnInit {
       roleId: new FormControl('', [Validators.required]),
       managerId: new FormControl('', []),
       employTypeId: new FormControl('', [Validators.required]),
-      departmentId: new FormControl('', [Validators.required])
+      departmentId: new FormControl('', [Validators.required]),
+      notifyBySms: new FormControl(false, []),
     });
-    console.log(this.userSessionData, 'this.userSessionData');
+    // console.log(this.userSessionData, 'this.userSessionData');
   }
 
 
