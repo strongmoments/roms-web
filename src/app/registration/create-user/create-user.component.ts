@@ -93,7 +93,7 @@ export class CreateUserComponent implements OnInit {
   openDialog(data: any) {
     const dialogRef = this.dialog.open(UserCreatedSuccessDialogComponent, {
       width: '40em',
-      height: '32em',
+      height: '34em',
       data: { data: data }
     });
 

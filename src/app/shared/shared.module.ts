@@ -56,7 +56,9 @@ import { QuillModule } from 'ngx-quill';
     CustomJavaDatePipe,
     DateAgoPipe,
     Base64ImagePipe,
-    AccordionAnchorDirective, AccordionLinkDirective, AccordionDirective,
+    AccordionAnchorDirective,
+    AccordionLinkDirective,
+    AccordionDirective,
     // FullComponent,
     // VerticalAppHeaderComponent,
     // SpinnerComponent,
@@ -66,7 +68,8 @@ import { QuillModule } from 'ngx-quill';
     // HorizontalAppHeaderComponent,
     // HorizontalAppSidebarComponent,
   ],
-  exports: [FormsModule,
+  exports: [
+    FormsModule,
     ReactiveFormsModule,
     CustomMaterialModule,
     SnackbarComponent,
@@ -74,11 +77,13 @@ import { QuillModule } from 'ngx-quill';
     CustomJavaDatePipe,
     Base64ImagePipe,
     DateAgoPipe,
-    AccordionAnchorDirective, AccordionLinkDirective, AccordionDirective,
+    AccordionAnchorDirective,
+    AccordionLinkDirective,
+    AccordionDirective,
     PerfectScrollbarModule,
     FlexLayoutModule,
-    QuillModule
+    QuillModule,
   ],
-  providers: [MenuItems, HorizontalMenuItems,Base64ImagePipe,DateAgoPipe],
+  providers: [MenuItems, HorizontalMenuItems, Base64ImagePipe, DateAgoPipe],
 })
-export class SharedModule { }
+export class SharedModule {}

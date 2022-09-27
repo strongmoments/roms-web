@@ -1,0 +1,73 @@
+// .infinite-scroll {
+//   display: flex;
+//   flex-direction: column;
+//   max-height: 500px;
+//   min-width: 300px;
+// }
+
+// .infinite-scroll .mat-table {
+//   overflow: auto;
+//   max-height: 500px;
+// }
+
+.example-element-row+.example-detail-row {
+    height: 0 !important;
+  }
+  
+  .example-element-row+.example-detail-row td {
+    padding: 0px !important;
+  }
+  
+  .example-element-row.example-expanded-row+.example-detail-row {
+    height: 48px !important;
+  }
+  
+  .example-element-row.example-expanded-row+.example-detail-row td.mat-cel {
+    padding: 15px !important;
+  }
+  
+  .export-btn {
+    text-align: right;
+  }
+  
+  .export-btn button {
+    width: auto;
+  }
+  
+  .employee-list td.mat-cell,
+  .employee-list td.mat-footer-cell,
+  .employee-list th.mat-header-cell {
+    padding: 5px 15px !important;
+    // width: 100%;
+  }
+  
+  .employee-list th.mat-header-cell {
+    width: 15%;
+  }
+  
+  :host ::ng-deep .approved-checkbox .mat-checkbox-frame {
+    border-color: #2ace58;
+  }
+  
+  :host ::ng-deep .rejected-checkbox .mat-checkbox-frame {
+    border-color: #d51e1e;
+  }
+  
+  :host ::ng-deep .pending-checkbox .mat-checkbox-frame {
+    border-color: #e7b400;
+  }
+  
+  .no-wrap td,
+  .no-wrap .ng-star-inserted {
+    white-space: inherit;
+  }
+  
+  
+  .selected-row {
+    background-color: lavender !important
+  }
+.list-Img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+}

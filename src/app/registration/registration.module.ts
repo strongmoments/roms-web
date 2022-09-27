@@ -9,6 +9,7 @@ import { RecruitmentComponent } from './recruitment/recruitment.component';
 import { RecommendComponent } from './recommend/recommend.component';
 import { JobRecommendComponent } from './job-recommend/job-recommend.component';
 import { RecruitmentDetailsComponent } from './recruitment-details/recruitment-details.component';
+import { TransferListComponent } from './transfer-list/transfer-list.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { RecruitmentDetailsComponent } from './recruitment-details/recruitment-d
         RecruitmentComponent,
         RecommendComponent,
         JobRecommendComponent,
-        RecruitmentDetailsComponent
+        RecruitmentDetailsComponent,
+        TransferListComponent
     ]
 })
 export class RegistrationModule { }

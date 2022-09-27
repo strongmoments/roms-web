@@ -44,7 +44,6 @@ import { FullComponent } from './layouts/full/full.component';
 import { ReleaseNoteComponent } from './release-note/release-note.component';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 
-
 export function HttpLoaderFactory(http: HttpClient): any {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
