@@ -260,10 +260,11 @@ export class RegistrationListComponent implements OnInit, OnChanges {
   }
 
   applyFilter(isTextSearch: boolean = false): void {
-    // console.log(this.search, 'search', this.startDate, 'startdate', this.endDate, 'enddate');
     this.search = this.search.trim(); // Remove whitespace
     this.search = this.search.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = this.search;
+    // console.log(this.dataSource.filteredData,'filter');
+   
     if (isTextSearch) {
     } else {
       this.refresh(this.getDefaultOptions());

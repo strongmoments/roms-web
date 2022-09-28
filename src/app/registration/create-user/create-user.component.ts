@@ -53,9 +53,6 @@ export class CreateUserComponent implements OnInit {
       this.roles = result && result.data && result.data.length > 0 ? result.data : [];
     });
 
-    this.openDialog({});
-
-
   }
 
   ngOnInit(): void {
@@ -145,7 +142,8 @@ export class CreateUserComponent implements OnInit {
         this.form.reset();
         sessionStorage.removeItem(this.requestId);
       } else if (result.status == "error" && result.error == "already_exist") {
-        this.alertService.openSnackBar(CustomMessage.alreadyExist, false);
+        sessionStorage.removeItem(this.requestId);
+        this.alertService.openSnackBar(CustomMessage.alreadyExist);
         this.router.navigate(['/registration/list']);
       }
     }, (error: any) => {
