@@ -64,7 +64,7 @@ import { QuillModule } from 'ngx-quill';
     // SpinnerComponent,
     // AppBlankComponent,
     // VerticalAppSidebarComponent,
-    // AppBreadcrumbComponent,
+    AppBreadcrumbComponent,
     // HorizontalAppHeaderComponent,
     // HorizontalAppSidebarComponent,
   ],
@@ -83,6 +83,7 @@ import { QuillModule } from 'ngx-quill';
     PerfectScrollbarModule,
     FlexLayoutModule,
     QuillModule,
+    AppBreadcrumbComponent
   ],
   providers: [MenuItems, HorizontalMenuItems, Base64ImagePipe, DateAgoPipe],
 })

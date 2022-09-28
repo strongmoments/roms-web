@@ -82,8 +82,9 @@
                 <mat-error *ngIf="checkError('contactNo', 'pattern')">
                   Contact No is invalid.
                 </mat-error>
-                <mat-error *ngIf="checkError('contactNo', 'maxlength') || checkError('contactNo', 'minlength')">
-                  Contact no should be 10 digits.
+                <mat-error
+                  *ngIf="!checkError('contactNo', 'pattern') && (checkError('contactNo', 'maxlength') || checkError('contactNo', 'minlength'))">
+                  Contact no should be 11 digits.
                 </mat-error>
               </mat-form-field>
             </div>

@@ -49,7 +49,7 @@
                   <span class="time text-muted">{{notification?.body?.time | dateAgo }}</span>
                 </div>
                 <div>
-                  <mat-icon (click)="markRead(notification?.eventId)">delete_outline</mat-icon>
+                  <mat-icon (click)="$event.stopPropagation();markRead(notification?.eventId)">delete_outline</mat-icon>
                 </div>
 
                 <!-- <div class="user-img">

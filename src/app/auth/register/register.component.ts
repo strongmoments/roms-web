@@ -23,18 +23,18 @@ export class RegisterComponent implements OnInit {
   isEditable = false;
 
   // tslint:disable-next-line - Disables all
-  constructor(private _formBuilder: UntypedFormBuilder, private utils: Utils, private alertService: AlertService, private authService: AuthenticationService, private router: Router) { }
+  constructor(private _formBuilder: UntypedFormBuilder, public util: Utils, private alertService: AlertService, private authService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
     this.firstFormGroup = this._formBuilder.group({
       // firstCtrl: ['', Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
-      empNo: new FormControl('', [Validators.required, Validators.pattern(this.utils.aplhaNumericeWithoutSpace), Validators.maxLength(15)]),
+      empNo: new FormControl('', [Validators.required, Validators.pattern(this.util.aplhaNumericeWithoutSpace), Validators.maxLength(15)]),
       firstName: new FormControl('', [Validators.required, Validators.maxLength(25)]),
       lastName: new FormControl('', [Validators.required, Validators.maxLength(25)]),
-      email: new FormControl('', [Validators.required, Validators.pattern(this.utils.emailRegex), Validators.maxLength(30)]),
-      contactNo: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(this.utils.intRegex)]),
+      email: new FormControl('', [Validators.required, Validators.pattern(this.util.emailRegex), Validators.maxLength(30)]),
+      contactNo: new FormControl('', [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern(this.util.mobileRegex)]),
     });
   }
 
@@ -50,6 +50,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(stepper: MatStepper) {
     this.submitted = true;
+    console.log(this.secondFormGroup.value)
     if (this.secondFormGroup.invalid) {
       this.alertService.openSnackBar(CustomMessage.invalidForm);
       return;
