@@ -191,23 +191,26 @@ tr.example-element-row:not(.example-expanded-row):active {
   padding: 0.5em 0 !important;
   border-top: 3px solid transparent !important;
 }
-.d-wrap{
-flex-wrap: wrap;
-}  
-.ql-container{
+.d-wrap {
+  flex-wrap: wrap;
+}
+.ql-container {
   height: 200px !important;
 }
-.w-300{
+.w-300 {
   width: 300px;
 }
-.card-wrap div .mat-card{
-  margin:10px !important;
+.card-wrap div .mat-card {
+  margin: 10px !important;
 }
-.mat-list-base .profile-mat-list.mat-list-item span.mat-list-text{
+.mat-list-base .profile-mat-list.mat-list-item span.mat-list-text {
   align-items: flex-start !important;
 }
+.fs-20 {
+  font-size: 20px !important;
+}
 @media (max-width: 340px) {
-  mat-card{
+  mat-card {
     margin: 0 !important;
   }
 }
@@ -215,10 +218,10 @@ flex-wrap: wrap;
   .mat-horizontal-stepper-header {
     padding: 0 8px !important;
   }
-  .m-b-sm20{
+  .m-b-sm20 {
     margin-bottom: 20px;
   }
-  .example-section{
+  .example-section {
     height: auto !important;
   }
   .mat-horizontal-content-container {
@@ -237,13 +240,13 @@ flex-wrap: wrap;
   .login-register {
     height: auto !important;
   }
-  .email-lbl span{
+  .email-lbl span {
     word-break: break-word;
   }
-  .email-lbl mat-icon{
-    margin-top:3px
+  .email-lbl mat-icon {
+    margin-top: 3px;
   }
-  .email-lbl{
+  .email-lbl {
     align-items: flex-start !important;
   }
 }

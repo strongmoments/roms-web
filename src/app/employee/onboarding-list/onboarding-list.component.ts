@@ -1,5 +1,5 @@
-
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { OnChanges, SimpleChanges } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { DatePipe } from '@angular/common';
@@ -19,27 +19,18 @@ import { saveAs } from 'file-saver';
 import * as moment from 'moment';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { element } from 'protractor';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-transfer-list',
-  templateUrl: './transfer-list.component.html',
-  styleUrls: ['./transfer-list.component.scss']
+  selector: 'app-onboarding-list',
+  templateUrl: './onboarding-list.component.html',
+  styleUrls: ['./onboarding-list.component.scss'],
 })
-export class TransferListComponent implements OnInit, OnChanges {
+export class OnboardingListComponent implements OnInit, OnChanges {
   globals: Globals;
   submitted: boolean = false;
-  displayedColumns: string[] = [
-    'employeeName',
-    'employeeNo',
-    'wageClass',
-    'gang',
-    'rate',
-    'project',
-    'dateEffective',
-    'statusName',
-    'approvedDate',
-    'approver',
-  ];
+  displayedColumns: string[] = ['name', 'regDate', 'onbDate', 'onboarding', 'compDate', 'logo'];
+  @ViewChild('resourceDemandDialog') resourceDemandDialog!: TemplateRef<any>;
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   // dataSourceHistory: MatTableDataSource<any> = new MatTableDataSource<any>();
@@ -56,8 +47,8 @@ export class TransferListComponent implements OnInit, OnChanges {
   search: string = ''; //by default 0 for pending list
   // currentDate: any = new Date();
   // expandedElement: any = null;
-   startDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 1));
-   endDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
+  startDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 1));
+  endDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
   // status: any = 0;
   // departmentId: any = '';
   // employeeType: any = '';
@@ -67,6 +58,7 @@ export class TransferListComponent implements OnInit, OnChanges {
   // selectedTabIndex: number = 0;
   selectedId: string = '';
   constructor(
+    private dialog: MatDialog,
     breakpointObserver: BreakpointObserver,
     public util: Utils,
     globals: Globals,
@@ -77,7 +69,7 @@ export class TransferListComponent implements OnInit, OnChanges {
     private activatedRoute: ActivatedRoute,
     private authService: AuthenticationService,
     private employeeService: EmployeeService,
-    private router: Router
+    private router: Router,
   ) {
     this.globals = globals;
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -134,9 +126,7 @@ export class TransferListComponent implements OnInit, OnChanges {
     });
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-
-  }
+  ngOnChanges(changes: SimpleChanges): void {}
 
   /**
    * Set the paginator and sort after the view init since this component will
@@ -150,16 +140,13 @@ export class TransferListComponent implements OnInit, OnChanges {
     //   if (this.selectedTabIndex == 0) {
     //   }
     // });
-
   }
 
   redirectForm(elem: any) {
     console.log(elem);
     sessionStorage.setItem(elem.id, JSON.stringify(elem));
-    this.router.navigate(['/registration/create-user'], { queryParams: { requestId: elem.id } })
+    this.router.navigate(['/registration/create-user'], { queryParams: { requestId: elem.id } });
   }
-
-
 
   // onTableScroll(e: any) {
   //   const tableViewHeight = e.target.offsetHeight; // viewport: ~500px
@@ -218,7 +205,7 @@ export class TransferListComponent implements OnInit, OnChanges {
           data.push({
             ...result.data[i],
             statusName: statusName,
-            convertedAppliedOn: convertedAppliedOn
+            convertedAppliedOn: convertedAppliedOn,
           });
         }
         // if (isScrolled == true) {
@@ -228,7 +215,6 @@ export class TransferListComponent implements OnInit, OnChanges {
         // }
       });
   }
-
 
   getDefaultOptions() {
     let obj = this.paginator;
@@ -247,7 +233,6 @@ export class TransferListComponent implements OnInit, OnChanges {
     };
     return options;
   }
-
 
   getStatus(status: any) {
     return this.globals.userApplicationStatus.find((elem: any) => {
@@ -273,4 +258,25 @@ export class TransferListComponent implements OnInit, OnChanges {
     }
   }
 
+  onSubmit() {
+    this.submitted = true;
+    this.openDialog({});
+    // if (this.form.invalid) {
+    //   this.alertService.openSnackBar(CustomMessage.invalidForm);
+    //   return;
+    // }
+  }
+
+  openDialog(data: any) {
+    const dialogRef = this.dialog.open(this.resourceDemandDialog, {
+      width: '30em',
+      height: '15em',
+      data: { data: data },
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      // this.router.navigate(['/registration/list']);
+      console.log('The dialog was closed');
+    });
+  }
 }

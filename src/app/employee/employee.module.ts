@@ -9,6 +9,7 @@ import { EmployeeTransferFormComponent } from './employee-transfer-form/employee
 import { EmployeeResignationComponent } from './employee-resignation/employee-resignation.component';
 import { EmployeeResignationListComponent } from './employee-resignation-list/employee-resignation-list.component';
 import { EmployeeAddComponent } from './employee-add/employee-add.component';
+import { OnboardingListComponent } from './onboarding-list/onboarding-list.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule, EmployeeRoutingModule],
@@ -20,6 +21,7 @@ import { EmployeeAddComponent } from './employee-add/employee-add.component';
     EmployeeResignationComponent,
     EmployeeResignationListComponent,
     EmployeeAddComponent,
+    OnboardingListComponent,
   ],
 })
 export class EmployeeModule {}

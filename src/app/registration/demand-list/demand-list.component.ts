@@ -1,5 +1,5 @@
-
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { OnChanges, SimpleChanges } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { DatePipe } from '@angular/common';
@@ -20,12 +20,13 @@ import * as moment from 'moment';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { element } from 'protractor';
 
+
 @Component({
-  selector: 'app-transfer-list',
-  templateUrl: './transfer-list.component.html',
-  styleUrls: ['./transfer-list.component.scss']
+  selector: 'app-demand-list',
+  templateUrl: './demand-list.component.html',
+  styleUrls: ['./demand-list.component.scss']
 })
-export class TransferListComponent implements OnInit, OnChanges {
+export class DemandListComponent implements OnInit, OnChanges {
   globals: Globals;
   submitted: boolean = false;
   displayedColumns: string[] = [

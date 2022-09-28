@@ -117,3 +117,22 @@
 .collapse-img img {
   padding: 12px 4px 6px;
 }
+.prev-img {
+  position: relative;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+.prev-img button {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  height: auto;
+  line-height: initial;
+  background: transparent;
+  border-width: 0;
+  position: absolute;
+  top: -16px;
+  right: 5px;
+  z-index: 999;
+  cursor: pointer;
+}

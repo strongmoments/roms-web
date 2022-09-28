@@ -1,0 +1,187 @@
+<div fxLayout="row wrap">
+  <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card class="m-0 m-t-20 m-b-5">
+      <mat-card-content class="p-15">
+        <mat-card-title class="p-10 p-t-0 p-l-25 p-r-0 export-btn">
+          <button mat-icon-button [matMenuTriggerFor]="exportMenu">
+            Export List
+            <mat-icon>cloud_download</mat-icon>
+          </button>
+          <mat-menu #exportMenu="matMenu">
+            <button mat-menu-item>Export CSV</button>
+          </mat-menu>
+        </mat-card-title>
+        <div class="m-l-10 m-r-10">
+          <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+            <div fxFlex.gt-sm="50" class="p-r-10" fxFlex="100">
+              <mat-form-field>
+                <input
+                  matInput
+                  (keyup)="applyFilter(true)"
+                  [(ngModel)]="search"
+                  placeholder="Filter"
+                />
+                <mat-icon matSuffix>search</mat-icon>
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-sm="20" class="font-12"></div>
+            <div fxFlex.gt-sm="30" class="font-12">
+              <mat-form-field appearance="outline">
+                <mat-label (click)="picker.open()">Select Date Range</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                  <input
+                    matStartDate
+                    [(ngModel)]="startDate"
+                    placeholder="Start date"
+                    readonly
+                    (dateChange)="applyFilter()"
+                    (click)="picker.open()"
+                  />
+                  <input
+                    matEndDate
+                    placeholder="End date"
+                    readonly
+                    [(ngModel)]="endDate"
+                    (dateChange)="applyFilter()"
+                    (click)="picker.open()"
+                  />
+                </mat-date-range-input>
+
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="m-0 m-t-5 m-b-5">
+      <mat-card-content>
+        <div class="table-responsive infinite-scroll">
+          <mat-table #table [dataSource]="dataSource" class="table employee-list no-wrap" matSort>
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+              <td mat-cell *matCellDef="let row">
+                <!-- <span class="header-label">days:</span> -->
+                <!-- {{ row?.firstName }}{{ row?.lastName }} -->
+                <div style="display: flex; align-items: center">
+                  <img class="m-r-10 list-Img" src="assets/images/users/1.jpg" alt="" />
+                  Kunal Sharmaa
+                </div>
+              </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="regDate">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Registration Date</th>
+              <td mat-cell *matCellDef="let row">
+                <!-- <span class="header-label">days:</span> -->
+                23-September-2022
+              </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="onbDate">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Onboarding Start Date</th>
+              <td mat-cell *matCellDef="let row">
+                <!-- <span class="header-label">days:</span> -->
+                {{ row?.wageClass }}23-September-2022
+              </td>
+            </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="onboarding">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Onboarding Progress</th>
+              <td mat-cell *matCellDef="let row">
+                <div style="display: flex; align-items: center">
+                  <!-- Progress -->
+                  <mat-progress-bar
+                    class="m-r-5"
+                    color="primary"
+                    mode="determinate"
+                    value="80"
+                  ></mat-progress-bar>
+                  <!-- Complete 100% -->
+                  <!-- <mat-progress-bar
+                    class="m-r-5"
+                    color="accent"
+                    mode="determinate"
+                    value="100"
+                  ></mat-progress-bar> -->
+                  <small class="text-muted">80%</small>
+                </div>
+              </td>
+            </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="compDate">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Onboarding Completion Date</th>
+              <td mat-cell *matCellDef="let row">23-August-2022</td>
+            </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="logo">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+              <td mat-cell *matCellDef="let row">
+                <a href="#"> <mat-icon>sync</mat-icon></a>
+                <button
+                  class="button p-5 p-l-40 p-r-40 p-t-10 p-b-10 fs-20"
+                  (click)="onSubmit()"
+                  mat-raised-button
+                  color="primary"
+                >
+                  Create
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr
+              mat-row
+              *matRowDef="let element; columns: displayedColumns"
+              class="example-element-row"
+              [ngClass]="{ 'selected-row': selectedId == element.id }"
+            ></tr>
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+                No Registration Data
+              </td>
+            </tr>
+          </mat-table>
+
+          <!-- <mat-paginator
+            [length]="totalRecords"
+            [pageIndex]="pageNo"
+            [pageSizeOptions]="[5, 10, 20]"
+            [pageSize]="pageSize"
+            aria-label="Select page"
+          >
+          </mat-paginator> -->
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<ng-template #resourceDemandDialog>
+  <h1
+    mat-dialog-title
+    align="center"
+    class="color_blue"
+    style="font-size: 20px; margin-bottom: 25px"
+  >
+    Job Resource Demand Created
+  </h1>
+  <div fxLayout="column wrap">
+    <!-- <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
+        <button class="m-b-20 button" mat-raised-button color="primary">Visit Job Board</button>
+      </div> -->
+    <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
+      <button class="m-b-20 m-t-20 button w-300" mat-raised-button color="primary">
+        View Job Board
+      </button>
+    </div>
+    <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
+      <button class="button w-300" mat-raised-button color="primary">Recommend an Employee</button>
+    </div>
+  </div>
+</ng-template>

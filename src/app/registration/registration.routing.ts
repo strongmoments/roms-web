@@ -8,6 +8,7 @@ import { RecommendComponent } from './recommend/recommend.component';
 import { JobRecommendComponent } from './job-recommend/job-recommend.component';
 import { RecruitmentDetailsComponent } from './recruitment-details/recruitment-details.component';
 import { TransferListComponent } from './transfer-list/transfer-list.component';
+import { DemandListComponent } from './demand-list/demand-list.component';
 
 const routes: Routes = [
     {
@@ -22,6 +23,7 @@ const routes: Routes = [
             { path: 'job-recommend', component: JobRecommendComponent },
             { path: 'recruitment-details', component: RecruitmentDetailsComponent },
             { path: 'transfer-list', component: TransferListComponent },
+            { path: 'demand-list', component: DemandListComponent },
             //   { path: 'form', component: EmployeeFormComponent },
             //   { path: 'view:id', component: EmployeeViewComponent },
             //   { path: 'transfer', component: EmployeeTransferFormComponent },
