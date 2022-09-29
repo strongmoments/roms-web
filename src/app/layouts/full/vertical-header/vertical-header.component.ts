@@ -5,6 +5,7 @@ import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
 import { AlertService, NotificationService, SseService } from 'src/app/core/services';
 import { Base64ImagePipe } from 'src/app/core/_helpers';
+import { environment } from 'src/environments/environment';
 // import { Base64ImagePipe } from 'src/app/core/_helpers/base64-image-pipe';
 
 @Component({
@@ -126,7 +127,7 @@ export class VerticalAppHeaderComponent {
     this.user = this.authService.getCurrentUser();
     this.getAllNotification();
     this.sseService
-      .getServerSentEvent(`http://13.234.56.70:8081/subscription/${this.user.id}`)
+      .getServerSentEvent(`${environment.socketApiUrl}/subscription/${this.user.id}`)
       .subscribe(
         (data: any) => {
           //  data;
