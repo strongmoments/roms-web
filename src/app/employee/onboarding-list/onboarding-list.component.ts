@@ -269,8 +269,8 @@ export class OnboardingListComponent implements OnInit, OnChanges {
 
   openDialog(data: any) {
     const dialogRef = this.dialog.open(this.resourceDemandDialog, {
-      width: '30em',
-      height: '15em',
+      width: '45em',
+      height: '40em',
       data: { data: data },
     });
 
