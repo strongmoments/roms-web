@@ -67,7 +67,7 @@ export class CreateUserComponent implements OnInit {
       firstName: new FormControl(this.userSessionData?.firstName, [Validators.required, Validators.maxLength(25)]),
       lastName: new FormControl(this.userSessionData?.lastName, [Validators.required, Validators.maxLength(25)]),
       email: new FormControl(this.userSessionData?.email, [Validators.required, Validators.pattern(this.utils.emailRegex), Validators.maxLength(30)]),
-      contactNo: new FormControl(this.userSessionData?.phone, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(this.utils.intRegex)]),
+      contactNo: new FormControl(this.userSessionData?.phone, [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern(this.utils.mobileRegex)]),
       // dob: new FormControl('', [Validators.required]),
       isManager: new FormControl(false),
       roleId: new FormControl('', [Validators.required]),

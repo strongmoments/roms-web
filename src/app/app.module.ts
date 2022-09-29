@@ -62,7 +62,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SpinnerComponent,
     AppBlankComponent,
     VerticalAppSidebarComponent,
-    AppBreadcrumbComponent,
+    // AppBreadcrumbComponent,
     HorizontalAppHeaderComponent,
     HorizontalAppSidebarComponent,
     ReleaseNoteComponent,

@@ -82,8 +82,9 @@
                 <mat-error *ngIf="checkError('contactNo', 'pattern')">
                   Contact No is invalid.
                 </mat-error>
-                <mat-error *ngIf="checkError('contactNo', 'maxlength') || checkError('contactNo', 'minlength')">
-                  Contact no should be 10 digits.
+                <mat-error
+                  *ngIf="!checkError('contactNo', 'pattern') && (checkError('contactNo', 'maxlength') || checkError('contactNo', 'minlength'))">
+                  Contact no should be 11 digits.
                 </mat-error>
               </mat-form-field>
             </div>
@@ -106,7 +107,8 @@
               <mat-checkbox class="example-margin" value="true" formControlName="isManager" isManager>Is Manager
               </mat-checkbox>
               &nbsp;
-              <mat-checkbox class="example-margin" value="true" formControlName="notifyBySms" notifyBySms>Notify By Sms
+              <mat-checkbox class="example-margin" value="true" formControlName="notifyBySms" notifyBySms>Inform
+                Employee By SMS
               </mat-checkbox>
             </div>
             <!-- <div fxFlex.gt-sm="50" fxFlex="100" class="p-b-10 p-t-10">

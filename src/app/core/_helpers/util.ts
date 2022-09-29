@@ -9,6 +9,7 @@ export class Utils {
     usPhone = /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/;
     usPhoneWithCode = /^\+1 (\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/;
     intRegex = /^[0-9]*$/;
+    mobileRegex = /^\+{1}[0-9]*$/;
     mmYY = /^(0[1-9]|1[0-2])\/([0-9]{2})$/;
     mmYYYY = /^(0[1-9]|1[0-2])\/([0-9]{4})$/;
     aplhaNumericeWithoutSpace= /^[A-Za-z0-9]*$/;
