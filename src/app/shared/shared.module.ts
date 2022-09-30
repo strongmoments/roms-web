@@ -19,7 +19,7 @@ import { VerticalAppHeaderComponent } from '../layouts/full/vertical-header/vert
 import { SpinnerComponent } from './spinner.component';
 import { AppBlankComponent } from '../layouts/blank/blank.component';
 import { VerticalAppSidebarComponent } from '../layouts/full/vertical-sidebar/vertical-sidebar.component';
-import { AppBreadcrumbComponent } from '../layouts/full/breadcrumb/breadcrumb.component';
+// import { AppBreadcrumbComponent } from '../layouts/full/breadcrumb/breadcrumb.component';
 import { HorizontalAppHeaderComponent } from '../layouts/full/horizontal-header/horizontal-header.component';
 import { HorizontalAppSidebarComponent } from '../layouts/full/horizontal-sidebar/horizontal-sidebar.component';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -64,7 +64,7 @@ import { QuillModule } from 'ngx-quill';
     // SpinnerComponent,
     // AppBlankComponent,
     // VerticalAppSidebarComponent,
-    AppBreadcrumbComponent,
+    // AppBreadcrumbComponent,
     // HorizontalAppHeaderComponent,
     // HorizontalAppSidebarComponent,
   ],
@@ -83,7 +83,7 @@ import { QuillModule } from 'ngx-quill';
     PerfectScrollbarModule,
     FlexLayoutModule,
     QuillModule,
-    AppBreadcrumbComponent
+    // AppBreadcrumbComponent
   ],
   providers: [MenuItems, HorizontalMenuItems, Base64ImagePipe, DateAgoPipe],
 })
