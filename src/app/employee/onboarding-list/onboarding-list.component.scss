@@ -57,9 +57,8 @@
   border-color: #e7b400;
 }
 .color_blue {
-  color: #009EFB;
+  color: #009efb;
 }
-
 
 .no-wrap td,
 .no-wrap .ng-star-inserted {
@@ -70,7 +69,54 @@
   background-color: lavender !important;
 }
 .list-Img {
+  align-items: center;
   width: 40px;
   height: 40px;
   border-radius: 50px;
+}
+.popup-head {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.popup-head div {
+  display: flex;
+  align-items: center;
+}
+.popup-head mat-progress-bar {
+  width: 175px;
+}
+.popup-head2 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.popup-head2 div {
+  text-align: center;
+}
+.popup-head2 {
+  padding: 15px 1px 7px;
+}
+.popup-head2 div mat-label {
+  display: block;
+}
+.fd-re {
+  flex-direction: column;
+  align-items: flex-end !important;
+}
+.mat-row.cdk-row.example-element-row {
+  cursor: pointer;
+}
+.progress-layout {
+  display: flex;
+}
+// .progress-layout .pro-icon {
+// }
+.progress-layout .pro-desc {
+  width: 100%;
+}
+.progress-layout .pro-desc div {
+  display: flex;
+  justify-content: space-between;
 }
