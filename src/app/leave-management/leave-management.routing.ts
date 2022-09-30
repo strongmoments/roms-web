@@ -9,8 +9,20 @@ const routes: Routes = [
         path: '',
         component: FullComponent,
         children: [
-            { path: 'apply-leave', component: LeaveApplyFormComponent, pathMatch: 'full' },
-            { path: 'leave-request', component: LeaveRequestListComponent },
+            {
+                path: 'apply-leave', component: LeaveApplyFormComponent, pathMatch: 'full',
+                data: {
+                    title: 'Request Leave ',
+                    urls: [{ title: 'Leave', url: '/leave/apply-leave' }, { title: 'Apply Leave' }],
+                }
+            },
+            {
+                path: 'leave-request', component: LeaveRequestListComponent,
+                data: {
+                    title: 'Leave Request',
+                    urls: [{ title: 'My Staff', url: '/' }, { title: 'Leave Request' }],
+                }
+            },
         ]
     },
 ];

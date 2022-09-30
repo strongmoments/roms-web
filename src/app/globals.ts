@@ -95,6 +95,15 @@ export class Globals {
         { name: 'Both', value: 'both' }
     ]
 
+    phoneCode = [
+        {
+            name: '+61', value: '+61',
+        },
+        {
+            name: '+91', value: '+91'
+        }
+    ]
+
 }
 
 export enum DepartmentId {

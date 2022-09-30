@@ -6,6 +6,7 @@ import { AlertService } from 'src/app/core/services';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { Utils } from 'src/app/core/_helpers/util';
 import { CustomMessage } from 'src/app/custom-message';
+import { Globals } from 'src/app/globals';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -14,6 +15,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  global: Globals;
   submitted: boolean = false;
   stepper!: MatStepper;
   isLinear: boolean = true;
@@ -23,7 +25,9 @@ export class RegisterComponent implements OnInit {
   isEditable = false;
 
   // tslint:disable-next-line - Disables all
-  constructor(private _formBuilder: UntypedFormBuilder, public util: Utils, private alertService: AlertService, private authService: AuthenticationService, private router: Router) { }
+  constructor(private globals: Globals, private _formBuilder: UntypedFormBuilder, public util: Utils, private alertService: AlertService, private authService: AuthenticationService, private router: Router) {
+    this.global = globals;
+  }
 
   ngOnInit(): void {
     this.firstFormGroup = this._formBuilder.group({
@@ -34,7 +38,8 @@ export class RegisterComponent implements OnInit {
       firstName: new FormControl('', [Validators.required, Validators.maxLength(25)]),
       lastName: new FormControl('', [Validators.required, Validators.maxLength(25)]),
       email: new FormControl('', [Validators.required, Validators.pattern(this.util.emailRegex), Validators.maxLength(30)]),
-      contactNo: new FormControl('', [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern(this.util.mobileRegex)]),
+      phoneCode: new FormControl('+61', [Validators.required]),
+      contactNo: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(this.util.intRegex)]),
     });
   }
 
@@ -63,7 +68,7 @@ export class RegisterComponent implements OnInit {
       firstName: formValues.firstName,
       lastName: formValues.lastName,
       email: formValues.email,
-      phone: formValues.contactNo,
+      phone: `${formValues.phoneCode}${formValues.contactNo}`,
       orgId: environment.orgId
 
     }).subscribe((result: any) => {

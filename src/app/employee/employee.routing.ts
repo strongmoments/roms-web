@@ -21,7 +21,13 @@ const routes: Routes = [
       { path: 'view:id', component: EmployeeViewComponent },
       { path: 'transfer', component: EmployeeTransferFormComponent },
       { path: 'resignation', component: EmployeeResignationComponent },
-      { path: 'resignation-list', component: EmployeeResignationListComponent },
+      {
+        path: 'resignation-list', component: EmployeeResignationListComponent,
+        data: {
+          title: 'Resignation',
+          urls: [{ title: 'My Staff', url: '/' }, { title: 'Resignation Request' }],
+        }
+      },
       { path: 'employee-add', component: EmployeeAddComponent },
       { path: 'onboarding-list', component: OnboardingListComponent }
     ],

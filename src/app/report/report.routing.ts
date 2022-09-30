@@ -9,8 +9,20 @@ const routes: Routes = [
     component: FullComponent,
     // pathMatch: 'full',
     children: [
-      { path: 'leave', component: LeaveReportComponent },
-      { path: 'resignation', component: ResignationReportComponent }
+      {
+        path: 'leave', component: LeaveReportComponent,
+        data: {
+          title: 'Leave Report',
+          urls: [{ title: 'People & Culture', url: '/' }, { title: 'Leave History Report' }],
+        }
+      },
+      {
+        path: 'resignation', component: ResignationReportComponent,
+        data: {
+          title: 'Resgination Report',
+          urls: [{ title: 'People & Culture', url: '/' }, { title: 'Resignation History Report' }],
+        }
+      }
     ],
   },
 ];

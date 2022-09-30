@@ -26,7 +26,13 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     // pathMatch:'full',
     children: [
-      { path: 'change-password', component: ChangePasswordComponent },
+      {
+        path: 'change-password', component: ChangePasswordComponent,
+        data: {
+          title: 'Change Password',
+          urls: [{ title: 'Change Password' }],
+        }
+      },
       { path: 'profile', component: ProfileComponent },
     ],
   },

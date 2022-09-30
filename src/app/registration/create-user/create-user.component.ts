@@ -6,6 +6,7 @@ import { AlertService } from 'src/app/core/services';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { Utils } from 'src/app/core/_helpers/util';
 import { CustomMessage } from 'src/app/custom-message';
+import { Globals } from 'src/app/globals';
 import { environment } from 'src/environments/environment';
 import { UserCreatedSuccessDialogComponent } from '../user-created-success-dialog/user-created-success-dialog.component';
 
@@ -15,6 +16,7 @@ import { UserCreatedSuccessDialogComponent } from '../user-created-success-dialo
   styleUrls: ['./create-user.component.scss'],
 })
 export class CreateUserComponent implements OnInit {
+  global: Globals;
   requestId: any = '';
   userSessionData: any = {};
   form!: FormGroup;
@@ -23,8 +25,9 @@ export class CreateUserComponent implements OnInit {
   roles: any = [];
   managers: any = [];
   employeeType: any = [];
-  constructor(private dialog: MatDialog, private activatedRoute: ActivatedRoute, private router: Router, private fb: FormBuilder, private utils: Utils, private alertService: AlertService, private authService: AuthenticationService) {
-
+  phoneCode: string = '+61';
+  constructor(private globals: Globals, private dialog: MatDialog, private activatedRoute: ActivatedRoute, private router: Router, private fb: FormBuilder, private utils: Utils, private alertService: AlertService, private authService: AuthenticationService) {
+    this.global = globals;
     this.activatedRoute.queryParams.subscribe((
       params: any) => {
       console.log('queryParams', params['requestId'])
@@ -59,6 +62,13 @@ export class CreateUserComponent implements OnInit {
     let data = sessionStorage.getItem(this.requestId);
     if (data) {
       this.userSessionData = JSON.parse(data);
+      if (this.userSessionData) {
+        let code = this.userSessionData.phone.substr(0, 3);
+        this.userSessionData['phone'] = this.userSessionData.phone.substr(3, this.userSessionData.phone.length);
+        this.phoneCode = code ? code : this.phoneCode;
+        // console.log(phoneCode,'phoneCode')
+        // this.userSessionData[pho]
+      }
     } else {
       this.router.navigate(['/registration/list']);
     }
@@ -67,7 +77,8 @@ export class CreateUserComponent implements OnInit {
       firstName: new FormControl(this.userSessionData?.firstName, [Validators.required, Validators.maxLength(25)]),
       lastName: new FormControl(this.userSessionData?.lastName, [Validators.required, Validators.maxLength(25)]),
       email: new FormControl(this.userSessionData?.email, [Validators.required, Validators.pattern(this.utils.emailRegex), Validators.maxLength(30)]),
-      contactNo: new FormControl(this.userSessionData?.phone, [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern(this.utils.mobileRegex)]),
+      phoneCode: new FormControl(this.phoneCode, [Validators.required]),
+      contactNo: new FormControl(this.userSessionData?.phone, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(this.utils.intRegex)]),
       // dob: new FormControl('', [Validators.required]),
       isManager: new FormControl(false),
       roleId: new FormControl('', [Validators.required]),
@@ -114,6 +125,8 @@ export class CreateUserComponent implements OnInit {
     }
 
     let formValues = this.form.value;
+    formValues.contactNo = `${formValues.phoneCode}${formValues.contactNo}`;
+    delete formValues.phoneCode;
     let roleName = formValues.roleId;
     let departmentName = formValues.departmentId;
     let role = this.roles.find((elem: any) => elem.name.toLowerCase() == formValues.roleId.trim().toLowerCase());
@@ -135,7 +148,7 @@ export class CreateUserComponent implements OnInit {
         this.submitted = false;
         this.alertService.openSnackBar(CustomMessage.userCreatedSuccess, false);
         let data: any = result;
-        console.log(data, 'data', result);
+        // console.log(data, 'data', result);
         data['roleName'] = roleName;
         data['departmentName'] = departmentName;
         this.openDialog(data);

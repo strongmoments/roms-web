@@ -48,11 +48,12 @@ export class LeaveApplyFormComponent implements OnInit {
   maxDate: Date = new Date(new Date().setMonth(new Date().getMonth() + 12));
   classArray = ['custom-button-grey', 'custom-button-light-grey', 'custom-button-purple', 'custom-button-light-pink', 'custom-button-light-green', 'custom-button-grey', 'custom-button-light-blue', 'custom-button-light-blue-1', 'custom-button-brown'];
   currentDate: any = new Date();
-  isFriday:string=this.currentDate.getDay();
+  isFriday: string = this.currentDate.getDay();
   // columnsToDisplay: string[] = ['leaveReason', 'reviewerRemark'];
   expandedElement: any = null;
   tabIndex: number = 0;
   selectedId: any;
+  attachments: any = [];
   constructor(public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private leaveService: LeaveService, private router: Router, private activatedRoute: ActivatedRoute) {
     console.log(this.minDate, this.maxDate)
     this.globals = globals;
@@ -534,4 +535,25 @@ export class LeaveApplyFormComponent implements OnInit {
     return className;
   }
 
+
+  removeAttachment(index: any) {
+    if (this.attachments.length > index) {
+      this.attachments.splice(index, 1);
+    }
+  }
+
+  onFileChange(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.onload = (e: any) => {
+        console.log('Got here: ', e.target.result);
+        this.attachments.push(e.target.result);
+
+        // this.obj.photoUrl = e.target.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+
+    // console.log(event.target.files);
+  }
 }

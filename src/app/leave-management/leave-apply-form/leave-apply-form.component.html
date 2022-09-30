@@ -1,11 +1,7 @@
 <div fxLayout="row wrap">
   <div fxFlex.gt-sm="100" fxFlex="100">
     <div>
-      <mat-tab-group
-        [selectedIndex]="tabIndex"
-        mat-stretch-tabs
-        (selectedIndexChange)="onTabChanged($event)"
-      >
+      <mat-tab-group [selectedIndex]="tabIndex" mat-stretch-tabs (selectedIndexChange)="onTabChanged($event)">
         <mat-tab label="Apply Leave">
           <form [formGroup]="form" (ngSubmit)="onSubmit()" class="basic-form">
             <mat-card class="m-0 m-t-20 m-b-5">
@@ -24,7 +20,7 @@
                 <!-- ============================================================== -->
                 <div fxLayout="row wrap">
                   <!-- column -->
-                  <div fxFlex.gt-sm="16.66" fxFlex.gt-xs="100" fxFlex="100" class="m-b-xsm20"> 
+                  <div fxFlex.gt-sm="16.66" fxFlex.gt-xs="100" fxFlex="100" class="m-b-xsm20">
                     <a href="javascript:void" (click)="calculateDate('-1')">
                       <mat-card class="bg-info text-white text-center">
                         <div class="p-10">
@@ -94,62 +90,37 @@
                 <!-- Simple four boxes Row -->
 
                 <!-- <form > -->
-                <div fxLayout="row wrap "  fxFlexAlign="center" class="p-t-20 d-wrap select-date" >
+                <div fxLayout="row wrap " fxFlexAlign="center" class="p-t-20 d-wrap select-date">
                   <div fxFlex.gt-sm="35" class="m-l-15 sm-m-l-0">
                     <mat-form-field appearance="outline">
                       <mat-label (click)="picker.open()">Select Date Range</mat-label>
-                      <mat-date-range-input
-                        [rangePicker]="picker"
-                        [min]="minDate"
-                        [max]="maxDate"
-                        [ngClass]="{
+                      <mat-date-range-input [rangePicker]="picker" [min]="minDate" [max]="maxDate" [ngClass]="{
                           'is-invalid':
                             submitted &&
                             (checkError('startDate', 'required') ||
                               checkError('endDate', 'required'))
-                        }"
-                      >
-                        <input
-                          matStartDate
-                          formControlName="startDate"
-                          (dateChange)="calculateDaysByField()"
-                          placeholder="Start date"
-                          readonly
-                          (click)="picker.open()"
-                        />
-                        <input
-                          matEndDate
-                          (dateChange)="calculateDaysByField()"
-                          formControlName="endDate"
-                          placeholder="End date"
-                          readonly
-                          (click)="picker.open()"
-                        />
+                        }">
+                        <input matStartDate formControlName="startDate" (dateChange)="calculateDaysByField()"
+                          placeholder="Start date" readonly (click)="picker.open()" />
+                        <input matEndDate (dateChange)="calculateDaysByField()" formControlName="endDate"
+                          placeholder="End date" readonly (click)="picker.open()" />
                       </mat-date-range-input>
                       <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
                       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                       <mat-date-range-picker #picker></mat-date-range-picker>
 
-                      <mat-error
-                        *ngIf="
+                      <mat-error *ngIf="
                           submitted &&
                           (checkError('startDate', 'required') || checkError('endDate', 'required'))
-                        "
-                      >
+                        ">
                         Invalid dates
                       </mat-error>
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="8" class="p-10">
                     <mat-form-field>
-                      <input
-                        type="text"
-                        maxlength="3"
-                        matInput
-                        formControlName="leaveDays"
-                        (change)="checkLeaveDays($event)"
-                        class="text-center"
-                      />
+                      <input type="text" maxlength="3" matInput formControlName="leaveDays"
+                        (change)="checkLeaveDays($event)" class="text-center" />
                       <!-- <button mat-button class="custom-grey-button" disabled> -->
                       <!-- {{ leaveDays }} -->
                       <!-- </button> -->
@@ -264,16 +235,9 @@
                           <!-- <div class="mat-body-2">Or</div> -->
                           <mat-form-field appearance="outline" class="custom-mat-form-field">
                             <!-- <mat-label>--:--:--</mat-label> -->
-                            <input
-                              [readonly]="isTimeInputDisabled"
-                              formControlName="startTime"
-                              [textMask]="{ mask: util.timeMask }"
-                              matInput
-                              placeholder="--:--"
-                              [type]="'text'"
-                              (change)="calculateHoursByField()"
-                              class="text-center"
-                            />
+                            <input [readonly]="isTimeInputDisabled" formControlName="startTime"
+                              [textMask]="{ mask: util.timeMask }" matInput placeholder="--:--" [type]="'text'"
+                              (change)="calculateHoursByField()" class="text-center" />
                           </mat-form-field>
                         </div>
                         <div fxFlex.gt-sm="10" class="p-10">
@@ -282,16 +246,9 @@
                         <div fxFlex.gt-sm="15">
                           <mat-form-field appearance="outline" class="custom-mat-form-field">
                             <!-- <mat-label>--:--:--</mat-label> -->
-                            <input
-                              formControlName="endTime"
-                              [readonly]="isTimeInputDisabled"
-                              [textMask]="{ mask: util.timeMask }"
-                              placeholder="--:--"
-                              matInput
-                              [type]="'text'"
-                              (change)="calculateHoursByField()"
-                              class="text-center"
-                            />
+                            <input formControlName="endTime" [readonly]="isTimeInputDisabled"
+                              [textMask]="{ mask: util.timeMask }" placeholder="--:--" matInput [type]="'text'"
+                              (change)="calculateHoursByField()" class="text-center" />
                           </mat-form-field>
                         </div>
                         <div fxFlex.gt-sm="10">
@@ -344,14 +301,8 @@
                   <input type="hidden" formControlName="leaveType" />
                   <div fxFlex.gt-sm="100" class="m-l-15">
                     <ng-container *ngFor="let leave of leaveTypeList; let i = index">
-                      <button
-                        mat-button
-                        type="button"
-                        (click)="setLeaveType(leave)"
-                        [ngClass]="getColor(i, leave.id)"
-                        color="primary"
-                        class="m-r-20 m-t-5 m-b-5"
-                      >
+                      <button mat-button type="button" (click)="setLeaveType(leave)" [ngClass]="getColor(i, leave.id)"
+                        color="primary" class="m-r-20 m-t-5 m-b-5">
                         <!-- [ngClass]="{ active: leave.id == selectedLeaveType }"  -->
                         {{ leave?.leaveDescription }}
                       </button>
@@ -456,15 +407,9 @@
                       <mat-card-title class="p-20 p-l-25">Comments</mat-card-title>
                       <mat-form-field appearance="outline" class="m-t-0 p-l-20 p-r-20">
                         <!-- <mat-label>Outline form field</mat-label> -->
-                        <textarea
-                          [ngClass]="{
+                        <textarea [ngClass]="{
                             'is-invalid': submitted && checkError('leaveReason', 'required')
-                          }"
-                          matInput
-                          formControlName="leaveReason"
-                          placeholder="Comment"
-                          rows="6"
-                        >
+                          }" matInput formControlName="leaveReason" placeholder="Comment" rows="6">
                         </textarea>
                         <mat-error *ngIf="submitted && checkError('leaveReason', 'required')">
                           Comment is required
@@ -474,44 +419,63 @@
                     <div fxFlex.gt-sm="100" fxFlex="100">
                       <div fxLayout="row wrap">
                         <div fxFlex.gt-sm="30" fxFlex="100" align="center">
-                          <button type="file" mat-raised-button color="warn" class="m-20 m-b-xsm20">
+                          <button (click)="attachment.click()" type="button" mat-raised-button color="warn"
+                            class="m-20 m-b-xsm20">
                             Attachments
                             <mat-icon>cloud_upload</mat-icon>
                           </button>
+                          <input #attachment type="file" hidden (change)="onFileChange($event)"
+                            accept="application/pdf, image/*">
                         </div>
                         <div fxFlex.gt-sm="70" fxFlex="100" class="m-b-20 r-Img">
-                          <div class="prev-img">
+                          <div class="prev-img" *ngFor="let image of attachments;let i=index;">
+                            <img class="m-r-20" [src]="image" alt="" />
+                            <button type="button" (click)="removeAttachment(i)">
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </div>
+                          <!-- <div class="prev-img">
                             <img class="m-r-20" src="assets/images/users/1.jpg" alt="Documents" />
-                            <button><mat-icon>cancel</mat-icon></button>
+                            <button>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
                           </div>
                           <div class="prev-img">
                             <img class="m-r-20" src="assets/images/users/1.jpg" alt="Documents" />
-                            <button><mat-icon>cancel</mat-icon></button>
+                            <button>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
                           </div>
                           <div class="prev-img">
                             <img class="m-r-20" src="assets/images/users/1.jpg" alt="Documents" />
-                            <button><mat-icon>cancel</mat-icon></button>
+                            <button>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
                           </div>
                           <div class="prev-img">
                             <img class="m-r-20" src="assets/images/users/1.jpg" alt="Documents" />
-                            <button><mat-icon>cancel</mat-icon></button>
+                            <button>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
                           </div>
                           <div class="prev-img">
                             <img class="m-r-20" src="assets/images/users/1.jpg" alt="Documents" />
-                            <button><mat-icon>cancel</mat-icon></button>
+                            <button>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
                           </div>
                           <div class="prev-img">
                             <img class="m-r-20" src="assets/images/users/1.jpg" alt="Documents" />
-                            <button><mat-icon>cancel</mat-icon></button>
+                            <button>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
                           </div>
                           <div class="prev-img">
                             <img class="m-r-20" src="assets/images/users/1.jpg" alt="Documents" />
-                            <button><mat-icon>cancel</mat-icon></button>
-                          </div>
-                          <div class="prev-img">
-                            <img class="m-r-20" src="assets/images/users/1.jpg" alt="Documents" />
-                            <button><mat-icon>cancel</mat-icon></button>
-                          </div>
+                            <button>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </div> -->
                         </div>
                       </div>
                     </div>
@@ -522,24 +486,16 @@
               <div fxFlex.gt-sm="40" fxFlex="100">
                 <mat-card class="oh text-center little-profile m-t-20">
                   <div class="mh-130">
-                    <img
-                      mat-card-image
-                      src="assets/images/background/profile-bg.jpg"
-                      alt="Background Image"
-                    />
+                    <img mat-card-image src="assets/images/background/profile-bg.jpg" alt="Background Image" />
                   </div>
                   <mat-card-content>
                     <div class="pro-img h-128">
-                      <img
-                        onerror="this.onerror=null;this.src='../../../../assets/img/user-default-img.jpg';"
-                        [src]="managerData?.profileImage | base64Image"
-                        width="100"
-                        class="img-fluid img-circle"
-                      />
+                      <img onerror="this.onerror=null;this.src='../../../../assets/img/user-default-img.jpg';"
+                        [src]="managerData?.profileImage | base64Image" width="100" class="img-fluid img-circle" />
                     </div>
                     <h3 class="m-b-0 h-30">
-                      <span *ngIf="managerData && managerData.firstName"
-                        >{{ managerData?.firstName }} {{ managerData?.lastName }}
+                      <span *ngIf="managerData && managerData.firstName">{{ managerData?.firstName }} {{
+                        managerData?.lastName }}
                       </span>
                       <span *ngIf="!managerData || (managerData && !managerData.firstName)">
                         No Manager found.
@@ -549,14 +505,8 @@
                       <span *ngIf="managerData && managerData.firstName">Manager</span>
                     </h6>
                     <mat-card-actions class="">
-                      <button
-                        [disabled]="!managerData || (managerData && !managerData.firstName)"
-                        mat-raised-button
-                        color="warn"
-                        class="m-t-20"
-                        type=""
-                        submit
-                      >
+                      <button [disabled]="!managerData || (managerData && !managerData.firstName)" mat-raised-button
+                        color="warn" class="m-t-20" type="" submit>
                         REQUEST FOR APPROVAL
                         <mat-icon> arrow_right_alt </mat-icon>
                       </button>
@@ -583,13 +533,8 @@
                 </mat-card-title>
                 <mat-card-content>
                   <div class="table-responsive">
-                    <table
-                      mat-table
-                      [dataSource]="dataSource"
-                      class="table employee-list no-wrap mat-elevation-z8"
-                      matSort
-                      multiTemplateDataRows
-                    >
+                    <table mat-table [dataSource]="dataSource" class="table employee-list no-wrap mat-elevation-z8"
+                      matSort multiTemplateDataRows>
                       <!-- <table width="100%" mat-table [dataSource]="dataSource" matSort> -->
                       <!-- ID Column -->
                       <ng-container matColumnDef="applyDate">
@@ -683,15 +628,9 @@
                       </ng-container>
 
                       <ng-container matColumnDef="expandedDetail">
-                        <td
-                          mat-cell
-                          *matCellDef="let element"
-                          [attr.colspan]="displayedColumns.length"
-                        >
-                          <div
-                            class="example-element-detail"
-                            [@detailExpand]="element === expandedElement ? 'expanded' : 'collapsed'"
-                          >
+                        <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                          <div class="example-element-detail"
+                            [@detailExpand]="element === expandedElement ? 'expanded' : 'collapsed'">
                             <!-- <div class="example-element-diagram"> -->
                             <!-- <div class="example-element-position">test</div> -->
                             <!-- <div class="example-element-symbol">{{ element.symbol }}</div> -->
@@ -710,26 +649,14 @@
                                 </span>
                               </span>
                             </div>
-                            <div class="collapse-img">
-                              <img
-                                src="assets/images/users/1.jpg
-                              "
-                                alt="face"
-                                width="75px"
-                              />
-                              <img
-                                src="assets/images/users/1.jpg
-                              "
-                                alt=""
-                                width="75px"
-                              />
-                              <img
-                                src="assets/images/users/1.jpg
-                              "
-                                alt=""
-                                width="75px"
-                              />
-                            </div>
+                            <!-- <div class="collapse-img">
+                              <img src="assets/images/users/1.jpg
+                              " alt="face" width="75px" />
+                              <img src="assets/images/users/1.jpg
+                              " alt="" width="75px" />
+                              <img src="assets/images/users/1.jpg
+                              " alt="" width="75px" />
+                            </div> -->
                           </div>
                         </td>
                       </ng-container>
@@ -738,18 +665,10 @@
                       <!-- <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr> -->
 
                       <!-- <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr> -->
-                      <tr
-                        mat-row
-                        *matRowDef="let element; columns: displayedColumns"
-                        class="example-element-row"
+                      <tr mat-row *matRowDef="let element; columns: displayedColumns" class="example-element-row"
                         [class.example-expanded-row]="expandedElement === element"
-                        (click)="expandedElement = expandedElement === element ? null : element"
-                      ></tr>
-                      <tr
-                        mat-row
-                        *matRowDef="let row; columns: ['expandedDetail']"
-                        class="example-detail-row"
-                      ></tr>
+                        (click)="expandedElement = expandedElement === element ? null : element"></tr>
+                      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
 
                       <!-- Row shown when there is no matching data. -->
                       <tr class="mat-row" *matNoDataRow>
@@ -760,13 +679,8 @@
                     </table>
                     <!-- </table> -->
 
-                    <mat-paginator
-                      [length]="totalRecords"
-                      [pageIndex]="0"
-                      [pageSizeOptions]="[5, 10, 20]"
-                      [pageSize]="pagesize"
-                      aria-label="Select page"
-                    >
+                    <mat-paginator [length]="totalRecords" [pageIndex]="0" [pageSizeOptions]="[5, 10, 20]"
+                      [pageSize]="pagesize" aria-label="Select page">
                     </mat-paginator>
                   </div>
                 </mat-card-content>

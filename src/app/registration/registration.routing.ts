@@ -16,7 +16,14 @@ const routes: Routes = [
         component: FullComponent,
         // pathMatch: 'full',
         children: [
-            { path: 'list', component: RegistrationListComponent },
+            {
+                path: 'list', component: RegistrationListComponent,
+
+                data: {
+                    title: 'Registrations',
+                    urls: [{ title: 'People & Culture', url: '/' }, { title: 'Registration List' }],
+                }
+            },
             { path: 'create-user', component: CreateUserComponent },
             { path: 'recruitment', component: RecruitmentComponent },
             { path: 'recommend', component: RecommendComponent },

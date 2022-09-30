@@ -143,7 +143,15 @@
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
-                    <mat-form-field>
+                    <mat-form-field  fxFlex="15">
+                      <mat-select formControlName="phoneCode" phoneCode
+                        [ngClass]="{ 'is-invalid': submitted && f.phoneCode.hasError }">
+                        <mat-option [value]="item.value" *ngFor="let item of global.phoneCode">
+                          {{ item.name}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="85">
                       <input [ngClass]="{ 'is-invalid': submitted && f.contactNo.hasError }" matInput
                         placeholder="Contact No" formControlName="contactNo" contactNo />
                       <mat-error *ngIf="submitted && checkError('contactNo', 'required')">
@@ -156,7 +164,7 @@
                           checkError('contactNo', 'maxlength') ||
                           checkError('contactNo', 'minlength')) 
                         ">
-                        Contact no should be 11 digits.
+                        Contact no should be 10 digits.
                       </mat-error>
                     </mat-form-field>
                   </div>
