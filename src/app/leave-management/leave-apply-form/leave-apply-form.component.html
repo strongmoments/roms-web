@@ -24,7 +24,7 @@
                 <!-- ============================================================== -->
                 <div fxLayout="row wrap">
                   <!-- column -->
-                  <div fxFlex.gt-sm="16.66" fxFlex.gt-xs="100" fxFlex="100">
+                  <div fxFlex.gt-sm="16.66" fxFlex.gt-xs="100" fxFlex="100" class="m-b-xsm20"> 
                     <a href="javascript:void" (click)="calculateDate('-1')">
                       <mat-card class="bg-info text-white text-center">
                         <div class="p-10">
@@ -35,7 +35,7 @@
                     </a>
                   </div>
                   <!-- column -->
-                  <div fxFlex.gt-sm="16.66" fxFlex.gt-xs="100" fxFlex="100">
+                  <div fxFlex.gt-sm="16.66" fxFlex.gt-xs="100" fxFlex="100" class="m-b-xsm20">
                     <a href="javascript:void" (click)="calculateDate('0')">
                       <mat-card class="bg-purple text-white text-center">
                         <div class="p-10">
@@ -46,7 +46,7 @@
                     </a>
                   </div>
                   <!-- column -->
-                  <div fxFlex.gt-sm="16.66" fxFlex.gt-xs="100" fxFlex="100">
+                  <div fxFlex.gt-sm="16.66" fxFlex.gt-xs="100" fxFlex="100" class="m-b-xsm20">
                     <a href="javascript:void" (click)="calculateDate('1')">
                       <mat-card class="bg-success text-white text-center">
                         <div class="p-10">
@@ -94,8 +94,8 @@
                 <!-- Simple four boxes Row -->
 
                 <!-- <form > -->
-                <div fxLayout="row wrap" fxFlexAlign="center" class="p-t-20">
-                  <div fxFlex.gt-sm="35" class="m-l-15">
+                <div fxLayout="row wrap "  fxFlexAlign="center" class="p-t-20 d-wrap select-date" >
+                  <div fxFlex.gt-sm="35" class="m-l-15 sm-m-l-0">
                     <mat-form-field appearance="outline">
                       <mat-label (click)="picker.open()">Select Date Range</mat-label>
                       <mat-date-range-input
@@ -164,7 +164,7 @@
                       <div fxFlex.gt-sm="50">
                         <div fxLayout="row wrap">
                           <!-- column -->
-                          <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                          <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100" class="m-b-xsm20">
                             <a href="javascript:void" (click)="calculateHours(1)">
                               <mat-card class="bg-info text-white text-center">
                                 <div class="p-20">
@@ -174,7 +174,7 @@
                             </a>
                           </div>
                           <!-- column -->
-                          <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                          <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100" class="m-b-xsm20">
                             <a href="javascript:void" (click)="calculateHours(2)">
                               <mat-card class="bg-purple text-white text-center">
                                 <div class="p-20">
@@ -184,7 +184,7 @@
                             </a>
                           </div>
                           <!-- column -->
-                          <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                          <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100" class="m-b-xsm20">
                             <a href="javascript:void" (click)="calculateHours(3)">
                               <mat-card class="bg-success text-white text-center">
                                 <div class="p-20">
@@ -194,7 +194,7 @@
                             </a>
                           </div>
                           <!-- column -->
-                          <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                          <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100" class="m-b-xsm20">
                             <a href="javascript:void" (click)="calculateHours(4)">
                               <mat-card class="bg-inverse text-white text-center">
                                 <div class="p-20">
@@ -474,7 +474,7 @@
                     <div fxFlex.gt-sm="100" fxFlex="100">
                       <div fxLayout="row wrap">
                         <div fxFlex.gt-sm="30" fxFlex="100" align="center">
-                          <button type="file" mat-raised-button color="warn" class="m-20">
+                          <button type="file" mat-raised-button color="warn" class="m-20 m-b-xsm20">
                             Attachments
                             <mat-icon>cloud_upload</mat-icon>
                           </button>

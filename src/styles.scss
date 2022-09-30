@@ -218,6 +218,9 @@ tr.example-element-row:not(.example-expanded-row):active {
   .mat-horizontal-stepper-header {
     padding: 0 8px !important;
   }
+  .sm-m-l-0{
+    margin-left: 0 !important;
+  }
   .m-b-sm20 {
     margin-bottom: 20px;
   }
@@ -248,5 +251,10 @@ tr.example-element-row:not(.example-expanded-row):active {
   }
   .email-lbl {
     align-items: flex-start !important;
+  }
+}
+@media (max-width: 340px) {
+  .m-b-xsm20 {
+    margin-bottom: 20px !important;
   }
 }
