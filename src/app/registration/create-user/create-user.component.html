@@ -10,8 +10,14 @@
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Employee No</mat-label>
-                <input matInput [ngClass]="{'is-invalid':submitted && f.employeeNo.hasError}" matInput
-                  placeholder="Employee No." formControlName="employeeNo" employeeNo />
+                <input
+                  matInput
+                  [ngClass]="{ 'is-invalid': submitted && f.employeeNo.hasError }"
+                  matInput
+                  placeholder="Employee No."
+                  formControlName="employeeNo"
+                  employeeNo
+                />
                 <mat-error *ngIf="submitted && checkError('employeeNo', 'required')">
                   Employee No. is required.
                 </mat-error>
@@ -28,8 +34,14 @@
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline" class="m-b-15">
                 <mat-label>First Name</mat-label>
-                <input matInput placeholder="First Name" required formControlName="firstName" firstName
-                  [ngClass]="{'is-invalid':submitted && f.firstName.hasError}" />
+                <input
+                  matInput
+                  placeholder="First Name"
+                  required
+                  formControlName="firstName"
+                  firstName
+                  [ngClass]="{ 'is-invalid': submitted && f.firstName.hasError }"
+                />
                 <mat-error *ngIf="submitted && checkError('firstName', 'required')">
                   First Name is required.
                 </mat-error>
@@ -42,8 +54,13 @@
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Last Name</mat-label>
-                <input [ngClass]="{'is-invalid':submitted && f.lastName.hasError}" matInput placeholder="Last Name"
-                  formControlName="lastName" lastName />
+                <input
+                  [ngClass]="{ 'is-invalid': submitted && f.lastName.hasError }"
+                  matInput
+                  placeholder="Last Name"
+                  formControlName="lastName"
+                  lastName
+                />
                 <mat-error *ngIf="submitted && checkError('lastName', 'required')">
                   Last Name is required.
                 </mat-error>
@@ -56,14 +73,17 @@
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Email Id</mat-label>
-                <input matInput placeholder="Email Id" formControlName="email" email
-                  [ngClass]="{'is-invalid':submitted && f.email.hasError}" />
+                <input
+                  matInput
+                  placeholder="Email Id"
+                  formControlName="email"
+                  email
+                  [ngClass]="{ 'is-invalid': submitted && f.email.hasError }"
+                />
                 <mat-error *ngIf="submitted && checkError('email', 'required')">
                   Email id is required
                 </mat-error>
-                <mat-error *ngIf="checkError('email', 'pattern')">
-                  Invalid Email Id.
-                </mat-error>
+                <mat-error *ngIf="checkError('email', 'pattern')"> Invalid Email Id. </mat-error>
                 <mat-error *ngIf="checkError('email', 'maxlength')">
                   Max 30 characters are allowed.
                 </mat-error>
@@ -74,8 +94,13 @@
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline" class="m-b-15">
                 <mat-label>Contact No</mat-label>
-                <input [ngClass]="{'is-invalid':submitted && f.contactNo.hasError}" matInput placeholder="Contact No"
-                  formControlName="contactNo" contactNo />
+                <input
+                  [ngClass]="{ 'is-invalid': submitted && f.contactNo.hasError }"
+                  matInput
+                  placeholder="Contact No"
+                  formControlName="contactNo"
+                  contactNo
+                />
                 <mat-error *ngIf="submitted && checkError('contactNo', 'required')">
                   Contact No is required.
                 </mat-error>
@@ -83,7 +108,11 @@
                   Contact No is invalid.
                 </mat-error>
                 <mat-error
-                  *ngIf="!checkError('contactNo', 'pattern') && (checkError('contactNo', 'maxlength') || checkError('contactNo', 'minlength'))">
+                  *ngIf="
+                    !checkError('contactNo', 'pattern') &&
+                    (checkError('contactNo', 'maxlength') || checkError('contactNo', 'minlength'))
+                  "
+                >
                   Contact no should be 11 digits.
                 </mat-error>
               </mat-form-field>
@@ -104,12 +133,18 @@
 
             <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
               <mat-card-title class="p-b-10 color_blue">Employee Details</mat-card-title>
-              <mat-checkbox class="example-margin" value="true" formControlName="isManager" isManager>Is Manager
+              <mat-checkbox
+                class="example-margin"
+                value="true"
+                formControlName="isManager"
+                isManager
+                >Is Manager
               </mat-checkbox>
               &nbsp;
-              <mat-checkbox class="example-margin" value="true" formControlName="notifyBySms" notifyBySms>Inform
+
+              <!-- <mat-checkbox class="example-margin" value="true" formControlName="notifyBySms" notifyBySms>Inform
                 Employee By SMS
-              </mat-checkbox>
+              </mat-checkbox> -->
             </div>
             <!-- <div fxFlex.gt-sm="50" fxFlex="100" class="p-b-10 p-t-10">
               <mat-card-title class="p-b-10 color_blue"></mat-card-title>
@@ -120,8 +155,16 @@
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <!-- <mat-select placeholder="Employee Role" > -->
-                <input type="text" placeholder="Role" aria-label="Role" matInput formControlName="roleId" roleId
-                  [matAutocomplete]="auto" [ngClass]="{'is-invalid':submitted && f.roleId.hasError}">
+                <input
+                  type="text"
+                  placeholder="Role"
+                  aria-label="Role"
+                  matInput
+                  formControlName="roleId"
+                  roleId
+                  [matAutocomplete]="auto"
+                  [ngClass]="{ 'is-invalid': submitted && f.roleId.hasError }"
+                />
                 <mat-autocomplete #auto="matAutocomplete">
                   <mat-option [value]="item.name" *ngFor="let item of roles">
                     {{ item.name }}
@@ -131,15 +174,20 @@
                 <mat-error *ngIf="submitted && checkError('roleId', 'required')">
                   Role is required.
                 </mat-error>
-
               </mat-form-field>
             </div>
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
-                <input type="text" matInput placeholder="Department" formControlName="departmentId" departmentId
-                  [ngClass]="{'is-invalid':submitted && f.departmentId.hasError}"
-                  [matAutocomplete]="matAutocompleteDepartment">
+                <input
+                  type="text"
+                  matInput
+                  placeholder="Department"
+                  formControlName="departmentId"
+                  departmentId
+                  [ngClass]="{ 'is-invalid': submitted && f.departmentId.hasError }"
+                  [matAutocomplete]="matAutocompleteDepartment"
+                />
                 <mat-autocomplete #matAutocompleteDepartment="matAutocomplete">
                   <!-- <mat-select placeholder="Department" formControlName="departmentId" departmentId
                   [ngClass]="{'is-invalid':submitted && f.departmentId.hasError}"> -->
@@ -159,13 +207,16 @@
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
-                <mat-select placeholder="Manager" formControlName="managerId" managerId
-                  [ngClass]="{'is-invalid':submitted && f.managerId.hasError}">
+                <mat-select
+                  placeholder="Manager"
+                  formControlName="managerId"
+                  managerId
+                  [ngClass]="{ 'is-invalid': submitted && f.managerId.hasError }"
+                >
                   <mat-option value="">Select</mat-option>
                   <mat-option [value]="item.id" *ngFor="let item of managers">
                     {{ item.firstName }} {{ item.lastName }}
                   </mat-option>
-
                 </mat-select>
 
                 <mat-error *ngIf="submitted && checkError('managerId', 'required')">
@@ -177,11 +228,16 @@
             <!-- <div fxFlex.gt-sm="35" fxFlex="100"></div> -->
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
-                <input type="text" matInput placeholder="Employee Type" formControlName="employTypeId" employTypeId
-                  [ngClass]="{'is-invalid':submitted && f.employTypeId.hasError}"
-                  [matAutocomplete]="matAutocompleteEmpType">
+                <input
+                  type="text"
+                  matInput
+                  placeholder="Employee Type"
+                  formControlName="employTypeId"
+                  employTypeId
+                  [ngClass]="{ 'is-invalid': submitted && f.employTypeId.hasError }"
+                  [matAutocomplete]="matAutocompleteEmpType"
+                />
                 <mat-autocomplete #matAutocompleteEmpType="matAutocomplete">
-
                   <!-- <mat-select placeholder="Employee Type" formControlName="employTypeId" employTypeId
                   [ngClass]="{'is-invalid':submitted && f.employTypeId.hasError}"> -->
                   <!-- <mat-option value="">Select</mat-option> -->
@@ -201,19 +257,21 @@
 
             <div fxFlex.gt-sm="5" fxFlex="100" class="p-10"></div>
             <mat-divider fxFlex.gt-sm="100" fxFlex="100"> </mat-divider>
-            <div fxFlex.gt-sm="25" fxFlex="100" class="p-10">
+            <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+              <mat-slide-toggle>Turn on to send SMS credentials to the user</mat-slide-toggle>
+
               <!-- <h4 class="m-0 m-t-20">Date: <span class="p-l-25">22 August 2022</span></h4> -->
             </div>
-            <div fxFlex.gt-sm="50" fxFlex="100" class="p-10 text-center">
-              <div class="m-0 m-t-15">
-                <button class="button" mat-raised-button color="primary" (click)="onSubmit()">
+            <div fxFlex.gt-sm="50" fxFlex="100" class="p-10 text-right">
+              <div class="m-0 m-t-15 ">
+                <button class="button m-5 fs-20" mat-raised-button color="primary" (click)="onSubmit()">
                   Grant Access
                   <!-- <mat-icon> arrow_right_alt </mat-icon> -->
                 </button>
                 <!-- <button mat-raised-button >OPen modal</button> -->
               </div>
             </div>
-            <div fxFlex.gt-sm="25" fxFlex="100" class="p-10"></div>
+            <!-- <div fxFlex.gt-sm="15" fxFlex="100" class="p-10"></div> -->
           </div>
         </form>
       </div>
