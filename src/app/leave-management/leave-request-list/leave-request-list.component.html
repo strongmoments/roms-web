@@ -62,7 +62,9 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Staff Name</th>
             <td mat-cell *matCellDef="let row; let i = index">
               <div class="d-flex">
-                <img class="mat-card-avatar"  onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"  [src]="row?.employe?.profileImage | base64Image" />
+                <img class="mat-card-avatar"
+                  onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
+                  [src]="row?.employe?.profileImage | base64Image" />
                 <div class="m-l-15">
                   <p class="font-medium m-b-0 m-t-0">
                     {{ row?.employe?.firstName }} {{ row?.employe?.lastName }}
@@ -182,6 +184,14 @@
                 <!-- <div class="example-element-name">{{ element.name }}</div> -->
                 <!-- <div class="example-element-weight">{{ element.weight }}</div> -->
                 <!-- </div> -->
+                <div class="collapse-img">
+                  <img (mouseenter)="openImageDialog(element?.employe?.profileImage)"
+                    [src]="element?.employe?.profileImage | base64Image" width="75px" />
+                  <!-- <img src="assets/images/users/1.jpg
+                              " alt="" width="75px" />
+                  <img src="assets/images/users/1.jpg
+                              " alt="" width="75px" /> -->
+                </div>
                 <div class="example-element-description" *ngIf="element?.leaveStatus == 1">
                   <!-- <p> -->
                   <span class="p-10">{{ element?.leaveReason }}
@@ -235,4 +245,8 @@
       </div>
     </mat-card-content>
   </div>
+</ng-template>
+
+<ng-template #imagePopup>
+  <img [src]="selectedImage | base64Image">
 </ng-template>
