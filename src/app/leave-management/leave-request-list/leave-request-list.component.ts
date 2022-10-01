@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -14,6 +14,7 @@ import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-leave-request-list',
@@ -28,6 +29,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   ],
 })
 export class LeaveRequestListComponent implements OnInit, AfterViewInit {
+  @ViewChild('imagePopup') imagePopup!: TemplateRef<any>;
   globals: Globals;
   // leaveHours: number = 0;
   // form: FormGroup;
@@ -71,8 +73,9 @@ export class LeaveRequestListComponent implements OnInit, AfterViewInit {
   tabIndex: number = 0;
   startDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 1));
   endDate: Date = new Date();
-
+  selectedImage: any = '';
   constructor(
+    private dialog: MatDialog,
     public util: Utils,
     globals: Globals,
     private fb: FormBuilder,
@@ -318,4 +321,20 @@ export class LeaveRequestListComponent implements OnInit, AfterViewInit {
         );
     }
   }
+
+  openImageDialog(data: any) {
+    // alert();
+    this.selectedImage = data;
+    const dialogRef = this.dialog.open(this.imagePopup, {
+      width: '62em',
+      height: '60em',
+      // data: { data: data }
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      // this.router.navigate(['/registration/list']);
+      console.log('The dialog was closed');
+    });
+  }
+
 }
