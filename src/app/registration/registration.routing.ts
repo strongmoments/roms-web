@@ -16,20 +16,44 @@ const routes: Routes = [
         component: FullComponent,
         // pathMatch: 'full',
         children: [
-            {
-                path: 'list', component: RegistrationListComponent,
-
-                data: {
+            { path: 'list', component: RegistrationListComponent,
+                    data: {
                     title: 'Registrations',
                     urls: [{ title: 'People & Culture', url: '/' }, { title: 'Registration List' }],
                 }
             },
-            { path: 'create-user', component: CreateUserComponent },
-            { path: 'recruitment', component: RecruitmentComponent },
-            { path: 'recommend', component: RecommendComponent },
-            { path: 'job-recommend', component: JobRecommendComponent },
-            { path: 'recruitment-details', component: RecruitmentDetailsComponent },
-            { path: 'transfer-list', component: TransferListComponent },
+            { path: 'create-user', component: CreateUserComponent,
+            data: {
+                title: 'Create-User',
+                urls: [{ title: 'People & Culture', url: '/' }, { title: 'Create-User' }],
+            } },
+            { path: 'recruitment', component: RecruitmentComponent,
+                    data: {
+                    title: 'Recruitment',
+                    urls: [{ title: 'People & Culture', url: '/' }, { title: 'Recruitment' }],
+                }
+            },
+            { path: 'recommend', component: RecommendComponent,
+        
+            data: {
+                title: 'Recruitment',
+                urls: [{ title: 'People & Culture', url: '/' }, { title: 'Recruitment' }],
+            }},
+            { path: 'job-recommend', component: JobRecommendComponent,
+                data: {
+                title: 'Job-Board',
+                urls: [{ title: 'People & Culture', url: '/' }, { title: 'Recruitment' }],
+            }},
+            { path: 'recruitment-details', component: RecruitmentDetailsComponent,
+            data: {
+                title: 'Recruitment',
+                urls: [{ title: 'People & Culture', url: '/' }, { title: 'Recruitment' }],
+            } },
+            { path: 'transfer-list', component: TransferListComponent,
+            data: {
+                title: 'Transfer-List',
+                urls: [{ title: 'People & Culture', url: '/' }, { title: 'Transfer-List' }],
+            } },
             { path: 'demand-list', component: DemandListComponent },
             //   { path: 'form', component: EmployeeFormComponent },
             //   { path: 'view:id', component: EmployeeViewComponent },

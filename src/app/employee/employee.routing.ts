@@ -24,12 +24,18 @@ const routes: Routes = [
       {
         path: 'resignation-list', component: EmployeeResignationListComponent,
         data: {
-          title: 'Resignation',
+          title: 'Resignation-list',
           urls: [{ title: 'My Staff', url: '/' }, { title: 'Resignation Request' }],
         }
       },
       { path: 'employee-add', component: EmployeeAddComponent },
-      { path: 'onboarding-list', component: OnboardingListComponent }
+      {
+        path: 'onboarding-list', component: OnboardingListComponent,
+        data: {
+          title: 'Onboarding-list',
+          urls: [{ title: 'My Staff', url: '/' }, { title: 'Onboarding list' }],
+        }
+      },
     ],
   },
 ];
