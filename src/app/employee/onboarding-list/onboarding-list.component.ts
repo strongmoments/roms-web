@@ -29,7 +29,14 @@ import { MatDialog } from '@angular/material/dialog';
 export class OnboardingListComponent implements OnInit, OnChanges {
   globals: Globals;
   submitted: boolean = false;
-  displayedColumns: string[] = ['name', 'regDate', 'onbDate', 'onboarding', 'compDate', 'logo'];
+  displayedColumns: string[] = [
+    'name',
+    'regDate',
+    'onbDate',
+    'onboarding',
+    'compDate',
+    //  'logo'
+  ];
   @ViewChild('resourceDemandDialog') resourceDemandDialog!: TemplateRef<any>;
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();

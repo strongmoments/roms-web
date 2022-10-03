@@ -194,12 +194,12 @@
                 </div>
                 <div class="example-element-description" *ngIf="element?.leaveStatus == 1">
                   <!-- <p> -->
-                  <span class="p-10">{{ element?.leaveReason }}
+                  <span class="p-10 m-r-10 m-l-10">{{ element?.leaveReason }}
                   </span>
-                  <a class="approved" (click)="approveReject(0, i, element.id)" href="javascript:void(0)">
+                  <a class="approved m-r-10 m-l-10" (click)="approveReject(0, i, element.id)" href="javascript:void(0)">
                     <mat-icon>check</mat-icon>Approve
                   </a>
-                  <a class="rejected" href="javascript:void(0)" (click)="approveReject(1, i, element.id)">
+                  <a class="rejected m-r-10 m-l-10" href="javascript:void(0)" (click)="approveReject(1, i, element.id)">
                     &nbsp;
                     <mat-icon>cancel</mat-icon>Decline
                   </a>
@@ -210,7 +210,7 @@
                   </mat-form-field>
                 </div>
 
-                <div class="example-element-description" *ngIf="element && element.leaveStatus != 1">
+                <div class="example-element-description m-r-10 m-l-10" *ngIf="element && element.leaveStatus != 1">
                   {{ element?.reviewerRemark }}
                   <span>
                     --

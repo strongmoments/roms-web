@@ -326,8 +326,8 @@ export class LeaveRequestListComponent implements OnInit, AfterViewInit {
     // alert();
     this.selectedImage = data;
     const dialogRef = this.dialog.open(this.imagePopup, {
-      width: '62em',
-      height: '60em',
+      width: '52em',
+      height: '42em',
       // data: { data: data }
     });
 
