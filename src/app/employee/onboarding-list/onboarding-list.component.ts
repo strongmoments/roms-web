@@ -30,14 +30,14 @@ export class OnboardingListComponent implements OnInit, OnChanges {
   globals: Globals;
   submitted: boolean = false;
   displayedColumns: string[] = [
-    'name',
+    'employeeName',
     'regDate',
     'onbDate',
     'onboarding',
     'compDate',
     //  'logo'
   ];
-  @ViewChild('resourceDemandDialog') resourceDemandDialog!: TemplateRef<any>;
+  @ViewChild('employeeDetailDialog') employeeDetailDialog!: TemplateRef<any>;
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   // dataSourceHistory: MatTableDataSource<any> = new MatTableDataSource<any>();
@@ -64,6 +64,7 @@ export class OnboardingListComponent implements OnInit, OnChanges {
   // removedRows: any = [];
   // selectedTabIndex: number = 0;
   selectedId: string = '';
+  selectedRecord: any = {};
   constructor(
     private dialog: MatDialog,
     breakpointObserver: BreakpointObserver,
@@ -116,24 +117,24 @@ export class OnboardingListComponent implements OnInit, OnChanges {
     this.refresh(this.getDefaultOptions());
     // console.log('in listing');
     // this.authService.addedResigstration.subscribe((record: any) => (this.dataSource.data.unshift(record)));
-    this.authService.addedResigstration.subscribe((record: any) => {
-      console.log(record, 'in listing12');
-      if (record) {
-        this.totalRecords = this.totalRecords + 1;
-        record.statusName = this.getStatus(record?.status);
-        record.convertedAppliedOn = this.datePipe.transform(record.appliedOn, 'dd/MM/yyyy');
-        // data.push({
-        //   ...record,
-        //   statusName: statusName,
-        //   convertedAppliedOn: convertedAppliedOn
-        // });
+    // this.authService.addedResigstration.subscribe((record: any) => {
+    //   console.log(record, 'in listing12');
+    //   if (record) {
+    //     this.totalRecords = this.totalRecords + 1;
+    //     record.statusName = this.getStatus(record?.status);
+    //     record.convertedAppliedOn = this.datePipe.transform(record.appliedOn, 'dd/MM/yyyy');
+    //     // data.push({
+    //     //   ...record,
+    //     //   statusName: statusName,
+    //     //   convertedAppliedOn: convertedAppliedOn
+    //     // });
 
-        this.dataSource.data = [record, ...this.dataSource.data];
-      }
-    });
+    //     this.dataSource.data = [record, ...this.dataSource.data];
+    //   }
+    // });
   }
 
-  ngOnChanges(changes: SimpleChanges): void {}
+  ngOnChanges(changes: SimpleChanges): void { }
 
   /**
    * Set the paginator and sort after the view init since this component will
@@ -190,29 +191,24 @@ export class OnboardingListComponent implements OnInit, OnChanges {
     // };
     // console.log(queryData, 'queryData');
 
-    this.authService
-      .getAllEmployeeRegisterReq()
+    this.employeeService
+      .employeeOnboardList(options)
       .pipe(first())
       .subscribe((result: any) => {
+        console.log(result.data, result.data.length);
         this.totalRecords = result.data.length;
         let data: any = [];
-        result.data = result.data.sort((a: any, b: any) => {
-          return a.status - b.status;
-        });
-        result.data = result.data.sort((a: any, b: any) => {
-          var c: any = new Date(parseInt(a.appliedOn));
-          var d: any = new Date(parseInt(b.appliedOn));
-          // console.log(a,d);
-          return d - c;
-        });
 
         for (let i = 0; i < result.data.length; i++) {
-          let statusName = this.getStatus(result.data[i]?.status);
-          let convertedAppliedOn = this.datePipe.transform(result.data[i].appliedOn, 'dd/MM/yyyy');
+          // let statusName = this.getStatus(result.data[i]?.status);
+          let convertedStartdDate = this.datePipe.transform(result.data[i].startdDate, 'dd/MM/yyyy');
+          let convertedEndDate = this.datePipe.transform(result.data[i].endDate, 'dd/MM/yyyy');
+          let employeeName = result.data[i] && result.data[i].personal ? `${result.data[i].personal.firstName} ${result.data[i].personal.lastName}` : '';
           data.push({
             ...result.data[i],
-            statusName: statusName,
-            convertedAppliedOn: convertedAppliedOn,
+            employeeName: employeeName,
+            convertedEndDate: convertedEndDate,
+            convertedStartdDate: convertedStartdDate,
           });
         }
         // if (isScrolled == true) {
@@ -275,15 +271,37 @@ export class OnboardingListComponent implements OnInit, OnChanges {
   }
 
   openDialog(data: any) {
-    const dialogRef = this.dialog.open(this.resourceDemandDialog, {
+    this.selectedRecord = data;
+    const dialogRef = this.dialog.open(this.employeeDetailDialog, {
       width: '40em',
       height: '35em',
-      data: { data: data },
+      // data: { data: data },
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
       // this.router.navigate(['/registration/list']);
       console.log('The dialog was closed');
     });
+  }
+
+  getProgressValue(item: any) {
+    let totalFinal = 600;
+    let currentProgress = 0;
+    if (item.emergency && item.emergency.completionProgress) {
+      currentProgress += parseFloat(item.emergency.completionProgress);
+    }
+
+    if (item.personal && item.personal.completionProgress) {
+      currentProgress += parseFloat(item.personal.completionProgress);
+    }
+
+
+    if (item.licence && item.licence.completionProgress) {
+      currentProgress += parseFloat(item.licence.completionProgress);
+    }
+
+    let final = (currentProgress * 100) / 600;
+    return final;
+    // console.log(final);
   }
 }

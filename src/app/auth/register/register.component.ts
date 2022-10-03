@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
       empNo: new FormControl('', [Validators.required, Validators.pattern(this.util.aplhaNumericeWithoutSpace), Validators.maxLength(15)]),
       firstName: new FormControl('', [Validators.required, Validators.maxLength(25)]),
       lastName: new FormControl('', [Validators.required, Validators.maxLength(25)]),
-      email: new FormControl('', [Validators.required, Validators.pattern(this.util.emailRegex), Validators.maxLength(30)]),
+      email: new FormControl('', [Validators.required, Validators.pattern(this.util.emailRegex), Validators.maxLength(100)]),
       phoneCode: new FormControl('+61', [Validators.required]),
       contactNo: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(this.util.intRegex)]),
     });

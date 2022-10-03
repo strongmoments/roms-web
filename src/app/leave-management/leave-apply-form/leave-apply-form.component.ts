@@ -13,6 +13,7 @@ import { Globals } from 'src/app/globals';
 import { ViewOptions } from 'src/app/_models';
 import * as moment from 'moment';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { E } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-leave-apply-form',
@@ -54,23 +55,26 @@ export class LeaveApplyFormComponent implements OnInit {
   tabIndex: number = 0;
   selectedId: any;
   attachments: any = [];
+  attachmentFiles: any = [];
   constructor(public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private leaveService: LeaveService, private router: Router, private activatedRoute: ActivatedRoute) {
     console.log(this.minDate, this.maxDate)
     this.globals = globals;
     this.form = this.fb.group({
-      startDate: new FormControl('', [Validators.required]),
-      endDate: new FormControl('', [Validators.required]),
+      startDate: new FormControl(new Date(), [Validators.required]),
+      endDate: new FormControl(new Date(), [Validators.required]),
       startTime: new FormControl('', []),
       endTime: new FormControl('', []),
-      leaveDays: new FormControl('', [Validators.required, Validators.pattern(this.util.intRegex)]),
+      leaveDays: new FormControl('1', [Validators.required, Validators.pattern(this.util.intRegex)]),
       leaveType: new FormControl('', [Validators.required]),
-      leaveReason: new FormControl('', [Validators.required]),
+      leaveReason: new FormControl('', []),
     });
 
 
     this.leaveService.getLeaveTypes().subscribe((res) => {
       this.leaveTypeList = res && res.data ? res.data : [];
       this.selectedLeaveType = this.leaveTypeList && this.leaveTypeList.length > 0 ? this.leaveTypeList[0].id : '';
+      this.form.controls['leaveType'].setValue(this.selectedLeaveType);
+
       // console.log(res)
     });
     this.leaveService.getManager().subscribe((res) => {
@@ -363,6 +367,7 @@ export class LeaveApplyFormComponent implements OnInit {
     if (index == 0) {
       this.submitted = false;
       this.form.reset();
+      this.form.patchValue({ startDate: new Date(), endDate: new Date(), leaveDays: 1 })
     } else if (index == 1) {
       this.refresh(this.getDefaultOptions());
       this.paginator?.page.subscribe((page: PageEvent) => {
@@ -404,6 +409,7 @@ export class LeaveApplyFormComponent implements OnInit {
   }
   onSubmit() {
     this.submitted = true;
+    console.log(this.form.errors)
     if (this.form.invalid) {
       this.alertService.openSnackBar('Form invalid.');
       return;
@@ -458,8 +464,17 @@ export class LeaveApplyFormComponent implements OnInit {
 
     this.leaveService.applyLeave(data).subscribe(
       (res) => {
-        this.alertService.openSnackBar(CustomMessage.leaveApplySuccess, false);
-        this.router.navigate(['/dashboard']);
+        console.log(res, 'res')
+        if (res.status == 'success') {
+          if (this.attachmentFiles && this.attachmentFiles.length > 0) {
+            this.uploadPic(res.leaveRequestId)
+          } else {
+            this.alertService.openSnackBar(CustomMessage.leaveApplySuccess, false);
+            this.router.navigate(['/dashboard']);
+          }
+        } else {
+          this.alertService.openSnackBar(CustomMessage.error);
+        }
       },
       (error) => {
         this.alertService.openSnackBar(CustomMessage.error);
@@ -540,20 +555,57 @@ export class LeaveApplyFormComponent implements OnInit {
     if (this.attachments.length > index) {
       this.attachments.splice(index, 1);
     }
+
+    if (this.attachmentFiles.length > index) {
+      this.attachmentFiles.splice(index, 1);
+    }
+
   }
 
   onFileChange(event: any) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-      reader.onload = (e: any) => {
-        console.log('Got here: ', e.target.result);
-        this.attachments.push(e.target.result);
-
-        // this.obj.photoUrl = e.target.result;
+    if (event !== null && event.target !== null && event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+      console.log(file, 'file')
+      let filename = file.type.toLowerCase();
+      if (["image/jpeg", "image/png", "image/jpg", "application/pdf"].includes(filename) == true) {
+        var reader = new FileReader();
+        reader.onload = (e: any) => {
+          // console.log('Got here: ', e.target.result);
+          this.attachments.push(e.target.result);
+          // this.obj.photoUrl = e.target.result;
+        }
+        reader.readAsDataURL(file);
+        this.attachmentFiles.push(file);
+      } else {
+        this.alertService.openSnackBar(CustomMessage.invalidLeaveAttachment);
       }
-      reader.readAsDataURL(event.target.files[0]);
+      console.log(file, 'sd');
     }
 
-    // console.log(event.target.files);
+
+  }
+
+
+  uploadPic(id: any) {
+    let data = new FormData();
+    data.append('leaveRequestId', id);
+    this.attachmentFiles.map((elem: any) => {
+      data.append('files', elem);
+
+    })
+    this.leaveService.uploadAttachment(data).subscribe(
+      (res) => {
+        this.alertService.openSnackBar(CustomMessage.leaveApplySuccess, false);
+        this.router.navigate(['/dashboard']);
+      },
+      (error) => {
+        this.alertService.openSnackBar(CustomMessage.leaveApplySuccess, false);
+        this.router.navigate(['/dashboard']);
+
+        // this.alertService.openSnackBar(CustomMessage.error);
+      },
+    );
+    // this.
+    // console.log(id);
   }
 }

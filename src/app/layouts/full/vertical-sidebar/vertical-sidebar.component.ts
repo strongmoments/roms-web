@@ -190,19 +190,19 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
           });
           
         }
-        if (this.userPermissions.reports.includes('add_user')) {
-          subMenu.push({
-            state: 'transfer/list',
-            name: 'Transfer',
-            type: 'link',
-            icon: 'account_box',
-            badge: [{ type: 'warning', value: 'new' }],
-          });
+        // if (this.userPermissions.reports.includes('add_user')) {
+        //   subMenu.push({
+        //     state: 'transfer/list',
+        //     name: 'Transfer',
+        //     type: 'link',
+        //     icon: 'account_box',
+        //     badge: [{ type: 'warning', value: 'new' }],
+        //   });
           
-        }
+        // }
         if (this.userPermissions.reports.includes('add_user')) {
           subMenu.push({
-            state: 'onboarding/list',
+            state: '/employee/onboarding-list',
             name: 'Onboarding-List',
             type: 'link',
             icon: 'account_box',

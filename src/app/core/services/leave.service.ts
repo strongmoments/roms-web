@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ViewOptions } from "src/app/_models";
 import { environment } from "src/environments/environment";
@@ -49,5 +49,18 @@ export class LeaveService {
         return this.http.post<any>(`${environment.apiUrl}/v1/leave/loadAll?page=${options.page}&size=${options.pageSize}`, queryData);
         // http://13.234.56.70:8080/v1/leave/loadAll?page=0&size=5
     }
+
+
+    uploadAttachment(data: any) {
+        // let headers = new HttpHeaders();
+        // headers.set('content-type', 'multipart/form-data');
+        return this.http.post<any>(`${environment.apiUrl}/v1/leave/uploaddoc`, data, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+    }
+
+
 
 }

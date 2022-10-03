@@ -15,12 +15,7 @@
           <div fxLayout="row wrap" fxFlexAlign="center" class="row">
             <div fxFlex.gt-sm="55" class="p-r-10" fxFlex="100">
               <mat-form-field>
-                <input
-                  matInput
-                  (keyup)="applyFilter(true)"
-                  [(ngModel)]="search"
-                  placeholder="Filter"
-                />
+                <input matInput (keyup)="applyFilter(true)" [(ngModel)]="search" placeholder="Filter" />
                 <mat-icon matSuffix>search</mat-icon>
               </mat-form-field>
             </div>
@@ -29,22 +24,10 @@
               <mat-form-field appearance="outline">
                 <mat-label (click)="picker.open()">Select Date Range</mat-label>
                 <mat-date-range-input [rangePicker]="picker">
-                  <input
-                    matStartDate
-                    [(ngModel)]="startDate"
-                    placeholder="Start date"
-                    readonly
-                    (dateChange)="applyFilter()"
-                    (click)="picker.open()"
-                  />
-                  <input
-                    matEndDate
-                    placeholder="End date"
-                    readonly
-                    [(ngModel)]="endDate"
-                    (dateChange)="applyFilter()"
-                    (click)="picker.open()"
-                  />
+                  <input matStartDate [(ngModel)]="startDate" placeholder="Start date" readonly
+                    (dateChange)="applyFilter()" (click)="picker.open()" />
+                  <input matEndDate placeholder="End date" readonly [(ngModel)]="endDate" (dateChange)="applyFilter()"
+                    (click)="picker.open()" />
                 </mat-date-range-input>
 
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -61,14 +44,16 @@
         <div class="table-responsive infinite-scroll">
           <mat-table #table [dataSource]="dataSource" class="table employee-list no-wrap" matSort>
             <!-- Name Column -->
-            <ng-container matColumnDef="name">
+            <ng-container matColumnDef="employeeName">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
               <td mat-cell *matCellDef="let row">
                 <!-- <span class="header-label">days:</span> -->
                 <!-- {{ row?.firstName }}{{ row?.lastName }} -->
                 <div style="display: flex; align-items: center">
-                  <img class="m-r-10 list-Img" src="assets/images/users/1.jpg" alt="" />
-                  Kunal Sharmaa
+                  <img class="m-r-10 list-Img"
+                    onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
+                    [src]="row?.personal?.profileImageURL" alt="" />
+                  {{row?.employeeName}}
                 </div>
               </td>
             </ng-container>
@@ -78,7 +63,7 @@
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Registration Date</th>
               <td mat-cell *matCellDef="let row">
                 <!-- <span class="header-label">days:</span> -->
-                03/10/2022
+
               </td>
             </ng-container>
 
@@ -87,7 +72,7 @@
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Onboarding Start Date</th>
               <td mat-cell *matCellDef="let row">
                 <!-- <span class="header-label">days:</span> -->
-                {{ row?.wageClass }}03/10/2022
+                {{row?.convertedStartdDate}}
               </td>
             </ng-container>
             <!-- Name Column -->
@@ -96,12 +81,8 @@
               <td mat-cell *matCellDef="let row">
                 <div style="display: flex; align-items: center">
                   <!-- Progress -->
-                  <mat-progress-bar
-                    class="m-r-5"
-                    color="primary"
-                    mode="determinate"
-                    value="80"
-                  ></mat-progress-bar>
+                  <mat-progress-bar class="m-r-5" color="primary" mode="determinate" [value]="getProgressValue(row)">
+                  </mat-progress-bar>
                   <!-- Complete 100% -->
                   <!-- <mat-progress-bar
                     class="m-r-5"
@@ -109,20 +90,24 @@
                     mode="determinate"
                     value="100"
                   ></mat-progress-bar> -->
-                  <small class="text-muted">80%</small>
+                  <small class="text-muted">{{getProgressValue(row)}}%</small>
                 </div>
               </td>
             </ng-container>
             <!-- Name Column -->
             <ng-container matColumnDef="compDate">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Onboarding Completion Date</th>
-              <td mat-cell *matCellDef="let row">03/10/2022</td>
+              <td mat-cell *matCellDef="let row">
+                {{row?.convertedEndDate}}
+              </td>
             </ng-container>
             <!-- Name Column -->
             <ng-container matColumnDef="logo">
               <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
               <td mat-cell *matCellDef="let row">
-                <a href="javascript:void(0);"> <mat-icon>visibility</mat-icon></a>
+                <a href="javascript:void(0);">
+                  <mat-icon>visibility</mat-icon>
+                </a>
                 <!-- <button
                   class="button p-5 p-l-40 p-r-40 p-t-10 p-b-10 fs-20"
                   
@@ -135,13 +120,8 @@
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr
-              mat-row
-              *matRowDef="let element; columns: displayedColumns"
-              class="example-element-row"
-              [ngClass]="{ 'selected-row': selectedId == element.id }"
-              (click)="onSubmit()"
-            ></tr>
+            <tr mat-row *matRowDef="let element; columns: displayedColumns" class="example-element-row"
+              [ngClass]="{ 'selected-row': selectedId == element.id }" (click)="openDialog(element)"></tr>
             <tr class="mat-row" *matNoDataRow>
               <td class="mat-cell" [attr.colspan]="displayedColumns.length">
                 No Registration Data
@@ -163,44 +143,35 @@
   </div>
 </div>
 
-<ng-template #resourceDemandDialog>
+<ng-template #employeeDetailDialog>
   <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-    <h1
-      mat-dialog-title
-      align="center"
-      class="color_blue"
-      style="font-size: 20px; margin-bottom: 25px"
-    >
+    <h1 mat-dialog-title align="center" class="color_blue" style="font-size: 20px; margin-bottom: 25px">
       Onboarding Progress Status
     </h1>
     <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20">
       <div class="popup-head">
         <div>
-          <img class="m-r-10 list-Img" src="assets/images/users/1.jpg" alt="" />
-          <mat-label><b>Kunal Sharmaa</b></mat-label>
+          <img class="m-r-10 list-Img" onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
+            [src]="selectedRecord?.personal?.profileImageURL" alt="" />
+          <mat-label><b>{{selectedRecord?.employeeName}}</b></mat-label>
         </div>
         <div class="fd-re">
-          <small class="text-muted">50%</small>
-          <mat-progress-bar
-            class="m-r-5"
-            color="primary"
-            mode="determinate"
-            value="50"
-          ></mat-progress-bar>
+          <small class="text-muted">{{getProgressValue(this.selectedRecord)}}%</small>
+          <mat-progress-bar class="m-r-5" color="primary" mode="determinate" value="{{getProgressValue(this.selectedRecord)}}"></mat-progress-bar>
         </div>
       </div>
       <div class="popup-head2">
         <div>
           <mat-label>Registration Date</mat-label>
-          <Small>23/08/2022</Small>
+          <Small></Small>
         </div>
         <div>
           <mat-label>Start Date</mat-label>
-          <Small>23/09/2022</Small>
+          <Small>{{selectedRecord?.convertedStartdDate}}</Small>
         </div>
         <div>
           <mat-label>Completion Date</mat-label>
-          <Small>23/09/2022</Small>
+          <Small>{{selectedRecord?.convertedEndDate}}</Small>
         </div>
       </div>
       <!-- <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
@@ -218,7 +189,9 @@
           <small class="text-muted">80%</small>
         </div> -->
 
-      <div fxFlex.gt-sm="100" fxFlex="100" class="p-10"><mat-divider> </mat-divider></div>
+      <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+        <mat-divider> </mat-divider>
+      </div>
 
       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
         <div class="progress-layout">
@@ -229,14 +202,14 @@
             <mat-label>Personal Information</mat-label>
             <div>
               <small class="text-muted">Progress Bar</small>
-              <small class="text-muted">100%</small>
+              <small class="text-muted">{{selectedRecord &&
+                selectedRecord.personal &&
+                selectedRecord.personal.completionProgress?selectedRecord.personal.completionProgress:0}}%</small>
             </div>
-            <mat-progress-bar
-              class="m-r-5"
-              color="accent"
-              mode="determinate"
-              value="100"
-            ></mat-progress-bar>
+            <mat-progress-bar class="m-r-5" color="accent" mode="determinate" value="{{selectedRecord &&
+              selectedRecord.personal &&
+              selectedRecord.personal.completionProgress?selectedRecord.personal.completionProgress:0}}">
+            </mat-progress-bar>
           </div>
         </div>
       </div>
@@ -251,12 +224,7 @@
               <small class="text-muted">Progress Bar</small>
               <small class="text-muted">0%</small>
             </div>
-            <mat-progress-bar
-              class="m-r-5"
-              color="warn"
-              mode="determinate"
-              value="0"
-            ></mat-progress-bar>
+            <mat-progress-bar class="m-r-5" color="warn" mode="determinate" value="0"></mat-progress-bar>
           </div>
         </div>
       </div>
@@ -269,14 +237,14 @@
             <mat-label>Emergency Contact</mat-label>
             <div>
               <small class="text-muted">Progress Bar</small>
-              <small class="text-muted">100%</small>
+              <small class="text-muted">{{selectedRecord &&
+                selectedRecord.emergency &&
+                selectedRecord.emergency.completionProgress?selectedRecord.emergency.completionProgress:0}}%</small>
             </div>
-            <mat-progress-bar
-              class="m-r-5"
-              color="accent"
-              mode="determinate"
-              value="100"
-            ></mat-progress-bar>
+            <mat-progress-bar class="m-r-5" color="accent" mode="determinate" value="{{selectedRecord &&
+              selectedRecord.emergency &&
+              selectedRecord.emergency.completionProgress?selectedRecord.emergency.completionProgress:0}}">
+            </mat-progress-bar>
           </div>
         </div>
       </div>
@@ -291,12 +259,7 @@
               <small class="text-muted">Progress Bar</small>
               <small class="text-muted">0%</small>
             </div>
-            <mat-progress-bar
-              class="m-r-5"
-              color="warn"
-              mode="determinate"
-              value="0"
-            ></mat-progress-bar>
+            <mat-progress-bar class="m-r-5" color="warn" mode="determinate" value="0"></mat-progress-bar>
           </div>
         </div>
       </div>
@@ -309,14 +272,9 @@
             <mat-label>Identification Details</mat-label>
             <div>
               <small class="text-muted">Progress Bar</small>
-              <small class="text-muted">100%</small>
+              <small class="text-muted">0%</small>
             </div>
-            <mat-progress-bar
-              class="m-r-5"
-              color="accent"
-              mode="determinate"
-              value="100"
-            ></mat-progress-bar>
+            <mat-progress-bar class="m-r-5" color="accent" mode="determinate" value="0"></mat-progress-bar>
           </div>
         </div>
       </div>
@@ -331,12 +289,7 @@
               <small class="text-muted">Progress Bar</small>
               <small class="text-muted">0%</small>
             </div>
-            <mat-progress-bar
-              class="m-r-5"
-              color="warn"
-              mode="determinate"
-              value="0"
-            ></mat-progress-bar>
+            <mat-progress-bar class="m-r-5" color="warn" mode="determinate" value="0"></mat-progress-bar>
           </div>
         </div>
       </div>
@@ -349,14 +302,14 @@
             <mat-label>Licence Information</mat-label>
             <div>
               <small class="text-muted">Progress Bar</small>
-              <small class="text-muted">80%</small>
+              <small class="text-muted">{{selectedRecord &&
+                selectedRecord.licence &&
+                selectedRecord.licence.completionProgress?selectedRecord.licence.completionProgress:0}}%</small>
             </div>
-            <mat-progress-bar
-              class="m-r-5"
-              color="primary"
-              mode="determinate"
-              value="80"
-            ></mat-progress-bar>
+            <mat-progress-bar class="m-r-5" color="primary" mode="determinate" value="{{selectedRecord &&
+            selectedRecord.licence &&
+            selectedRecord.licence.completionProgress?selectedRecord.licence.completionProgress:0}}">
+            </mat-progress-bar>
           </div>
         </div>
       </div>
@@ -371,12 +324,7 @@
               <small class="text-muted">Progress Bar</small>
               <small class="text-muted">0%</small>
             </div>
-            <mat-progress-bar
-              class="m-r-5"
-              color="warn"
-              mode="determinate"
-              value="0"
-            ></mat-progress-bar>
+            <mat-progress-bar class="m-r-5" color="warn" mode="determinate" value="0"></mat-progress-bar>
           </div>
         </div>
       </div>

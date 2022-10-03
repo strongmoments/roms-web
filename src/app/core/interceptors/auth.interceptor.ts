@@ -16,14 +16,19 @@ export class AuthInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const user = this.authService.getCurrentUser();
-        if (user && user.token) {    
+        if (user && user.token) {
             // const cloned = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + user.token) });
-            const cloned = req.clone({setHeaders:{'Authorization':'Bearer ' + user.token,'Content-Type':'application/json'} });    
+            let contentType: any = 'application/json';
+            if (req.headers.has('content-type')) {
+                contentType = req.headers.get('content-type');
+            }
+
+            const cloned = req.clone({ setHeaders: { 'Authorization': 'Bearer ' + user.token, 'Content-Type': contentType } });
             return next.handle(cloned).pipe(tap(() => { }, (err: any) => {
 
                 if (err instanceof HttpErrorResponse) {
                     if (err.status === 401 || err.status === 403) {
-                    // if (err.status === 401 || err.status === 0) {
+                        // if (err.status === 401 || err.status === 0) {
                         this.authService.logout();
                         this.router.navigate(['/']);
                     }

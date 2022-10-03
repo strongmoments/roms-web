@@ -1,9 +1,10 @@
 <mat-card class="oh text-center little-profile">
-  <img mat-card-image src="assets/images/background/profile-bg.jpg" class="profile-bg-height" alt="Photo of a Shiba Inu" />
+  <img mat-card-image src="assets/images/background/profile-bg.jpg" class="profile-bg-height"
+    alt="Photo of a Shiba Inu" />
   <mat-card-content>
     <div class="pro-img">
-      <img onerror="this.onerror=null;this.src='../../../../assets/img/rtl-logo-new-icon.jpg';"
-      [src]="user.profileImage|base64Image"  width="100" alt="user" />
+      <img onerror="this.onerror=null;this.src='../../../../assets/img/rtl-logo-new-icon.jpg';" [src]="user.profilePic"
+        width="100" alt="user" />
     </div>
     <h3 class="m-b-0">{{user?.firstName}} {{user?.lastName}}</h3>
     <h6 class="m-t-0 text-muted">Manager</h6>
