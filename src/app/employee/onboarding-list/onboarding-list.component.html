@@ -69,7 +69,7 @@
 
             <!-- Name Column -->
             <ng-container matColumnDef="onbDate">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Onboarding Start Date</th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Date</th>
               <td mat-cell *matCellDef="let row">
                 <!-- <span class="header-label">days:</span> -->
                 {{row?.convertedStartdDate}}
@@ -77,7 +77,7 @@
             </ng-container>
             <!-- Name Column -->
             <ng-container matColumnDef="onboarding">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Onboarding Progress</th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Progress</th>
               <td mat-cell *matCellDef="let row">
                 <div style="display: flex; align-items: center">
                   <!-- Progress -->
@@ -96,7 +96,7 @@
             </ng-container>
             <!-- Name Column -->
             <ng-container matColumnDef="compDate">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Onboarding Completion Date</th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Completion Date</th>
               <td mat-cell *matCellDef="let row">
                 {{row?.convertedEndDate}}
               </td>

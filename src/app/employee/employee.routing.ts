@@ -16,24 +16,32 @@ const routes: Routes = [
     component: FullComponent,
     // pathMatch: 'full',
     children: [
-      { path: '', component: EmployeeListComponent },
+      { path: 'employee-list', component: EmployeeListComponent,
+      data: {
+        title: 'Employee List ',
+        urls: [{ title: 'Dashboard', url: '/' }, { title: 'My Staff' }],
+      } },
       { path: 'form', component: EmployeeFormComponent },
       { path: 'view:id', component: EmployeeViewComponent },
       { path: 'transfer', component: EmployeeTransferFormComponent },
-      { path: 'resignation', component: EmployeeResignationComponent },
+      { path: 'resignation', component: EmployeeResignationComponent,
+      data: {
+        title: 'Resignation ',
+        urls: [{ title: 'Dashboard', url: '/' }, { title: 'Personal' }],
+      }  },
       {
         path: 'resignation-list', component: EmployeeResignationListComponent,
         data: {
-          title: 'Resignation-list',
-          urls: [{ title: 'My Staff', url: '/' }, { title: 'Resignation Request' }],
+          title: 'Resignations',
+          urls: [{ title: 'Dashboard', url: '/' }, { title: 'My Staff' }],
         }
       },
       { path: 'employee-add', component: EmployeeAddComponent },
       {
         path: 'onboarding-list', component: OnboardingListComponent,
         data: {
-          title: 'Onboarding-list',
-          urls: [{ title: 'My Staff', url: '/' }, { title: 'Onboarding list' }],
+          title: 'Onboarding ',
+          urls: [{ title: 'Dashboard', url: '/' }, { title: 'People & Culture' }],
         }
       },
     ],

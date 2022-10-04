@@ -12,15 +12,15 @@ const routes: Routes = [
       {
         path: 'leave', component: LeaveReportComponent,
         data: {
-          title: 'Leave Report',
-          urls: [{ title: 'People & Culture', url: '/' }, { title: 'Leave History Report' }],
+          title: 'Staff Leaves',
+          urls: [{ title: 'Dashboard', url: '/' }, { title: 'People & Culture' }],
         }
       },
       {
         path: 'resignation', component: ResignationReportComponent,
         data: {
-          title: 'Resgination Report',
-          urls: [{ title: 'People & Culture', url: '/' }, { title: 'Resignation History Report' }],
+          title: 'Resginations',
+          urls: [{ title: 'Dashboard', url: '/' }, { title: 'People & Culture' }],
         }
       }
     ],

@@ -637,18 +637,87 @@
                             <!-- <div class="example-element-name">{{ element.name }}</div> -->
                             <!-- <div class="example-element-weight">{{ element.weight }}</div> -->
                             <!-- </div> -->
-                            <div class="example-element-description">
+                            <div fxLayout="row wrap" style="width: 100%">
+                              <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center">
+                                <div fxFlex.gt-sm="50" fxFlex="100" fxFlexAlign="center">
+                                  <div
+                                    fxFlex.gt-sm="100"
+                                    fxFlex="100"
+                                    fxFlexAlign="center"
+                                    class="mat-body-clp"
+                                  >
+                                    <div fxFlex.gt-sm="50" fxFlex="100" fxFlexAlign="center">
+                                      <!-- <mat-form-field appearance="outline" class="m-10"> -->
+                                      <textarea matInput placeholder="Reason" class="text-reason" disabled
+                                        >{{ element?.leaveReason }} </textarea
+                                      >
+                                      <!-- </mat-form-field> -->
+                                    </div>
+                                    <div fxFlex.gt-sm="50" fxFlex="100" fxFlexAlign="center">
+                                      <div class="collapse-img">
+                                        <img
+                                          (click)="openImageDialog(element?.employe?.profileImage)"
+                                          [src]="element?.employe?.profileImage | base64Image"
+                                        />
+                                        <!-- <img src="assets/images/users/1.jpg
+                                                " alt="" width="75px" />
+                                    <img src="assets/images/users/1.jpg
+                                                " alt="" width="75px" /> -->
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div fxFlex.gt-sm="50" fxFlex="100">
+                                  <div fxFlex.gt-sm="100" fxFlex="100" class="mat-body-clp">
+                                    <div fxFlex.gt-sm="50" fxFlex="100" fxFlexAlign="center">
+                                      <!-- <mat-form-field appearance="outline"> -->
+                                      <!-- <mat-label>Outline form field</mat-label> -->
+                                      <!-- <input
+                                          matInput
+                                          placeholder="Comment"
+                                          (change)="addComment(i, $event)"
+                                        /> -->
+                                        <textarea matInput  placeholder="Reason" class="text-reason" disabled
+                                        >{{ element?.reviewerRemark }} </textarea
+                                      >
+                                      <!-- </mat-form-field> -->
+                                    </div>
+                                    <div fxFlex.gt-sm="50" fxFlex="100" fxFlexAlign="center">
+                                      <div
+                                        class="example-element-description d-al-c"
+                                        
+                                      >
+                                        <!-- <span class="p-10 m-r-10 m-l-10">{{ element?.leaveReason }} </span> -->
+                                        <span [ngClass]="getStatusColor(element?.leaveStatus)">
+                                          {{ getStatus(element?.leaveStatus) }}
+                                        </span>
+                                      </div>
+                                      <!-- <div
+                                        class="example-element-description m-r-10 m-l-10"
+                                        *ngIf="element && element.leaveStatus != 1"
+                                      >
+                                        {{ element?.reviewerRemark }}
+                                        <span>
+                                          
+                                          <span [ngClass]="getStatusColor(element?.leaveStatus)">
+                                            {{ getStatus(element?.leaveStatus) }}
+                                          </span>
+                                        </span>
+                                      </div> -->
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- <div class="example-element-description">
                               {{ element?.reviewerRemark }}
                               <span>
                                 --
                                 <span [ngClass]="getStatusColor(element?.leaveStatus)">
                                   {{ getStatus(element?.leaveStatus) }}
                                 </span>
-                                <span>
-                                  {{ element?.leaveReason }}
-                                </span>
                               </span>
-                            </div>
+                            </div> -->
                             <!-- <div class="collapse-img">
                               <img src="assets/images/users/1.jpg
                               " alt="face" width="75px" />

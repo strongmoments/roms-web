@@ -1,0 +1,29 @@
+.employee-list th.mat-header-cell {
+  width: 15%;
+}
+
+:host ::ng-deep .approved-checkbox .mat-checkbox-frame {
+  border-color: #2ace58;
+}
+
+:host ::ng-deep .rejected-checkbox .mat-checkbox-frame {
+  border-color: #d51e1e;
+}
+
+:host ::ng-deep .pending-checkbox .mat-checkbox-frame {
+  border-color: #e7b400;
+}
+
+.no-wrap td,
+.no-wrap .ng-star-inserted {
+  white-space: inherit;
+}
+
+.selected-row {
+  background-color: lavender !important;
+}
+.list-Img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+}

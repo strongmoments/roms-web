@@ -12,15 +12,15 @@ const routes: Routes = [
             {
                 path: 'apply-leave', component: LeaveApplyFormComponent, pathMatch: 'full',
                 data: {
-                    title: 'Request Leave ',
-                    urls: [{ title: 'Leave', url: '/leave/apply-leave' }, { title: 'Apply Leave' }],
+                    title: 'Leave ',
+                    urls: [{ title: 'Dashboard', url: '/leave/apply-leave' }, { title: 'Personal' }],
                 }
             },
             {
                 path: 'leave-request', component: LeaveRequestListComponent,
                 data: {
-                    title: 'Leave Request',
-                    urls: [{ title: 'My Staff', url: '/' }, { title: 'Leave Request' }],
+                    title: 'Leave Requests',
+                    urls: [{ title: 'Dashboard', url: '/' }, { title: 'My Staff' }],
                 }
             },
         ]

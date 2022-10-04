@@ -203,7 +203,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         if (this.userPermissions.reports.includes('add_user')) {
           subMenu.push({
             state: '/employee/onboarding-list',
-            name: 'Onboarding-List',
+            name: 'Onboarding',
             type: 'link',
             icon: 'account_box',
             badge: [{ type: 'warning', value: 'new' }],

@@ -19,40 +19,40 @@ const routes: Routes = [
             { path: 'list', component: RegistrationListComponent,
                     data: {
                     title: 'Registrations',
-                    urls: [{ title: 'People & Culture', url: '/' }, { title: 'Registration List' }],
+                    urls: [{ title: 'Dashboard', url: '/' }, { title: 'People & Culture' }],
                 }
             },
             { path: 'create-user', component: CreateUserComponent,
             data: {
-                title: 'Create-User',
-                urls: [{ title: 'People & Culture', url: '/' }, { title: 'Create-User' }],
+                title: 'Create User',
+                urls: [{ title: 'Dashboard', url: '/' }, { title: 'People & Culture' }],
             } },
             { path: 'recruitment', component: RecruitmentComponent,
                     data: {
                     title: 'Recruitment',
-                    urls: [{ title: 'People & Culture', url: '/' }, { title: 'Recruitment' }],
+                    urls: [{ title: 'Dashboard', url: '/' }, { title: 'People & Culture' }],
                 }
             },
             { path: 'recommend', component: RecommendComponent,
         
             data: {
                 title: 'Recruitment',
-                urls: [{ title: 'People & Culture', url: '/' }, { title: 'Recruitment' }],
+                urls: [{ title: 'Dashboard', url: '/' }, { title: 'People & Culture' }],
             }},
             { path: 'job-recommend', component: JobRecommendComponent,
                 data: {
-                title: 'Job-Board',
-                urls: [{ title: 'People & Culture', url: '/' }, { title: 'Recruitment' }],
+                title: 'Job Board',
+                urls: [{ title: 'Dashboard', url: '/' }, { title: 'People & Culture' }],
             }},
             { path: 'recruitment-details', component: RecruitmentDetailsComponent,
             data: {
                 title: 'Recruitment',
-                urls: [{ title: 'People & Culture', url: '/' }, { title: 'Recruitment' }],
+                urls: [{ title: 'Dashboard', url: '/' }, { title: 'People & Culture' }],
             } },
             { path: 'transfer-list', component: TransferListComponent,
             data: {
-                title: 'Transfer-List',
-                urls: [{ title: 'People & Culture', url: '/' }, { title: 'Transfer-List' }],
+                title: 'Transfer List',
+                urls: [{ title: 'Dashboard', url: '/' }, { title: 'People & Culture' }],
             } },
             { path: 'demand-list', component: DemandListComponent },
             //   { path: 'form', component: EmployeeFormComponent },
