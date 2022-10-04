@@ -149,10 +149,13 @@ export class CreateUserComponent implements OnInit {
         this.alertService.openSnackBar(CustomMessage.userCreatedSuccess, false);
         let data: any = result;
         // console.log(data, 'data', result);
+        data['contactNo'] = formValues.contactNo;
         data['roleName'] = roleName;
         data['departmentName'] = departmentName;
         this.openDialog(data);
-        this.form.reset();
+        this.form.clearValidators();
+        this.form.updateValueAndValidity()
+        // this.form.reset();
         sessionStorage.removeItem(this.requestId);
       } else if (result.status == "error" && result.error == "already_exist") {
         sessionStorage.removeItem(this.requestId);

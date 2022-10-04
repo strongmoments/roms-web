@@ -152,8 +152,10 @@ export class RegistrationListComponent implements OnInit, OnChanges {
 
   redirectForm(elem: any) {
     console.log(elem);
-    sessionStorage.setItem(elem.id, JSON.stringify(elem));
-    this.router.navigate(['/registration/create-user'], { queryParams: { requestId: elem.id } })
+    if (elem.status != '2') {
+      sessionStorage.setItem(elem.id, JSON.stringify(elem));
+      this.router.navigate(['/registration/create-user'], { queryParams: { requestId: elem.id } });
+    }
   }
 
 
@@ -264,7 +266,7 @@ export class RegistrationListComponent implements OnInit, OnChanges {
     this.search = this.search.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = this.search;
     // console.log(this.dataSource.filteredData,'filter');
-   
+
     if (isTextSearch) {
     } else {
       this.refresh(this.getDefaultOptions());

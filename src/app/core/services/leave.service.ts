@@ -55,9 +55,7 @@ export class LeaveService {
         // let headers = new HttpHeaders();
         // headers.set('content-type', 'multipart/form-data');
         return this.http.post<any>(`${environment.apiUrl}/v1/leave/uploaddoc`, data, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
+            
         });
     }
 

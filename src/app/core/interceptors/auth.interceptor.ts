@@ -18,12 +18,24 @@ export class AuthInterceptor implements HttpInterceptor {
         const user = this.authService.getCurrentUser();
         if (user && user.token) {
             // const cloned = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + user.token) });
-            let contentType: any = 'application/json';
-            if (req.headers.has('content-type')) {
-                contentType = req.headers.get('content-type');
+            let contentType: any = { 'Authorization': 'Bearer ' + user.token };
+            if (req.body instanceof FormData) {
+                // we are sending a file here
+                // contentType = 'multipart/form-data';
+              }else {
+                contentType['Content-Type'] = 'application/json'
             }
+          
+            console.log(req.headers);
+            // if (req.headers.has('Content-Type') && req.headers.get('Content-Type') == 'multipart/form-data') {
+            //     req.headers.delete('Content-Type');
+            // } else {
+            //     contentType['Content-Type'] = 'application/json'
+            // }
 
-            const cloned = req.clone({ setHeaders: { 'Authorization': 'Bearer ' + user.token, 'Content-Type': contentType } });
+            console.log(req.headers,contentType);
+
+            const cloned = req.clone({ setHeaders: contentType });
             return next.handle(cloned).pipe(tap(() => { }, (err: any) => {
 
                 if (err instanceof HttpErrorResponse) {

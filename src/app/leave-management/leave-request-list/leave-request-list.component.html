@@ -256,10 +256,10 @@
                             /> -->
                           <textarea
                             matInput
-                            placeholder="Comment"
-                            class="text-reason"
+                            [placeholder]="selectedTabIndex =='1'?'':'Comment'"
+                            class="text-reason" [disabled]="selectedTabIndex == 1"
                             (change)="addComment(i, $event)"
-                          ></textarea>
+                          >{{ element?.reviewerRemark }}</textarea>
                           <!-- </mat-form-field> -->
                         </div>
                         <div fxFlex.gt-sm="50" fxFlex="100" fxFlexAlign="center">
@@ -288,7 +288,7 @@
                             class="example-element-description m-r-10 m-l-10"
                             *ngIf="element && element.leaveStatus != 1"
                           >
-                            {{ element?.reviewerRemark }}
+                            <!-- {{ element?.reviewerRemark }} -->
                             <span>
                               --
                               <span [ngClass]="getStatusColor(element?.leaveStatus)">
