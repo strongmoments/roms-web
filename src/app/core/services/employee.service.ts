@@ -7,8 +7,8 @@ import { environment } from "src/environments/environment";
 export class EmployeeService {
 
     constructor(private http: HttpClient) { }
-    getAll() {
-        return this.http.get<any>(`${environment.apiUrl}/v1/employe/load?page=1&size=2`);
+    getAll(options: ViewOptions) {
+        return this.http.get<any>(`${environment.apiUrl}/v1/employee/load?page=${options.page}&size=${options.pageSize}`);
     }
 
     searchEmployee(search: string) {
@@ -34,13 +34,13 @@ export class EmployeeService {
         return this.http.post<any>(`${environment.apiUrl}/v1/resignation/reject`, data);
     }
 
-    
+
     employeeOnboardList(options: ViewOptions) {
         return this.http.get<any>(`${environment.apiUrl}/v1/employee/onboard/loadAll?page=${options.page}&size=${options.pageSize}`);
     }
 
 
-    
+
 
     getAllEmployeeResignation(options: ViewOptions, queryData: any) {
         return this.http.post<any>(`${environment.apiUrl}/v1/resignation/loadAll?page=${options.page}&size=${options.pageSize}`, queryData);

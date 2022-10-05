@@ -83,7 +83,10 @@
                   <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
                     <td mat-cell *matCellDef="let row">
-                      <a href="javascript:void(0);"> <mat-icon  [disabled]="row?.status =='2'" (click)="redirectForm(row)" >person_add</mat-icon></a>
+                      <a href="javascript:void(0);">
+                        <mat-icon [disabled]="row?.status =='2'" (click)="redirectForm(row)">{{row?.status
+                          =='2'?'check_circle':'person_add'}}</mat-icon>
+                      </a>
                       <!-- <button [disabled]="row?.status =='2'" (click)="redirectForm(row)" mat-raised-button
                         color="primary" class="p-l-30 p-r-30">Create
                         User</button> -->

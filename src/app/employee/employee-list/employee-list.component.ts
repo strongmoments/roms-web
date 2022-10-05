@@ -29,13 +29,17 @@ export class EmployeeListComponent implements OnInit, OnChanges {
   submitted: boolean = false;
   displayedColumns: string[] = [
     'employeeNo',
-    'employeePic',
+    // 'employeePic',
     'employeeName',
     'employeeRole',
-    'department',
-    'startDate',
-    'employeeType',
+    'departments.description',
+    'convertedStartDate',
+    'employeType.name',
   ];
+
+  // convertedStartDate: convertedStartDate,
+  // employeeName: employeeName,
+
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   // dataSourceHistory: MatTableDataSource<any> = new MatTableDataSource<any>();
@@ -47,13 +51,13 @@ export class EmployeeListComponent implements OnInit, OnChanges {
   // @ViewChild(MatSort, { static: false }) sortHistory: MatSort = Object.create(null);
   // pagesize = 10;
   pageNo = 0;
-  pageSize = 9999999999;
+  pageSize = 10;
   totalRecords: number = 0;
   search: string = ''; //by default 0 for pending list
   // currentDate: any = new Date();
   // expandedElement: any = null;
-   startDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 1));
-   endDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
+  startDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 1));
+  endDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
   // status: any = 0;
   // departmentId: any = '';
   // employeeType: any = '';
@@ -113,21 +117,21 @@ export class EmployeeListComponent implements OnInit, OnChanges {
     this.refresh(this.getDefaultOptions());
     // console.log('in listing');
     // this.authService.addedResigstration.subscribe((record: any) => (this.dataSource.data.unshift(record)));
-    this.authService.addedResigstration.subscribe((record: any) => {
-      console.log(record, 'in listing12');
-      if (record) {
-        this.totalRecords = this.totalRecords + 1;
-        record.statusName = this.getStatus(record?.status);
-        record.convertedAppliedOn = this.datePipe.transform(record.appliedOn, 'dd/MM/yyyy');
-        // data.push({
-        //   ...record,
-        //   statusName: statusName,
-        //   convertedAppliedOn: convertedAppliedOn
-        // });
+    // this.authService.addedResigstration.subscribe((record: any) => {
+    //   console.log(record, 'in listing12');
+    //   if (record) {
+    //     this.totalRecords = this.totalRecords + 1;
+    //     record.statusName = this.getStatus(record?.status);
+    //     record.convertedAppliedOn = this.datePipe.transform(record.appliedOn, 'dd/MM/yyyy');
+    //     // data.push({
+    //     //   ...record,
+    //     //   statusName: statusName,
+    //     //   convertedAppliedOn: convertedAppliedOn
+    //     // });
 
-        this.dataSource.data = [record, ...this.dataSource.data];
-      }
-    });
+    //     this.dataSource.data = [record, ...this.dataSource.data];
+    //   }
+    // });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -142,10 +146,9 @@ export class EmployeeListComponent implements OnInit, OnChanges {
     this.dataSource.paginator = this.paginator;
     // this.dataSource.sort = this.sort;
     this.dataSource.sort = this.sort;
-    // this.paginator?.page.subscribe((page: PageEvent) => {
-    //   if (this.selectedTabIndex == 0) {
-    //   }
-    // });
+    this.paginator?.page.subscribe((page: PageEvent) => {
+      this.refresh(this.getDefaultOptions());
+    });
 
   }
 
@@ -192,29 +195,23 @@ export class EmployeeListComponent implements OnInit, OnChanges {
     // };
     // console.log(queryData, 'queryData');
 
-    this.authService
-      .getAllEmployeeRegisterReq()
+    this.employeeService
+      .getAll(options)
       .pipe(first())
       .subscribe((result: any) => {
-        this.totalRecords = result.data.length;
+        this.totalRecords = result.totalElement;
         let data: any = [];
-        result.data = result.data.sort((a: any, b: any) => {
-          return a.status - b.status;
-        });
-        result.data = result.data.sort((a: any, b: any) => {
-          var c: any = new Date(parseInt(a.appliedOn));
-          var d: any = new Date(parseInt(b.appliedOn));
-          // console.log(a,d);
-          return d - c;
-        });
 
         for (let i = 0; i < result.data.length; i++) {
+
           let statusName = this.getStatus(result.data[i]?.status);
-          let convertedAppliedOn = this.datePipe.transform(result.data[i].appliedOn, 'dd/MM/yyyy');
+          let convertedStartDate = this.datePipe.transform(result.data[i].startDate, 'dd/MM/yyyy');
+          let employeeName = `${result.data[i].firstName} ${result.data[i].lastName}`
           data.push({
             ...result.data[i],
             statusName: statusName,
-            convertedAppliedOn: convertedAppliedOn
+            convertedStartDate: convertedStartDate,
+            employeeName: employeeName,
           });
         }
         // if (isScrolled == true) {
@@ -238,8 +235,7 @@ export class EmployeeListComponent implements OnInit, OnChanges {
       page: pageSize - 1,
       search: '',
       query: '',
-      pageSize:
-        obj != undefined ? (obj.pageSize == null ? this.pageSize : obj.pageSize) : this.pageSize,
+      pageSize: obj != undefined ? (obj.pageSize == null ? this.pageSize : obj.pageSize) : this.pageSize,
     };
     return options;
   }

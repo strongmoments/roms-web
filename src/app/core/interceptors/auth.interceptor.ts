@@ -22,18 +22,18 @@ export class AuthInterceptor implements HttpInterceptor {
             if (req.body instanceof FormData) {
                 // we are sending a file here
                 // contentType = 'multipart/form-data';
-              }else {
+            } else {
                 contentType['Content-Type'] = 'application/json'
             }
-          
-            console.log(req.headers);
+
+            // console.log(req.headers);
             // if (req.headers.has('Content-Type') && req.headers.get('Content-Type') == 'multipart/form-data') {
             //     req.headers.delete('Content-Type');
             // } else {
             //     contentType['Content-Type'] = 'application/json'
             // }
 
-            console.log(req.headers,contentType);
+            // console.log(req.headers,contentType);
 
             const cloned = req.clone({ setHeaders: contentType });
             return next.handle(cloned).pipe(tap(() => { }, (err: any) => {

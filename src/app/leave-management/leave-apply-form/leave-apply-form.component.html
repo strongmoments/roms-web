@@ -428,8 +428,10 @@
                             accept="application/pdf, image/*">
                         </div>
                         <div fxFlex.gt-sm="70" fxFlex="100" class="m-b-20 r-Img">
-                          <div class="prev-img" *ngFor="let image of attachments;let i=index;">
-                            <img class="m-r-20" [src]="image" alt="" />
+                          <div class="prev-img" *ngFor="let file of attachments;let i=index;">
+                            <img *ngIf="file.type == 'image'" class="m-r-20" [src]="file.url" alt="" />
+                            <img *ngIf="file.type == 'pdf'" class="m-r-20" src="../../../assets/images/pdf_icon.png"
+                              alt="" />
                             <button type="button" (click)="removeAttachment(i)">
                               <mat-icon>cancel</mat-icon>
                             </button>
@@ -640,25 +642,26 @@
                             <div fxLayout="row wrap" style="width: 100%">
                               <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center">
                                 <div fxFlex.gt-sm="50" fxFlex="100" fxFlexAlign="center">
-                                  <div
-                                    fxFlex.gt-sm="100"
-                                    fxFlex="100"
-                                    fxFlexAlign="center"
-                                    class="mat-body-clp"
-                                  >
+                                  <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="mat-body-clp">
                                     <div fxFlex.gt-sm="50" fxFlex="100" fxFlexAlign="center">
                                       <!-- <mat-form-field appearance="outline" class="m-10"> -->
-                                      <textarea matInput placeholder="Reason" class="text-reason" disabled
-                                        >{{ element?.leaveReason }} </textarea
-                                      >
+                                      <textarea matInput placeholder="Reason" class="text-reason"
+                                        disabled>{{ element?.leaveReason }} </textarea>
                                       <!-- </mat-form-field> -->
                                     </div>
                                     <div fxFlex.gt-sm="50" fxFlex="100" fxFlexAlign="center">
                                       <div class="collapse-img">
-                                        <img
-                                          (click)="openImageDialog(element?.employe?.profileImage)"
-                                          [src]="element?.employe?.profileImage | base64Image"
-                                        />
+                                        <ng-container *ngFor="let item of element?.attachments">
+                                          <img *ngIf="item?.digitalAssets.fileType.includes( 'image')"
+                                            (click)="openImageDialog(item?.digitalAssets?.url)"
+                                            [src]="item?.digitalAssets?.url" alt="" />
+                                          <img *ngIf="item?.digitalAssets.fileType.includes('pdf')"
+                                            (click)="openFile(item?.digitalAssets?.url)"
+                                            src="../../../assets/images/pdf_icon.png" alt="" />
+
+                                        </ng-container>
+
+                                        <!-- <img /> -->
                                         <!-- <img src="assets/images/users/1.jpg
                                                 " alt="" width="75px" />
                                     <img src="assets/images/users/1.jpg
@@ -677,16 +680,12 @@
                                           placeholder="Comment"
                                           (change)="addComment(i, $event)"
                                         /> -->
-                                        <textarea matInput  placeholder="Reason" class="text-reason" disabled
-                                        >{{ element?.reviewerRemark }} </textarea
-                                      >
+                                      <textarea matInput placeholder="Reason" class="text-reason"
+                                        disabled>{{ element?.reviewerRemark }} </textarea>
                                       <!-- </mat-form-field> -->
                                     </div>
                                     <div fxFlex.gt-sm="50" fxFlex="100" fxFlexAlign="center">
-                                      <div
-                                        class="example-element-description d-al-c"
-                                        
-                                      >
+                                      <div class="example-element-description d-al-c">
                                         <!-- <span class="p-10 m-r-10 m-l-10">{{ element?.leaveReason }} </span> -->
                                         <span [ngClass]="getStatusColor(element?.leaveStatus)">
                                           {{ getStatus(element?.leaveStatus) }}

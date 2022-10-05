@@ -15,6 +15,7 @@ import { DatePipe } from '@angular/common';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { ImagePreviewDialog } from 'src/app/shared/image-preview-dialog/image-preview-dialog.component';
 
 @Component({
   selector: 'app-leave-request-list',
@@ -29,7 +30,7 @@ import { MatDialog } from '@angular/material/dialog';
   ],
 })
 export class LeaveRequestListComponent implements OnInit, AfterViewInit {
-  @ViewChild('imagePopup') imagePopup!: TemplateRef<any>;
+  // @ViewChild('imagePopup') imagePopup!: TemplateRef<any>;
   globals: Globals;
   // leaveHours: number = 0;
   // form: FormGroup;
@@ -324,17 +325,23 @@ export class LeaveRequestListComponent implements OnInit, AfterViewInit {
 
   openImageDialog(data: any) {
     // alert();
-    this.selectedImage = data;
-    const dialogRef = this.dialog.open(this.imagePopup, {
+    // this.selectedImage = data;
+    const dialogRef = this.dialog.open(ImagePreviewDialog, {
       width: 'auto',
       height: '35em',
-      // data: { data: data }
+      data: { selectedImage: data }
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
       // this.router.navigate(['/registration/list']);
       console.log('The dialog was closed');
     });
+  }
+
+
+  openFile(url: string) {
+
+    window.open(url, '_blank');
   }
 
 }

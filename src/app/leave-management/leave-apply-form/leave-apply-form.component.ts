@@ -14,6 +14,8 @@ import { ViewOptions } from 'src/app/_models';
 import * as moment from 'moment';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { E } from '@angular/cdk/keycodes';
+import { ImagePreviewDialog } from 'src/app/shared/image-preview-dialog/image-preview-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-leave-apply-form',
@@ -56,8 +58,8 @@ export class LeaveApplyFormComponent implements OnInit {
   selectedId: any;
   attachments: any = [];
   attachmentFiles: any = [];
-  constructor(public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private leaveService: LeaveService, private router: Router, private activatedRoute: ActivatedRoute) {
-    console.log(this.minDate, this.maxDate)
+  constructor(private dialog: MatDialog, public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private leaveService: LeaveService, private router: Router, private activatedRoute: ActivatedRoute) {
+    // console.log(this.minDate, this.maxDate)
     this.globals = globals;
     this.form = this.fb.group({
       startDate: new FormControl(new Date(), [Validators.required]),
@@ -126,7 +128,7 @@ export class LeaveApplyFormComponent implements OnInit {
 
     // this.form.controls['leaveDays'].setValue(0);
     // this.leaveDays = 0;
-    console.log('sads', startDay, endDay);
+    // console.log('sads', startDay, endDay);
     if (startDay && endDay) {
       var date1 = new Date(startDay);
       var date2 = new Date(endDay);
@@ -166,7 +168,7 @@ export class LeaveApplyFormComponent implements OnInit {
   calculateHoursByField() {
     let startTime = this.form.controls['startTime'].value;
     let endTime = this.form.controls['endTime'].value;
-    console.log(startTime, endTime, endTime < startTime);
+    // console.log(startTime, endTime, endTime < startTime);
 
     if (this.isTimeInputDisabled) {
       this.form.controls['startTime'].setValue('');
@@ -184,7 +186,7 @@ export class LeaveApplyFormComponent implements OnInit {
     startTime = parseInt(startTime);
     endTime = parseInt(endTime);
     if ((startTime || startTime == 0) && (endTime || endTime == 0)) {
-      console.log(startTime, endTime, endTime < startTime);
+      // console.log(startTime, endTime, endTime < startTime);
       if (endTime < startTime) {
         // if ((endTime - startTime + 24) > 4) {
 
@@ -225,7 +227,7 @@ export class LeaveApplyFormComponent implements OnInit {
       leaveDays = 0;
     }
     if (value == 'fri') {
-      console.log(currentDate.getDay());
+      // console.log(currentDate.getDay());
       let nextFriday = new Date();
       if (currentDate.getDay() == 5) {
         nextFriday = currentDate;
@@ -243,7 +245,7 @@ export class LeaveApplyFormComponent implements OnInit {
       const nextMonday = new Date(
         currentDate.setDate(currentDate.getDate() + ((7 - currentDate.getDay() + 1) % 7 || 7)),
       );
-      console.log(currentDate, 'nextMonday');
+      // console.log(currentDate, 'nextMonday');
       this.form.controls['startDate'].setValue(nextMonday);
       this.form.controls['endDate'].setValue(nextMonday);
 
@@ -268,7 +270,7 @@ export class LeaveApplyFormComponent implements OnInit {
 
     this.form.controls['leaveDays'].setValue(0);
     this.leaveDays = 0;
-    console.log('sads', startDay, endDay);
+    // console.log('sads', startDay, endDay);
     if (startDay && endDay) {
       var date1 = new Date(startDay);
       var date2 = new Date(endDay);
@@ -346,7 +348,7 @@ export class LeaveApplyFormComponent implements OnInit {
     // this.startTime = `${currentDateHour}:${currentDate.getMinutes()}`;
     // console.log(this.startTime, 'this.startTime')
     let time = new Date(currentDate.setHours(currentDate.getHours() + value));
-    console.log(time, time.getHours(), time.getMinutes());
+    // console.log(time, time.getHours(), time.getMinutes());
     let endHour: any = time.getHours();
     let endHourEnd: any = time.getMinutes();
     endHourEnd = endHourEnd == 0 ? '00' : endHourEnd < 10 ? `0${endHourEnd}` : endHourEnd;
@@ -380,14 +382,14 @@ export class LeaveApplyFormComponent implements OnInit {
     }
 
     // this.displayedColumns = index == 0 ? this.displayedColumnsLeave : this.displayedColumnsHistory;
-    console.log(event, 'event')
+    // console.log(event, 'event')
   }
 
   getDate(value: any) {
     let currentDate = new Date(new Date().getTime());
 
     if (value == 'fri') {
-      console.log(currentDate.getDay());
+      // console.log(currentDate.getDay());
       let nextFriday = new Date();
       if (currentDate.getDay() == 5) {
         nextFriday = currentDate;
@@ -562,24 +564,35 @@ export class LeaveApplyFormComponent implements OnInit {
 
   }
 
+  openFile(url: string) {
+
+    window.open(url, '_blank');
+  }
   onFileChange(event: any) {
     if (event !== null && event.target !== null && event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
-      console.log(file, 'file')
+      // console.log(file, 'file')
       let filename = file.type.toLowerCase();
       if (["image/jpeg", "image/png", "image/jpg", "application/pdf"].includes(filename) == true) {
-        var reader = new FileReader();
-        reader.onload = (e: any) => {
-          // console.log('Got here: ', e.target.result);
-          this.attachments.push(e.target.result);
-          // this.obj.photoUrl = e.target.result;
+        if (file.size <= 2000000) {
+          var reader = new FileReader();
+          reader.onload = (e: any) => {
+            // console.log('Got here: ', e.target.result);
+            let type = ["image/jpeg", "image/png", "image/jpg"].includes(filename) == true ? 'image' : 'pdf';
+            this.attachments.push({ url: e.target.result, type: type });
+            // this.obj.photoUrl = e.target.result;
+          }
+          reader.readAsDataURL(file);
+          this.attachmentFiles.push(file);
+
+        } else {
+          this.alertService.openSnackBar(CustomMessage.invalidLeaveAttachmentSize);
         }
-        reader.readAsDataURL(file);
-        this.attachmentFiles.push(file);
       } else {
         this.alertService.openSnackBar(CustomMessage.invalidLeaveAttachment);
       }
-      console.log(file, 'sd');
+      return;
+      // console.log(file, 'sd');
     }
 
 
@@ -607,5 +620,21 @@ export class LeaveApplyFormComponent implements OnInit {
     );
     // this.
     // console.log(id);
+  }
+
+
+  openImageDialog(data: any) {
+    // alert();
+    // this.selectedImage = data;
+    const dialogRef = this.dialog.open(ImagePreviewDialog, {
+      width: 'auto',
+      height: '35em',
+      data: { selectedImage: data }
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      // this.router.navigate(['/registration/list']);
+      console.log('The dialog was closed');
+    });
   }
 }

@@ -19,4 +19,5 @@ export enum CustomMessage {
     userCreatedSuccess = 'User created successfully',
     alreadyExist = 'User already exist',
     invalidLeaveAttachment = 'Only jpeg,png,jpg and pdfs are allowed.',
+    invalidLeaveAttachmentSize = 'File size exceeds maximum limit 2 MB.',
 }

@@ -151,7 +151,7 @@ export class RegistrationListComponent implements OnInit, OnChanges {
   }
 
   redirectForm(elem: any) {
-    console.log(elem);
+    // console.log(elem);
     if (elem.status != '2') {
       sessionStorage.setItem(elem.id, JSON.stringify(elem));
       this.router.navigate(['/registration/create-user'], { queryParams: { requestId: elem.id } });

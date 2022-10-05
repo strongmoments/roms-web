@@ -31,10 +31,10 @@ export class OnboardingListComponent implements OnInit, OnChanges {
   submitted: boolean = false;
   displayedColumns: string[] = [
     'employeeName',
-    'regDate',
-    'onbDate',
+    'convertedRegistrationDate',
+    'convertedStartdDate',
     'onboarding',
-    'compDate',
+    'convertedEndDate',
     //  'logo'
   ];
   @ViewChild('employeeDetailDialog') employeeDetailDialog!: TemplateRef<any>;
@@ -201,6 +201,8 @@ export class OnboardingListComponent implements OnInit, OnChanges {
 
         for (let i = 0; i < result.data.length; i++) {
           // let statusName = this.getStatus(result.data[i]?.status);
+          let convertedRegistrationDate = this.datePipe.transform(result.data[i].startdDate, 'dd/MM/yyyy');
+
           let convertedStartdDate = this.datePipe.transform(result.data[i].startdDate, 'dd/MM/yyyy');
           let convertedEndDate = this.datePipe.transform(result.data[i].endDate, 'dd/MM/yyyy');
           let employeeName = result.data[i] && result.data[i].personal ? `${result.data[i].personal.firstName} ${result.data[i].personal.lastName}` : '';
@@ -209,6 +211,7 @@ export class OnboardingListComponent implements OnInit, OnChanges {
             employeeName: employeeName,
             convertedEndDate: convertedEndDate,
             convertedStartdDate: convertedStartdDate,
+            convertedRegistrationDate: convertedRegistrationDate
           });
         }
         // if (isScrolled == true) {
@@ -285,8 +288,9 @@ export class OnboardingListComponent implements OnInit, OnChanges {
   }
 
   getProgressValue(item: any) {
-    let totalFinal = 600;
+    // let totalFinal = 600;
     let currentProgress = 0;
+    console.log(item, 'item')
     if (item.emergency && item.emergency.completionProgress) {
       currentProgress += parseFloat(item.emergency.completionProgress);
     }
@@ -295,13 +299,20 @@ export class OnboardingListComponent implements OnInit, OnChanges {
       currentProgress += parseFloat(item.personal.completionProgress);
     }
 
-
     if (item.licence && item.licence.completionProgress) {
       currentProgress += parseFloat(item.licence.completionProgress);
     }
 
+    if (item.banking && item.banking.completionProgress) {
+      currentProgress += parseFloat(item.banking.completionProgress);
+    }
+
+    if (item.tfn && item.tfn.completionProgress) {
+      currentProgress += parseFloat(item.tfn.completionProgress);
+    }
+
     let final = (currentProgress * 100) / 600;
-    return final;
+    return Math.ceil(final);
     // console.log(final);
   }
 }

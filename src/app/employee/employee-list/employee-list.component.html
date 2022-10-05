@@ -15,22 +15,22 @@
                   </div>
                   <div fxFlex.gt-sm="20" class="font-12"></div>
                   <div fxFlex.gt-sm="30" class="font-12">
-                      <mat-form-field appearance="outline">
-                        <mat-label (click)="picker.open()">Select Date Range</mat-label>
-                        <mat-date-range-input [rangePicker]="picker">
-                          <input matStartDate [(ngModel)]="startDate" placeholder="Start date" readonly
-                            (dateChange)="applyFilter()" (click)="picker.open()" />
-                          <input matEndDate placeholder="End date" readonly [(ngModel)]="endDate"
-                            (dateChange)="applyFilter()" (click)="picker.open()" />
-                        </mat-date-range-input>
-                      
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-date-range-picker #picker></mat-date-range-picker>
-  
-                      </mat-form-field>
-                    </div>
+                    <mat-form-field appearance="outline">
+                      <mat-label (click)="picker.open()">Select Date Range</mat-label>
+                      <mat-date-range-input [rangePicker]="picker">
+                        <input matStartDate [(ngModel)]="startDate" placeholder="Start date" readonly
+                          (dateChange)="applyFilter()" (click)="picker.open()" />
+                        <input matEndDate placeholder="End date" readonly [(ngModel)]="endDate"
+                          (dateChange)="applyFilter()" (click)="picker.open()" />
+                      </mat-date-range-input>
+
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-date-range-picker #picker></mat-date-range-picker>
+
+                    </mat-form-field>
                   </div>
                 </div>
+              </div>
             </mat-card-content>
           </mat-card>
 
@@ -38,71 +38,73 @@
             <mat-card-content>
               <div class="table-responsive infinite-scroll">
                 <mat-table #table [dataSource]="dataSource" class="table employee-list no-wrap" matSort>
-                  
-                <!-- Name Column -->
-                <ng-container matColumnDef="employeeNo">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Emp No</th>
-                  <td mat-cell *matCellDef="let row">
-                    <!-- <span class="header-label">days:</span> -->
-                    {{ row?.employeeNo }}
-                  </td>
-                </ng-container>
-                <!-- Name Column -->
-                <ng-container matColumnDef="employeePic">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Emp Pic</th>
-                  <td mat-cell *matCellDef="let row">
-                    <!-- <span class="header-label">days:</span> -->
-                    <!-- {{ row?.firstName }}{{ row?.lastName }} -->
-                    <div style="display:flex; align-items: center;">
-                    <img class="m-r-10 list-Img" src="assets/images/users/1.jpg" alt="" />
-                  </div>
-                  </td>
-                </ng-container>
-                <!-- Name Column -->
-                <ng-container matColumnDef="employeeName">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Emp Name</th>
-                  <td mat-cell *matCellDef="let row">
-                    <!-- <span class="header-label">days:</span> -->
-                    <!-- {{ row?.firstName }}{{ row?.lastName }} -->
-                    <div style="display:flex; align-items: center;">
-                    <img class="m-r-10 list-Img" src="assets/images/users/1.jpg" alt="" />
-                    KunalSharmaa
-                  </div>
-                  </td>
-                </ng-container>
+
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="employeeNo">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Emp No</th>
+                    <td mat-cell *matCellDef="let row">
+                      <!-- <span class="header-label">days:</span> -->
+                      {{ row?.employeeNo }}
+                    </td>
+                  </ng-container>
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="employeePic">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Emp Pic</th>
+                    <td mat-cell *matCellDef="let row">
+                      <!-- <span class="header-label">days:</span> -->
+                      <!-- {{ row?.firstName }}{{ row?.lastName }} -->
+                      <div style="display:flex; align-items: center;">
+                        <img class="m-r-10 list-Img" src="assets/images/users/1.jpg" alt="" />
+                      </div>
+                    </td>
+                  </ng-container>
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="employeeName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Emp Name</th>
+                    <td mat-cell *matCellDef="let row">
+                      <!-- <span class="header-label">days:</span> -->
+
+                      <div style="display:flex; align-items: center;">
+                        <img class="m-r-10 list-Img"
+                          onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
+                          [src]="row?.profilePic" alt="" />
+                        {{ row?.employeeName }}
+                      </div>
+                    </td>
+                  </ng-container>
 
 
-                <!-- Name Column -->
-                <ng-container matColumnDef="employeeRole">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Role</th>
-                  <td mat-cell *matCellDef="let row">
-                    <!-- <span class="header-label">days:</span> -->
-                    {{ row?.project }}Driver
-                  </td>
-                </ng-container>
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="employeType.name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Type</th>
+                    <td mat-cell *matCellDef="let row">
+                      <!-- <span class="header-label">days:</span> -->
+                      {{ row?.employeType?.name }}
+                    </td>
+                  </ng-container>
 
-                <ng-container matColumnDef="department">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Department</th>
-                  <td mat-cell *matCellDef="let row">{{ row?.dateEffective }} Mining</td>
-                </ng-container>
+                  <ng-container matColumnDef="departments.description">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Department</th>
+                    <td mat-cell *matCellDef="let row">
+                      {{ row?.departments?.description }}
+                    </td>
+                  </ng-container>
 
-                <ng-container matColumnDef="startDate">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Date</th>
-                  <td mat-cell *matCellDef="let row">
-                    <span [ngClass]="getStatusColor(row?.status)">
-                      {{ row?.statusName }}
-                    </span>
-                  </td>
-                </ng-container>
-                <ng-container matColumnDef="employeeType">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Type</th>
-                  <td mat-cell *matCellDef="let row">
-                    <span [ngClass]="getStatusColor(row?.status)">
-                      {{ row?.approvedDate }}
-                    </span>
-                    3rd August 2022
-                  </td>
-                </ng-container>
+                  <ng-container matColumnDef="convertedStartDate">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Date</th>
+                    <td mat-cell *matCellDef="let row">
+                      {{row?.convertedStartDate}}
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="employeeRole">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Role</th>
+                    <td mat-cell *matCellDef="let row">
+                      <!-- <span [ngClass]="getStatusColor(row?.status)">
+                        {{ row?.approvedDate }}
+                      </span> -->
+                      <!-- 3rd August 2022 -->
+                    </td>
+                  </ng-container>
 
 
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -115,9 +117,9 @@
                   </tr>
                 </mat-table>
 
-                <!-- <mat-paginator [length]="totalRecords" [pageIndex]="pageNo" [pageSizeOptions]="[5, 10, 20]"
+                <mat-paginator [length]="totalRecords" [pageIndex]="pageNo" [pageSizeOptions]="[5, 10, 20]"
                   [pageSize]="pageSize" aria-label="Select page">
-                </mat-paginator> -->
+                </mat-paginator>
               </div>
             </mat-card-content>
           </mat-card>

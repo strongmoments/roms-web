@@ -176,10 +176,10 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
             type: 'link',
             icon: 'account_box',
           });
-          
+
         }
-        
-        
+
+
         if (this.userPermissions.reports.includes('add_user')) {
           subMenu.push({
             state: 'registration/list',
@@ -188,7 +188,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
             icon: 'account_box',
             badge: [{ type: 'warning', value: 'new' }],
           });
-          
+
         }
         // if (this.userPermissions.reports.includes('add_user')) {
         //   subMenu.push({
@@ -198,7 +198,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         //     icon: 'account_box',
         //     badge: [{ type: 'warning', value: 'new' }],
         //   });
-          
+
         // }
         if (this.userPermissions.reports.includes('add_user')) {
           subMenu.push({
@@ -206,9 +206,15 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
             name: 'Onboarding',
             type: 'link',
             icon: 'account_box',
-            badge: [{ type: 'warning', value: 'new' }],
           });
-          
+
+          subMenu.push({
+            state: '/employee/employee-list',
+            name: 'Employee',
+            type: 'link',
+            icon: 'account_box',
+          });
+
         }
         // if (this.userPermissions.reports.includes('leave_export')) {
         //   subMenu.push({ displayName: 'Holidays', iconName: '', route: '/' });

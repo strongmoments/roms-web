@@ -27,6 +27,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { Base64ImagePipe, CustomJavaDatePipe } from '../core/_helpers';
 import { DateAgoPipe } from '../core/_helpers/date-ago-pipe';
 import { QuillModule } from 'ngx-quill';
+import { ImagePreviewDialog } from './image-preview-dialog/image-preview-dialog.component';
 
 // import { Base64ImagePipe } from '../core/_helpers/base64-image-pipe';
 // import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
@@ -59,6 +60,7 @@ import { QuillModule } from 'ngx-quill';
     AccordionAnchorDirective,
     AccordionLinkDirective,
     AccordionDirective,
+    ImagePreviewDialog
     // FullComponent,
     // VerticalAppHeaderComponent,
     // SpinnerComponent,
