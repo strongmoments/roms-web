@@ -50,3 +50,98 @@
 :host ::ng-deep .pending-checkbox .mat-checkbox-frame {
   border-color: #e7b400
 }
+
+.h-30 {
+  height: 30px !important;
+}
+
+.m-b-10 {
+  margin-bottom: 10px !important;
+}
+.r-Img img {
+  width: 75px;
+  height: 90px;
+}
+.collapse-img img {
+  padding: 12px 4px 6px;
+}
+.prev-img {
+  position: relative;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+.prev-img button {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  height: auto;
+  line-height: initial;
+  background: transparent;
+  border-width: 0;
+  position: absolute;
+  top: -16px;
+  right: 5px;
+  z-index: 999;
+  cursor: pointer;
+}
+.select-date {
+  display: flex !important;
+}
+.select-date .m-l-15 {
+  width: 100% !important;
+}
+.collapse-img {
+  margin: 8px 10px 5px;
+}
+mat-dialog-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.dialog-img {
+  width: 100%;
+  height: 98%;
+  padding-top: 1%;
+  object-fit: contain;
+}
+.mat-body-clp {
+  margin: 15px;
+  background: #d3d3d357;
+  padding: 12px;
+}
+.mat-body-clp mat-form-field {
+  margin-top: 10px;
+}
+.text-reason {
+  background-color: #fff;
+  padding: 10px 0px 10px 5px;
+  width: 100%;
+  // margin-top: -10px;
+  min-height: 60px;
+}
+.collapse-img {
+  display: flex;
+  flex-wrap: wrap;
+}
+.collapse-img img {
+  padding: 0px 5px;
+  height: 80px;
+  object-fit: cover;
+  width: 70px;
+  margin-bottom: 5px;
+}
+.collapse-img img:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  background: #fff;
+}
+.d-al-c {
+  display: flex;
+  align-items: center;
+}
+.no-wrap td,
+.no-wrap .ng-star-inserted {
+  white-space: break-spaces;
+}

@@ -136,14 +136,14 @@
   z-index: 999;
   cursor: pointer;
 }
-.select-date{
+.select-date {
   display: flex !important;
 }
-.select-date .m-l-15{
+.select-date .m-l-15 {
   width: 100% !important;
 }
 .collapse-img {
-  margin: 10px;
+  margin: 8px 10px 5px;
 }
 mat-dialog-container img {
   width: 100%;
@@ -159,7 +159,7 @@ mat-dialog-container img {
 .mat-body-clp {
   margin: 15px;
   background: #d3d3d357;
-  padding: 7px 12px 0px;
+  padding: 12px;
 }
 .mat-body-clp mat-form-field {
   margin-top: 10px;
@@ -168,7 +168,7 @@ mat-dialog-container img {
   background-color: #fff;
   padding: 10px 0px 10px 5px;
   width: 100%;
-  margin-top: -10px;
+  // margin-top: -10px;
   min-height: 60px;
 }
 .collapse-img {
@@ -193,6 +193,7 @@ mat-dialog-container img {
   display: flex;
   align-items: center;
 }
-.no-wrap td, .no-wrap .ng-star-inserted {
+.no-wrap td,
+.no-wrap .ng-star-inserted {
   white-space: break-spaces;
 }

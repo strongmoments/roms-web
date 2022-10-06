@@ -180,7 +180,7 @@
                     </td>
                   </ng-container>
 
-                  approver
+                  <!-- approver -->
 
                   <ng-container matColumnDef="managerName">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Manager</th>
@@ -310,7 +310,76 @@
                         <!-- <div class="example-element-name">{{ element.name }}</div> -->
                         <!-- <div class="example-element-weight">{{ element.weight }}</div> -->
                         <!-- </div> -->
-                        <div class="example-element-description">
+                        <div fxLayout="row wrap" style="width: 100%">
+                          <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center">
+                            <div fxFlex.gt-sm="50" fxFlex="100" fxFlexAlign="center">
+                              <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="mat-body-clp">
+                                <div fxFlex.gt-sm="50" fxFlex="100" fxFlexAlign="center">
+                                  <!-- <mat-form-field appearance="outline" class="m-10"> -->
+                                  <textarea matInput placeholder="Reason" class="text-reason"
+                                    disabled>{{ element?.leaveReason }} </textarea>
+                                  <!-- </mat-form-field> -->
+                                </div>
+                                <div fxFlex.gt-sm="50" fxFlex="100" fxFlexAlign="center">
+                                  <div class="collapse-img">
+                                    <ng-container *ngFor="let item of element?.attachments">
+                                      <img *ngIf="item?.digitalAssets.fileType.includes( 'image')"
+                                        (click)="openImageDialog(item?.digitalAssets?.url)"
+                                        [src]="item?.digitalAssets?.url" alt="" />
+                                      <img *ngIf="item?.digitalAssets.fileType.includes('pdf')"
+                                        (click)="openFile(item?.digitalAssets?.url)"
+                                        src="../../../assets/images/pdf_icon.png" alt="" />
+
+                                    </ng-container>
+
+                                    <!-- <img /> -->
+                                    <!-- <img src="assets/images/users/1.jpg
+                                            " alt="" width="75px" />
+                                <img src="assets/images/users/1.jpg
+                                            " alt="" width="75px" /> -->
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div fxFlex.gt-sm="50" fxFlex="100">
+                              <div fxFlex.gt-sm="100" fxFlex="100" class="mat-body-clp">
+                                <div fxFlex.gt-sm="50" fxFlex="100" fxFlexAlign="center">
+                                  <!-- <mat-form-field appearance="outline"> -->
+                                  <!-- <mat-label>Outline form field</mat-label> -->
+                                  <!-- <input
+                                      matInput
+                                      placeholder="Comment"
+                                      (change)="addComment(i, $event)"
+                                    /> -->
+                                  <textarea matInput placeholder="Reason" class="text-reason"
+                                    disabled>{{ element?.reviewerRemark }} </textarea>
+                                  <!-- </mat-form-field> -->
+                                </div>
+                                <div fxFlex.gt-sm="50" fxFlex="100" fxFlexAlign="center">
+                                  <div class="example-element-description d-al-c">
+                                    <!-- <span class="p-10 m-r-10 m-l-10">{{ element?.leaveReason }} </span> -->
+                                    <span [ngClass]="getStatusColor(element?.leaveStatus)">
+                                      {{ getStatus(element?.leaveStatus) }}
+                                    </span>
+                                  </div>
+                                  <!-- <div
+                                    class="example-element-description m-r-10 m-l-10"
+                                    *ngIf="element && element.leaveStatus != 1"
+                                  >
+                                    {{ element?.reviewerRemark }}
+                                    <span>
+                                      
+                                      <span [ngClass]="getStatusColor(element?.leaveStatus)">
+                                        {{ getStatus(element?.leaveStatus) }}
+                                      </span>
+                                    </span>
+                                  </div> -->
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- <div class="example-element-description">
                           {{ element?.leaveReason }}
                           <span>
                             --
@@ -318,7 +387,7 @@
                               {{ getStatus(element?.leaveStatus) }}
                             </span>
                           </span>
-                        </div>
+                        </div> -->
                       </div>
                     </td>
                   </ng-container>
@@ -397,9 +466,9 @@
                   </tr>
                 </table>
 
-                <mat-paginator #paginatorHistory="matPaginator" [length]="totalRecords" [pageIndex]="pageNo"
+                <!-- <mat-paginator #paginatorHistory="matPaginator" [length]="totalRecords" [pageIndex]="pageNo"
                   [pageSizeOptions]="[5, 10, 20]" [pageSize]="pagesize" aria-label="Select page">
-                </mat-paginator>
+                </mat-paginator> -->
               </div>
             </mat-card-content>
           </mat-card>

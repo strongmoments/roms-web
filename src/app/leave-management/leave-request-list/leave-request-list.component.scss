@@ -24,19 +24,19 @@
 // .reject-button{
 //     color:red;
 // }
-.example-element-row+.example-detail-row {
+.example-element-row + .example-detail-row {
   height: 0 !important;
 }
 
-.example-element-row+.example-detail-row td {
+.example-element-row + .example-detail-row td {
   padding: 0px !important;
 }
 
-.example-element-row.example-expanded-row+.example-detail-row {
+.example-element-row.example-expanded-row + .example-detail-row {
   height: 48px !important;
 }
 
-.example-element-row.example-expanded-row+.example-detail-row td.mat-cel {
+.example-element-row.example-expanded-row + .example-detail-row td.mat-cel {
   padding: 15px !important;
 }
 
@@ -45,7 +45,7 @@
 }
 
 .collapse-img {
-  margin: 10px;
+  margin: 8px 10px 5px;
 }
 
 // mat-dialog-container img {
@@ -62,7 +62,7 @@
 .mat-body-clp {
   margin: 15px;
   background: #d3d3d357;
-  padding: 7px 12px 0px;
+  padding: 12px;
 }
 
 .mat-body-clp mat-form-field {
@@ -73,7 +73,7 @@
   background-color: #fff;
   padding: 10px 0px 10px 5px;
   width: 100%;
-  margin-top: -10px;
+  // margin-top: -10px;
   min-height: 60px;
 }
 
