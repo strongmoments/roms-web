@@ -8,7 +8,7 @@
             <mat-icon>cloud_download</mat-icon>
           </button>
           <mat-menu #exportMenu="matMenu">
-            <button mat-menu-item>Export CSV</button>
+            <button (click)="exportCsv()" mat-menu-item>Export CSV</button>
           </mat-menu>
         </mat-card-title>
         <div class="m-l-10 m-r-10">
@@ -298,9 +298,13 @@
             <mat-label>Super Annuation Form</mat-label>
             <div>
               <small class="text-muted">Progress Bar</small>
-              <small class="text-muted">0%</small>
+              <small class="text-muted">{{selectedRecord &&
+                selectedRecord.superannuation &&
+                selectedRecord.superannuation.completionProgress?selectedRecord.superannuation.completionProgress:0}}%</small>
             </div>
-            <mat-progress-bar class="m-r-5" color="warn" mode="determinate" value="0"></mat-progress-bar>
+            <mat-progress-bar class="m-r-5" color="warn" mode="determinate" value="{{selectedRecord &&
+              selectedRecord.superannuation &&
+              selectedRecord.superannuation.completionProgress?selectedRecord.superannuation.completionProgress:0}}"></mat-progress-bar>
           </div>
         </div>
       </div>

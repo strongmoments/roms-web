@@ -38,7 +38,7 @@
         </div>
 
         <div fxFlex.gt-sm="60" fxFlex="100">
-          <h5 class="m-0 m-b-20">{{ user?.contactNo }}</h5>
+          <h5 class="m-0 m-b-20">{{ user?.phone }}</h5>
         </div>
         <div fxFlex.gt-sm="40" fxFlex="100">
           <div mat-dialog-content>
@@ -97,13 +97,8 @@
         </div>
         <div fxFlex.gt-sm="100" fxFlex="100" class="p-10 text-center">
           <div class="m-0 m-t-15">
-            <button
-              mat-raised-button
-              class="p-l-30 p-r-30"
-              color="primary"
-              [mat-dialog-close]="data.animal"
-              tabindex="2"
-            >
+            <button mat-raised-button class="p-l-30 p-r-30" color="primary" [mat-dialog-close]="data.animal"
+              tabindex="2">
               OK
             </button>
           </div>

@@ -291,21 +291,29 @@ export class OnboardingListComponent implements OnInit, OnChanges {
     // let totalFinal = 600;
     let currentProgress = 0;
     console.log(item, 'item')
-    if (item.emergency && item.emergency.completionProgress) {
-      currentProgress += parseFloat(item.emergency.completionProgress);
+
+    if (item.banking && item.banking.completionProgress) {
+      currentProgress += parseFloat(item.banking.completionProgress);
     }
 
-    if (item.personal && item.personal.completionProgress) {
-      currentProgress += parseFloat(item.personal.completionProgress);
+
+    if (item.emergency && item.emergency.completionProgress) {
+      currentProgress += parseFloat(item.emergency.completionProgress);
     }
 
     if (item.licence && item.licence.completionProgress) {
       currentProgress += parseFloat(item.licence.completionProgress);
     }
 
-    if (item.banking && item.banking.completionProgress) {
-      currentProgress += parseFloat(item.banking.completionProgress);
+
+    if (item.personal && item.personal.completionProgress) {
+      currentProgress += parseFloat(item.personal.completionProgress);
     }
+
+    if (item.superannuation && item.superannuation.completionProgress) {
+      currentProgress += parseFloat(item.superannuation.completionProgress);
+    }
+
 
     if (item.tfn && item.tfn.completionProgress) {
       currentProgress += parseFloat(item.tfn.completionProgress);
@@ -314,5 +322,44 @@ export class OnboardingListComponent implements OnInit, OnChanges {
     let final = (currentProgress * 100) / 600;
     return Math.ceil(final);
     // console.log(final);
+  }
+
+
+
+  exportCsv() {
+    // const replacer = (key:any, value:any) => value === null ? '' : value; // specify how you want to handle null values here
+    // const header = Object.keys(this.displayedColumns);
+    // let csv = this.dataSource.data.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','));
+    // csv.unshift(header.join(','));
+    // let csvArray = csv.join('\r\n');
+    let csvArray: any = [
+      'Employee Name,Employee No,Email,Phone,DOB,Gender,Temporary Address,Permanent Address,Licence Number,Licence Issued at,Licence Expiry,Emergency Contact Person,Emergency Email, Emergency Contact No,Emergency Contact Address,Tfn Number,Annutation CurrentFund Account Name,Annutation CurrentFund Member Name,Bank Holder Name, Bank Ac No, Bank Name,Bank BSB no,Bank Fixed Amount,Registration Date,Start Date,End Date\r\n',
+    ];
+    for (let i = 0; i < this.dataSource.data.length; i++) {
+      let item = this.dataSource.data[i];
+      // console.log(this.dataSource.data[i], 'this.dataSource.data');
+      let row: string = `${item?.employeeName},${item?.personal?.employeeNo},${item?.personal?.email},${item?.personal?.phone},${item?.personal?.gender},${item?.personal?.gender},${item?.personal?.tempAddress?.address} ${item?.personal?.tempAddress?.suburb} ${item?.personal?.tempAddress?.state} ${item?.personal?.tempAddress?.postcode},${item?.personal?.permanentAddress?.address} ${item?.personal?.permanentAddress?.suburb} ${item?.personal?.permanentAddress?.state} ${item?.personal?.permanentAddress?.postcode},${item?.licence?.licenceNumber},${item?.licence?.issuedIn},${item?.licence?.expiryDate},${item?.emergency?.firstName} ${item?.emergency?.lastName},${item?.emergency?.email},${item?.emergency?.mobile},${item?.emergency?.address?.address} ${item?.emergency?.address?.suburb} ${item?.emergency?.address?.state} ${item?.emergency?.address?.postcode},${item?.tfn?.tfnnumber},${item?.superannuation?.currentFund?.accountName},${item?.superannuation?.currentFund?.membername},${item?.banking?.defaultBank?.accountHolderName},${item?.banking?.defaultBank?.accountNumber},${item?.banking?.defaultBank?.bankName},${item?.banking?.defaultBank?.bsbNumber},${item?.banking?.defaultBank?.fixedAmount},${item?.convertedRegistrationDate},${item?.convertedStartdDate},${item?.convertedEndDate}\r\n`;
+      // console.log(row);
+      csvArray.push(row);
+    }
+    // console.log(csvArray)
+    let fileName = `oboarding_report_${new Date().getTime()}.csv`;
+    // let data = {
+    //   reportName: fileName,
+    //   dateRange: `${this.datePipe.transform(
+    //     this.startDate,
+    //     'd MMMM y',
+    //   )} to ${this.datePipe.transform(this.endDate, 'd MMMM y')}`,
+    //   filters: {
+    //     empoyeeTyeId: this.employeeType,
+    //     'departmentId ': this.departmentId,
+    //     leaveStatus: this.status,
+    //   },
+    // };
+
+    // console.log(data);
+    // this.authService.saveExportHistory(data).subscribe();
+    var blob = new Blob(csvArray, { type: 'text/csv' });
+    saveAs(blob, fileName);
   }
 }

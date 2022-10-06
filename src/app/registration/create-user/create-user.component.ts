@@ -78,7 +78,7 @@ export class CreateUserComponent implements OnInit {
       lastName: new FormControl(this.userSessionData?.lastName, [Validators.required, Validators.maxLength(25)]),
       email: new FormControl(this.userSessionData?.email, [Validators.required, Validators.pattern(this.utils.emailRegex), Validators.maxLength(100)]),
       phoneCode: new FormControl(this.phoneCode, [Validators.required]),
-      contactNo: new FormControl(this.userSessionData?.phone, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(this.utils.intRegex)]),
+      phone: new FormControl(this.userSessionData?.phone, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(this.utils.intRegex)]),
       // dob: new FormControl('', [Validators.required]),
       isManager: new FormControl(false),
       roleId: new FormControl('', [Validators.required]),
@@ -125,7 +125,7 @@ export class CreateUserComponent implements OnInit {
     }
 
     let formValues = this.form.value;
-    formValues.contactNo = `${formValues.phoneCode}${formValues.contactNo}`;
+    formValues.phone = `${formValues.phoneCode}${formValues.phone}`;
     delete formValues.phoneCode;
     let roleName = formValues.roleId;
     let departmentName = formValues.departmentId;
@@ -149,7 +149,7 @@ export class CreateUserComponent implements OnInit {
         this.alertService.openSnackBar(CustomMessage.userCreatedSuccess, false);
         let data: any = result;
         // console.log(data, 'data', result);
-        data['contactNo'] = formValues.contactNo;
+        data['phone'] = formValues.phone;
         data['roleName'] = roleName;
         data['departmentName'] = departmentName;
         this.openDialog(data);

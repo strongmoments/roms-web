@@ -80,17 +80,17 @@
               </mat-form-field>
               <mat-form-field appearance="outline" class="m-b-15" fxFlex="75">
                 <mat-label>Contact No</mat-label>
-                <input [ngClass]="{ 'is-invalid': submitted && f.contactNo.hasError }" matInput placeholder="Contact No"
-                  formControlName="contactNo" contactNo />
-                <mat-error *ngIf="submitted && checkError('contactNo', 'required')">
+                <input [ngClass]="{ 'is-invalid': submitted && f.phone.hasError }" matInput placeholder="Contact No"
+                  formControlName="phone" phone />
+                <mat-error *ngIf="submitted && checkError('phone', 'required')">
                   Contact No is required.
                 </mat-error>
-                <mat-error *ngIf="checkError('contactNo', 'pattern')">
+                <mat-error *ngIf="checkError('phone', 'pattern')">
                   Contact No is invalid.
                 </mat-error>
                 <mat-error *ngIf="
-                    !checkError('contactNo', 'pattern') &&
-                    (checkError('contactNo', 'maxlength') || checkError('contactNo', 'minlength'))
+                    !checkError('phone', 'pattern') &&
+                    (checkError('phone', 'maxlength') || checkError('phone', 'minlength'))
                   ">
                   Contact no should be 10 digits.
                 </mat-error>

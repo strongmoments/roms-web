@@ -17,6 +17,8 @@ import { saveAs } from 'file-saver';
 import * as moment from 'moment';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { element } from 'protractor';
+import { ImagePreviewDialog } from 'src/app/shared/image-preview-dialog/image-preview-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-leave-report',
   templateUrl: './leave-report.component.html',
@@ -88,6 +90,7 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     private datePipe: DatePipe,
     private activatedRoute: ActivatedRoute,
     private authService: AuthenticationService,
+    private dialog:MatDialog
   ) {
     this.globals = globals;
 
@@ -375,6 +378,21 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     this.authService.saveExportHistory(data).subscribe();
     var blob = new Blob(csvArray, { type: 'text/csv' });
     saveAs(blob, fileName);
+  }
+
+  openImageDialog(data: any) {
+    // alert();
+    // this.selectedImage = data;
+    const dialogRef = this.dialog.open(ImagePreviewDialog, {
+      width: 'auto',
+      height: '35em',
+      data: { selectedImage: data }
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      // this.router.navigate(['/registration/list']);
+      console.log('The dialog was closed');
+    });
   }
 }
 /** Builds and returns a new User. */

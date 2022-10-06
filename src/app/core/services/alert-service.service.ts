@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { SnackbarComponent } from 'src/app/shared/snackbar.component/snackbar.component.component';
 
@@ -8,14 +9,14 @@ import { SnackbarComponent } from 'src/app/shared/snackbar.component/snackbar.co
 })
 export class AlertService {
 
-    constructor(private snackBar: MatSnackBar, private router: Router) { }
+    constructor(private snackBar: MatSnackBar, private router: Router,private sanitized:DomSanitizer) { }
 
     public openSnackBar(message: string, isError: boolean = true, time: number = 5000, title: string = '', isLinkNotitication: boolean = false, data: any = {}) {
-        let notificationHtml = '';
+        let notificationHtml:any = '';
         if (isLinkNotitication) {
             notificationHtml =
-                `<img onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';" src='${data?.profileImage}' 
-                class="img-circle" style="border-radius:12px;max-height:30px;max-width:32px;" height="28px" width="29px" align="left"><p class="toastr-message">${message}</p>`;
+            this.sanitized.bypassSecurityTrustHtml(  `<img onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';" src='${data?.profileImage}' 
+                class="img-circle" style="border-radius:12px;max-height:30px;max-width:32px;" height="28px" width="29px" align="left"><p class="toastr-message">${message}</p>`);
 
             // <div fxLayout="row wrap" fxFlexAlign="center" class="row">
             // <span href="javascript:void(0);"><img [src]='${data?.profileImage}' 
