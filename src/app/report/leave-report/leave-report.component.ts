@@ -90,7 +90,7 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     private datePipe: DatePipe,
     private activatedRoute: ActivatedRoute,
     private authService: AuthenticationService,
-    private dialog:MatDialog
+    private dialog: MatDialog
   ) {
     this.globals = globals;
 
@@ -131,13 +131,13 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     // this.dataSource.sort = this.sort;
     this.dataSourceHistory.sort = this.sortHistory;
     this.dataSource.sort = this.sort;
-    this.paginator.page.subscribe((page: PageEvent) => {
+    this.paginator?.page.subscribe((page: PageEvent) => {
       if (this.selectedTabIndex == 0) {
         this.refresh(this.getDefaultOptions());
       }
     });
 
-    this.paginatorHistory.page.subscribe((page: PageEvent) => {
+    this.paginatorHistory?.page.subscribe((page: PageEvent) => {
       if (this.selectedTabIndex == 1) {
         this.refreshHistory(this.getDefaultOptions());
       }
@@ -166,7 +166,7 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     // If the user has scrolled within 200px of the bottom, add more data
     const buffer = 10;
     const limit = tableScrollHeight - tableViewHeight - buffer;
-    console.log(scrollLocation, limit, 'scrollLocation > limit');
+    // console.log(scrollLocation, limit, 'scrollLocation > limit');
     if (scrollLocation > limit) {
       if (this.dataSource.data.length < this.totalRecords) {
         this.pageNo = this.pageNo + 1;
@@ -391,8 +391,13 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe((result: any) => {
       // this.router.navigate(['/registration/list']);
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
     });
+  }
+
+  openFile(url: string) {
+
+    window.open(url, '_blank');
   }
 }
 /** Builds and returns a new User. */

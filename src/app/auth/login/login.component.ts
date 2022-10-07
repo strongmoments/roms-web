@@ -4,6 +4,7 @@ import {
   UntypedFormControl,
   Validators,
 } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
 import { AlertService } from 'src/app/core/services';
@@ -29,8 +30,10 @@ export class LoginComponent implements OnInit {
     public util: Utils,
     globals: Globals,
     private route: ActivatedRoute,
-    private authService: AuthenticationService
+    private authService: AuthenticationService, private titleService: Title
   ) {
+    
+    this.titleService.setTitle('Login');
     this.user = this.authService.getCurrentUser();
     console.log(this.user, 'this.user')
     if (this.user) {

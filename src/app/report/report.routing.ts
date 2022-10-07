@@ -19,7 +19,7 @@ const routes: Routes = [
       {
         path: 'resignation', component: ResignationReportComponent,
         data: {
-          title: 'Resginations',
+          title: 'Resignations',
           urls: [{ title: 'Dashboard', url: '/' }, { title: 'People & Culture' }],
         }
       }

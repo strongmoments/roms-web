@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/core/services';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
@@ -25,8 +26,9 @@ export class RegisterComponent implements OnInit {
   isEditable = false;
 
   // tslint:disable-next-line - Disables all
-  constructor(private globals: Globals, private _formBuilder: UntypedFormBuilder, public util: Utils, private alertService: AlertService, private authService: AuthenticationService, private router: Router) {
+  constructor(private globals: Globals, private _formBuilder: UntypedFormBuilder, public util: Utils, private alertService: AlertService, private authService: AuthenticationService, private router: Router, private titleService: Title) {
     this.global = globals;
+    this.titleService.setTitle('Register');
   }
 
   ngOnInit(): void {

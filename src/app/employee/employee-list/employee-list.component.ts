@@ -143,7 +143,7 @@ export class EmployeeListComponent implements OnInit, OnChanges {
    * be able to query its view for the initialized paginator and sort.
    */
   ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
+    // this.dataSource.paginator = this.paginator;
     // this.dataSource.sort = this.sort;
     this.dataSource.sort = this.sort;
     this.paginator?.page.subscribe((page: PageEvent) => {

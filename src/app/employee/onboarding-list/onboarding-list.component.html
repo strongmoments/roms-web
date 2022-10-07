@@ -19,7 +19,20 @@
                 <mat-icon matSuffix>search</mat-icon>
               </mat-form-field>
             </div>
-            <div fxFlex.gt-sm="20" class="font-12"></div>
+            <div fxFlex.gt-sm="20" class="p-r-10" fxFlex="100">
+              <!-- <mat-card-title class="mb-3">Basic Material select</mat-card-title> -->
+              <mat-form-field>
+                <mat-select (selectionChange)="applyFilter()" [(ngModel)]="status" placeholder="Status">
+                  <mat-option value="all">All</mat-option>
+                  <mat-option value="pending">Pending</mat-option>
+                  <mat-option value="completed">Completed</mat-option>
+                  <!-- <mat-option [value]="item.id" *ngFor="let item of departmentList">
+                    {{ item.description }}
+                  </mat-option> -->
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <!-- <div fxFlex.gt-sm="20" class="font-12"></div> -->
             <div fxFlex.gt-sm="25" class="font-12">
               <mat-form-field appearance="outline">
                 <mat-label (click)="picker.open()">Select Date Range</mat-label>
@@ -42,7 +55,8 @@
     <mat-card class="m-0 m-t-5 m-b-5">
       <mat-card-content>
         <div class="table-responsive infinite-scroll">
-          <mat-table #table [dataSource]="dataSource" class="table employee-list no-wrap" matSort>
+          <mat-table #table [dataSource]="dataSource" (scroll)="onTableScroll($event)"
+            class="table employee-list no-wrap" matSort>
             <!-- Name Column -->
             <ng-container matColumnDef="employeeName">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
@@ -304,7 +318,8 @@
             </div>
             <mat-progress-bar class="m-r-5" color="warn" mode="determinate" value="{{selectedRecord &&
               selectedRecord.superannuation &&
-              selectedRecord.superannuation.completionProgress?selectedRecord.superannuation.completionProgress:0}}"></mat-progress-bar>
+              selectedRecord.superannuation.completionProgress?selectedRecord.superannuation.completionProgress:0}}">
+            </mat-progress-bar>
           </div>
         </div>
       </div>
@@ -337,9 +352,14 @@
             <mat-label>Membership Form</mat-label>
             <div>
               <small class="text-muted">Progress Bar</small>
-              <small class="text-muted">0%</small>
+              <small class="text-muted">{{selectedRecord &&
+                selectedRecord.membership &&
+                selectedRecord.membership.completionProgress?selectedRecord.membership.completionProgress:0}}%</small>
             </div>
-            <mat-progress-bar class="m-r-5" color="warn" mode="determinate" value="0"></mat-progress-bar>
+            <mat-progress-bar class="m-r-5" color="warn" mode="determinate" value="{{selectedRecord &&
+              selectedRecord.membership &&
+              selectedRecord.membership.completionProgress?selectedRecord.membership.completionProgress:0}}">
+            </mat-progress-bar>
           </div>
         </div>
       </div>

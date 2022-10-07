@@ -38,7 +38,7 @@ export class OnboardingListComponent implements OnInit, OnChanges {
     //  'logo'
   ];
   @ViewChild('employeeDetailDialog') employeeDetailDialog!: TemplateRef<any>;
-
+  totalData: any = [];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   // dataSourceHistory: MatTableDataSource<any> = new MatTableDataSource<any>();
 
@@ -49,9 +49,10 @@ export class OnboardingListComponent implements OnInit, OnChanges {
   // @ViewChild(MatSort, { static: false }) sortHistory: MatSort = Object.create(null);
   // pagesize = 10;
   pageNo = 0;
-  pageSize = 9999999999;
+  pageSize = 10;
   totalRecords: number = 0;
   search: string = ''; //by default 0 for pending list
+  status: string = '';
   // currentDate: any = new Date();
   // expandedElement: any = null;
   startDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 1));
@@ -195,13 +196,12 @@ export class OnboardingListComponent implements OnInit, OnChanges {
       .employeeOnboardList(options)
       .pipe(first())
       .subscribe((result: any) => {
-        console.log(result.data, result.data.length);
-        this.totalRecords = result.data.length;
         let data: any = [];
 
+        console.log(result.data.length, 'result.data.length')
         for (let i = 0; i < result.data.length; i++) {
           // let statusName = this.getStatus(result.data[i]?.status);
-          let convertedRegistrationDate = this.datePipe.transform(result.data[i].startdDate, 'dd/MM/yyyy');
+          let convertedRegistrationDate = this.datePipe.transform(result.data[i].registrationDate, 'dd/MM/yyyy');
 
           let convertedStartdDate = this.datePipe.transform(result.data[i].startdDate, 'dd/MM/yyyy');
           let convertedEndDate = this.datePipe.transform(result.data[i].endDate, 'dd/MM/yyyy');
@@ -211,13 +211,20 @@ export class OnboardingListComponent implements OnInit, OnChanges {
             employeeName: employeeName,
             convertedEndDate: convertedEndDate,
             convertedStartdDate: convertedStartdDate,
-            convertedRegistrationDate: convertedRegistrationDate
+            convertedRegistrationDate: convertedRegistrationDate,
+            totalProgress: this.getProgressValue(result.data[i])
           });
         }
         // if (isScrolled == true) {
         //   this.dataSource.data = [...this.dataSource.data, ...data];
         // } else {
-        this.dataSource.data = data;
+        data = JSON.parse(JSON.stringify(data));
+        this.totalData = data;
+        this.totalRecords = this.totalData.length;
+        let tempData = JSON.parse(JSON.stringify(data));
+        // console.log(this.totalData, tempData, 'ndsnlkdn');
+
+        this.dataSource.data = tempData.splice(0, 10);
         // }
       });
   }
@@ -257,10 +264,31 @@ export class OnboardingListComponent implements OnInit, OnChanges {
     // console.log(this.search, 'search', this.startDate, 'startdate', this.endDate, 'enddate');
     this.search = this.search.trim(); // Remove whitespace
     this.search = this.search.toLowerCase(); // Datasource defaults to lowercase matches
-    this.dataSource.filter = this.search;
     if (isTextSearch) {
+      this.dataSource.filter = this.search;
     } else {
-      this.refresh(this.getDefaultOptions());
+      let data = this.totalData;
+      if (this.startDate && this.endDate) {
+        console.log(data, 'asas');
+        this.startDate = new Date(new Date(this.startDate).setHours(0, 0, 0, 0));
+        this.endDate = new Date(new Date(this.endDate).setHours(23, 59, 59, 59));
+        this.dataSource.data = data.filter((elem: any) => {
+          let date: any = new Date(parseInt(elem.startdDate));
+          date.setHours(0, 0, 0, 0);
+          date = new Date(date);
+          console.log(this.startDate, this.endDate, date)
+          return (date >= this.startDate && date <= this.endDate)
+        });
+        // console.log(this.status, this.endDate)
+
+        this.dataSource.data = data.filter((elem: any) => {
+          // console.log(elem.totalProgress,(this.status == 'all' || this.status == '' ? parseInt(elem.totalProgress) <= 100 : (this.status == 'pending' ? parseInt(elem.totalProgress) < 100 : parseInt(elem.totalProgress) == 100)),'asaskj')
+          // return true;
+          return (this.status == 'all' || this.status == '' ? parseInt(elem.totalProgress) <= 100 : (this.status == 'pending' ? parseInt(elem.totalProgress) < 100 : parseInt(elem.totalProgress) == 100));
+          // return (date >= this.startDate && date <= this.endDate)
+        });
+      }
+      // this.refresh(this.getDefaultOptions());
     }
   }
 
@@ -290,7 +318,7 @@ export class OnboardingListComponent implements OnInit, OnChanges {
   getProgressValue(item: any) {
     // let totalFinal = 600;
     let currentProgress = 0;
-    console.log(item, 'item')
+    // console.log(item, 'item')
 
     if (item.banking && item.banking.completionProgress) {
       currentProgress += parseFloat(item.banking.completionProgress);
@@ -319,12 +347,41 @@ export class OnboardingListComponent implements OnInit, OnChanges {
       currentProgress += parseFloat(item.tfn.completionProgress);
     }
 
-    let final = (currentProgress * 100) / 600;
+
+    if (item.membership && item.membership.completionProgress) {
+      currentProgress += parseFloat(item.membership.completionProgress);
+    }
+
+
+    let final = (currentProgress / 700) * 100;
     return Math.ceil(final);
     // console.log(final);
   }
 
 
+
+  onTableScroll(e: any) {
+    const tableViewHeight = e.target.offsetHeight; // viewport: ~500px
+    const tableScrollHeight = e.target.scrollHeight; // length of all table
+    const scrollLocation = e.target.scrollTop; // how far user scrolled
+
+    // If the user has scrolled within 200px of the bottom, add more data
+    const buffer = 10;
+    const limit = tableScrollHeight - tableViewHeight - buffer;
+    console.log(scrollLocation, limit, 'scrollLocation > limit');
+    if (scrollLocation > limit) {
+      // console.log(this.dataSource.data.length, this.totalRecords, 'totalRecords');
+      if (this.dataSource.data && (this.dataSource.data.length < this.totalRecords)) {
+        this.pageSize = this.pageSize + 10;
+        // this.paginator.pageSize = this.pageSize;
+        // console.log(this.totalData, this.pageSize);
+        let tempData = this.totalData;
+        this.dataSource.data = tempData.splice(0, this.pageSize);
+        // this.refresh(this.getDefaultOptions(), true);
+      }
+      // this.dataSource = this.dataSource.concat(ELEMENT_DATA);
+    }
+  }
 
   exportCsv() {
     // const replacer = (key:any, value:any) => value === null ? '' : value; // specify how you want to handle null values here

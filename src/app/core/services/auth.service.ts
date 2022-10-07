@@ -105,7 +105,8 @@ export class AuthenticationService {
         this.sseService.closeServer();
         this.localStorage.clear();
         sessionStorage.clear();
-        this.router.navigate(['/']);
+        window.location.replace('/');
+        // this.router.navigate(['/']);
 
     }
 
