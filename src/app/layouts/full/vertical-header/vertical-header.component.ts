@@ -245,6 +245,8 @@ export class VerticalAppHeaderComponent {
       this.router.navigate(['release-note']);
     } else if (type == 'change-password') {
       this.router.navigate(['change-password']);
+    }  else if (type == 'profile') {
+      this.router.navigate(['profile']);
     }
   }
   logOut() {

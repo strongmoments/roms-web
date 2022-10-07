@@ -9,6 +9,7 @@ import { FullComponent } from '../layouts/full/full.component';
 import { EmployeeResignationListComponent } from './employee-resignation-list/employee-resignation-list.component';
 import { EmployeeAddComponent } from './employee-add/employee-add.component';
 import { OnboardingListComponent } from './onboarding-list/onboarding-list.component';
+import { EmployeeProfileComponent } from './employee-profile/employee-profile.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,13 @@ const routes: Routes = [
         path: 'onboarding-list', component: OnboardingListComponent,
         data: {
           title: 'Onboarding ',
+          urls: [{ title: 'Dashboard', url: '/' }, { title: 'People & Culture' }],
+        }
+      },
+      {
+        path: 'employee-profile', component: EmployeeProfileComponent,
+        data: {
+          title: 'Employee Profile',
           urls: [{ title: 'Dashboard', url: '/' }, { title: 'People & Culture' }],
         }
       },

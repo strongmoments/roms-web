@@ -30,10 +30,14 @@ const routes: Routes = [
         path: 'change-password', component: ChangePasswordComponent,
         data: {
           title: 'Change Password',
-          urls: [{ title: 'Change Password' }],
+          urls: [{ title: 'Home', url: '/' }, { title: 'Change Password' }],
         }
       },
-      { path: 'profile', component: ProfileComponent },
+      { path: 'profile', component: ProfileComponent,
+      data: {
+        title: 'Profile',
+        urls: [{ title: 'Home', url: '/' }, { title: 'Profile' }],
+      } },
     ],
   },
 ];
