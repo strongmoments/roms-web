@@ -54,10 +54,20 @@
             <!-- column -->
             <div class="d-flex no-block align-items-center">
               <div class="stats">
-                <h3 class="text-white m-0">Payroll Details</h3>
-                <h6 class="text-white m-t-0">March 2017</h6>
-                <h1 class="text-white m-0">50 GB</h1>
-                <h3 class="text-white m-0"><b>Details</b></h3>
+                <h3 class="text-white m-0">Payroll</h3>
+                <!-- <h6 class="text-white m-t-0">March 2017</h6> -->
+                <h1 class="text-white m-0">Rate $57</h1>
+                <div fxLayout="row" fxLayoutWrap="wrap" class="m-t-30">
+                  <div fxFlex.gt-sm="50%" fxFlex.gt-xs="33.33%" fxFlex="100">
+                    <h5 class="text-white m-0 ">Last Payment Made On</h5>
+                    <h6 class="text-white m-0 m-t-5 ">26 September 2022</h6>
+                  </div>
+                  <div fxFlex.gt-sm="50%" fxFlex.gt-xs="33.33%" fxFlex="100">
+                    <h5 class="text-white m-0 ">Amount</h5>
+                    <h6 class="text-white m-0 m-t-5 ">$2000</h6>
+                  </div>
+                </div>
+                <h3 class="text-white m-0"><b>View Payroll Details</b></h3>
               </div>
             </div>
           </mat-card-content>
@@ -67,10 +77,28 @@
             <!-- column -->
             <div class="d-flex no-block align-items-center">
               <div class="stats">
-                <h3 class="text-white m-0">Leave Details</h3>
-                <h6 class="text-white m-t-0">March 2017</h6>
-                <h1 class="text-white m-0">35487</h1>
-                <h3 class="text-white m-0"><b>Details</b></h3>
+                <h3 class="text-white m-0">Leave</h3>
+                <!-- <h6 class="text-white m-t-0">March 2017</h6> -->
+                <h1 class="text-white m-0">total taken 20</h1>
+                <div fxLayout="row" fxLayoutWrap="wrap" class="m-t-30">
+                  <div fxFlex.gt-sm="33.33%" fxFlex.gt-xs="33.33%" fxFlex="100">
+                    <h5 class="text-white m-0 ">Last Leave Taken</h5>
+                    <h6 class="text-white m-0 m-t-5 ">28/08/2022</h6>
+                  </div>
+                  <div fxFlex.gt-sm="33.33%" fxFlex.gt-xs="33.33%" fxFlex="100">
+                    <h5 class="text-white m-0 ">Type</h5>
+                    <h6 class="text-white m-0 m-t-5 ">
+                      Sick
+                    </h6>
+                  </div>
+                  <div fxFlex.gt-sm="33.33%" fxFlex.gt-xs="33.33%" fxFlex="100">
+                    <h5 class="text-white m-0 ">No Of Days</h5>
+                    <h6 class="text-white m-0 m-t-5 ">
+                     20
+                    </h6>
+                  </div>
+                </div>
+                <h3 class="text-white m-0"><b>View Leave Details</b></h3>
               </div>
             </div>
           </mat-card-content>
@@ -129,23 +157,23 @@
           </div>
         </div>
         <div class="d-flex no-blcok">
-            <div class="w-100">
-              <h4 class="m-0 list-space">
-                <span>Transferd to Another Project</span>
-                <span class="text-muted"><small>03/08/2012</small></span>
-              </h4>
-              <hr class="m-t-20 m-b-20" />
-            </div>
+          <div class="w-100">
+            <h4 class="m-0 list-space">
+              <span>Transferd to Another Project</span>
+              <span class="text-muted"><small>03/08/2012</small></span>
+            </h4>
+            <hr class="m-t-20 m-b-20" />
           </div>
-          <div class="d-flex no-blcok">
-            <div class="w-100">
-              <h4 class="m-0 list-space">
-                <span>Sick Leave Taken</span>
-                <span class="text-muted"><small>03/08/2012</small></span>
-              </h4>
-              <hr class="m-t-20 m-b-20" />
-            </div>
+        </div>
+        <div class="d-flex no-blcok">
+          <div class="w-100">
+            <h4 class="m-0 list-space">
+              <span>Sick Leave Taken</span>
+              <span class="text-muted"><small>03/08/2012</small></span>
+            </h4>
+            <hr class="m-t-20 m-b-20" />
           </div>
+        </div>
       </mat-card-content>
     </mat-card>
   </div>
@@ -156,7 +184,8 @@
     <mat-card>
       <mat-card-content>
         <!-- column -->
-        <mat-icon class="text-info">account_circle</mat-icon>
+        <!-- <mat-icon class="text-info">account_circle</mat-icon> -->
+        <img class="m-r-10 list-Img" src="../../../assets/img/identity.png" alt="" />
         <h5 class="m-0 m-b-5">Personal Information</h5>
         <a href="javascript:void(0);">View</a>
         <small class="text-muted pull-right">26%</small>
@@ -170,7 +199,7 @@
     <mat-card>
       <mat-card-content>
         <!-- column -->
-        <mat-icon class="text-danger">local_mall</mat-icon>
+        <img class="m-r-10 list-Img" src="../../../assets/img/identity.png" alt="" />
         <h5 class="m-0 m-b-5">Next of kin information</h5>
         <a href="javascript:void(0);">View</a>
         <small class="text-muted pull-right">60%</small>
@@ -189,7 +218,7 @@
     <mat-card>
       <mat-card-content>
         <!-- column -->
-        <mat-icon class="text-purple">person_outline</mat-icon>
+        <img class="m-r-10 list-Img" src="../../../assets/img/identity-card.png" alt="" />
         <h5 class="m-0 m-b-5">Identification details</h5>
         <a href="javascript:void(0);">View</a>
         <small class="text-muted pull-right">80%</small>
@@ -208,7 +237,7 @@
     <mat-card>
       <mat-card-content>
         <!-- column -->
-        <mat-icon class="text-info">content_paste</mat-icon>
+        <img class="m-r-10 list-Img" src="../../../assets/img/license.png" alt="" />
         <h5 class="m-0 m-b-5">Licence information</h5>
         <a href="javascript:void(0);">View</a>
         <small class="text-muted pull-right">50%</small>
@@ -222,9 +251,9 @@
     <mat-card>
       <mat-card-content>
         <!-- column -->
-        <mat-icon class="text-info">details</mat-icon>
+        <img class="m-r-10 list-Img" src="../../../assets/img/bank.png" alt="" />
         <h5 class="m-0 m-b-5">Banking details</h5>
-          <a href="javascript:void(0);">View</a>
+        <a href="javascript:void(0);">View</a>
         <small class="text-muted pull-right">26%</small>
         <mat-progress-bar class="m-t-5" mode="determinate" value="26"></mat-progress-bar>
       </mat-card-content>
@@ -236,7 +265,7 @@
     <mat-card>
       <mat-card-content>
         <!-- column -->
-        <mat-icon class="text-danger">pageview</mat-icon>
+        <img class="m-r-10 list-Img" src="../../../assets/img/tax.png" alt="" />
         <h5 class="m-0 m-b-5">TFN form</h5>
         <a href="javascript:void(0);">View</a>
         <small class="text-muted pull-right">60%</small>
@@ -255,7 +284,7 @@
     <mat-card>
       <mat-card-content>
         <!-- column -->
-        <mat-icon class="text-purple">stars</mat-icon>
+        <img class="m-r-10 list-Img" src="../../../assets/img/multiple.png" alt="" />
         <h5 class="m-0 m-b-5">Super annuation form</h5>
         <a href="javascript:void(0);">View</a>
         <small class="text-muted pull-right">80%</small>
@@ -274,7 +303,7 @@
     <mat-card>
       <mat-card-content>
         <!-- column -->
-        <mat-icon class="text-info">card_membership</mat-icon>
+        <img class="m-r-10 list-Img" src="../../../assets/img/personal.png" alt="" />
         <h5 class="m-0 m-b-5">Membership information</h5>
         <a href="javascript:void(0);">View</a>
         <small class="text-muted pull-right">40%</small>
