@@ -23,7 +23,12 @@ const routes: Routes = [
         urls: [{ title: 'Dashboard', url: '/' }, { title: 'My Staff' }],
       } },
       { path: 'form', component: EmployeeFormComponent },
-      { path: 'view:id', component: EmployeeViewComponent },
+      { path: 'view', component: EmployeeViewComponent,
+      data: {
+        title: 'Employee Profile ',
+        urls: [{ title: 'Dashboard', url: '/' }, { title: 'People & Culture' }],
+      }
+     },
       { path: 'transfer', component: EmployeeTransferFormComponent },
       { path: 'resignation', component: EmployeeResignationComponent,
       data: {

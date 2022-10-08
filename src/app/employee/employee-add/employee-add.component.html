@@ -4,123 +4,668 @@
   <!-- Card column -->
 
   <div fxFlex.gt-sm="100%" fxFlex="100">
-    <mat-card align="left">
+    <mat-card align="center">
       <mat-card-content>
-        <a href="javascript:void(0);"> <mat-icon>keyboard_arrow_left</mat-icon>Back</a>
-        
-        <h2 align="left"><b>Personal Information</b></h2>
+        <!-- <mat-card-title>Stepper</mat-card-title>
+          <mat-card-subtitle
+            >Check the
+            <code class=""
+              ><a href="https://material.angular.io/components/stepper/overview"
+                >Official Component</a
+              ></code
+            >
+          </mat-card-subtitle> -->
+        <!-- <button mat-raised-button (click)="isLinear = true" id="toggle-linear">
+            Enable linear mode
+          </button> -->
         <div fxLayout="row wrap" class="row">
           <div fxFlex.gt-sm="100%" fxFlex="100" class="text-center">
             <a routerLink="/"
               ><img
-                src="../../../assets/img/user-default-img.jpg"
-                alt="Employee image"
+                src="../../../assets/img/roms-logo-withtext.png"
+                alt="logo image"
                 width="150px"
               />
             </a>
           </div>
         </div>
-        <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20" align="left">
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <mat-label><b> Salut:</b></mat-label>
-            <span class="m-l-10">Mr.</span>
-          </div>
-          <div fxFlex.gt-sm="66.66" fxFlex="100" class="p-10"></div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <mat-label><b>First Name:</b></mat-label>
-            <span class="m-l-10">Kunal</span>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <mat-label><b>Middle Name:</b></mat-label>
-            <span class="m-l-10">Kumar</span>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <mat-label><b>Last Name:</b></mat-label>
-            <span class="m-l-10">Sharma</span>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <mat-label><b>Gender:</b></mat-label>
-            <span class="m-l-10">Male</span>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <mat-label><b>Pronoun:</b></mat-label>
-            <span class="m-l-10">----</span>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <mat-label><b>Nick Name:</b></mat-label>
-            <span class="m-l-10">KunSh</span>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <mat-label><b>Date Of Birth:</b></mat-label>
-            <span class="m-l-10">30/08/1999</span>
-          </div>
-          <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-            <h3 align="left">Current Address</h3>
+        <mat-horizontal-stepper [linear]="isLinear" #stepper class="add-emp-stepper">
+          <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+              <ng-template matStepLabel>Personal Info</ng-template>
+              <mat-divider class="m-t-20"></mat-divider>
+              <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20" align="left">
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Salut :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <mat-select placeholder="Select">
+                      <mat-option value="option">Option</mat-option>
+                      <mat-option value="option">Option2</mat-option>
+                      <mat-option value="option">Option3</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Upload Picture :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="Upload Picture" />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Upload Signature :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="Upload Picture" />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>First Name :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="First Name" />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Middle Name :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="Middle Name" />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Last Name :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="last Name" />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Gender :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <mat-select placeholder="Select">
+                      <mat-option value="option">Option</mat-option>
+                      <mat-option value="option">Option2</mat-option>
+                      <mat-option value="option">Option3</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Pronoun :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <mat-select placeholder="Select">
+                      <mat-option value="option">Option</mat-option>
+                      <mat-option value="option">Option2</mat-option>
+                      <mat-option value="option">Option3</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Date Of Birth :</mat-label>
+                  <!-- <mat-form-field>
+                        <input matInput [matDatepicker]="picker2" placeholder="Choose a date" />
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2 startView="year" [startAt]="startDate"></mat-datepicker>
+                      </mat-form-field> -->
+                </div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Location</mat-label>
+                  <mat-form-field appearance="outline">
+                    <mat-select placeholder="Select State">
+                      <mat-option value="option">Option</mat-option>
+                      <mat-option value="option">Option2</mat-option>
+                      <mat-option value="option">Option3</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Select City :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <!-- <mat-label>Select City</mat-label> -->
+                    <mat-select placeholder="Select City">
+                      <mat-option value="option">Option</mat-option>
+                      <mat-option value="option">Option2</mat-option>
+                      <mat-option value="option">Option3</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Pcode :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="Pcode " />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Address Line 1:</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Address Line 2:</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Landmark :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Email Address :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Phone Number</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Mobile Number :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput />
+                  </mat-form-field>
+                </div>
+              </div>
 
-            <mat-label><b>Address:</b></mat-label>
-            <span class="m-l-10">House 45, medison streer ,abc locality,area 4</span>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <mat-label><b>Suburb:</b></mat-label>
-            <span class="m-l-10">Melbourne</span>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <mat-label><b>State:</b></mat-label>
-            <span class="m-l-10">Victoria</span>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <mat-label><b>Pincode:</b></mat-label>
-            <span class="m-l-10">256890</span>
-          </div>
-          <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-            <h3 align="left">Residential Address</h3>
+              <div
+                class="row wrap m-t-20"
+                align="right"
+                style="display: flex; justify-content: space-between"
+              >
+                <div>
+                  <!-- <p class="m-0">
+                    Already Registered? <a routerLink="/" class="text-info link">Login </a>
+                  </p> -->
+                </div>
+                <button mat-raised-button color="primary" class="p-l-30 p-r-30" matStepperNext>
+                  Next
+                </button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+              <ng-template matStepLabel>Next Of Kin</ng-template>
+              <mat-divider class="m-t-20"></mat-divider>
+              <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20" align="left">
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Relationship :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <mat-select placeholder="Select">
+                      <mat-option value="option">Option</mat-option>
+                      <mat-option value="option">Option2</mat-option>
+                      <mat-option value="option">Option3</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Salut :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <mat-select placeholder="Select">
+                      <mat-option value="option">Option</mat-option>
+                      <mat-option value="option">Option2</mat-option>
+                      <mat-option value="option">Option3</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="35" fxFlex="100" class=""></div>
 
-            <mat-label><b>Address:</b></mat-label>
-            <span class="m-l-10">House 45, medison streer ,abc locality,area 4</span>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <mat-label><b>Suburb:</b></mat-label>
-            <span class="m-l-10">Melbourne</span>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <mat-label><b>State:</b></mat-label>
-            <span class="m-l-10">Victoria</span>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <mat-label><b>Pincode:</b></mat-label>
-            <span class="m-l-10">256890</span>
-          </div>
-          <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-            <h3 align="left">Postal Address</h3>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>First Name :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="First Name" />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Middle Name :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="Middle Name" />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Last Name :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="last Name" />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Gender :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="Gender" />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Pronoun :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="Upload Picture" />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Date Of Birth :</mat-label>
+                  <!-- <mat-form-field>
+                        <input matInput [matDatepicker]="picker2" placeholder="Choose a date" />
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2 startView="year" [startAt]="startDate"></mat-datepicker>
+                      </mat-form-field> -->
+                </div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Location</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="Select State" />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Select City :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="Select City" />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Pcode :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="Pcode " />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Address Line 1:</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Address Line 2:</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Landmark :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Email Address :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Phone Number</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Mobile Number :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="Upload Picture" />
+                  </mat-form-field>
+                </div>
+              </div>
 
-            <mat-label><b>Address:</b></mat-label>
-            <span class="m-l-10">House 45, medison streer ,abc locality,area 4</span>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <mat-label><b>Suburb:</b></mat-label>
-            <span class="m-l-10">Melbourne</span>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <mat-label><b>State:</b></mat-label>
-            <span class="m-l-10">Victoria</span>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <mat-label><b>Pincode:</b></mat-label>
-            <span class="m-l-10">256890</span>
-          </div>
-          <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-          <h3  align="left">Contact Details</h3>
-        </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <mat-label><b>Email:</b></mat-label>
-              <span class="m-l-10">Kunalsharmarok@gmail.com</span>
-            </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <mat-label><b>Mobile No:</b></mat-label>
-              <span class="m-l-10">+61 456785678</span>
-            </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10"></div>
-          </div>
+              <div
+                class="row wrap m-t-20"
+                align="right"
+                style="display: flex; justify-content: flex-end"
+              >
+                <button
+                  mat-raised-button
+                  color="primary"
+                  class="p-l-30 p-r-30 m-0 m-r-10"
+                  matStepperNext
+                >
+                  Previous
+                </button>
+                <button mat-raised-button color="primary" class="p-l-30 p-r-30" matStepperNext>
+                  Next
+                </button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+              <ng-template matStepLabel>Dates & Bank</ng-template>
+              <mat-divider class="m-t-20"></mat-divider>
+              <mat-card-title class="p-t-20" align="left">Dates :</mat-card-title>
+              <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20" align="left">
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Employed From :</mat-label>
+                  <!-- <mat-form-field>
+                    <input matInput [matDatepicker]="picker2" placeholder="Choose a date" />
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2 startView="year" [startAt]="startDate"></mat-datepicker>
+                  </mat-form-field> -->
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>To:</mat-label>
+                  <!-- <mat-form-field>
+                    <input matInput [matDatepicker]="picker2" placeholder="Choose a date" />
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2 startView="year" [startAt]="startDate"></mat-datepicker>
+                  </mat-form-field> -->
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Tax Spread :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>EFT Start :</mat-label>
+                  <!-- <mat-form-field>
+                    <input matInput [matDatepicker]="picker2" placeholder="Choose a date" />
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2 startView="year" [startAt]="startDate"></mat-datepicker>
+                  </mat-form-field> -->
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>EFT Paid on :</mat-label>
+                  <!-- <mat-form-field>
+                    <input matInput [matDatepicker]="picker2" placeholder="Choose a date" />
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2 startView="year" [startAt]="startDate"></mat-datepicker>
+                  </mat-form-field> -->
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Sick Leave accures from :</mat-label>
+                  <!-- <mat-form-field>
+                    <input matInput [matDatepicker]="picker2" placeholder="Choose a date" />
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2 startView="year" [startAt]="startDate"></mat-datepicker>
+                  </mat-form-field> -->
+                </div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Termination Type :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <mat-select placeholder="Select">
+                      <mat-option value="option">Option</mat-option>
+                      <mat-option value="option">Option2</mat-option>
+                      <mat-option value="option">Option3</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="70" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="100" fxFlex="100" class="">
+                  <mat-card-title class="p-10" align="left">Account :</mat-card-title>
+                </div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Default BSB / Account</mat-label>
+                  <mat-form-field appearance="outline">
+                    <mat-select placeholder="Select">
+                      <mat-option value="option">Option</mat-option>
+                      <mat-option value="option">Option2</mat-option>
+                      <mat-option value="option">Option3</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>...... :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Amount :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="35" fxFlex="100" class=""></div>
+              </div>
+
+              <div
+                class="row wrap m-t-20"
+                align="right"
+                style="display: flex; justify-content: flex-end"
+              >
+                <button mat-raised-button color="primary" class="p-l-30 p-r-30 m-0 m-r-10" matStepperNext>
+                  Previous
+                </button>
+                <button mat-raised-button color="primary" class="p-l-30 p-r-30" matStepperNext>
+                  Next
+                </button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+              <ng-template matStepLabel>Codes</ng-template>
+              <mat-divider class="m-t-20"></mat-divider>
+              <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20" align="left">
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Award :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <mat-select placeholder="Select">
+                      <mat-option value="option">Option</mat-option>
+                      <mat-option value="option">Option2</mat-option>
+                      <mat-option value="option">Option3</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Pay Period Type :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <mat-select placeholder="Select">
+                      <mat-option value="option">Option</mat-option>
+                      <mat-option value="option">Option2</mat-option>
+                      <mat-option value="option">Option3</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Payroll Code :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <mat-select placeholder="Select">
+                      <mat-option value="option">Option</mat-option>
+                      <mat-option value="option">Option2</mat-option>
+                      <mat-option value="option">Option3</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Gang Code :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <mat-select placeholder="Select">
+                      <mat-option value="option">Option</mat-option>
+                      <mat-option value="option">Option2</mat-option>
+                      <mat-option value="option">Option3</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Tax Scale :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="Select" />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>TFN :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Annual Rebates :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <mat-select placeholder="Select">
+                      <mat-option value="option">Option</mat-option>
+                      <mat-option value="option">Option2</mat-option>
+                      <mat-option value="option">Option3</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>In Database :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <mat-select placeholder="Select">
+                      <mat-option value="option">Option</mat-option>
+                      <mat-option value="option">Option2</mat-option>
+                      <mat-option value="option">Option3</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Minimum Pay :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <mat-select placeholder="Select">
+                      <mat-option value="option">Option</mat-option>
+                      <mat-option value="option">Option2</mat-option>
+                      <mat-option value="option">Option3</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Long Service Account No :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Redundancy Account No :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="35" fxFlex="100" class="p-10"></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Super Scheme:</mat-label>
+                  <mat-form-field appearance="outline">
+                    <mat-select placeholder="Select">
+                      <mat-option value="option">Option</mat-option>
+                      <mat-option value="option">Option2</mat-option>
+                      <mat-option value="option">Option3</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Account :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput />
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div
+                class="row wrap m-t-20"
+                align="right"
+                style="display: flex; justify-content: flex-end"
+              >
+                <button mat-raised-button color="primary" class="p-l-30 p-r-30 m-0 m-r-10" matStepperNext>
+                  Previous
+                </button>
+                <button mat-raised-button color="primary" class="p-l-30 p-r-30" matStepperNext>
+                  Next
+                </button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+              <ng-template matStepLabel>Preview</ng-template>
+              <mat-divider class="m-t-20"></mat-divider>
+              <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20" align="left">
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Salut :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="Select" empNo />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Upload Picture :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="Upload Picture" />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Upload Signature :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="Upload Picture" />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>First Name :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="First Name" />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Middle Name :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="Middle Name" />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="5" fxFlex="100" class=""></div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Last Name :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="last Name" />
+                  </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                  <mat-label>Gender :</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="Gender" />
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div
+                class="row wrap m-t-20"
+                align="right"
+                style="display: flex; justify-content: flex-end"
+              >
+                <button mat-raised-button color="primary" class="p-l-30 p-r-30 m-0 m-r-10" matStepperNext>
+                  Previous
+                </button>
+                <button mat-raised-button color="primary" class="p-l-30 p-r-30" matStepperNext>
+                  Next
+                </button>
+              </div>
+            </form>
+          </mat-step>
+        </mat-horizontal-stepper>
       </mat-card-content>
     </mat-card>
   </div>
