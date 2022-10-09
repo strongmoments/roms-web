@@ -116,6 +116,23 @@
                 {{row?.convertedEndDate}}
               </td>
             </ng-container>
+
+            
+            <ng-container matColumnDef="employeeEmail">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+              <td mat-cell *matCellDef="let row">
+                {{row?.employeeEmail}}
+              </td>
+            </ng-container>
+
+            
+            <ng-container matColumnDef="employeePhone">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact No</th>
+              <td mat-cell *matCellDef="let row">
+                {{row?.employeePhone}}
+              </td>
+            </ng-container>
+
             <!-- Name Column -->
             <ng-container matColumnDef="logo">
               <th mat-header-cell *matHeaderCellDef mat-sort-header></th>

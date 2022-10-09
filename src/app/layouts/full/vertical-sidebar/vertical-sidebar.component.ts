@@ -109,12 +109,12 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         if (this.userPermissions.timeoff.includes('applyleave')) {
           subMenu.push({ state: 'leave/apply-leave', name: 'Request leave', type: 'link', icon: '' });
           // subMenu.push({ displayName: 'My Leaves', iconName: '', route: '/leave' });
-          subMenu.push({
-            state: 'employee/resignation',
-            name: 'Resignation',
-            type: 'link',
-            icon: 'timer',
-          });
+          // subMenu.push({
+          //   state: 'employee/resignation',
+          //   name: 'Resignation',
+          //   type: 'link',
+          //   icon: 'timer',
+          // });
         }
         if (this.userPermissions.timeoff.includes('history')) {
           // subMenu.push({ state: 'coming-soon', name: 'Holidays', type: 'link', icon: '' });
@@ -126,6 +126,8 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
           type: 'sub',
           icon: 'perm_contact_calendar',
           children: subMenu,
+          badge: [{ type: 'warning', value: 'new' }],
+
         });
       }
 
@@ -160,10 +162,40 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
 
       if (this.userPermissions.reports && this.userPermissions.reports.length > 0) {
         let subMenu: any = [];
+
+        if (this.userPermissions.reports.includes('add_user')) {
+
+          subMenu.push({
+            state: '/employee/employee-list',
+            name: 'Employees',
+            type: 'link',
+            icon: 'account_box',
+          });
+        }
+
+        if (this.userPermissions.reports.includes('add_user')) {
+          subMenu.push({
+            state: 'registration/list',
+            name: 'Registrations',
+            type: 'link',
+            icon: 'account_box',
+            badge: [{ type: 'warning', value: 'new' }],
+          });
+
+        }
+
+        if (this.userPermissions.reports.includes('add_user')) {
+          subMenu.push({
+            state: '/employee/onboarding-list',
+            name: 'Onboarding',
+            type: 'link',
+            icon: 'account_box',
+          });
+
         if (this.userPermissions.reports.includes('leave_export')) {
           subMenu.push({
             state: 'report/leave',
-            name: 'Staff Leaves',
+            name: 'Leaves',
             type: 'link',
             icon: 'account_box',
           });
@@ -180,16 +212,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         }
 
 
-        if (this.userPermissions.reports.includes('add_user')) {
-          subMenu.push({
-            state: 'registration/list',
-            name: 'Registrations',
-            type: 'link',
-            icon: 'account_box',
-            badge: [{ type: 'warning', value: 'new' }],
-          });
-
-        }
+       
         // if (this.userPermissions.reports.includes('add_user')) {
         //   subMenu.push({
         //     state: 'transfer/list',
@@ -200,22 +223,12 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         //   });
 
         // }
-        if (this.userPermissions.reports.includes('add_user')) {
-          subMenu.push({
-            state: '/employee/onboarding-list',
-            name: 'Onboarding',
-            type: 'link',
-            icon: 'account_box',
-          });
+      
 
-          subMenu.push({
-            state: '/employee/employee-list',
-            name: 'Employee',
-            type: 'link',
-            icon: 'account_box',
-          });
 
         }
+      
+
         // if (this.userPermissions.reports.includes('leave_export')) {
         //   subMenu.push({ displayName: 'Holidays', iconName: '', route: '/' });
         // }
@@ -225,7 +238,6 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
           type: 'sub',
           icon: 'people',
           children: subMenu,
-          badge: [{ type: 'warning', value: 'new' }],
         });
       }
     }

@@ -493,7 +493,8 @@
                   <mat-card-content>
                     <div class="pro-img h-128">
                       <img onerror="this.onerror=null;this.src='../../../../assets/img/user-default-img.jpg';"
-                        [src]="managerData?.profileImage | base64Image" width="100" class="img-fluid img-circle" />
+                        [src]="managerData && managerData.profileImage && managerData.profileImage.length>0?managerData.profileImage[0]?.digitalAssets?.url:''"
+                        width="100" class="img-fluid img-circle" />
                     </div>
                     <h3 class="m-b-0 h-30">
                       <span *ngIf="managerData && managerData.firstName">{{ managerData?.firstName }} {{

@@ -35,6 +35,7 @@ export class EmployeeListComponent implements OnInit, OnChanges {
     'departments.description',
     'convertedStartDate',
     'employeType.name',
+    'logo'
   ];
 
   // convertedStartDate: convertedStartDate,
@@ -234,7 +235,7 @@ export class EmployeeListComponent implements OnInit, OnChanges {
       // page: (obj != undefined ? (obj.pageIndex == null ? 1 : obj.pageIndex + 1) : 1),
       page: pageSize - 1,
       search: '',
-      query: '',
+      query: `empName=${this.search}`,
       pageSize: obj != undefined ? (obj.pageSize == null ? this.pageSize : obj.pageSize) : this.pageSize,
     };
     return options;
@@ -258,11 +259,16 @@ export class EmployeeListComponent implements OnInit, OnChanges {
     // console.log(this.search, 'search', this.startDate, 'startdate', this.endDate, 'enddate');
     this.search = this.search.trim(); // Remove whitespace
     this.search = this.search.toLowerCase(); // Datasource defaults to lowercase matches
-    this.dataSource.filter = this.search;
+    // this.dataSource.filter = this.search;
     if (isTextSearch) {
-    } else {
-      this.refresh(this.getDefaultOptions());
-    }
+    this.pageNo=0;
+    this.totalRecords=0;
+    this.paginator.firstPage();
+    // this.dataSource.paginator?.pageIndex[0]=;
+    } 
+    // else {
+    this.refresh(this.getDefaultOptions());
+    // }
   }
 
 }

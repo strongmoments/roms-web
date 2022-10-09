@@ -35,6 +35,8 @@ export class OnboardingListComponent implements OnInit, OnChanges {
     'convertedStartdDate',
     'onboarding',
     'convertedEndDate',
+    'employeeEmail',
+    'employeePhone'
     //  'logo'
   ];
   @ViewChild('employeeDetailDialog') employeeDetailDialog!: TemplateRef<any>;
@@ -206,13 +208,16 @@ export class OnboardingListComponent implements OnInit, OnChanges {
           let convertedStartdDate = this.datePipe.transform(result.data[i].startdDate, 'dd/MM/yyyy');
           let convertedEndDate = this.datePipe.transform(result.data[i].endDate, 'dd/MM/yyyy');
           let employeeName = result.data[i] && result.data[i].personal ? `${result.data[i].personal.firstName} ${result.data[i].personal.lastName}` : '';
+
           data.push({
             ...result.data[i],
             employeeName: employeeName,
             convertedEndDate: convertedEndDate,
             convertedStartdDate: convertedStartdDate,
             convertedRegistrationDate: convertedRegistrationDate,
-            totalProgress: this.getProgressValue(result.data[i])
+            totalProgress: this.getProgressValue(result.data[i]),
+            employeeEmail: (result.data[i] && result.data[i].personal ? result.data[i].personal.email : ''),
+            employeePhone: (result.data[i] && result.data[i].personal ? result.data[i].personal.phone : '')
           });
         }
         // if (isScrolled == true) {
@@ -320,37 +325,46 @@ export class OnboardingListComponent implements OnInit, OnChanges {
     let currentProgress = 0;
     // console.log(item, 'item')
 
-    if (item.banking && item.banking.completionProgress) {
-      currentProgress += parseFloat(item.banking.completionProgress);
+    if (item.banking != undefined && item.banking.completionProgress != "null") {
+      currentProgress += item.banking.completionProgress ? parseFloat(item.banking.completionProgress) : 0;
+    }
+console.log(currentProgress,'1')
+
+    if (item.emergency != undefined && item.emergency && item.emergency.completionProgress != "null") {
+      currentProgress += item.emergency.completionProgress ? parseFloat(item.emergency.completionProgress) : 0;
     }
 
 
-    if (item.emergency && item.emergency.completionProgress) {
-      currentProgress += parseFloat(item.emergency.completionProgress);
+    console.log(currentProgress,'2')
+
+    if (item.licence  != undefined && item.licence && item.licence.completionProgress != "null") {
+      currentProgress += item.licence.completionProgress ? parseFloat(item.licence.completionProgress) : 0;
+    }
+    console.log(item.licence,'3')
+
+
+    if (item.personal != undefined && item.personal && item.personal.completionProgress != "null") {
+      currentProgress += item.personal.completionProgress ? parseFloat(item.personal.completionProgress) : 0;
+    }
+    console.log(currentProgress,'4')
+
+    if (item.superannuation != undefined && item.superannuation && item.superannuation.completionProgress != "null") {
+      currentProgress += item.superannuation.completionProgress ? parseFloat(item.superannuation.completionProgress) : 0;
+    }
+    console.log(currentProgress,'5')
+
+
+    if (item.tfn  != undefined && item.tfn && item.tfn.completionProgress != "null") {
+      currentProgress += item.tfn.completionProgress ? parseFloat(item.tfn.completionProgress) : 0;
     }
 
-    if (item.licence && item.licence.completionProgress) {
-      currentProgress += parseFloat(item.licence.completionProgress);
+    console.log(currentProgress,'6')
+
+    if (item.membership != undefined && item.membership && item.membership.completionProgress != "null") {
+      currentProgress += item.membership.completionProgress ? parseFloat(item.membership.completionProgress) : 0;
     }
 
-
-    if (item.personal && item.personal.completionProgress) {
-      currentProgress += parseFloat(item.personal.completionProgress);
-    }
-
-    if (item.superannuation && item.superannuation.completionProgress) {
-      currentProgress += parseFloat(item.superannuation.completionProgress);
-    }
-
-
-    if (item.tfn && item.tfn.completionProgress) {
-      currentProgress += parseFloat(item.tfn.completionProgress);
-    }
-
-
-    if (item.membership && item.membership.completionProgress) {
-      currentProgress += parseFloat(item.membership.completionProgress);
-    }
+    console.log(currentProgress,'7')
 
 
     let final = (currentProgress / 700) * 100;

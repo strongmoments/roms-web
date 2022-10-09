@@ -51,7 +51,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'employee-profile', component: EmployeeProfileComponent,
+        path: 'profile', component: EmployeeProfileComponent,
         data: {
           title: 'Employee Profile',
           urls: [{ title: 'Dashboard', url: '/' }, { title: 'People & Culture' }],

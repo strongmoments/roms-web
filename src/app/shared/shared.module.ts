@@ -28,6 +28,7 @@ import { Base64ImagePipe, CustomJavaDatePipe } from '../core/_helpers';
 import { DateAgoPipe } from '../core/_helpers/date-ago-pipe';
 import { QuillModule } from 'ngx-quill';
 import { ImagePreviewDialog } from './image-preview-dialog/image-preview-dialog.component';
+import { CommonEmployeeProfileViewComponent } from './common-employee-profile-view/common-employee-profile-view.component';
 
 // import { Base64ImagePipe } from '../core/_helpers/base64-image-pipe';
 // import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
@@ -60,7 +61,8 @@ import { ImagePreviewDialog } from './image-preview-dialog/image-preview-dialog.
     AccordionAnchorDirective,
     AccordionLinkDirective,
     AccordionDirective,
-    ImagePreviewDialog
+    ImagePreviewDialog,
+    CommonEmployeeProfileViewComponent
     // FullComponent,
     // VerticalAppHeaderComponent,
     // SpinnerComponent,
@@ -85,6 +87,7 @@ import { ImagePreviewDialog } from './image-preview-dialog/image-preview-dialog.
     PerfectScrollbarModule,
     FlexLayoutModule,
     QuillModule,
+    CommonEmployeeProfileViewComponent
     // AppBreadcrumbComponent
   ],
   providers: [MenuItems, HorizontalMenuItems, Base64ImagePipe, DateAgoPipe],

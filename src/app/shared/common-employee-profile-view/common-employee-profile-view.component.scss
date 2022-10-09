@@ -1,0 +1,27 @@
+.profile-mat-list{
+    padding:0 !important;
+}
+mat-list-item .mat-list-text{
+    display: flex;
+    align-items: flex-start !important;
+}
+.profile-mat-list .mat-list-item{
+    height: 35px !important;
+}
+.mat-card{
+    margin:10px !important;
+}
+.list-space{
+    display: flex;
+    justify-content:space-between;
+    flex-wrap: wrap;
+}
+.all-btn button{
+    border-radius: 50px;
+}
+.list-Img {
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+  }

@@ -64,7 +64,7 @@
               <div class="d-flex">
                 <img class="mat-card-avatar"
                   onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
-                  [src]="row?.employe?.profileImage | base64Image" />
+                  [src]="row && row.employe && row.employe.profileImage.length>0?row.employe.profileImage[0]?.digitalAssets?.url:''" />
                 <div class="m-l-15">
                   <p class="font-medium m-b-0 m-t-0">
                     {{ row?.employe?.firstName }} {{ row?.employe?.lastName }}

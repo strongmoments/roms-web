@@ -8,7 +8,11 @@ export class EmployeeService {
 
     constructor(private http: HttpClient) { }
     getAll(options: ViewOptions) {
-        return this.http.get<any>(`${environment.apiUrl}/v1/employee/load?page=${options.page}&size=${options.pageSize}`);
+        return this.http.get<any>(`${environment.apiUrl}/v1/employee/load?page=${options.page}&size=${options.pageSize}&${options.query}`);
+    }
+
+    getById(id: string) {
+        return this.http.get<any>(`${environment.apiUrl}/v1/employee/load/${id}`);
     }
 
     searchEmployee(search: string) {

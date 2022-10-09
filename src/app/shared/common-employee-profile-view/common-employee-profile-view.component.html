@@ -1,0 +1,304 @@
+<div fxLayout="row wrap">
+    <!-- Card column -->
+    <div fxFlex.gt-sm="33.33%" fxFlex="100">
+        <mat-card class="oh text-center little-profile">
+            <img mat-card-image src="assets/images/background/profile-bg.jpg" class="profile-bg-height" alt="Images" />
+            <mat-card-content>
+                <div class="pro-img">
+                    <img onerror="this.onerror=null;this.src='assets/img/user-default-img.jpg';"
+                        [src]="record && record.profileImage  && record.profileImage.length>0?  record.profileImage[0].digitalAssets?.url:''"
+                        width="100" />
+                </div>
+                <h3 class="m-b-0">{{record?.firstName}} {{record?.lastName}}</h3>
+                <h6 class="m-t-0 text-muted">{{record?.employeType?.name}}</h6>
+                <div fxLayout="row" fxLayoutWrap="wrap" class="m-t-30">
+                    <div fxFlex.gt-sm="33.33%" fxFlex.gt-xs="33.33%" fxFlex="100">
+                        <h5 class="m-0 font-light">{{record?.employeeNo}}</h5>
+                        <h6 class="m-0 m-t-5 text-muted">RTLID</h6>
+                    </div>
+                    <div fxFlex.gt-sm="33.33%" fxFlex.gt-xs="33.33%" fxFlex="100">
+                        <h5 class="m-0 font-light">
+                            <span *ngIf="record && record.birthdate"> {{record?.birthdate | date:'M/d/y'}}
+                            </span>
+                            <span *ngIf="!record || !record.birthdate">&nbsp;</span>
+                        </h5>
+                        <h6 class="m-0 m-t-5 text-muted">
+                            <mat-icon style="font-size: 20px">date_range</mat-icon>
+                        </h6>
+                    </div>
+                    <div fxFlex.gt-sm="33.33%" fxFlex.gt-xs="33.33%" fxFlex="100">
+                        <h5 class="m-0 font-light">
+
+                            <span *ngIf="record && record.gender"> {{record?.gender | uppercase}}
+                            </span>
+
+                            <span *ngIf="!record || !record.gender">&nbsp;</span>
+                        </h5>
+                        <h6 class="m-0 m-t-5 text-muted">
+                            <mat-icon style="font-size: 20px">male</mat-icon>
+                        </h6>
+                    </div>
+                </div>
+                <mat-list>
+                    <mat-card-content class="profile-mat-list">
+                        <mat-list-item class="text-muted">
+                            <mat-icon mat-list-icon>email</mat-icon>
+                            <p mat-line>{{record?.email}}</p>
+                        </mat-list-item>
+                        <mat-list-item class="text-muted">
+                            <mat-icon mat-list-icon>call</mat-icon>
+                            <p mat-line>{{record?.phone}}</p>
+                        </mat-list-item>
+                    </mat-card-content>
+                </mat-list>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <!-- Card column -->
+    <div fxFlex.gt-sm="33.33%" fxFlex.gt-xs="100" fxFlex="100">
+        <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+            <div fxLayout="column wrap">
+                <mat-card class="bg-purple">
+                    <mat-card-content>
+                        <!-- column -->
+                        <div class="d-flex no-block align-items-center">
+                            <div class="stats">
+                                <h3 class="text-white m-0">Payroll</h3>
+                                <!-- <h6 class="text-white m-t-0">March 2017</h6> -->
+                                <h1 class="text-white m-0">Rate $57</h1>
+                                <div fxLayout="row" fxLayoutWrap="wrap" class="m-t-30">
+                                    <div fxFlex.gt-sm="50%" fxFlex.gt-xs="33.33%" fxFlex="100">
+                                        <h5 class="text-white m-0 ">Last Payment Made On</h5>
+                                        <h6 class="text-white m-0 m-t-5 ">26 September 2022</h6>
+                                    </div>
+                                    <div fxFlex.gt-sm="50%" fxFlex.gt-xs="33.33%" fxFlex="100">
+                                        <h5 class="text-white m-0 ">Amount</h5>
+                                        <h6 class="text-white m-0 m-t-5 ">$2000</h6>
+                                    </div>
+                                </div>
+                                <h3 class="text-white m-0"><b>View Payroll Details</b></h3>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card class="bg-success">
+                    <mat-card-content>
+                        <!-- column -->
+                        <div class="d-flex no-block align-items-center">
+                            <div class="stats">
+                                <h3 class="text-white m-0">Leave</h3>
+                                <!-- <h6 class="text-white m-t-0">March 2017</h6> -->
+                                <h1 class="text-white m-0">total taken 20</h1>
+                                <div fxLayout="row" fxLayoutWrap="wrap" class="m-t-30">
+                                    <div fxFlex.gt-sm="33.33%" fxFlex.gt-xs="33.33%" fxFlex="100">
+                                        <h5 class="text-white m-0 ">Last Leave Taken</h5>
+                                        <h6 class="text-white m-0 m-t-5 ">28/08/2022</h6>
+                                    </div>
+                                    <div fxFlex.gt-sm="33.33%" fxFlex.gt-xs="33.33%" fxFlex="100">
+                                        <h5 class="text-white m-0 ">Type</h5>
+                                        <h6 class="text-white m-0 m-t-5 ">
+                                            Sick
+                                        </h6>
+                                    </div>
+                                    <div fxFlex.gt-sm="33.33%" fxFlex.gt-xs="33.33%" fxFlex="100">
+                                        <h5 class="text-white m-0 ">No Of Days</h5>
+                                        <h6 class="text-white m-0 m-t-5 ">
+                                            20
+                                        </h6>
+                                    </div>
+                                </div>
+                                <h3 class="text-white m-0"><b>View Leave Details</b></h3>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+    <!-- Card column -->
+    <div fxFlex.gt-sm="33.33%" fxFlex="100">
+        <mat-card class="m-0 m-t-20">
+            <div class="list-space">
+                <div>
+                    <mat-card-title class="m-0 p-20 p-l-25 p-b-0">My Activity</mat-card-title>
+                    <small class="p-l-25 text-muted">Checkout your recent activities</small>
+                </div>
+                <div class="p-20 p-r-25 all-btn">
+                    <button mat-raised-button class="p-l-30 p-r-30" color="primary">See All</button>
+                </div>
+            </div>
+            <mat-card-content>
+                <div class="d-flex no-blcok">
+                    <div class="w-100">
+                        <h4 class="m-0 m-t-5 list-space">
+                            <span>Registration Done</span>
+                            <!-- <span class="text-muted"><small>KunalSharmarok@gmail.com</small></span> -->
+                            <span class="text-muted"><small>30/08/2022</small></span>
+                        </h4>
+                        <hr class="m-t-15 m-b-20" />
+                    </div>
+                </div>
+                <div class="d-flex no-blcok">
+                    <div class="w-100">
+                        <h4 class="m-0 m-t-5 list-space">
+                            <span>Onboarding Started</span>
+                            <span class="text-muted"><small>05/34/0222</small></span>
+                        </h4>
+                        <hr class="m-t-15 m-b-20" />
+                    </div>
+                </div>
+                <div class="d-flex no-blcok">
+                    <div class="w-100">
+                        <h4 class="m-0 list-space">
+                            <span>Onboarding Completer</span>
+                            <span class="text-muted"><small>12/09/2022</small></span>
+                        </h4>
+                        <hr class="m-t-20 m-b-20" />
+                    </div>
+                </div>
+                <div class="d-flex no-blcok">
+                    <div class="w-100">
+                        <h4 class="m-0 list-space">
+                            <span>Department & Leave Allocated</span>
+                            <span class="text-muted"><small>03/08/2012</small></span>
+                        </h4>
+                        <hr class="m-t-20 m-b-20" />
+                    </div>
+                </div>
+                <div class="d-flex no-blcok">
+                    <div class="w-100">
+                        <h4 class="m-0 list-space">
+                            <span>Transferd to Another Project</span>
+                            <span class="text-muted"><small>03/08/2012</small></span>
+                        </h4>
+                        <hr class="m-t-20 m-b-20" />
+                    </div>
+                </div>
+                <div class="d-flex no-blcok">
+                    <div class="w-100">
+                        <h4 class="m-0 list-space">
+                            <span>Sick Leave Taken</span>
+                            <span class="text-muted"><small>03/08/2012</small></span>
+                        </h4>
+                        <hr class="m-t-20 m-b-20" />
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+<div fxLayout="row wrap card-wrap">
+    <!-- column -->
+    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+        <mat-card>
+            <mat-card-content>
+                <!-- column -->
+                <!-- <mat-icon class="text-info">account_circle</mat-icon> -->
+                <img class="m-r-10 list-Img" src="../../../assets/img/identity.png" alt="" />
+                <h5 class="m-0 m-b-5">Personal Information</h5>
+                <a href="javascript:void(0);">View</a>
+                <small class="text-muted pull-right">26%</small>
+                <mat-progress-bar class="m-t-5" mode="determinate" value="26"></mat-progress-bar>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <!-- column -->
+    <!-- column -->
+    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+        <mat-card>
+            <mat-card-content>
+                <!-- column -->
+                <img class="m-r-10 list-Img" src="../../../assets/img/identity.png" alt="" />
+                <h5 class="m-0 m-b-5">Emergency Contact</h5>
+                <a href="javascript:void(0);">View</a>
+                <small class="text-muted pull-right">60%</small>
+                <mat-progress-bar class="m-t-5" color="warn" mode="determinate" value="60"></mat-progress-bar>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <!-- column -->
+    <!-- column -->
+    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+        <mat-card>
+            <mat-card-content>
+                <!-- column -->
+                <img class="m-r-10 list-Img" src="../../../assets/img/identity-card.png" alt="" />
+                <h5 class="m-0 m-b-5">Licence Information</h5>
+                <a href="javascript:void(0);">View</a>
+                <small class="text-muted pull-right">80%</small>
+                <mat-progress-bar class="m-t-5" color="accent" mode="determinate" value="80"></mat-progress-bar>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <!-- column -->
+    <!-- column -->
+    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+        <mat-card>
+            <mat-card-content>
+                <!-- column -->
+                <img class="m-r-10 list-Img" src="../../../assets/img/license.png" alt="" />
+                <h5 class="m-0 m-b-5">Banking Details</h5>
+                <a href="javascript:void(0);">View</a>
+                <small class="text-muted pull-right">50%</small>
+                <mat-progress-bar class="m-t-5" mode="determinate" value="50"></mat-progress-bar>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <!-- column -->
+    <!-- column -->
+    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+        <mat-card>
+            <mat-card-content>
+                <!-- column -->
+                <img class="m-r-10 list-Img" src="../../../assets/img/bank.png" alt="" />
+                <h5 class="m-0 m-b-5">TFN Form</h5>
+                <a href="javascript:void(0);">View</a>
+                <small class="text-muted pull-right">26%</small>
+                <mat-progress-bar class="m-t-5" mode="determinate" value="26"></mat-progress-bar>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <!-- column -->
+    <!-- column -->
+    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+        <mat-card>
+            <mat-card-content>
+                <!-- column -->
+                <img class="m-r-10 list-Img" src="../../../assets/img/tax.png" alt="" />
+                <h5 class="m-0 m-b-5">Superannuation Choice</h5>
+                <a href="javascript:void(0);">View</a>
+                <small class="text-muted pull-right">60%</small>
+                <mat-progress-bar class="m-t-5" color="warn" mode="determinate" value="60"></mat-progress-bar>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <!-- column -->
+    <!-- column -->
+    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+        <mat-card>
+            <mat-card-content>
+                <!-- column -->
+                <img class="m-r-10 list-Img" src="../../../assets/img/multiple.png" alt="" />
+                <h5 class="m-0 m-b-5">Membership Information</h5>
+                <a href="javascript:void(0);">View</a>
+                <small class="text-muted pull-right">80%</small>
+                <mat-progress-bar class="m-t-5" color="accent" mode="determinate" value="80"></mat-progress-bar>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <!-- column -->
+    <!-- column -->
+    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+        <mat-card>
+            <mat-card-content>
+                <!-- column -->
+                <img class="m-r-10 list-Img" src="../../../assets/img/personal.png" alt="" />
+                <h5 class="m-0 m-b-5">Emergency Details</h5>
+                <a href="javascript:void(0);">View & Update</a>
+                <small class="text-muted pull-right">40%</small>
+                <mat-progress-bar class="m-t-5" mode="determinate" value="40"></mat-progress-bar>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <!-- column -->
+</div>

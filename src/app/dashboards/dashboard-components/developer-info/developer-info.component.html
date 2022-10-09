@@ -3,11 +3,11 @@
     alt="Photo of a Shiba Inu" />
   <mat-card-content>
     <div class="pro-img">
-      <img onerror="this.onerror=null;this.src='../../../../assets/img/rtl-logo-new-icon.jpg';" [src]="user.profilePic"
-        width="100" alt="user" />
+      <img onerror="this.onerror=null;this.src='../../../../assets/img/rtl-logo-new-icon.jpg';" [src]="user && user.profileImage && user.profileImage.length>0?user.profileImage[0].digitalAssets?.url:''"
+        width="100" />
     </div>
     <h3 class="m-b-0">{{user?.firstName}} {{user?.lastName}}</h3>
-    <h6 class="m-t-0 text-muted">Manager</h6>
+    <h6 class="m-t-0 text-muted">{{user?.departments?.description}}</h6>
     <mat-card-actions>
       <button mat-raised-button color="warn">Follow</button>
     </mat-card-actions>
