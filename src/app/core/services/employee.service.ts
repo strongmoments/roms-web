@@ -11,6 +11,13 @@ export class EmployeeService {
         return this.http.get<any>(`${environment.apiUrl}/v1/employee/load?page=${options.page}&size=${options.pageSize}&${options.query}`);
     }
 
+
+    uploadPicture(data: any) {
+        // let headers = new HttpHeaders();
+        // headers.set('content-type', 'multipart/form-data');
+        return this.http.post<any>(`${environment.apiUrl}/v1/employee/uploadpic`, data);
+    }
+
     getById(id: string) {
         return this.http.get<any>(`${environment.apiUrl}/v1/employee/load/${id}`);
     }

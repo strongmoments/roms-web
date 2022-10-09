@@ -8,6 +8,10 @@
                     <img onerror="this.onerror=null;this.src='assets/img/user-default-img.jpg';"
                         [src]="record && record.profileImage  && record.profileImage.length>0?  record.profileImage[0].digitalAssets?.url:''"
                         width="100" />
+                    <mat-icon (click)="profilePicUpload.click()">camera_alt</mat-icon>
+                    <input type="file" hidden #profilePicUpload accept="application/pdf, image/*"
+                        (change)="onFileChange($event)">
+
                 </div>
                 <h3 class="m-b-0">{{record?.firstName}} {{record?.lastName}}</h3>
                 <h6 class="m-t-0 text-muted">{{record?.employeType?.name}}</h6>
