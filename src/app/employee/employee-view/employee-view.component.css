@@ -1,6 +1,10 @@
 .color_blue {
     color: #009efb;
   }
+  .dfc {
+    display: flex;
+    align-items: center;
+  }
   
   @media (max-width: 767px) {
     .mat-list-base .mat-list-item .mat-list-item-content,
