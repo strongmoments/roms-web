@@ -62,24 +62,24 @@ mat-list-item .mat-list-text {
   visibility: hidden;
 }
 
-.payrol-card a.view-d{
+.payrol-card a.view-d {
   position: absolute;
-    width: 100%;
-    margin: -16px;
-    margin-top: -3px;
-    font-size: 18px;
-    text-decoration: underline;
+  width: 100%;
+  margin: -16px;
+  margin-top: -3px;
+  font-size: 18px;
+  text-decoration: underline;
 }
-.payrol-card .mat-card-content{
-  padding:16px
+.payrol-card .mat-card-content {
+  padding: 16px;
 }
-.font-w-500{
+.font-w-500 {
   font-weight: 500;
 }
-.pro-img{
+.pro-img {
   position: relative;
 }
-.pro-img mat-icon{
+.pro-img mat-icon {
   position: absolute;
   background: #fff;
   border-radius: 50px;
@@ -87,5 +87,5 @@ mat-list-item .mat-list-text {
   height: 34px;
   width: 34px;
   z-index: 111;
-  right:75px;
+  right: 28%;
 }

@@ -216,6 +216,9 @@ tr.example-element-row:not(.example-expanded-row):active {
   flex-basis: 0 !important;
   flex-grow: 1 !important;
 }
+.color{
+  color: #455A64;
+}
 @media (max-width: 340px) {
   mat-card {
     margin: 0 !important;
