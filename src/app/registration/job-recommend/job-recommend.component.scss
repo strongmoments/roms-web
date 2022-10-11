@@ -24,23 +24,26 @@
 .border-bottom-g:last-child {
   border-bottom: 0px solid darkgray;
 }
-.emp-mat-label{
+.emp-mat-label {
   display: flex;
   margin-top: 10px;
   align-items: center;
 }
-.emp-mat-label mat-icon{
+.emp-mat-label mat-icon {
   font-size: 20px;
-  height:20px
+  height: 20px;
 }
-.view-button{
+.view-button {
   background: #fff;
-    border: 1px solid gray;
-    padding: 8px 33px;
-    border-radius: 50px;
-    font-size: 15px;
-    cursor: pointer;
+  border: 1px solid gray;
+  padding: 8px 33px;
+  border-radius: 50px;
+  font-size: 15px;
+  cursor: pointer;
 }
-.l-h-26{
+.l-h-26 {
   line-height: 26px;
 }
+// .mat-tab-label {
+//   min-width: 50%;
+// }
