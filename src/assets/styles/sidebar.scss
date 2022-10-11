@@ -153,18 +153,24 @@ use profile section
   background-size: cover;
 
   .profile-img {
-    width: 50px;
-    margin-left: 30px;
+    width: 75px;
+    margin: auto;
     padding: 31px 0;
     border-radius: 100%;
+
+      img{
+        width: 75px;
+        height: 75px;
+        object-fit: cover;
+      }
 
     &::before {
       -webkit-animation: 2.5s blow 0s linear infinite;
       animation: 2.5s blow 0s linear infinite;
       position: absolute;
       content: '';
-      width: 50px;
-      height: 50px;
+      width: 75px;
+      height: 75px;
       top: 31px;
       margin: 0 auto;
       border-radius: 50%;
@@ -224,7 +230,7 @@ use profile section
   }
 
   .profile-text {
-    padding: 5px 0px;
+    padding:0px;
     position: relative;
     cursor: pointer;
     white-space: nowrap;
@@ -235,7 +241,9 @@ use profile section
       padding: 6px 30px;
       background: rgba(0, 0, 0, 0.5);
       // display: block;
-      white-space: nowrap;
+      white-space: break-spaces;
+      display: flex;
+      justify-content: center;
 
       &:after {
         position: absolute;

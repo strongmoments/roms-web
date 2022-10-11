@@ -76,8 +76,8 @@
   <div fxFlex.gt-sm="33.33%" fxFlex.gt-xs="100" fxFlex="100">
     <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
       <div fxLayout="column wrap">
-        <mat-card class="bg-purple">
-          <mat-card-content class="m-20 m-b-0">
+        <mat-card class="bg-purple payrol-card">
+          <mat-card-content class="">
             <!-- column -->
             <div class="d-flex no-block align-items-center">
               <div class="stats w-100">
@@ -92,20 +92,20 @@
                 </div>
                 <div fxLayout="row" fxLayoutWrap="wrap" class="m-t-20 m-b-15">
                   <div fxFlex.gt-sm="70%" fxFlex.gt-xs="100%" fxFlex="100" class="text-center">
-                    <h5 class="text-white m-0">Last Payment Made On</h5>
+                    <h5 class="text-white m-0 font-w-500">Last Payment Made On</h5>
                     <h6 class="text-white m-0 m-t-5">26 September 2022</h6>
                   </div>
                   <div fxFlex.gt-sm="30%" fxFlex.gt-xs="100%" fxFlex="100" class="text-center">
-                    <h5 class="text-white m-0">Amount</h5>
+                    <h5 class="text-white m-0 font-w-500">Amount</h5>
                     <h6 class="text-white m-0 m-t-5">$2000</h6>
                   </div>
                 </div>
-                <h3 class="text-white m-0 text-center"><b>View Payroll Details</b></h3>
+                <a href="javascript:void(0)" class="text-white m-0 text-center view-d"><b>View Payroll Details</b></a>
               </div>
             </div>
           </mat-card-content>
         </mat-card>
-        <mat-card class="bg-success">
+        <mat-card class="bg-success payrol-card">
           <mat-card-content>
             <!-- column -->
             <div class="d-flex no-block align-items-center">
@@ -115,24 +115,24 @@
                 </h3>
                 <!-- <h6 class="text-white m-t-0">March 2017</h6> -->
                 <div class="rate-text text-center m-t-10 m-b-5">
-                  <h2 class="text-white m-0 m-r-10">Total Taken</h2>
-                  <h2 class="text-white m-0">20</h2>
+                  <h2 class="text-white m-0 font-w-500">Total Taken </h2>
+                  <h2 class="text-white m-0 m-l-5"> 20</h2>
                 </div>
-                <div fxLayout="row" fxLayoutWrap="wrap" class="m-t-20 m-b-15">
-                  <div fxFlex.gt-sm="40%" fxFlex.gt-xs="100%" fxFlex="100" class="text-center">
-                    <h5 class="text-white m-0">Last Leave Taken</h5>
+                <div fxLayout="row" fxLayoutWrap="wrap" class="m-t-15 m-b-15">
+                  <div fxFlex.gt-sm="50%" fxFlex.gt-xs="100%" fxFlex="100" class="text-center">
+                    <h5 class="text-white m-0 font-w-500">Last Leave Taken</h5>
                     <h6 class="text-white m-0 m-t-5">28/08/2022</h6>
                   </div>
-                  <div fxFlex.gt-sm="30%" fxFlex.gt-xs="100%" fxFlex="100" class="text-center">
-                    <h5 class="text-white m-0">Type</h5>
+                  <div fxFlex.gt-sm="22%" fxFlex.gt-xs="100%" fxFlex="100" class="text-center">
+                    <h5 class="text-white m-0 font-w-500">Type</h5>
                     <h6 class="text-white m-0 m-t-5">Sick</h6>
                   </div>
-                  <div fxFlex.gt-sm="30%" fxFlex.gt-xs="100%" fxFlex="100" class="text-center">
-                    <h5 class="text-white m-0">No of Days</h5>
+                  <div fxFlex.gt-sm="28%" fxFlex.gt-xs="100%" fxFlex="100" class="text-center">
+                    <h5 class="text-white m-0 font-w-500">No of Days</h5>
                     <h6 class="text-white m-0 m-t-5">20</h6>
                   </div>
                 </div>
-                <h3 class="text-white m-0 text-center"><b>View Leave Details</b></h3>
+                <a href="javascript:void(0)" class="text-white m-0 text-center view-d"><b>View Leave Details</b></a>
               </div>
             </div>
           </mat-card-content>
@@ -143,69 +143,66 @@
   <!-- Card column -->
   <div fxFlex.gt-sm="33.33%" fxFlex="100">
     <mat-card class="m-0 m-t-20">
-      <div class="list-space">
-        <div>
-          <mat-card-title class="m-0 p-20 p-l-25 p-b-0">My Activity</mat-card-title>
-          <small class="p-l-25 text-muted">Checkout your recent activities</small>
-        </div>
-        <div class="p-20 p-r-25 all-btn">
-          <button mat-raised-button class="p-l-30 p-r-30" color="primary">See All</button>
+      <div class="list-space bg-info">
+        <h4 class="m-0 p-15 p-r-0 p-t-20 text-white" style="">Employement History</h4>
+          <!-- <small class="p-l-25 text-muted">Checkout your recent activities</small> -->
+        <div class="p-15 p-l-0 all-btn" style="">
+          <button mat-raised-button class="p-l-15 p-r-15" color="defult" style="color:#0673bb;">See All</button>
         </div>
       </div>
       <mat-card-content>
         <div class="d-flex no-blcok">
           <div class="w-100">
-            <h4 class="m-0 m-t-5 list-space">
+            <h6 class="m-0 m-t-5 list-space">
               <span class="max-w230">Registration Done</span>
               <!-- <span class="text-muted"><small>KunalSharmarok@gmail.com</small></span> -->
               <span class="text-muted"><small>10/10/2022</small></span>
-            </h4>
+            </h6>
             <hr class="m-t-15 m-b-20" />
           </div>
         </div>
         <div class="d-flex no-blcok">
           <div class="w-100">
-            <h4 class="m-0 m-t-5 list-space">
+            <h6 class="m-0 m-t-5 list-space">
               <span class="max-w230">Onboarding Started</span>
               <span class="text-muted"><small>10/10/2022</small></span>
-            </h4>
+            </h6>
             <hr class="m-t-15 m-b-20" />
           </div>
         </div>
         <div class="d-flex no-blcok">
           <div class="w-100">
-            <h4 class="m-0 list-space">
+            <h6 class="m-0 list-space">
               <span class="max-w230">Onboarding Completed</span>
               <span class="text-muted"><small>10/10/2022</small></span>
-            </h4>
+            </h6>
             <hr class="m-t-20 m-b-20" />
           </div>
         </div>
         <div class="d-flex no-blcok">
           <div class="w-100">
-            <h4 class="m-0 list-space">
+            <h6 class="m-0 list-space">
               <span class="max-w230">Department & Leave Allocated</span>
               <span class="text-muted"><small>10/10/2022</small></span>
-            </h4>
+            </h6>
             <hr class="m-t-20 m-b-20" />
           </div>
         </div>
         <div class="d-flex no-blcok">
           <div class="w-100">
-            <h4 class="m-0 list-space">
+            <h6 class="m-0 list-space">
               <span class="max-w230">Transferred to Another Project</span>
               <span class="text-muted"><small>11/10/2022</small></span>
-            </h4>
+            </h6>
             <hr class="m-t-20 m-b-20" />
           </div>
         </div>
         <div class="d-flex no-blcok">
           <div class="w-100">
-            <h4 class="m-0 list-space">
+            <h6 class="m-0 list-space">
               <span class="max-w230">Sick Leave Taken</span>
               <span class="text-muted"><small>10/10/2022</small></span>
-            </h4>
-            <hr class="m-t-20 m-b-20" />
+            </h6>
           </div>
         </div>
       </mat-card-content>
@@ -338,7 +335,7 @@
       <mat-card-content>
         <!-- column -->
         <img class="m-r-10 list-Img" src="../../../assets/img/personal.png" alt="" />
-        <h5 class="m-0 m-b-5">Emergency Details</h5>
+        <h5 class="m-0 m-b-5">Employement Details</h5>
         <a  href="javascript:void(0);">View & Update</a>
         <small class="text-muted pull-right d-hidden">40%</small>
         <mat-progress-bar class="m-t-5 d-hidden" mode="determinate" value="40"></mat-progress-bar>
