@@ -23,7 +23,7 @@ const routes: Routes = [
         urls: [{ title: 'Dashboard', url: '/' }, { title: 'My Staff' }],
       } },
       { path: 'form', component: EmployeeFormComponent },
-      { path: 'view', component: EmployeeViewComponent,
+      { path: 'personal-info', component: EmployeeViewComponent,
       data: {
         title: 'Employee Profile ',
         urls: [{ title: 'Dashboard', url: '/' }, { title: 'People & Culture' }],

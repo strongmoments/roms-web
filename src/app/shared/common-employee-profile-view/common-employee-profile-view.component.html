@@ -38,7 +38,7 @@
           <div fxFlex.gt-sm="33.33%" fxFlex.gt-xs="33.33%" fxFlex="100">
             <h5 class="m-0 font-light">
               <span *ngIf="record && record.birthdate">
-                {{ record?.birthdate | date: 'M/d/y' }}
+                {{ record?.birthdate | date: 'd/M/y' }}
               </span>
               <span *ngIf="!record || !record.birthdate">&nbsp;</span>
             </h5>
@@ -88,7 +88,7 @@
                 <div class="rate-text text-center m-t-10 m-b-5">
                   <h2 class="text-white m-0">Rate</h2>
                   <h2 class="text-white m-0 doller-i">$</h2>
-                  <h2 class="text-white m-0">57</h2>
+                  <h2 class="text-white m-0">0</h2>
                 </div>
                 <div fxLayout="row" fxLayoutWrap="wrap" class="m-t-20 m-b-15">
                   <div fxFlex.gt-sm="70%" fxFlex.gt-xs="100%" fxFlex="100" class="text-center">
@@ -218,7 +218,7 @@
         <!-- <mat-icon class="text-info">account_circle</mat-icon> -->
         <img class="m-r-10 list-Img" src="../../../assets/img/identity.png" alt="" />
         <h5 class="m-0 m-b-5">Personal Information</h5>
-        <a href="javascript:void(0);">View</a>
+        <a routerLink="/employee/personal-info" [queryParams]="{id:record.id}">View</a>
         <small class="text-muted pull-right">26%</small>
         <mat-progress-bar class="m-t-5" mode="determinate" value="26"></mat-progress-bar>
       </mat-card-content>

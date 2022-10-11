@@ -18,7 +18,7 @@ export enum CustomMessage {
     registerSuccess = 'Your request is submitted succesfully.Please wait while we verify your details.Thanks',
     alreadyRegistered = 'Your request is already submitted.Please wait while we verify your details and get back to you.Thanks',
     userCreatedSuccess = 'User created successfully',
-    alreadyExist = 'User already exist',
+    alreadyExist = 'User already exist.Please go to login to access your account.',
     invalidLeaveAttachment = 'Only jpeg,png,jpg and pdfs are allowed.',
     invalidLeaveAttachmentSize = 'File size exceeds maximum limit 2 MB.',
     recordNotFound = 'Record not found.',

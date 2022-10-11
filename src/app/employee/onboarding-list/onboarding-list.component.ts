@@ -20,6 +20,7 @@ import * as moment from 'moment';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { element } from 'protractor';
 import { MatDialog } from '@angular/material/dialog';
+import { B } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-onboarding-list',
@@ -154,7 +155,7 @@ export class OnboardingListComponent implements OnInit, OnChanges {
   }
 
   redirectForm(elem: any) {
-    console.log(elem);
+    // console.log(elem);
     sessionStorage.setItem(elem.id, JSON.stringify(elem));
     this.router.navigate(['/registration/create-user'], { queryParams: { requestId: elem.id } });
   }
@@ -200,7 +201,14 @@ export class OnboardingListComponent implements OnInit, OnChanges {
       .subscribe((result: any) => {
         let data: any = [];
 
-        console.log(result.data.length, 'result.data.length')
+        result.data=result.data.sort((x: any, y: any) => {
+          let a: any = new Date(parseInt(y.registrationDate?y.registrationDate:0));
+          let b: any = new Date(parseInt(x.registrationDate?x.registrationDate:0));
+          console.log(y.registrationDate, a,b,x.registrationDate)
+          return a - b;
+        });
+
+        // console.log(result.data.length, 'result.data.length')
         for (let i = 0; i < result.data.length; i++) {
           // let statusName = this.getStatus(result.data[i]?.status);
           let convertedRegistrationDate = this.datePipe.transform(result.data[i].registrationDate, 'dd/MM/yyyy');
@@ -220,6 +228,13 @@ export class OnboardingListComponent implements OnInit, OnChanges {
             employeePhone: (result.data[i] && result.data[i].personal ? result.data[i].personal.phone : '')
           });
         }
+
+        // data.map((elem: any) => {
+        //   return (elem.body.time = new Date(parseInt(elem.body.time)));
+        // });
+       
+        // console.log(this.notifications, 'this.notifications');
+
         // if (isScrolled == true) {
         //   this.dataSource.data = [...this.dataSource.data, ...data];
         // } else {
@@ -240,8 +255,8 @@ export class OnboardingListComponent implements OnInit, OnChanges {
     let pageSize = obj != undefined ? (obj.pageIndex == null ? 1 : obj.pageIndex + 1) : 1;
 
     const options: ViewOptions = {
-      sortField: sort !== undefined ? sort.active : 'fullName',
-      sortDirection: sort !== undefined ? sort.direction : 'asc',
+      sortField: sort !== undefined ? sort.active : 'convertedRegistrationDate',
+      sortDirection: sort !== undefined ? sort.direction : 'desc',
       // page: (obj != undefined ? (obj.pageIndex == null ? 1 : obj.pageIndex + 1) : 1),
       page: pageSize - 1,
       search: '',
@@ -281,7 +296,7 @@ export class OnboardingListComponent implements OnInit, OnChanges {
           let date: any = new Date(parseInt(elem.startdDate));
           date.setHours(0, 0, 0, 0);
           date = new Date(date);
-          console.log(this.startDate, this.endDate, date)
+          // console.log(this.startDate, this.endDate, date)
           return (date >= this.startDate && date <= this.endDate)
         });
         // console.log(this.status, this.endDate)
@@ -316,7 +331,7 @@ export class OnboardingListComponent implements OnInit, OnChanges {
 
     dialogRef.afterClosed().subscribe((result: any) => {
       // this.router.navigate(['/registration/list']);
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
     });
   }
 
@@ -328,43 +343,43 @@ export class OnboardingListComponent implements OnInit, OnChanges {
     if (item.banking != undefined && item.banking.completionProgress != "null") {
       currentProgress += item.banking.completionProgress ? parseFloat(item.banking.completionProgress) : 0;
     }
-console.log(currentProgress,'1')
+    // console.log(currentProgress, '1')
 
     if (item.emergency != undefined && item.emergency && item.emergency.completionProgress != "null") {
       currentProgress += item.emergency.completionProgress ? parseFloat(item.emergency.completionProgress) : 0;
     }
 
 
-    console.log(currentProgress,'2')
+    // console.log(currentProgress, '2')
 
-    if (item.licence  != undefined && item.licence && item.licence.completionProgress != "null") {
+    if (item.licence != undefined && item.licence && item.licence.completionProgress != "null") {
       currentProgress += item.licence.completionProgress ? parseFloat(item.licence.completionProgress) : 0;
     }
-    console.log(item.licence,'3')
+    // console.log(item.licence, '3')
 
 
     if (item.personal != undefined && item.personal && item.personal.completionProgress != "null") {
       currentProgress += item.personal.completionProgress ? parseFloat(item.personal.completionProgress) : 0;
     }
-    console.log(currentProgress,'4')
+    // console.log(currentProgress, '4')
 
     if (item.superannuation != undefined && item.superannuation && item.superannuation.completionProgress != "null") {
       currentProgress += item.superannuation.completionProgress ? parseFloat(item.superannuation.completionProgress) : 0;
     }
-    console.log(currentProgress,'5')
+    // console.log(currentProgress, '5')
 
 
-    if (item.tfn  != undefined && item.tfn && item.tfn.completionProgress != "null") {
+    if (item.tfn != undefined && item.tfn && item.tfn.completionProgress != "null") {
       currentProgress += item.tfn.completionProgress ? parseFloat(item.tfn.completionProgress) : 0;
     }
 
-    console.log(currentProgress,'6')
+    // console.log(currentProgress, '6')
 
     if (item.membership != undefined && item.membership && item.membership.completionProgress != "null") {
       currentProgress += item.membership.completionProgress ? parseFloat(item.membership.completionProgress) : 0;
     }
 
-    console.log(currentProgress,'7')
+    // console.log(currentProgress, '7')
 
 
     let final = (currentProgress / 700) * 100;
@@ -382,7 +397,7 @@ console.log(currentProgress,'1')
     // If the user has scrolled within 200px of the bottom, add more data
     const buffer = 10;
     const limit = tableScrollHeight - tableViewHeight - buffer;
-    console.log(scrollLocation, limit, 'scrollLocation > limit');
+    // console.log(scrollLocation, limit, 'scrollLocation > limit');
     if (scrollLocation > limit) {
       // console.log(this.dataSource.data.length, this.totalRecords, 'totalRecords');
       if (this.dataSource.data && (this.dataSource.data.length < this.totalRecords)) {
@@ -409,7 +424,7 @@ console.log(currentProgress,'1')
     for (let i = 0; i < this.dataSource.data.length; i++) {
       let item = this.dataSource.data[i];
       // console.log(this.dataSource.data[i], 'this.dataSource.data');
-      let row: string = `${item?.employeeName},${item?.personal?.employeeNo},${item?.personal?.email},${item?.personal?.phone},${item?.personal?.gender},${item?.personal?.gender},${item?.personal?.tempAddress?.address} ${item?.personal?.tempAddress?.suburb} ${item?.personal?.tempAddress?.state} ${item?.personal?.tempAddress?.postcode},${item?.personal?.permanentAddress?.address} ${item?.personal?.permanentAddress?.suburb} ${item?.personal?.permanentAddress?.state} ${item?.personal?.permanentAddress?.postcode},${item?.licence?.licenceNumber},${item?.licence?.issuedIn},${item?.licence?.expiryDate},${item?.emergency?.firstName} ${item?.emergency?.lastName},${item?.emergency?.email},${item?.emergency?.mobile},${item?.emergency?.address?.address} ${item?.emergency?.address?.suburb} ${item?.emergency?.address?.state} ${item?.emergency?.address?.postcode},${item?.tfn?.tfnnumber},${item?.superannuation?.currentFund?.accountName},${item?.superannuation?.currentFund?.membername},${item?.banking?.defaultBank?.accountHolderName},${item?.banking?.defaultBank?.accountNumber},${item?.banking?.defaultBank?.bankName},${item?.banking?.defaultBank?.bsbNumber},${item?.banking?.defaultBank?.fixedAmount},${item?.convertedRegistrationDate},${item?.convertedStartdDate},${item?.convertedEndDate}\r\n`;
+      let row: string = `${item?.employeeName},${item?.personal?.employeeNo},${item?.personal?.email},${item?.personal?.phone},${item?.personal?.birthdate},${item?.personal?.gender},${item?.personal?.tempAddress?.address} ${item?.personal?.tempAddress?.suburb} ${item?.personal?.tempAddress?.state} ${item?.personal?.tempAddress?.postcode},${item?.personal?.permanentAddress?.address} ${item?.personal?.permanentAddress?.suburb} ${item?.personal?.permanentAddress?.state} ${item?.personal?.permanentAddress?.postcode},${item?.licence?.licenceNumber},${item?.licence?.issuedIn},${item?.licence?.expiryDate},${item?.emergency?.firstName} ${item?.emergency?.lastName},${item?.emergency?.email},${item?.emergency?.mobile},${item?.emergency?.address?.address} ${item?.emergency?.address?.suburb} ${item?.emergency?.address?.state} ${item?.emergency?.address?.postcode},${item?.tfn?.tfnnumber},${item?.superannuation?.currentFund?.accountName},${item?.superannuation?.currentFund?.membername},${item?.banking?.defaultBank?.accountHolderName},${item?.banking?.defaultBank?.accountNumber},${item?.banking?.defaultBank?.bankName},${item?.banking?.defaultBank?.bsbNumber},${item?.banking?.defaultBank?.fixedAmount},${item?.convertedRegistrationDate},${item?.convertedStartdDate},${item?.convertedEndDate}\r\n`;
       // console.log(row);
       csvArray.push(row);
     }

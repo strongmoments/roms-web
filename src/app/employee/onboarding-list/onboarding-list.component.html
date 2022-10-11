@@ -56,10 +56,10 @@
       <mat-card-content>
         <div class="table-responsive infinite-scroll">
           <mat-table #table [dataSource]="dataSource" (scroll)="onTableScroll($event)"
-            class="table employee-list no-wrap" matSort>
+            class="table employee-list no-wrap">
             <!-- Name Column -->
             <ng-container matColumnDef="employeeName">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+              <th mat-header-cell *matHeaderCellDef>Name</th>
               <td mat-cell *matCellDef="let row">
                 <!-- <span class="header-label">days:</span> -->
                 <!-- {{ row?.firstName }}{{ row?.lastName }} -->
@@ -74,7 +74,7 @@
 
             <!-- Name Column -->
             <ng-container matColumnDef="convertedRegistrationDate">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Registration Date</th>
+              <th mat-header-cell *matHeaderCellDef>Registration Date</th>
               <td mat-cell *matCellDef="let row">
                 {{row.convertedRegistrationDate}}
                 <!-- <span class="header-label">days:</span> -->
@@ -84,7 +84,7 @@
 
             <!-- Name Column -->
             <ng-container matColumnDef="convertedStartdDate">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Date</th>
+              <th mat-header-cell *matHeaderCellDef>Start Date</th>
               <td mat-cell *matCellDef="let row">
                 <!-- <span class="header-label">days:</span> -->
                 {{row?.convertedStartdDate}}
@@ -92,7 +92,7 @@
             </ng-container>
             <!-- Name Column -->
             <ng-container matColumnDef="onboarding">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Progress</th>
+              <th mat-header-cell *matHeaderCellDef>Progress</th>
               <td mat-cell *matCellDef="let row">
                 <div style="display: flex; align-items: center">
                   <!-- Progress -->
@@ -111,7 +111,7 @@
             </ng-container>
             <!-- Name Column -->
             <ng-container matColumnDef="convertedEndDate">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Completion Date</th>
+              <th mat-header-cell *matHeaderCellDef>Completion Date</th>
               <td mat-cell *matCellDef="let row">
                 {{row?.convertedEndDate}}
               </td>
@@ -119,7 +119,7 @@
 
             
             <ng-container matColumnDef="employeeEmail">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+              <th mat-header-cell *matHeaderCellDef>Email</th>
               <td mat-cell *matCellDef="let row">
                 {{row?.employeeEmail}}
               </td>
@@ -127,7 +127,7 @@
 
             
             <ng-container matColumnDef="employeePhone">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact No</th>
+              <th mat-header-cell *matHeaderCellDef>Contact No</th>
               <td mat-cell *matCellDef="let row">
                 {{row?.employeePhone}}
               </td>
@@ -135,7 +135,7 @@
 
             <!-- Name Column -->
             <ng-container matColumnDef="logo">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+              <th mat-header-cell *matHeaderCellDef></th>
               <td mat-cell *matCellDef="let row">
                 <a href="javascript:void(0);">
                   <mat-icon>visibility</mat-icon>
