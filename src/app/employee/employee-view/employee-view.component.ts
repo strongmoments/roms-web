@@ -11,16 +11,29 @@ import { CustomMessage } from 'src/app/custom-message';
 })
 export class EmployeeViewComponent implements OnInit {
   record: any;
-  user:any;
-  id:string="";
-  constructor(private activatedRoute: ActivatedRoute, private employeeService: EmployeeService, private router: Router, private alertService: AlertService,private authService:AuthenticationService) {
-    this.user=this.authService.getCurrentUser();
+  user: any;
+  id: string = "";
+  currentAddress: any;
+  postalAddress: any;
+  residentialAddress: any;
+  constructor(private activatedRoute: ActivatedRoute, private employeeService: EmployeeService, private router: Router, private alertService: AlertService, private authService: AuthenticationService) {
+    this.user = this.authService.getCurrentUser();
+    
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
     this.activatedRoute.queryParams.subscribe((params: any) => {
       console.log(params);
       if (params['id']) {
-        this.id=params['id'];
+        this.id = params['id'];
         this.employeeService.getByIdPersonalInfo(params['id']).subscribe((result: any) => {
           this.record = result;
+          if (this.record && this.record.address) {
+            this.currentAddress = this.record.address.find((elem: any) => elem.type == 2);
+            this.postalAddress = this.record.address.find((elem: any) => elem.type == 1);
+            this.residentialAddress = this.record.address.find((elem: any) => elem.type == 1);
+
+          }
           console.log(result);
         }, (error: any) => {
           this.alertService.openSnackBar(CustomMessage.recordNotFound);
@@ -35,13 +48,13 @@ export class EmployeeViewComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  redirect(){
+  redirect() {
     console.log(this.user)
-    if(this.user.id == this.id){
-this.router.navigate(['/profile']);
-    }else{
-      this.router.navigate(['/employee/profile'],{queryParams:{id:this.id}});
-      
+    if (this.user.id == this.id) {
+      this.router.navigate(['/profile']);
+    } else {
+      this.router.navigate(['/employee/profile'], { queryParams: { id: this.id } });
+
     }
   }
 }

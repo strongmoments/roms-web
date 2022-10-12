@@ -12,6 +12,10 @@ export class EmployeeProfileComponent implements OnInit {
   record: any = { name: '12' };
   id: string = '';
   constructor(private activatedRoute: ActivatedRoute, private employeeService: EmployeeService, private router: Router, private alertService: AlertService) {
+    
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
     this.activatedRoute.queryParams.subscribe((params: any) => {
       console.log(params);
       if (params['id']) {

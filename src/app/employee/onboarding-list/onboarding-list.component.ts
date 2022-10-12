@@ -201,10 +201,10 @@ export class OnboardingListComponent implements OnInit, OnChanges {
       .subscribe((result: any) => {
         let data: any = [];
 
-        result.data=result.data.sort((x: any, y: any) => {
-          let a: any = new Date(parseInt(y.registrationDate?y.registrationDate:0));
-          let b: any = new Date(parseInt(x.registrationDate?x.registrationDate:0));
-          console.log(y.registrationDate, a,b,x.registrationDate)
+        result.data = result.data.sort((x: any, y: any) => {
+          let a: any = new Date(parseInt(y.registrationDate ? y.registrationDate : 0));
+          let b: any = new Date(parseInt(x.registrationDate ? x.registrationDate : 0));
+          console.log(y.registrationDate, a, b, x.registrationDate)
           return a - b;
         });
 
@@ -215,8 +215,13 @@ export class OnboardingListComponent implements OnInit, OnChanges {
 
           let convertedStartdDate = this.datePipe.transform(result.data[i].startdDate, 'dd/MM/yyyy');
           let convertedEndDate = this.datePipe.transform(result.data[i].endDate, 'dd/MM/yyyy');
-          let employeeName = result.data[i] && result.data[i].personal ? `${result.data[i].personal.firstName} ${result.data[i].personal.lastName}` : '';
-
+          let employeeName = '';
+          if (result.data[i].personal && result.data[i].personal != 'null') {
+            employeeName = result.data[i] && result.data[i].personal ? `${result.data[i].personal.firstName} ${result.data[i].personal.lastName}` : '';
+          }else{
+            employeeName = result.data[i] && result.data[i].firstName ? `${result.data[i].firstName} ${result.data[i].lastName}` : '';
+            
+          }
           data.push({
             ...result.data[i],
             employeeName: employeeName,
@@ -232,7 +237,7 @@ export class OnboardingListComponent implements OnInit, OnChanges {
         // data.map((elem: any) => {
         //   return (elem.body.time = new Date(parseInt(elem.body.time)));
         // });
-       
+
         // console.log(this.notifications, 'this.notifications');
 
         // if (isScrolled == true) {
