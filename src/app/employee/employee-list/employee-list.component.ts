@@ -28,13 +28,13 @@ export class EmployeeListComponent implements OnInit, OnChanges {
   globals: Globals;
   submitted: boolean = false;
   displayedColumns: string[] = [
-    'employeeNo',
     // 'employeePic',
     'employeeName',
+    'employeeNo',
     'employeeRole',
+    'employeType.name',
     'departments.description',
     'convertedStartDate',
-    'employeType.name',
     'logo'
   ];
 

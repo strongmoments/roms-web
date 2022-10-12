@@ -212,12 +212,22 @@ tr.example-element-row:not(.example-expanded-row):active {
 .mat-tab-g .mat-tab-label {
   min-width: 50% !important;
 }
-.mat-tab-g .mat-tab-group[mat-stretch-tabs]>.mat-tab-header .mat-tab-label {
+.mat-tab-g .mat-tab-group[mat-stretch-tabs] > .mat-tab-header .mat-tab-label {
   flex-basis: 0 !important;
   flex-grow: 1 !important;
 }
-.color{
-  color: #455A64;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+b,
+p {
+  color: #455a64 !important;
+}
+.color {
+  color: #455a64;
 }
 @media (max-width: 340px) {
   mat-card {
@@ -228,7 +238,7 @@ tr.example-element-row:not(.example-expanded-row):active {
   .mat-horizontal-stepper-header {
     padding: 0 8px !important;
   }
-  .sm-m-l-0{
+  .sm-m-l-0 {
     margin-left: 0 !important;
   }
   .m-b-sm20 {
