@@ -74,71 +74,76 @@
   </div>
   <!-- Card column -->
   <div fxFlex.gt-sm="33.33%" fxFlex.gt-xs="100" fxFlex="100">
-    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
-      <div fxLayout="column wrap">
-        <mat-card class="bg-purple payrol-card">
-          <mat-card-content class="">
-            <!-- column -->
-            <div class="d-flex no-block align-items-center">
-              <div class="stats w-100">
-                <h3 class="text-white m-0 dfc">
-                  <mat-icon class="m-r-5">account_balance_wallet</mat-icon>Payroll
-                </h3>
-                <!-- <h6 class="text-white m-t-0">March 2017</h6> -->
-                <div class="rate-text text-center m-t-10 m-b-5">
-                  <h2 class="text-white m-0">Rate</h2>
-                  <h2 class="text-white m-0 doller-i">$</h2>
-                  <h2 class="text-white m-0">0</h2>
-                </div>
-                <div fxLayout="row" fxLayoutWrap="wrap" class="m-t-20 m-b-15">
-                  <div fxFlex.gt-sm="70%" fxFlex.gt-xs="100%" fxFlex="100" class="text-center">
-                    <h5 class="text-white m-0 font-w-500">Last Payment Made On</h5>
-                    <h6 class="text-white m-0 m-t-5">26 September 2022</h6>
-                  </div>
-                  <div fxFlex.gt-sm="30%" fxFlex.gt-xs="100%" fxFlex="100" class="text-center">
-                    <h5 class="text-white m-0 font-w-500">Amount</h5>
-                    <h6 class="text-white m-0 m-t-5">$2000</h6>
-                  </div>
-                </div>
-                <a href="javascript:void(0)" class="text-white m-0 text-center view-d"><b>View Payroll Details</b></a>
+    <mat-card class="bg-purple payrol-card">
+      <mat-card-content class="">
+        <!-- column -->
+        <div class="d-flex no-block align-items-center">
+          <div class="stats w-100">
+            <h3 class="text-white m-0 dfc">
+              <mat-icon class="m-r-5">account_balance_wallet</mat-icon>Payroll
+            </h3>
+            <!-- <h6 class="text-white m-t-0">March 2017</h6> -->
+            <div class="rate-text text-center m-t-10 m-b-5">
+              <h2 class="text-white m-0">Rate</h2>
+              <h2 class="text-white m-0 doller-i">$</h2>
+              <h2 class="text-white m-0">0</h2>
+            </div>
+            <div fxLayout="row" fxLayoutWrap="wrap" class="m-t-20 m-b-15">
+              <div fxFlex.gt-sm="70%" fxFlex.gt-xs="100%" fxFlex="100" class="text-center">
+                <h5 class="text-white m-0 font-w-500">Last Payment Made On</h5>
+                <h6 class="text-white m-0 m-t-5">26 September 2022</h6>
+              </div>
+              <div fxFlex.gt-sm="30%" fxFlex.gt-xs="100%" fxFlex="100" class="text-center">
+                <h5 class="text-white m-0 font-w-500">Amount</h5>
+                <h6 class="text-white m-0 m-t-5">$2000</h6>
               </div>
             </div>
-          </mat-card-content>
-        </mat-card>
-        <mat-card class="bg-success payrol-card">
-          <mat-card-content>
-            <!-- column -->
-            <div class="d-flex no-block align-items-center">
-              <div class="stats w-100">
-                <h3 class="text-white m-0 dfc">
-                  <mat-icon class="m-r-5">date_range</mat-icon>Leave
-                </h3>
-                <!-- <h6 class="text-white m-t-0">March 2017</h6> -->
-                <div class="rate-text text-center m-t-10 m-b-5">
-                  <h2 class="text-white m-0 font-w-500">Total Taken </h2>
-                  <h2 class="text-white m-0 m-l-5"> 20</h2>
-                </div>
-                <div fxLayout="row" fxLayoutWrap="wrap" class="m-t-15 m-b-15">
-                  <div fxFlex.gt-sm="50%" fxFlex.gt-xs="100%" fxFlex="100" class="text-center">
-                    <h5 class="text-white m-0 font-w-500">Last Leave Taken</h5>
-                    <h6 class="text-white m-0 m-t-5">28/08/2022</h6>
-                  </div>
-                  <div fxFlex.gt-sm="22%" fxFlex.gt-xs="100%" fxFlex="100" class="text-center">
-                    <h5 class="text-white m-0 font-w-500">Type</h5>
-                    <h6 class="text-white m-0 m-t-5">Sick</h6>
-                  </div>
-                  <div fxFlex.gt-sm="28%" fxFlex.gt-xs="100%" fxFlex="100" class="text-center">
-                    <h5 class="text-white m-0 font-w-500">No of Days</h5>
-                    <h6 class="text-white m-0 m-t-5">20</h6>
-                  </div>
-                </div>
-                <a href="javascript:void(0)" class="text-white m-0 text-center view-d"><b>View Leave Details</b></a>
+            <div class="text-center p-8 all-btn">
+              <button mat-raised-button class="p-l-15 p-r-15" color="defult" style="color:#0673bb;">View Payroll Details</button>
+              <!-- <a href="javascript:void(0)" class="text-white m-0  view-d">View Payroll Details</a> -->
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="bg-success payrol-card">
+      <mat-card-content>
+        <!-- column -->
+        <div class="d-flex no-block align-items-center">
+          <div class="stats w-100">
+            <h3 class="text-white m-0 dfc">
+              <mat-icon class="m-r-5">date_range</mat-icon>Leave
+            </h3>
+            <!-- <h6 class="text-white m-t-0">March 2017</h6> -->
+            <div class="rate-text text-center m-t-10 m-b-5">
+              <h2 class="text-white m-0 font-w-500">Total Taken </h2>
+              <h2 class="text-white m-0 m-l-5"> 20</h2>
+            </div>
+            <div fxLayout="row" fxLayoutWrap="wrap" class="m-t-15 m-b-15">
+              <div fxFlex.gt-sm="50%" fxFlex.gt-xs="100%" fxFlex="100" class="text-center">
+                <h5 class="text-white m-0 font-w-500">Last Leave Taken</h5>
+                <h6 class="text-white m-0 m-t-5">28/08/2022</h6>
+              </div>
+              <div fxFlex.gt-sm="22%" fxFlex.gt-xs="100%" fxFlex="100" class="text-center">
+                <h5 class="text-white m-0 font-w-500">Type</h5>
+                <h6 class="text-white m-0 m-t-5">Sick</h6>
+              </div>
+              <div fxFlex.gt-sm="28%" fxFlex.gt-xs="100%" fxFlex="100" class="text-center">
+                <h5 class="text-white m-0 font-w-500">No of Days</h5>
+                <h6 class="text-white m-0 m-t-5">20</h6>
               </div>
             </div>
-          </mat-card-content>
-        </mat-card>
-      </div>
-    </div>
+            <!-- <div class="text-center">
+              <a href="javascript:void(0)" class="text-white m-0 view-d"><span>View Leave Details</span></a>
+            </div> -->
+            <div class="text-center p-8 all-btn">
+              <button mat-raised-button class="p-l-15 p-r-15" color="defult" style="color:#0673bb;">View Leave Details</button>
+              <!-- <a href="javascript:void(0)" class="text-white m-0  view-d">View Payroll Details</a> -->
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
   </div>
   <!-- Card column -->
   <div fxFlex.gt-sm="33.33%" fxFlex="100">
@@ -150,7 +155,7 @@
           <button mat-raised-button class="p-l-15 p-r-15" color="defult" style="color:#0673bb;">See All</button>
         </div>
       </div>
-      <mat-card-content>
+      <mat-card-content class="history-card">
         <div class="d-flex no-blcok">
           <div class="w-100">
             <h6 class="m-0 m-t-5 list-space">
@@ -203,6 +208,25 @@
               <span class="max-w230">Sick Leave Taken</span>
               <span class="text-muted"><small>10/10/2022</small></span>
             </h6>
+            <hr class="m-t-20 m-b-20" />
+          </div>
+        </div>
+        <div class="d-flex no-blcok">
+          <div class="w-100">
+            <h6 class="m-0 list-space">
+              <span class="max-w230">Transferred to Another Project</span>
+              <span class="text-muted"><small>11/10/2022</small></span>
+            </h6>
+            <hr class="m-t-20 m-b-20" />
+          </div>
+        </div>
+        <div class="d-flex no-blcok">
+          <div class="w-100">
+            <h6 class="m-0 list-space">
+              <span class="max-w230">Sick Leave Taken</span>
+              <span class="text-muted"><small>10/10/2022</small></span>
+            </h6>
+            <hr class="m-t-20 m-b-20" />
           </div>
         </div>
       </mat-card-content>

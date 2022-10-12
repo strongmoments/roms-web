@@ -34,13 +34,13 @@ mat-list-item .mat-list-text {
   margin-left: 15px !important;
   margin-right: 5px !important;
   border-radius: 50px !important;
-  padding: 1px 5px !important;
-  font-size: 20px !important;
+  padding: 1px 3px !important;
+  font-size: 16px !important;
 }
 
 .rate-text h2 {
-  line-height: 20px;
-  font-size: 24px;
+  line-height: 13px;
+  font-size: 18px;
 }
 .rate-text {
   display: flex;
@@ -63,10 +63,10 @@ mat-list-item .mat-list-text {
 }
 
 .payrol-card a.view-d {
-  position: absolute;
-  width: 100%;
-  margin: -16px;
-  margin-top: -3px;
+  // position: absolute;
+  // width: 100%;
+  // margin: -16px;
+  // margin-top: -3px;
   font-size: 18px;
   text-decoration: underline;
 }
@@ -88,4 +88,18 @@ mat-list-item .mat-list-text {
   width: 34px;
   z-index: 111;
   right: 28%;
+}
+.history-card{
+  max-height: 393px;
+  overflow-y: scroll;
+}
+
+.history-card::-webkit-scrollbar {
+  width: 7px;
+  background-color: #F5F5F5;
+}
+.history-card::-webkit-scrollbar-thumb {
+  border-radius: 40px;
+  background-color: #c9c9c9;
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
 }

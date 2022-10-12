@@ -216,15 +216,21 @@ tr.example-element-row:not(.example-expanded-row):active {
   flex-basis: 0 !important;
   flex-grow: 1 !important;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-b,
-p {
-  color: #455a64 !important;
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6,
+// b,
+// p {
+//   color: #455a64;
+// }
+.p-5{
+  padding: 5px;
+}
+.p-8{
+  padding: 8px;
 }
 .color {
   color: #455a64;
