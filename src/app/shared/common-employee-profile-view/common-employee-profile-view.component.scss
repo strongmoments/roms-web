@@ -1,3 +1,10 @@
+
+.mat-card-image:first-child {
+  margin-top: 0;
+  height: 148px;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
 .profile-mat-list {
   padding: 0 !important;
 }
@@ -89,17 +96,32 @@ mat-list-item .mat-list-text {
   z-index: 111;
   right: 28%;
 }
-.history-card{
-  max-height: 393px;
+.history-card {
+  max-height: 346px;
   overflow-y: scroll;
 }
 
 .history-card::-webkit-scrollbar {
   width: 7px;
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
 }
 .history-card::-webkit-scrollbar-thumb {
   border-radius: 40px;
   background-color: #c9c9c9;
-  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+  background-image: -webkit-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.2) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.2) 75%,
+    transparent 75%,
+    transparent
+  );
+}
+.history-wrap{
+  padding-right: 10px;
+}
+.history-card{
+  padding-right: 14px;
 }
