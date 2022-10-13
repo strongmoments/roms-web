@@ -178,10 +178,10 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
 
   refresh(options: ViewOptions, isScrolled: boolean = false) {
     let startDate = this.startDate
-      ? moment(new Date(this.startDate).toUTCString()).format('DD-MM-YYYY')
+      ? moment(new Date(new Date(this.startDate).setHours(0, 0, 0, 0)).toUTCString()).format('DD-MM-YYYY HH:mm:ss')
       : '';
     let endDate = this.endDate
-      ? moment(new Date(this.endDate).toUTCString()).format('DD-MM-YYYY')
+      ? moment(new Date(new Date(this.endDate).setHours(23, 59, 59, 59)).toUTCString()).format('DD-MM-YYYY HH:mm:ss')
       : '';
 
     let queryData = {
@@ -306,8 +306,14 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     this.dataSource.filter = this.search;
     if (isTextSearch) {
     } else {
-      this.refresh(this.getDefaultOptions());
-    }
+      if(this.selectedTabIndex == 0){
+        this.refresh(this.getDefaultOptions());
+    
+      }else if(this.selectedTabIndex == 1){
+        this.refreshCurrent(this.getDefaultOptions());
+    
+      }
+      }
   }
 
   onTabChanged(index: number) {
@@ -315,25 +321,98 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     this.dataSource.data = [];
 
     this.totalRecords = 0;
-    this.paginator.pageIndex = 0;
+    if (this.paginator) {
+      this.paginator.pageIndex = 0;
+    }
     this.pageNo = 0;
     this.pageSize = 10;
     this.search = '';
     this.status = 2;
     this.departmentId = '';
     this.employeeType = '';
-    this.dataSourceHistory.data = [];
-    this.paginatorHistory.pageIndex = 0;
-    this.selectedTabIndex = index;
+    if (this.dataSourceHistory) {
+      this.dataSourceHistory.data = [];
+    }
+
+    if (this.paginatorHistory) {
+      this.paginatorHistory.pageIndex = 0;
+
+    } this.selectedTabIndex = index;
     // this.displayedColumns = index == 0 ? this.displayedColumnsLeave : this.displayedColumnsHistory;
     // console.log(event, 'event')
 
     if (index == 1) {
+      this.refreshCurrent(this.getDefaultOptionsHistory());
+    } else if (index == 2) {
       this.refreshHistory(this.getDefaultOptionsHistory());
-      // this.historyList();
     } else {
       this.refresh(this.getDefaultOptions());
+
     }
+  }
+
+
+  refreshCurrent(options: ViewOptions, isScrolled: boolean = false) {
+    let startDate = this.startDate
+      ? moment(new Date(new Date(this.startDate).setHours(0, 0, 0, 0)).toUTCString()).format('DD-MM-YYYY HH:mm:ss')
+      : '';
+    let endDate = this.endDate
+      ? moment(new Date(new Date(this.endDate).setHours(23, 59, 59, 59)).toUTCString()).format('DD-MM-YYYY HH:mm:ss')
+      : '';
+
+    let queryData = {
+      toDate: endDate,
+      fromDate: startDate,
+      departmentId: this.departmentId == 'all' ? '' : this.departmentId,
+      employeeTypeId: this.employeeType == 'all' ? '' : this.employeeType,
+      status: `${this.status}`,
+    };
+    // console.log(queryData, 'queryData');
+
+    this.leaveService
+      .getAllEmployeeLeavesCurrent(options, queryData)
+      .pipe(first())
+      .subscribe((result: any) => {
+        this.totalRecords = result.totalElement;
+        let data: any = [];
+        for (let i = 0; i < result.data.length; i++) {
+          let staffName = `${result.data[i].employe?.firstName} ${result.data[i].employe?.lastName}`;
+          let managerName = `${result.data[i].approver?.firstName} ${result.data[i].approver?.lastName}`;
+          let convertedAppliedOn = this.datePipe.transform(result.data[i].applyDate, 'dd/MM/yyyy');
+          let convertedApprovalDate = result.data[i].dateOfApproval
+            ? this.datePipe.transform(result.data[i].dateOfApproval, 'dd/MM/yyyy')
+            : '';
+          let convertedStartDate = this.datePipe.transform(result.data[i].startDateTime, 'MMM d');
+          let convertedEndDate = this.datePipe.transform(result.data[i].endDateTime, 'MMM d,y');
+          let convertedStartTime = this.datePipe.transform(
+            result.data[i].startDateTime,
+            'shortTime',
+          );
+          let convertedEndTime = this.datePipe.transform(result.data[i].endDateTime, 'shortTime');
+          let leaveTypeName = result.data[i]?.leaveType?.leaveDescription;
+          let status = this.getStatus(result.data[i]?.leaveStatus);
+
+          data.push({
+            ...result.data[i],
+            leaveTypeName: leaveTypeName,
+            status: status,
+            convertedStartTime: convertedStartTime,
+            convertedEndTime: convertedEndTime,
+            convertedStartDate: convertedStartDate,
+            convertedEndDate: convertedEndDate,
+            convertedApprovalDate: convertedApprovalDate,
+            managerName: managerName,
+            convertedAppliedOn: convertedAppliedOn,
+            staffName: staffName,
+          });
+        }
+        if (isScrolled == true) {
+          this.dataSource.data = [...this.dataSource.data, ...data];
+        } else {
+          this.dataSource.data = data;
+        }
+        // console.log(data, 'result.data');
+      });
   }
 
   exportCsv() {

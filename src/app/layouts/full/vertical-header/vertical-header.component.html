@@ -39,7 +39,7 @@
               <a href="javascript:void(0);" *ngFor="let notification of notifications">
                 <div class="user-img">
                   <img onerror="this.onerror=null;this.src='../../../../assets/img/user-default-img.jpg';"
-                    [src]="notification?.body?.profileImage|base64Image" alt="user" class="img-circle"
+                    [src]="notification?.body?.profileImage" alt="user" class="img-circle"
                     style="width:40px" />
                   <!-- <span class="profile-status {{ mymessage.status }} pull-right"></span> -->
                 </div>

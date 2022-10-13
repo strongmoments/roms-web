@@ -1,27 +1,127 @@
-.profile-mat-list{
-    padding:0 !important;
+
+.mat-card-image:first-child {
+  margin-top: 0;
+  height: 148px;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
 }
-mat-list-item .mat-list-text{
-    display: flex;
-    align-items: flex-start !important;
+.profile-mat-list {
+  padding: 0 !important;
 }
-.profile-mat-list .mat-list-item{
-    height: 35px !important;
+mat-list-item .mat-list-text {
+  display: flex;
+  align-items: flex-start !important;
 }
-.mat-card{
-    margin:10px !important;
+.profile-mat-list .mat-list-item {
+  height: 35px !important;
 }
-.list-space{
-    display: flex;
-    justify-content:space-between;
-    flex-wrap: wrap;
+.mat-card {
+  margin: 10px !important;
 }
-.all-btn button{
-    border-radius: 50px;
+.list-space {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.all-btn button {
+  border-radius: 50px;
 }
 .list-Img {
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50px;
-  }
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+}
+.max-w230 {
+  max-width: 210px;
+}
+.doller-i {
+  color: #7460ee !important;
+  background-color: #fff !important;
+  margin-left: 15px !important;
+  margin-right: 5px !important;
+  border-radius: 50px !important;
+  padding: 1px 3px !important;
+  font-size: 16px !important;
+}
+
+.rate-text h2 {
+  line-height: 13px;
+  font-size: 18px;
+}
+.rate-text {
+  display: flex;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: auto;
+  border: 1px solid #fff;
+  padding: 7px 25px;
+  border-radius: 50px;
+  font-size: 26px;
+  justify-content: center;
+  margin-top: 10px;
+}
+.dfc {
+  display: flex;
+  align-items: center;
+}
+.d-hidden {
+  visibility: hidden;
+}
+
+.payrol-card a.view-d {
+  // position: absolute;
+  // width: 100%;
+  // margin: -16px;
+  // margin-top: -3px;
+  font-size: 18px;
+  text-decoration: underline;
+}
+.payrol-card .mat-card-content {
+  padding: 16px;
+}
+.font-w-500 {
+  font-weight: 500;
+}
+.pro-img {
+  position: relative;
+}
+.pro-img mat-icon {
+  position: absolute;
+  background: #fff;
+  border-radius: 50px;
+  padding: 5px 4px;
+  height: 34px;
+  width: 34px;
+  z-index: 111;
+  right: 28%;
+}
+.history-card {
+  max-height: 346px;
+  overflow-y: scroll;
+}
+
+.history-card::-webkit-scrollbar {
+  width: 7px;
+  background-color: #f5f5f5;
+}
+.history-card::-webkit-scrollbar-thumb {
+  border-radius: 40px;
+  background-color: #c9c9c9;
+  background-image: -webkit-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.2) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.2) 75%,
+    transparent 75%,
+    transparent
+  );
+}
+.history-wrap{
+  padding-right: 10px;
+}
+.history-card{
+  padding-right: 14px;
+}

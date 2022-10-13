@@ -84,7 +84,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/']);
       } else if (result.status == "error" && result.error == "already_exist") {
         this.alertService.openSnackBar(CustomMessage.alreadyExist);
-        this.router.navigate(['/']);
+        // this.router.navigate(['/']);
       }
       stepper.next();
     }, (error: any) => {

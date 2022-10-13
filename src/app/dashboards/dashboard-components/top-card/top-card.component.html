@@ -13,7 +13,7 @@
           </div>
           <!-- column -->
           <div>
-            <h3 class="m-0">{{dashboardData.employeeDobAverage?dashboardData.employeeDobAverage:0}}</h3>
+            <h3 class="m-0 color">{{dashboardData.employeeDobAverage?dashboardData.employeeDobAverage:0}}</h3>
             <h6 class="text-muted m-0">Average Age</h6>
           </div>
         </div>
@@ -35,7 +35,7 @@
           </div>
           <!-- column -->
           <div>
-            <h3 class="m-0">{{dashboardData.employeeCount?dashboardData.employeeCount:0}}</h3>
+            <h3 class="m-0 color">{{dashboardData.employeeCount?dashboardData.employeeCount:0}}</h3>
             <h6 class="text-muted m-0">Active Team Members</h6>
           </div>
         </div>
@@ -52,13 +52,13 @@
           <!-- column -->
           <div class="m-r-10 no-shrink">
             <button mat-fab color="accent" mat-card-icon class="shadow-none">
-              <mat-icon>local_mall</mat-icon>
+              <mat-icon>account_circle</mat-icon>
             </button>
           </div>
           <!-- column -->
           <div>
-            <h3 class="m-0">Coming Soon</h3>
-            <h6 class="text-muted m-0">In New Release</h6>
+            <h3 class="m-0 color">{{dashboardData.starters?dashboardData.starters:0}}</h3>
+            <h6 class="text-muted m-0">Registrations In last 30 days</h6>
           </div>
         </div>
       </mat-card-content>
@@ -79,7 +79,7 @@
           </div>
           <!-- column -->
           <div>
-            <h3 class="m-0">Coming Soon</h3>
+            <h3 class="m-0 color">Coming Soon</h3>
             <h6 class="text-muted m-0">In New Release</h6>
           </div>
         </div>

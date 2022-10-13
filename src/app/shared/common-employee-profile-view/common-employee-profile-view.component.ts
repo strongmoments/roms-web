@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertService, EmployeeService } from 'src/app/core/services';
+import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { CustomMessage } from 'src/app/custom-message';
 
 @Component({
@@ -8,12 +9,25 @@ import { CustomMessage } from 'src/app/custom-message';
     templateUrl: './common-employee-profile-view.component.html',
     styleUrls: ['./common-employee-profile-view.component.scss']
 })
-export class CommonEmployeeProfileViewComponent implements OnInit {
+export class CommonEmployeeProfileViewComponent implements OnInit, OnChanges {
     @Input() record: any;
-    constructor(private alertService: AlertService, private employeeService: EmployeeService, private router: Router) {
+    user: any;
+
+    constructor(private alertService: AlertService, private employeeService: EmployeeService, private router: Router, private authService: AuthenticationService) {
+
+        this.router.routeReuseStrategy.shouldReuseRoute = function () {
+            return false;
+        };
+        this.user = this.authService.getCurrentUser();
+        console.log(this.user, 'useruser')
     }
 
     ngOnInit(): void {
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        console.log(changes, 'rwecodd');
+        // this.record = this.record;
     }
 
 
@@ -41,10 +55,24 @@ export class CommonEmployeeProfileViewComponent implements OnInit {
                     this.employeeService.uploadPicture(data).subscribe(
                         (res) => {
                             this.alertService.openSnackBar(CustomMessage.userImageUpdateSuccess, false);
-                            const currentUrl = this.router.url;
-                            this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-                                this.router.navigate([currentUrl]);
-                            });
+                            if (this.user.id == this.record.id) {
+                                // this.user
+
+                                this.authService.updateUserImage();
+                                setTimeout(()=>{
+                                    window.location.reload();
+                                },1000) 
+                                // this.router.navigate(['/profile']);
+                            } else {
+                                window.location.reload();
+
+                                // this.router.navigate(['/employee/profile'], { queryParams: { id: this.record.id } });
+
+                            }
+                            // const currentUrl = this.router.url;
+                            // this.router.navigate('/', { skipLocationChange: true }).then(() => {
+                            //     this.router.navigate([currentUrl]);
+                            // });
                             //   this.router.navigate(['/dashboard']);
                         },
                         (error) => {

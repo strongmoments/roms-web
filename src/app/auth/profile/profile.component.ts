@@ -17,6 +17,9 @@ export class ProfileComponent implements OnInit {
    
     // console.log(this.user.userDetail.id);
     
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
    }
 
   ngOnInit(): void {

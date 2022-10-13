@@ -8,6 +8,7 @@ import { User, ViewOptions } from 'src/app/_models';
 // import jwt_decode from 'jwt-decode';
 import { Role } from 'src/app/globals';
 import { SseService } from './sse.service';
+import { EmployeeService } from './employee.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -18,7 +19,7 @@ export class AuthenticationService {
     private newRegistrationSubject = new BehaviorSubject(this.newRegistrationData);
     addedResigstration = this.newRegistrationSubject.asObservable();
 
-    constructor(private router: Router, private http: HttpClient,
+    constructor(private employeeService:EmployeeService,private router: Router, private http: HttpClient,
         @Inject('LOCALSTORAGE') private localStorage: Storage, private sseService: SseService) {
         const userData = this.getUserData();
         this.userSubject = new BehaviorSubject<User>(userData);
@@ -68,7 +69,7 @@ export class AuthenticationService {
             }));
     }
 
-    updateImage(image: string) {
+    updateUser(image: string) {
         return this.http.post(`${environment.apiUrl}/users/update-image`, { imageFile: image })
     }
     getProfileImage(image: string) {
@@ -99,6 +100,19 @@ export class AuthenticationService {
 
     }
 
+    updateUserImage() {
+        let user=this.getUserData();
+        this.employeeService.getById(user.userDetail.id).subscribe((res)=>{
+            user.userDetail=res;
+            console.log('before','useruser')
+        this.saveUserData(user);
+        console.log('after','useruser')
+
+        // user.userDetail['profileImage']=[{digitalAssets:{url}}];
+        this.userSubject.next(user);
+        })
+        
+    }
 
     logout(): void {
         // this.http.post<any>(`${environment.apiUrl}/users/revoke-token`, {}, { withCredentials: true });

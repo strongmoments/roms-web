@@ -135,14 +135,18 @@ export class VerticalAppHeaderComponent {
             // console.log(data);
             data = JSON.parse(data);
             console.log(data, 'askdsalkd');
-            if (data.profileImage) {
-              let img: any = this.base64ImagePipe.transform(data.profileImage);
-              img = img ? img : '../../assets/img/user-default-img.jpg';
-              // console.log(img.changingThisBreaksApplicationSecurity);
-              data.profileImage = img.changingThisBreaksApplicationSecurity;
-            } else {
+            if (!data.profileImage) {
+
               data.profileImage = '../../assets/img/user-default-img.jpg';
+              // let img: any = this.base64ImagePipe.transform(data.profileImage);
+              // img = img ? img : '../../assets/img/user-default-img.jpg';
+              // console.log(img.changingThisBreaksApplicationSecurity);
+              // data.profileImage = img.changingThisBreaksApplicationSecurity;
             }
+            // else {
+
+            //   data.profileImage = '../../assets/img/user-default-img.jpg';
+            // }
             // console.log(data, 'askdsalkd')
             let url = '';
             if (data.type == 'leave_request') {
@@ -155,6 +159,8 @@ export class VerticalAppHeaderComponent {
             } else if (data.type == "adduser_request") {
               url = '/registration/list';
               this.authService.passNewRegistration(data.data);
+            } else if (data.type == "onboarding_status") {
+              url = '/employee/onboarding-list';
             }
 
             // if (data.type == "adduserlist__request") {
@@ -237,7 +243,10 @@ export class VerticalAppHeaderComponent {
       this.router.navigate(['/employee/resignation-list'], { queryParams: { id: item.eventId } });
     } else if (item.type == "adduser_request") {
       this.router.navigate(['/registration/list'], { queryParams: { id: item.eventId } });
+    } else if (item.type == "onboarding_status") {
+      this.router.navigate(['/employee/onboarding-list']);
     }
+
 
   }
   redirect(type: string) {
@@ -245,7 +254,7 @@ export class VerticalAppHeaderComponent {
       this.router.navigate(['release-note']);
     } else if (type == 'change-password') {
       this.router.navigate(['change-password']);
-    }  else if (type == 'profile') {
+    } else if (type == 'profile') {
       this.router.navigate(['profile']);
     }
   }
