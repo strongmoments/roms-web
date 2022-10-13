@@ -234,7 +234,7 @@ export class VerticalAppHeaderComponent {
   redirectNotification(item: any) {
     console.log(item, 'item');
     // return
-    // this.markRead(item.eventId);
+    this.markRead(item.eventId);
     if (item.type == 'leave_request') {
       this.router.navigate(['/leave/leave-request'], { queryParams: { id: item.eventId } });
     } else if (item.type == 'leave_approve' || item.type == 'leave_reject') {

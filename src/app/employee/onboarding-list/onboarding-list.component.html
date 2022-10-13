@@ -117,7 +117,7 @@
               </td>
             </ng-container>
 
-            
+
             <ng-container matColumnDef="employeeEmail">
               <th mat-header-cell *matHeaderCellDef>Email</th>
               <td mat-cell *matCellDef="let row">
@@ -125,7 +125,7 @@
               </td>
             </ng-container>
 
-            
+
             <ng-container matColumnDef="employeePhone">
               <th mat-header-cell *matHeaderCellDef>Contact No</th>
               <td mat-cell *matCellDef="let row">
@@ -239,7 +239,11 @@
                 selectedRecord.personal &&
                 selectedRecord.personal.completionProgress?selectedRecord.personal.completionProgress:0}}%</small>
             </div>
-            <mat-progress-bar class="m-r-5" color="accent" mode="determinate" value="{{selectedRecord &&
+            <mat-progress-bar class="m-r-5"
+              [color]="selectedRecord &&
+            selectedRecord.personal &&
+            (selectedRecord.personal.completionProgress ==0 || ! selectedRecord.personal.completionProgress)?'warn':(selectedRecord.personal.completionProgress <100?'primary':'accent')"
+              mode="determinate" value="{{selectedRecord &&
               selectedRecord.personal &&
               selectedRecord.personal.completionProgress?selectedRecord.personal.completionProgress:0}}">
             </mat-progress-bar>
@@ -259,7 +263,11 @@
                 selectedRecord.banking &&
                 selectedRecord.banking.completionProgress?selectedRecord.banking.completionProgress:0}}%</small>
             </div>
-            <mat-progress-bar class="m-r-5" color="warn" mode="determinate" value="{{selectedRecord &&
+            <mat-progress-bar class="m-r-5"
+              [color]="selectedRecord &&
+            selectedRecord.banking &&
+            (selectedRecord.banking.completionProgress ==0 || ! selectedRecord.banking.completionProgress)?'warn':(selectedRecord.banking.completionProgress <100?'primary':'accent')"
+              mode="determinate" value="{{selectedRecord &&
               selectedRecord.banking &&
               selectedRecord.banking.completionProgress?selectedRecord.banking.completionProgress:0}}">
             </mat-progress-bar>
@@ -279,7 +287,11 @@
                 selectedRecord.emergency &&
                 selectedRecord.emergency.completionProgress?selectedRecord.emergency.completionProgress:0}}%</small>
             </div>
-            <mat-progress-bar class="m-r-5" color="accent" mode="determinate" value="{{selectedRecord &&
+            <mat-progress-bar class="m-r-5"
+              [color]="selectedRecord &&
+            selectedRecord.emergency &&
+            (selectedRecord.emergency.completionProgress ==0 || ! selectedRecord.emergency.completionProgress)?'warn':(selectedRecord.emergency.completionProgress <100?'primary':'accent')"
+              mode="determinate" value="{{selectedRecord &&
               selectedRecord.emergency &&
               selectedRecord.emergency.completionProgress?selectedRecord.emergency.completionProgress:0}}">
             </mat-progress-bar>
@@ -299,7 +311,11 @@
                 selectedRecord.tfn &&
                 selectedRecord.tfn.completionProgress?selectedRecord.tfn.completionProgress:0}}%</small>
             </div>
-            <mat-progress-bar class="m-r-5" color="warn" mode="determinate" value="{{selectedRecord &&
+            <mat-progress-bar class="m-r-5"
+              [color]="selectedRecord &&
+            selectedRecord.tfn &&
+            (selectedRecord.tfn.completionProgress ==0 || ! selectedRecord.tfn.completionProgress)?'warn':(selectedRecord.tfn.completionProgress <100?'primary':'accent')"
+              mode="determinate" value="{{selectedRecord &&
               selectedRecord.tfn &&
               selectedRecord.tfn.completionProgress?selectedRecord.tfn.completionProgress:0}}"></mat-progress-bar>
           </div>
@@ -333,7 +349,11 @@
                 selectedRecord.superannuation &&
                 selectedRecord.superannuation.completionProgress?selectedRecord.superannuation.completionProgress:0}}%</small>
             </div>
-            <mat-progress-bar class="m-r-5" color="warn" mode="determinate" value="{{selectedRecord &&
+            <mat-progress-bar class="m-r-5"
+              [color]="selectedRecord &&
+            selectedRecord.superannuation &&
+            (selectedRecord.superannuation.completionProgress ==0 || ! selectedRecord.superannuation.completionProgress)?'warn':(selectedRecord.superannuation.completionProgress <100?'primary':'accent')"
+              mode="determinate" value="{{selectedRecord &&
               selectedRecord.superannuation &&
               selectedRecord.superannuation.completionProgress?selectedRecord.superannuation.completionProgress:0}}">
             </mat-progress-bar>
@@ -353,7 +373,11 @@
                 selectedRecord.licence &&
                 selectedRecord.licence.completionProgress?selectedRecord.licence.completionProgress:0}}%</small>
             </div>
-            <mat-progress-bar class="m-r-5" color="primary" mode="determinate" value="{{selectedRecord &&
+            <mat-progress-bar class="m-r-5"
+              [color]="selectedRecord &&
+            selectedRecord.licence &&
+            (selectedRecord.licence.completionProgress ==0 || ! selectedRecord.licence.completionProgress)?'warn':(selectedRecord.licence.completionProgress <100?'primary':'accent')"
+              mode="determinate" value="{{selectedRecord &&
             selectedRecord.licence &&
             selectedRecord.licence.completionProgress?selectedRecord.licence.completionProgress:0}}">
             </mat-progress-bar>
@@ -373,7 +397,11 @@
                 selectedRecord.membership &&
                 selectedRecord.membership.completionProgress?selectedRecord.membership.completionProgress:0}}%</small>
             </div>
-            <mat-progress-bar class="m-r-5" color="warn" mode="determinate" value="{{selectedRecord &&
+            <mat-progress-bar class="m-r-5"
+              [color]="selectedRecord &&
+            selectedRecord.membership &&
+            (selectedRecord.membership.completionProgress ==0 || ! selectedRecord.membership.completionProgress)?'warn':(selectedRecord.membership.completionProgress <100?'primary':'accent')"
+              mode="determinate" value="{{selectedRecord &&
               selectedRecord.membership &&
               selectedRecord.membership.completionProgress?selectedRecord.membership.completionProgress:0}}">
             </mat-progress-bar>
