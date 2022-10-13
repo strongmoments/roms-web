@@ -16,7 +16,7 @@
         <h2 align="left"><b>Personal Information</b></h2>
         <div fxLayout="row wrap" class="row">
           <div fxFlex.gt-sm="100%" fxFlex="100" class="text-center">
-            <a routerLink="/"><img onerror="this.onerror=null;this.src='assets/img/user-default-img.jpg';" [src]="
+            <a href="javascript:void(0);"><img onerror="this.onerror=null;this.src='assets/img/user-default-img.jpg';" [src]="
                 record && record.personal && record.personal.profileImage && record.personal.profileImage.length > 0
                   ? record.personal.profileImage[0].digitalAssets?.url
                   : ''" style="max-height: 150px; width: auto" />
@@ -156,7 +156,7 @@
               <!-- 256890 -->
             </div>
           </div>
-          <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+          <!-- <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
             <h3 align="left">Postal Address</h3>
           </div>
           <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
@@ -165,7 +165,7 @@
             </div>
             <div fxFlex.gt-sm="87" fxFlex="100">
               {{postalAddress?.address}}
-              <!-- House 45, medison streer ,abc locality,area 4 -->
+             
             </div>
           </div>
 
@@ -175,7 +175,7 @@
             </div>
             <div fxFlex.gt-sm="60" fxFlex="100">
               {{postalAddress?.suburb}}
-              <!-- Melbourne -->
+             
             </div>
           </div>
           <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
@@ -184,7 +184,7 @@
             </div>
             <div fxFlex.gt-sm="60" fxFlex="100">
               {{postalAddress?.state}}
-              <!-- Victoria -->
+             
             </div>
           </div>
           <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
@@ -193,9 +193,9 @@
             </div>
             <div fxFlex.gt-sm="60" fxFlex="100">
               {{postalAddress?.postcode}}
-              <!-- 256890 -->
+              
             </div>
-          </div>
+          </div> -->
           <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
             <h3 align="left">Contact Details</h3>
           </div>
