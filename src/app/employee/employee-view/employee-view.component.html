@@ -1,281 +1,331 @@
 <!-- row -->
-<!-- ============================================================== -->
-
-<div fxLayout="row wrap" style="justify-content: center">
-  <!-- Card column -->
-
-  <div fxFlex.gt-sm="100%" fxFlex="100">
-    <!-- <mat-tab-group>
-      <mat-tab label="Personal Info"> -->
-    <mat-card align="left">
+<div fxLayout="row wrap">
+  <div fxFlex.gt-sm="27%" fxFlex="100">
+    <mat-card>
       <mat-card-content>
-        <a (click)="redirect()" href="javascript:void(0);" class="dfc">
-          <mat-icon>keyboard_arrow_left</mat-icon>Back
-        </a>
-
-        <h2 align="left"><b>Personal Information</b></h2>
         <div fxLayout="row wrap" class="row">
           <div fxFlex.gt-sm="100%" fxFlex="100" class="text-center">
-            <a href="javascript:void(0);"><img onerror="this.onerror=null;this.src='assets/img/user-default-img.jpg';" [src]="
-                record && record.personal && record.personal.profileImage && record.personal.profileImage.length > 0
-                  ? record.personal.profileImage[0].digitalAssets?.url
-                  : ''" style="max-height: 150px; width: auto" />
+            <a href="javascript:void(0);"
+              ><img
+                onerror="this.onerror=null;this.src='assets/img/user-default-img.jpg';"
+                [src]="
+                  record &&
+                  record.personal &&
+                  record.personal.profileImage &&
+                  record.personal.profileImage.length > 0
+                    ? record.personal.profileImage[0].digitalAssets?.url
+                    : ''
+                "
+                style="max-height: 220px; width: auto"
+              />
+              <mat-icon>camera_alt</mat-icon>
             </a>
           </div>
-        </div>
-        <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20" align="left">
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <div fxFlex.gt-sm="40" fxFlex="100">
-              <mat-label><b> Salut :</b></mat-label>
-            </div>
-            <div fxFlex.gt-sm="60" fxFlex="100">{{record?.personal?.salut}}</div>
-          </div>
-          <div fxFlex.gt-sm="66.66" fxFlex="100" class="p-10"></div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <div fxFlex.gt-sm="40" fxFlex="100">
-              <mat-label><b> First Name :</b></mat-label>
-            </div>
-            <div fxFlex.gt-sm="60" fxFlex="100">{{record?.personal?.firstName}}</div>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <div fxFlex.gt-sm="40" fxFlex="100">
-              <mat-label><b> Middle Name :</b></mat-label>
-            </div>
-            <div fxFlex.gt-sm="60" fxFlex="100">{{record?.personal?.middleName}}</div>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <div fxFlex.gt-sm="40" fxFlex="100">
-              <mat-label><b> Last Name :</b></mat-label>
-            </div>
-            <div fxFlex.gt-sm="60" fxFlex="100">{{record?.personal?.lastName}}</div>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <div fxFlex.gt-sm="40" fxFlex="100">
-              <mat-label><b> Gender :</b></mat-label>
-            </div>
-            <div fxFlex.gt-sm="60" fxFlex="100">{{record?.personal?.gender}}</div>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <div fxFlex.gt-sm="40" fxFlex="100">
-              <mat-label><b> Pronoun :</b></mat-label>
-            </div>
-            <div fxFlex.gt-sm="60" fxFlex="100">----</div>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <div fxFlex.gt-sm="40" fxFlex="100">
-              <mat-label><b> Nick Name :</b></mat-label>
-            </div>
-            <div fxFlex.gt-sm="60" fxFlex="100">{{record?.personal?.nickName}}</div>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <div fxFlex.gt-sm="40" fxFlex="100">
-              <mat-label><b> Date Of Birth :</b></mat-label>
-            </div>
-            <div fxFlex.gt-sm="60" fxFlex="100">{{record?.personal?.birthdate | date: 'd/M/y'}}</div>
-          </div>
-          <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-            <h3 align="left">Current Address</h3>
-          </div>
-          <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-            <div fxFlex.gt-sm="13" fxFlex="100">
-              <mat-label><b>Address :</b></mat-label>
-            </div>
-            <div fxFlex.gt-sm="87" fxFlex="100">
-              {{currentAddress?.address}}
-              <!-- House 45, medison streer ,abc locality,area 4 -->
-            </div>
-          </div>
 
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <div fxFlex.gt-sm="40" fxFlex="100">
-              <mat-label><b> Suburb:</b></mat-label>
-            </div>
-            <div fxFlex.gt-sm="60" fxFlex="100">
-              {{currentAddress?.suburb}}
-              <!-- Melbourne -->
-            </div>
+          <h3 class=" m-0 " style="text-align: center;" ><b>{{ record?.personal?.firstName }} {{ record?.personal?.lastName }}</b></h3>
+          <h4 class="m-0 m-t-10 m-b-10">Transport Manager</h4>
+          <div fxFlex.gt-sm="100" fxFlex="100">
+            <mat-form-field appearance="outline">
+              <mat-label>RTL ID</mat-label>
+              <input matInput value="------" placeholder="RTL ID" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Registration/Start Date</mat-label>
+              <input matInput value="------" placeholder="Registration/Start Date" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Manager</mat-label>
+              <input matInput value="------" placeholder="Manager" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Employee Role</mat-label>
+              <input matInput value="------" placeholder="Employee Role" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Manager</mat-label>
+              <input matInput value="------" placeholder="Manager" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Employee Type</mat-label>
+              <input matInput value="------" placeholder="Employee Type" />
+            </mat-form-field>
           </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <div fxFlex.gt-sm="40" fxFlex="100">
-              <mat-label><b> State :</b></mat-label>
-            </div>
-            <div fxFlex.gt-sm="60" fxFlex="100">
-              {{currentAddress?.state}}
-              <!-- Victoria -->
-            </div>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <div fxFlex.gt-sm="40" fxFlex="100">
-              <mat-label><b> Pincode :</b></mat-label>
-            </div>
-            <div fxFlex.gt-sm="60" fxFlex="100">
-              {{currentAddress?.postcode}}
-              <!-- 256890 -->
-            </div>
-          </div>
-          <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-            <h3 align="left">
-              Residential Address
-            </h3>
-          </div>
-          <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-            <div fxFlex.gt-sm="13" fxFlex="100">
-              <mat-label><b>Address :</b></mat-label>
-            </div>
-            <div fxFlex.gt-sm="87" fxFlex="100">
-              {{residentialAddress?.address}}
-
-              <!-- House 45, medison streer ,abc locality,area 4 -->
-            </div>
-          </div>
-
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <div fxFlex.gt-sm="40" fxFlex="100">
-              <mat-label><b> Suburb :</b></mat-label>
-            </div>
-            <div fxFlex.gt-sm="60" fxFlex="100">
-              {{residentialAddress?.suburb}}
-              <!-- Melbourne -->
-            </div>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <div fxFlex.gt-sm="40" fxFlex="100">
-              <mat-label><b> State :</b></mat-label>
-            </div>
-            <div fxFlex.gt-sm="60" fxFlex="100">
-              {{residentialAddress?.state}}
-              <!-- Victoria -->
-            </div>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <div fxFlex.gt-sm="40" fxFlex="100">
-              <mat-label><b> Pincode :</b></mat-label>
-            </div>
-            <div fxFlex.gt-sm="60" fxFlex="100">
-              {{residentialAddress?.postcode}}
-              <!-- 256890 -->
-            </div>
-          </div>
-          <!-- <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-            <h3 align="left">Postal Address</h3>
-          </div>
-          <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-            <div fxFlex.gt-sm="13" fxFlex="100">
-              <mat-label><b>Address :</b></mat-label>
-            </div>
-            <div fxFlex.gt-sm="87" fxFlex="100">
-              {{postalAddress?.address}}
-             
-            </div>
-          </div>
-
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <div fxFlex.gt-sm="40" fxFlex="100">
-              <mat-label><b> Suburb :</b></mat-label>
-            </div>
-            <div fxFlex.gt-sm="60" fxFlex="100">
-              {{postalAddress?.suburb}}
-             
-            </div>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <div fxFlex.gt-sm="40" fxFlex="100">
-              <mat-label><b> State :</b></mat-label>
-            </div>
-            <div fxFlex.gt-sm="60" fxFlex="100">
-              {{postalAddress?.state}}
-             
-            </div>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <div fxFlex.gt-sm="40" fxFlex="100">
-              <mat-label><b> Pincode :</b></mat-label>
-            </div>
-            <div fxFlex.gt-sm="60" fxFlex="100">
-              {{postalAddress?.postcode}}
-              
-            </div>
-          </div> -->
-          <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-            <h3 align="left">Contact Details</h3>
-          </div>
-
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <div fxFlex.gt-sm="40" fxFlex="100">
-              <mat-label><b>Mobile No :</b></mat-label>
-            </div>
-            <div fxFlex.gt-sm="60" fxFlex="100">
-              {{record?.personal?.phone}}
-            </div>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-            <div fxFlex.gt-sm="40" fxFlex="100">
-              <mat-label><b>Email :</b></mat-label>
-            </div>
-            <div fxFlex.gt-sm="60" fxFlex="100">{{record?.personal?.email}}</div>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10"></div>
         </div>
       </mat-card-content>
     </mat-card>
-    <!-- </mat-tab> -->
-    <!-- <mat-tab label="Emergency Contacts">
-      <mat-card align="left">
-        <mat-card-content>
-  
-          <h2 align="left"><b>Emergency Contacts</b></h2>
-          
-          <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20" align="left">
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>Relationship:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">Spouse</div>
+  </div>
+  <div fxFlex.gt-sm="73%" fxFlex="100">
+    <div fxLayout="row wrap" style="justify-content: center">
+      <!-- Card column -->
+
+      <div fxFlex.gt-sm="100%" fxFlex="100">
+        <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-0">
+          <mat-tab label="Personal">
+            <mat-card align="left">
+              <mat-card-content>
+                <!-- <a (click)="redirect()" href="javascript:void(0);" class="dfc">
+            <mat-icon>keyboard_arrow_left</mat-icon>Back
+          </a> -->
+
+                <h2 ><b>Personal Information</b></h2>
+                <!-- <div fxLayout="row wrap" class="row">
+            <div fxFlex.gt-sm="100%" fxFlex="100" class="text-center">
+              <a href="javascript:void(0);"><img onerror="this.onerror=null;this.src='assets/img/user-default-img.jpg';" [src]="
+                  record && record.personal && record.personal.profileImage && record.personal.profileImage.length > 0
+                    ? record.personal.profileImage[0].digitalAssets?.url
+                    : ''" style="max-height: 150px; width: auto" />
+              </a>
             </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b> Salut :</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">Mrs</div>
-            </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10"></div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b> First Name :</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">Martha</div>
-            </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b> Middle Name :</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">------</div>
-            </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b> Last Name :</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">Show</div>
-            </div>
-           
-            <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-              <h3 align="left">Current Address</h3>
+          </div> -->
+                <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20" align="left">
+                  <!-- <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <div fxFlex.gt-sm="40" fxFlex="100">
+                      <mat-label><b> Salut :</b></mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="60" fxFlex="100">{{record?.personal?.salut}}</div>
+                  </div>
+                  <div fxFlex.gt-sm="66.66" fxFlex="100" class="p-10"></div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <div fxFlex.gt-sm="40" fxFlex="100">
+                      <mat-label><b> First Name :</b></mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="60" fxFlex="100">{{record?.personal?.firstName}}</div>
+                  </div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <div fxFlex.gt-sm="40" fxFlex="100">
+                      <mat-label><b> Middle Name :</b></mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="60" fxFlex="100">{{ record?.personal?.middleName }}</div>
+                  </div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <div fxFlex.gt-sm="40" fxFlex="100">
+                      <mat-label><b> Last Name :</b></mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="60" fxFlex="100">{{ record?.personal?.lastName }}</div>
+                  </div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <div fxFlex.gt-sm="40" fxFlex="100">
+                      <mat-label><b> Gender :</b></mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="60" fxFlex="100">{{ record?.personal?.gender }}</div>
+                  </div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <div fxFlex.gt-sm="40" fxFlex="100">
+                      <mat-label><b> Pronoun :</b></mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="60" fxFlex="100">----</div>
+                  </div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <div fxFlex.gt-sm="40" fxFlex="100">
+                      <mat-label><b> Nick Name :</b></mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="60" fxFlex="100">{{ record?.personal?.nickName }}</div>
+                  </div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <div fxFlex.gt-sm="40" fxFlex="100">
+                      <mat-label><b> Date Of Birth :</b></mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="60" fxFlex="100">
+                      {{ record?.personal?.birthdate | date: 'd/M/y' }}
+                    </div>
+                  </div> -->
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Salut :</mat-label>
+                      <input matInput value="{{record?.personal?.salut}}" placeholder="Salut" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>First Name :</mat-label>
+                      <input matInput value="{{record?.personal?.firstName}}" placeholder="First Name" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Middle Name :</mat-label>
+                      <input matInput value="{{record?.personal?.middleName}}" placeholder="Middle Name" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Last Name :</mat-label>
+                      <input matInput value="{{record?.personal?.lastName}}" placeholder="Last Name" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Gender :</mat-label>
+                      <input matInput value="{{ record?.personal?.gender }}" placeholder="Gender" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Pronoun :</mat-label>
+                      <input matInput value="-----" placeholder="Pronoun" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Nick Name :</mat-label>
+                      <input matInput value="{{record?.personal?.nickName}}" placeholder="Nick Name" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Date Of Birth :</mat-label>
+                      <input matInput value="{{record?.personal?.birthdate | date: 'd/M/y'}}" placeholder="Date Of Birth" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <h3 align="left">Current Address</h3>
+                  </div>
+                  <!-- <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <div fxFlex.gt-sm="13" fxFlex="100">
+                      <mat-label><b>Address :</b></mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="87" fxFlex="100">
+                      {{ currentAddress?.address }}
+                      
+                    </div>
+                  </div>
+
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <div fxFlex.gt-sm="40" fxFlex="100">
+                      <mat-label><b> Suburb:</b></mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="60" fxFlex="100">
+                      {{ currentAddress?.suburb }}
+                      
+                    </div>
+                  </div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <div fxFlex.gt-sm="40" fxFlex="100">
+                      <mat-label><b> State :</b></mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="60" fxFlex="100">
+                      {{ currentAddress?.state }}
+                      
+                    </div>
+                  </div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <div fxFlex.gt-sm="40" fxFlex="100">
+                      <mat-label><b> Pincode :</b></mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="60" fxFlex="100">
+                      {{ currentAddress?.postcode }}
+                      
+                    </div>
+                  </div> -->
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Address :</mat-label>
+                      <input matInput value="{{currentAddress?.address}}" placeholder="Address" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Suburb :</mat-label>
+                      <input matInput value="{{currentAddress?.suburb}}" placeholder="Suburb" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>State:</mat-label>
+                      <input matInput value=" {{currentAddress?.state}}" placeholder="State" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Pincode :</mat-label>
+                      <input matInput value="{{currentAddress?.postcode}}" placeholder="Pincode" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <h3 align="left">Residential Address</h3>
+                  </div>
+                  <!-- <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <div fxFlex.gt-sm="13" fxFlex="100">
+                      <mat-label><b>Address :</b></mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="87" fxFlex="100">
+                      {{ residentialAddress?.address }}
+
+                      
+                    </div>
+                  </div>
+
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <div fxFlex.gt-sm="40" fxFlex="100">
+                      <mat-label><b> Suburb :</b></mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="60" fxFlex="100">
+                      {{ residentialAddress?.suburb }}
+                     
+                    </div>
+                  </div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <div fxFlex.gt-sm="40" fxFlex="100">
+                      <mat-label><b> State :</b></mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="60" fxFlex="100">
+                      {{ residentialAddress?.state }}
+                      
+                    </div>
+                  </div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <div fxFlex.gt-sm="40" fxFlex="100">
+                      <mat-label><b> Pincode :</b></mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="60" fxFlex="100">
+                      {{ residentialAddress?.postcode }}
+                      
+                    </div>
+                  </div> -->
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Address :</mat-label>
+                      <input matInput value="{{residentialAddress?.address}}" placeholder="Address" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Suburb :</mat-label>
+                      <input matInput value="{{residentialAddress?.suburb}}" placeholder="Suburb" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>State:</mat-label>
+                      <input matInput value=" {{residentialAddress?.state}}" placeholder="State" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Pincode :</mat-label>
+                      <input matInput value="{{residentialAddress?.postcode}}" placeholder="Pincode" />
+                    </mat-form-field>
+                  </div>
+                  <!-- <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+              <h3 align="left">Postal Address</h3>
             </div>
             <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
               <div fxFlex.gt-sm="13" fxFlex="100">
                 <mat-label><b>Address :</b></mat-label>
               </div>
               <div fxFlex.gt-sm="87" fxFlex="100">
-                House 45, medison streer ,abc locality,area 4
+                {{postalAddress?.address}}
+               
               </div>
             </div>
   
             <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
               <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b> Suburb:</b></mat-label>
+                <mat-label><b> Suburb :</b></mat-label>
               </div>
               <div fxFlex.gt-sm="60" fxFlex="100">
-                Melbourne
+                {{postalAddress?.suburb}}
+               
               </div>
             </div>
             <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
@@ -283,7 +333,8 @@
                 <mat-label><b> State :</b></mat-label>
               </div>
               <div fxFlex.gt-sm="60" fxFlex="100">
-                Victoria
+                {{postalAddress?.state}}
+               
               </div>
             </div>
             <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
@@ -291,341 +342,310 @@
                 <mat-label><b> Pincode :</b></mat-label>
               </div>
               <div fxFlex.gt-sm="60" fxFlex="100">
-                256890
-              </div>
-            </div>
-           
-            <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-              <h3 align="left">Contact Details</h3>
-            </div>
-  
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>Mobile No :</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-               +61 678943216
-              </div>
-            </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>Email :</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">marthashow@gmail.com</div>
-            </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10"></div>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </mat-tab>
-    <mat-tab label="Licence Info">
-      <mat-card align="left">
-        <mat-card-content>
-  
-          <h2 align="left"><b>Licence Information</b></h2>
-          <div fxLayout="row wrap" class="row">
-            <div fxFlex.gt-sm="100%" fxFlex="100" class="text-center">
-              <a routerLink="/"><img onerror="this.onerror=null;this.src='assets/img/user-default-img.jpg';" [src]="
-                  record && record.personal && record.personal.profileImage && record.personal.profileImage.length > 0
-                    ? record.personal.profileImage[0].digitalAssets?.url
-                    : ''" style="max-height: 150px; width: auto" />
-              </a>
-            </div>
-          </div>
-          <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20" align="left">
-            
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b> Licence No :</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">Daniel</div>
-            </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b> Issued In :</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">-----</div>
-            </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b> Expiry Date:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">Show</div>
-            </div>
-   
-            <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-              <h3 align="left">Licence Declaration</h3>
-            </div>
-  
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>Status:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-                Signed
-              </div>
-            </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>Declaration From :</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-                <div><mat-icon class="dfc"> remove_red_eye</mat-icon>
-                  <mat-icon class="dfc">picture_as_pdf</mat-icon></div>
+                {{postalAddress?.postcode}}
                 
               </div>
-            </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10"></div>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </mat-tab>
-    <mat-tab label="Banking Details">
-      <mat-card align="left">
-        <mat-card-content>
-  
-          <h2 align="left"><b>Banking Details</b></h2>
-          
-          <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20" align="left">
-            
-            <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-              <h3 align="left">Default Bank Account</h3>
-            </div>
-  
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>Account Holder:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-                Daniel Show
-              </div>
-            </div>
-            <div fxFlex.gt-sm="66.66" fxFlex="100" class="p-10"></div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>BSB No:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-                8890
-              </div>
-            </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>Bank Name:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-               Vic Bank
-              </div>
-            </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>Account No:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-                789656784466
-              </div>
-            </div>
-   
-            <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-              <h3 align="left">Secondary Bank Account</h3>
-            </div>
-  
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>Account Holder:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-                Daniel Show
-              </div>
-            </div>
-            <div fxFlex.gt-sm="66.66" fxFlex="100" class="p-10"></div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>BSB No:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-                8890
-              </div>
-            </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>bank Name:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-               Vic Bank
-              </div>
-            </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>Account No:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-                789656784466
-              </div>
-            </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>Fixed Amount:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-               Melbourne
-              </div>
-            </div>
-            <div fxFlex.gt-sm="66.66" fxFlex="100" class="p-10"></div>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </mat-tab>
-    <mat-tab label="TFN Form">
-      <mat-card align="left">
-        <mat-card-content>
-  
-          <h2 align="left"><b>TFN Declaration</b></h2>
-          
-          <div fxLayout="column wrap" fxFlexAlign="left" class="row m-t-20" align="left">
-           
-  
-            <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>Account Holder:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-                Daniel Show
-              </div>
-            </div>
-            <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>BSB No:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-                8890
-              </div>
-            </div>
-            <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>Bank Name:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-               Vic Bank
-              </div>
-            </div>
-            <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>Account No:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-                789656784466
-              </div>
-            </div>
-   
-            
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </mat-tab>
-    <mat-tab label="Super Choice">
-      <mat-card align="left">
-        <mat-card-content>
-  
-          <h2 align="left"><b>Superannuation Choice</b></h2>
-          
-          <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20" align="left">
-            
-            <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-              <h3 align="left">Name</h3>
-            </div>
-  
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>Account Holder:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-                Daniel Show
-              </div>
-            </div>
-            <div fxFlex.gt-sm="66.66" fxFlex="100" class="p-10"></div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>BSB No:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-                8890
-              </div>
-            </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>Bank Name:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-               Vic Bank
-              </div>
-            </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>Account No:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-                789656784466
-              </div>
-            </div>
-   
-            <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-              <h3 align="left">Secondary Bank Account</h3>
-            </div>
-  
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>Account Holder:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-                Daniel Show
-              </div>
-            </div>
-            <div fxFlex.gt-sm="66.66" fxFlex="100" class="p-10"></div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>BSB No:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-                8890
-              </div>
-            </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>bank Name:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-               Vic Bank
-              </div>
-            </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>Account No:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-                789656784466
-              </div>
-            </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b>Fixed Amount:</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-               Melbourne
-              </div>
-            </div>
-            <div fxFlex.gt-sm="66.66" fxFlex="100" class="p-10"></div>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </mat-tab>
-    <mat-tab label="Membership">
-      
-    </mat-tab>
-    <mat-tab label="Employment">
-      
-    </mat-tab>
-    </mat-tab-group> -->
+            </div> -->
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <h3 align="left">Contact Details</h3>
+                  </div><div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Mobile No :</mat-label>
+                      <input matInput value="{{ record?.personal?.phone }}" placeholder="Mobile No" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Email :</mat-label>
+                      <input matInput value=" {{ record?.personal?.email }}" placeholder="Email" />
+                    </mat-form-field>
+                  </div>
 
+                  <!-- <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <div fxFlex.gt-sm="40" fxFlex="100">
+                      <mat-label><b>Mobile No :</b></mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="60" fxFlex="100">
+                      {{ record?.personal?.phone }}
+                    </div>
+                  </div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <div fxFlex.gt-sm="40" fxFlex="100">
+                      <mat-label><b>Email :</b></mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="60" fxFlex="100">{{ record?.personal?.email }}</div>
+                  </div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10"></div> -->
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </mat-tab>
+          <mat-tab label="Contacts">
+            <mat-card align="left">
+              <mat-card-content>
+                <h2 align="left"><b>Emergency Contacts</b></h2>
+
+                <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20" align="left">
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Salut :</mat-label>
+                      <input matInput value="----" placeholder="Salut" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>First Name :</mat-label>
+                      <input matInput value="-----" placeholder="FIrst Name" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Middle Name :</mat-label>
+                      <input matInput value="------" placeholder="Middle Name" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Last Name :</mat-label>
+                      <input matInput value="-----" placeholder="Last Name" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Relationship :</mat-label>
+                      <input matInput value="------" placeholder="Relationship" />
+                    </mat-form-field>
+                  </div>
+                 
+                  
+                  
+
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <h3 align="left">Address</h3>
+                  </div>
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Address :</mat-label>
+                      <input matInput value=" -----" placeholder="Address" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Suburb :</mat-label>
+                      <input matInput value="------" placeholder="Suburb" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>State:</mat-label>
+                      <input matInput value="------" placeholder="State" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Pincode :</mat-label>
+                      <input matInput value="-------" placeholder="Pincode" />
+                    </mat-form-field>
+                  </div>
+
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <h3 align="left">Contact Details</h3>
+                  </div><div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Mobile No :</mat-label>
+                      <input matInput value="-------" placeholder="Mobile No" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Email :</mat-label>
+                      <input matInput value="---------" placeholder="Email" />
+                    </mat-form-field>
+                  </div>
+                  
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </mat-tab>
+          <mat-tab label="Licence">
+            <mat-card align="left">
+              <mat-card-content>
+                <h2 align="left"><b>Licence</b></h2>
+                <h3 align="left"><b>Primary Licence</b></h3>
+                <div fxLayout="row wrap" class="row">
+                  <div fxFlex.gt-sm="100%" fxFlex="100" class="text-center m-0 ">
+                    <a routerLink="/"
+                      ><img
+                        onerror="this.onerror=null;this.src='assets/img/user-default-img.jpg';"
+                        [src]="
+                          record &&
+                          record.personal &&
+                          record.personal.profileImage &&
+                          record.personal.profileImage.length > 0
+                            ? record.personal.profileImage[0].digitalAssets?.url
+                            : ''
+                        "
+                        style="max-height: 150px; width: auto"
+                      />
+                    </a> 
+                    <a routerLink="/"
+                    ><img
+                      onerror="this.onerror=null;this.src='assets/img/user-default-img.jpg';"
+                      [src]="
+                        record &&
+                        record.personal &&
+                        record.personal.profileImage &&
+                        record.personal.profileImage.length > 0
+                          ? record.personal.profileImage[0].digitalAssets?.url
+                          : ''
+                      "
+                      style="max-height: 150px; width: auto"
+                    />
+                  </a>
+                  </div>
+                </div>
+                <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20" align="left">
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <h3 align="left">Details</h3>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>License No :</mat-label>
+                      <input matInput value="------" placeholder="License No" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Issued In:</mat-label>
+                      <input matInput value="-----" placeholder="Issued In" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Expiry Date:</mat-label>
+                      <input matInput value="-----" placeholder="Expiry Date" />
+                    </mat-form-field>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </mat-tab>
+          <mat-tab label="Payroll">
+            <mat-card>
+              <mat-card-content>
+                <h2 align="left"><b>Payroll</b></h2>
+                <mat-accordion>
+                  <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title><b>Banking Details</b></mat-panel-title>
+                      <!-- <mat-panel-description> Type your name and age </mat-panel-description> -->
+                    </mat-expansion-panel-header>
+                    <div fxLayout="row wrap" class="row">
+                      <div fxFlex.gt-sm="100%" fxFlex="100" class="text-center">
+                        <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                          <h3 align="left">Default Bank Details</h3>
+                        </div>
+                        <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Account No :</mat-label>
+                            <input matInput value="-------" placeholder="Account No" />
+                          </mat-form-field>
+                        </div>
+                        <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                          <mat-form-field appearance="outline">
+                            <mat-label>BSB:</mat-label>
+                            <input matInput value="---------" placeholder="BSB" />
+                          </mat-form-field>
+                        </div>
+                        <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Bank Name:</mat-label>
+                            <input matInput value="---------" placeholder="Bank Name" />
+                          </mat-form-field>
+                        </div>
+                        <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Account No:</mat-label>
+                            <input matInput value="---------" placeholder="Account No" />
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      </div>
+
+                  </mat-expansion-panel>
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title><b>TFN Declaration</b></mat-panel-title>
+                      <!-- <mat-panel-description>
+                        Currently I am {{ panelOpenState ? 'open' : 'closed' }}
+                      </mat-panel-description> -->
+                    </mat-expansion-panel-header>
+                    <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Citizenship:</mat-label>
+                        <input matInput value="---------" placeholder="Citizenship" />
+                      </mat-form-field>
+                    </div>
+                    <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                      <mat-form-field appearance="outline">
+                        <mat-label>TFN:</mat-label>
+                        <input matInput value="---------" placeholder="TFN" />
+                      </mat-form-field>
+                    </div>
+                    
+                  </mat-expansion-panel>
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title><b>Superannuation Choice </b></mat-panel-title>
+                      <!-- <mat-panel-description>
+                        Currently I am {{ panelOpenState ? 'open' : 'closed' }}
+                      </mat-panel-description> -->
+                    </mat-expansion-panel-header>
+                    <p>I'm visible because I am open</p>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </mat-card-content>
+            </mat-card>
+          </mat-tab>
+          <mat-tab label="Leaves">
+            <mat-card align="left">
+              <mat-card-content>
+                <h2 align="left"><b>TFN Declaration</b></h2>
+
+                <div fxLayout="column wrap" fxFlexAlign="left" class="row m-t-20" align="left">
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <div fxFlex.gt-sm="40" fxFlex="100">
+                      <mat-label><b>Account Holder:</b></mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="60" fxFlex="100">Daniel Show</div>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <div fxFlex.gt-sm="40" fxFlex="100">
+                      <mat-label><b>BSB No:</b></mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="60" fxFlex="100">8890</div>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <div fxFlex.gt-sm="40" fxFlex="100">
+                      <mat-label><b>Bank Name:</b></mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="60" fxFlex="100">Vic Bank</div>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <div fxFlex.gt-sm="40" fxFlex="100">
+                      <mat-label><b>Account No:</b></mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="60" fxFlex="100">789656784466</div>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </mat-tab>
+          <mat-tab label="Membership"> </mat-tab>
+          <mat-tab label="Employment"> </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
   </div>
 </div>
+<!-- ============================================================== -->

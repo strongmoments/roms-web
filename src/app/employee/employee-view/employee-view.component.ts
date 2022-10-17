@@ -9,7 +9,9 @@ import { CustomMessage } from 'src/app/custom-message';
   templateUrl: './employee-view.component.html',
   styleUrls: ['./employee-view.component.css']
 })
-export class EmployeeViewComponent implements OnInit {
+export class EmployeeViewComponent  implements OnInit {
+  panelOpenState = false;
+  step = 0;
   record: any;
   user: any;
   id: string = "";
