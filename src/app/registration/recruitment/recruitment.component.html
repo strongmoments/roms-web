@@ -133,6 +133,200 @@
             <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10">
               <mat-divider> </mat-divider>
             </div>
+            
+
+            <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
+              <mat-card-title class="p-b-10 color_blue">Project Details</mat-card-title>
+            </div>
+
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Client</mat-label>
+                <mat-select
+                  placeholder="Client"
+                  formControlName="Client">
+                  <mat-option value="option">Option</mat-option>
+                  <mat-option value="option">Option2</mat-option>
+                  <mat-option value="option">Option3</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Contract/EA</mat-label>
+                <mat-select
+                  placeholder="Contract/EA"
+                  formControlName="contractType"
+                  contractType
+                  [ngClass]="{ 'is-invalid': submitted && f.contractType.hasError }"
+                >
+                  <mat-option value="option">Option</mat-option>
+                  <mat-option value="option">Option2</mat-option>
+                  <mat-option value="option">Option3</mat-option>
+                </mat-select>
+
+                <mat-error *ngIf="submitted && checkError('contractType', 'required')">
+                  contractType is required.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Project#/Job#</mat-label>
+                <mat-select
+                  formControlName="project"
+                  project
+                  [ngClass]="{ 'is-invalid': submitted && f.project.hasError }"
+                >
+                  <mat-option value="option">Option</mat-option>
+                  <mat-option value="option">Option2</mat-option>
+                  <mat-option value="option">Option3</mat-option>
+                </mat-select>
+                <mat-error *ngIf="submitted && checkError('project', 'required')">
+                  Project is required.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Location</mat-label>
+                <mat-select
+                  formControlName="location"
+                  location
+                  [ngClass]="{ 'is-invalid': submitted && f.location.hasError }"
+                >
+                  <mat-option value="option">Option</mat-option>
+                  <mat-option value="option">Option2</mat-option>
+                  <mat-option value="option">Option3</mat-option>
+                </mat-select>
+
+                <mat-error *ngIf="submitted && checkError('location', 'required')">
+                  location is required.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Gang (optional)</mat-label>
+                <mat-select
+                  placeholder="Gang(optional)"
+                  formControlName="gang"
+                  gang
+                  [ngClass]="{ 'is-invalid': submitted && f.gang.hasError }"
+                >
+                  <mat-option value="option">Option</mat-option>
+                  <mat-option value="option">Option2</mat-option>
+                  <mat-option value="option">Option3</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Wage Classification</mat-label>
+                <mat-select
+                  placeholder="Wage Classification"
+                  formControlName="classification"
+                  classification
+                  [ngClass]="{ 'is-invalid': submitted && f.classification.hasError }"
+                >
+                  <mat-option value="option">Option</mat-option>
+                  <mat-option value="option">Option2</mat-option>
+                  <mat-option value="option">Option3</mat-option>
+                </mat-select>
+
+                <mat-error *ngIf="submitted && checkError('classification', 'required')">
+                  classification is required.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Role</mat-label>
+                <input
+                  type="text"
+                  placeholder="Role"
+                  aria-label="Role"
+                  matInput
+                  formControlName="roleId"
+                  roleId
+                  [matAutocomplete]="auto"
+                  [ngClass]="{ 'is-invalid': submitted && f.roleId.hasError }"
+                />
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option [value]="item.name" *ngFor="let item of roles">
+                    {{ item.name }}
+                  </mat-option>
+                </mat-autocomplete>
+                <!-- </mat-select> -->
+                <mat-error *ngIf="submitted && checkError('roleId', 'required')">
+                  Role is required.
+                </mat-error>
+                <!-- <mat-select placeholder="Role">
+                  <mat-option value="option">Option</mat-option>
+                  <mat-option value="option">Option2</mat-option>
+                  <mat-option value="option">Option3</mat-option>
+                </mat-select> -->
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Award Type</mat-label>
+                <input
+                  matInput
+                  placeholder="Award Type"
+                  formControlName="Award Type"
+                />
+
+                
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Rate</mat-label>
+                <input
+                  matInput
+                  placeholder="Rate"
+                  formControlName="rate"
+                  rate
+                  [ngClass]="{ 'is-invalid': submitted && f.rate.hasError }"
+                />
+
+                <mat-error *ngIf="submitted && checkError('rate', 'required')">
+                  Rate is required.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            
+           
+            <!-- <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Commitment</mat-label>
+                <mat-select
+                  placeholder="Commitment"
+                  formControlName="commitment"
+                  commitment
+                  [ngClass]="{ 'is-invalid': submitted && f.commitment.hasError }"
+                >
+                  <mat-option value="option">Option</mat-option>
+                  <mat-option value="option">Option2</mat-option>
+                  <mat-option value="option">Option3</mat-option>
+                </mat-select>
+
+                <mat-error *ngIf="submitted && checkError('commitment', 'required')">
+                  Commitment is required.
+                </mat-error>
+              </mat-form-field>
+            </div> -->
+            <div fxFlex.gt-sm="70" fxFlex="100"></div>
+            <mat-divider fxFlex.gt-sm="100" fxFlex="100"> </mat-divider>
             <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
               <mat-card-title class="p-b-10 color_blue">Skills & Certifications</mat-card-title>
             </div>
@@ -266,170 +460,6 @@
             <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
               <mat-divider> </mat-divider>
             </div>
-
-            <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
-              <mat-card-title class="p-b-10 color_blue">Project Details</mat-card-title>
-            </div>
-
-            <div fxFlex.gt-sm="30" fxFlex="100">
-              <mat-form-field appearance="outline">
-                <mat-label>Project</mat-label>
-                <mat-select
-                  formControlName="project"
-                  project
-                  [ngClass]="{ 'is-invalid': submitted && f.project.hasError }"
-                >
-                  <mat-option value="option">Option</mat-option>
-                  <mat-option value="option">Option2</mat-option>
-                  <mat-option value="option">Option3</mat-option>
-                </mat-select>
-                <mat-error *ngIf="submitted && checkError('project', 'required')">
-                  Project is required.
-                </mat-error>
-              </mat-form-field>
-            </div>
-            <div fxFlex.gt-sm="5" fxFlex="100"></div>
-            <div fxFlex.gt-sm="30" fxFlex="100">
-              <mat-form-field appearance="outline">
-                <mat-label>Location</mat-label>
-                <mat-select
-                  formControlName="location"
-                  location
-                  [ngClass]="{ 'is-invalid': submitted && f.location.hasError }"
-                >
-                  <mat-option value="option">Option</mat-option>
-                  <mat-option value="option">Option2</mat-option>
-                  <mat-option value="option">Option3</mat-option>
-                </mat-select>
-
-                <mat-error *ngIf="submitted && checkError('location', 'required')">
-                  location is required.
-                </mat-error>
-              </mat-form-field>
-            </div>
-            <div fxFlex.gt-sm="5" fxFlex="100"></div>
-            <div fxFlex.gt-sm="30" fxFlex="100">
-              <mat-form-field appearance="outline">
-                <mat-label>Contract</mat-label>
-                <mat-select
-                  placeholder="Contract"
-                  formControlName="contractType"
-                  contractType
-                  [ngClass]="{ 'is-invalid': submitted && f.contractType.hasError }"
-                >
-                  <mat-option value="option">Option</mat-option>
-                  <mat-option value="option">Option2</mat-option>
-                  <mat-option value="option">Option3</mat-option>
-                </mat-select>
-
-                <mat-error *ngIf="submitted && checkError('contractType', 'required')">
-                  contractType is required.
-                </mat-error>
-              </mat-form-field>
-            </div>
-            <div fxFlex.gt-sm="30" fxFlex="100">
-              <mat-form-field appearance="outline">
-                <mat-label>Classification</mat-label>
-                <mat-select
-                  placeholder="Classification"
-                  formControlName="classification"
-                  classification
-                  [ngClass]="{ 'is-invalid': submitted && f.classification.hasError }"
-                >
-                  <mat-option value="option">Option</mat-option>
-                  <mat-option value="option">Option2</mat-option>
-                  <mat-option value="option">Option3</mat-option>
-                </mat-select>
-
-                <mat-error *ngIf="submitted && checkError('classification', 'required')">
-                  classification is required.
-                </mat-error>
-              </mat-form-field>
-            </div>
-            <div fxFlex.gt-sm="5" fxFlex="100"></div>
-            <div fxFlex.gt-sm="30" fxFlex="100">
-              <mat-form-field appearance="outline">
-                <mat-label>Role</mat-label>
-                <input
-                  type="text"
-                  placeholder="Role"
-                  aria-label="Role"
-                  matInput
-                  formControlName="roleId"
-                  roleId
-                  [matAutocomplete]="auto"
-                  [ngClass]="{ 'is-invalid': submitted && f.roleId.hasError }"
-                />
-                <mat-autocomplete #auto="matAutocomplete">
-                  <mat-option [value]="item.name" *ngFor="let item of roles">
-                    {{ item.name }}
-                  </mat-option>
-                </mat-autocomplete>
-                <!-- </mat-select> -->
-                <mat-error *ngIf="submitted && checkError('roleId', 'required')">
-                  Role is required.
-                </mat-error>
-                <!-- <mat-select placeholder="Role">
-                  <mat-option value="option">Option</mat-option>
-                  <mat-option value="option">Option2</mat-option>
-                  <mat-option value="option">Option3</mat-option>
-                </mat-select> -->
-              </mat-form-field>
-            </div>
-            <div fxFlex.gt-sm="5" fxFlex="100"></div>
-            <div fxFlex.gt-sm="30" fxFlex="100">
-              <mat-form-field appearance="outline">
-                <mat-label>Rate</mat-label>
-                <input
-                  matInput
-                  placeholder="Rate"
-                  formControlName="rate"
-                  rate
-                  [ngClass]="{ 'is-invalid': submitted && f.rate.hasError }"
-                />
-
-                <mat-error *ngIf="submitted && checkError('rate', 'required')">
-                  Rate is required.
-                </mat-error>
-              </mat-form-field>
-            </div>
-            <div fxFlex.gt-sm="30" fxFlex="100">
-              <mat-form-field appearance="outline">
-                <mat-label>Gang (optional)</mat-label>
-                <mat-select
-                  placeholder="Gang(optional)"
-                  formControlName="gang"
-                  gang
-                  [ngClass]="{ 'is-invalid': submitted && f.gang.hasError }"
-                >
-                  <mat-option value="option">Option</mat-option>
-                  <mat-option value="option">Option2</mat-option>
-                  <mat-option value="option">Option3</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-           
-            <!-- <div fxFlex.gt-sm="30" fxFlex="100">
-              <mat-form-field appearance="outline">
-                <mat-label>Commitment</mat-label>
-                <mat-select
-                  placeholder="Commitment"
-                  formControlName="commitment"
-                  commitment
-                  [ngClass]="{ 'is-invalid': submitted && f.commitment.hasError }"
-                >
-                  <mat-option value="option">Option</mat-option>
-                  <mat-option value="option">Option2</mat-option>
-                  <mat-option value="option">Option3</mat-option>
-                </mat-select>
-
-                <mat-error *ngIf="submitted && checkError('commitment', 'required')">
-                  Commitment is required.
-                </mat-error>
-              </mat-form-field>
-            </div> -->
-            <div fxFlex.gt-sm="70" fxFlex="100"></div>
-            <mat-divider fxFlex.gt-sm="100" fxFlex="100"> </mat-divider>
             <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
               <!-- <h4 class="m-0 m-t-20">Creator Name: </h4> -->
             </div>
