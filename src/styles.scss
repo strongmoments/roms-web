@@ -226,14 +226,19 @@ tr.example-element-row:not(.example-expanded-row):active {
 // p {
 //   color: #455a64;
 // }
-.p-5{
+.p-5 {
   padding: 5px;
 }
-.p-8{
+.p-8 {
   padding: 8px;
 }
 .color {
   color: #455a64;
+}
+.mat-tab-header-pagination-before,
+.mat-tab-header-rtl .mat-tab-header-pagination-after,
+.mat-tab-header-pagination {
+  background: #fff !important;
 }
 @media (max-width: 340px) {
   mat-card {

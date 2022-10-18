@@ -123,6 +123,10 @@ export const AppRoutes: Routes = [
         path: 'release-note',
         // pathMatch: 'full',
         component: ReleaseNoteComponent,
+        data: {
+          title: 'Release Note',
+          urls: [{ title: 'Home', url: '/' }, { title: 'Release Note' }],
+        },
       },
       {
         path: 'coming-soon',
