@@ -38,14 +38,20 @@
         <div fxFlex.gt-sm="100" fxFlex="100">
           <mat-card class="m-0 my-mat-cardb d-wrap">
             <div fxFlex.gt-sm="55" fxFlex="100" class="p-b-10 p-t-10">
-              <mat-label><span>Hiring Manager-</span>
-                 <span>Robert Shephard</span> </mat-label>
+              <mat-label><span>Hiring Manager-</span> <span>Robert Shephard</span> </mat-label>
             </div>
             <div fxFlex.gt-sm="35" fxFlex="100" class="p-b-10 p-t-10">
               <mat-label><small>Praposal start date</small> 22 September</mat-label>
-            </div> 
+            </div>
             <div fxFlex.gt-sm="10" fxFlex="100" class="p-b-10 p-t-10">
-              <button class="button p-0 p-l-30 p-r-30 l-h-26" style="border-radius:50px" mat-flat-button color="primary">Firm</button>
+              <button
+                class="button p-0 p-l-30 p-r-30 l-h-26"
+                style="border-radius: 50px"
+                mat-flat-button
+                color="primary"
+              >
+                Firm
+              </button>
             </div>
           </mat-card>
         </div>
@@ -56,7 +62,12 @@
             <mat-card-title class="p-10 color_blue" align="center">Description</mat-card-title>
             <mat-form-field appearance="outline" class="m-t-0 p-l-10 p-r-10">
               <mat-label>Description</mat-label>
-              <textarea matInput formControlName="leaveReason" placeholder="Comment" rows="3"></textarea>
+              <textarea
+                matInput
+                formControlName="leaveReason"
+                placeholder="Comment"
+                rows="3"
+              ></textarea>
               <mat-error> Comment is required </mat-error>
             </mat-form-field>
           </mat-card>
@@ -116,8 +127,12 @@
       <div fxLayout="row wrap" fxFlexAlign="center" class="row m-0">
         <div fxFlex.gt-sm="100" fxFlex="100">
           <div class="m-0 m-t-15" align="center">
-            <button class="button fs-20 m-l-10" mat-raised-button color="primary">Recommend Employee</button>
-            <button class="button fs-20 m-r-10" mat-raised-button color="primary">View Recommendation</button>
+            <button class="button fs-20 m-l-10 m-r-10" mat-raised-button color="primary">
+              Recommend Employee
+            </button>
+            <button class="button fs-20 m-l-10 m-r-10" mat-raised-button color="primary">
+              View Recommendation
+            </button>
           </div>
         </div>
       </div>

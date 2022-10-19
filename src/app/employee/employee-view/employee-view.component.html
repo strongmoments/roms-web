@@ -29,27 +29,27 @@
           </div>
           <div fxFlex.gt-sm="100" fxFlex="100">
             <mat-form-field appearance="outline">
-              <mat-label>RTL ID</mat-label>
+              <mat-label>RTL ID :</mat-label>
               <input matInput value="------" placeholder="RTL ID" />
             </mat-form-field>
             <mat-form-field appearance="outline">
-              <mat-label>Registration/Start Date</mat-label>
+              <mat-label>Registration/Start Date :</mat-label>
               <input matInput value="------" placeholder="Registration/Start Date" />
             </mat-form-field>
             <mat-form-field appearance="outline">
-              <mat-label>Manager</mat-label>
+              <mat-label>Manager :</mat-label>
               <input matInput value="------" placeholder="Manager" />
             </mat-form-field>
             <mat-form-field appearance="outline">
-              <mat-label>Employee Role</mat-label>
+              <mat-label>Employee Role :</mat-label>
               <input matInput value="------" placeholder="Employee Role" />
             </mat-form-field>
             <mat-form-field appearance="outline">
-              <mat-label>Manager</mat-label>
+              <mat-label>Manager :</mat-label>
               <input matInput value="------" placeholder="Manager" />
             </mat-form-field>
             <mat-form-field appearance="outline">
-              <mat-label>Employee Type</mat-label>
+              <mat-label>Employee Type :</mat-label>
               <input matInput value="------" placeholder="Employee Type" />
             </mat-form-field>
           </div>
@@ -446,10 +446,92 @@
                       <h2 class="m-0"><b>Contacts</b></h2>
                       <mat-icon>edit</mat-icon>
                     </div>
-                    <div >
-                      <h3 class="m-0"><b>Emergency Contacts</b></h3>
+                    <div>
+                      <h3 class="m-0 m-t-20"><b>Emergency Contacts</b></h3>
                     </div>
                   </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Salut :</mat-label>
+                      <input matInput value="----" placeholder="Salut" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>First Name :</mat-label>
+                      <input matInput value="-----" placeholder="FIrst Name" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Middle Name :</mat-label>
+                      <input matInput value="------" placeholder="Middle Name" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Last Name :</mat-label>
+                      <input matInput value="-----" placeholder="Last Name" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Relationship :</mat-label>
+                      <input matInput value="------" placeholder="Relationship" />
+                    </mat-form-field>
+                  </div>
+
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <h3 class="m-0" align="left"><b>Address</b></h3>
+                  </div>
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Address :</mat-label>
+                      <input matInput value=" -----" placeholder="Address" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Suburb :</mat-label>
+                      <input matInput value="------" placeholder="Suburb" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>State:</mat-label>
+                      <input matInput value="------" placeholder="State" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Pincode :</mat-label>
+                      <input matInput value="-------" placeholder="Pincode" />
+                    </mat-form-field>
+                  </div>
+
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <h3 class="m-0" align="left"><b>Contact Details</b></h3>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Mobile No :</mat-label>
+                      <input matInput value="-------" placeholder="Mobile No" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Email :</mat-label>
+                      <input matInput value="---------" placeholder="Email" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="add-btn p-10">
+                    <h3 class="m-0" align="left"><b>Other Contact</b></h3>
+                    <div>
+                      <button mat-flat-button color="primary" class="m-l-10 m-r-10">Add</button>
+                      <button mat-flat-button color="warn">Remove</button>
+                    </div>
+                  </div>
+
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Salut :</mat-label>
@@ -540,27 +622,88 @@
                       <h2 class="m-0"><b>Licences</b></h2>
                       <mat-icon>edit</mat-icon>
                     </div>
-                    <div >
-                      <h3 class="m-0"><b>Primary Licences</b></h3>
+                    <div>
+                      <h3 class="m-0 m-t-20"><b>Primary Licences</b></h3>
                     </div>
                   </div>
                   <div fxLayout="row wrap" class="row">
                     <div fxFlex.gt-sm="100%" fxFlex="100" class="text-center p-10">
                       <div fxFlex.gt-sm="7.5" fxFlex="100"></div>
                       <div fxFlex.gt-sm="40" fxFlex="100">
-                        <img
-                          style="height: auto; width: 100%"
-                          src="../../../assets/img/1200px-Autograph_of_Benjamin_Franklin.svg.png"
-                          alt=""
-                        />
+                        <div style="position: relative">
+                          <img
+                            style="height: auto; width: 100%"
+                            src="../../../assets/img/dummy-licence.jpg"
+                            alt=""
+                          />
+                          <mat-icon class="icon-style">edit</mat-icon>
+                        </div>
                       </div>
                       <div fxFlex.gt-sm="5" fxFlex="100"></div>
                       <div fxFlex.gt-sm="40" fxFlex="100">
-                        <img
-                          style="height: auto; width: 100%"
-                          src="../../../assets/img/1200px-Autograph_of_Benjamin_Franklin.svg.png"
-                          alt=""
-                        />
+                        <div style="position: relative">
+                          <img
+                            style="height: auto; width: 100%"
+                            src="../../../assets/img/dummy-licence.jpg"
+                            alt=""
+                          />
+                          <mat-icon class="icon-style">edit</mat-icon>
+                        </div>
+                      </div>
+                      <div fxFlex.gt-sm="7.5" fxFlex="100"></div>
+                    </div>
+                  </div>
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <h3 class="m-0" align="left"><b>Details</b></h3>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>License No :</mat-label>
+                      <input matInput value="------" placeholder="License No" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Issued In:</mat-label>
+                      <input matInput value="-----" placeholder="Issued In" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Expiry Date:</mat-label>
+                      <input matInput value="-----" placeholder="Expiry Date" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="add-btn p-10">
+                    <h3 class="m-0" align="left"><b>Other Licence</b></h3>
+                    <div>
+                      <button mat-flat-button color="primary" class="m-l-10 m-r-10">Add</button>
+                      <button mat-flat-button color="warn">Remove</button>
+                    </div>
+                  </div>
+                  <div fxLayout="row wrap" class="row">
+                    <div fxFlex.gt-sm="100%" fxFlex="100" class="text-center p-10">
+                      <div fxFlex.gt-sm="7.5" fxFlex="100"></div>
+                      <div fxFlex.gt-sm="40" fxFlex="100">
+                        <div style="position: relative">
+                          <img
+                            style="height: auto; width: 100%"
+                            src="../../../assets/img/dummy-licence.jpg"
+                            alt=""
+                          />
+                          <mat-icon class="icon-style">edit</mat-icon>
+                        </div>
+                      </div>
+                      <div fxFlex.gt-sm="5" fxFlex="100"></div>
+                      <div fxFlex.gt-sm="40" fxFlex="100">
+                        <div style="position: relative">
+                          <img
+                            style="height: auto; width: 100%"
+                            src="../../../assets/img/dummy-licence.jpg"
+                            alt=""
+                          />
+                          <mat-icon class="icon-style">edit</mat-icon>
+                        </div>
                       </div>
                       <div fxFlex.gt-sm="7.5" fxFlex="100"></div>
                     </div>
@@ -594,24 +737,25 @@
             <mat-card align="left" class="m-0 m-t-15">
               <mat-card-content>
                 <div fxLayout="row wrap" class="row">
-                <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-                  <div class="tab-body-head">
-                    <h2 class="m-0"><b>Payroll</b></h2>
-                    <mat-icon>edit</mat-icon>
-                  </div>
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <div class="tab-body-head">
+                      <h2 class="m-0 m-b-20"><b>Payroll</b></h2>
+                      <mat-icon>edit</mat-icon>
+                    </div>
                   </div>
                 </div>
                 <!-- <h2 align="left"><b>Payroll</b></h2> -->
                 <mat-accordion>
                   <mat-expansion-panel>
                     <mat-expansion-panel-header>
-                      <mat-panel-title><b>Banking Details</b></mat-panel-title>
+                      <h3 class="m-0 m-t-20 m-b-20 fw-600">Banking Details</h3>
+                      <!-- <mat-panel-title><b>Banking Details</b></mat-panel-title> -->
                       <!-- <mat-panel-description> Type your name and age </mat-panel-description> -->
                     </mat-expansion-panel-header>
                     <div fxLayout="row wrap" class="row">
                       <!-- <div fxFlex.gt-sm="100%" fxFlex="100" class="text-center"> -->
                       <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-                        <h3 align="left">Default Bank Details</h3>
+                        <h4 class="fw-500" align="left">Default Bank Details</h4>
                       </div>
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
@@ -638,7 +782,7 @@
                         </mat-form-field>
                       </div>
                       <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-                        <h3 align="left">Secondary Bank Details</h3>
+                        <h3 class="fw-500" align="left">Secondary Bank Details</h3>
                       </div>
                       <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
@@ -678,44 +822,52 @@
                     (closed)="panelOpenState = false"
                   >
                     <mat-expansion-panel-header>
-                      <mat-panel-title><b>TFN Declaration</b></mat-panel-title>
+                      <h3 class="m-0 m-t-20 m-b-20 fw-600">TFN Declaration</h3>
+                      <!-- <mat-panel-title><b>TFN Declaration</b></mat-panel-title> -->
                       <!-- <mat-panel-description>
                         Currently I am {{ panelOpenState ? 'open' : 'closed' }}
                       </mat-panel-description> -->
                     </mat-expansion-panel-header>
                     <div fxLayout="row wrap" class="row">
-                    <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
-                      <mat-form-field appearance="outline">
-                        <mat-label>Citizenship:</mat-label>
-                        <input matInput value="---------" placeholder="Citizenship" />
-                      </mat-form-field>
+                      <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Citizenship:</mat-label>
+                          <input matInput value="---------" placeholder="Citizenship" />
+                        </mat-form-field>
+                      </div>
+                      <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                        <mat-form-field appearance="outline">
+                          <mat-label>TFN:</mat-label>
+                          <input matInput value="---------" placeholder="TFN" />
+                        </mat-form-field>
+                      </div>
+                      <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                        <p><b>Want to Claim Tax Free Threshold From RTL </b></p>
+                      </div>
+                      <div fxFlex.gt-sm="20" fxFlex="100" class="p-10">
+                        <mat-form-field appearance="outline">
+                          <!-- <mat-label>Super Type :</mat-label> -->
+                          <input matInput value="-------" placeholder="----" />
+                        </mat-form-field>
+                      </div>
+                      <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                        <p><b>Have Debt </b></p>
+                      </div>
+                      <div fxFlex.gt-sm="20" fxFlex="100" class="p-10">
+                        <mat-form-field appearance="outline">
+                          <!-- <mat-label>Super Type :</mat-label> -->
+                          <input matInput value="-------" placeholder="-----" />
+                        </mat-form-field>
+                      </div>
                     </div>
-                    <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
-                      <mat-form-field appearance="outline">
-                        <mat-label>TFN:</mat-label>
-                        <input matInput value="---------" placeholder="TFN" />
-                      </mat-form-field>
-                    </div>
-                    <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
-                      <p><b>Want to Claim Tax Free Threshold From RTL </b></p>
-                    </div>
-                    <div fxFlex.gt-sm="20" fxFlex="100" class="p-10">
-                      <button mat-button color="primary">Yes</button>
-                    </div>
-                    <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
-                      <p><b>Have Debt </b></p>
-                    </div>
-                    <div fxFlex.gt-sm="20" fxFlex="100" class="p-10">
-                      <button mat-button color="primary">Yes</button>
-                    </div>
-                  </div>
                   </mat-expansion-panel>
                   <mat-expansion-panel
                     (opened)="panelOpenState = true"
                     (closed)="panelOpenState = false"
                   >
                     <mat-expansion-panel-header>
-                      <mat-panel-title><b>Superannuation Choice </b></mat-panel-title>
+                      <h3 class="m-0 m-t-20 m-b-20 fw-600">Superannuation Choice</h3>
+                      <!-- <mat-panel-title><b>Superannuation Choice </b></mat-panel-title> -->
                       <!-- <mat-panel-description>
                         Currently I am {{ panelOpenState ? 'open' : 'closed' }}
                       </mat-panel-description> -->
@@ -793,13 +945,11 @@
                           <input matInput value="---------" placeholder="Member No" />
                         </mat-form-field>
                       </div>
-                      <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-                        <h3 align="left">Documents</h3>
-                        <img
-                          style="height: auto; width: 100%"
-                          src="../../../assets/img/1200px-Autograph_of_Benjamin_Franklin.svg.png"
-                          alt=""
-                        />
+                      <div fxFlex.gt-sm="100" fxFlex="100" class="p-10 documents-img">
+                        <h3 class="fw-500" align="left">Documents</h3>
+                        <img class="dIMG" src="../../../assets/img/dummy-licence.jpg" alt="" />
+                        <img class="dIMG" src="../../../assets/img/dummy-licence.jpg" alt="" />
+                        <img class="dIMG" src="../../../assets/img/dummy-licence.jpg" alt="" />
                       </div>
                     </div>
                   </mat-expansion-panel>
@@ -809,39 +959,219 @@
           </mat-tab>
           <mat-tab label="Leaves">
             <mat-card align="left" class="m-0 m-t-15">
-              <!-- <mat-card-content>
-                <h2 align="left"><b>TFN Declaration</b></h2>
+              <mat-card-content>
+                <!-- <h3 align="left"><b>Primary Licence</b></h3> -->
 
-                <div fxLayout="column wrap" fxFlexAlign="left" class="row m-t-20" align="left">
-                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
-                    <div fxFlex.gt-sm="40" fxFlex="100">
-                      <mat-label><b>Account Holder:</b></mat-label>
+                <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20" align="left">
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <div class="tab-body-head">
+                      <!-- <h2 align="left"><b>Licence</b></h2> -->
+                      <h2 class="m-0"><b>Leaves</b></h2>
+                      <mat-icon>edit</mat-icon>
                     </div>
-                    <div fxFlex.gt-sm="60" fxFlex="100">Daniel Show</div>
+                    <!-- <div >
+                      <h3 class="m-0"><b>Primary Licences</b></h3>
+                    </div> -->
                   </div>
+
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
-                    <div fxFlex.gt-sm="40" fxFlex="100">
-                      <mat-label><b>BSB No:</b></mat-label>
-                    </div>
-                    <div fxFlex.gt-sm="60" fxFlex="100">8890</div>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Total Leaves:</mat-label>
+                      <input matInput value="------" placeholder="Total Leaves" />
+                    </mat-form-field>
                   </div>
-                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
-                    <div fxFlex.gt-sm="40" fxFlex="100">
-                      <mat-label><b>Bank Name:</b></mat-label>
-                    </div>
-                    <div fxFlex.gt-sm="60" fxFlex="100">Vic Bank</div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div>
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <h3 class="m-0" align="left"><b>Sick Leave</b></h3>
                   </div>
-                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
-                    <div fxFlex.gt-sm="40" fxFlex="100">
-                      <mat-label><b>Account No:</b></mat-label>
-                    </div>
-                    <div fxFlex.gt-sm="60" fxFlex="100">789656784466</div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Sick Leaves Accures From:</mat-label>
+                      <input matInput value="-----" placeholder="Sick Leaves Accures From" />
+                    </mat-form-field>
+                  </div>
+
+                  <div fxFlex.gt-sm="66.66" fxFlex="100" class="p-10"></div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Balance:</mat-label>
+                      <input matInput value="-----" placeholder="Balance" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Rate:</mat-label>
+                      <input matInput value="-----" placeholder="Rate" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label> Taken:</mat-label>
+                      <input matInput value="-----" placeholder=" Taken" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <h3 class="m-0" align="left"><b>RDO</b></h3>
+                  </div>
+
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Balance:</mat-label>
+                      <input matInput value="-----" placeholder="Balance" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Rate:</mat-label>
+                      <input matInput value="-----" placeholder="Rate" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label> Taken:</mat-label>
+                      <input matInput value="-----" placeholder=" Taken" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <h3 class="m-0" align="left"><b>Annual Leaves</b></h3>
+                  </div>
+
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Balance:</mat-label>
+                      <input matInput value="-----" placeholder="Balance" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Rate:</mat-label>
+                      <input matInput value="-----" placeholder="Rate" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label> Taken:</mat-label>
+                      <input matInput value="-----" placeholder=" Taken" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <h3 class="m-0" align="left"><b>LS Leaves</b></h3>
+                  </div>
+
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Balance:</mat-label>
+                      <input matInput value="-----" placeholder="Balance" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Rate:</mat-label>
+                      <input matInput value="-----" placeholder="Rate" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label> Taken:</mat-label>
+                      <input matInput value="-----" placeholder=" Taken" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <h3 class="m-0" align="left"><b>Carer's Leave</b></h3>
+                  </div>
+
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Balance:</mat-label>
+                      <input matInput value="-----" placeholder="Balance" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Rate:</mat-label>
+                      <input matInput value="-----" placeholder="Rate" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label> Taken:</mat-label>
+                      <input matInput value="-----" placeholder=" Taken" />
+                    </mat-form-field>
                   </div>
                 </div>
-              </mat-card-content> -->
+              </mat-card-content>
             </mat-card>
           </mat-tab>
-          <mat-tab label="Membership"> </mat-tab>
+          <mat-tab label="Membership">
+            <mat-card align="left" class="m-0 m-t-15">
+              <mat-card-content>
+                <!-- <h3 align="left"><b>Primary Licence</b></h3> -->
+
+                <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20" align="left">
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <div class="tab-body-head">
+                      <!-- <h2 align="left"><b>Licence</b></h2> -->
+                      <h2 class="m-0"><b>Membership</b></h2>
+                      <mat-icon>edit</mat-icon>
+                    </div>
+                  </div>
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <h3 class="m-0" align="left"><b>Long Service Leave Scheme</b></h3>
+                  </div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                    <p><b>Is Member</b></p>
+                  </div>
+                  <div fxFlex.gt-sm="20" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <!-- <mat-label>Scheme Name :</mat-label> -->
+                      <input matInput value="------" placeholder="-----" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Scheme Name :</mat-label>
+                      <input matInput value="------" placeholder="Scheme Name" />
+                    </mat-form-field>
+                  </div>
+
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Membership No:</mat-label>
+                      <input matInput value="-----" placeholder="Membership No" />
+                    </mat-form-field>
+                  </div>
+
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <h3 class="m-0" align="left"><b>Redundancy Scheme</b></h3>
+                  </div>
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                    <p><b>Is Member </b></p>
+                  </div>
+                  <div fxFlex.gt-sm="20" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <!-- <mat-label>Scheme Name :</mat-label> -->
+                      <input matInput value="------" placeholder="-----" />
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div>
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Scheme Name :</mat-label>
+                      <input matInput value="------" placeholder="Scheme Name" />
+                    </mat-form-field>
+                  </div>
+
+                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Membership No:</mat-label>
+                      <input matInput value="-----" placeholder="Membership No" />
+                    </mat-form-field>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </mat-tab>
           <mat-tab label="Employment">
             <mat-card align="left" class="m-0 m-t-15">
               <mat-card-content>
@@ -858,7 +1188,7 @@
                       <h3 class="m-0"><b>Primary Licences</b></h3>
                     </div> -->
                   </div>
-                  
+
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Employee Id:</mat-label>
@@ -909,9 +1239,12 @@
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div>
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <h3 class="m-0" align="left"><b>Transfer History</b></h3>
+                  </div>
                 </div>
               </mat-card-content>
-            </mat-card>  
+            </mat-card>
           </mat-tab>
         </mat-tab-group>
       </div>

@@ -133,7 +133,6 @@
             <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10">
               <mat-divider> </mat-divider>
             </div>
-            
 
             <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
               <mat-card-title class="p-b-10 color_blue">Project Details</mat-card-title>
@@ -142,9 +141,7 @@
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Client</mat-label>
-                <mat-select
-                  placeholder="Client"
-                  formControlName="Client">
+                <mat-select placeholder="Client" formControlName="Client">
                   <mat-option value="option">Option</mat-option>
                   <mat-option value="option">Option2</mat-option>
                   <mat-option value="option">Option3</mat-option>
@@ -189,7 +186,7 @@
                 </mat-error>
               </mat-form-field>
             </div>
-            
+
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Location</mat-label>
@@ -244,7 +241,7 @@
                 </mat-error>
               </mat-form-field>
             </div>
-            
+
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Role</mat-label>
@@ -278,13 +275,7 @@
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Award Type</mat-label>
-                <input
-                  matInput
-                  placeholder="Award Type"
-                  formControlName="Award Type"
-                />
-
-                
+                <input matInput placeholder="Award Type" formControlName="Award Type" />
               </mat-form-field>
             </div>
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
@@ -304,8 +295,7 @@
                 </mat-error>
               </mat-form-field>
             </div>
-            
-           
+
             <!-- <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Commitment</mat-label>
@@ -488,18 +478,16 @@
 </mat-card>
 
 <ng-template #resourceDemandDialog>
-  <h1
-    mat-dialog-title
-    align="center"
-    class="color_blue"
-    style="font-size: 20px; margin-bottom: 25px"
-  >
+  <h2 mat-dialog-title align="center" class="color_blue" style="font-size: 20px; margin-bottom: 0">
     Job Resource Demand Created
-  </h1>
+  </h2>
   <div fxLayout="column wrap">
     <!-- <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
       <button class="m-b-20 button" mat-raised-button color="primary">Visit Job Board</button>
     </div> -->
+    <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
+      <p><span class="text-danger">Demand ID</span> 12345</p>
+    </div>
     <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
       <button class="m-b-20 m-t-20 button w-300" mat-raised-button color="primary">
         View Job Board

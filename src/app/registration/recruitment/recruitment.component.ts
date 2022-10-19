@@ -219,7 +219,7 @@ export class RecruitmentComponent implements OnInit {
   openDialog(data: any) {
     const dialogRef = this.dialog.open(this.resourceDemandDialog, {
       width: '30em',
-      height: '15em',
+      height: '20em',
       data: { data: data },
     });
 
