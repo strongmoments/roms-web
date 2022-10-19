@@ -18,6 +18,7 @@ export class EmployeeViewComponent  implements OnInit {
   currentAddress: any;
   postalAddress: any;
   residentialAddress: any;
+  isEditEnable:boolean=false;
   constructor(private activatedRoute: ActivatedRoute, private employeeService: EmployeeService, private router: Router, private alertService: AlertService, private authService: AuthenticationService) {
     this.user = this.authService.getCurrentUser();
     

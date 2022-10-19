@@ -26,8 +26,9 @@
                 <mat-select formControlName="employee">
                   <input mat-input class="search-box-select" aria-label="Employee" (keyup)="searchEmployee($event)">
                   <!-- <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"> -->
-                  <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                    {{option}}
+                    <mat-option value="">Select Employee</mat-option>
+                  <mat-option *ngFor="let item of employeeList" [value]="item?.id">
+                    {{item?.employee?.firstName}} {{item?.employee?.lastName}}
                   </mat-option>
                   <!-- </mat-autocomplete> -->
                 </mat-select>

@@ -18,6 +18,7 @@ export class EmployeeTransferFormComponent implements OnInit {
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions!: Observable<string[]>;
   todayDate: Date = new Date();
+  employeeList: any;
   constructor(public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private router: Router, private employeeService: EmployeeService) {
 
     this.globals = globals;
@@ -40,6 +41,7 @@ export class EmployeeTransferFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.searchEmployee({ target: { value: '' } });
     // this.employeeService.getAll().subscribe((result: any) => {
     //   console.log(result)
     // });
@@ -52,9 +54,10 @@ export class EmployeeTransferFormComponent implements OnInit {
 
   searchEmployee(event: any) {
     console.log(event, 'test')
-    // this.employeeService.searchEmployee('a').subscribe((result: any) => {
-    //   console.log(result, 'resukt employee')
-    // });
+    this.employeeService.searchEmployee(event.target.value).subscribe((result: any) => {
+      console.log(result, 'resukt employee')
+      this.employeeList = result;
+    });
   }
 
 

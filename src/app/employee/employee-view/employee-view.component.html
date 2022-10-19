@@ -5,9 +5,7 @@
       <mat-card-content>
         <div fxLayout="row wrap" class="row">
           <div fxFlex.gt-sm="100%" fxFlex="100" class="text-center">
-            <a href="javascript:void(0);"
-              ><img
-                onerror="this.onerror=null;this.src='assets/img/user-default-img.jpg';"
+            <a href="javascript:void(0);"><img onerror="this.onerror=null;this.src='assets/img/user-default-img.jpg';"
                 [src]="
                   record &&
                   record.personal &&
@@ -15,9 +13,7 @@
                   record.personal.profileImage.length > 0
                     ? record.personal.profileImage[0].digitalAssets?.url
                     : ''
-                "
-                style="max-height: 250px; width: auto"
-              />
+                " style="max-height: 250px; width: auto" />
               <mat-icon class="icon-style">edit</mat-icon>
             </a>
           </div>
@@ -142,295 +138,140 @@
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Salut :</mat-label>
-                      <input matInput value="{{ record?.personal?.salut }}" placeholder="Salut" />
+                      <input [readonly]="!isEditEnable" matInput value="{{ record?.personal?.salut }}"
+                        placeholder="Salut" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>First Name :</mat-label>
-                      <input
-                        matInput
-                        value="{{ record?.personal?.firstName }}"
-                        placeholder="First Name"
-                      />
+                      <input [readonly]="!isEditEnable" matInput value="{{ record?.personal?.firstName }}"
+                        placeholder="First Name" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Middle Name :</mat-label>
-                      <input
-                        matInput
-                        value="{{ record?.personal?.middleName }}"
-                        placeholder="Middle Name"
-                      />
+                      <input [readonly]="!isEditEnable" matInput value="{{ record?.personal?.middleName }}"
+                        placeholder="Middle Name" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Last Name :</mat-label>
-                      <input
-                        matInput
-                        value="{{ record?.personal?.lastName }}"
-                        placeholder="Last Name"
-                      />
+                      <input [readonly]="!isEditEnable" matInput value="{{ record?.personal?.lastName }}"
+                        placeholder="Last Name" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Gender :</mat-label>
-                      <input matInput value="{{ record?.personal?.gender }}" placeholder="Gender" />
+                      <input [readonly]="!isEditEnable" matInput value="{{ record?.personal?.gender }}"
+                        placeholder="Gender" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Pronoun :</mat-label>
-                      <input matInput value="-----" placeholder="Pronoun" />
+                      <input [readonly]="!isEditEnable" matInput value="{{ record?.personal?.pronoun }}"
+                        placeholder="Pronoun" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Nick Name :</mat-label>
-                      <input
-                        matInput
-                        value="{{ record?.personal?.nickName }}"
-                        placeholder="Nick Name"
-                      />
+                      <input [readonly]="!isEditEnable" matInput value="{{ record?.personal?.nickName }}"
+                        placeholder="Nick Name" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Date Of Birth :</mat-label>
-                      <input
-                        matInput
-                        value="{{ record?.personal?.birthdate | date: 'd/M/y' }}"
-                        placeholder="Date Of Birth"
-                      />
+                      <input matInput [readonly]="!isEditEnable"
+                        value="{{ record?.personal?.birthdate | date: 'd/M/y' }}" placeholder="Date Of Birth" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
                     <h3 class="m-0" align="left"><b>Current Address</b></h3>
                   </div>
-                  <!-- <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-                    <div fxFlex.gt-sm="13" fxFlex="100">
-                      <mat-label><b>Address :</b></mat-label>
-                    </div>
-                    <div fxFlex.gt-sm="87" fxFlex="100">
-                      {{ currentAddress?.address }}
-                      
-                    </div>
-                  </div>
 
-                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-                    <div fxFlex.gt-sm="40" fxFlex="100">
-                      <mat-label><b> Suburb:</b></mat-label>
-                    </div>
-                    <div fxFlex.gt-sm="60" fxFlex="100">
-                      {{ currentAddress?.suburb }}
-                      
-                    </div>
-                  </div>
-                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-                    <div fxFlex.gt-sm="40" fxFlex="100">
-                      <mat-label><b> State :</b></mat-label>
-                    </div>
-                    <div fxFlex.gt-sm="60" fxFlex="100">
-                      {{ currentAddress?.state }}
-                      
-                    </div>
-                  </div>
-                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-                    <div fxFlex.gt-sm="40" fxFlex="100">
-                      <mat-label><b> Pincode :</b></mat-label>
-                    </div>
-                    <div fxFlex.gt-sm="60" fxFlex="100">
-                      {{ currentAddress?.postcode }}
-                      
-                    </div>
-                  </div> -->
                   <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Address :</mat-label>
-                      <input matInput value="{{ currentAddress?.address }}" placeholder="Address" />
+                      <input matInput [readonly]="!isEditEnable" value="{{ currentAddress?.address }}"
+                        placeholder="Address" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Suburb :</mat-label>
-                      <input matInput value="{{ currentAddress?.suburb }}" placeholder="Suburb" />
+                      <input matInput [readonly]="!isEditEnable" value="{{ currentAddress?.suburb }}"
+                        placeholder="Suburb" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>State:</mat-label>
-                      <input matInput value=" {{ currentAddress?.state }}" placeholder="State" />
+                      <input matInput [readonly]="!isEditEnable" value=" {{ currentAddress?.state }}"
+                        placeholder="State" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Pincode :</mat-label>
-                      <input
-                        matInput
-                        value="{{ currentAddress?.postcode }}"
-                        placeholder="Pincode"
-                      />
+                      <input matInput [readonly]="!isEditEnable" value="{{ currentAddress?.postcode }}"
+                        placeholder="Pincode" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
                     <h3 class="m-0" align="left"><b>Residential Address</b></h3>
                   </div>
-                  <!-- <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-                    <div fxFlex.gt-sm="13" fxFlex="100">
-                      <mat-label><b>Address :</b></mat-label>
-                    </div>
-                    <div fxFlex.gt-sm="87" fxFlex="100">
-                      {{ residentialAddress?.address }}
-
-                      
-                    </div>
-                  </div>
-
-                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-                    <div fxFlex.gt-sm="40" fxFlex="100">
-                      <mat-label><b> Suburb :</b></mat-label>
-                    </div>
-                    <div fxFlex.gt-sm="60" fxFlex="100">
-                      {{ residentialAddress?.suburb }}
-                     
-                    </div>
-                  </div>
-                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-                    <div fxFlex.gt-sm="40" fxFlex="100">
-                      <mat-label><b> State :</b></mat-label>
-                    </div>
-                    <div fxFlex.gt-sm="60" fxFlex="100">
-                      {{ residentialAddress?.state }}
-                      
-                    </div>
-                  </div>
-                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-                    <div fxFlex.gt-sm="40" fxFlex="100">
-                      <mat-label><b> Pincode :</b></mat-label>
-                    </div>
-                    <div fxFlex.gt-sm="60" fxFlex="100">
-                      {{ residentialAddress?.postcode }}
-                      
-                    </div>
-                  </div> -->
                   <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Address :</mat-label>
-                      <input
-                        matInput
-                        value="{{ residentialAddress?.address }}"
-                        placeholder="Address"
-                      />
+                      <input [readonly]="!isEditEnable" matInput value="{{ residentialAddress?.address }}"
+                        placeholder="Address" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Suburb :</mat-label>
-                      <input
-                        matInput
-                        value="{{ residentialAddress?.suburb }}"
-                        placeholder="Suburb"
-                      />
+                      <input [readonly]="!isEditEnable" matInput value="{{ residentialAddress?.suburb }}"
+                        placeholder="Suburb" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>State:</mat-label>
-                      <input
-                        matInput
-                        value=" {{ residentialAddress?.state }}"
-                        placeholder="State"
-                      />
+                      <input [readonly]="!isEditEnable" matInput value=" {{ residentialAddress?.state }}"
+                        placeholder="State" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Pincode :</mat-label>
-                      <input
-                        matInput
-                        value="{{ residentialAddress?.postcode }}"
-                        placeholder="Pincode"
-                      />
+                      <input [readonly]="!isEditEnable" matInput value="{{ residentialAddress?.postcode }}"
+                        placeholder="Pincode" />
                     </mat-form-field>
                   </div>
-                  <!-- <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-              <h3 align="left">Postal Address</h3>
-            </div>
-            <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="13" fxFlex="100">
-                <mat-label><b>Address :</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="87" fxFlex="100">
-                {{postalAddress?.address}}
-               
-              </div>
-            </div>
-  
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b> Suburb :</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-                {{postalAddress?.suburb}}
-               
-              </div>
-            </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b> State :</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-                {{postalAddress?.state}}
-               
-              </div>
-            </div>
-            <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-              <div fxFlex.gt-sm="40" fxFlex="100">
-                <mat-label><b> Pincode :</b></mat-label>
-              </div>
-              <div fxFlex.gt-sm="60" fxFlex="100">
-                {{postalAddress?.postcode}}
-                
-              </div>
-            </div> -->
+
                   <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
                     <h3 class="m-0" align="left"><b>Contact Details</b></h3>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Mobile No :</mat-label>
-                      <input
-                        matInput
-                        value="{{ record?.personal?.phone }}"
-                        placeholder="Mobile No"
-                      />
+                      <input [readonly]="!isEditEnable" matInput value="{{ record?.personal?.phone }}"
+                        placeholder="Mobile No" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Email :</mat-label>
-                      <input matInput value=" {{ record?.personal?.email }}" placeholder="Email" />
+                      <input [readonly]="!isEditEnable" matInput value=" {{ record?.personal?.email }}"
+                        placeholder="Email" />
                     </mat-form-field>
                   </div>
-
-                  <!-- <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-                    <div fxFlex.gt-sm="40" fxFlex="100">
-                      <mat-label><b>Mobile No :</b></mat-label>
-                    </div>
-                    <div fxFlex.gt-sm="60" fxFlex="100">
-                      {{ record?.personal?.phone }}
-                    </div>
-                  </div>
-                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
-                    <div fxFlex.gt-sm="40" fxFlex="100">
-                      <mat-label><b>Email :</b></mat-label>
-                    </div>
-                    <div fxFlex.gt-sm="60" fxFlex="100">{{ record?.personal?.email }}</div>
-                  </div>
-                  <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10"></div> -->
                 </div>
               </mat-card-content>
             </mat-card>
@@ -438,8 +279,6 @@
           <mat-tab label="Contacts">
             <mat-card align="left" class="m-0 m-t-15">
               <mat-card-content>
-                <!-- <h2 align="left"><b>Emergency Contacts</b></h2> -->
-
                 <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20" align="left">
                   <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
                     <div class="tab-body-head">
@@ -453,31 +292,31 @@
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Salut :</mat-label>
-                      <input matInput value="----" placeholder="Salut" />
+                      <input [readonly]="!isEditEnable" matInput value="----" placeholder="Salut" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>First Name :</mat-label>
-                      <input matInput value="-----" placeholder="FIrst Name" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="FIrst Name" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Middle Name :</mat-label>
-                      <input matInput value="------" placeholder="Middle Name" />
+                      <input [readonly]="!isEditEnable" matInput value="------" placeholder="Middle Name" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Last Name :</mat-label>
-                      <input matInput value="-----" placeholder="Last Name" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="Last Name" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Relationship :</mat-label>
-                      <input matInput value="------" placeholder="Relationship" />
+                      <input [readonly]="!isEditEnable" matInput value="------" placeholder="Relationship" />
                     </mat-form-field>
                   </div>
 
@@ -487,25 +326,25 @@
                   <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Address :</mat-label>
-                      <input matInput value=" -----" placeholder="Address" />
+                      <input [readonly]="!isEditEnable" matInput value=" -----" placeholder="Address" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Suburb :</mat-label>
-                      <input matInput value="------" placeholder="Suburb" />
+                      <input [readonly]="!isEditEnable" matInput value="------" placeholder="Suburb" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>State:</mat-label>
-                      <input matInput value="------" placeholder="State" />
+                      <input [readonly]="!isEditEnable" matInput value="------" placeholder="State" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Pincode :</mat-label>
-                      <input matInput value="-------" placeholder="Pincode" />
+                      <input [readonly]="!isEditEnable" matInput value="-------" placeholder="Pincode" />
                     </mat-form-field>
                   </div>
 
@@ -515,13 +354,13 @@
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Mobile No :</mat-label>
-                      <input matInput value="-------" placeholder="Mobile No" />
+                      <input [readonly]="!isEditEnable" matInput value="-------" placeholder="Mobile No" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Email :</mat-label>
-                      <input matInput value="---------" placeholder="Email" />
+                      <input [readonly]="!isEditEnable" matInput value="---------" placeholder="Email" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="100" fxFlex="100" class="add-btn p-10">
@@ -535,31 +374,31 @@
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Salut :</mat-label>
-                      <input matInput value="----" placeholder="Salut" />
+                      <input [readonly]="!isEditEnable" matInput value="----" placeholder="Salut" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>First Name :</mat-label>
-                      <input matInput value="-----" placeholder="FIrst Name" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="FIrst Name" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Middle Name :</mat-label>
-                      <input matInput value="------" placeholder="Middle Name" />
+                      <input [readonly]="!isEditEnable" matInput value="------" placeholder="Middle Name" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Last Name :</mat-label>
-                      <input matInput value="-----" placeholder="Last Name" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="Last Name" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Relationship :</mat-label>
-                      <input matInput value="------" placeholder="Relationship" />
+                      <input [readonly]="!isEditEnable" matInput value="------" placeholder="Relationship" />
                     </mat-form-field>
                   </div>
 
@@ -569,25 +408,25 @@
                   <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Address :</mat-label>
-                      <input matInput value=" -----" placeholder="Address" />
+                      <input [readonly]="!isEditEnable" matInput value=" -----" placeholder="Address" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Suburb :</mat-label>
-                      <input matInput value="------" placeholder="Suburb" />
+                      <input [readonly]="!isEditEnable" matInput value="------" placeholder="Suburb" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>State:</mat-label>
-                      <input matInput value="------" placeholder="State" />
+                      <input [readonly]="!isEditEnable" matInput value="------" placeholder="State" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Pincode :</mat-label>
-                      <input matInput value="-------" placeholder="Pincode" />
+                      <input [readonly]="!isEditEnable" matInput value="-------" placeholder="Pincode" />
                     </mat-form-field>
                   </div>
 
@@ -597,13 +436,13 @@
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Mobile No :</mat-label>
-                      <input matInput value="-------" placeholder="Mobile No" />
+                      <input [readonly]="!isEditEnable" matInput value="-------" placeholder="Mobile No" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Email :</mat-label>
-                      <input matInput value="---------" placeholder="Email" />
+                      <input [readonly]="!isEditEnable" matInput value="---------" placeholder="Email" />
                     </mat-form-field>
                   </div>
                 </div>
@@ -631,22 +470,14 @@
                       <div fxFlex.gt-sm="7.5" fxFlex="100"></div>
                       <div fxFlex.gt-sm="40" fxFlex="100">
                         <div style="position: relative">
-                          <img
-                            style="height: auto; width: 100%"
-                            src="../../../assets/img/dummy-licence.jpg"
-                            alt=""
-                          />
+                          <img style="height: auto; width: 100%" src="../../../assets/img/dummy-licence.jpg" alt="" />
                           <mat-icon class="icon-style">edit</mat-icon>
                         </div>
                       </div>
                       <div fxFlex.gt-sm="5" fxFlex="100"></div>
                       <div fxFlex.gt-sm="40" fxFlex="100">
                         <div style="position: relative">
-                          <img
-                            style="height: auto; width: 100%"
-                            src="../../../assets/img/dummy-licence.jpg"
-                            alt=""
-                          />
+                          <img style="height: auto; width: 100%" src="../../../assets/img/dummy-licence.jpg" alt="" />
                           <mat-icon class="icon-style">edit</mat-icon>
                         </div>
                       </div>
@@ -659,19 +490,19 @@
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>License No :</mat-label>
-                      <input matInput value="------" placeholder="License No" />
+                      <input [readonly]="!isEditEnable" matInput value="------" placeholder="License No" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Issued In:</mat-label>
-                      <input matInput value="-----" placeholder="Issued In" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="Issued In" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Expiry Date:</mat-label>
-                      <input matInput value="-----" placeholder="Expiry Date" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="Expiry Date" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="100" fxFlex="100" class="add-btn p-10">
@@ -686,22 +517,14 @@
                       <div fxFlex.gt-sm="7.5" fxFlex="100"></div>
                       <div fxFlex.gt-sm="40" fxFlex="100">
                         <div style="position: relative">
-                          <img
-                            style="height: auto; width: 100%"
-                            src="../../../assets/img/dummy-licence.jpg"
-                            alt=""
-                          />
+                          <img style="height: auto; width: 100%" src="../../../assets/img/dummy-licence.jpg" alt="" />
                           <mat-icon class="icon-style">edit</mat-icon>
                         </div>
                       </div>
                       <div fxFlex.gt-sm="5" fxFlex="100"></div>
                       <div fxFlex.gt-sm="40" fxFlex="100">
                         <div style="position: relative">
-                          <img
-                            style="height: auto; width: 100%"
-                            src="../../../assets/img/dummy-licence.jpg"
-                            alt=""
-                          />
+                          <img style="height: auto; width: 100%" src="../../../assets/img/dummy-licence.jpg" alt="" />
                           <mat-icon class="icon-style">edit</mat-icon>
                         </div>
                       </div>
@@ -714,19 +537,19 @@
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>License No :</mat-label>
-                      <input matInput value="------" placeholder="License No" />
+                      <input [readonly]="!isEditEnable" matInput value="------" placeholder="License No" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Issued In:</mat-label>
-                      <input matInput value="-----" placeholder="Issued In" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="Issued In" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Expiry Date:</mat-label>
-                      <input matInput value="-----" placeholder="Expiry Date" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="Expiry Date" />
                     </mat-form-field>
                   </div>
                 </div>
@@ -760,25 +583,25 @@
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Account No :</mat-label>
-                          <input matInput value="-------" placeholder="Account No" />
+                          <input [readonly]="!isEditEnable" matInput value="-------" placeholder="Account No" />
                         </mat-form-field>
                       </div>
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>BSB:</mat-label>
-                          <input matInput value="---------" placeholder="BSB" />
+                          <input [readonly]="!isEditEnable" matInput value="---------" placeholder="BSB" />
                         </mat-form-field>
                       </div>
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Bank Name:</mat-label>
-                          <input matInput value="---------" placeholder="Bank Name" />
+                          <input [readonly]="!isEditEnable" matInput value="---------" placeholder="Bank Name" />
                         </mat-form-field>
                       </div>
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Account No:</mat-label>
-                          <input matInput value="---------" placeholder="Account No" />
+                          <input [readonly]="!isEditEnable" matInput value="---------" placeholder="Account No" />
                         </mat-form-field>
                       </div>
                       <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
@@ -787,40 +610,37 @@
                       <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Fixed Amount :</mat-label>
-                          <input matInput value="-------" placeholder="Fixed Amount" />
+                          <input [readonly]="!isEditEnable" matInput value="-------" placeholder="Fixed Amount" />
                         </mat-form-field>
                       </div>
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Account No :</mat-label>
-                          <input matInput value="-------" placeholder="Account No" />
+                          <input [readonly]="!isEditEnable" matInput value="-------" placeholder="Account No" />
                         </mat-form-field>
                       </div>
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>BSB:</mat-label>
-                          <input matInput value="---------" placeholder="BSB" />
+                          <input [readonly]="!isEditEnable" matInput value="---------" placeholder="BSB" />
                         </mat-form-field>
                       </div>
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Bank Name:</mat-label>
-                          <input matInput value="---------" placeholder="Bank Name" />
+                          <input [readonly]="!isEditEnable" matInput value="---------" placeholder="Bank Name" />
                         </mat-form-field>
                       </div>
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Account No:</mat-label>
-                          <input matInput value="---------" placeholder="Account No" />
+                          <input [readonly]="!isEditEnable" matInput value="---------" placeholder="Account No" />
                         </mat-form-field>
                       </div>
                       <!-- </div> -->
                     </div>
                   </mat-expansion-panel>
-                  <mat-expansion-panel
-                    (opened)="panelOpenState = true"
-                    (closed)="panelOpenState = false"
-                  >
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                     <mat-expansion-panel-header>
                       <h3 class="m-0 m-t-20 m-b-20 fw-600">TFN Declaration</h3>
                       <!-- <mat-panel-title><b>TFN Declaration</b></mat-panel-title> -->
@@ -832,13 +652,13 @@
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Citizenship:</mat-label>
-                          <input matInput value="---------" placeholder="Citizenship" />
+                          <input [readonly]="!isEditEnable" matInput value="---------" placeholder="Citizenship" />
                         </mat-form-field>
                       </div>
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>TFN:</mat-label>
-                          <input matInput value="---------" placeholder="TFN" />
+                          <input [readonly]="!isEditEnable" matInput value="---------" placeholder="TFN" />
                         </mat-form-field>
                       </div>
                       <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
@@ -847,7 +667,7 @@
                       <div fxFlex.gt-sm="20" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <!-- <mat-label>Super Type :</mat-label> -->
-                          <input matInput value="-------" placeholder="----" />
+                          <input [readonly]="!isEditEnable" matInput value="-------" placeholder="----" />
                         </mat-form-field>
                       </div>
                       <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
@@ -856,15 +676,12 @@
                       <div fxFlex.gt-sm="20" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <!-- <mat-label>Super Type :</mat-label> -->
-                          <input matInput value="-------" placeholder="-----" />
+                          <input [readonly]="!isEditEnable" matInput value="-------" placeholder="-----" />
                         </mat-form-field>
                       </div>
                     </div>
                   </mat-expansion-panel>
-                  <mat-expansion-panel
-                    (opened)="panelOpenState = true"
-                    (closed)="panelOpenState = false"
-                  >
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                     <mat-expansion-panel-header>
                       <h3 class="m-0 m-t-20 m-b-20 fw-600">Superannuation Choice</h3>
                       <!-- <mat-panel-title><b>Superannuation Choice </b></mat-panel-title> -->
@@ -879,70 +696,70 @@
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Super Type :</mat-label>
-                          <input matInput value="-------" placeholder="Super Type" />
+                          <input [readonly]="!isEditEnable" matInput value="-------" placeholder="Super Type" />
                         </mat-form-field>
                       </div>
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div>
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Fund ABN :</mat-label>
-                          <input matInput value="---------" placeholder="Fund ABN" />
+                          <input [readonly]="!isEditEnable" matInput value="---------" placeholder="Fund ABN" />
                         </mat-form-field>
                       </div>
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Fund Name:</mat-label>
-                          <input matInput value="---------" placeholder="Fund Name" />
+                          <input [readonly]="!isEditEnable" matInput value="---------" placeholder="Fund Name" />
                         </mat-form-field>
                       </div>
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Fund Address:</mat-label>
-                          <input matInput value="---------" placeholder="Fund Address" />
+                          <input [readonly]="!isEditEnable" matInput value="---------" placeholder="Fund Address" />
                         </mat-form-field>
                       </div>
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Suburb:</mat-label>
-                          <input matInput value="---------" placeholder="Suburb" />
+                          <input [readonly]="!isEditEnable" matInput value="---------" placeholder="Suburb" />
                         </mat-form-field>
                       </div>
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>State:</mat-label>
-                          <input matInput value="---------" placeholder="State" />
+                          <input [readonly]="!isEditEnable" matInput value="---------" placeholder="State" />
                         </mat-form-field>
                       </div>
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Postcode:</mat-label>
-                          <input matInput value="---------" placeholder="Postcode" />
+                          <input [readonly]="!isEditEnable" matInput value="---------" placeholder="Postcode" />
                         </mat-form-field>
                       </div>
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Phone:</mat-label>
-                          <input matInput value="---------" placeholder="Phone" />
+                          <input [readonly]="!isEditEnable" matInput value="---------" placeholder="Phone" />
                         </mat-form-field>
                       </div>
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div>
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>USI:</mat-label>
-                          <input matInput value="---------" placeholder="USI" />
+                          <input [readonly]="!isEditEnable" matInput value="---------" placeholder="USI" />
                         </mat-form-field>
                       </div>
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div>
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Account Name:</mat-label>
-                          <input matInput value="---------" placeholder="Account Name" />
+                          <input [readonly]="!isEditEnable" matInput value="---------" placeholder="Account Name" />
                         </mat-form-field>
                       </div>
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Member No:</mat-label>
-                          <input matInput value="---------" placeholder="Member No" />
+                          <input [readonly]="!isEditEnable" matInput value="---------" placeholder="Member No" />
                         </mat-form-field>
                       </div>
                       <div fxFlex.gt-sm="100" fxFlex="100" class="p-10 documents-img">
@@ -977,7 +794,7 @@
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Total Leaves:</mat-label>
-                      <input matInput value="------" placeholder="Total Leaves" />
+                      <input [readonly]="!isEditEnable" matInput value="------" placeholder="Total Leaves" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div>
@@ -987,7 +804,7 @@
                   <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Sick Leaves Accures From:</mat-label>
-                      <input matInput value="-----" placeholder="Sick Leaves Accures From" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="Sick Leaves Accures From" />
                     </mat-form-field>
                   </div>
 
@@ -995,19 +812,19 @@
                   <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Balance:</mat-label>
-                      <input matInput value="-----" placeholder="Balance" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="Balance" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Rate:</mat-label>
-                      <input matInput value="-----" placeholder="Rate" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="Rate" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label> Taken:</mat-label>
-                      <input matInput value="-----" placeholder=" Taken" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder=" Taken" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
@@ -1017,7 +834,7 @@
                   <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Balance:</mat-label>
-                      <input matInput value="-----" placeholder="Balance" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="Balance" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
@@ -1029,7 +846,7 @@
                   <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label> Taken:</mat-label>
-                      <input matInput value="-----" placeholder=" Taken" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder=" Taken" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
@@ -1039,19 +856,19 @@
                   <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Balance:</mat-label>
-                      <input matInput value="-----" placeholder="Balance" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="Balance" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Rate:</mat-label>
-                      <input matInput value="-----" placeholder="Rate" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="Rate" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label> Taken:</mat-label>
-                      <input matInput value="-----" placeholder=" Taken" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder=" Taken" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
@@ -1067,13 +884,13 @@
                   <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Rate:</mat-label>
-                      <input matInput value="-----" placeholder="Rate" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="Rate" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label> Taken:</mat-label>
-                      <input matInput value="-----" placeholder=" Taken" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder=" Taken" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
@@ -1083,19 +900,19 @@
                   <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Balance:</mat-label>
-                      <input matInput value="-----" placeholder="Balance" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="Balance" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Rate:</mat-label>
-                      <input matInput value="-----" placeholder="Rate" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="Rate" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label> Taken:</mat-label>
-                      <input matInput value="-----" placeholder=" Taken" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder=" Taken" />
                     </mat-form-field>
                   </div>
                 </div>
@@ -1124,21 +941,21 @@
                   <div fxFlex.gt-sm="20" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <!-- <mat-label>Scheme Name :</mat-label> -->
-                      <input matInput value="------" placeholder="-----" />
+                      <input [readonly]="!isEditEnable" matInput value="------" placeholder="-----" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Scheme Name :</mat-label>
-                      <input matInput value="------" placeholder="Scheme Name" />
+                      <input [readonly]="!isEditEnable" matInput value="------" placeholder="Scheme Name" />
                     </mat-form-field>
                   </div>
 
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Membership No:</mat-label>
-                      <input matInput value="-----" placeholder="Membership No" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="Membership No" />
                     </mat-form-field>
                   </div>
 
@@ -1151,21 +968,21 @@
                   <div fxFlex.gt-sm="20" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <!-- <mat-label>Scheme Name :</mat-label> -->
-                      <input matInput value="------" placeholder="-----" />
+                      <input [readonly]="!isEditEnable" matInput value="------" placeholder="-----" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Scheme Name :</mat-label>
-                      <input matInput value="------" placeholder="Scheme Name" />
+                      <input [readonly]="!isEditEnable" matInput value="------" placeholder="Scheme Name" />
                     </mat-form-field>
                   </div>
 
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Membership No:</mat-label>
-                      <input matInput value="-----" placeholder="Membership No" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="Membership No" />
                     </mat-form-field>
                   </div>
                 </div>
@@ -1192,50 +1009,51 @@
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Employee Id:</mat-label>
-                      <input matInput value="------" placeholder="Employee Id" />
+                      <input [readonly]="!isEditEnable" matInput value="------" placeholder="Employee Id" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Start Date:</mat-label>
-                      <input matInput value="-----" placeholder="Start Date" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="Start Date" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Termination Date:</mat-label>
-                      <input matInput value="-----" placeholder="Termination Date" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="Termination Date" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Registration Date:</mat-label>
-                      <input matInput value="-----" placeholder="Registration Date" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="Registration Date" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Onboarding Completion Date:</mat-label>
-                      <input matInput value="-----" placeholder="Onboarding Completion Date" />
+                      <input [readonly]="!isEditEnable" matInput value="-----"
+                        placeholder="Onboarding Completion Date" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Award Type:</mat-label>
-                      <input matInput value="-----" placeholder="Award Type" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="Award Type" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Pay Period Type:</mat-label>
-                      <input matInput value="-----" placeholder="Pay Period Type" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="Pay Period Type" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Gang:</mat-label>
-                      <input matInput value="-----" placeholder="Gang" />
+                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="Gang" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div>

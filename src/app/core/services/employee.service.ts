@@ -29,8 +29,7 @@ export class EmployeeService {
 
 
     searchEmployee(search: string) {
-        return this.http.get<any>(`https://app.swaggerhub.com/apis/strongmoments/Search-Employee-For-Gang-Transfer/1.0.0#/default/post_v1_employee_searchoperatorfromteam
-        ?searchKey=${search}`);
+        return this.http.get<any>(`${environment.apiUrl}/v1/subteammember/search?name=${search}`);
     }
 
     getAllResignationRequest(options: ViewOptions) {

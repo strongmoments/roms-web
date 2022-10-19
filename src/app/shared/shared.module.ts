@@ -29,6 +29,7 @@ import { DateAgoPipe } from '../core/_helpers/date-ago-pipe';
 import { QuillModule } from 'ngx-quill';
 import { ImagePreviewDialog } from './image-preview-dialog/image-preview-dialog.component';
 import { CommonEmployeeProfileViewComponent } from './common-employee-profile-view/common-employee-profile-view.component';
+import { NewUserPrivacyPolicyDialog } from './new-user-privacy-policy-dialog/new-user-privacy-policy-dialog.component';
 
 // import { Base64ImagePipe } from '../core/_helpers/base64-image-pipe';
 // import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
@@ -62,7 +63,8 @@ import { CommonEmployeeProfileViewComponent } from './common-employee-profile-vi
     AccordionLinkDirective,
     AccordionDirective,
     ImagePreviewDialog,
-    CommonEmployeeProfileViewComponent
+    CommonEmployeeProfileViewComponent,
+    NewUserPrivacyPolicyDialog
     // FullComponent,
     // VerticalAppHeaderComponent,
     // SpinnerComponent,
@@ -87,7 +89,8 @@ import { CommonEmployeeProfileViewComponent } from './common-employee-profile-vi
     PerfectScrollbarModule,
     FlexLayoutModule,
     QuillModule,
-    CommonEmployeeProfileViewComponent
+    CommonEmployeeProfileViewComponent,
+    NewUserPrivacyPolicyDialog
     // AppBreadcrumbComponent
   ],
   providers: [MenuItems, HorizontalMenuItems, Base64ImagePipe, DateAgoPipe],
