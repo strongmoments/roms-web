@@ -9,7 +9,7 @@ import { CustomMessage } from 'src/app/custom-message';
   templateUrl: './employee-view.component.html',
   styleUrls: ['./employee-view.component.css']
 })
-export class EmployeeViewComponent  implements OnInit {
+export class EmployeeViewComponent implements OnInit {
   panelOpenState = false;
   step = 0;
   record: any;
@@ -18,10 +18,21 @@ export class EmployeeViewComponent  implements OnInit {
   currentAddress: any;
   postalAddress: any;
   residentialAddress: any;
-  isEditEnable:boolean=false;
+  isEditEnable: boolean = false;
+  emergencyContactMain: any = null;
+  otherEmergencyContact: any = null;
+  primaryLicence: any = null;
+  otherLicence: any = null;
+  primaryBank: any = null;
+  otherBank: any = null;
+  primaryTfn: any = null;
+  primarySuperAnnuation: any = null;
+  otherSuperAnnuation: any = null;
+  primaryMembership: any = null;
+
   constructor(private activatedRoute: ActivatedRoute, private employeeService: EmployeeService, private router: Router, private alertService: AlertService, private authService: AuthenticationService) {
     this.user = this.authService.getCurrentUser();
-    
+
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
@@ -35,7 +46,22 @@ export class EmployeeViewComponent  implements OnInit {
             this.currentAddress = this.record.address.find((elem: any) => elem.type == 2);
             this.postalAddress = this.record.address.find((elem: any) => elem.type == 1);
             this.residentialAddress = this.record.address.find((elem: any) => elem.type == 1);
+            this.emergencyContactMain = this.record.emergencyContact && this.record.emergencyContact.length > 0 ? this.record.emergencyContact[0] : null;
+            this.otherEmergencyContact = this.record.emergencyContact && this.record.emergencyContact.length > 1 ? this.record.emergencyContact[1] : null;
 
+            this.primaryLicence = this.record.licence && this.record.licence.length > 0 ? this.record.licence[0] : null;
+            this.otherLicence = this.record.licence && this.record.licence.length > 1 ? this.record.licence[1] : null;
+
+
+            this.primaryBank = this.record.bankingDetails && this.record.bankingDetails.length > 0 ? this.record.bankingDetails[0] : null;
+            this.otherBank = this.record.bankingDetails && this.record.bankingDetails.length > 1 ? this.record.bankingDetails[1] : null;
+
+            this.primaryTfn = this.record.tfn && this.record.tfn.length > 0 ? this.record.tfn[0] : null;
+
+            this.primarySuperAnnuation = this.record.superannuation && this.record.superannuation.length > 0 ? this.record.superannuation[0] : null;
+            this.otherSuperAnnuation = this.record.superannuation && this.record.superannuation.length > 1 ? this.record.superannuation[1] : null;
+
+            this.primaryMembership = this.record.membership && this.record.membership.length > 0 ? this.record.membership[0] : null;
           }
           console.log(result);
         }, (error: any) => {
