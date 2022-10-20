@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FullComponent } from '../layouts/full/full.component';
+import { ClientAddComponent } from './client-add/client-add.component';
 import { ClientListComponent } from './client-list/client-list.component';
+import { ProjectAddComponent } from './project-add/project-add.component';
 
 const routes: Routes = [
   {
@@ -9,12 +11,20 @@ const routes: Routes = [
     component: FullComponent,
     children: [
       {
-        path: 'list',
+        path: 'client-list',
         component: ClientListComponent,
         data: {
-          title: 'list',
-          urls: [{ title: 'Dashboard', }],
-        },
+          title: 'Client list',
+          urls: [{ title: 'Dashboard', url: '/' }, { title: 'My Staff' }],
+      },
+      },
+      {
+        path: 'client-add',
+        component: ClientAddComponent,
+       data: {
+          title: 'Add Client',
+          urls: [{ title: 'Dashboard', url: '/' }, { title: 'My Staff' }],
+      },
       },
       // {
       //   path: 'dashboard2',

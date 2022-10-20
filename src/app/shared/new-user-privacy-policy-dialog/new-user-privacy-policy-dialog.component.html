@@ -1,9 +1,250 @@
-<mat-dialog-content>
-  <p>
-    {{message}}
-  </p>
-</mat-dialog-content>
-<mat-dialog-actions align="center">
-  <button mat-raised-button color="primary" (click)="onConfirmClick()" tabindex="1">{{confirmButtonText}}</button>
-  <button mat-raised-button mat-dialog-close tabindex="-1">{{cancelButtonText}}</button>
-</mat-dialog-actions>
+<div fxLayout="row wrap" style="justify-content: center">
+  <div fxFlex.gt-sm="100%" fxFlex="100">
+    <!-- <mat-card align="center"> -->
+    <mat-card-content class="m-b-0">
+      <div fxLayout="row wrap" class="row">
+        <div fxFlex.gt-sm="100%" fxFlex="100" class="text-center">
+          <a routerLink="/"
+            ><img src="../../../assets/img/privacy-logo.png" alt="logo image" width="120px" />
+          </a>
+        </div>
+        <div fxFlex.gt-sm="100%" fxFlex="100" class="text-center">
+          <label class="new-user-label-text">We value your privacy! </label>
+          <h5 class="color_blue m-0 m-t-5">
+            We dont share your personal data outside our internal operation process system.
+          </h5>
+        </div>
+        <div fxFlex.gt-sm="100%" fxFlex="100" class="m-0 m-l-20">
+          <h3 class="m-0 m-b-5 m-t-10 new-user-main-text">Privacy Policy</h3>
+        </div>
+        <div fxFlex.gt-sm="100%" fxFlex="100">
+          <div class="m-0 p-10" class="content-scroll-box">
+            <p><b>PURPOSE</b></p>
+            <p>This procedure sets out the requirements for privacy across RTL.</p>
+            <p>
+              This procedure applies to all employees. Any employee of RTL found to have breached
+              this procedure may be subject to disciplinary action.
+            </p>
+            <p>
+              The objectives of this procedure are to treat personal information in accordance with
+              the Privacy Act 1988 (Cth) (the Privacy Act) and the Australian Privacy Principles
+              (APPs). Any personal information outside Australia, will be treated in accordance with
+              the applicable law.
+            </p>
+            <p><b>PROCEDURE</b></p>
+            <p><b>1. WHAT PERSONAL INFORMATION DO WE COLLECT?</b></p>
+            <p>
+              Personal information is any information (including an opinion) which can be used to
+              identify an individual. Sensitive information is a subset of personal information
+              which includes information about an individual&rsquo;s race or ethnicity, political or
+              religious beliefs, membership of a professional or trade association, membership of a
+              trade union, sexual preferences, criminal record and health information.
+            </p>
+            <p>
+              Personal information will not be shared, sold or disclosed by RTL other than in
+              accordance with this procedure, without an individual&rsquo;s permission, or in
+              accordance with the Privacy Act.
+            </p>
+            <p>
+              RTL only collects, holds, uses or discloses personal information where it is
+              reasonably necessary to:
+            </p>
+            <ul>
+              <li>
+                <p>
+                  Enable RTL to deliver services or information to individuals or to an
+                  organisation;
+                </p>
+              </li>
+              <li>
+                <p>
+                  Maintain or establish a business relationship, including as a customer, supplier,
+                  contractor, or employee;
+                </p>
+              </li>
+              <li>
+                <p>
+                  Enable RTL to assist to provide services; or to improve, and better understand
+                  preferences in respect of RTL services; and
+                </p>
+              </li>
+              <li><p>Fulfil its legal or regulatory obligation.</p></li>
+            </ul>
+            <p>
+              RTL generally collects personal information directly from the individual to whom it
+              relates, except where that individual has consented to RTL collecting the personal
+              information from a third party, or where the law otherwise permits RTL to do so, or
+              where it is unreasonable or impracticable to collect it directly.
+            </p>
+            <p>
+              RTL only collects sensitive information directly from individuals with their consent,
+              or where required, it is authorised or otherwise permitted to collect the information
+              from a third party by law.
+            </p>
+            <p>
+              Personal information may also be collected from, and disclosed to, third parties in
+              the course of business activities. For example, during a recruitment process steps may
+              be taken to verify the accuracy and completeness of the information and, in
+              appropriate circumstances due to the nature of the available position, health checks,
+              credit checks or criminal records checks may be carried out.
+            </p>
+            <p>
+              An individual has the option, where lawful and practicable, not to be identified when
+              communicating or entering into transactions with RTL (including by the use of a
+              pseudonym). However, in most circumstances, it will be impracticable for RTL to do
+              business with an individual or provide the services required by an individual unless
+              personal information is provided.
+            </p>
+            <p>
+              <b>2. PURPOSES FOR WHICH WE COLLECT, HOLD, USE AND DISCLOSE PERSONAL INFORMATION</b>
+            </p>
+            <p>
+              Personal information will be stored in RTL&rsquo;s systems for immediate business and
+              administration purposes, as detailed above, and may be used or disclosed for the
+              purpose for which it was collected, or for a related purpose which someone may
+              reasonably expect.
+            </p>
+            <p>
+              Sensitive information will only be disclosed for a purpose which is directly related
+              to the purpose for which it was collected.
+            </p>
+            <p>
+              Personal information may be disclosed between related bodies corporate within RTL and
+              used by those entities for the same purposes for which the collecting company is
+              entitled to use it.
+            </p>
+            <p>RTL may also disclose personal information (including overseas recipients):</p>
+            <ul>
+              <li>
+                <p>
+                  to third-party service providers and business associates, including our alliance
+                  partners, who provide services in connection with its business.
+                </p>
+              </li>
+              <li><p>with the individuals consent;</p></li>
+              <li><p>where required, authorised or permitted to do so by law;</p></li>
+              <li><p>to a person authorised to act on the individual&rsquo;s behalf; or</p></li>
+              <li>
+                <p>
+                  as required by law and specifically to any government agency if RTL believes in
+                  good faith that it must do so to comply with the law or that doing so is required
+                  to prevent, detect, investigate or remedy improper conduct potentially affecting
+                  it.
+                </p>
+              </li>
+            </ul>
+            <p>
+              <b
+                >3. WHERE RTL HOLDS OR TRANSFERS PERSONAL INFORMATION OUTSIDE AUSTRALIA, IT WILL
+                MEET THE SAFEGUARDS SET OUT IN THE PRIVACY ACT. WHERE PERSONAL INFORMATION IS HELD
+                OR DISCLOSED OVERSEAS, ALL REASONABLE STEPS WILL BE TAKEN TO ENSURE THAT THE
+                RECIPIENT WILL HANDLE THE INFORMATION IN A MANNER CONSISTENT WITH THE PRIVACY ACT.
+                CONFIDENTIALITY AND SECURITY</b
+              >
+            </p>
+            <p>RTL is committed to:</p>
+            <ul>
+              <li><p>Safeguarding all personal information provided to RTL;</p></li>
+              <li>
+                <p>Ensuring that personal information remains confidential and secure; and</p>
+              </li>
+              <li>
+                <p>Taking all reasonable steps to ensure that personal privacy is respected.</p>
+              </li>
+            </ul>
+            <p>
+              RTL maintains physical, electronic and procedural safeguards to protect personal
+              information from misuse, interference, unauthorised access, modification or
+              disclosure, and loss or corruption by computer viruses and other sources of harm.
+              Access to personal information is restricted to those employees, subsidiary companies
+              or third parties who need to know that information.
+            </p>
+            <p>
+              In accordance with the Privacy Act, RTL is required to notify you and the Australian
+              Information Commissioner if it becomes aware of a data breach (such as an unauthorised
+              disclosure of or unauthorised access to data, or a loss of data) where that breach is
+              reasonably likely to result in serious harm. This will apply even if your data is
+              being held offshore.
+            </p>
+            <p><b>4. ACCESSING OR CORRECTING PERSONAL INFORMATION</b></p>
+            <p>
+              In most circumstances, RTL will make available to an individual upon their request any
+              personal information held about them. Requests to access personal information may be
+              made at any time.. RTL will respond to a request within a reasonable time, and in the
+              manner requested, unless there is a legal or administrative reason preventing RTL from
+              doing so. In some cases, a reasonable fee may be charged for providing access.
+            </p>
+            <p>
+              Reasonable steps shall be taken to ensure the personal information held is accurate,
+              complete and up to date, relevant and not misleading before it is used or shared.
+            </p>
+            <p>
+              An individual may request that personal information be corrected or supplemented if
+              the individual believes the information held by RTL is inaccurate or misleading. Where
+              RTL agrees, the change will be made. Where RTL disagrees, RTL will advise the
+              individual and include a notation on the record that the information&rsquo;s accuracy
+              is disputed.
+            </p>
+            <p>
+              If personal information changes, or if an individual believes that the personal
+              information held by RTL is no longer accurate or complete or has been the subject of a
+              data breach, the individual should contact
+              <a data-fr-linked="true" href="mailto:privacy@rtl.com.au">privacy@rtl.com.au</a>
+            </p>
+            <p><b>5. DESTRUCTION AND DE-IDENTIFICATION OF PERSONAL INFORMATION</b></p>
+            <p>
+              Records management policies govern the archiving and destruction of records which
+              include personal information.
+            </p>
+            <p>
+              If unsolicited personal information is received, reasonable steps will be taken to
+              destroy or de-identify that personal information.
+            </p>
+            <p><b>6. WEBSITES</b></p>
+            <p>
+              RTL&rsquo;s website provides hyperlinks to websites owned and controlled by others.
+              RTL is not responsible for the privacy practices of these websites. By accessing or
+              using RTL&rsquo;s website, an individual consents to the collection, use and
+              disclosure of personal information as described in this procedure, as amended from
+              time to time.
+            </p>
+            <p><b>7. COMPLAINTS</b></p>
+            <p>
+              If an individual has a question, concern, or complaint regarding the way in which
+              personal information is handled, or believes that RTL has breached its obligations
+              under the Privacy Act or has failed to comply with this procedure, they should make a
+              complaint in writing to
+              <a data-fr-linked="true" href="mailto:privacy@rtl.com.au">privacy@rtl.com.au</a>
+            </p>
+            <p>
+              RTL will review and respond to any complaint as soon as possible, and generally within
+              30 days of receiving it.
+            </p>
+            <p>
+              If an individual is not satisfied with RTL&rsquo;s response, the complaint can be
+              referred to the Office of the Australian Information Commissioner (OIAC). The OAIC
+              will generally consider a complaint if the individual has first written to RTL and
+              given RTL a reasonable opportunity to resolve the complaint (usually 30 days).
+            </p>
+          </div>
+        </div>
+
+        <div fxFlex.gt-sm="100%" fxFlex="100" class="m-0 m-t-20 ">
+          <mat-divider></mat-divider>
+        </div>
+
+        <div fxFlex.gt-sm="100%" fxFlex="100" class="tab-body-foot">
+          <div fxFlex.gt-sm="50%" fxFlex="100" class="m-0 m-l-30 m-t-30">
+            <h3 class="color_blue">Will Do It Later</h3>
+          </div>
+
+          <div fxFlex.gt-sm="50%" fxFlex="100" class="btm-ft">
+            <h5 class=" text-center">I have read and agree to the privacy policy of RTL</h5>
+            <button mat-raised-button color="primary">Agree</button>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+    <!-- </mat-card> -->
+  </div>
+</div>
