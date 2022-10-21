@@ -25,4 +25,6 @@ export class NewUserPrivacyPolicyDialog {
     this.dialogRef.close(true);
   }
 
+ 
+
 }

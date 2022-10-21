@@ -10,6 +10,8 @@ import { RecruitmentDetailsComponent } from './recruitment-details/recruitment-d
 import { TransferListComponent } from './transfer-list/transfer-list.component';
 import { DemandListComponent } from './demand-list/demand-list.component';
 
+import { RecommendationListComponent } from './recommendation-list/recommendation-list.component';
+
 const routes: Routes = [
     {
         path: '',
@@ -41,7 +43,7 @@ const routes: Routes = [
             }},
             { path: 'job-recommend', component: JobRecommendComponent,
                 data: {
-                title: 'Job Board',
+                title: 'Demand Board',
                 urls: [{ title: 'Dashboard', url: '/' }, { title: 'People & Culture' }],
             }},
             { path: 'recruitment-details', component: RecruitmentDetailsComponent,
@@ -55,6 +57,11 @@ const routes: Routes = [
                 urls: [{ title: 'Dashboard', url: '/' }, { title: 'People & Culture' }],
             } },
             { path: 'demand-list', component: DemandListComponent },
+            { path: 'recommendation-list', component: RecommendationListComponent,
+            data: {
+                title: 'Recommendation List',
+                urls: [{ title: 'Dashboard', url: '/' }, { title: 'People & Culture' }],
+            } },
             //   { path: 'form', component: EmployeeFormComponent },
             //   { path: 'view:id', component: EmployeeViewComponent },
             //   { path: 'transfer', component: EmployeeTransferFormComponent },

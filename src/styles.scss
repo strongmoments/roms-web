@@ -248,11 +248,14 @@ tr.example-element-row:not(.example-expanded-row):active {
   color: gray;
   font-weight: 500;
 }
-.new-user-main-text{
+.new-user-main-text {
   font-size: 23px;
   color: gray;
   font-weight: 400;
-
+}
+.new-client-form .mat-form-field-wrapper {
+  padding-bottom: 10px !important;
+  padding-top: 10px !important;
 }
 .content-scroll-box {
   // margin-left: 10px;

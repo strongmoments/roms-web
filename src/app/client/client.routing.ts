@@ -4,6 +4,7 @@ import { FullComponent } from '../layouts/full/full.component';
 import { ClientAddComponent } from './client-add/client-add.component';
 import { ClientListComponent } from './client-list/client-list.component';
 import { ProjectAddComponent } from './project-add/project-add.component';
+import { ProjectListComponent } from './project-list/project-list.component';
 
 const routes: Routes = [
   {
@@ -26,14 +27,23 @@ const routes: Routes = [
           urls: [{ title: 'Dashboard', url: '/' }, { title: 'My Staff' }],
       },
       },
-      // {
-      //   path: 'dashboard2',
-      //   component: Dashboard2Component,
-      //   data: {
-      //     title: 'Dashboard 2',
-      //     urls: [{ title: 'Dashboard', url: '/dashboard' }, { title: 'Dashboard 2' }],
-      //   },
-      // },
+      {
+        path: 'project-add',
+        component: ProjectAddComponent,
+       data: {
+          title: 'Add Project',
+          urls: [{ title: 'Dashboard', url: '/' }, { title: 'My Staff' }],
+      },
+      },
+      {
+        path: 'project-list',
+        component: ProjectListComponent,
+       data: {
+          title: 'Project List',
+          urls: [{ title: 'Dashboard', url: '/' }, { title: 'My Staff' }],
+      },
+      },
+     
     ],
   },
 ];

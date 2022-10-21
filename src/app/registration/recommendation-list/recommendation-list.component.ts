@@ -20,28 +20,25 @@ import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { element } from 'protractor';
 
 @Component({
-  selector: 'app-transfer-list',
-  templateUrl: './transfer-list.component.html',
-  styleUrls: ['./transfer-list.component.scss'],
+  selector: 'app-recommendation-list',
+  templateUrl: './recommendation-list.component.html',
+  styleUrls: ['./recommendation-list.component.scss'],
 })
-export class TransferListComponent implements OnInit, OnChanges {
+export class RecommendationListComponent implements OnInit, OnChanges {
   globals: Globals;
   submitted: boolean = false;
   displayedColumns: string[] = [
     'employeeName',
     'employeeNo',
-    'fromProject',
-    'toProject',
-    'fromGang',
-    'toGang',
-    'fromWage',
-    'toWage',
-    'fromRate',
-    'toRate',
-    'dateEffective',
-    'statusName',
-    'approvedDate',
-    'approver',
+    'wageClass',
+    'gang',
+    'rate',
+    'project',
+    
+    'location',
+    'contract',
+    'currentSuper',
+    'action',
   ];
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();

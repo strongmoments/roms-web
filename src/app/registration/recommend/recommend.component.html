@@ -8,33 +8,41 @@
       <div fxLayout="row wrap" fxFlexAlign="center" class="row m-0 border-full">
         <div fxFlex.gt-sm="100" fxFlex="100" class="border-bottom-g">
           <mat-card class="m-0 my-mat-cardt d-wrap">
-            <div fxFlex.gt-sm="20" fxFlex="100" class="p-b-10 p-t-10">
-              <small>Role</small>
-              <mat-label class="d-block">MAtt</mat-label>
+            <div fxFlex.gt-sm="12" fxFlex="100" class="p-b-10 p-t-10">
+              <small>Role Title</small>
+              <mat-label class="d-block">Plant Operator</mat-label>
             </div>
-            <div fxFlex.gt-sm="15" fxFlex="100" class="p-b-10 p-t-10">
-              <small>Type</small>
-              <mat-label class="d-block">MAtt</mat-label>
+            <div fxFlex.gt-sm="11" fxFlex="100" class="p-b-10 p-t-10">
+              <small>Wage Role</small>
+              <mat-label class="d-block">Operator</mat-label>
             </div>
-            <div fxFlex.gt-sm="15" fxFlex="100" class="p-b-10 p-t-10">
-              <small>Project</small>
-              <mat-label class="d-block">MAtt</mat-label>
+            <div fxFlex.gt-sm="10" fxFlex="100" class="p-b-10 p-t-10">
+              <small>Type </small>
+              <mat-label class="d-block">Internal</mat-label>
             </div>
-            <div fxFlex.gt-sm="17" fxFlex="100" class="p-b-10 p-t-10">
+            <div fxFlex.gt-sm="11" fxFlex="100" class="p-b-10 p-t-10">
+              <small>Project # </small>
+              <mat-label class="d-block">ESC2445</mat-label>
+            </div>
+            <div fxFlex.gt-sm="11" fxFlex="100" class="p-b-10 p-t-10">
               <small>Location</small>
-              <mat-label class="d-block">MAtt</mat-label>
+              <mat-label class="d-block">Yallourn</mat-label>
             </div>
             <div fxFlex.gt-sm="11" fxFlex="100" class="p-b-10 p-t-10">
-              <small>Contact</small>
-              <mat-label class="d-block">MAtt</mat-label>
+              <small>Gang</small>
+              <mat-label class="d-block">GS3</mat-label>
             </div>
             <div fxFlex.gt-sm="11" fxFlex="100" class="p-b-10 p-t-10">
-              <small>Classification</small>
-              <mat-label class="d-block">MAtt</mat-label>
+              <small>Award Type</small>
+              <mat-label class="d-block">Permanent</mat-label>
             </div>
-            <div fxFlex.gt-sm="11" fxFlex="100" class="p-b-10 p-t-10">
+            <div fxFlex.gt-sm="13" fxFlex="100" class="p-b-10 p-t-10">
+              <small>Wage Classification</small>
+              <mat-label class="d-block">Level 2</mat-label>
+            </div>
+            <div fxFlex.gt-sm="10" fxFlex="100" class="p-b-10 p-t-10">
               <small>Rate(AUD)</small>
-              <mat-label class="d-block">MAtt</mat-label>
+              <mat-label class="d-block">$60</mat-label>
             </div>
           </mat-card>
         </div>
@@ -117,14 +125,27 @@
       </div>
 
       <div fxLayout="row wrap" fxFlexAlign="center" class="row m-0 m-t-15">
-
         <div fxFlex.gt-sm="30" fxFlex="100">
           <mat-form-field>
-            <mat-label>Project :</mat-label>
-            <input matInput placeholder="Project :" />
+            <mat-label>Client :</mat-label>
+            <input matInput placeholder="Client :" />
           </mat-form-field>
         </div>
         <div fxFlex.gt-sm="5" fxFlex="100"></div>
+        <div fxFlex.gt-sm="30" fxFlex="100">
+          <mat-form-field>
+            <mat-label>Contract :</mat-label>
+            <input matInput placeholder="Contract :" />
+          </mat-form-field>
+        </div>
+        <div fxFlex.gt-sm="5" fxFlex="100"></div>
+        <div fxFlex.gt-sm="30" fxFlex="100">
+          <mat-form-field>
+            <mat-label>Project#/ Job# :</mat-label>
+            <input matInput placeholder="Project :" />
+          </mat-form-field>
+        </div>
+       
         <div fxFlex.gt-sm="30" fxFlex="100">
           <mat-form-field>
             <mat-label>Location :</mat-label>
@@ -134,37 +155,40 @@
         <div fxFlex.gt-sm="5" fxFlex="100"></div>
         <div fxFlex.gt-sm="30" fxFlex="100">
           <mat-form-field>
-            <mat-label>Contact :</mat-label>
-            <input matInput placeholder="Contact :" />
-          </mat-form-field>
-        </div>
-        <div fxFlex.gt-sm="30" fxFlex="100">
-          <mat-form-field>
-            <mat-label>Classification :</mat-label>
-            <input matInput placeholder="Classification :" />
+            <mat-label>Gang:</mat-label>
+            <input matInput placeholder="Gang:" />
           </mat-form-field>
         </div>
         <div fxFlex.gt-sm="5" fxFlex="100"></div>
         <div fxFlex.gt-sm="30" fxFlex="100">
           <mat-form-field>
-            <mat-label>Role(optional) :</mat-label>
-            <input matInput placeholder="Role(optional) :" />
+            <mat-label>Wage Classification :</mat-label>
+            <input matInput placeholder="Wage Classification :" />
           </mat-form-field>
         </div>
+        
+        <div fxFlex.gt-sm="30" fxFlex="100">
+          <mat-form-field>
+            <mat-label>Role:</mat-label>
+            <input matInput placeholder="Role:" />
+          </mat-form-field>
+        </div>
+        
         <div fxFlex.gt-sm="5" fxFlex="100"></div>
         <div fxFlex.gt-sm="30" fxFlex="100">
           <mat-form-field>
-            <mat-label>Rate(AUD) :</mat-label>
-            <input matInput placeholder="Rate(AUD) :" />
+            <mat-label>Award Type:</mat-label>
+            <input matInput placeholder="Award Type :" />
           </mat-form-field>
         </div>
+       
+        <div fxFlex.gt-sm="5" fxFlex="100"></div>
         <div fxFlex.gt-sm="30" fxFlex="100">
           <mat-form-field>
-            <mat-label>Gang(optional) :</mat-label>
-            <input matInput placeholder="Gang(optional) :" />
+            <mat-label>Rate:</mat-label>
+            <input matInput placeholder="Rate:" />
           </mat-form-field>
         </div>
-        <div fxFlex.gt-sm="70" fxFlex="100"></div>
 
         <div fxFlex.gt-sm="65" fxFlex="100" class="border-full m-t-10">
           <mat-card class="m-0 my-mat-cardf d-wrap">

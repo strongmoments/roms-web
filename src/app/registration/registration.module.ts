@@ -11,6 +11,7 @@ import { JobRecommendComponent } from './job-recommend/job-recommend.component';
 import { RecruitmentDetailsComponent } from './recruitment-details/recruitment-details.component';
 import { TransferListComponent } from './transfer-list/transfer-list.component';
 import { DemandListComponent } from './demand-list/demand-list.component';
+import { RecommendationListComponent } from './recommendation-list/recommendation-list.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { DemandListComponent } from './demand-list/demand-list.component';
         JobRecommendComponent,
         RecruitmentDetailsComponent,
         TransferListComponent,
-        DemandListComponent
+        DemandListComponent,
+        RecommendationListComponent
     ]
 })
 export class RegistrationModule { }

@@ -8,6 +8,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
+import { PrivacyScreenComponent } from './privacy-screen/privacy-screen.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
     children: [
       { path: '', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
+      { path: 'privacy', component: PrivacyScreenComponent },
       //{ path: 'forgot-password', component: ForgotPasswordComponent },
     ],
   },
@@ -38,6 +40,7 @@ const routes: Routes = [
         title: 'Profile',
         urls: [{ title: 'Home', url: '/' }, { title: 'Profile' }],
       } },
+     
     ],
   },
 ];
