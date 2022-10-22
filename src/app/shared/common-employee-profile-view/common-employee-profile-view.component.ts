@@ -59,9 +59,9 @@ export class CommonEmployeeProfileViewComponent implements OnInit, OnChanges {
                                 // this.user
 
                                 this.authService.updateUserImage();
-                                setTimeout(()=>{
+                                setTimeout(() => {
                                     window.location.reload();
-                                },1000) 
+                                }, 1000)
                                 // this.router.navigate(['/profile']);
                             } else {
                                 window.location.reload();

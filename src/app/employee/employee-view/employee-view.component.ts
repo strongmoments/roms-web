@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService, EmployeeService } from 'src/app/core/services';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { CustomMessage } from 'src/app/custom-message';
+import { Globals } from 'src/app/globals';
 
 @Component({
   selector: 'app-employee-view',
@@ -10,6 +11,7 @@ import { CustomMessage } from 'src/app/custom-message';
   styleUrls: ['./employee-view.component.css']
 })
 export class EmployeeViewComponent implements OnInit {
+  globals: Globals;
   panelOpenState = false;
   step = 0;
   record: any;
@@ -29,15 +31,26 @@ export class EmployeeViewComponent implements OnInit {
   primarySuperAnnuation: any = null;
   otherSuperAnnuation: any = null;
   primaryMembership: any = null;
-
-  constructor(private activatedRoute: ActivatedRoute, private employeeService: EmployeeService, private router: Router, private alertService: AlertService, private authService: AuthenticationService) {
+  type: string = 'personal';
+  tabIndex: number = 0;
+  tabIndexList: any = ['personal', 'emergency', 'licence', 'payroll', 'leaves', 'membership', 'employment'];
+  constructor(private activatedRoute: ActivatedRoute, private employeeService: EmployeeService, private router: Router, private alertService: AlertService, private authService: AuthenticationService, global: Globals) {
+    this.globals = global;
     this.user = this.authService.getCurrentUser();
 
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
     this.activatedRoute.queryParams.subscribe((params: any) => {
-      console.log(params);
+      // console.log(params);
+      if (params['type']) {
+        this.type = params['type'];
+        if (this.tabIndexList.includes(this.type)) {
+          this.tabIndex = this.tabIndexList.indexOf(this.type);
+        }
+      } else {
+        this.type = 'personal';
+      }
       if (params['id']) {
         this.id = params['id'];
         this.employeeService.getByIdPersonalInfo(params['id']).subscribe((result: any) => {

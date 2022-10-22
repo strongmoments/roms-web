@@ -2,31 +2,17 @@
   <!-- Card column -->
   <div fxFlex.gt-sm="33.33%" fxFlex="100">
     <mat-card class="oh text-center little-profile">
-      <img
-        mat-card-image
-        src="assets/images/background/profile-bg.jpg"
-        class="profile-bg-height"
-        alt="Images"
-      />
+      <img mat-card-image src="assets/images/background/profile-bg.jpg" class="profile-bg-height" alt="Images" />
       <mat-card-content>
         <div class="pro-img">
-          <img
-            onerror="this.onerror=null;this.src='assets/img/user-default-img.jpg';"
-            [src]="
+          <img onerror="this.onerror=null;this.src='assets/img/user-default-img.jpg';" [src]="
               record && record.profileImage && record.profileImage.length > 0
                 ? record.profileImage[0].digitalAssets?.url
                 : ''
-            "
-            width="100"
-          />
+            " width="100" />
           <mat-icon (click)="profilePicUpload.click()">camera_alt</mat-icon>
-          <input
-            type="file"
-            hidden
-            #profilePicUpload
-            accept="application/pdf, image/*"
-            (change)="onFileChange($event)"
-          />
+          <input type="file" hidden #profilePicUpload accept="application/pdf, image/*"
+            (change)="onFileChange($event)" />
         </div>
         <h3 class="m-b-0">{{ record?.firstName }} {{ record?.lastName }}</h3>
         <h6 class="m-t-0 text-muted">{{ record?.employeType?.name }}</h6>
@@ -99,7 +85,8 @@
               </div>
             </div>
             <div class="text-center p-8 all-btn">
-              <button mat-raised-button class="p-l-15 p-r-15" color="defult" style="color:#0673bb;">View Payroll Details</button>
+              <button mat-raised-button class="p-l-15 p-r-15" color="defult" style="color:#0673bb;">View Payroll
+                Details</button>
               <!-- <a href="javascript:void(0)" class="text-white m-0  view-d">View Payroll Details</a> -->
             </div>
           </div>
@@ -137,7 +124,8 @@
               <a href="javascript:void(0)" class="text-white m-0 view-d"><span>View Leave Details</span></a>
             </div> -->
             <div class="text-center p-8 all-btn">
-              <button mat-raised-button class="p-l-15 p-r-15" color="defult" style="color:#0673bb;">View Leave Details</button>
+              <button mat-raised-button class="p-l-15 p-r-15" color="defult" style="color:#0673bb;">View Leave
+                Details</button>
               <!-- <a href="javascript:void(0)" class="text-white m-0  view-d">View Payroll Details</a> -->
             </div>
           </div>
@@ -150,8 +138,8 @@
     <mat-card class="m-0 m-t-20">
       <div class="list-space bg-info">
         <h4 class="m-0 p-15 p-r-0 p-t-20 text-white">Employment History</h4>
-          <!-- <small class="p-l-25 text-muted">Checkout your recent activities</small> -->
-        <div class="p-15 all-btn" >
+        <!-- <small class="p-l-25 text-muted">Checkout your recent activities</small> -->
+        <div class="p-15 all-btn">
           <button mat-raised-button class="p-l-15 p-r-15" color="defult" style="color:#0673bb;">See All</button>
         </div>
       </div>
@@ -244,9 +232,9 @@
         <!-- <mat-icon class="text-info">account_circle</mat-icon> -->
         <img class="m-r-10 list-Img" src="../../../assets/img/identity-card.png" alt="" />
         <h5 class="m-0 m-b-5">Personal Information</h5>
-        <a routerLink="/employee/personal-info" [queryParams]="{id:record.id}">View</a>
-        <small class="text-muted pull-right">26%</small>
-        <mat-progress-bar class="m-t-5" mode="determinate" value="26"></mat-progress-bar>
+        <a routerLink="/employee/personal-info" [queryParams]="{id:record.id,type:'personal'}">View</a>
+        <small class="text-muted pull-right">100%</small>
+        <mat-progress-bar class="m-t-5" mode="determinate" color="accent" value="100"></mat-progress-bar>
       </mat-card-content>
     </mat-card>
   </div>
@@ -258,14 +246,9 @@
         <!-- column -->
         <img class="m-r-10 list-Img" src="../../../assets/img/identity.png" alt="" />
         <h5 class="m-0 m-b-5">Emergency Contact</h5>
-        <a href="javascript:void(0);">View</a>
-        <small class="text-muted pull-right">60%</small>
-        <mat-progress-bar
-          class="m-t-5"
-          color="warn"
-          mode="determinate"
-          value="60"
-        ></mat-progress-bar>
+        <a routerLink="/employee/personal-info" [queryParams]="{id:record.id,type:'emergency'}">View</a>
+        <small class="text-muted pull-right">100%</small>
+        <mat-progress-bar class="m-t-5" color="accent" mode="determinate" value="100"></mat-progress-bar>
       </mat-card-content>
     </mat-card>
   </div>
@@ -277,14 +260,9 @@
         <!-- column -->
         <img class="m-r-10 list-Img" src="../../../assets/img/license.png" alt="" />
         <h5 class="m-0 m-b-5">Licence Information</h5>
-        <a href="javascript:void(0);">View</a>
-        <small class="text-muted pull-right">80%</small>
-        <mat-progress-bar
-          class="m-t-5"
-          color="accent"
-          mode="determinate"
-          value="80"
-        ></mat-progress-bar>
+        <a routerLink="/employee/personal-info" [queryParams]="{id:record.id,type:'licence'}">View</a>
+        <small class="text-muted pull-right">100%</small>
+        <mat-progress-bar class="m-t-5" color="accent" mode="determinate" value="100"></mat-progress-bar>
       </mat-card-content>
     </mat-card>
   </div>
@@ -296,9 +274,9 @@
         <!-- column -->
         <img class="m-r-10 list-Img" src="../../../assets/img/bank.png" alt="" />
         <h5 class="m-0 m-b-5">Banking Details</h5>
-        <a href="javascript:void(0);">View</a>
-        <small class="text-muted pull-right">50%</small>
-        <mat-progress-bar class="m-t-5" mode="determinate" value="50"></mat-progress-bar>
+        <a routerLink="/employee/personal-info" [queryParams]="{id:record.id,type:'payroll'}">View</a>
+        <small class="text-muted pull-right">100%</small>
+        <mat-progress-bar class="m-t-5" mode="determinate" color="accent" value="100"></mat-progress-bar>
       </mat-card-content>
     </mat-card>
   </div>
@@ -310,9 +288,9 @@
         <!-- column -->
         <img class="m-r-10 list-Img" src="../../../assets/img/tax.png" alt="" />
         <h5 class="m-0 m-b-5">TFN Form</h5>
-        <a href="javascript:void(0);">View</a>
-        <small class="text-muted pull-right">26%</small>
-        <mat-progress-bar class="m-t-5" mode="determinate" value="26"></mat-progress-bar>
+        <a routerLink="/employee/personal-info" [queryParams]="{id:record.id,type:'payroll'}">View</a>
+        <small class="text-muted pull-right">100%</small>
+        <mat-progress-bar class="m-t-5" mode="determinate" color="accent" value="100"></mat-progress-bar>
       </mat-card-content>
     </mat-card>
   </div>
@@ -324,14 +302,9 @@
         <!-- column -->
         <img class="m-r-10 list-Img" src="../../../assets/img/money.png" alt="" />
         <h5 class="m-0 m-b-5">Superannuation Choice</h5>
-        <a href="javascript:void(0);">View</a>
-        <small class="text-muted pull-right">60%</small>
-        <mat-progress-bar
-          class="m-t-5"
-          color="warn"
-          mode="determinate"
-          value="60"
-        ></mat-progress-bar>
+        <a routerLink="/employee/personal-info" [queryParams]="{id:record.id,type:'payroll'}">View</a>
+        <small class="text-muted pull-right">100%</small>
+        <mat-progress-bar class="m-t-5" color="accent" mode="determinate" value="100"></mat-progress-bar>
       </mat-card-content>
     </mat-card>
   </div>
@@ -343,14 +316,9 @@
         <!-- column -->
         <img class="m-r-10 list-Img" src="../../../assets/img/multiple.png" alt="" />
         <h5 class="m-0 m-b-5">Membership Information</h5>
-        <a href="javascript:void(0);">View</a>
-        <small class="text-muted pull-right">80%</small>
-        <mat-progress-bar
-          class="m-t-5"
-          color="accent"
-          mode="determinate"
-          value="80"
-        ></mat-progress-bar>
+        <a routerLink="/employee/personal-info" [queryParams]="{id:record.id,type:'membership'}">View</a>
+        <small class="text-muted pull-right">100%</small>
+        <mat-progress-bar class="m-t-5" color="accent" mode="determinate" value="100"></mat-progress-bar>
       </mat-card-content>
     </mat-card>
   </div>
@@ -362,9 +330,9 @@
         <!-- column -->
         <img class="m-r-10 list-Img" src="../../../assets/img/personal.png" alt="" />
         <h5 class="m-0 m-b-5">Employment Details</h5>
-        <a  href="javascript:void(0);">View & Update</a>
-        <small class="text-muted pull-right d-hidden">40%</small>
-        <mat-progress-bar class="m-t-5 d-hidden" mode="determinate" value="40"></mat-progress-bar>
+        <a routerLink="/employee/personal-info" [queryParams]="{id:record.id,type:'employment'}">View</a>
+        <small class="text-muted pull-right">100%</small>
+        <mat-progress-bar class="m-t-5" mode="determinate" color="accent" value="100"></mat-progress-bar>
       </mat-card-content>
     </mat-card>
   </div>

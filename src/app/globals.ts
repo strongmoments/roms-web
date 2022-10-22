@@ -95,6 +95,19 @@ export class Globals {
         { name: 'Both', value: 'both' }
     ]
 
+    
+    superAnnutationType = [
+        { name: 'My Current Fund', value: '1' },
+        { name: 'Self Managed fund(SMSF)', value: '2' },
+        { name: 'Employer nominated', value: '3' }
+    ]
+
+    tfnType = [
+        { name: 'Are Austrial resident for tax purposes', value: '1' },
+        { name: 'A foreign resident for tax purposes', value: '2' },
+        { name: 'A working holiday maker', value: '3' }
+    ]
+
     phoneCode = [
         {
             name: '+61', value: '+61',
