@@ -723,7 +723,8 @@
                         <mat-form-field appearance="outline">
                           <mat-label>Citizenship:</mat-label>
                           <input [readonly]="!isEditEnable" matInput
-                            [value]="globals.getTitle('tfnType', primaryTfn?.taxPayerType)" placeholder="Citizenship" />
+                            [value]="globals.getTitle('tfnType', (primaryTfn && (primaryTfn.taxPayerType || primaryTfn.taxPayerType == '0')?primaryTfn.taxPayerType:''))"
+                            placeholder="Citizenship" />
                         </mat-form-field>
                       </div>
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">

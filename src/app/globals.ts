@@ -26,7 +26,7 @@ export class Globals {
     }
     getTitle(key: string, id: any) {
         let instance: any = this;
-        if (key && id && instance[key] !== undefined && instance[key] !== null) {
+        if (key && (id || id == '0') && instance[key] !== undefined && instance[key] !== null) {
             let ele: any = instance[key].find((elem: any) => elem.value == id);
             return ele && ele.name ? ele.name : '';
         } else {
@@ -95,7 +95,7 @@ export class Globals {
         { name: 'Both', value: 'both' }
     ]
 
-    
+
     superAnnutationType = [
         { name: 'My Current Fund', value: '1' },
         { name: 'Self Managed fund(SMSF)', value: '2' },
@@ -103,9 +103,9 @@ export class Globals {
     ]
 
     tfnType = [
-        { name: 'Are Austrial resident for tax purposes', value: '1' },
-        { name: 'A foreign resident for tax purposes', value: '2' },
-        { name: 'A working holiday maker', value: '3' }
+        { name: 'Austrial resident', value: '0' },
+        { name: 'Foreign resident', value: '1' },
+        { name: 'A working holiday maker', value: '2' }
     ]
 
     phoneCode = [
