@@ -103,7 +103,7 @@ export class Globals {
     ]
 
     tfnType = [
-        { name: 'Austrial resident', value: '0' },
+        { name: 'Australian resident', value: '0' },
         { name: 'Foreign resident', value: '1' },
         { name: 'A working holiday maker', value: '2' }
     ]

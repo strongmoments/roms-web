@@ -615,7 +615,7 @@
                 </div>
                 <!-- <h2 align="left"><b>Payroll</b></h2> -->
                 <mat-accordion>
-                  <mat-expansion-panel>
+                  <mat-expansion-panel [expanded]="true">
                     <mat-expansion-panel-header>
                       <h3 class="m-0 m-t-20 m-b-20 fw-600">Banking Details</h3>
                       <!-- <mat-panel-title><b>Banking Details</b></mat-panel-title> -->
@@ -1019,11 +1019,11 @@
                       <!-- <mat-icon>edit</mat-icon> -->
                     </div>
                   </div>
-                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                  <!-- <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
                     <h3 class="m-0" align="left"><b>Long Service Leave Scheme</b></h3>
-                  </div>
-                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
-                    <p><b>Is Member</b></p>
+                  </div> -->
+                  <div fxFlex.gt-sm="60" fxFlex="100" class="p-10">
+                    <p><b>Are you member of long service leave scheme?</b></p>
                   </div>
                   <div fxFlex.gt-sm="20" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
@@ -1033,8 +1033,9 @@
                         placeholder="-----" />
                     </mat-form-field>
                   </div>
-                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div>
-                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                  <!-- <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div> -->
+                  <div *ngIf="primaryMembership?.longServiceLeaveScheme == true" fxFlex.gt-sm="50" fxFlex="100"
+                    class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Scheme Name :</mat-label>
                       <input [readonly]="!isEditEnable" matInput [value]="primaryMembership?.longServiceSchemeName"
@@ -1042,7 +1043,8 @@
                     </mat-form-field>
                   </div>
 
-                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                  <div *ngIf="primaryMembership?.longServiceLeaveScheme == true" fxFlex.gt-sm="50" fxFlex="100"
+                    class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Membership No:</mat-label>
                       <input [readonly]="!isEditEnable" matInput
@@ -1053,8 +1055,8 @@
                   <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
                     <h3 class="m-0" align="left"><b>Redundancy Scheme</b></h3>
                   </div>
-                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
-                    <p><b>Is Member </b></p>
+                  <div fxFlex.gt-sm="60" fxFlex="100" class="p-10">
+                    <p><b>Are you member of redundancy scheme?</b></p>
                   </div>
                   <div fxFlex.gt-sm="20" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
@@ -1063,8 +1065,8 @@
                         [value]="primaryMembership?.redundancyScheme == true ? 'Yes' : 'No'" placeholder="-----" />
                     </mat-form-field>
                   </div>
-                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div>
-                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                  <!-- <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div> -->
+                  <div *ngIf="primaryMembership?.redundancyScheme == true" fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Scheme Name :</mat-label>
                       <input [readonly]="!isEditEnable" matInput [value]="primaryMembership?.redundancySchemeName"
@@ -1072,7 +1074,7 @@
                     </mat-form-field>
                   </div>
 
-                  <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                  <div *ngIf="primaryMembership?.redundancyScheme == true" fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Membership No:</mat-label>
                       <input [readonly]="!isEditEnable" matInput

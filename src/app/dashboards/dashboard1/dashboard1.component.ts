@@ -13,7 +13,7 @@ export class Dashboard1Component implements OnInit {
   }
 
   ngOnInit(): void {
-    this.openPrivacyDialog();
+    // this.openPrivacyDialog();
   }
   openPrivacyDialog() {
     const dialogRef = this.dialog.open(NewUserPrivacyPolicyDialog, {

@@ -71,8 +71,9 @@ export class EmployeeViewComponent implements OnInit {
 
             this.primaryTfn = this.record.tfn && this.record.tfn.length > 0 ? this.record.tfn[0] : null;
 
-            this.primarySuperAnnuation = this.record.superannuation && this.record.superannuation.length > 0 ? this.record.superannuation[0] : null;
+            this.primarySuperAnnuation = this.record.superannuation && this.record.superannuation.length > 0 ? this.record.superannuation[this.record.superannuation.length-1] : null;
             this.otherSuperAnnuation = this.record.superannuation && this.record.superannuation.length > 1 ? this.record.superannuation[1] : null;
+            // this.primarySuperAnnuation = this.otherSuperAnnuation ? this.otherSuperAnnuation : this.otherSuperAnnuation;
 
             this.primaryMembership = this.record.membership && this.record.membership.length > 0 ? this.record.membership[0] : null;
           }

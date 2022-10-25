@@ -13,6 +13,7 @@ import { MenuItems } from '../../../shared/menu-items/menu-items';
 import { Menu } from 'src/app/shared/menu-items/horizontal-menu-items';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-vertical-sidebar',
@@ -240,6 +241,31 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
           children: subMenu,
         });
       }
+
+      
+      if (environment.server == 'UAT' && this.userPermissions.reports && this.userPermissions.reports.length > 0) {
+        let subMenu: any = [];
+
+        if (this.userPermissions.reports.includes('add_user')) {
+
+          subMenu.push({
+            state: '/registration/job-recommend',
+            name: 'Job Recommend',
+            type: 'link',
+            icon: 'account_box',
+          });
+        }
+
+
+        menuItem.push({
+          state: 'test',
+          name: 'Test',
+          type: 'sub',
+          icon: 'people',
+          children: subMenu,
+        });
+      }
+
     }
 
     // this.navItems.push({ displayName: 'Dashboard', iconName: 'dashboard', route: '/' },
