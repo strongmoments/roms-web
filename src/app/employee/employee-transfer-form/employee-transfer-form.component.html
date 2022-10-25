@@ -4,7 +4,7 @@
       <mat-card-content>
         <h2 class="title text-center">TRANSFER / CHANGE OF RATE</h2>
         <mat-divider> </mat-divider>
-        
+
         <form [formGroup]="form" class="basic-form" (ngSubmit)="onSubmit()">
           <div fxLayout="row wrap" fxFlexAlign="center" class="row">
             <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
@@ -23,10 +23,11 @@
               <!-- <mat-card class="input"> -->
               <mat-form-field>
                 <mat-label>Employee</mat-label>
-                <mat-select formControlName="employee">
-                  <input mat-input class="search-box-select" aria-label="Employee" (keyup)="searchEmployee($event)">
+                <mat-select formControlName="employee" (selectionChange)="selectEmployee($event)">
+                  <input mat-input class="search-box-select" aria-label="Employee" (keyup)="searchEmployee($event)"
+                    formControlName="employee" employee (change)="selectEmployee($event)">
                   <!-- <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"> -->
-                    <mat-option value="">Select Employee</mat-option>
+                  <mat-option value="">Select Employee</mat-option>
                   <mat-option *ngFor="let item of employeeList" [value]="item?.id">
                     {{item?.employee?.firstName}} {{item?.employee?.lastName}}
                   </mat-option>
@@ -35,19 +36,20 @@
                 <mat-error *ngIf="submitted && checkError('employee', 'required')">
                   Employee is required
                 </mat-error>
+
               </mat-form-field>
               <!-- </mat-card> -->
             </div>
             <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
-              <p class="text">Employee Number: ---</p>
+              <p class="text">Employee Number: {{selectedEmployee?.employee?.employeeNo}}</p>
               <!-- <mat-card class="input">23</mat-card> -->
             </div>
             <div fxFlex.gt-sm="25" fxFlex="100" class="p-10">
-              <p class="text">From: GR3</p>
+              <p class="text">From: {{selectedEmployee?.clientProjectSubteam?.teamName}}</p>
               <!-- <mat-card class="input">GR3</mat-card> -->
             </div>
             <div fxFlex.gt-sm="25" fxFlex="100" class="p-10">
-              <p class="text">At: YALLOURN</p>
+              <p class="text">At: {{selectedEmployee?.clientProjectSubteam?.location?.address}}</p>
               <!-- <mat-card class="input">YALLOURN</mat-card> -->
             </div>
             <div fxFlex.gt-sm="25" fxFlex="100" class="p-10">
@@ -67,11 +69,11 @@
 
                 <mat-form-field>
                   <!-- <mat-label>To:</mat-label> -->
-                  <mat-select formControlName="transferTo">
-                    <input mat-input class="search-box-select" aria-label="Gang" (keyup)="searchEmployee($event)">
+                  <mat-select formControlName="transferTo" (selectionChange)="selectGang($event)">
+                    <input mat-input class="search-box-select" aria-label="Gang" (keyup)="searchGang($event)">
                     <!-- <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"> -->
-                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                      {{option}}
+                    <mat-option *ngFor="let option of gangList" [value]="option.id">
+                      {{option.teamName}}
                     </mat-option>
                     <!-- </mat-autocomplete> -->
                   </mat-select>
@@ -87,7 +89,7 @@
                 <p class="text">At:</p>
               </div>
               <div fxFlex.gt-sm="75" fxFlex="100">
-                <mat-card class="input">-------</mat-card>
+                <mat-card class="input">{{selectedGang?.location?.address}}</mat-card>
               </div>
             </div>
             <div fxFlex.gt-sm="25" fxFlex="100" class="p-10">

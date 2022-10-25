@@ -776,7 +776,7 @@
                             placeholder="Super Type" />
                         </mat-form-field>
                       </div>
-                      <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div>
+                      <!-- <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div> -->
                       <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Fund ABN :</mat-label>
@@ -826,63 +826,64 @@
                             placeholder="Phone" />
                         </mat-form-field>
                       </div>
-                      <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div>
-                      <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                      <!-- <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div> -->
+                      <div *ngIf="primarySuperAnnuation?.fundType == '1' || primarySuperAnnuation?.fundType == '3'"
+                        fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>USI:</mat-label>
                           <input [readonly]="!isEditEnable" matInput [value]="primarySuperAnnuation?.usi"
                             placeholder="USI" />
                         </mat-form-field>
                       </div>
-                      <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div>
-                      <!-- <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                      <!-- <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div> -->
+                      <div *ngIf="primarySuperAnnuation?.fundType == '2'" fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Fund ESA:</mat-label>
-                          <input [readonly]="!isEditEnable" matInput 
-                            placeholder="Fund ESA" />
+                          <input [readonly]="!isEditEnable" matInput placeholder="Fund ESA"
+                            [value]="primarySuperAnnuation?.esa" />
                         </mat-form-field>
                       </div>
-                      <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div>
-                      <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                      <!-- <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div> -->
+                      <div *ngIf="primarySuperAnnuation?.fundType == '2'" fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>BSB Code:</mat-label>
-                          <input [readonly]="!isEditEnable" matInput 
-                            placeholder="BSB Code" />
+                          <input [readonly]="!isEditEnable" matInput placeholder="BSB Code"
+                            [value]="primarySuperAnnuation?.bsbCode" />
                         </mat-form-field>
                       </div>
-                      <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div> -->
-                      <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                      <!-- <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div> -->
+                      <div *ngIf="primarySuperAnnuation?.fundType  =='1' &&  primarySuperAnnuation?.fundType == '2'"
+                        fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Account Name:</mat-label>
                           <input [readonly]="!isEditEnable" matInput [value]="primarySuperAnnuation?.accountName"
                             placeholder="Account Name" />
                         </mat-form-field>
                       </div>
-                      <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                      <div *ngIf="primarySuperAnnuation?.fundType  =='1'" fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Member No:</mat-label>
                           <input [readonly]="!isEditEnable" matInput [value]="primarySuperAnnuation?.membername"
                             placeholder="Member No" />
                         </mat-form-field>
                       </div>
-                      
-                        <!-- <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
-                          <p><b>Is Trustee Of SMSF </b></p>
-                        </div>
-                        <div fxFlex.gt-sm="20" fxFlex="100" class="p-10">
-                          <mat-form-field appearance="outline">
-                            <input [readonly]="!isEditEnable" matInput
-                               placeholder="----" />
-                          </mat-form-field>
-                        </div>
-                        <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+
+                      <!-- <div *ngIf="primarySuperAnnuation?.fundType == '2'" fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+                        <p><b>Is Trustee Of SMSF? </b></p>
+                      </div>
+                      <div fxFlex.gt-sm="20" fxFlex="100" class="p-10">
+                        <mat-form-field appearance="outline">
+                          <input [readonly]="!isEditEnable" matInput placeholder="----" />
+                        </mat-form-field>
                       </div> -->
-                      <!-- <div fxFlex.gt-sm="100" fxFlex="100" class="p-10 documents-img"> -->
-                      <!-- <h3 class="fw-500" align="left">Documents</h3> -->
-                      <!-- <img class="dIMG" src="../../../assets/img/dummy-licence.jpg" alt="" />
+                      <!-- <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"> -->
+                      <!-- <div *ngIf="primarySuperAnnuation?.fundType  =='1' &&  primarySuperAnnuation?.fundType == '2'"
+                        fxFlex.gt-sm="100" fxFlex="100" class="p-10 documents-img">
+                        <h3 class="fw-500" align="left">Documents</h3>
                         <img class="dIMG" src="../../../assets/img/dummy-licence.jpg" alt="" />
-                        <img class="dIMG" src="../../../assets/img/dummy-licence.jpg" alt="" /> -->
-                      <!-- </div> -->
+                        <img class="dIMG" src="../../../assets/img/dummy-licence.jpg" alt="" />
+                        <img class="dIMG" src="../../../assets/img/dummy-licence.jpg" alt="" />
+                      </div> -->
                     </div>
                   </mat-expansion-panel>
                 </mat-accordion>
@@ -1153,7 +1154,8 @@
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Termination Date:</mat-label>
-                      <input [readonly]="!isEditEnable" matInput value="-----" placeholder="Termination Date" />
+                      <input [readonly]="!isEditEnable" matInput [value]="record?.terminationDate | date: 'd/M/y'"
+                        placeholder="Termination Date" />
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
@@ -1165,7 +1167,7 @@
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field appearance="outline">
                       <mat-label>Onboarding Completion Date:</mat-label>
-                      <input [readonly]="!isEditEnable" matInput value="-----"
+                      <input [readonly]="!isEditEnable" matInput [value]="record?.completionDate | date: 'd/M/y'"
                         placeholder="Onboarding Completion Date" />
                     </mat-form-field>
                   </div>

@@ -19,6 +19,9 @@ export class EmployeeTransferFormComponent implements OnInit {
   filteredOptions!: Observable<string[]>;
   todayDate: Date = new Date();
   employeeList: any;
+  selectedEmployee: any;
+  gangList: any;
+  selectedGang: any;
   constructor(public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private router: Router, private employeeService: EmployeeService) {
 
     this.globals = globals;
@@ -42,6 +45,7 @@ export class EmployeeTransferFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchEmployee({ target: { value: '' } });
+    this.searchGang({ target: { value: '' } });
     // this.employeeService.getAll().subscribe((result: any) => {
     //   console.log(result)
     // });
@@ -60,6 +64,29 @@ export class EmployeeTransferFormComponent implements OnInit {
     });
   }
 
+  searchGang(event: any) {
+    console.log(event, 'test')
+    this.employeeService.searchGang(event.target.value).subscribe((result: any) => {
+      console.log(result, 'resukt gangList')
+      this.gangList = result;
+    });
+  }
+
+  selectGang(event: any) {
+    if (event.value) {
+      let selected = this.gangList.find((elem: any) => elem.id.toString() == event.value.toString());
+      console.log(event, selected, 'selectedGang   ');
+      this.selectedGang = selected ? selected : null;
+    }
+  }
+
+  selectEmployee(event: any) {
+    if (event.value) {
+      let selected = this.employeeList.find((elem: any) => elem.id.toString() == event.value.toString());
+      console.log(event, selected, 'selectedEmployeeselectedEmployee   ');
+      this.selectedEmployee = selected ? selected : null;
+    }
+  }
 
   calculateDate(value: string) {
     let currentDate = new Date(new Date().getTime());

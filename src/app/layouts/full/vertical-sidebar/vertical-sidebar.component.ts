@@ -193,42 +193,42 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
             icon: 'account_box',
           });
 
-        if (this.userPermissions.reports.includes('leave_export')) {
-          subMenu.push({
-            state: 'report/leave',
-            name: 'Leaves',
-            type: 'link',
-            icon: 'account_box',
-          });
+          if (this.userPermissions.reports.includes('leave_export')) {
+            subMenu.push({
+              state: 'report/leave',
+              name: 'Leaves',
+              type: 'link',
+              icon: 'account_box',
+            });
+          }
+
+          if (this.userPermissions.reports.includes('resign_export')) {
+            subMenu.push({
+              state: 'report/resignation',
+              name: 'Resignations',
+              type: 'link',
+              icon: 'account_box',
+            });
+
+          }
+
+
+
+          // if (this.userPermissions.reports.includes('add_user')) {
+          //   subMenu.push({
+          //     state: 'transfer/list',
+          //     name: 'Transfer',
+          //     type: 'link',
+          //     icon: 'account_box',
+          //     badge: [{ type: 'warning', value: 'new' }],
+          //   });
+
+          // }
+
+
+
         }
 
-        if (this.userPermissions.reports.includes('resign_export')) {
-          subMenu.push({
-            state: 'report/resignation',
-            name: 'Resignations',
-            type: 'link',
-            icon: 'account_box',
-          });
-
-        }
-
-
-       
-        // if (this.userPermissions.reports.includes('add_user')) {
-        //   subMenu.push({
-        //     state: 'transfer/list',
-        //     name: 'Transfer',
-        //     type: 'link',
-        //     icon: 'account_box',
-        //     badge: [{ type: 'warning', value: 'new' }],
-        //   });
-
-        // }
-      
-
-
-        }
-      
 
         // if (this.userPermissions.reports.includes('leave_export')) {
         //   subMenu.push({ displayName: 'Holidays', iconName: '', route: '/' });
@@ -242,7 +242,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         });
       }
 
-      
+
       if (environment.server == 'UAT' && this.userPermissions.reports && this.userPermissions.reports.length > 0) {
         let subMenu: any = [];
 
@@ -256,7 +256,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
           });
           subMenu.push({
             state: '/registration/recommend',
-            name: 'Job Recommend',
+            name: 'Create Job Recommend',
             type: 'link',
             icon: 'account_box',
           });

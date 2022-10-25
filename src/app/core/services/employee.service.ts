@@ -31,6 +31,11 @@ export class EmployeeService {
     searchEmployee(search: string) {
         return this.http.get<any>(`${environment.apiUrl}/v1/subteammember/search?name=${search}`);
     }
+    
+    searchGang(search: string) {
+        return this.http.get<any>(`${environment.apiUrl}/v1/projectsubteam/search?name=${search}`);
+    }
+
 
     getAllResignationRequest(options: ViewOptions) {
         return this.http.get<any>(`${environment.apiUrl}/v1/resignation/appliedToMe?status=${options.search}&page=${options.page}&size=${options.pageSize}`);
