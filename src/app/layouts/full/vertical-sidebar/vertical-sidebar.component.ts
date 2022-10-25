@@ -249,8 +249,38 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         if (this.userPermissions.reports.includes('add_user')) {
 
           subMenu.push({
-            state: '/registration/job-recommend',
+            state: '/registration/recruitment',
+            name: 'Job Posting',
+            type: 'link',
+            icon: 'account_box',
+          });
+          subMenu.push({
+            state: '/registration/recommend',
             name: 'Job Recommend',
+            type: 'link',
+            icon: 'account_box',
+          });
+          subMenu.push({
+            state: '/registration/job-recommend',
+            name: 'Demand Board',
+            type: 'link',
+            icon: 'account_box',
+          });
+          subMenu.push({
+            state: '/registration/recruitment-details',
+            name: 'Job Details',
+            type: 'link',
+            icon: 'account_box',
+          });
+          subMenu.push({
+            state: '/registration/transfer-list',
+            name: 'Transfer List',
+            type: 'link',
+            icon: 'account_box',
+          });
+          subMenu.push({
+            state: '/registration/recommendation-list',
+            name: 'Recommendations',
             type: 'link',
             icon: 'account_box',
           });
