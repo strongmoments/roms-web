@@ -284,6 +284,31 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
             type: 'link',
             icon: 'account_box',
           });
+          subMenu.push({
+            state: '/client/client-list',
+            name: 'Client List',
+            type: 'link',
+            icon: 'account_box',
+          });
+          subMenu.push({
+            state: '/client/client-add',
+            name: 'Client Add',
+            type: 'link',
+            icon: 'account_box',
+          });
+          subMenu.push({
+            state: '/client/project-list',
+            name: 'Projet List',
+            type: 'link',
+            icon: 'account_box',
+          });
+          
+          subMenu.push({
+            state: '/client/project-add',
+            name: 'Projet Add',
+            type: 'link',
+            icon: 'account_box',
+          });
         }
 
 
@@ -291,7 +316,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
           state: 'test',
           name: 'Test',
           type: 'sub',
-          icon: 'people',
+          icon: 'assessment',
           children: subMenu,
         });
       }
