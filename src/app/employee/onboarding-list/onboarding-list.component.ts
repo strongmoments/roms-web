@@ -218,9 +218,9 @@ export class OnboardingListComponent implements OnInit, OnChanges {
           let employeeName = '';
           if (result.data[i].personal && result.data[i].personal != 'null') {
             employeeName = result.data[i] && result.data[i].personal ? `${result.data[i].personal.firstName} ${result.data[i].personal.lastName}` : '';
-          }else{
+          } else {
             employeeName = result.data[i] && result.data[i].firstName ? `${result.data[i].firstName} ${result.data[i].lastName}` : '';
-            
+
           }
           data.push({
             ...result.data[i],
@@ -390,6 +390,47 @@ export class OnboardingListComponent implements OnInit, OnChanges {
     let final = (currentProgress / 700) * 100;
     return Math.ceil(final);
     // console.log(final);
+  }
+
+  getColor(type: String) {
+    let item: any = this.selectedRecord;
+    let progress: any = 0;
+    switch (type) {
+      case 'personal':
+        progress = item && item.personal != undefined && item.personal.completionProgress != undefined ? item.personal.completionProgress : 0;
+        break;
+      case 'banking':
+        progress = item && item.banking != undefined && item.banking.completionProgress != undefined ? item.banking.completionProgress : 0;
+        break;
+      case 'emergency':
+        progress = item && item.emergency != undefined && item.emergency.completionProgress != undefined ? item.emergency.completionProgress : 0;
+        break;
+      case 'tfn':
+        progress = item && item.tfn != undefined && item.tfn.completionProgress != undefined ? item.tfn.completionProgress : 0;
+        break;
+      case 'superannuation':
+        progress = item && item.superannuation != undefined && item.superannuation.completionProgress != undefined ? item.superannuation.completionProgress : 0;
+        break;
+      case 'licence':
+        progress = item && item.licence != undefined && item.licence.completionProgress != undefined ? item.licence.completionProgress : 0;
+        break;
+      case 'membership':
+        progress = item && item.membership != undefined && item.membership.completionProgress != undefined ? item.membership.completionProgress : 0;
+        break;
+      case 'total':
+        progress = this.getProgressValue(this.selectedRecord);
+        break;
+
+      default:
+        break;
+    }
+    let className = 'warn';
+    if (progress == '100') {
+      className = 'accent';
+    } else if (progress > 0 && progress < 100) {
+      className = 'primary';
+    }
+    return className;
   }
 
 

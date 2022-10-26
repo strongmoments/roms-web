@@ -82,7 +82,7 @@ export class CreateUserComponent implements OnInit {
       // dob: new FormControl('', [Validators.required]),
       isManager: new FormControl(false),
       roleId: new FormControl('', [Validators.required]),
-      managerId: new FormControl('', []),
+      managerId: new FormControl('', [Validators.required]),
       employTypeId: new FormControl('', [Validators.required]),
       departmentId: new FormControl('', [Validators.required]),
       notifyBySms: new FormControl(false, []),

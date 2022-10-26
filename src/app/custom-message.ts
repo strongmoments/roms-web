@@ -1,5 +1,5 @@
 export enum CustomMessage {
-    invalidForm = 'Invalid Form!',
+    invalidForm = 'You must provide valid details!',
     invalidCredential = 'Invalid credentials',
     loginSuccess = 'Logged in sucessfully',
     leaveApplySuccess = 'Leave applied succesfully',

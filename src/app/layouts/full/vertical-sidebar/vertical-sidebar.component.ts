@@ -78,6 +78,12 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
     menuItem.push({ state: 'dashboard', name: 'Dashboard', type: 'link', icon: 'av_timer' });
 
     if (this.userPermissions) {
+      menuItem.push({
+        state: '',
+        name: 'Personal & My Staff',
+        type: 'saperator',
+        icon: 'av_timer',
+      });
       //condition for menu of operatins
       if (this.userPermissions.operations && this.userPermissions.operations.length > 0) {
         let subMenu = [];
@@ -161,6 +167,12 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         });
       }
 
+      menuItem.push({
+        state: '',
+        name: 'People & culture & coming soon',
+        type: 'saperator',
+        icon: 'av_timer',
+      });
       if (this.userPermissions.reports && this.userPermissions.reports.length > 0) {
         let subMenu: any = [];
 
@@ -302,7 +314,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
             type: 'link',
             icon: 'account_box',
           });
-          
+
           subMenu.push({
             state: '/client/project-add',
             name: 'Projet Add',

@@ -35,7 +35,7 @@ export class EmployeeListComponent implements OnInit, OnChanges {
     'employeType.name',
     'departments.description',
     'convertedStartDate',
-    'logo'
+    // 'logo'
   ];
 
   // convertedStartDate: convertedStartDate,
