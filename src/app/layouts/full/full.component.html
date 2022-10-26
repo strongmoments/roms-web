@@ -1,7 +1,10 @@
 <!-- ============================================================== -->
 <!-- Main wrapper - style you can find in pages.scss -->
 <!-- ============================================================== -->
-<div class="main-container" [dir]="dir" [ngClass]="{
+<div
+  class="main-container"
+  [dir]="dir"
+  [ngClass]="{
     minisidebar: minisidebar,
     boxed: boxed,
     danger: danger,
@@ -9,7 +12,8 @@
     dark: dark,
     green: green,
     horizontal: horizontal
-  }">
+  }"
+>
   <!-- ============================================================== -->
   <!-- Topbar - style you can find in header.scss -->
   <!-- ============================================================== -->
@@ -26,12 +30,17 @@
             <!-- Dark Logo icon -->
             <img src="assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
             <!-- Light Logo icon -->
-            <img src="assets/img/new-logo.png" alt="homepage" class="light-logo" style="max-width: 4em;max-height:2em;" />
+            <img
+              src="assets/img/new-logo.png"
+              alt="homepage"
+              class="light-logo"
+              style="max-width: 4em; max-height: 2em"
+            />
           </b>
           <!--End Logo icon -->
           <!-- Logo text -->
           <span fxShow="false" fxShow.gt-xs>
-            <span>{{server}}</span>
+            <span>{{ server }}</span>
             <!-- dark Logo text -->
             <img src="assets/images/logo-text.png" alt="homepage" class="dark-logo" />
             <!-- Light Logo text -->
@@ -77,20 +86,34 @@
         <mat-icon>settings</mat-icon>
       </button> -->
     </div>
-    
   </mat-toolbar>
   <!-- ============================================================== -->
   <!-- End Topbar - style you can find in pages.scss -->
   <!-- ============================================================== -->
-  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0"
-    [ngClass]="{ minisidebar: minisidebar }">
+  <mat-sidenav-container
+    class="example-sidenav-container"
+    [style.marginTop.px]="mobileQuery.matches ? 0 : 0"
+    [ngClass]="{ minisidebar: minisidebar }"
+  >
     <!-- ============================================================== -->
     <!-- Sidebar - style you can find in sidebar.scss -->
     <!-- ============================================================== -->
-    <mat-sidenav #snav id="snav" class="pl-xs" [mode]="mobileQuery.matches ? 'side' : 'over'" fixedTopGap="0"
-      [opened]="mobileQuery.matches" [disableClose]="mobileQuery.matches" (open)="sidebarOpened = true"
-      (close)="sidebarOpened = false">
-      <perfect-scrollbar *ngIf="!horizontal; else horizontalsidebar" class="scbar" [config]="config">
+    <mat-sidenav
+      #snav
+      id="snav"
+      class="pl-xs"
+      [mode]="mobileQuery.matches ? 'side' : 'over'"
+      fixedTopGap="0"
+      [opened]="mobileQuery.matches"
+      [disableClose]="mobileQuery.matches"
+      (open)="sidebarOpened = true"
+      (close)="sidebarOpened = false"
+    >
+      <perfect-scrollbar
+        *ngIf="!horizontal; else horizontalsidebar"
+        class="scbar"
+        [config]="config"
+      >
         <app-vertical-sidebar class="app-sidebar" [showClass]="status" (notify)="snav.toggle()">
         </app-vertical-sidebar>
       </perfect-scrollbar>
@@ -162,11 +185,11 @@
             <!-- <app-spinner></app-spinner> -->
           </router-outlet>
         </div>
-        <div class="bottom-footer">
-          <label>All Rights Reserved by ........... ...........</label>
+        <div class="bottom-footer" style="display:flex; flex-flow: column;">
+          <label> @ RTL Mining and Earthworks</label>
+          <label> Designed by Dragon and Peaches Consulting </label>
         </div>
       </div>
-
     </mat-sidenav-content>
     <!-- ============================================================== -->
     <!-- Page container - style you can find in pages.scss -->
