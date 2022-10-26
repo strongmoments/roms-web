@@ -314,7 +314,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
 
         menuItem.push({
           state: 'test',
-          name: 'Test',
+          name: 'Coming Soon',
           type: 'sub',
           icon: 'assessment',
           children: subMenu,

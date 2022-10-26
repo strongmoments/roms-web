@@ -10,19 +10,19 @@
   max-height: 500px;
 }
 
-.example-element-row+.example-detail-row {
+.example-element-row + .example-detail-row {
   height: 0 !important;
 }
 
-.example-element-row+.example-detail-row td {
+.example-element-row + .example-detail-row td {
   padding: 0px !important;
 }
 
-.example-element-row.example-expanded-row+.example-detail-row {
+.example-element-row.example-expanded-row + .example-detail-row {
   height: 48px !important;
 }
 
-.example-element-row.example-expanded-row+.example-detail-row td.mat-cel {
+.example-element-row.example-expanded-row + .example-detail-row td.mat-cel {
   padding: 15px !important;
 }
 
@@ -34,21 +34,16 @@
   width: auto;
 }
 
-
-
 :host ::ng-deep .approved-checkbox .mat-checkbox-frame {
-  border-color: #2ace58
+  border-color: #2ace58;
 }
-
-
 
 :host ::ng-deep .rejected-checkbox .mat-checkbox-frame {
-  border-color: #d51e1e
+  border-color: #d51e1e;
 }
 
-
 :host ::ng-deep .pending-checkbox .mat-checkbox-frame {
-  border-color: #e7b400
+  border-color: #e7b400;
 }
 
 .h-30 {
@@ -105,7 +100,7 @@ mat-dialog-container img {
   object-fit: contain;
 }
 .mat-body-clp {
-  margin: 15px;
+  margin: 15px 15px 15px 65px;
   background: #d3d3d357;
   padding: 12px;
 }

@@ -113,20 +113,13 @@
                       <a [routerLink]="['/employee/profile']" [queryParams]="{id:row.id}">
                         <mat-icon color="primary">visibility</mat-icon>
                       </a>
-                      <!-- <button
-                        class="button p-5 p-l-40 p-r-40 p-t-10 p-b-10 fs-20"
-                        
-                        mat-raised-button
-                      color="primary"
-                      >
-                        Create
-                      </button> -->
+                      
                     </td>
                   </ng-container>
 
 
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                  <tr mat-row *matRowDef="let element; columns: displayedColumns" class="example-element-row"
+                  <tr mat-row *matRowDef="let element; columns: displayedColumns"  class="example-element-row"
                     [ngClass]="{ 'selected-row': selectedId== element.id }"></tr>
                   <tr class="mat-row" *matNoDataRow>
                     <td class="mat-cell" [attr.colspan]="displayedColumns.length">

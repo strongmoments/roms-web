@@ -50,8 +50,8 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     // 'approveStatus',
     // 'leaveReason',
     'managerName',
-    'convertedApprovalDate',
     'status',
+    'convertedApprovalDate',
   ];
   displayedColumnsHistory: string[] = ['createDate', 'dateRange', 'reportName', 'sign'];
 
