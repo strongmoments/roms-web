@@ -334,6 +334,13 @@ html .page-wrapper .page-content{
   min-height: 100vh;
 }
 
+.page-wrapper-footer{
+  display: flex;
+  /* flex-flow: column; */
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 @media (max-width: 340px) {
   mat-card {
     margin: 0 !important;

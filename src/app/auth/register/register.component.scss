@@ -25,3 +25,29 @@
     padding: 0 8px !important;
   }
 }
+.login-ft{
+  position: absolute;
+  bottom: 0;
+  background: #ffffffa8;
+  width: 100%;
+  padding: 5px 20px;
+}
+.login-ft div{
+  display:flex;
+  justify-content:space-between
+}
+.mat-list-base .mat-list-item, .mat-list-base .mat-list-option{
+  height: 40px;
+}
+@media (max-width:640px){
+  .login-ft div{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+  }
+  .login-register{
+    margin-bottom: 70px;
+    margin-top: 16px;
+  }
+}
