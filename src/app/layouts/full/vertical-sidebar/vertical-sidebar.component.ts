@@ -169,7 +169,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
 
       menuItem.push({
         state: '',
-        name: 'People & culture & coming soon',
+        name: 'People & Culture & coming soon',
         type: 'saperator',
         icon: 'av_timer',
       });
