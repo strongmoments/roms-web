@@ -18,6 +18,7 @@ import { saveAs } from 'file-saver';
 import * as moment from 'moment';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { element } from 'protractor';
+import { UntypedFormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-list',
@@ -67,6 +68,8 @@ export class EmployeeListComponent implements OnInit, OnChanges {
   // removedRows: any = [];
   // selectedTabIndex: number = 0;
   selectedId: string = '';
+
+  addEMPmessage = new UntypedFormControl('Add Employee');
   constructor(
     breakpointObserver: BreakpointObserver,
     public util: Utils,
