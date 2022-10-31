@@ -7,6 +7,8 @@ export class Globals {
     fullPage: boolean = false;
     defaultId: string = '303030303030303030303030'
     passwordHint: string = `Password should be at least 8 characters long and \n should contain one number,\none character and one special character`
+    defaultAbn: number = 75493363262
+    defaultUsi: string = 'CBU0100AU'
     whatClassIsIt(someValue: number) {
         if (someValue == 1)
             return "green"
@@ -103,9 +105,9 @@ export class Globals {
     ]
 
     tfnType = [
-        { name: 'Australian resident', value: '0' },
-        { name: 'Foreign resident', value: '1' },
-        { name: 'A working holiday maker', value: '2' }
+        { name: 'Australian resident', value: '1' },
+        { name: 'Foreign resident', value: '2' },
+        { name: 'A working holiday maker', value: '3' }
     ]
 
     phoneCode = [

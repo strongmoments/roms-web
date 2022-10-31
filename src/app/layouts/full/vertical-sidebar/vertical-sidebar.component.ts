@@ -169,7 +169,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
 
       menuItem.push({
         state: '',
-        name: 'People & Culture & coming soon',
+        name: 'People & Culture',
         type: 'saperator',
         icon: 'av_timer',
       });
@@ -255,78 +255,132 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
       }
 
 
+      menuItem.push({
+        state: '',
+        name: 'Coming soon',
+        type: 'saperator',
+        icon: 'av_timer',
+      });
+
       if (environment.server == 'UAT' && this.userPermissions.reports && this.userPermissions.reports.length > 0) {
+
+        if (this.userPermissions.operations && this.userPermissions.operations.length > 0) {
+          let subMenu = [];
+
+
+          subMenu.push({
+            state: '/client/client-list',
+            name: 'Client',
+            type: 'link',
+            icon: 'account_box',
+          });
+
+          subMenu.push({
+            state: '/client/project-list',
+            name: 'Projects',
+            type: 'link',
+            icon: 'account_box',
+          });
+          // if (this.userPermissions.operations.includes('assets')) {
+          subMenu.push({ state: 'coming-soon', name: 'Assets', type: 'link', icon: 'commute' });
+          // }
+          // if (this.userPermissions.operations.includes('inspection')) {
+          //   subMenu.push({
+          //     state: 'coming-soon',
+          //     name: 'Inspection',
+          //     type: 'link',
+          //     icon: 'description',
+          //   });
+          // }
+          // if (this.userPermissions.operations.includes('inspection')) {
+          // subMenu.push({
+          //   displayName: 'People', iconName: '', route: '/', children: [
+          //     {
+          //       displayName: 'Transfer', iconName: '', route: '/employee/transfer'
+          //     }
+          //   ]
+          // });
+          // }
+          menuItem.push({ state: 'operation', name: 'Operation', type: 'sub', icon: 'commute', children: subMenu });
+        }
+
         let subMenu: any = [];
+
 
         if (this.userPermissions.reports.includes('add_user')) {
 
-          subMenu.push({
-            state: '/registration/recruitment',
-            name: 'Job Posting',
-            type: 'link',
-            icon: 'account_box',
-          });
-          subMenu.push({
-            state: '/registration/recommend',
-            name: 'Create Job Recommend',
-            type: 'link',
-            icon: 'account_box',
-          });
+          // subMenu.push({
+          //   state: '/client/client-list',
+          //   name: 'Client List',
+          //   type: 'link',
+          //   icon: 'account_box',
+          // });
+          // subMenu.push({
+          //   state: '/client/client-add',
+          //   name: 'Client Add',
+          //   type: 'link',
+          //   icon: 'account_box',
+          // });
+
           subMenu.push({
             state: '/registration/job-recommend',
             name: 'Demand Board',
             type: 'link',
             icon: 'account_box',
           });
-          subMenu.push({
-            state: '/registration/recruitment-details',
-            name: 'Job Details',
-            type: 'link',
-            icon: 'account_box',
-          });
-          subMenu.push({
-            state: '/registration/transfer-list',
-            name: 'Transfer List',
-            type: 'link',
-            icon: 'account_box',
-          });
+
           subMenu.push({
             state: '/registration/recommendation-list',
-            name: 'Recommendations',
-            type: 'link',
-            icon: 'account_box',
-          });
-          subMenu.push({
-            state: '/client/client-list',
-            name: 'Client List',
-            type: 'link',
-            icon: 'account_box',
-          });
-          subMenu.push({
-            state: '/client/client-add',
-            name: 'Client Add',
-            type: 'link',
-            icon: 'account_box',
-          });
-          subMenu.push({
-            state: '/client/project-list',
-            name: 'Projet List',
+            name: 'Recommended Employees',
             type: 'link',
             icon: 'account_box',
           });
 
           subMenu.push({
-            state: '/client/project-add',
-            name: 'Projet Add',
+            state: '/registration/transfer-list',
+            name: 'Internal Transfers',
             type: 'link',
             icon: 'account_box',
           });
+
+
+          // subMenu.push({
+          //   state: '/registration/recruitment',
+          //   name: 'Post New Role',
+          //   type: 'link',
+          //   icon: 'account_box',
+          // });
+
+
+          // subMenu.push({
+          //   state: '/registration/recruitment-details',
+          //   name: 'Job Details',
+          //   type: 'link',
+          //   icon: 'account_box',
+          // });
+
+
+
+
+          // subMenu.push({
+          //   state: '/client/project-list',
+          //   name: 'Project List',
+          //   type: 'link',
+          //   icon: 'account_box',
+          // });
+
+          // subMenu.push({
+          //   state: '/client/project-add',
+          //   name: 'Project Add',
+          //   type: 'link',
+          //   icon: 'account_box',
+          // });
         }
 
 
         menuItem.push({
           state: 'test',
-          name: 'Coming Soon',
+          name: 'Job Demands',
           type: 'sub',
           icon: 'assessment',
           children: subMenu,

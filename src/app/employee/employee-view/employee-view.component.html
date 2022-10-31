@@ -784,45 +784,57 @@
                             placeholder="Fund ABN" />
                         </mat-form-field>
                       </div>
-                      <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                      <div *ngIf="primarySuperAnnuation?.fundType  =='1' &&  primarySuperAnnuation?.fundType == '2'"
+                        fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Fund Name:</mat-label>
-                          <input [readonly]="!isEditEnable" matInput [value]="primarySuperAnnuation?.fundName"
+                          <input [readonly]="!isEditEnable" matInput
+                            [value]="primarySuperAnnuation && primarySuperAnnuation.fundName?primarySuperAnnuation.fundName:''"
                             placeholder="Fund Name" />
                         </mat-form-field>
                       </div>
-                      <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                      <div *ngIf="primarySuperAnnuation?.fundType  =='1' &&  primarySuperAnnuation?.fundType == '2'"
+                        fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Fund Address:</mat-label>
-                          <input [readonly]="!isEditEnable" matInput [value]="primarySuperAnnuation?.address"
+                          <input [readonly]="!isEditEnable" matInput
+                            [value]="primarySuperAnnuation &&primarySuperAnnuation.address?primarySuperAnnuation.address:''"
                             placeholder="Fund Address" />
                         </mat-form-field>
                       </div>
-                      <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                      <div *ngIf="primarySuperAnnuation?.fundType  =='1' &&  primarySuperAnnuation?.fundType == '2'"
+                        fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Suburb:</mat-label>
-                          <input [readonly]="!isEditEnable" matInput [value]="primarySuperAnnuation?.suburb"
+                          <input [readonly]="!isEditEnable" matInput
+                            [value]="primarySuperAnnuation && primarySuperAnnuation.suburb ?primarySuperAnnuation.suburb:''"
                             placeholder="Suburb" />
                         </mat-form-field>
                       </div>
-                      <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                      <div *ngIf="primarySuperAnnuation?.fundType  =='1' &&  primarySuperAnnuation?.fundType == '2'"
+                        fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>State:</mat-label>
-                          <input [readonly]="!isEditEnable" matInput [value]="primarySuperAnnuation?.state"
+                          <input [readonly]="!isEditEnable" matInput
+                            [value]="primarySuperAnnuation && primarySuperAnnuation.state ?primarySuperAnnuation.state:''"
                             placeholder="State" />
                         </mat-form-field>
                       </div>
-                      <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                      <div *ngIf="primarySuperAnnuation?.fundType  =='1' &&  primarySuperAnnuation?.fundType == '2'"
+                        fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Postcode:</mat-label>
-                          <input [readonly]="!isEditEnable" matInput [value]="primarySuperAnnuation?.postCode"
+                          <input [readonly]="!isEditEnable" matInput
+                            [value]="primarySuperAnnuation && primarySuperAnnuation.postCode ?primarySuperAnnuation.postCode:''"
                             placeholder="Postcode" />
                         </mat-form-field>
                       </div>
-                      <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+                      <div *ngIf="primarySuperAnnuation?.fundType  =='1' &&  primarySuperAnnuation?.fundType == '2'"
+                        fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Phone:</mat-label>
-                          <input [readonly]="!isEditEnable" matInput [value]="primarySuperAnnuation?.fundPhone"
+                          <input [readonly]="!isEditEnable" matInput
+                            [value]="primarySuperAnnuation &&primarySuperAnnuation.fundPhone?primarySuperAnnuation?.fundPhone:''"
                             placeholder="Phone" />
                         </mat-form-field>
                       </div>
@@ -831,7 +843,8 @@
                         fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>USI:</mat-label>
-                          <input [readonly]="!isEditEnable" matInput [value]="primarySuperAnnuation?.usi"
+                          <input [readonly]="!isEditEnable" matInput
+                            [value]="primarySuperAnnuation && primarySuperAnnuation.usi?primarySuperAnnuation?.usi:''"
                             placeholder="USI" />
                         </mat-form-field>
                       </div>
@@ -840,7 +853,7 @@
                         <mat-form-field appearance="outline">
                           <mat-label>Fund ESA:</mat-label>
                           <input [readonly]="!isEditEnable" matInput placeholder="Fund ESA"
-                            [value]="primarySuperAnnuation?.esa" />
+                            [value]="primarySuperAnnuation && primarySuperAnnuation.esa?primarySuperAnnuation.esa:''" />
                         </mat-form-field>
                       </div>
                       <!-- <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div> -->
@@ -848,7 +861,7 @@
                         <mat-form-field appearance="outline">
                           <mat-label>BSB Code:</mat-label>
                           <input [readonly]="!isEditEnable" matInput placeholder="BSB Code"
-                            [value]="primarySuperAnnuation?.bsbCode" />
+                            [value]="primarySuperAnnuation && primarySuperAnnuation.bsbCode?primarySuperAnnuation.bsbCode:''" />
                         </mat-form-field>
                       </div>
                       <!-- <div fxFlex.gt-sm="50" fxFlex="100" class="p-10"></div> -->
@@ -856,14 +869,16 @@
                         fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Account Name:</mat-label>
-                          <input [readonly]="!isEditEnable" matInput [value]="primarySuperAnnuation?.accountName"
+                          <input [readonly]="!isEditEnable" matInput
+                            [value]="primarySuperAnnuation && primarySuperAnnuation.accountName?primarySuperAnnuation.accountName:''"
                             placeholder="Account Name" />
                         </mat-form-field>
                       </div>
                       <div *ngIf="primarySuperAnnuation?.fundType  =='1'" fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                         <mat-form-field appearance="outline">
                           <mat-label>Member No:</mat-label>
-                          <input [readonly]="!isEditEnable" matInput [value]="primarySuperAnnuation?.membername"
+                          <input [readonly]="!isEditEnable" matInput
+                            [value]="primarySuperAnnuation && primarySuperAnnuation.membername?primarySuperAnnuation?.membername:''"
                             placeholder="Member No" />
                         </mat-form-field>
                       </div>
