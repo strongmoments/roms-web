@@ -209,7 +209,7 @@ export class RecruitmentComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    this.openDialog({});
+    // this.openDialog({});
     if (this.form.invalid) {
       this.alertService.openSnackBar(CustomMessage.invalidForm);
       return;
