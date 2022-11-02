@@ -19,7 +19,7 @@ export class AuthenticationService {
     private newRegistrationSubject = new BehaviorSubject(this.newRegistrationData);
     addedResigstration = this.newRegistrationSubject.asObservable();
 
-    constructor(private employeeService:EmployeeService,private router: Router, private http: HttpClient,
+    constructor(private employeeService: EmployeeService, private router: Router, private http: HttpClient,
         @Inject('LOCALSTORAGE') private localStorage: Storage, private sseService: SseService) {
         const userData = this.getUserData();
         this.userSubject = new BehaviorSubject<User>(userData);
@@ -101,17 +101,17 @@ export class AuthenticationService {
     }
 
     updateUserImage() {
-        let user=this.getUserData();
-        this.employeeService.getById(user.userDetail.id).subscribe((res)=>{
-            user.userDetail=res;
-            console.log('before','useruser')
-        this.saveUserData(user);
-        console.log('after','useruser')
+        let user = this.getUserData();
+        this.employeeService.getById(user.userDetail.id).subscribe((res) => {
+            user.userDetail = res;
+            console.log('before', 'useruser')
+            this.saveUserData(user);
+            console.log('after', 'useruser')
 
-        // user.userDetail['profileImage']=[{digitalAssets:{url}}];
-        this.userSubject.next(user);
+            // user.userDetail['profileImage']=[{digitalAssets:{url}}];
+            this.userSubject.next(user);
         })
-        
+
     }
 
     logout(): void {
@@ -217,8 +217,8 @@ export class AuthenticationService {
         return this.http.get<any>(`${environment.apiUrl}/v1/roles/load`);
     }
 
-    getAllManagers() {
-        return this.http.get<any>(`${environment.apiUrl}/v1/managers/load`);
+    getAllManagers(name: string = '') {
+        return this.http.get<any>(`${environment.apiUrl}/v1/employee/manager?name=${name}`);
     }
 
 

@@ -49,7 +49,7 @@ export class CreateUserComponent implements OnInit {
     });
 
     this.authService.getAllManagers().subscribe((result: any) => {
-      this.managers = result && result.data && result.data.length > 0 ? result.data : [];
+      this.managers = result && result.length > 0 ? result : [];
     });
 
     this.authService.getAllRoles().subscribe((result: any) => {
