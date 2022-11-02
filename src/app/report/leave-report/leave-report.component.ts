@@ -292,6 +292,12 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     })?.name;
   }
 
+  getStatusIcon(status: any) {
+    return this.globals.leaveStatus.find((elem: any) => {
+      return elem.value == status;
+    })?.icon;
+  }
+
   getStatusColor(status: any, isCheckbox: boolean = false) {
     let elem: any = this.globals.leaveStatus.find((elem: any) => {
       return elem.value == status;
@@ -306,14 +312,14 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     this.dataSource.filter = this.search;
     if (isTextSearch) {
     } else {
-      if(this.selectedTabIndex == 0){
+      if (this.selectedTabIndex == 0) {
         this.refresh(this.getDefaultOptions());
-    
-      }else if(this.selectedTabIndex == 1){
+
+      } else if (this.selectedTabIndex == 1) {
         this.refreshCurrent(this.getDefaultOptions());
-    
+
       }
-      }
+    }
   }
 
   onTabChanged(index: number) {

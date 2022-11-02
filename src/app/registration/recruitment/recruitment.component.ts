@@ -6,7 +6,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Utils } from 'src/app/core/_helpers/util';
 import { CustomMessage } from 'src/app/custom-message';
 import { Router } from '@angular/router';
-import { AlertService } from 'src/app/core/services';
+import { AlertService, EmployeeService, JobService } from 'src/app/core/services';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { Globals } from 'src/app/globals';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
@@ -32,7 +32,7 @@ export class RecruitmentComponent implements OnInit {
   selectedTickets: any = [];
   selectedLicenses: any = [];
   certificateList: any = [];
-
+  clients: any = [];
 
   visible = true;
   selectable = true;
@@ -51,7 +51,7 @@ export class RecruitmentComponent implements OnInit {
     { name: 'Warn', color: 'warn' },
   ];
 
-  constructor(private dialog: MatDialog, private fb: FormBuilder, private utils: Utils, private alertService: AlertService, private router: Router, private authService: AuthenticationService, private global: Globals) {
+  constructor(private dialog: MatDialog, private fb: FormBuilder, private utils: Utils, private alertService: AlertService, private router: Router, private authService: AuthenticationService, private global: Globals, private employeeService: EmployeeService, private jobService: JobService) {
     this.globals = global;
 
     this.authService.getAllEmployeeType().subscribe((result: any) => {
@@ -62,9 +62,12 @@ export class RecruitmentComponent implements OnInit {
       this.departments = result && result.data && result.data.length > 0 ? result.data : [];
     });
 
-    this.authService.getAllManagers().subscribe((result: any) => {
-      this.managers = result && result.data && result.data.length > 0 ? result.data : [];
-    });
+    this.searchEmployee({ target: { value: '' } });
+    this.searchClient({ target: { value: '' } });
+
+    // this.authService.getAllManagers().subscribe((result: any) => {
+    //   this.managers = result && result.data && result.data.length > 0 ? result.data : [];
+    // });
 
     this.authService.getAllRoles().subscribe((result: any) => {
       this.roles = result && result.data && result.data.length > 0 ? result.data : [];
@@ -226,6 +229,23 @@ export class RecruitmentComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result: any) => {
       // this.router.navigate(['/registration/list']);
       console.log('The dialog was closed');
+    });
+  }
+
+
+  searchEmployee(event: any) {
+    console.log(event, 'test')
+    this.employeeService.searchEmployee(event.target.value).subscribe((result: any) => {
+      console.log(result, 'resukt employee')
+      this.managers = result;
+    });
+  }
+
+  searchClient(event: any) {
+    console.log(event, 'test')
+    this.jobService.getAllClient(event.target.value).subscribe((result: any) => {
+      console.log(result, 'resukt employee')
+      this.clients = result;
     });
   }
 }
