@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef,  ViewChild } from '@angular/core';
 import { FormControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { Title } from '@angular/platform-browser';
@@ -9,6 +9,7 @@ import { Utils } from 'src/app/core/_helpers/util';
 import { CustomMessage } from 'src/app/custom-message';
 import { Globals } from 'src/app/globals';
 import { environment } from 'src/environments/environment';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-register',
@@ -16,6 +17,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  @ViewChild('resourceDemandDialog') resourceDemandDialog!: TemplateRef<any>;
   global: Globals;
   submitted: boolean = false;
   stepper!: MatStepper;
@@ -26,7 +28,7 @@ export class RegisterComponent implements OnInit {
   isEditable = false;
 
   // tslint:disable-next-line - Disables all
-  constructor(private globals: Globals, private _formBuilder: UntypedFormBuilder, public util: Utils, private alertService: AlertService, private authService: AuthenticationService, private router: Router, private titleService: Title) {
+  constructor(private dialog: MatDialog, private globals: Globals, private _formBuilder: UntypedFormBuilder, public util: Utils, private alertService: AlertService, private authService: AuthenticationService, private router: Router, private titleService: Title) {
     this.global = globals;
     this.titleService.setTitle('Register');
   }
@@ -89,6 +91,24 @@ export class RegisterComponent implements OnInit {
       stepper.next();
     }, (error: any) => {
       this.alertService.openSnackBar(CustomMessage.error);
+    });
+  }
+
+  onClick(){
+    this.submitted = true;
+    this.openDialog({});
+  }
+
+  openDialog(data: any) {
+    const dialogRef = this.dialog.open(this.resourceDemandDialog, {
+      width: '50em',
+      height: '35em',
+      data: { data: data },
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      // this.router.navigate(['/registration/list']);
+      // console.log('The dialog was closed');
     });
   }
 
