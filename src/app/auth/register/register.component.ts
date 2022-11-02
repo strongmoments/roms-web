@@ -17,7 +17,8 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  @ViewChild('resourceDemandDialog') resourceDemandDialog!: TemplateRef<any>;
+  @ViewChild('resourceDemandDialog,') resourceDemandDialog!: TemplateRef<any>;
+  @ViewChild('resourceDemandDialog1,') resourceDemandDialog1!: TemplateRef<any>;
   global: Globals;
   submitted: boolean = false;
   stepper!: MatStepper;
@@ -98,11 +99,29 @@ export class RegisterComponent implements OnInit {
     this.submitted = true;
     this.openDialog({});
   }
+ 
 
   openDialog(data: any) {
     const dialogRef = this.dialog.open(this.resourceDemandDialog, {
       width: '50em',
-      height: '35em',
+      height: '34em',
+      data: { data: data },
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      // this.router.navigate(['/registration/list']);
+      // console.log('The dialog was closed');
+    });
+  }
+
+  onClick1(){
+    this.submitted = true;
+    this.openDialog1({});
+  }
+  openDialog1(data: any) {
+    const dialogRef = this.dialog.open(this.resourceDemandDialog1, {
+      width: '35em',
+      height: '23em',
       data: { data: data },
     });
 

@@ -105,8 +105,8 @@
                 <div fxLayout="row wrap" fxFlexAlign="center" class="row">
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field>
-                      <input
-                        [ngClass]="{ 'is-invalid': submitted && f.empNo.hasError }"
+                      <input 
+                       [ngClass]="{ 'is-invalid': submitted && f.empNo.hasError }"
                         matInput
                         placeholder=" Employee No."
                         formControlName="empNo"
@@ -261,8 +261,13 @@
                 <div fxFlex.gt-sm="30%" fxFlex="100" class="text-left">
                   <mat-list-item role="listitem">
                     <p style="display: flex" class="m-0 m-t-5 m-b-10">
-                      Read Manual
-                      <a href="javascript:void(0);" class="m-r-20" style="font-size: 28px">
+                      instructions
+                      <a
+                        href="javascript:void(0);"
+                        class="m-r-20"
+                        style="font-size: 28px"
+                        (click)="onClick1()"
+                      >
                         <mat-icon class="m-l-10">remove_red_eye</mat-icon>
                       </a>
                     </p>
@@ -287,7 +292,7 @@
                 <div fxFlex.gt-sm="30%" fxFlex="100" class="text-left">
                   <mat-list-item role="listitem">
                     <p style="display: flex" class="m-0 m-t-5 m-b-10">
-                      Read Manual
+                      instructions
                       <a
                         href="javascript:void(0);"
                         class="m-r-20"
@@ -370,30 +375,55 @@
     </div> -->
     <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
       <p><b>Accessing the ROMS app</b></p>
-      <p>1. 
-        ROMS project aims to assist the RTL workers to get a faster resolution to their issues in
+      <p>
+        1. ROMS project aims to assist the RTL workers to get a faster resolution to their issues in
         the field or office by cutting down on the need to use paper for their daily tasks.
       </p>
-      <p>2. 
-        ROMS is mainly made available as a mobile app. To download the mobile app, you can visit the
-        Google Play Store or download the mobile app from the link provided on the user registration
-        page <a data-fr-linked="true" href="http://roms.rtl.com.au/">http://roms.rtl.com.au</a>.
+      <p>
+        2. ROMS is mainly made available as a mobile app. To download the mobile app, you can visit
+        the Google Play Store or download the mobile app from the link provided on the user
+        registration page
+        <a data-fr-linked="true" href="http://roms.rtl.com.au/">http://roms.rtl.com.au</a>.
       </p>
-      <p>3. 
-        On the third step of the user registration page, there is a link next to "Download the Roms
-        Android app here". Clicking on this link via a mobile browser will download an apk file to
-        your mobile. You will have to allow Install unknown apps from the settings. You can read the
-        procedure for doing so on Samsung phones from this page: 
-        <a data-fr-linked="true" href="https://www.samsung.com/us/support/troubleshooting/TSG01001353/">https://www.samsung.com/us/support/troubleshooting/TSG01001353</a>.
+      <p>
+        3. On the third step of the user registration page, there is a link next to "Download the
+        Roms Android app here". Clicking on this link via a mobile browser will download an apk file
+        to your mobile. You will have to allow Install unknown apps from the settings. You can read
+        the procedure for doing so on Samsung phones from this page:
+        <a
+          data-fr-linked="true"
+          href="https://www.samsung.com/us/support/troubleshooting/TSG01001353/"
+          >https://www.samsung.com/us/support/troubleshooting/TSG01001353</a
+        >.
       </p>
-      <p>4. 
-        Once the application has been installed, you will have to login by using the username and
+      <p>
+        4. Once the application has been installed, you will have to login by using the username and
         password provided to you by the HR department.
       </p>
-      <p>5. 
-        New Employees can do their onboarding from the ROMS app itself without having to visit the
-        company HQ. It is a step by step guided process that allows employees to submit their
+      <p>
+        5. New Employees can do their onboarding from the ROMS app itself without having to visit
+        the company HQ. It is a step by step guided process that allows employees to submit their
         documents by uploading or using the mobile camera.
+      </p>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #resourceDemandDialog1>
+  <!-- <h2 mat-dialog-title align="center" class="color_blue" style="font-size: 20px; margin-bottom: 0">
+    Job Resource Demand Created
+  </h2> -->
+  <div fxLayout="column wrap">
+    <!-- <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
+      <button class="m-b-20 button" mat-raised-button color="primary">Visit Job Board</button>
+    </div> -->
+    <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
+      <p><b>Accessing ROMS Cloud App</b></p>
+      <p>1. 
+        ROMS project aims to assist the RTL workers to get a faster resolution to their issues in the field or office by cutting down on the need to use papers for their daily tasks. ROMS is mainly made available as a mobile app, however a lot of adminsitrative functionality is available for use via cloud application. This functionality can be accessed via a desktop browser as well as a mobile browser.
+      </p>
+      <p>2. 
+        To use the cloud app, go to <a data-fr-linked="true" href="http://roms.rtl.com.au">http://roms.rtl.com.au</a> and login using the username and password provided to you..
       </p>
     </div>
   </div>
