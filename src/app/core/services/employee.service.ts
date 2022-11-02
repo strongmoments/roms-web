@@ -71,4 +71,8 @@ export class EmployeeService {
         return this.http.get<any>(`${environment.apiUrl}/v1/subteammember/search?name=${value}`);
     }
 
+    resetPasswordById(employeeId: string) {
+        return this.http.get<any>(`${environment.apiUrl}/v1/password/reset/${employeeId}`);
+    }
+
 }

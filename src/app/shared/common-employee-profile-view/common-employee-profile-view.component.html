@@ -244,7 +244,7 @@
     <mat-card>
       <mat-card-content>
         <!-- column -->
-         <!-- <mat-icon class="text-info">account_circle</mat-icon> -->
+        <!-- <mat-icon class="text-info">account_circle</mat-icon> -->
         <img class="m-r-10 list-Img" src="../../../assets/img/identity.png" alt="" />
         <h5 class="m-0 m-b-5">Emergency Contact</h5>
         <a routerLink="/employee/personal-info" [queryParams]="{id:record.id,type:'emergency'}">View</a>
@@ -259,7 +259,7 @@
     <mat-card>
       <mat-card-content>
         <!-- column -->
-         <!-- <mat-icon class="text-info">account_circle</mat-icon> -->
+        <!-- <mat-icon class="text-info">account_circle</mat-icon> -->
         <img class="m-r-10 list-Img" src="../../../assets/img/license.png" alt="" />
         <h5 class="m-0 m-b-5">Licence Information</h5>
         <a routerLink="/employee/personal-info" [queryParams]="{id:record.id,type:'licence'}">View</a>
@@ -270,7 +270,7 @@
   </div>
   <!-- column -->
   <!-- column -->
-  
+
   <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
     <mat-card>
       <mat-card-content>
@@ -290,7 +290,7 @@
     <mat-card>
       <mat-card-content>
         <!-- column -->
-         <!-- <mat-icon class="text-info">account_circle</mat-icon> -->
+        <!-- <mat-icon class="text-info">account_circle</mat-icon> -->
         <img class="m-r-10 list-Img" src="../../../assets/img/tax.png" alt="" />
         <h5 class="m-0 m-b-5">TFN Form</h5>
         <a routerLink="/employee/personal-info" [queryParams]="{id:record.id,type:'payroll'}">View</a>
@@ -305,7 +305,7 @@
     <mat-card>
       <mat-card-content>
         <!-- column -->
-         <!-- <mat-icon class="text-info">account_circle</mat-icon> -->
+        <!-- <mat-icon class="text-info">account_circle</mat-icon> -->
         <img class="m-r-10 list-Img" src="../../../assets/img/money.png" alt="" />
         <h5 class="m-0 m-b-5">Superannuation Choice</h5>
         <a routerLink="/employee/personal-info" [queryParams]="{id:record.id,type:'payroll'}">View</a>
@@ -335,7 +335,7 @@
     <mat-card>
       <mat-card-content>
         <!-- column -->
-         <!-- <mat-icon class="text-info">account_circle</mat-icon> -->
+        <!-- <mat-icon class="text-info">account_circle</mat-icon> -->
         <img class="m-r-10 list-Img" src="../../../assets/img/personal.png" alt="" />
         <h5 class="m-0 m-b-5">Employment Details</h5>
         <a routerLink="/employee/personal-info" [queryParams]="{id:record.id,type:'employment'}">View</a>
@@ -345,4 +345,54 @@
     </mat-card>
   </div>
   <!-- column -->
+
+
+  <div *ngIf="!isMyProfile" fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card>
+      <mat-card-content>
+        <!-- column -->
+        <!-- <mat-icon class="text-info">account_circle</mat-icon> -->
+        <img class="m-r-10 list-Img" src="../../../assets/img/personal.png" alt="" />
+        <!-- <h5 class="m-0 m-b-5">Reset Password</h5> -->
+        <a (click)="resetPassword()" href="javascript:void(0);">Reset Password</a>
+        <!-- <small class="text-muted pull-right">100%</small> -->
+        <!-- <mat-progress-bar class="m-t-5" mode="determinate" color="accent" value="100"></mat-progress-bar> -->
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
+
+
+
+<ng-template #passwordDialog>
+  <h1 mat-dialog-title align="center" style="font-size: 28px; margin-bottom: 25px">New Password!</h1>
+  <div fxLayout="row wrap">
+    <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
+      <form class="basic-form">
+        <div fxLayout="row wrap" fxFlexAlign="center" class="row m-0">
+          <div fxFlex.gt-sm="40" fxFlex="100">
+            <div mat-dialog-content>
+              <h5 class="m-0 m-b-20 m-t-10"><b>Password</b></h5>
+            </div>
+          </div>
+          <div fxFlex.gt-sm="60" fxFlex="100">
+            <div class="copy_content">
+              <h5 class="m-0 m-b-20 m-t-10">{{ newPassword }}</h5>
+              <a href="javascript:void(0);" class="copy_btn">
+                <!-- <mat-icon>content_copy</mat-icon> -->
+              </a>
+            </div>
+          </div>
+          <div fxFlex.gt-sm="100" fxFlex="100" class="p-10 text-center">
+            <div class="m-0 m-t-15">
+              <button mat-raised-button class="p-l-30 p-r-30" color="primary" mat-dialog-close
+                tabindex="2">
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>

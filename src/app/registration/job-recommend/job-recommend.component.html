@@ -206,7 +206,8 @@
           <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-15">
             <mat-form-field>
               <mat-label>Search(filter)</mat-label>
-              <input matInput placeholder="Search(filter)" />
+              <input type="text" matInput placeholder="Search(filter)" [(ngModel)]="searchText"
+                [ngModelOptions]="{standalone: true}" (keyup)="filter()" />
             </mat-form-field>
           </div>
           <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-15">

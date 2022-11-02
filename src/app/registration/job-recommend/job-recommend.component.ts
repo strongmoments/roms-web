@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { JobService } from 'src/app/core/services';
+import { AuthenticationService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-job-recommend',
@@ -12,7 +13,13 @@ import { JobService } from 'src/app/core/services';
 export class JobRecommendComponent implements OnInit {
   // @ViewChild('resourceDemandDialog') resourceDemandDialog!: TemplateRef<any>;
   demandList: any = [];
-  constructor(private dialog: MatDialog, private jobService: JobService, private router: Router) { }
+  currentTab: number = 0;
+  user: any;
+  searchText: string = '';
+  allDemandList: any = [];
+  constructor(private authService: AuthenticationService, private dialog: MatDialog, private jobService: JobService, private router: Router) {
+    this.user = this.authService.getCurrentUser();
+  }
 
   ngOnInit(): void {
     this.getDemandData();
@@ -31,31 +38,36 @@ export class JobRecommendComponent implements OnInit {
   //   });
   // }
   getDemandData() {
-    this.jobService.getAllResourceDemand().pipe(first())
-      .subscribe((result: any) => {
-        this.demandList = result.data;
-        console.log(this.demandList, 'result');
-        // this.totalRecords += result.totalElement;
-        // this.dataSource.data = [...result.data, ...this.dataSource.data];
-        // console.log(this.dataSource.data, 'result.data');
-        // this.comments = [];
-        // this.dataSource.data.map(() => {
-        //   this.comments.push('');
-        // });
-      });
+    if (this.currentTab == 0) {
+      this.jobService.getAllResourceDemand().pipe(first())
+        .subscribe((result: any) => {
+          this.demandList = result.data;
+          this.allDemandList = result.data;
+        });
+    } else if (this.currentTab == 1) {
+      this.jobService.getAllMyResourceDemand(this.user.id).pipe(first())
+        .subscribe((result: any) => {
+          this.demandList = result.data;
+          this.allDemandList = result.data;
+        });
+    }
   }
 
 
   getData(data: any) {
     let final: any = [];
     for (let item in data) {
-      console.log(data[item])
+      // console.log(data[item])
       final.push(data[item])
     }
     return final;
   }
 
   onTabChanged(index: number) {
+    this.currentTab = index;
+    this.searchText = '';
+    this.demandList = [];
+    this.allDemandList = [];
     this.getDemandData();
   }
 
@@ -66,5 +78,15 @@ export class JobRecommendComponent implements OnInit {
   redirectAdd() {
     this.router.navigate(['/registration/recruitment']);
 
+  }
+
+  filter() {
+    let allData = this.allDemandList;
+    allData = allData.filter((elem: any) => {
+      return elem?.clientProject?.name.toLowerCase().includes(this.searchText.toLowerCase())
+    });
+    this.demandList = allData;
+    // console.log(allData, 'asjaks')
+    return;
   }
 }

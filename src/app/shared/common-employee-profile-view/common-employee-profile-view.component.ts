@@ -1,8 +1,10 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AlertService, EmployeeService } from 'src/app/core/services';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { CustomMessage } from 'src/app/custom-message';
+import { ConfirmationDialog } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
     selector: 'app-common-employee-profile-view',
@@ -12,20 +14,25 @@ import { CustomMessage } from 'src/app/custom-message';
 export class CommonEmployeeProfileViewComponent implements OnInit, OnChanges {
     @Input() record: any;
     user: any;
-
-    constructor(private alertService: AlertService, private employeeService: EmployeeService, private router: Router, private authService: AuthenticationService) {
+    isMyProfile: boolean = true;
+    @ViewChild('passwordDialog') passwordDialog!: TemplateRef<any>;
+    newPassword: string = '';
+    constructor(private alertService: AlertService, private employeeService: EmployeeService, private router: Router, private authService: AuthenticationService, public dialog: MatDialog) {
 
         this.router.routeReuseStrategy.shouldReuseRoute = function () {
             return false;
         };
         this.user = this.authService.getCurrentUser();
         console.log(this.user, 'useruser')
+        this.isMyProfile = this.user && this.record && this.user.id == this.record.id;
+
     }
 
     ngOnInit(): void {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
+        this.isMyProfile = this.user.id == this.record.id;
         console.log(changes, 'rwecodd');
         // this.record = this.record;
     }
@@ -95,6 +102,52 @@ export class CommonEmployeeProfileViewComponent implements OnInit, OnChanges {
             return;
             // console.log(file, 'sd');
         }
+
+
+    }
+
+
+    resetPassword() {
+        // console.log(this.record)
+
+        let options = {
+            data: {
+                message: 'Are you sure you want to reset password?',
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'Cancel'
+            }
+        }
+        const del = this.dialog.open(ConfirmationDialog, options);
+
+        del.afterClosed().subscribe((result: boolean) => {
+            console.log(result)
+            if (result === true) {
+                this.employeeService.resetPasswordById(this.record.id).subscribe(
+                    (res: any) => {
+                        if (res.status == 'success') {
+                            this.newPassword = res.newPassword;
+
+                            const dialogRef = this.dialog.open(this.passwordDialog, {
+                                // width: '40em',
+                                // height: '34em',
+                                // data: { data: { password: res.newPassword } }
+                            });
+
+                            dialogRef.afterClosed().subscribe((result: any) => {
+                                this.newPassword = '';
+                                // this.router.navigate(['/registration/list']);
+                                // console.log('The dialog was closed');
+                            });
+                        }
+                        // console.log(res)
+                    },
+                    (error: any) => {
+                        this.alertService.openSnackBar(CustomMessage.error);
+
+                    },
+                );
+            }
+        });
 
 
     }
