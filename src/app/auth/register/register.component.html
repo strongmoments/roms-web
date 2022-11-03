@@ -1,13 +1,10 @@
-<div
-  class="login-register"
-  style="
+<div class="login-register" style="
     background-image: url(assets/img/layer.svg);
     justify-content: center;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: bottom;
-  "
->
+  ">
   <!-- row -->
   <!-- ============================================================== -->
   <div fxLayout="row wrap" style="justify-content: center">
@@ -30,12 +27,7 @@
           </button> -->
           <div fxLayout="row wrap" class="row">
             <div fxFlex.gt-sm="100%" fxFlex="100" class="text-center">
-              <a routerLink="/"
-                ><img
-                  src="../../../assets/img/roms-logo-withtext.png"
-                  alt="logo image"
-                  width="150px"
-                />
+              <a routerLink="/"><img src="../../../assets/img/roms-logo-withtext.png" alt="logo image" width="150px" />
               </a>
             </div>
           </div>
@@ -50,28 +42,23 @@
                     Register your details by pressing next button. HR will confirm the registration
                     via email
                   </mat-list-item>
-                  <mat-list-item role="listitem"
-                    ><span class="m-r-20" style="font-size: 29px">
-                      <mat-icon class="color_blue">chevron_right</mat-icon> </span
-                    >Download and follow setup instructions for the RTL ROMS app.
+                  <mat-list-item role="listitem"><span class="m-r-20" style="font-size: 29px">
+                      <mat-icon class="color_blue">chevron_right</mat-icon>
+                    </span>Download and follow setup instructions for the RTL ROMS app.
                   </mat-list-item>
-                  <mat-list-item role="listitem"
-                    ><span class="m-r-20" style="font-size: 29px">
-                      <mat-icon class="color_blue">chevron_right</mat-icon> </span
-                    >Your username and temporary password will be shared by the HR.
+                  <mat-list-item role="listitem"><span class="m-r-20" style="font-size: 29px">
+                      <mat-icon class="color_blue">chevron_right</mat-icon>
+                    </span>Your username and temporary password will be shared by the HR.
                   </mat-list-item>
-                  <mat-list-item role="listitem"
-                    ><span class="m-r-20" style="font-size: 29px">
+                  <mat-list-item role="listitem"><span class="m-r-20" style="font-size: 29px">
                       <mat-icon class="color_blue">chevron_right</mat-icon>
                     </span>
                     Using the credentials, you can start using the ROMS mobile App and Cloud
-                    App.</mat-list-item
-                  >
+                    App.</mat-list-item>
 
-                  <mat-list-item role="listitem"
-                    ><b class="mob_mr-10">Note-</b>You must have agreed to the RTL Employment Offer
-                    to register.</mat-list-item
-                  >
+                  <mat-list-item role="listitem"><b class="mob_mr-10">Note-</b>You must have agreed to the RTL
+                    Employment Offer
+                    to register.</mat-list-item>
                 </mat-list>
                 <ng-template matStepLabel>Registration Instructions</ng-template>
                 <mat-divider class="m-t-20"></mat-divider>
@@ -83,11 +70,7 @@
                     required
                   />
                 </mat-form-field> -->
-                <div
-                  class="row wrap m-t-20"
-                  align="center"
-                  style="display: flex; justify-content: space-between"
-                >
+                <div class="row wrap m-t-20" align="center" style="display: flex; justify-content: space-between">
                   <div>
                     <p class="m-0">
                       Already Registered? <a routerLink="/" class="text-info link">Login </a>
@@ -105,13 +88,8 @@
                 <div fxLayout="row wrap" fxFlexAlign="center" class="row">
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field>
-                      <input
-                        [ngClass]="{ 'is-invalid': submitted && f.empNo.hasError }"
-                        matInput
-                        placeholder=" Employee No."
-                        formControlName="empNo"
-                        empNo
-                      />
+                      <input [ngClass]="{ 'is-invalid': submitted && f.empNo.hasError }" matInput
+                        (focus)="removeDefault($event)" placeholder=" Employee No." formControlName="empNo" empNo />
                       <mat-error *ngIf="submitted && checkError('empNo', 'required')">
                         Employee No. is required.
                       </mat-error>
@@ -126,14 +104,8 @@
                   <div fxFlex.gt-sm="50" fxFlex="100" class=""></div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field>
-                      <input
-                        matInput
-                        placeholder="First Name"
-                        required
-                        formControlName="firstName"
-                        firstName
-                        [ngClass]="{ 'is-invalid': submitted && f.firstName.hasError }"
-                      />
+                      <input matInput placeholder="First Name" required formControlName="firstName" firstName
+                        [ngClass]="{ 'is-invalid': submitted && f.firstName.hasError }" />
                       <mat-error *ngIf="submitted && checkError('firstName', 'required')">
                         First Name is required.
                       </mat-error>
@@ -145,13 +117,8 @@
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field>
-                      <input
-                        [ngClass]="{ 'is-invalid': submitted && f.lastName.hasError }"
-                        matInput
-                        placeholder="Last Name"
-                        formControlName="lastName"
-                        lastName
-                      />
+                      <input [ngClass]="{ 'is-invalid': submitted && f.lastName.hasError }" matInput
+                        placeholder="Last Name" formControlName="lastName" lastName />
                       <mat-error *ngIf="submitted && checkError('lastName', 'required')">
                         Last Name is required.
                       </mat-error>
@@ -162,13 +129,8 @@
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field>
-                      <input
-                        matInput
-                        placeholder="Email Id"
-                        formControlName="email"
-                        email
-                        [ngClass]="{ 'is-invalid': submitted && f.email.hasError }"
-                      />
+                      <input matInput placeholder="Email Id" formControlName="email" email
+                        [ngClass]="{ 'is-invalid': submitted && f.email.hasError }" />
                       <mat-error *ngIf="submitted && checkError('email', 'required')">
                         Email id is required
                       </mat-error>
@@ -182,37 +144,27 @@
                   </div>
                   <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
                     <mat-form-field fxFlex="15">
-                      <mat-select
-                        formControlName="phoneCode"
-                        phoneCode
-                        [ngClass]="{ 'is-invalid': submitted && f.phoneCode.hasError }"
-                      >
+                      <mat-select formControlName="phoneCode" phoneCode
+                        [ngClass]="{ 'is-invalid': submitted && f.phoneCode.hasError }">
                         <mat-option [value]="item.value" *ngFor="let item of global.phoneCode">
                           {{ item.name }}
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
                     <mat-form-field fxFlex="85">
-                      <input
-                        [ngClass]="{ 'is-invalid': submitted && f.contactNo.hasError }"
-                        matInput
-                        placeholder="Contact No"
-                        formControlName="contactNo"
-                        contactNo
-                      />
+                      <input [ngClass]="{ 'is-invalid': submitted && f.contactNo.hasError }" matInput
+                        placeholder="Contact No" formControlName="contactNo" contactNo />
                       <mat-error *ngIf="submitted && checkError('contactNo', 'required')">
                         Contact No is required.
                       </mat-error>
                       <mat-error *ngIf="checkError('contactNo', 'pattern')">
                         Contact No is invalid.
                       </mat-error>
-                      <mat-error
-                        *ngIf="
+                      <mat-error *ngIf="
                           !checkError('contactNo', 'pattern') &&
                           (checkError('contactNo', 'maxlength') ||
                             checkError('contactNo', 'minlength'))
-                        "
-                      >
+                        ">
                         Contact no should be 10 digits.
                       </mat-error>
                     </mat-form-field>
@@ -224,12 +176,7 @@
                     <!-- <button mat-raised-button color="accent" class="p-l-30 p-r-30" matStepperPrevious>
                       Back
                     </button> -->
-                    <button
-                      mat-raised-button
-                      (click)="onSubmit(stepper)"
-                      color="primary"
-                      class="m-l-5 p-l-30 p-r-30"
-                    >
+                    <button mat-raised-button (click)="onSubmit(stepper)" color="primary" class="m-l-5 p-l-30 p-r-30">
                       REQUEST ACCESS
                     </button>
                   </div>
@@ -241,10 +188,8 @@
               <ng-template matStepLabel>Done</ng-template>
               <mat-list-item role="listitem">
                 <p class="m-t-20 m-b-30">
-                  <b
-                    >Please wait for the instruction from the HR in your email. Download the ROMS
-                    app from the links below</b
-                  >
+                  <b>Please wait for the instruction from the HR in your email. Download the ROMS
+                    app from the links below</b>
                 </p>
               </mat-list-item>
               <div fxLayout="row wrap" class="row">
@@ -252,8 +197,8 @@
                   <mat-list-item role="listitem">
                     <p style="display: flex" class="m-0 m-t-5 m-b-10">
                       <span class="m-r-20" style="font-size: 28px">
-                        <mat-icon>cloud_queue</mat-icon> </span
-                      >Access the ROMS Cloud app
+                        <mat-icon>cloud_queue</mat-icon>
+                      </span>Access the ROMS Cloud app
                       <a routerLink="/" class="m-l-10">here </a>
                     </p>
                   </mat-list-item>
@@ -262,12 +207,7 @@
                   <mat-list-item role="listitem">
                     <p style="display: flex" class="m-0 m-t-5 m-b-10">
                       instructions
-                      <a
-                        href="javascript:void(0);"
-                        class="m-r-20"
-                        style="font-size: 28px"
-                        (click)="onClick1()"
-                      >
+                      <a href="javascript:void(0);" class="m-r-20" style="font-size: 28px" (click)="onClick1()">
                         <mat-icon class="m-l-10">remove_red_eye</mat-icon>
                       </a>
                     </p>
@@ -280,10 +220,8 @@
                         <mat-icon>android</mat-icon>
                       </span>
                       Download the ROMS Android app
-                      <a target="_blank"
-                        href="https://play.google.com/store/apps/details?id=com.rtlapp.rtl"
-                        class="m-l-10"
-                        >here
+                      <a target="_blank" href="https://play.google.com/store/apps/details?id=com.rtlapp.rtl"
+                        class="m-l-10">here
                       </a>
                     </p>
                   </mat-list-item>
@@ -292,12 +230,7 @@
                   <mat-list-item role="listitem">
                     <p style="display: flex" class="m-0 m-t-5 m-b-10">
                       instructions
-                      <a
-                        href="javascript:void(0);"
-                        class="m-r-20"
-                        style="font-size: 28px"
-                        (click)="onClick()"
-                      >
+                      <a href="javascript:void(0);" class="m-r-20" style="font-size: 28px" (click)="onClick()">
                         <mat-icon class="m-l-10">remove_red_eye</mat-icon>
                       </a>
                     </p>
@@ -317,7 +250,7 @@
                 <div fxFlex.gt-sm="30%" fxFlex="100" class="text-left">
                   <mat-list-item role="listitem">
                     <p style="display: flex" class="m-0 m-t-5 m-b-10">
-                       Soon
+                      Soon
                       <!-- <a href="javascript:void(0);" class="m-r-20" style="font-size: 28px">
                         <mat-icon class="m-l-20">remove_red_eye</mat-icon>
                       </a> -->
@@ -327,13 +260,7 @@
               </div>
               <mat-divider></mat-divider>
               <div class="row wrap m-t-20" align="right">
-                <a
-                  routerLink="/"
-                  mat-raised-button
-                  color="primary"
-                  class="p-l-30 p-r-30"
-                  matStepperPrevious
-                >
+                <a routerLink="/" mat-raised-button color="primary" class="p-l-30 p-r-30" matStepperPrevious>
                   OK
                 </a>
               </div>
@@ -345,21 +272,13 @@
   </div>
   <div class="login-ft">
     <div>
-      <a href="javascript:void(0);" style="font-size: 14px; cursor: inherit; color: #67757c"
-        >Version : 0.0.3</a
-      >
-      <a href="http://rtl.com.au/" target="_blank" style="font-size: 14px; color: #67757c"
-        >© RTL Mining and Earthworks Pty Ltd</a
-      >
-      <a
-        href="http://roms.rtl.com.au/privacy"
-        target="_blank"
-        style="font-size: 14px; color: #67757c"
-        >Privacy Policy</a
-      >
-      <a href="javascript:void(0);" style="font-size: 14px; cursor: inherit; color: #67757c"
-        >Designed by : Dragon and Peaches Consulting</a
-      >
+      <a href="javascript:void(0);" style="font-size: 14px; cursor: inherit; color: #67757c">Version : 0.0.3</a>
+      <a href="http://rtl.com.au/" target="_blank" style="font-size: 14px; color: #67757c">© RTL Mining and Earthworks
+        Pty Ltd</a>
+      <a href="http://roms.rtl.com.au/privacy" target="_blank" style="font-size: 14px; color: #67757c">Privacy
+        Policy</a>
+      <a href="javascript:void(0);" style="font-size: 14px; cursor: inherit; color: #67757c">Designed by : Dragon and
+        Peaches Consulting</a>
     </div>
   </div>
 </div>

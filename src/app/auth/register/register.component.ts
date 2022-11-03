@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef,  ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { Title } from '@angular/platform-browser';
@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
   secondFormGroup: UntypedFormGroup = Object.create(null);
   isOptional = false;
   isEditable = false;
-
+  isFocusedEmpNo: boolean = false;
   // tslint:disable-next-line - Disables all
   constructor(private dialog: MatDialog, private globals: Globals, private _formBuilder: UntypedFormBuilder, public util: Utils, private alertService: AlertService, private authService: AuthenticationService, private router: Router, private titleService: Title) {
     this.global = globals;
@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
       // firstCtrl: ['', Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
-      empNo: new FormControl('', [Validators.required, Validators.pattern(this.util.aplhaNumericeWithoutSpace), Validators.maxLength(15)]),
+      empNo: new FormControl('TBC', [Validators.required, Validators.pattern(this.util.aplhaNumericeWithoutSpace), Validators.maxLength(15)]),
       firstName: new FormControl('', [Validators.required, Validators.maxLength(25)]),
       lastName: new FormControl('', [Validators.required, Validators.maxLength(25)]),
       email: new FormControl('', [Validators.required, Validators.pattern(this.util.emailRegex), Validators.maxLength(100)]),
@@ -53,6 +53,15 @@ export class RegisterComponent implements OnInit {
     return this.secondFormGroup.controls;
   }
 
+  removeDefault(event: any) {
+    if (this.isFocusedEmpNo == false) {
+      this.isFocusedEmpNo = true;
+      this.secondFormGroup.controls['empNo'].setValue('');
+    } else {
+      // this.secondFormGroup.controls['empNo'].setValue(event.target.value);
+
+    }
+  }
   public checkError = (controlName: string, errorName: string) => {
     return this.secondFormGroup.controls[controlName].hasError(errorName);
   };
@@ -95,11 +104,11 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  onClick(){
+  onClick() {
     this.submitted = true;
     this.openDialog({});
   }
- 
+
 
   openDialog(data: any) {
     const dialogRef = this.dialog.open(this.resourceDemandDialog, {
@@ -114,7 +123,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  onClick1(){
+  onClick1() {
     this.submitted = true;
     this.openDialog1({});
   }
