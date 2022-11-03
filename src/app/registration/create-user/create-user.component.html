@@ -172,13 +172,25 @@
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
-                <mat-select placeholder="Manager" formControlName="managerId" managerId
-                  [ngClass]="{ 'is-invalid': submitted && f.managerId.hasError }">
-                  <mat-option value="">Select</mat-option>
+                <!-- <mat-label>Manager</mat-label> -->
+                <input type="text" matInput placeholder="Manager" formControlName="managerId" [matAutocomplete]="autoManager" (keyup)="getManagers($event)">
+                <mat-autocomplete #autoManager="matAutocomplete" [displayWith]="displayFn.bind(this)">
                   <mat-option [value]="item.id" *ngFor="let item of managers">
                     {{ item.name }}
                   </mat-option>
-                </mat-select>
+                </mat-autocomplete>
+
+                <!-- <mat-select placeholder="Manager" formControlName="managerId" managerId
+                  [ngClass]="{ 'is-invalid': submitted && f.managerId.hasError }">
+                  <input matInput 
+                  type="text" 
+                  id="filter-options" 
+                  placeholder="Search">
+                  <mat-option value="">Select Manager</mat-option>
+                  <mat-option [value]="item.id" *ngFor="let item of managers">
+                    {{ item.name }}
+                  </mat-option>
+                </mat-select> -->
 
                 <mat-error *ngIf="submitted && checkError('managerId', 'required')">
                   Manager is required.

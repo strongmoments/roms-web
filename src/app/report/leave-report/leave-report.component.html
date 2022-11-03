@@ -482,7 +482,8 @@
 
           <ng-container matColumnDef="staffName">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-            <td mat-cell *matCellDef="let row; let i = index">
+            <td mat-cell *matCellDef="let row; let i = index"
+              (click)="expandedElement = expandedElement === row ? null : row">
               <div class="d-flex">
                 <img class="mat-card-avatar"
                   onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
@@ -500,7 +501,8 @@
 
           <ng-container matColumnDef="convertedAppliedOn">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Applied On</th>
-            <td mat-cell *matCellDef="let row; let i = index">
+            <td mat-cell *matCellDef="let row; let i = index"
+              (click)="expandedElement = expandedElement === row ? null : row">
               <!-- <span class="header-label">applyDate:</span> -->
               {{ row?.convertedAppliedOn }}
             </td>
@@ -510,7 +512,8 @@
 
           <ng-container matColumnDef="managerName">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Manager</th>
-            <td mat-cell *matCellDef="let row; let i = index">
+            <td mat-cell *matCellDef="let row; let i = index"
+              (click)="expandedElement = expandedElement === row ? null : row">
               {{ row?.managerName }}
               <!-- {{ row?.approver?.lastName }} -->
               <!-- </p> -->
@@ -523,7 +526,8 @@
 
           <ng-container matColumnDef="convertedApprovalDate">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Decision Date</th>
-            <td mat-cell *matCellDef="let row; let i = index">
+            <td mat-cell *matCellDef="let row; let i = index"
+              (click)="expandedElement = expandedElement === row ? null : row">
               {{ row?.convertedApprovalDate }}
             </td>
           </ng-container>
@@ -531,7 +535,7 @@
           <!-- Progress Column -->
           <ng-container matColumnDef="dates">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Dates</th>
-            <td mat-cell *matCellDef="let row">
+            <td mat-cell *matCellDef="let row" (click)="expandedElement = expandedElement === row ? null : row">
               <!-- {{getShortDate(row.startDateTime,row.endDateTime )}} -->
               <!-- <span class="header-label">dates:</span> -->
               {{ row.startDateTime | date: 'MMM d' }} to
@@ -542,7 +546,7 @@
           <!-- Name Column -->
           <ng-container matColumnDef="days">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Days</th>
-            <td mat-cell *matCellDef="let row">
+            <td mat-cell *matCellDef="let row" (click)="expandedElement = expandedElement === row ? null : row">
               <!-- <span class="header-label">days:</span> -->
               {{ row?.totalDay }}
             </td>
@@ -551,7 +555,7 @@
           <!-- Fruit Column -->
           <ng-container matColumnDef="time">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
-            <td mat-cell *matCellDef="let row">
+            <td mat-cell *matCellDef="let row" (click)="expandedElement = expandedElement === row ? null : row">
               <!-- <span class="header-label">time:</span> -->
               <ng-container *ngIf="row && row.totalHour > 0">
                 {{ row.startDateTime | date: 'shortTime' }} to
@@ -562,7 +566,7 @@
 
           <ng-container matColumnDef="hours">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Hours</th>
-            <td mat-cell *matCellDef="let row">
+            <td mat-cell *matCellDef="let row" (click)="expandedElement = expandedElement === row ? null : row">
               <!-- <span class="header-label">hours:</span> -->
               {{ row?.totalHour }}
             </td>
@@ -580,7 +584,7 @@
 
           <ng-container matColumnDef="leaveTypeName">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
-            <td mat-cell *matCellDef="let row">
+            <td mat-cell *matCellDef="let row" (click)="expandedElement = expandedElement === row ? null : row">
               <!-- <span class="header-label">leave_type:</span> -->
               {{ row?.leaveType?.leaveDescription }}
             </td>
@@ -597,28 +601,30 @@
 
           <ng-container matColumnDef="leaveReason">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Reason</th>
-            <td mat-cell *matCellDef="let row">
+            <td mat-cell *matCellDef="let row" (click)="expandedElement = expandedElement === row ? null : row">
               {{ row?.leaveReason }}
             </td>
           </ng-container>
 
           <ng-container matColumnDef="reviewerRemark">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Comments</th>
-            <td mat-cell *matCellDef="let row">
+            <td mat-cell *matCellDef="let row" (click)="expandedElement = expandedElement === row ? null : row">
               <!-- <span class="header-label">reviewerRemark:</span> -->
               {{ row?.reviewerRemark }}
             </td>
           </ng-container>
 
           <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header
+              (click)="expandedElement = expandedElement === row ? null : row"></th>
             <td mat-cell *matCellDef="let row; let i = index">
               <!-- <span class="header-label">action:</span> -->
             </td>
           </ng-container>
 
           <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header
+              (click)="expandedElement = expandedElement === row ? null : row">Status</th>
             <td mat-cell *matCellDef="let row; let i = index">
               <span [ngClass]="getStatusColor(row?.leaveStatus)">
                 <!-- {{ row?.status }} -->
@@ -728,8 +734,7 @@
           <!-- <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr> -->
           <tr mat-row *matRowDef="let element; columns: displayedColumns" class="example-element-row"
             [ngClass]="{ 'row-strike-through': removedRows.includes(element.id) }"
-            [class.example-expanded-row]="expandedElement === element"
-            (click)="expandedElement = expandedElement === element ? null : element"></tr>
+            [class.example-expanded-row]="expandedElement === element"></tr>
           <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
 
           <!-- Row shown when there is no matching data. -->

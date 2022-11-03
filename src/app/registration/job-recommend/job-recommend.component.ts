@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { JobService } from 'src/app/core/services';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
+import { Globals } from 'src/app/globals';
 
 @Component({
   selector: 'app-job-recommend',
@@ -12,12 +13,15 @@ import { AuthenticationService } from 'src/app/core/services/auth.service';
 })
 export class JobRecommendComponent implements OnInit {
   // @ViewChild('resourceDemandDialog') resourceDemandDialog!: TemplateRef<any>;
+  globals: Globals;
   demandList: any = [];
   currentTab: number = 0;
   user: any;
   searchText: string = '';
+  demandType: any = '';
   allDemandList: any = [];
-  constructor(private authService: AuthenticationService, private dialog: MatDialog, private jobService: JobService, private router: Router) {
+  constructor(private authService: AuthenticationService, private dialog: MatDialog, private jobService: JobService, private router: Router, private global: Globals) {
+    this.globals = global;
     this.user = this.authService.getCurrentUser();
   }
 
@@ -82,9 +86,18 @@ export class JobRecommendComponent implements OnInit {
 
   filter() {
     let allData = this.allDemandList;
-    allData = allData.filter((elem: any) => {
-      return elem?.clientProject?.name.toLowerCase().includes(this.searchText.toLowerCase())
-    });
+    if (this.searchText != '') {
+      allData = allData.filter((elem: any) => {
+        return (elem?.clientProject?.name.toLowerCase().includes(this.searchText.toLowerCase())) || (elem?.classification?.toLowerCase().includes(this.searchText.toLowerCase()))
+      });
+    }
+
+    if (this.demandType != '') {
+      allData = allData.filter((elem: any) => {
+        return (elem?.demandType == this.demandType)
+      });
+    }
+
     this.demandList = allData;
     // console.log(allData, 'asjaks')
     return;

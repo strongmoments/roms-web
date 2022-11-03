@@ -48,16 +48,22 @@ export class CreateUserComponent implements OnInit {
       this.departments = result && result.data && result.data.length > 0 ? result.data : [];
     });
 
-    this.authService.getAllManagers().subscribe((result: any) => {
-      this.managers = result && result.length > 0 ? result : [];
-    });
+
 
     this.authService.getAllRoles().subscribe((result: any) => {
       this.roles = result && result.data && result.data.length > 0 ? result.data : [];
     });
 
+    this.getManagers({ target: { value: '' } })
+
   }
 
+
+  getManagers(event: any) {
+    this.authService.getAllManagers(event.target.value).subscribe((result: any) => {
+      this.managers = result && result.length > 0 ? result : [];
+    });
+  }
   ngOnInit(): void {
     let data = sessionStorage.getItem(this.requestId);
     if (data) {
@@ -166,5 +172,10 @@ export class CreateUserComponent implements OnInit {
       this.alertService.openSnackBar(CustomMessage.error);
     });
   }
+
+  displayFn(id: string): string {
+    return this.managers?.find((elem: any) => elem.id == id)?.name;
+  }
+
 
 }

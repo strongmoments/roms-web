@@ -203,14 +203,14 @@
     <mat-card class="m-0 m-t-20 m-b-5">
       <form class="basic-form">
         <div fxLayout="row wrap" fxFlexAlign="center">
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-15">
+          <div fxFlex.gt-sm="60" fxFlex="100" class="p-15">
             <mat-form-field>
               <mat-label>Search(filter)</mat-label>
               <input type="text" matInput placeholder="Search(filter)" [(ngModel)]="searchText"
                 [ngModelOptions]="{standalone: true}" (keyup)="filter()" />
             </mat-form-field>
           </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-15">
+          <!-- <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-15">
             <mat-form-field>
               <mat-select placeholder="Classifications">
                 <mat-option value="option">Option</mat-option>
@@ -218,13 +218,15 @@
                 <mat-option value="option">Option3</mat-option>
               </mat-select>
             </mat-form-field>
-          </div>
-          <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-15">
+          </div> -->
+          <div fxFlex.gt-sm="40" fxFlex="100" class="p-15">
             <mat-form-field>
-              <mat-select placeholder="Demand Type">
-                <mat-option value="option">Option</mat-option>
-                <mat-option value="option">Option2</mat-option>
-                <mat-option value="option">Option3</mat-option>
+              <mat-select placeholder="Demand Type" [(ngModel)]="demandType" [ngModelOptions]="{standalone: true}"
+                (selectionChange)="filter()">
+
+                <mat-option *ngFor="let item of globals.demandTypes" [value]="item.value">{{item.name}}</mat-option>
+                <!-- <mat-option value="option">Option2</mat-option>
+                <mat-option value="option">Option3</mat-option> -->
               </mat-select>
             </mat-form-field>
           </div>
@@ -279,7 +281,7 @@
             </div>
             <div fxFlex.gt-sm="20" fxFlex="100">
               <mat-label class="emp-mat-label">
-                <span>Classification</span>
+                <span>{{item?.classification}}</span>
               </mat-label>
             </div>
             <div fxFlex.gt-sm="20" fxFlex="100"></div>

@@ -92,9 +92,9 @@ export class Globals {
 
 
     demandTypes = [
-        { name: 'Internal', value: 'internal' },
-        { name: 'External', value: 'external' },
-        { name: 'Both', value: 'both' }
+        { name: 'Internal', value: '1' },
+        { name: 'External', value: '2' },
+        { name: 'Both', value: '3' }
     ]
 
 

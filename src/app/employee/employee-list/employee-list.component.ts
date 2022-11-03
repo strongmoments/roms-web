@@ -210,7 +210,7 @@ export class EmployeeListComponent implements OnInit, OnChanges {
 
           let statusName = this.getStatus(result.data[i]?.status);
           let convertedStartDate = this.datePipe.transform(result.data[i].startDate, 'dd/MM/yyyy');
-          let employeeName = `${result.data[i].firstName} ${result.data[i].lastName}`
+          let employeeName = `${result.data[i].lastName},${result.data[i].firstName}`
           data.push({
             ...result.data[i],
             statusName: statusName,
