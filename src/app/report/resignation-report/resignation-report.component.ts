@@ -310,6 +310,12 @@ export class ResignationReportComponent implements OnInit {
     })?.name;
   }
 
+  getStatusIcon(status: any) {
+    return this.globals.leaveStatus.find((elem: any) => {
+      return elem.value == status;
+    })?.icon;
+  }
+
   getStatusColor(status: any, isCheckbox: boolean = false) {
     let elem: any = this.globals.leaveStatus.find((elem: any) => {
       return elem.value == status;

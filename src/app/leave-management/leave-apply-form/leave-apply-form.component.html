@@ -609,7 +609,10 @@
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
                         <td mat-cell *matCellDef="let row">
                           <span [ngClass]="getStatusColor(row?.leaveStatus)">
-                            {{ getStatus(row?.leaveStatus) }}
+                            <!-- {{ getStatus(row?.leaveStatus) }} -->
+                            <mat-icon>
+                              {{getStatusIcon(row?.leaveStatus)}}
+                            </mat-icon>
                           </span>
                         </td>
                       </ng-container>

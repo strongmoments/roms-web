@@ -526,6 +526,12 @@ export class LeaveApplyFormComponent implements OnInit {
     })?.name;
   }
 
+  getStatusIcon(status: any) {
+    return this.globals.leaveStatus.find((elem: any) => {
+      return elem.value == status;
+    })?.icon;
+  }
+
   getStatusColor(status: any) {
     return this.globals.leaveStatus.find((elem: any) => {
       return elem.value == status;

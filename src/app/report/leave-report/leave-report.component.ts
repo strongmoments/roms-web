@@ -147,11 +147,11 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
   removeRow(id: string) {
     // console.log(index, 'index');
     let index = this.removedRows.indexOf(id);
-    if (this.removedRows && index === -1) {
-      this.removedRows.push(id);
-    } else {
-      this.removedRows.splice(index, 1);
-    }
+    // if (this.removedRows && index === -1) {
+    //   this.removedRows.push(id);
+    // } else {
+    //   this.removedRows.splice(index, 1);
+    // }
     // let data=this.dataSource.data;
 
     // console.log(index,data.splice(index,1))

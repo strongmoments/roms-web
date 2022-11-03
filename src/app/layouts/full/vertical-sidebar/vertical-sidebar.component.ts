@@ -262,7 +262,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         icon: 'av_timer',
       });
 
-      if (environment.server == 'UAT' && this.userPermissions.reports && this.userPermissions.reports.length > 0) {
+      if (this.userPermissions.reports && this.userPermissions.reports.length > 0) {
 
         if (this.userPermissions.operations && this.userPermissions.operations.length > 0) {
           let subMenu = [];

@@ -48,7 +48,7 @@ export class Globals {
 
 
     leaveStatus = [
-        { name: 'Pending', icon: 'thumbs_up_down', value: 1, colorClass: 'pending', checkboxColorClass: 'pending-checkbox' },
+        { name: 'Pending', icon: 'pending_actions', value: 1, colorClass: 'pending', checkboxColorClass: 'pending-checkbox' },
         { name: 'Approved', icon: 'thumb_up', value: 2, colorClass: 'approved', checkboxColorClass: 'approved-checkbox' },
         { name: 'Rejected', icon: 'thumb_down', value: 3, colorClass: 'rejected', checkboxColorClass: 'rejected-checkbox' },
 
