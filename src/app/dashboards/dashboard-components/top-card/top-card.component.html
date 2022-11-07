@@ -23,10 +23,10 @@
   <!-- column -->
   <!-- column -->
   <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
-    <mat-card >
+    <mat-card>
       <mat-card-content>
         <!-- Row -->
-        <div class="d-flex no-block" (click)="redirect()" >
+        <div class="d-flex no-block" (click)="redirect()">
           <!-- column -->
           <div class="m-r-10 no-shrink">
             <button mat-fab color="warn" mat-card-icon class="shadow-none bg-warning">
@@ -70,7 +70,7 @@
     <mat-card>
       <mat-card-content>
         <!-- Row -->
-        <div class="d-flex no-block"  (click)="onClick()">
+        <div class="d-flex no-block" (click)="openDialog()">
           <!-- column -->
           <div class="m-r-10 no-shrink">
             <button mat-fab color="warn" mat-card-icon class="shadow-none bg-danger">
@@ -79,7 +79,7 @@
           </div>
           <!-- column -->
           <div>
-            <h3 class="m-0 color">00</h3>
+            <h3 class="m-0 color">{{dashboardData.onLeaveToday?dashboardData.onLeaveToday:0}}</h3>
             <h6 class="text-muted m-0">Number of staff on leave today</h6>
           </div>
         </div>
@@ -88,5 +88,3 @@
   </div>
   <!-- column -->
 </div>
-
-

@@ -38,16 +38,17 @@ export class TopCardComponent {
     this.router.navigate(['/employee/employee-list']);
   }
 
-  onClick() {
-    this.submitted = true;
-    this.openDialog({});
-  }
+  // onClick() {
+  //   this.submitted = true;
+  //   this.openDialog({});
+  // }
 
-  openDialog(data: any) {
+  openDialog() {
+    console.log(this.dashboardData.onLeaveTodayEmployeeList, 'this.dashboardData.onLeaveTodayEmployeeListthis.dashboardData.onLeaveTodayEmployeeList');
     const dialogRef = this.dialog.open(LeavePopupDialogComponent, {
       width: '55em',
       height: '35em',
-      // data: { data: data },
+      data: { data: this.dashboardData && this.dashboardData.onLeaveTodayEmployeeList?this.dashboardData.onLeaveTodayEmployeeList:null },
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {

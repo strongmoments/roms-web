@@ -101,6 +101,14 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     this.authService.getAllDepartmentType().subscribe((result: any) => {
       this.departmentList = result && result.data && result.data.length > 0 ? result.data : [];
     });
+
+    this.activatedRoute.queryParams.subscribe(queryParams => {
+      if (queryParams['tab'] && queryParams['tab'] == 'current') {
+        this.selectedTabIndex = 1;
+        // this.onTabChanged(1);
+      }
+    });
+
     // breakpointObserver.observe(['(max-width: 600px)']).subscribe((result) => {
     //   this.displayedColumns = result.matches
     //     ? ['id', 'name', 'progress', 'color']
@@ -119,7 +127,13 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     // this.displayedColumns = this.displayedColumnsLeave;
-    this.refresh(this.getDefaultOptions());
+    if (this.selectedTabIndex == 1) {
+      this.refreshCurrent(this.getDefaultOptions());
+
+    } else {
+
+      this.refresh(this.getDefaultOptions());
+    }
   }
 
   /**
