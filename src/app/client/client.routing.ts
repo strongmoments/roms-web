@@ -6,6 +6,8 @@ import { ClientListComponent } from './client-list/client-list.component';
 import { ProjectAddComponent } from './project-add/project-add.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 
+import { AssetsListComponent } from './assets-list/assets-list.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -40,6 +42,14 @@ const routes: Routes = [
         component: ProjectListComponent,
        data: {
           title: 'Project List',
+          urls: [{ title: 'Dashboard', url: '/' }, { title: 'My Staff' }],
+      },
+      },
+      {
+        path: 'assets-list',
+        component: AssetsListComponent,
+       data: {
+          title: 'Assets List',
           urls: [{ title: 'Dashboard', url: '/' }, { title: 'My Staff' }],
       },
       },

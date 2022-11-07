@@ -48,15 +48,15 @@ export class Globals {
 
 
     leaveStatus = [
-        { name: 'Pending', icon: 'pending_actions', value: 1, colorClass: 'pending', checkboxColorClass: 'pending-checkbox' },
+        { name: 'Pending', icon: 'hourglass_top', value: 1, colorClass: 'pending', checkboxColorClass: 'pending-checkbox' },
         { name: 'Approved', icon: 'thumb_up', value: 2, colorClass: 'approved', checkboxColorClass: 'approved-checkbox' },
         { name: 'Rejected', icon: 'thumb_down', value: 3, colorClass: 'rejected', checkboxColorClass: 'rejected-checkbox' },
 
     ]
 
     userApplicationStatus = [
-        { name: 'Pending', value: 1, colorClass: 'pending' },
-        { name: 'Completed', value: 2, colorClass: 'approved' },
+        { name: 'Pending',icon: 'hourglass_top', value: 1, colorClass: 'pending' },
+        { name: 'Completed', icon: 'thumb_up', value: 2, colorClass: 'approved' },
         // { name: 'Rejected', value: 3, colorClass: 'rejected',checkboxColorClass: 'rejected-checkbox' },
 
     ]

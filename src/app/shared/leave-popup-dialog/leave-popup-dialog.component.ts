@@ -1,3 +1,4 @@
+
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
@@ -18,25 +19,28 @@ import { saveAs } from 'file-saver';
 import * as moment from 'moment';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { element } from 'protractor';
+import { UntypedFormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-registration-list',
-  templateUrl: './registration-list.component.html',
-  styleUrls: ['./registration-list.component.scss'],
+  selector: 'app-leave-popup-dialog',
+  templateUrl: './leave-popup-dialog.component.html',
+  styleUrls: ['./leave-popup-dialog.component.scss']
 })
-export class RegistrationListComponent implements OnInit, OnChanges {
+export class LeavePopupDialogComponent implements OnInit, OnChanges {
   globals: Globals;
   submitted: boolean = false;
   displayedColumns: string[] = [
-    'convertedAppliedOn',
-    'firstname',
-    'lastname',
+    // 'employeePic',
+    'employeeName',
     'employeeNo',
-    'email',
-    'contactno',
-    'statusName',
-    'action'
+    'employeeRole',
+    'departments.description',
+    
   ];
+
+  // convertedStartDate: convertedStartDate,
+  // employeeName: employeeName,
+
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   // dataSourceHistory: MatTableDataSource<any> = new MatTableDataSource<any>();
@@ -48,13 +52,13 @@ export class RegistrationListComponent implements OnInit, OnChanges {
   // @ViewChild(MatSort, { static: false }) sortHistory: MatSort = Object.create(null);
   // pagesize = 10;
   pageNo = 0;
-  pageSize = 9999999999;
+  pageSize = 10;
   totalRecords: number = 0;
   search: string = ''; //by default 0 for pending list
   // currentDate: any = new Date();
   // expandedElement: any = null;
-  // startDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 1));
-  // endDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
+  startDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 1));
+  endDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
   // status: any = 0;
   // departmentId: any = '';
   // employeeType: any = '';
@@ -63,6 +67,8 @@ export class RegistrationListComponent implements OnInit, OnChanges {
   // removedRows: any = [];
   // selectedTabIndex: number = 0;
   selectedId: string = '';
+
+  addEMPmessage = new UntypedFormControl('Add Employee');
   constructor(
     breakpointObserver: BreakpointObserver,
     public util: Utils,
@@ -114,21 +120,21 @@ export class RegistrationListComponent implements OnInit, OnChanges {
     this.refresh(this.getDefaultOptions());
     // console.log('in listing');
     // this.authService.addedResigstration.subscribe((record: any) => (this.dataSource.data.unshift(record)));
-    this.authService.addedResigstration.subscribe((record: any) => {
-      console.log(record, 'in listing12');
-      if (record) {
-        this.totalRecords = this.totalRecords + 1;
-        record.statusName = this.getStatus(record?.status);
-        record.convertedAppliedOn = this.datePipe.transform(record.appliedOn, 'dd/MM/yyyy');
-        // data.push({
-        //   ...record,
-        //   statusName: statusName,
-        //   convertedAppliedOn: convertedAppliedOn
-        // });
+    // this.authService.addedResigstration.subscribe((record: any) => {
+    //   console.log(record, 'in listing12');
+    //   if (record) {
+    //     this.totalRecords = this.totalRecords + 1;
+    //     record.statusName = this.getStatus(record?.status);
+    //     record.convertedAppliedOn = this.datePipe.transform(record.appliedOn, 'dd/MM/yyyy');
+    //     // data.push({
+    //     //   ...record,
+    //     //   statusName: statusName,
+    //     //   convertedAppliedOn: convertedAppliedOn
+    //     // });
 
-        this.dataSource.data = [record, ...this.dataSource.data];
-      }
-    });
+    //     this.dataSource.data = [record, ...this.dataSource.data];
+    //   }
+    // });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -140,22 +146,19 @@ export class RegistrationListComponent implements OnInit, OnChanges {
    * be able to query its view for the initialized paginator and sort.
    */
   ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
+    // this.dataSource.paginator = this.paginator;
     // this.dataSource.sort = this.sort;
     this.dataSource.sort = this.sort;
-    // this.paginator?.page.subscribe((page: PageEvent) => {
-    //   if (this.selectedTabIndex == 0) {
-    //   }
-    // });
+    this.paginator?.page.subscribe((page: PageEvent) => {
+      this.refresh(this.getDefaultOptions());
+    });
 
   }
 
   redirectForm(elem: any) {
-    // console.log(elem);
-    if (elem.status != '2') {
-      sessionStorage.setItem(elem.id, JSON.stringify(elem));
-      this.router.navigate(['/registration/create-user'], { queryParams: { requestId: elem.id } });
-    }
+    console.log(elem);
+    sessionStorage.setItem(elem.id, JSON.stringify(elem));
+    this.router.navigate(['/registration/create-user'], { queryParams: { requestId: elem.id } })
   }
 
 
@@ -195,29 +198,23 @@ export class RegistrationListComponent implements OnInit, OnChanges {
     // };
     // console.log(queryData, 'queryData');
 
-    this.authService
-      .getAllEmployeeRegisterReq()
+    this.employeeService
+      .getAll(options)
       .pipe(first())
       .subscribe((result: any) => {
-        this.totalRecords = result.data.length;
+        this.totalRecords = result.totalElement;
         let data: any = [];
-        // result.data = result.data.sort((a: any, b: any) => {
-        //   return a.status - b.status;
-        // });
-        result.data = result.data.sort((a: any, b: any) => {
-          var c: any = new Date(parseInt(a.appliedOn));
-          var d: any = new Date(parseInt(b.appliedOn));
-          // console.log(a,d);
-          return (a.status - b.status) || (d - c);
-        });
 
         for (let i = 0; i < result.data.length; i++) {
+
           let statusName = this.getStatus(result.data[i]?.status);
-          let convertedAppliedOn = this.datePipe.transform(result.data[i].appliedOn, 'dd/MM/yyyy');
+          let convertedStartDate = this.datePipe.transform(result.data[i].startDate, 'dd/MM/yyyy');
+          let employeeName = `${result.data[i].lastName},${result.data[i].firstName}`
           data.push({
             ...result.data[i],
             statusName: statusName,
-            convertedAppliedOn: convertedAppliedOn
+            convertedStartDate: convertedStartDate,
+            employeeName: employeeName,
           });
         }
         // if (isScrolled == true) {
@@ -240,9 +237,8 @@ export class RegistrationListComponent implements OnInit, OnChanges {
       // page: (obj != undefined ? (obj.pageIndex == null ? 1 : obj.pageIndex + 1) : 1),
       page: pageSize - 1,
       search: '',
-      query: '',
-      pageSize:
-        obj != undefined ? (obj.pageSize == null ? this.pageSize : obj.pageSize) : this.pageSize,
+      query: `empName=${this.search}`,
+      pageSize: obj != undefined ? (obj.pageSize == null ? this.pageSize : obj.pageSize) : this.pageSize,
     };
     return options;
   }
@@ -253,11 +249,6 @@ export class RegistrationListComponent implements OnInit, OnChanges {
       return elem.value == status;
     })?.name;
   }
-  getStatusIcon(status: any) {
-    return this.globals.userApplicationStatus.find((elem: any) => {
-      return elem.value == status;
-    })?.icon;
-  }
 
   getStatusColor(status: any, isCheckbox: boolean = false) {
     let elem: any = this.globals.userApplicationStatus.find((elem: any) => {
@@ -267,15 +258,19 @@ export class RegistrationListComponent implements OnInit, OnChanges {
   }
 
   applyFilter(isTextSearch: boolean = false): void {
+    // console.log(this.search, 'search', this.startDate, 'startdate', this.endDate, 'enddate');
     this.search = this.search.trim(); // Remove whitespace
     this.search = this.search.toLowerCase(); // Datasource defaults to lowercase matches
-    this.dataSource.filter = this.search;
-    // console.log(this.dataSource.filteredData,'filter');
-
+    // this.dataSource.filter = this.search;
     if (isTextSearch) {
-    } else {
-      this.refresh(this.getDefaultOptions());
-    }
+    this.pageNo=0;
+    this.totalRecords=0;
+    this.paginator.firstPage();
+    // this.dataSource.paginator?.pageIndex[0]=;
+    } 
+    // else {
+    this.refresh(this.getDefaultOptions());
+    // }
   }
 
 }

@@ -30,7 +30,7 @@ import { QuillModule } from 'ngx-quill';
 import { ImagePreviewDialog } from './image-preview-dialog/image-preview-dialog.component';
 import { CommonEmployeeProfileViewComponent } from './common-employee-profile-view/common-employee-profile-view.component';
 import { NewUserPrivacyPolicyDialog } from './new-user-privacy-policy-dialog/new-user-privacy-policy-dialog.component';
-
+import { LeavePopupDialogComponent } from './leave-popup-dialog/leave-popup-dialog.component';
 // import { Base64ImagePipe } from '../core/_helpers/base64-image-pipe';
 // import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
 // import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
@@ -64,7 +64,8 @@ import { NewUserPrivacyPolicyDialog } from './new-user-privacy-policy-dialog/new
     AccordionDirective,
     ImagePreviewDialog,
     CommonEmployeeProfileViewComponent,
-    NewUserPrivacyPolicyDialog
+    NewUserPrivacyPolicyDialog,
+    LeavePopupDialogComponent,
     // FullComponent,
     // VerticalAppHeaderComponent,
     // SpinnerComponent,
@@ -90,7 +91,8 @@ import { NewUserPrivacyPolicyDialog } from './new-user-privacy-policy-dialog/new
     FlexLayoutModule,
     QuillModule,
     CommonEmployeeProfileViewComponent,
-    NewUserPrivacyPolicyDialog
+    NewUserPrivacyPolicyDialog,
+    LeavePopupDialogComponent,
     // AppBreadcrumbComponent
   ],
   providers: [MenuItems, HorizontalMenuItems, Base64ImagePipe, DateAgoPipe],

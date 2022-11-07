@@ -190,6 +190,7 @@
                       <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="mat-body-clp">
                         <div fxFlex.gt-sm="50" fxFlex="100" fxFlexAlign="center">
                           <!-- <mat-form-field appearance="outline" class="m-10"> -->
+                            <mat-label>Reason</mat-label>
                           <textarea matInput placeholder="Reason" class="text-reason"
                             disabled>{{ element?.leaveReason }} </textarea>
                           <!-- </mat-form-field> -->
@@ -232,6 +233,7 @@
                               placeholder="Comment"
                               (change)="addComment(i, $event)"
                             /> -->
+                            <mat-label>Manager's Comment</mat-label>
                           <textarea matInput [placeholder]="selectedTabIndex =='1'?'':'Comment'" class="text-reason"
                             [disabled]="selectedTabIndex == 1"
                             (change)="addComment(i, $event)">{{ element?.reviewerRemark }}</textarea>

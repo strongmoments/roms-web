@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ClientAddComponent } from './client-add/client-add.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { ProjectAddComponent } from './project-add/project-add.component';
+import { AssetsListComponent } from './assets-list/assets-list.component';
 
 
 
@@ -14,7 +15,8 @@ import { ProjectAddComponent } from './project-add/project-add.component';
     ClientListComponent,
     ClientAddComponent,
     ProjectListComponent,
-    ProjectAddComponent
+    ProjectAddComponent,
+    AssetsListComponent
   ],
   imports: [
     CommonModule,

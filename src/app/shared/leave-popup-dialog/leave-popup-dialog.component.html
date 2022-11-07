@@ -1,0 +1,136 @@
+<div fxLayout="row wrap">
+    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+      <div>
+        
+            <mat-card class="m-0 m-t-20 m-b-5">
+              <mat-card-content class="p-custom">
+                <div class="m-l-10 m-r-10">
+                  <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                    <!-- <div fxFlex.gt-sm="100" class="p-r-10 text-center" fxFlex="100"> -->
+                        <div fxFlex.gt-sm="100" fxFlex.gt-xs="100"  fxFlex="100">
+                            <!-- <mat-card > -->
+                              <!-- <mat-card-content> -->
+                                <!-- Row -->
+                                <div class="d-flex no-block">
+                                  <!-- column -->
+                                  <!-- <div class="m-r-10 no-shrink" >
+                                    <button mat-fab color="accent" mat-card-icon class="shadow-none">
+                                      <mat-icon>account_circle</mat-icon>
+                                    </button>
+                                  </div> -->
+                                  <!-- column -->
+                                  <!-- <div>
+                                    <h2 class="m-0 text-center">00</h2>
+                                  </div> -->
+                                  
+                                </div>
+                                <!-- <h2 class="m-0 text-center">00</h2> -->
+                                <div class="text-center m-t-0">
+                                    <button mat-fab color="warn" mat-card-icon class="shadow-none">
+                                    <mat-icon>content_paste</mat-icon>
+                                    </button>
+                                </div>
+                               
+                                <h3 class="text-center">Staff on leave today</h3>
+                              <!-- </mat-card-content> -->
+                            <!-- </mat-card> -->
+                          </div>
+                        <!-- <div><mat-icon>today</mat-icon><h2>00</h2></div>
+                      <h3>Staff on leave today</h3> -->
+                    <!-- </div> -->
+                    
+                    
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+  
+            <mat-card class="m-0 m-t-5 m-b-5">
+              <mat-card-content>
+                <div class="table-responsive infinite-scroll">
+                  <mat-table #table [dataSource]="dataSource" class="table employee-list no-wrap" matSort>
+  
+                    
+                    <!-- Name Column -->
+                    <!-- <ng-container matColumnDef="employeePic">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Image</th>
+                      <td mat-cell *matCellDef="let row">
+                        <span class="header-label">days:</span>
+                        {{ row?.firstName }}{{ row?.lastName }}
+                        <div style="display:flex; align-items: center;">
+                          <img class="m-r-10 list-Img" src="assets/images/users/1.jpg" alt="" />
+                        </div>
+                      </td>
+                    </ng-container> -->
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="employeeName">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Emp Name</th>
+                      <td mat-cell *matCellDef="let row">
+                        <!-- <span class="header-label">days:</span> -->
+  
+                        <div style="display:flex; align-items: center;">
+                          <img class="m-r-10 list-Img"
+                            onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
+                            [src]="row && row.profileImage && row.profileImage.length>0?row.profileImage[0]?.digitalAssets?.url:''"
+                            alt="" />
+                          {{ row?.employeeName }}
+                        </div>
+                      </td>
+                    </ng-container>
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="employeeNo">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Emp No</th>
+                        <td mat-cell *matCellDef="let row">
+                          <!-- <span class="header-label">days:</span> -->
+                          {{ row?.employeeNo }}
+                        </td>
+                      </ng-container>
+  
+  
+                    <!-- Name Column -->
+                   
+  
+                   
+  
+                    
+                    <ng-container matColumnDef="employeeRole">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Role</th>
+                      <td mat-cell *matCellDef="let row">
+                        <!-- <span [ngClass]="getStatusColor(row?.status)">
+                          {{ row?.approvedDate }}
+                        </span> -->
+                        <!-- 3rd August 2022 -->
+                      </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="departments.description">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Department</th>
+                        <td mat-cell *matCellDef="let row">
+                          {{ row?.departments?.description }}
+                        </td>
+                      </ng-container>
+  
+                    
+  
+  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let element; columns: displayedColumns"  class="example-element-row" [routerLink]="['/employee/profile']" [queryParams]="{id:element.id}"
+                      [ngClass]="{ 'selected-row': selectedId== element.id }"></tr>
+                    <tr class="mat-row" *matNoDataRow>
+                      <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+                        No Employee Data
+                      </td>
+                    </tr>
+                  </mat-table>
+  
+                  <!-- <mat-paginator [length]="totalRecords" [pageIndex]="pageNo" [pageSizeOptions]="[5, 10, 20]"
+                    [pageSize]="pageSize" aria-label="Select page">
+                  </mat-paginator> -->
+                </div>
+              </mat-card-content>
+              <mat-card-title class=" p-b-10 color_blue text-center">View All Current Leaves</mat-card-title>
+            </mat-card>
+         
+      </div>
+    </div>
+  </div>

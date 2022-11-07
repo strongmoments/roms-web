@@ -1,0 +1,127 @@
+.infinite-scroll {
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+    min-width: 300px;
+  }
+  
+  .infinite-scroll .mat-table {
+    overflow: auto;
+    max-height: 500px;
+  }
+  
+  .example-element-row + .example-detail-row {
+    height: 0 !important;
+  }
+  
+  .example-element-row + .example-detail-row td {
+    padding: 0px !important;
+  }
+  
+  .example-element-row.example-expanded-row + .example-detail-row {
+    height: 48px !important;
+  }
+  
+  .example-element-row.example-expanded-row + .example-detail-row td.mat-cel {
+    padding: 15px !important;
+  }
+  
+  .export-btn {
+    text-align: right;
+  }
+  
+  .export-btn button {
+    width: auto;
+  }
+  
+  .employee-list td.mat-cell,
+  .employee-list td.mat-footer-cell,
+  .employee-list th.mat-header-cell {
+    padding: 5px 15px !important;
+    // width: 100%;
+  }
+  
+  .employee-list th.mat-header-cell {
+    width: 21%;
+  }
+  
+  :host ::ng-deep .approved-checkbox .mat-checkbox-frame {
+    border-color: #2ace58;
+  }
+  
+  :host ::ng-deep .rejected-checkbox .mat-checkbox-frame {
+    border-color: #d51e1e;
+  }
+  
+  :host ::ng-deep .pending-checkbox .mat-checkbox-frame {
+    border-color: #e7b400;
+  }
+  .color_blue {
+    color: #009efb;
+  }
+  
+  .no-wrap td,
+  .no-wrap .ng-star-inserted {
+    white-space: inherit;
+  }
+  
+  .selected-row {
+    background-color: lavender !important;
+  }
+  .list-Img {
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+  }
+  .popup-head {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .popup-head div {
+    display: flex;
+    align-items: center;
+  }
+  .popup-head mat-progress-bar {
+    width: 175px;
+  }
+  .popup-head2 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .popup-head2 div {
+    text-align: center;
+  }
+  .popup-head2 {
+    padding: 15px 1px 7px;
+  }
+  .popup-head2 div mat-label {
+    display: block;
+  }
+  .fd-re {
+    flex-direction: column;
+    align-items: flex-end !important;
+  }
+  .mat-row.cdk-row.example-element-row {
+    cursor: pointer;
+  }
+  .progress-layout {
+    display: flex;
+  }
+  // .progress-layout .pro-icon {
+  // }
+  .progress-layout .pro-desc {
+    width: 100%;
+  }
+  .progress-layout .pro-desc div {
+    display: flex;
+    justify-content: space-between;
+  }
+  .p-hidden {
+    visibility: hidden;
+  }
+  
+  

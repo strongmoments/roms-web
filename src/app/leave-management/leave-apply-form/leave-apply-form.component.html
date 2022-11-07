@@ -126,6 +126,7 @@
                       <!-- </button> -->
                     </mat-form-field>
                   </div>
+                  <!-- <mat-slider color="warn" value="40"></mat-slider> -->
                   <div fxFlex.gt-sm="10" class="p-t-20">
                     <h3 class="m-0">Day(s)</h3>
                   </div>
@@ -649,6 +650,7 @@
                                   <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="mat-body-clp">
                                     <div fxFlex.gt-sm="50" fxFlex="100" fxFlexAlign="center">
                                       <!-- <mat-form-field appearance="outline" class="m-10"> -->
+                                        <mat-label>Reason</mat-label>
                                       <textarea matInput placeholder="Reason" class="text-reason"
                                         disabled>{{ element?.leaveReason }} </textarea>
                                       <!-- </mat-form-field> -->
@@ -684,6 +686,7 @@
                                           placeholder="Comment"
                                           (change)="addComment(i, $event)"
                                         /> -->
+                                        <mat-label>Manager's Comment</mat-label>
                                       <textarea matInput placeholder="Reason" class="text-reason"
                                         disabled>{{ element?.reviewerRemark }} </textarea>
                                       <!-- </mat-form-field> -->
