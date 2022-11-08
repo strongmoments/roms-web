@@ -7,6 +7,7 @@ import { ClientAddComponent } from './client-add/client-add.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { ProjectAddComponent } from './project-add/project-add.component';
 import { AssetsListComponent } from './assets-list/assets-list.component';
+import { AssetsAddComponent } from './assets-add/assets-add.component';
 
 
 
@@ -16,7 +17,8 @@ import { AssetsListComponent } from './assets-list/assets-list.component';
     ClientAddComponent,
     ProjectListComponent,
     ProjectAddComponent,
-    AssetsListComponent
+    AssetsListComponent,
+    AssetsAddComponent
   ],
   imports: [
     CommonModule,

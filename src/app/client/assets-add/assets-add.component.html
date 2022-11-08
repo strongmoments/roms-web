@@ -1,0 +1,192 @@
+<mat-card>
+  <mat-card-content class="create_user_page">
+    <h2 class="title text-center color_blue">Add new asset</h2>
+    <mat-card-title class="p-t-20 p-b-10 color_blue">Basic Details</mat-card-title>
+    <div fxLayout="row wrap">
+      <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
+        <form class="basic-form" >
+          <div fxLayout="row wrap" fxFlexAlign="center" class="row m-0">
+            <div fxFlex.gt-sm="30" fxFlex="100">
+                <mat-form-field appearance="outline">
+                  <mat-label>Asset No</mat-label>
+                  <input matInput placeholder="FSGHF65" />
+                </mat-form-field>
+              </div>
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+                <mat-form-field appearance="outline">
+                  <mat-label>Asset Name</mat-label>
+                  <input matInput placeholder="Dozer" />
+                </mat-form-field>
+              </div>
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+                <mat-form-field appearance="outline">
+                  <mat-label>Class</mat-label>
+                  <mat-select placeholder="Mobile Plant">
+                    <!-- <mat-option value="option">Available</mat-option>
+                    <mat-option value="option">Down</mat-option>
+                    <mat-option value="option">Disposed</mat-option> -->
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div fxFlex.gt-sm="30" fxFlex="100">
+                <mat-form-field appearance="outline">
+                  <mat-label>Type</mat-label>
+                  <mat-select placeholder="Doxer">
+                    <!-- <mat-option value="option">Available</mat-option>
+                    <mat-option value="option">Down</mat-option>
+                    <mat-option value="option">Disposed</mat-option> -->
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+                <mat-form-field appearance="outline">
+                    <mat-label>Category</mat-label>
+                    <mat-select placeholder="Doxer">
+                      <!-- <mat-option value="option">DozerA</mat-option>
+                      <mat-option value="option">Down</mat-option>
+                      <mat-option value="option">Disposed</mat-option> -->
+                    </mat-select>
+                  </mat-form-field>
+              </div>
+            <div fxFlex.gt-sm="35" fxFlex="100"></div>
+
+            
+
+            <div fxFlex.gt-sm="60" fxFlex="100" class="p-b-10 p-t-10 m-b-40">
+              <mat-label>Description</mat-label>
+              <mat-form-field appearance="outline" rows="16">
+                <mat-label>Description</mat-label>
+                <textarea matInput placeholder="Textarea" ></textarea>
+              </mat-form-field>
+              <!-- <quill-editor
+                formControlName="description"
+                description
+                [ngClass]="{ 'is-invalid': submitted && f.description.hasError }"
+                placeholder="Enter Description"
+              >
+              </quill-editor> -->
+              
+            </div>
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="17" fxFlex="100" class="m-t-15 text-center">
+                <mat-label>Asset Image</mat-label>
+                <div class="m-t-10" href="javascript:void(0);">
+                    <img src="../../../assets/img/image.png" alt="" style="max-height: 100px; width: auto">
+                </div>
+            </div>
+            <div fxFlex.gt-sm="18" fxFlex="100" class="m-t-15 text-center">
+                <mat-label>QR Code</mat-label>
+                <div class="m-t-10" href="javascript:void(0);">
+                  <img src="../../../assets/img/image.png" alt="" style="max-height: 100px; width: auto">
+              </div>
+            </div>
+
+            <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10">
+              <mat-divider> </mat-divider>
+            </div>
+
+            <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
+              <mat-card-title class="p-b-10 color_blue">Make Details</mat-card-title>
+            </div>
+
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Make</mat-label>
+                <input matInput placeholder="JCB" />
+              </mat-form-field>
+            </div>
+
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Model</mat-label>
+                <input matInput placeholder="FGFSF433" />
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Year Of Make</mat-label>
+                <input matInput placeholder="2022" />
+              </mat-form-field>
+            </div>
+
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Country Of Origin</mat-label>
+                <input matInput placeholder="India" />
+              </mat-form-field>
+            </div>
+
+            <div fxFlex.gt-sm="70" fxFlex="100"></div>
+            <mat-divider fxFlex.gt-sm="100" fxFlex="100"> </mat-divider>
+            <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
+              <mat-card-title class="p-b-10 color_blue">Status</mat-card-title>
+            </div>
+
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Status</mat-label>
+                <mat-select placeholder="Status">
+                  <mat-option value="option">Available</mat-option>
+                  <mat-option value="option">Down</mat-option>
+                  <mat-option value="option">Disposed</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Current Rate</mat-label>
+                <input matInput placeholder="00.00" />
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Current Rate Rider</mat-label>
+                <input matInput placeholder="0" />
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-sm="30" fxFlex="100" class="m-t-20">
+              <mat-slide-toggle>Allow Work Order</mat-slide-toggle>
+            </div>
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100" class="m-t-20">
+              <mat-slide-toggle>Retire Asset</mat-slide-toggle>
+            </div>
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Retirement Date</mat-label>
+                <input matInput placeholder="23/07/2022" />
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <small>Ownership</small>
+              <div>
+                <mat-label class="m-r-5">RENTAL</mat-label
+                ><mat-slide-toggle>OWNED</mat-slide-toggle>
+              </div>
+            </div>
+
+            <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
+              <mat-divider> </mat-divider>
+            </div>
+
+            <div fxFlex.gt-sm="100" fxFlex="100" class="p-10 text-center">
+              <div class="m-0 m-t-15">
+                <button mat-raised-button color="primary">Add Asset</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

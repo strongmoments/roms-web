@@ -7,6 +7,7 @@ import { ProjectAddComponent } from './project-add/project-add.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 
 import { AssetsListComponent } from './assets-list/assets-list.component';
+import { AssetsAddComponent } from './assets-add/assets-add.component';
 
 const routes: Routes = [
   {
@@ -50,6 +51,14 @@ const routes: Routes = [
         component: AssetsListComponent,
        data: {
           title: 'Assets List',
+          urls: [{ title: 'Dashboard', url: '/' }, { title: 'My Staff' }],
+      },
+      },
+      {
+        path: 'assets-add',
+        component: AssetsAddComponent,
+       data: {
+          title: 'Assets Add',
           urls: [{ title: 'Dashboard', url: '/' }, { title: 'My Staff' }],
       },
       },
