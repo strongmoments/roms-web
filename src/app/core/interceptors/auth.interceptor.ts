@@ -18,15 +18,25 @@ export class AuthInterceptor implements HttpInterceptor {
         const user = this.authService.getCurrentUser();
         if (user && user.token) {
             // const cloned = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + user.token) });
+            console.log(req, 'asa')
             let contentType: any = { 'Authorization': 'Bearer ' + user.token };
-            if (req.body instanceof FormData) {
-                // we are sending a file here
-                // contentType = 'multipart/form-data';
-            } else {
-                contentType['Content-Type'] = 'application/json'
-            }
+            let responseType = '';
+            if (req.url.includes('/v1/files')) {
+                contentType['Accept'] = 'application/octet-stream';
+                contentType['Content-Type'] = 'application/octet-stream';
+                responseType = 'blob';
 
-            // console.log(req.headers);
+                // : "application/octet-stream"
+            } else {
+
+                if (req.body instanceof FormData) {
+                    // we are sending a file here
+                    // contentType = 'multipart/form-data';
+                } else {
+                    contentType['Content-Type'] = 'application/json';
+                }
+            }
+            // console.log(contentType);
             // if (req.headers.has('Content-Type') && req.headers.get('Content-Type') == 'multipart/form-data') {
             //     req.headers.delete('Content-Type');
             // } else {
@@ -34,8 +44,15 @@ export class AuthInterceptor implements HttpInterceptor {
             // }
 
             // console.log(req.headers,contentType);
+            let cloned: any;
+            if (responseType) {
+                if (responseType == 'blob') {
+                    cloned = req.clone({ setHeaders: contentType, responseType: 'blob' });
+                }
+            } else {
+                cloned = req.clone({ setHeaders: contentType });
 
-            const cloned = req.clone({ setHeaders: contentType });
+            }
             return next.handle(cloned).pipe(tap(() => { }, (err: any) => {
 
                 if (err instanceof HttpErrorResponse) {
