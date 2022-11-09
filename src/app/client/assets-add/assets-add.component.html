@@ -59,9 +59,9 @@
 
             <div fxFlex.gt-sm="60" fxFlex="100" class="p-b-10 p-t-10 m-b-40">
               <mat-label>Description</mat-label>
-              <mat-form-field appearance="outline" rows="16">
+              <mat-form-field appearance="outline" >
                 <mat-label>Description</mat-label>
-                <textarea matInput placeholder="Textarea" ></textarea>
+                <textarea matInput placeholder="Textarea" rows="3" ></textarea>
               </mat-form-field>
               <!-- <quill-editor
                 formControlName="description"
@@ -72,17 +72,17 @@
               </quill-editor> -->
               
             </div>
-            <div fxFlex.gt-sm="5" fxFlex="100"></div>
-            <div fxFlex.gt-sm="17" fxFlex="100" class="m-t-15 text-center">
+            <div fxFlex.gt-sm="4" fxFlex="100"></div>
+            <div fxFlex.gt-sm="18" fxFlex="100" class=" text-center">
                 <mat-label>Asset Image</mat-label>
                 <div class="m-t-10" href="javascript:void(0);">
-                    <img src="../../../assets/img/image.png" alt="" style="max-height: 100px; width: auto">
+                    <img src="../../../assets/img/image.png" alt="" style="max-height: 110px; width: auto">
                 </div>
             </div>
-            <div fxFlex.gt-sm="18" fxFlex="100" class="m-t-15 text-center">
+            <div fxFlex.gt-sm="18" fxFlex="100" class=" text-center">
                 <mat-label>QR Code</mat-label>
                 <div class="m-t-10" href="javascript:void(0);">
-                  <img src="../../../assets/img/image.png" alt="" style="max-height: 100px; width: auto">
+                  <img src="../../../assets/img/image.png" alt="" style="max-height: 110px; width: auto">
               </div>
             </div>
 
@@ -122,23 +122,6 @@
                 <input matInput placeholder="India" />
               </mat-form-field>
             </div>
-
-            <div fxFlex.gt-sm="70" fxFlex="100"></div>
-            <mat-divider fxFlex.gt-sm="100" fxFlex="100"> </mat-divider>
-            <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
-              <mat-card-title class="p-b-10 color_blue">Status</mat-card-title>
-            </div>
-
-            <div fxFlex.gt-sm="30" fxFlex="100">
-              <mat-form-field appearance="outline">
-                <mat-label>Status</mat-label>
-                <mat-select placeholder="Status">
-                  <mat-option value="option">Available</mat-option>
-                  <mat-option value="option">Down</mat-option>
-                  <mat-option value="option">Disposed</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
@@ -153,27 +136,49 @@
                 <input matInput placeholder="0" />
               </mat-form-field>
             </div>
+
+            
+            <mat-divider fxFlex.gt-sm="100" fxFlex="100"> </mat-divider>
+            <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
+              <mat-card-title class="p-b-10 color_blue">Status</mat-card-title>
+            </div>
+
+            
             <div fxFlex.gt-sm="30" fxFlex="100" class="m-t-20">
               <mat-slide-toggle>Allow Work Order</mat-slide-toggle>
+            </div>
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Availability</mat-label>
+                <mat-select placeholder="Status">
+                  <mat-option value="option">Available</mat-option>
+                  <mat-option value="option">Down</mat-option>
+                  <mat-option value="option">Disposed</mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100" class="m-t-20">
               <mat-slide-toggle>Retire Asset</mat-slide-toggle>
             </div>
-            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100" class="m-t-20">
+              <mat-slide-toggle>Is this asset rented?</mat-slide-toggle>
+            </div>
+            <div fxFlex.gt-sm="40" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Retirement Date</mat-label>
                 <input matInput placeholder="23/07/2022" />
               </mat-form-field>
             </div>
-            <div fxFlex.gt-sm="30" fxFlex="100">
+            <!-- <div fxFlex.gt-sm="30" fxFlex="100">
               <small>Ownership</small>
               <div>
                 <mat-label class="m-r-5">RENTAL</mat-label
                 ><mat-slide-toggle>OWNED</mat-slide-toggle>
               </div>
-            </div>
+            </div> -->
 
             <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
               <mat-divider> </mat-divider>

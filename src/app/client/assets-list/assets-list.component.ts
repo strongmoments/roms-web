@@ -323,10 +323,7 @@ export class AssetsListComponent implements OnInit, OnChanges {
   onSubmit() {
     this.submitted = true;
     this.openDialog({});
-    // if (this.form.invalid) {
-    //   this.alertService.openSnackBar(CustomMessage.invalidForm);
-    //   return;
-    // }
+   
   }
 
   openDialog(data: any) {
@@ -338,8 +335,7 @@ export class AssetsListComponent implements OnInit, OnChanges {
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
-      // this.router.navigate(['/registration/list']);
-      // console.log('The dialog was closed');
+      
     });
   }
 

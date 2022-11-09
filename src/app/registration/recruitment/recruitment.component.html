@@ -61,13 +61,13 @@
               </mat-form-field>
             </div>
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
-            <div fxFlex.gt-sm="30" fxFlex="100">
+            <div fxFlex.gt-sm="65" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Role Title</mat-label>
                 <input matInput placeholder="Operator" />
               </mat-form-field>
             </div>
-            <div fxFlex.gt-sm="35" fxFlex="100"></div>
+            <!-- <div fxFlex.gt-sm="35" fxFlex="100"></div> -->
 
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
@@ -97,9 +97,9 @@
                 <mat-label>Commitment</mat-label>
                 <mat-select placeholder="Commitment" formControlName="commitment" commitment
                   [ngClass]="{ 'is-invalid': submitted && f.commitment.hasError }">
-                  <mat-option value="option">Option</mat-option>
-                  <mat-option value="option">Option2</mat-option>
-                  <mat-option value="option">Option3</mat-option>
+                  <mat-option value="option">High</mat-option>
+                  <mat-option value="option">Low</mat-option>
+                  <mat-option value="option">Medium</mat-option>
                 </mat-select>
 
                 <mat-error *ngIf="submitted && checkError('commitment', 'required')">
