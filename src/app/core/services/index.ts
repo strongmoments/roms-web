@@ -9,3 +9,4 @@ export * from './employee.service';
 export * from './notification.service';
 export * from './sse.service';
 export * from './job.service';
+export * from './assets.service';

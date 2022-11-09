@@ -118,7 +118,7 @@ export class EmployeeListComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.getFile(null);
+    // this.getFile(null);
     // this.displayedColumns = this.displayedColumnsLeave;
     this.refresh(this.getDefaultOptions());
     // console.log('in listing');
@@ -277,29 +277,29 @@ export class EmployeeListComponent implements OnInit, OnChanges {
   }
 
 
-  getFile(elem: any) {
-    if (elem && elem.length > 0 && elem[0].digitalAssets) {
+  // getFile(elem: any) {
+  //   if (elem && elem.length > 0 && elem[0].digitalAssets) {
 
-      let id = elem[0].digitalAssets.id;
-      let file = elem[0].digitalAssets.fileName;
-      let type = elem[0].digitalAssets.fileType;
+  //     let id = elem[0].digitalAssets.id;
+  //     let file = elem[0].digitalAssets.fileName;
+  //     let type = elem[0].digitalAssets.fileType;
 
 
-      // id = 'uat-dd10b1ba-612e-4835-a510-4ffce0d206cd';
-      // file = 'scaled_0b90bc85-5cc8-4a41-aa4d-edbf2a075dd54118225434755240147.jpg';
-      // type = 'image/jpeg';
-      this.authService.getFile(id, file, type).subscribe((res: any) => {
-        console.log(res, '=======res')
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          var base64data = reader.result;
-          console.log(base64data);
-        }
+  //     // id = 'uat-dd10b1ba-612e-4835-a510-4ffce0d206cd';
+  //     // file = 'scaled_0b90bc85-5cc8-4a41-aa4d-edbf2a075dd54118225434755240147.jpg';
+  //     // type = 'image/jpeg';
+  //     this.authService.getFile(id, file, type).subscribe((res: any) => {
+  //       console.log(res, '=======res')
+  //       const reader = new FileReader();
+  //       reader.onloadend = () => {
+  //         var base64data = reader.result;
+  //         console.log(base64data);
+  //       }
 
-        // reader.readAsDataURL(res); 
-        console.log(res, '=lsakdaslkd');
-        // this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
-      });
-    }
-  }
+  //       // reader.readAsDataURL(res); 
+  //       console.log(res, '=lsakdaslkd');
+  //       // this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
+  //     });
+  //   }
+  // }
 }

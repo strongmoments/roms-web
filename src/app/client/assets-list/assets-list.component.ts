@@ -11,7 +11,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
-import { AlertService, EmployeeService } from 'src/app/core/services';
+import { AlertService, AssetsService, EmployeeService } from 'src/app/core/services';
 import { LeaveService } from 'src/app/core/services/leave.service';
 import { Utils } from 'src/app/core/_helpers/util';
 import { Globals } from 'src/app/globals';
@@ -41,7 +41,7 @@ export class AssetsListComponent implements OnInit, OnChanges {
     'type',
     'location',
     'status'
-    
+
   ];
   @ViewChild('employeeDetailDialog') employeeDetailDialog!: TemplateRef<any>;
   totalData: any = [];
@@ -85,6 +85,7 @@ export class AssetsListComponent implements OnInit, OnChanges {
     private authService: AuthenticationService,
     private employeeService: EmployeeService,
     private router: Router,
+    private assetsService: AssetsService
   ) {
     this.globals = globals;
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -139,6 +140,10 @@ export class AssetsListComponent implements OnInit, OnChanges {
     //     this.dataSource.data = [record, ...this.dataSource.data];
     //   }
     // });
+  }
+
+  redirect() {
+    this.router.navigate(['/client/assets-add'])
   }
 
   ngOnChanges(changes: SimpleChanges): void { }
@@ -198,8 +203,8 @@ export class AssetsListComponent implements OnInit, OnChanges {
     // };
     // console.log(queryData, 'queryData');
 
-    this.employeeService
-      .employeeOnboardList(options)
+    this.assetsService
+      .getAll(options)
       .pipe(first())
       .subscribe((result: any) => {
         let data: any = [];
@@ -268,7 +273,7 @@ export class AssetsListComponent implements OnInit, OnChanges {
       // page: (obj != undefined ? (obj.pageIndex == null ? 1 : obj.pageIndex + 1) : 1),
       page: pageSize - 1,
       search: '',
-      query: '',
+      query: 'class=&type=&status=',
       pageSize:
         obj != undefined ? (obj.pageSize == null ? this.pageSize : obj.pageSize) : this.pageSize,
     };
@@ -323,7 +328,7 @@ export class AssetsListComponent implements OnInit, OnChanges {
   onSubmit() {
     this.submitted = true;
     this.openDialog({});
-   
+
   }
 
   openDialog(data: any) {
@@ -335,7 +340,7 @@ export class AssetsListComponent implements OnInit, OnChanges {
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
-      
+
     });
   }
 

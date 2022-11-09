@@ -55,7 +55,7 @@ export class Globals {
     ]
 
     userApplicationStatus = [
-        { name: 'Pending',icon: 'hourglass_top', value: 1, colorClass: 'pending' },
+        { name: 'Pending', icon: 'hourglass_top', value: 1, colorClass: 'pending' },
         { name: 'Completed', icon: 'thumb_up', value: 2, colorClass: 'approved' },
         // { name: 'Rejected', value: 3, colorClass: 'rejected',checkboxColorClass: 'rejected-checkbox' },
 
@@ -108,6 +108,25 @@ export class Globals {
         { name: 'Australian resident', value: '1' },
         { name: 'Foreign resident', value: '2' },
         { name: 'A working holiday maker', value: '3' }
+    ]
+
+    assetClass = [
+        { name: 'Mobile Plant', value: 'mobileplant' }
+    ]
+
+    assetType = [
+        { name: 'Dozer', value: '1' }
+    ]
+
+    assetCategory = [
+        { name: 'DozerA', value: '1' }
+    ]
+
+
+    assetStatus = [
+        { name: 'Available', value: '1' },
+        { name: 'Down', value: '2' },
+        { name: 'Disposed', value: '3' }
     ]
 
     phoneCode = [
