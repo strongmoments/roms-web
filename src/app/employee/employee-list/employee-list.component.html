@@ -76,9 +76,11 @@
                   <div style="display:flex; align-items: center;">
                     <img class="m-r-10 list-Img"
                       onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
-                      [src]="row && row.profileImage && row.profileImage.length>0?row.profileImage[0]?.digitalAssets?.url:''"
+                      [src]="baseUrl+(row && row.profileImage && row.profileImage.length>0?row.profileImage[0]?.digitalAssets?.url:'')+'&key='+user.token"
                       alt="" />
                     {{ row?.employeeName }}
+                    <!-- {{baseUrl}}{{row && row.profileImage && row.profileImage.length>0?row.profileImage[0]?.digitalAssets?.url:''}}&key={{user.token}} -->
+
                     <!-- {{getFile(row?.profileImage)}} -->
                   </div>
                 </td>

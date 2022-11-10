@@ -5,11 +5,8 @@
       <img mat-card-image src="assets/images/background/profile-bg.jpg" class="profile-bg-height" alt="Images" />
       <mat-card-content>
         <div class="pro-img">
-          <img onerror="this.onerror=null;this.src='assets/img/user-default-img.jpg';" [src]="
-              record && record.profileImage && record.profileImage.length > 0
-                ? record.profileImage[0].digitalAssets?.url
-                : ''
-            " width="100" />
+          <img onerror="this.onerror=null;this.src='assets/img/user-default-img.jpg';" [src]="baseUrl+(record && record.profileImage && record.profileImage.length>0?record.profileImage[0]?.digitalAssets?.url:'')+'&key='+user.token"
+          alt="" width="100" />
           <mat-icon (click)="profilePicUpload.click()">camera_alt</mat-icon>
           <input type="file" hidden #profilePicUpload accept="application/pdf, image/*"
             (change)="onFileChange($event)" />

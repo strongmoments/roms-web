@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AlertService, EmployeeService } from 'src/app/core/services';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { CustomMessage } from 'src/app/custom-message';
+import { environment } from 'src/environments/environment';
 import { ConfirmationDialog } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
@@ -17,6 +18,8 @@ export class CommonEmployeeProfileViewComponent implements OnInit, OnChanges {
     isMyProfile: boolean = true;
     @ViewChild('passwordDialog') passwordDialog!: TemplateRef<any>;
     newPassword: string = '';
+    baseUrl: string = environment.apiUrl;
+
     constructor(private alertService: AlertService, private employeeService: EmployeeService, private router: Router, private authService: AuthenticationService, public dialog: MatDialog) {
 
         this.router.routeReuseStrategy.shouldReuseRoute = function () {

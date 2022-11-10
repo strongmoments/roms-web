@@ -19,6 +19,7 @@ import * as moment from 'moment';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { element } from 'protractor';
 import { UntypedFormControl } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-employee-list',
@@ -27,6 +28,7 @@ import { UntypedFormControl } from '@angular/forms';
 })
 export class EmployeeListComponent implements OnInit, OnChanges {
   test: any
+  user:any;
   globals: Globals;
   submitted: boolean = false;
   displayedColumns: string[] = [
@@ -71,6 +73,8 @@ export class EmployeeListComponent implements OnInit, OnChanges {
   selectedId: string = '';
 
   addEMPmessage = new UntypedFormControl('Add Employee');
+  baseUrl: string = environment.apiUrl;
+
   constructor(
     breakpointObserver: BreakpointObserver,
     public util: Utils,
@@ -84,6 +88,7 @@ export class EmployeeListComponent implements OnInit, OnChanges {
     private employeeService: EmployeeService,
     private router: Router
   ) {
+    this.user=this.authService.getCurrentUser();
     this.globals = globals;
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;

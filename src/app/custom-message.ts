@@ -22,4 +22,6 @@ export enum CustomMessage {
     invalidLeaveAttachment = 'Only jpeg,png,jpg and pdfs are allowed.',
     invalidLeaveAttachmentSize = 'File size exceeds maximum limit 2 MB.',
     recordNotFound = 'Record not found.',
+    assetSuccess = 'Asset created succesfully',
+    fileUploadError = 'File not uploaded successfully. try again.'
 }

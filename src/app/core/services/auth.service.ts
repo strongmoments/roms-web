@@ -287,4 +287,7 @@ export class AuthenticationService {
         return this.http.get<any>(`${environment.apiUrl}/v1/files?id=${id}&fileName=${file}&type=${type}`);
     }
 
+    uploadFile(data: any) {
+        return this.http.post<any>(`${environment.apiUrl}/v1/files/upload`, data, {});
+    }
 }

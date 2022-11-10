@@ -33,16 +33,22 @@
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Class</mat-label>
-                <!-- <input type="text" placeholder="Mobile Plant" aria-label="Role" matInput formControlName="assetClass"
-                  assetClass [matAutocomplete]="autoClass"
-                  [ngClass]="{ 'is-invalid': submitted && f.assetClass.hasError }" /> -->
-                <mat-select matInput formControlName="assetClass" assetClass
-                  [ngClass]="{ 'is-invalid': submitted && f.assetClass.hasError }">
-                  <mat-option>Select class</mat-option>
+                <input type="text" placeholder="Ex: Mobile Plant" aria-label="Class" matInput
+                  formControlName="assetClass" assetClass [matAutocomplete]="autoClass"
+                  [ngClass]="{ 'is-invalid': submitted && f.assetClass.hasError }" />
+                <mat-autocomplete #autoClass="matAutocomplete">
+                  <!-- <mat-option [value]="item.name" *ngFor="let item of roles">
+                      {{ item.name }}
+                    </mat-option> -->
+                </mat-autocomplete>
+
+                <!-- <mat-select matInput formControlName="assetClass" assetClass
+                  [ngClass]="{ 'is-invalid': submitted && f.assetClass.hasError }"> -->
+                <!-- <mat-option>Select class</mat-option>
                   <mat-option [value]="item.value" *ngFor="let item of globals.assetClass">
                     {{ item.name }}
-                  </mat-option>
-                </mat-select>
+                  </mat-option> -->
+                <!-- </mat-select> -->
 
                 <mat-error *ngIf="submitted && checkError('assetClass', 'required')">
                   Class is required
@@ -58,14 +64,19 @@
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Type</mat-label>
-                <mat-select matInput formControlName="assetType" assetType
+                <input type="text" placeholder="Ex: Dozer" aria-label="Type" matInput formControlName="assetType"
+                  assetType [matAutocomplete]="autoType"
+                  [ngClass]="{ 'is-invalid': submitted && f.assetType.hasError }" />
+                <mat-autocomplete #autoType="matAutocomplete">
+
+                  <!-- <mat-select matInput formControlName="assetType" assetType
                   [ngClass]="{ 'is-invalid': submitted && f.assetType.hasError }">
                   <mat-option>Select type</mat-option>
                   <mat-option [value]="item.value" *ngFor="let item of globals.assetType">
                     {{ item.name }}
                   </mat-option>
-                </mat-select>
-
+                </mat-select> -->
+                </mat-autocomplete>
                 <mat-error *ngIf="submitted && checkError('assetType', 'required')">
                   Type is required
                 </mat-error>
@@ -81,13 +92,18 @@
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Category</mat-label>
-                <mat-select matInput formControlName="category" category
+                <input type="text" placeholder="Ex: Small Dozer" aria-label="Category" matInput
+                  formControlName="category" category [matAutocomplete]="autoCategory"
+                  [ngClass]="{ 'is-invalid': submitted && f.category.hasError }" />
+                <mat-autocomplete #autoCategory="matAutocomplete">
+                  <!-- <mat-select matInput formControlName="category" category
                   [ngClass]="{ 'is-invalid': submitted && f.category.hasError }">
                   <mat-option>Select type</mat-option>
                   <mat-option [value]="item.value" *ngFor="let item of globals.assetCategory">
                     {{ item.name }}
                   </mat-option>
-                </mat-select>
+                </mat-select> -->
+                </mat-autocomplete>
 
                 <mat-error *ngIf="submitted && checkError('category', 'required')">
                   Category is required
@@ -127,8 +143,10 @@
             <div fxFlex.gt-sm="15" fxFlex="100" class=" text-center">
               <mat-label>Asset Image</mat-label>
               <div class="m-t-10 asset-img" href="javascript:void(0);">
-                <img src="../../../assets/img/image.png" alt=""  style="max-height: 110px; width: auto">
-                <mat-icon>camera_alt</mat-icon>
+                <img onerror="this.onerror=null;this.src='../../../assets/img/image.png';" [src]="selectedFile" alt=""
+                  style="max-height: 110px; width: auto">
+                <mat-icon (click)="attachment.click()">camera_alt</mat-icon>
+                <input #attachment type="file" hidden (change)="onFileChange($event)" accept="image/*">
               </div>
             </div>
             <div fxFlex.gt-sm="15" fxFlex="100" class=" text-center">
@@ -180,6 +198,10 @@
                 <mat-error *ngIf="submitted && checkError('yearOfMake', 'required')">
                   Year is required
                 </mat-error>
+                <mat-error
+                  *ngIf="(checkError('yearOfMake', 'pattern') ||checkError('yearOfMake', 'minlength') || checkError('yearOfMake', 'maxlength'))">
+                  Invalid value.
+                </mat-error>
               </mat-form-field>
             </div>
 
@@ -204,6 +226,9 @@
                 <mat-error *ngIf="submitted && checkError('currentRate', 'required')">
                   Current rate is required
                 </mat-error>
+                <mat-error *ngIf="checkError('currentRate', 'pattern')">
+                  Invalid value.
+                </mat-error>
               </mat-form-field>
             </div>
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
@@ -215,6 +240,9 @@
 
                 <mat-error *ngIf="submitted && checkError('currentRateRider', 'required')">
                   Current rate rider is required
+                </mat-error>
+                <mat-error *ngIf="checkError('currentRateRider', 'pattern')">
+                  Invalid value.
                 </mat-error>
               </mat-form-field>
             </div>
@@ -240,7 +268,7 @@
                   <!-- <mat-option value="1">Available</mat-option>
                   <mat-option value="2">Down</mat-option>
                   <mat-option value="3">Disposed</mat-option> -->
-                  <mat-option>Select status</mat-option>
+                  <!-- <mat-option>Select status</mat-option> -->
                   <mat-option [value]="item.value" *ngFor="let item of globals.assetStatus">
                     {{ item.name }}
                   </mat-option>
@@ -266,7 +294,7 @@
               <mat-form-field appearance="outline">
                 <mat-label>Retirement Date</mat-label>
 
-                <input matInput (click)="picker.open()" [min]="currentDate" [matDatepicker]="picker" placeholder=""
+                <input matInput (focus)="picker.open()" [min]="currentDate" [matDatepicker]="picker" placeholder=""
                   formControlName="retirementDate" retirementDate
                   [ngClass]="{'is-invalid':submitted && f.retirementDate.hasError}" />
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

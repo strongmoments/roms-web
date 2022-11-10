@@ -124,9 +124,9 @@ export class Globals {
 
 
     assetStatus = [
-        { name: 'Available', value: '1' },
-        { name: 'Down', value: '2' },
-        { name: 'Disposed', value: '3' }
+        { name: 'Available', value: 1 },
+        { name: 'Down', value: 2 },
+        { name: 'Disposed', value: 3 }
     ]
 
     phoneCode = [
