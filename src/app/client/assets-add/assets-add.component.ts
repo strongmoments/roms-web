@@ -30,7 +30,7 @@ export class AssetsAddComponent implements OnInit {
       contryOfOrigin: new FormControl('', [Validators.required]),
       currentRate: new FormControl('', [Validators.required]),
       currentRateRider: new FormControl('', [Validators.required]),
-      allowWO: new FormControl(false, [Validators.required]),
+      allowWO: new FormControl(true, [Validators.required]),
       status: new FormControl('', [Validators.required]),
       retireAsset: new FormControl(false, [Validators.required]),
       ownership: new FormControl(false, [Validators.required]),

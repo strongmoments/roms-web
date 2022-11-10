@@ -42,5 +42,19 @@
 .p-l-40{
   padding-left: 40px;
 }
+.asset-img {
+  position: relative;
+}
+.asset-img mat-icon {
+  position: absolute;
+  background: #fff;
+  border-radius: 50px;
+  padding: 5px 4px;
+  height: 34px;
+  width: 34px;
+  z-index: 111;
+  right: 10%;
+  top: -10%;
+}
   
   

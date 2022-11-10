@@ -8,6 +8,7 @@ import { ProjectListComponent } from './project-list/project-list.component';
 
 import { AssetsListComponent } from './assets-list/assets-list.component';
 import { AssetsAddComponent } from './assets-add/assets-add.component';
+import { InspectionListComponent } from './inspection-list/inspection-list.component';
 
 const routes: Routes = [
   {
@@ -19,7 +20,7 @@ const routes: Routes = [
         component: ClientListComponent,
         data: {
           title: 'Client list',
-          urls: [{ title: 'Dashboard', url: '/' }, { title: 'My Staff' }],
+          urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
       },
       },
       {
@@ -27,7 +28,7 @@ const routes: Routes = [
         component: ClientAddComponent,
        data: {
           title: 'Add Client',
-          urls: [{ title: 'Dashboard', url: '/' }, { title: 'My Staff' }],
+          urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
       },
       },
       {
@@ -35,7 +36,7 @@ const routes: Routes = [
         component: ProjectAddComponent,
        data: {
           title: 'Add Project',
-          urls: [{ title: 'Dashboard', url: '/' }, { title: 'My Staff' }],
+          urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
       },
       },
       {
@@ -43,7 +44,7 @@ const routes: Routes = [
         component: ProjectListComponent,
        data: {
           title: 'Project List',
-          urls: [{ title: 'Dashboard', url: '/' }, { title: 'My Staff' }],
+          urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
       },
       },
       {
@@ -51,15 +52,23 @@ const routes: Routes = [
         component: AssetsListComponent,
        data: {
           title: 'Assets List',
-          urls: [{ title: 'Dashboard', url: '/' }, { title: 'My Staff' }],
+          urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
       },
       },
       {
         path: 'assets-add',
         component: AssetsAddComponent,
        data: {
-          title: 'Assets Add',
-          urls: [{ title: 'Dashboard', url: '/' }, { title: 'My Staff' }],
+          title: 'Asset Add',
+          urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
+      },
+      },
+      {
+        path: 'inspection-list',
+        component: InspectionListComponent,
+       data: {
+          title: 'Inspection List',
+          urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
       },
       },
      

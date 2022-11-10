@@ -9,7 +9,7 @@
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Asset No</mat-label>
-                <input matInput placeholder="FSGHF65" formControlName="assetNo" assetNo [ngClass]="{
+                <input matInput placeholder="Ex: DZ1191" formControlName="assetNo" assetNo [ngClass]="{
                   'is-invalid': submitted && checkError('assetNo', 'required')
                 }" />
                 <mat-error *ngIf="submitted && checkError('assetNo', 'required')">
@@ -21,7 +21,7 @@
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Asset Name</mat-label>
-                <input matInput placeholder="Dozer" formControlName="name" name [ngClass]="{
+                <input matInput placeholder="Ex: CAT D11R" formControlName="name" name [ngClass]="{
                   'is-invalid': submitted && checkError('name', 'required')
                 }" />
                 <mat-error *ngIf="submitted && checkError('name', 'required')">
@@ -103,7 +103,7 @@
 
 
 
-            <div fxFlex.gt-sm="60" fxFlex="100" class="p-b-10 p-t-10 m-b-40">
+            <div fxFlex.gt-sm="65" fxFlex="100" class="p-b-10 p-t-10 m-b-40">
               <mat-label>Description</mat-label>
               <mat-form-field appearance="outline">
                 <mat-label>Description</mat-label>
@@ -123,14 +123,15 @@
               </quill-editor> -->
 
             </div>
-            <div fxFlex.gt-sm="4" fxFlex="100"></div>
-            <div fxFlex.gt-sm="18" fxFlex="100" class=" text-center">
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="15" fxFlex="100" class=" text-center">
               <mat-label>Asset Image</mat-label>
-              <div class="m-t-10" href="javascript:void(0);">
-                <img src="../../../assets/img/image.png" alt="" style="max-height: 110px; width: auto">
+              <div class="m-t-10 asset-img" href="javascript:void(0);">
+                <img src="../../../assets/img/image.png" alt=""  style="max-height: 110px; width: auto">
+                <mat-icon>camera_alt</mat-icon>
               </div>
             </div>
-            <div fxFlex.gt-sm="18" fxFlex="100" class=" text-center">
+            <div fxFlex.gt-sm="15" fxFlex="100" class=" text-center">
               <mat-label>QR Code</mat-label>
               <div class="m-t-10" href="javascript:void(0);">
                 <img src="../../../assets/img/image.png" alt="" style="max-height: 110px; width: auto">
@@ -148,7 +149,7 @@
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Make</mat-label>
-                <input matInput placeholder="JCB" formControlName="make" make
+                <input matInput placeholder="Ex: CAT" formControlName="make" make
                   [ngClass]="{ 'is-invalid': submitted && f.make.hasError }" />
 
                 <mat-error *ngIf="submitted && checkError('make', 'required')">
@@ -161,7 +162,7 @@
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Model</mat-label>
-                <input matInput placeholder="FGFSF433" formControlName="model" model
+                <input matInput placeholder="Ex: B11" formControlName="model" model
                   [ngClass]="{ 'is-invalid': submitted && f.model.hasError }" />
 
                 <mat-error *ngIf="submitted && checkError('model', 'required')">
@@ -185,7 +186,7 @@
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Country Of Origin</mat-label>
-                <input matInput placeholder="India" formControlName="contryOfOrigin" contryOfOrigin
+                <input matInput placeholder="USA" formControlName="contryOfOrigin" contryOfOrigin
                   [ngClass]="{ 'is-invalid': submitted && f.contryOfOrigin.hasError }" />
 
                 <mat-error *ngIf="submitted && checkError('contryOfOrigin', 'required')">
