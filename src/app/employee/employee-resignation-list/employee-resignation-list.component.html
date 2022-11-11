@@ -63,7 +63,8 @@
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>Staff Name</th>
                         <td mat-cell *matCellDef="let row; let i = index">
                             <div class="d-flex">
-                                <img class="mat-card-avatar" [src]="row?.employee?.profileImage | base64Image" />
+                                <img class="mat-card-avatar"
+                                    [src]="globals.generateFileUrl(row?.employee?.profileImage,user.token)" />
                                 <div class="m-l-15">
                                     <p class="font-medium m-b-0 m-t-0">
                                         {{ row?.employee?.firstName }} {{ row?.employee?.lastName }}
@@ -82,7 +83,8 @@
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>Selfie</th>
                         <td mat-cell *matCellDef="let row; let i = index">
                             <div class="d-flex">
-                                <img class="mat-card-avatar" [src]="row?.employeeImage | base64Image" />
+                                <img class="mat-card-avatar"
+                                    [src]="globals.generateFileUrl(row?.employeeImage,user.token)" />
                             </div>
                         </td>
                     </ng-container>
@@ -92,7 +94,8 @@
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>Signature</th>
                         <td mat-cell *matCellDef="let row; let i = index">
                             <div class="d-flex">
-                                <img class="mat-card-avatar" [src]="row?.signature | base64Image" />
+                                <img class="mat-card-avatar"
+                                    [src]="globals.generateFileUrl(row?.signature,user.token)" />
                             </div>
                         </td>
                     </ng-container>

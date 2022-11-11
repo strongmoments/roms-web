@@ -14,6 +14,7 @@ import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-employee-resignation-list',
@@ -82,7 +83,7 @@ export class EmployeeResignationListComponent implements OnInit {
   tabIndex: number = 0;
   startDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 1));
   endDate: Date = new Date();
-
+  user: any;
   constructor(
     public util: Utils,
     globals: Globals,
@@ -92,9 +93,11 @@ export class EmployeeResignationListComponent implements OnInit {
     private datePipe: DatePipe,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private employeeService: EmployeeService
+    private employeeService: EmployeeService,
+    private authService: AuthenticationService
   ) {
     this.globals = globals;
+    this.user = this.authService.getCurrentUser();
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
@@ -204,7 +207,7 @@ export class EmployeeResignationListComponent implements OnInit {
       .subscribe((result: any) => {
         this.totalRecords = result.totalElement;
         this.dataSource.data = result.data;
-        console.log(this.dataSource.data,'this.dataSource');
+        console.log(this.dataSource.data, 'this.dataSource');
         let selected = this.dataSource.data.find((elem: any) => {
           return elem.id == this.selectedId;
         });

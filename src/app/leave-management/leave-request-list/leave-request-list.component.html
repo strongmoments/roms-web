@@ -64,7 +64,7 @@
               <div class="d-flex">
                 <img class="mat-card-avatar"
                   onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
-                  [src]="row && row.employe && row.employe.profileImage.length>0?row.employe.profileImage[0]?.digitalAssets?.url:''" />
+                  [src]="row && row.employe && row.employe.profileImage.length>0?(baseUrl+row.employe.profileImage[0]?.digitalAssets?.url+'&key='+user.token):''" />
                 <div class="m-l-15">
                   <p class="font-medium m-b-0 m-t-0">
                     {{ row?.employe?.firstName }} {{ row?.employe?.lastName }}
@@ -190,7 +190,7 @@
                       <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="mat-body-clp">
                         <div fxFlex.gt-sm="50" fxFlex="100" fxFlexAlign="center">
                           <!-- <mat-form-field appearance="outline" class="m-10"> -->
-                            <mat-label>Reason</mat-label>
+                          <mat-label>Reason</mat-label>
                           <textarea matInput placeholder="Reason" class="text-reason"
                             disabled>{{ element?.leaveReason }} </textarea>
                           <!-- </mat-form-field> -->
@@ -233,7 +233,7 @@
                               placeholder="Comment"
                               (change)="addComment(i, $event)"
                             /> -->
-                            <mat-label>Manager's Comment</mat-label>
+                          <mat-label>Manager's Comment</mat-label>
                           <textarea matInput [placeholder]="selectedTabIndex =='1'?'':'Comment'" class="text-reason"
                             [disabled]="selectedTabIndex == 1"
                             (change)="addComment(i, $event)">{{ element?.reviewerRemark }}</textarea>

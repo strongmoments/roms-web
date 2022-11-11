@@ -15,23 +15,14 @@
           <div fxLayout="row wrap" fxFlexAlign="center" class="row">
             <div fxFlex.gt-sm="25" class="p-r-10" fxFlex="100">
               <mat-form-field>
-                <input
-                  matInput
-                  (keyup)="applyFilter(true)"
-                  [(ngModel)]="search"
-                  placeholder="Filter"
-                />
+                <input matInput (keyup)="applyFilter(true)" [(ngModel)]="search" placeholder="Filter" />
                 <mat-icon matSuffix>search</mat-icon>
               </mat-form-field>
             </div>
             <div fxFlex.gt-sm="15" class="p-r-10" fxFlex="100">
               <!-- <mat-card-title class="mb-3">Basic Material select</mat-card-title> -->
               <mat-form-field>
-                <mat-select
-                  (selectionChange)="applyFilter()"
-                  [(ngModel)]="status"
-                  placeholder="Class"
-                >
+                <mat-select (selectionChange)="applyFilter()" [(ngModel)]="status" placeholder="Class">
                   <mat-option value="all">All</mat-option>
                   <mat-option value="pending">Pending</mat-option>
                   <mat-option value="completed">Completed</mat-option>
@@ -44,11 +35,7 @@
             <div fxFlex.gt-sm="15" class="p-r-10" fxFlex="100">
               <!-- <mat-card-title class="mb-3">Basic Material select</mat-card-title> -->
               <mat-form-field>
-                <mat-select
-                  (selectionChange)="applyFilter()"
-                  [(ngModel)]="status"
-                  placeholder="Type"
-                >
+                <mat-select (selectionChange)="applyFilter()" [(ngModel)]="status" placeholder="Type">
                   <mat-option value="all">All</mat-option>
                   <mat-option value="pending">Pending</mat-option>
                   <mat-option value="completed">Completed</mat-option>
@@ -61,11 +48,7 @@
             <div fxFlex.gt-sm="15" class="p-r-10" fxFlex="100">
               <!-- <mat-card-title class="mb-3">Basic Material select</mat-card-title> -->
               <mat-form-field>
-                <mat-select
-                  (selectionChange)="applyFilter()"
-                  [(ngModel)]="status"
-                  placeholder="Status"
-                >
+                <mat-select (selectionChange)="applyFilter()" [(ngModel)]="status" placeholder="Status">
                   <mat-option value="all">All</mat-option>
                   <mat-option value="pending">Pending</mat-option>
                   <mat-option value="completed">Completed</mat-option>
@@ -97,12 +80,8 @@
     <mat-card class="m-0 m-t-5 m-b-5">
       <mat-card-content>
         <div class="table-responsive infinite-scroll">
-          <mat-table
-            #table
-            [dataSource]="dataSource"
-            (scroll)="onTableScroll($event)"
-            class="table employee-list no-wrap"
-          >
+          <mat-table #table [dataSource]="dataSource" (scroll)="onTableScroll($event)"
+            class="table employee-list no-wrap">
             <!-- Name Column -->
             <ng-container matColumnDef="assetNo">
               <th mat-header-cell *matHeaderCellDef>Asset No</th>
@@ -110,13 +89,11 @@
                 <!-- <span class="header-label">days:</span> -->
                 <!-- {{ row?.firstName }}{{ row?.lastName }} -->
                 <div style="display: flex; align-items: center">
-                  <img
-                    class="m-r-10 list-Img"
+                  <img class="m-r-10 list-Img"
                     onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
-                    [src]="row?.personal?.profileImageURL"
-                    alt=""
-                  />
-                  6789g5
+                    [src]="row?.personal?.profileImageURL" alt="" />
+                  {{row?.assetNo}}
+                  <!-- 6789g5 -->
                 </div>
               </td>
             </ng-container>
@@ -125,7 +102,8 @@
             <ng-container matColumnDef="assetName">
               <th mat-header-cell *matHeaderCellDef>Asset Name</th>
               <td mat-cell *matCellDef="let row">
-                CaT B@t4 Compactor
+                {{row?.name}}
+                <!-- CaT B@t4 Compactor -->
                 <!-- <span class="header-label">days:</span> -->
               </td>
             </ng-container>
@@ -133,7 +111,8 @@
             <ng-container matColumnDef="make">
               <th mat-header-cell *matHeaderCellDef>Make</th>
               <td mat-cell *matCellDef="let row">
-                KOMATSU
+                {{row?.make}}
+                <!-- KOMATSU -->
                 <!-- <span class="header-label">days:</span> -->
               </td>
             </ng-container>
@@ -141,7 +120,8 @@
             <ng-container matColumnDef="model">
               <th mat-header-cell *matHeaderCellDef>Model</th>
               <td mat-cell *matCellDef="let row">
-                PCA5GFD
+                {{row?.model}}
+                <!-- PCA5GFD -->
                 <!-- <span class="header-label">days:</span> -->
               </td>
             </ng-container>
@@ -149,15 +129,16 @@
             <ng-container matColumnDef="ownership">
               <th mat-header-cell *matHeaderCellDef>Ownership</th>
               <td mat-cell *matCellDef="let row">
-                <mat-icon>account_balance</mat-icon>
-                <mat-icon>car_rental</mat-icon>
+                <mat-icon *ngIf="row?.ownership == 'owned'">account_balance</mat-icon>
+                <mat-icon *ngIf="row?.ownership == 'rented'">car_rental</mat-icon>
               </td>
             </ng-container>
             <!-- Name Column -->
             <ng-container matColumnDef="class">
               <th mat-header-cell *matHeaderCellDef>Class</th>
               <td mat-cell *matCellDef="let row">
-                Mobile Point
+                {{row?.assetClass}}
+                <!-- Mobile Point -->
                 <!-- <span class="header-label">days:</span> -->
               </td>
             </ng-container>
@@ -165,17 +146,19 @@
             <ng-container matColumnDef="type">
               <th mat-header-cell *matHeaderCellDef>Type</th>
               <td mat-cell *matCellDef="let row">
-                Compactor
+                {{row?.assetType}}
+                <!-- Compactor -->
                 <!-- <span class="header-label">days:</span> -->
               </td>
             </ng-container>
 
-            
+
             <!-- Name Column -->
             <ng-container matColumnDef="location">
               <th mat-header-cell *matHeaderCellDef>Location</th>
               <td mat-cell *matCellDef="let row">
-                PCA5GFD
+                <!-- {{row?.assetType}} -->
+                <!-- PCA5GFD -->
                 <!-- <span class="header-label">days:</span> -->
               </td>
             </ng-container>
@@ -183,22 +166,17 @@
             <ng-container matColumnDef="status">
               <th mat-header-cell *matHeaderCellDef>Status</th>
               <td mat-cell *matCellDef="let row">
-                <mat-icon>no_crash</mat-icon>
+                <mat-icon>{{globals.getIcon('assetStatus',row?.status)}}</mat-icon>
                 <!-- <mat-icon>car_crash</mat-icon>
                 <mat-icon>car_repair</mat-icon> -->
-                
+
                 <!-- <span class="header-label">days:</span> -->
               </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr
-              mat-row
-              *matRowDef="let element; columns: displayedColumns"
-              class="example-element-row"
-              [ngClass]="{ 'selected-row': selectedId == element.id }"
-              (click)="openDialog(element)"
-            ></tr>
+            <tr mat-row *matRowDef="let element; columns: displayedColumns" class="example-element-row"
+              [ngClass]="{ 'selected-row': selectedId == element.id }"></tr>
             <tr class="mat-row" *matNoDataRow>
               <td class="mat-cell" [attr.colspan]="displayedColumns.length">No Onboarding Data</td>
             </tr>

@@ -295,13 +295,13 @@
                 <mat-label>Retirement Date</mat-label>
 
                 <input matInput (focus)="picker.open()" [min]="currentDate" [matDatepicker]="picker" placeholder=""
-                  formControlName="retirementDate" retirementDate
-                  [ngClass]="{'is-invalid':submitted && f.retirementDate.hasError}" />
+                  formControlName="strRetirementDate" strRetirementDate
+                  [ngClass]="{'is-invalid':submitted && f.strRetirementDate.hasError}" />
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
                 <!-- <input matInput placeholder="" /> -->
 
-                <mat-error *ngIf="submitted && checkError('retirementDate', 'required')">
+                <mat-error *ngIf="submitted && checkError('strRetirementDate', 'required')">
                   Retirement date is required
                 </mat-error>
               </mat-form-field>

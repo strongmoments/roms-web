@@ -76,7 +76,7 @@
                   <div style="display:flex; align-items: center;">
                     <img class="m-r-10 list-Img"
                       onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
-                      [src]="baseUrl+(row && row.profileImage && row.profileImage.length>0?row.profileImage[0]?.digitalAssets?.url:'')+'&key='+user.token"
+                      [src]="globals.generateFileUrl(row && row.profileImage && row.profileImage.length>0?row.profileImage[0]?.digitalAssets?.url:'',user.token)"
                       alt="" />
                     {{ row?.employeeName }}
                     <!-- {{baseUrl}}{{row && row.profileImage && row.profileImage.length>0?row.profileImage[0]?.digitalAssets?.url:''}}&key={{user.token}} -->

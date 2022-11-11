@@ -114,6 +114,7 @@ export class VerticalAppHeaderComponent {
   ];
   user: any = {};
   eve: any;
+  baseUrl: string = environment.apiUrl;
   constructor(
     private translate: TranslateService,
     private authService: AuthenticationService,

@@ -16,6 +16,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ImagePreviewDialog } from 'src/app/shared/image-preview-dialog/image-preview-dialog.component';
+import { environment } from 'src/environments/environment';
+import { AuthenticationService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-leave-request-list',
@@ -75,6 +77,8 @@ export class LeaveRequestListComponent implements OnInit, AfterViewInit {
   startDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 1));
   endDate: Date = new Date();
   selectedImage: any = '';
+  baseUrl: string = environment.apiUrl;
+  user: any;
   constructor(
     private dialog: MatDialog,
     public util: Utils,
@@ -85,8 +89,10 @@ export class LeaveRequestListComponent implements OnInit, AfterViewInit {
     private datePipe: DatePipe,
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private authService: AuthenticationService
   ) {
     this.globals = globals;
+    this.user = this.authService.getCurrentUser();
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };

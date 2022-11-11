@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 @Injectable()
 export class Globals {
     username: string = '';
@@ -9,6 +10,11 @@ export class Globals {
     passwordHint: string = `Password should be at least 8 characters long and \n should contain one number,\none character and one special character`
     defaultAbn: number = 75493363262
     defaultUsi: string = 'CBU0100AU'
+    baseUrl = environment.apiUrl
+    generateFileUrl(url: string, token: any) {
+        return `${this.baseUrl}${url}&key=${token}`;
+    }
+
     whatClassIsIt(someValue: number) {
         if (someValue == 1)
             return "green"
@@ -46,6 +52,15 @@ export class Globals {
         }
     }
 
+    getIcon(key: string, id: any) {
+        let instance: any = this;
+        if (key && id && instance[key] !== undefined && instance[key] !== null) {
+            let ele: any = instance[key].find((elem: any) => elem.value == id);
+            return ele && ele.icon ? ele.icon : '';
+        } else {
+            return '';
+        }
+    }
 
     leaveStatus = [
         { name: 'Pending', icon: 'hourglass_top', value: 1, colorClass: 'pending', checkboxColorClass: 'pending-checkbox' },
@@ -124,9 +139,9 @@ export class Globals {
 
 
     assetStatus = [
-        { name: 'Available', value: 1 },
-        { name: 'Down', value: 2 },
-        { name: 'Disposed', value: 3 }
+        { name: 'Available', value: 1, icon: 'no_crash' },
+        { name: 'Down', value: 2, icon: 'car_crash' },
+        { name: 'Disposed', value: 3, icon: 'car_repair' }
     ]
 
     phoneCode = [

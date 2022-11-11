@@ -116,7 +116,7 @@
 <!-- Profile - style you can find in header.scss -->
 <!-- ============================================================== -->
 <button [matMenuTriggerFor]="profile" mat-icon-button class="m-r-5">
-  <img onerror="this.onerror=null;this.src='../../../../assets/img/favicon.png';" [src]="user && user.profileImage && user.profileImage.length>0?user.profileImage[0].digitalAssets?.url:''"
+  <img onerror="this.onerror=null;this.src='../../../../assets/img/favicon.png';" [src]="user && user.profileImage && user.profileImage.length>0?(baseUrl+user.profileImage[0].digitalAssets?.url+'&key='+user.token):''"
      class="profile-pic" />
 </button>
 <mat-menu #profile="matMenu" class="mymegamenu">

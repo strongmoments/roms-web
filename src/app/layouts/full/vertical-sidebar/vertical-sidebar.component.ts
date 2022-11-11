@@ -23,7 +23,7 @@ import { environment } from 'src/environments/environment';
 export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
   public config: PerfectScrollbarConfigInterface = {};
   mobileQuery: MediaQueryList;
-
+  
   @Input() showClass: boolean = false;
   @Output() notify: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -36,7 +36,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
   user: any = {};
   userPermissions: any = {};
   menuItems: Menu[] = [];
-
+  baseUrl: string = environment.apiUrl;
   addExpandClass(element: any) {
     if (element === this.showMenu) {
       this.showMenu = '0';

@@ -208,39 +208,39 @@ export class AssetsListComponent implements OnInit, OnChanges {
       .pipe(first())
       .subscribe((result: any) => {
         let data: any = [];
-
-        result.data = result.data.sort((x: any, y: any) => {
-          let a: any = new Date(parseInt(y.registrationDate ? y.registrationDate : 0));
-          let b: any = new Date(parseInt(x.registrationDate ? x.registrationDate : 0));
-          console.log(y.registrationDate, a, b, x.registrationDate)
-          return a - b;
-        });
+        data = result.data;
+        // result.data = result.data.sort((x: any, y: any) => {
+        //   let a: any = new Date(parseInt(y.registrationDate ? y.registrationDate : 0));
+        //   let b: any = new Date(parseInt(x.registrationDate ? x.registrationDate : 0));
+        //   console.log(y.registrationDate, a, b, x.registrationDate)
+        //   return a - b;
+        // });
 
         // console.log(result.data.length, 'result.data.length')
-        for (let i = 0; i < result.data.length; i++) {
-          // let statusName = this.getStatus(result.data[i]?.status);
-          let convertedRegistrationDate = this.datePipe.transform(result.data[i].registrationDate, 'dd/MM/yyyy');
+        // for (let i = 0; i < result.data.length; i++) {
+        //   // let statusName = this.getStatus(result.data[i]?.status);
+        //   let convertedRegistrationDate = this.datePipe.transform(result.data[i].registrationDate, 'dd/MM/yyyy');
 
-          let convertedStartdDate = this.datePipe.transform(result.data[i].startdDate, 'dd/MM/yyyy');
-          let convertedEndDate = this.datePipe.transform(result.data[i].endDate, 'dd/MM/yyyy');
-          let employeeName = '';
-          if (result.data[i].personal && result.data[i].personal != 'null') {
-            employeeName = result.data[i] && result.data[i].personal ? `${result.data[i].personal.firstName} ${result.data[i].personal.lastName}` : '';
-          } else {
-            employeeName = result.data[i] && result.data[i].firstName ? `${result.data[i].firstName} ${result.data[i].lastName}` : '';
+        //   let convertedStartdDate = this.datePipe.transform(result.data[i].startdDate, 'dd/MM/yyyy');
+        //   let convertedEndDate = this.datePipe.transform(result.data[i].endDate, 'dd/MM/yyyy');
+        //   let employeeName = '';
+        //   if (result.data[i].personal && result.data[i].personal != 'null') {
+        //     employeeName = result.data[i] && result.data[i].personal ? `${result.data[i].personal.firstName} ${result.data[i].personal.lastName}` : '';
+        //   } else {
+        //     employeeName = result.data[i] && result.data[i].firstName ? `${result.data[i].firstName} ${result.data[i].lastName}` : '';
 
-          }
-          data.push({
-            ...result.data[i],
-            employeeName: employeeName,
-            convertedEndDate: convertedEndDate,
-            convertedStartdDate: convertedStartdDate,
-            convertedRegistrationDate: convertedRegistrationDate,
-            totalProgress: this.getProgressValue(result.data[i]),
-            employeeEmail: (result.data[i] && result.data[i].personal ? result.data[i].personal.email : ''),
-            employeePhone: (result.data[i] && result.data[i].personal ? result.data[i].personal.phone : '')
-          });
-        }
+        //   }
+        // data.push({
+        //   ...result.data[i],
+        //   // employeeName: employeeName,
+        //   // convertedEndDate: convertedEndDate,
+        //   // convertedStartdDate: convertedStartdDate,
+        //   // convertedRegistrationDate: convertedRegistrationDate,
+        //   // totalProgress: this.getProgressValue(result.data[i]),
+        //   // employeeEmail: (result.data[i] && result.data[i].personal ? result.data[i].personal.email : ''),
+        //   // employeePhone: (result.data[i] && result.data[i].personal ? result.data[i].personal.phone : '')
+        // });
+        // }
 
         // data.map((elem: any) => {
         //   return (elem.body.time = new Date(parseInt(elem.body.time)));
@@ -280,18 +280,6 @@ export class AssetsListComponent implements OnInit, OnChanges {
     return options;
   }
 
-  getStatus(status: any) {
-    return this.globals.userApplicationStatus.find((elem: any) => {
-      return elem.value == status;
-    })?.name;
-  }
-
-  getStatusColor(status: any, isCheckbox: boolean = false) {
-    let elem: any = this.globals.userApplicationStatus.find((elem: any) => {
-      return elem.value == status;
-    });
-    return elem ? (isCheckbox == true ? elem.checkboxColorClass : elem.colorClass) : '';
-  }
 
   applyFilter(isTextSearch: boolean = false): void {
     // console.log(this.search, 'search', this.startDate, 'startdate', this.endDate, 'enddate');
@@ -303,23 +291,23 @@ export class AssetsListComponent implements OnInit, OnChanges {
       let data = this.totalData;
       if (this.startDate && this.endDate) {
         console.log(data, 'asas');
-        this.startDate = new Date(new Date(this.startDate).setHours(0, 0, 0, 0));
-        this.endDate = new Date(new Date(this.endDate).setHours(23, 59, 59, 59));
-        this.dataSource.data = data.filter((elem: any) => {
-          let date: any = new Date(parseInt(elem.startdDate));
-          date.setHours(0, 0, 0, 0);
-          date = new Date(date);
-          // console.log(this.startDate, this.endDate, date)
-          return (date >= this.startDate && date <= this.endDate)
-        });
+        // this.startDate = new Date(new Date(this.startDate).setHours(0, 0, 0, 0));
+        // this.endDate = new Date(new Date(this.endDate).setHours(23, 59, 59, 59));
+        // this.dataSource.data = data.filter((elem: any) => {
+        //   let date: any = new Date(parseInt(elem.startdDate));
+        //   date.setHours(0, 0, 0, 0);
+        //   date = new Date(date);
+        //   // console.log(this.startDate, this.endDate, date)
+        //   return (date >= this.startDate && date <= this.endDate)
+        // });
         // console.log(this.status, this.endDate)
 
-        this.dataSource.data = data.filter((elem: any) => {
-          // console.log(elem.totalProgress,(this.status == 'all' || this.status == '' ? parseInt(elem.totalProgress) <= 100 : (this.status == 'pending' ? parseInt(elem.totalProgress) < 100 : parseInt(elem.totalProgress) == 100)),'asaskj')
-          // return true;
-          return (this.status == 'all' || this.status == '' ? parseInt(elem.totalProgress) <= 100 : (this.status == 'pending' ? parseInt(elem.totalProgress) < 100 : parseInt(elem.totalProgress) == 100));
-          // return (date >= this.startDate && date <= this.endDate)
-        });
+        // this.dataSource.data = data.filter((elem: any) => {
+        //   // console.log(elem.totalProgress,(this.status == 'all' || this.status == '' ? parseInt(elem.totalProgress) <= 100 : (this.status == 'pending' ? parseInt(elem.totalProgress) < 100 : parseInt(elem.totalProgress) == 100)),'asaskj')
+        //   // return true;
+        //   return (this.status == 'all' || this.status == '' ? parseInt(elem.totalProgress) <= 100 : (this.status == 'pending' ? parseInt(elem.totalProgress) < 100 : parseInt(elem.totalProgress) == 100));
+        //   // return (date >= this.startDate && date <= this.endDate)
+        // });
       }
       // this.refresh(this.getDefaultOptions());
     }

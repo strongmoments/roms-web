@@ -39,7 +39,7 @@ export class AssetsAddComponent implements OnInit {
       status: new FormControl('', [Validators.required]),
       retireAsset: new FormControl(false, [Validators.required]),
       ownership: new FormControl(false, [Validators.required]),
-      retirementDate: new FormControl('', [Validators.required])
+      strRetirementDate: new FormControl('', [Validators.required])
       // assetImageId
       // QrCodeId
     });
@@ -123,8 +123,17 @@ export class AssetsAddComponent implements OnInit {
     }
 
     let formValues = this.form.value;
+    formValues['assetClassName'] = formValues.assetClass;
+    formValues.assetClass = '';
+
+    formValues['assetTypeName'] = formValues.assetType;
+    formValues.assetType = '';
+
+    formValues['categoryName'] = formValues.category;
+    formValues.category = '';
+
     formValues.ownership = formValues.ownership == true ? 'owned' : 'rented';
-    formValues.retirementDate = moment(formValues.retirementDate).utc().format('DD/MM/YYYY');
+    formValues.strRetirementDate = moment(formValues.strRetirementDate).utc().format('DD/MM/YYYY');
     formValues.assetImageId = this.attachmentFile;
     console.log(formValues);
     this.assetsService.save(formValues).subscribe(

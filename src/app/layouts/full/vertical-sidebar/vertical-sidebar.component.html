@@ -7,8 +7,9 @@
   ">
   <!-- User profile image -->
   <div class="profile-img">
-    <img onerror="this.onerror=null;this.src='../../../../assets/img/favicon.png';" [src]="user && user.profileImage && user.profileImage.length>0?user.profileImage[0].digitalAssets?.url:''" 
-    (click)="handleNotify()" />
+    <img onerror="this.onerror=null;this.src='../../../../assets/img/favicon.png';"
+      [src]="user && user.profileImage && user.profileImage.length>0?(baseUrl+user.profileImage[0].digitalAssets?.url+'&key='+user.token):''"
+      (click)="handleNotify()" />
   </div>
   <!-- User profile text-->
   <!-- ============================================================== -->
