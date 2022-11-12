@@ -14,6 +14,7 @@ import * as moment from 'moment';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ImagePreviewDialog } from 'src/app/shared/image-preview-dialog/image-preview-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthenticationService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-leave-apply-form',
@@ -56,7 +57,8 @@ export class LeaveApplyFormComponent implements OnInit {
   selectedId: any;
   attachments: any = [];
   attachmentFiles: any = [];
-  constructor(private dialog: MatDialog, public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private leaveService: LeaveService, private router: Router, private activatedRoute: ActivatedRoute) {
+  user: any;
+  constructor(private dialog: MatDialog, public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private leaveService: LeaveService, private router: Router, private activatedRoute: ActivatedRoute, private authService: AuthenticationService) {
     // console.log(this.minDate, this.maxDate)
     this.globals = globals;
     this.form = this.fb.group({
@@ -69,6 +71,7 @@ export class LeaveApplyFormComponent implements OnInit {
       leaveReason: new FormControl('', []),
     });
 
+    this.user = this.authService.getCurrentUser();
 
     this.leaveService.getLeaveTypes().subscribe((res) => {
       this.leaveTypeList = res && res.data ? res.data : [];

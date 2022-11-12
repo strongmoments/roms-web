@@ -79,7 +79,7 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
   departmentList: any = [];
   removedRows: any = [];
   selectedTabIndex: number = 0;
-
+  user: any;
   constructor(
     breakpointObserver: BreakpointObserver,
     public util: Utils,
@@ -93,7 +93,7 @@ export class LeaveReportComponent implements OnInit, AfterViewInit {
     private dialog: MatDialog
   ) {
     this.globals = globals;
-
+    this.user = this.authService.getCurrentUser();
     this.authService.getAllEmployeeType().subscribe((result: any) => {
       this.employeeTypeList = result && result.data && result.data.length > 0 ? result.data : [];
     });

@@ -69,6 +69,7 @@ export class OnboardingListComponent implements OnInit, OnChanges {
   // selectedTabIndex: number = 0;
   selectedId: string = '';
   selectedRecord: any = {};
+  user: any;
   constructor(
     private dialog: MatDialog,
     breakpointObserver: BreakpointObserver,
@@ -84,6 +85,7 @@ export class OnboardingListComponent implements OnInit, OnChanges {
     private router: Router,
   ) {
     this.globals = globals;
+    this.user = this.authService.getCurrentUser();
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };

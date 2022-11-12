@@ -3,7 +3,7 @@
     alt="Photo of a Shiba Inu" />
   <mat-card-content>
     <div class="pro-img">
-      <img onerror="this.onerror=null;this.src='../../../../assets/img/rtl-logo-new-icon.jpg';" [src]="user && user.profileImage && user.profileImage.length>0?user.profileImage[0].digitalAssets?.url:''"
+      <img onerror="this.onerror=null;this.src='../../../../assets/img/rtl-logo-new-icon.jpg';" [src]="user && user.profileImage && user.profileImage.length>0?globals.generateFileUrl(user.profileImage[0].digitalAssets?.url,user.token):''"
         width="100" />
     </div>
     <h3 class="m-b-0">{{user?.firstName}} {{user?.lastName}}</h3>

@@ -487,7 +487,7 @@
               <div class="d-flex">
                 <img class="mat-card-avatar"
                   onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
-                  [src]="row?.employe?.profileImage | base64Image" />
+                  [src]="globals.generateFileUrl(row && row?.employe.profileImage && row?.employe.profileImage.length>0?row?.employe.profileImage[0]?.digitalAssets?.url:'')" />
                 <div class="m-l-15">
                   <p class="font-medium m-b-0 m-t-0">
                     {{ row?.staffName }}
@@ -650,9 +650,9 @@
                   <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center">
                     <div fxFlex.gt-sm="50" fxFlex="100" fxFlexAlign="center">
                       <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="mat-body-clp">
-                        <div fxFlex.gt-sm="50" fxFlex="100" fxFlexAlign="center" >
+                        <div fxFlex.gt-sm="50" fxFlex="100" fxFlexAlign="center">
                           <!-- <mat-form-field appearance="outline" class="m-10"> -->
-                            <mat-label>Reason</mat-label>
+                          <mat-label>Reason</mat-label>
                           <textarea matInput placeholder="Reason" class="text-reason"
                             disabled>{{ element?.leaveReason }} </textarea>
                           <!-- </mat-form-field> -->
@@ -661,11 +661,11 @@
                           <div class="collapse-img">
                             <ng-container *ngFor="let item of element?.attachments">
                               <img *ngIf="item?.digitalAssets.fileType.includes( 'image')"
-                                (click)="openImageDialog(item?.digitalAssets?.url)" [src]="item?.digitalAssets?.url"
-                                alt="" />
+                                (click)="openImageDialog($event.target.src)"
+                                [src]="globals.generateFileUrl(item?.digitalAssets?.url,user.token)" alt="" />
                               <img *ngIf="item?.digitalAssets.fileType.includes('pdf')"
-                                (click)="openFile(item?.digitalAssets?.url)" src="../../../assets/images/pdf_icon.png"
-                                alt="" />
+                                (click)="openFile(globals.generateFileUrl(item?.digitalAssets?.url,user.token))"
+                                src="../../../assets/images/pdf_icon.png" alt="" />
 
                             </ng-container>
 
@@ -688,7 +688,7 @@
                               placeholder="Comment"
                               (change)="addComment(i, $event)"
                             /> -->
-                            <mat-label>Manager's Comment</mat-label>
+                          <mat-label>Manager's Comment</mat-label>
                           <textarea matInput placeholder="Reason" class="text-reason"
                             disabled>{{ element?.reviewerRemark }} </textarea>
                           <!-- </mat-form-field> -->

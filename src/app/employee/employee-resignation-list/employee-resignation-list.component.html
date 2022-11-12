@@ -64,7 +64,7 @@
                         <td mat-cell *matCellDef="let row; let i = index">
                             <div class="d-flex">
                                 <img class="mat-card-avatar"
-                                    [src]="globals.generateFileUrl(row?.employee?.profileImage,user.token)" />
+                                    [src]="row && row.employee && row.employee.profileImage.length>0?globals.generateFileUrl(row.employee.profileImage[0]?.digitalAssets?.url,user.token):''" />
                                 <div class="m-l-15">
                                     <p class="font-medium m-b-0 m-t-0">
                                         {{ row?.employee?.firstName }} {{ row?.employee?.lastName }}
@@ -84,7 +84,7 @@
                         <td mat-cell *matCellDef="let row; let i = index">
                             <div class="d-flex">
                                 <img class="mat-card-avatar"
-                                    [src]="globals.generateFileUrl(row?.employeeImage,user.token)" />
+                                    [src]="row?.employeeImage | base64Image" />
                             </div>
                         </td>
                     </ng-container>
@@ -95,7 +95,7 @@
                         <td mat-cell *matCellDef="let row; let i = index">
                             <div class="d-flex">
                                 <img class="mat-card-avatar"
-                                    [src]="globals.generateFileUrl(row?.signature,user.token)" />
+                                [src]="row?.signature | base64Image" />
                             </div>
                         </td>
                     </ng-container>

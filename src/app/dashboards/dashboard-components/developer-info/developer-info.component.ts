@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
+import { Globals } from 'src/app/globals';
 
 @Component({
   selector: 'app-developer-info',
@@ -8,7 +9,9 @@ import { AuthenticationService } from 'src/app/core/services/auth.service';
 })
 export class DeveloperInfoComponent {
   user:any={};
-  constructor(private authService:AuthenticationService) {
+  globals:Globals;
+  constructor(private authService:AuthenticationService,private global:Globals) {
+    this.globals=global;
     this.user=this.authService.getCurrentUser()
   }
 }

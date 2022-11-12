@@ -494,7 +494,7 @@
                   <mat-card-content>
                     <div class="pro-img h-128">
                       <img onerror="this.onerror=null;this.src='../../../../assets/img/user-default-img.jpg';"
-                        [src]="managerData && managerData.profileImage && managerData.profileImage.length>0?managerData.profileImage[0]?.digitalAssets?.url:''"
+                        [src]="managerData && managerData.profileImage && managerData.profileImage.length>0?globals.generateFileUrl(managerData.profileImage[0]?.digitalAssets?.url,user.token):''"
                         width="100" class="img-fluid img-circle" />
                     </div>
                     <h3 class="m-b-0 h-30">
@@ -650,7 +650,7 @@
                                   <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="mat-body-clp">
                                     <div fxFlex.gt-sm="50" fxFlex="100" fxFlexAlign="center">
                                       <!-- <mat-form-field appearance="outline" class="m-10"> -->
-                                        <mat-label>Reason</mat-label>
+                                      <mat-label>Reason</mat-label>
                                       <textarea matInput placeholder="Reason" class="text-reason"
                                         disabled>{{ element?.leaveReason }} </textarea>
                                       <!-- </mat-form-field> -->
@@ -686,7 +686,7 @@
                                           placeholder="Comment"
                                           (change)="addComment(i, $event)"
                                         /> -->
-                                        <mat-label>Manager's Comment</mat-label>
+                                      <mat-label>Manager's Comment</mat-label>
                                       <textarea matInput placeholder="Reason" class="text-reason"
                                         disabled>{{ element?.reviewerRemark }} </textarea>
                                       <!-- </mat-form-field> -->
