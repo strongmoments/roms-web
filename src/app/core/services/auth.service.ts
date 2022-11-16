@@ -24,6 +24,9 @@ export class AuthenticationService {
         const userData = this.getUserData();
         this.userSubject = new BehaviorSubject<User>(userData);
         this.user = this.userSubject.asObservable();
+        setTimeout(() => {
+            this.updateUserImage();
+        }, 2000)
     }
     getUserData() {
         const userData = localStorage.getItem(environment.localStorage) || sessionStorage.getItem(environment.localStorage);
@@ -102,15 +105,17 @@ export class AuthenticationService {
 
     updateUserImage() {
         let user = this.getUserData();
-        this.employeeService.getById(user.userDetail.id).subscribe((res) => {
-            user.userDetail = res;
-            console.log('before', 'useruser')
-            this.saveUserData(user);
-            console.log('after', 'useruser')
+        if (user && user.userDetail) {
+            this.employeeService.getById(user.userDetail.id).subscribe((res) => {
+                user.userDetail = res;
+                console.log('before', 'useruser')
+                this.saveUserData(user);
+                console.log('after', 'useruser')
 
-            // user.userDetail['profileImage']=[{digitalAssets:{url}}];
-            this.userSubject.next(user);
-        })
+                // user.userDetail['profileImage']=[{digitalAssets:{url}}];
+                this.userSubject.next(user);
+            });
+        }
 
     }
 
@@ -289,5 +294,10 @@ export class AuthenticationService {
 
     uploadFile(data: any) {
         return this.http.post<any>(`${environment.apiUrl}/v1/files/upload`, data, {});
+    }
+
+
+    removeRegistration(emailId: string) {
+        return this.http.get<any>(`${environment.apiUrl}/v1/registration/delete/${emailId}`);
     }
 }

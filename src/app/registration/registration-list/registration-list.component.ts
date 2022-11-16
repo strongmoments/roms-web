@@ -18,6 +18,8 @@ import { saveAs } from 'file-saver';
 import * as moment from 'moment';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { element } from 'protractor';
+import { ConfirmationDialog } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-registration-list',
@@ -74,7 +76,8 @@ export class RegistrationListComponent implements OnInit, OnChanges {
     private activatedRoute: ActivatedRoute,
     private authService: AuthenticationService,
     private employeeService: EmployeeService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {
     this.globals = globals;
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -278,4 +281,25 @@ export class RegistrationListComponent implements OnInit, OnChanges {
     }
   }
 
+
+  deleteRegistration(email: string) {
+    let options = {
+      data: {
+        message: 'Are you sure you want to delete request?',
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'Cancel'
+      }
+    }
+    const del = this.dialog.open(ConfirmationDialog, options);
+
+    del.afterClosed().subscribe((result: boolean) => {
+      console.log(result)
+      if (result === true) {
+        this.authService.removeRegistration(email).subscribe((res: any) => {
+          console.log(res, '================res')
+        })
+      }
+    });
+
+  }
 }
