@@ -82,7 +82,7 @@ export class RecruitmentComponent implements OnInit {
     this.form = this.fb.group({
       managerId: new FormControl('', [Validators.required]),
       roleId: new FormControl('', [Validators.required]),
-      demandType: new FormControl('', [Validators.required]),
+      demandType: new FormControl('1', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.pattern(this.utils.emailRegex), Validators.maxLength(30)]),
       propsedStartDate: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
@@ -247,5 +247,9 @@ export class RecruitmentComponent implements OnInit {
       console.log(result, 'resukt employee')
       this.clients = result;
     });
+  }
+
+  test(){
+    alert()
   }
 }

@@ -30,8 +30,8 @@
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Hiring Manager</mat-label>
-                <mat-select formControlName="managerId" placeholder="Hiring Manager" managerId>
-                  <input mat-input class="search-box-select" aria-label="Hiring Manager"
+                <mat-select  formControlName="managerId" placeholder="Hiring Manager" managerId>
+                  <input #managerAutoBox  mat-input class="search-box-select" aria-label="Hiring Manager"
                     (keyup)="searchEmployee($event)">
                   <!-- <mat-option value="">Select Employee</mat-option> -->
                   <mat-option *ngFor="let item of managers" [value]="item?.id">
@@ -64,7 +64,7 @@
             <div fxFlex.gt-sm="65" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Role Title</mat-label>
-                <input matInput placeholder="Operator" />
+                <input matInput placeholder="Ex: Operator" />
               </mat-form-field>
             </div>
             <!-- <div fxFlex.gt-sm="35" fxFlex="100"></div> -->

@@ -152,7 +152,10 @@
             <div fxFlex.gt-sm="15" fxFlex="100" class=" text-center">
               <mat-label>QR Code</mat-label>
               <div class="m-t-10" href="javascript:void(0);">
-                <img src="../../../assets/img/image.png" alt="" style="max-height: 110px; width: auto">
+                <qrcode [qrdata]="'Test qrcode'" style="max-height: 110px; width: auto" [errorCorrectionLevel]="'M'">
+                </qrcode>
+
+                <!-- <img src="../../../assets/img/image.png" alt="" style="max-height: 110px; width: auto"> -->
               </div>
             </div>
 

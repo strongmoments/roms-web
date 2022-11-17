@@ -35,6 +35,7 @@ import { LeavePopupDialogComponent } from './leave-popup-dialog/leave-popup-dial
 // import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
 // import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 // import { MenuListItemComponent } from './layout/menu-list-item/menu-list-item.component';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   imports: [
@@ -46,6 +47,7 @@ import { LeavePopupDialogComponent } from './leave-popup-dialog/leave-popup-dial
     TextMaskModule,
     PerfectScrollbarModule,
     QuillModule.forRoot(),
+    QRCodeModule,
   ],
   declarations: [
     // SpinnerComponent,
@@ -93,8 +95,9 @@ import { LeavePopupDialogComponent } from './leave-popup-dialog/leave-popup-dial
     CommonEmployeeProfileViewComponent,
     NewUserPrivacyPolicyDialog,
     LeavePopupDialogComponent,
+    QRCodeModule
     // AppBreadcrumbComponent
   ],
   providers: [MenuItems, HorizontalMenuItems, Base64ImagePipe, DateAgoPipe],
 })
-export class SharedModule {}
+export class SharedModule { }
