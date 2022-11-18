@@ -20,6 +20,7 @@ export class AssetsAddComponent implements OnInit {
   currentDate: Date = new Date();
   selectedFile: string = '';
   attachmentFile: any;
+  generatedCode: boolean = false;
   constructor(globals: Globals, private fb: FormBuilder, private alertService: AlertService, public util: Utils, private leaveService: LeaveService, private authService: AuthenticationService, private assetsService: AssetsService, private router: Router) {
     this.globals = globals;
     this.form = this.fb.group({
@@ -153,4 +154,15 @@ export class AssetsAddComponent implements OnInit {
 
   }
 
+  resetQr() {
+this.generatedCode=false; 
+  }
+
+  generateQrcode() {
+    if (this.form.controls['assetNo']!.value) {
+      this.generatedCode = true;
+    } else {
+      this.alertService.openSnackBar('Please enter asset no to generate QR code.');
+    }
+  }
 }

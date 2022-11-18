@@ -9,7 +9,7 @@
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Asset No</mat-label>
-                <input matInput placeholder="Ex: DZ1191" formControlName="assetNo" assetNo [ngClass]="{
+                <input (change)="resetQr()" matInput placeholder="Ex: DZ1191" formControlName="assetNo" assetNo [ngClass]="{
                   'is-invalid': submitted && checkError('assetNo', 'required')
                 }" />
                 <mat-error *ngIf="submitted && checkError('assetNo', 'required')">
@@ -142,7 +142,7 @@
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="15" fxFlex="100" class=" text-center">
               <mat-label>Asset Image</mat-label>
-              <div class="m-t-10 asset-img" href="javascript:void(0);">
+              <div class="m-t-10 asset-img">
                 <img onerror="this.onerror=null;this.src='../../../assets/img/image.png';" [src]="selectedFile" alt=""
                   style="max-height: 110px; width: auto">
                 <mat-icon (click)="attachment.click()">camera_alt</mat-icon>
@@ -151,11 +151,18 @@
             </div>
             <div fxFlex.gt-sm="15" fxFlex="100" class=" text-center">
               <mat-label>QR Code</mat-label>
-              <div class="m-t-10" href="javascript:void(0);">
-                <qrcode [qrdata]="'Test qrcode'" style="max-height: 110px; width: auto" [errorCorrectionLevel]="'M'">
-                </qrcode>
+              <div class="m-t-10">
 
-                <!-- <img src="../../../assets/img/image.png" alt="" style="max-height: 110px; width: auto"> -->
+                <div *ngIf="generatedCode">
+                  <qrcode [imageSrc]="'./assets/img/new-logo.png'" [imageHeight]="50" [imageWidth]="50"
+                    [qrdata]="f.assetNo!.value" style="max-height: 110px; width: auto" [errorCorrectionLevel]="'M'">
+                  </qrcode>
+
+                  <!-- <img src="../../../assets/img/image.png" alt="" style="max-height: 110px; width: auto"> -->
+                </div>
+                <button *ngIf="!generatedCode" mat-raised-button type="button" color="primary"
+                  (click)="generateQrcode()">{{!generatedCode?'Generate':'Regenerate'}} Qr</button>
+
               </div>
             </div>
 
