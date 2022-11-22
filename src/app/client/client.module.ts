@@ -9,6 +9,7 @@ import { ProjectAddComponent } from './project-add/project-add.component';
 import { AssetsListComponent } from './assets-list/assets-list.component';
 import { AssetsAddComponent } from './assets-add/assets-add.component';
 import { InspectionListComponent } from './inspection-list/inspection-list.component';
+import { InspectionAddComponent } from './inspection-add/inspection-add.component';
 
 
 
@@ -20,7 +21,8 @@ import { InspectionListComponent } from './inspection-list/inspection-list.compo
     ProjectAddComponent,
     AssetsListComponent,
     AssetsAddComponent,
-    InspectionListComponent
+    InspectionListComponent,
+    InspectionAddComponent
   ],
   imports: [
     CommonModule,

@@ -9,6 +9,7 @@ import { ProjectListComponent } from './project-list/project-list.component';
 import { AssetsListComponent } from './assets-list/assets-list.component';
 import { AssetsAddComponent } from './assets-add/assets-add.component';
 import { InspectionListComponent } from './inspection-list/inspection-list.component';
+import { InspectionAddComponent } from './inspection-add/inspection-add.component';
 
 const routes: Routes = [
   {
@@ -68,6 +69,14 @@ const routes: Routes = [
         component: InspectionListComponent,
        data: {
           title: 'Inspection List',
+          urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
+      },
+      },
+      {
+        path: 'inspection-add',
+        component: InspectionAddComponent,
+       data: {
+          title: 'Inspection Add',
           urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
       },
       },
