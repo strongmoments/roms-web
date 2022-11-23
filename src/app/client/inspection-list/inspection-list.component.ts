@@ -29,13 +29,6 @@ export class InspectionListComponent implements OnInit, OnChanges {
   submitted: boolean = false;
   displayedColumns: string[] = [
     // 'employeePic',
-    // 'employeeName',
-    // 'clientName',
-    // 'employeeNo',
-    // 'employeeRole',
-    // 'employeType.name',
-    // 'departments.description',
-    // 'convertedStartDate',
     // 'logo',
     'listName',
     'class',
@@ -44,7 +37,7 @@ export class InspectionListComponent implements OnInit, OnChanges {
     'categoryC'
     
   ];
-  // displayedColumnsHistory: string[] = ['inspetionName'];
+  displayedColumnsHistory: string[] = ['inspetionName'];
 
   // convertedStartDate: convertedStartDate,
   // employeeName: employeeName,
