@@ -1,3 +1,4 @@
+
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
@@ -19,25 +20,29 @@ import * as moment from 'moment';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { element } from 'protractor';
 
+
 @Component({
-  selector: 'app-inspection-list',
-  templateUrl: './inspection-list.component.html',
-  styleUrls: ['./inspection-list.component.scss']
+  selector: 'app-attandance',
+  templateUrl: './attandance.component.html',
+  styleUrls: ['./attandance.component.scss']
 })
-export class InspectionListComponent implements OnInit, OnChanges {
+export class AttandanceComponent implements OnInit, OnChanges {
   globals: Globals;
   submitted: boolean = false;
   displayedColumns: string[] = [
     // 'employeePic',
-    // 'logo',
-    'listName',
-    'class',
-    'categoryA',
-    'categoryB',
-    'categoryC'
+    // 'employeeName',
+    'empName',
+    'role',
+    'department',
+    'job',
+    'gang',
+    'shift',
+    'checkIn',
+    'checkOut',
+    'hours',
     
   ];
-  // displayedColumnsHistory: string[] = ['listName'];
 
   // convertedStartDate: convertedStartDate,
   // employeeName: employeeName,

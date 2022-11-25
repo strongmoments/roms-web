@@ -67,6 +67,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     HorizontalAppSidebarComponent,
     ReleaseNoteComponent,
     ComingSoonComponent,
+    
   ],
   imports: [
     BrowserModule,

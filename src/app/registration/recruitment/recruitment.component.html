@@ -97,9 +97,12 @@
                 <mat-label>Commitment</mat-label>
                 <mat-select placeholder="Commitment" formControlName="commitment" commitment
                   [ngClass]="{ 'is-invalid': submitted && f.commitment.hasError }">
+                  <mat-option value="option">Firm</mat-option>
                   <mat-option value="option">High</mat-option>
-                  <mat-option value="option">Low</mat-option>
                   <mat-option value="option">Medium</mat-option>
+                  <mat-option value="option">Low</mat-option>
+                  
+                 
                 </mat-select>
 
                 <mat-error *ngIf="submitted && checkError('commitment', 'required')">

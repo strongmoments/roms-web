@@ -10,6 +10,7 @@ import { AssetsListComponent } from './assets-list/assets-list.component';
 import { AssetsAddComponent } from './assets-add/assets-add.component';
 import { InspectionListComponent } from './inspection-list/inspection-list.component';
 import { InspectionAddComponent } from './inspection-add/inspection-add.component';
+import { AttandanceComponent } from './attandance/attandance.component';
 
 
 
@@ -22,7 +23,8 @@ import { InspectionAddComponent } from './inspection-add/inspection-add.componen
     AssetsListComponent,
     AssetsAddComponent,
     InspectionListComponent,
-    InspectionAddComponent
+    InspectionAddComponent,
+    AttandanceComponent
   ],
   imports: [
     CommonModule,
