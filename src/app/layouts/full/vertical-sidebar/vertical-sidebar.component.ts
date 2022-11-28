@@ -284,6 +284,9 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
           // if (this.userPermissions.operations.includes('assets')) {
           subMenu.push({ state: '/client/assets-list', name: 'Assets', type: 'link', icon: 'commute' });
           subMenu.push({ state: '/client/assets-add', name: 'Asset Add', type: 'link', icon: 'commute' });
+          subMenu.push({ state: '/client/attendance', name: 'Attendance', type: 'link', icon: 'commute' });
+          subMenu.push({ state: '/client/prestart', name: 'Prestart', type: 'link', icon: 'commute' });
+          subMenu.push({ state: '/client/work-order', name: 'Work-Order', type: 'link', icon: 'commute' });
           // }
           // if (this.userPermissions.operations.includes('inspection')) {
           //   subMenu.push({

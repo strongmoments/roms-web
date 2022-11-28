@@ -11,6 +11,8 @@ import { AssetsAddComponent } from './assets-add/assets-add.component';
 import { InspectionListComponent } from './inspection-list/inspection-list.component';
 import { InspectionAddComponent } from './inspection-add/inspection-add.component';
 import { AttandanceComponent } from './attandance/attandance.component';
+import { WorkOrderComponent } from './work-order/work-order.component';
+import { PrestartComponent } from './prestart/prestart.component';
 
 const routes: Routes = [
   {
@@ -82,10 +84,26 @@ const routes: Routes = [
       },
       },
       {
-        path: 'attandance',
+        path: 'attendance',
         component: AttandanceComponent,
        data: {
-          title: 'Attandance',
+          title: 'Attendance',
+          urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
+      },
+      },
+      {
+        path: 'work-order',
+        component: WorkOrderComponent,
+       data: {
+          title: 'Work-Order',
+          urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
+      },
+      },
+      {
+        path: 'prestart',
+        component: PrestartComponent,
+       data: {
+          title: 'Prestart',
           urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
       },
       },

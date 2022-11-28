@@ -1,4 +1,6 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import {  OnChanges, SimpleChanges } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { DatePipe } from '@angular/common';
@@ -20,29 +22,29 @@ import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { element } from 'protractor';
 
 @Component({
-  selector: 'app-transfer-list',
-  templateUrl: './transfer-list.component.html',
-  styleUrls: ['./transfer-list.component.scss'],
+  selector: 'app-prestart',
+  templateUrl: './prestart.component.html',
+  styleUrls: ['./prestart.component.scss']
 })
-export class TransferListComponent implements OnInit, OnChanges {
+export class PrestartComponent implements OnInit, OnChanges {
   globals: Globals;
   submitted: boolean = false;
   displayedColumns: string[] = [
-    'dateEffective',
-    'employeeName',
-    'employeeNo',
-    'fromProject',
-    'fromGang',
-    'fromWage',
-    'fromRate',
-    'toProject',
-    'toGang',
-    'toWage',
-    'toRate',
-    'statusName',
-    'approvedDate',
-    'approver',
+    'assetId',
+    'name',
+    'class',
+    'type',
+    'currentLocation',
+    'catA',
+    'catB',
+    'catC',
+    'conclusion',
+    'doneBy',
+    
   ];
+
+  // convertedStartDate: convertedStartDate,
+  // employeeName: employeeName,
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   // dataSourceHistory: MatTableDataSource<any> = new MatTableDataSource<any>();
@@ -54,7 +56,7 @@ export class TransferListComponent implements OnInit, OnChanges {
   // @ViewChild(MatSort, { static: false }) sortHistory: MatSort = Object.create(null);
   // pagesize = 10;
   pageNo = 0;
-  pageSize = 9999999999;
+  pageSize = 10;
   totalRecords: number = 0;
   search: string = ''; //by default 0 for pending list
   // currentDate: any = new Date();
@@ -120,21 +122,21 @@ export class TransferListComponent implements OnInit, OnChanges {
     this.refresh(this.getDefaultOptions());
     // console.log('in listing');
     // this.authService.addedResigstration.subscribe((record: any) => (this.dataSource.data.unshift(record)));
-    this.authService.addedResigstration.subscribe((record: any) => {
-      console.log(record, 'in listing12');
-      if (record) {
-        this.totalRecords = this.totalRecords + 1;
-        record.statusName = this.getStatus(record?.status);
-        record.convertedAppliedOn = this.datePipe.transform(record.appliedOn, 'dd/MM/yyyy');
-        // data.push({
-        //   ...record,
-        //   statusName: statusName,
-        //   convertedAppliedOn: convertedAppliedOn
-        // });
+    // this.authService.addedResigstration.subscribe((record: any) => {
+    //   console.log(record, 'in listing12');
+    //   if (record) {
+    //     this.totalRecords = this.totalRecords + 1;
+    //     record.statusName = this.getStatus(record?.status);
+    //     record.convertedAppliedOn = this.datePipe.transform(record.appliedOn, 'dd/MM/yyyy');
+    //     // data.push({
+    //     //   ...record,
+    //     //   statusName: statusName,
+    //     //   convertedAppliedOn: convertedAppliedOn
+    //     // });
 
-        this.dataSource.data = [record, ...this.dataSource.data];
-      }
-    });
+    //     this.dataSource.data = [record, ...this.dataSource.data];
+    //   }
+    // });
   }
 
   ngOnChanges(changes: SimpleChanges): void {}
@@ -144,13 +146,12 @@ export class TransferListComponent implements OnInit, OnChanges {
    * be able to query its view for the initialized paginator and sort.
    */
   ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
+    // this.dataSource.paginator = this.paginator;
     // this.dataSource.sort = this.sort;
     this.dataSource.sort = this.sort;
-    // this.paginator?.page.subscribe((page: PageEvent) => {
-    //   if (this.selectedTabIndex == 0) {
-    //   }
-    // });
+    this.paginator?.page.subscribe((page: PageEvent) => {
+      this.refresh(this.getDefaultOptions());
+    });
   }
 
   redirectForm(elem: any) {
@@ -194,29 +195,22 @@ export class TransferListComponent implements OnInit, OnChanges {
     // };
     // console.log(queryData, 'queryData');
 
-    this.authService
-      .getAllEmployeeRegisterReq()
+    this.employeeService
+      .getAll(options)
       .pipe(first())
       .subscribe((result: any) => {
-        this.totalRecords = result.data.length;
+        this.totalRecords = result.totalElement;
         let data: any = [];
-        result.data = result.data.sort((a: any, b: any) => {
-          return a.status - b.status;
-        });
-        result.data = result.data.sort((a: any, b: any) => {
-          var c: any = new Date(parseInt(a.appliedOn));
-          var d: any = new Date(parseInt(b.appliedOn));
-          // console.log(a,d);
-          return d - c;
-        });
 
         for (let i = 0; i < result.data.length; i++) {
           let statusName = this.getStatus(result.data[i]?.status);
-          let convertedAppliedOn = this.datePipe.transform(result.data[i].appliedOn, 'dd/MM/yyyy');
+          let convertedStartDate = this.datePipe.transform(result.data[i].startDate, 'dd/MM/yyyy');
+          let employeeName = `${result.data[i].firstName} ${result.data[i].lastName}`;
           data.push({
             ...result.data[i],
             statusName: statusName,
-            convertedAppliedOn: convertedAppliedOn,
+            convertedStartDate: convertedStartDate,
+            employeeName: employeeName,
           });
         }
         // if (isScrolled == true) {
@@ -238,7 +232,7 @@ export class TransferListComponent implements OnInit, OnChanges {
       // page: (obj != undefined ? (obj.pageIndex == null ? 1 : obj.pageIndex + 1) : 1),
       page: pageSize - 1,
       search: '',
-      query: '',
+      query: `empName=${this.search}`,
       pageSize:
         obj != undefined ? (obj.pageSize == null ? this.pageSize : obj.pageSize) : this.pageSize,
     };
@@ -262,10 +256,15 @@ export class TransferListComponent implements OnInit, OnChanges {
     // console.log(this.search, 'search', this.startDate, 'startdate', this.endDate, 'enddate');
     this.search = this.search.trim(); // Remove whitespace
     this.search = this.search.toLowerCase(); // Datasource defaults to lowercase matches
-    this.dataSource.filter = this.search;
+    // this.dataSource.filter = this.search;
     if (isTextSearch) {
-    } else {
-      this.refresh(this.getDefaultOptions());
+      this.pageNo = 0;
+      this.totalRecords = 0;
+      this.paginator.firstPage();
+      // this.dataSource.paginator?.pageIndex[0]=;
     }
+    // else {
+    this.refresh(this.getDefaultOptions());
+    // }
   }
 }

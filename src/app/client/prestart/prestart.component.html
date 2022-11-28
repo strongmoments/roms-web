@@ -8,9 +8,10 @@
                 <div fxFlex.gt-sm="80" class="p-r-10" fxFlex="100"></div>
                 <div fxFlex.gt-sm="20" class="text-center" fxFlex="50">
                     <button mat-icon-button>
-                      <mat-icon>cloud_download</mat-icon>
+                        <mat-icon>cloud_download</mat-icon>
                       Export List
                       <mat-icon>arrow_drop_down</mat-icon>
+                      
                     </button>
                   </div>
                 <div fxFlex.gt-sm="20" class="p-r-10" fxFlex="100">
@@ -19,6 +20,7 @@
                       matInput
                       (keyup)="applyFilter(true)"
                       [(ngModel)]="search"
+                      
                     />
                     <mat-icon matSuffix>search</mat-icon>
                   </mat-form-field>
@@ -26,7 +28,7 @@
                 <div fxFlex.gt-sm="15" class="p-r-10" fxFlex="100">
                     <!-- <mat-card-title class="mb-3">Basic Material select</mat-card-title> -->
                     <mat-form-field>
-                      <mat-select  placeholder="Department">
+                      <mat-select  placeholder="Class">
                         <mat-option value="Option1">Option1</mat-option>
                         <mat-option value="Option2">Option2</mat-option>
                         <mat-option value="Option3">Option3</mat-option>
@@ -39,7 +41,7 @@
                   <div fxFlex.gt-sm="15" class="p-r-10" fxFlex="100">
                     <!-- <mat-card-title class="mb-3">Basic Material select</mat-card-title> -->
                     <mat-form-field>
-                      <mat-select  placeholder="Job">
+                      <mat-select  placeholder="Type">
                         <mat-option value="Option1">Option1</mat-option>
                         <mat-option value="Option2">Option2</mat-option>
                         <mat-option value="Option3">Option3</mat-option>
@@ -52,7 +54,7 @@
                   <div fxFlex.gt-sm="15" class="p-r-10" fxFlex="100">
                     <!-- <mat-card-title class="mb-3">Basic Material select</mat-card-title> -->
                     <mat-form-field>
-                      <mat-select  placeholder="Role">
+                      <mat-select  placeholder="Location">
                         <mat-option value="Option1">Option1</mat-option>
                         <mat-option value="Option2">Option2</mat-option>
                         <mat-option value="Option3">Option3</mat-option>
@@ -63,17 +65,7 @@
                     </mat-form-field>
                   </div>
                   <div fxFlex.gt-sm="15" class="p-r-10" fxFlex="100">
-                    <!-- <mat-card-title class="mb-3">Basic Material select</mat-card-title> -->
-                    <mat-form-field>
-                      <mat-select  placeholder="Gang">
-                        <mat-option value="Option1">Option1</mat-option>
-                        <mat-option value="Option2">Option2</mat-option>
-                        <mat-option value="Option3">Option3</mat-option>
-                        <!-- <mat-option [value]="item.id" *ngFor="let item of departmentList">
-                            {{ item.description }}
-                          </mat-option> -->
-                      </mat-select>
-                    </mat-form-field>
+                    
                   </div>
                   <div fxFlex.gt-sm="20" class="font-12">
                     <mat-form-field appearance="outline">
@@ -110,9 +102,111 @@
           <mat-card-content>
             <div class="table-responsive infinite-scroll">
               <mat-table #table [dataSource]="dataSource" class="table employee-list no-wrap" matSort>
-                <!-- Name Column -->
-                <ng-container matColumnDef="empName">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Name</th>
+                 <!-- Name Column -->
+                 <ng-container matColumnDef="assetId">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Asset ID</th>
+                    <td mat-cell *matCellDef="let row">
+                      <!-- <span class="header-label">days:</span> -->
+    
+                      <div style="display: flex; align-items: center">
+                        <!-- <img
+                          class="m-r-10 list-Img"
+                          onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
+                          [src]="
+                            row && row.profileImage && row.profileImage.length > 0
+                              ? row.profileImage[0]?.digitalAssets?.url
+                              : ''
+                          "
+                          alt=""
+                        /> -->
+                        <!-- {{ row?.employeeName }} -->
+                        <img
+                          class="m-r-10 list-Img-1"
+                          src="../../../assets/img/user-default-img.jpg"
+                          alt=""
+                        />
+                        CP1815
+                      </div>
+                    </td>
+                  </ng-container>
+                  <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                    <td mat-cell *matCellDef="let row">
+                      <!-- <span class="header-label">days:</span> -->
+                      <!-- {{ row?.employeType?.name }} -->
+                      CAT 825G COMPACTOR
+                    </td>
+                  </ng-container>
+                    <!-- Name Column -->
+                <ng-container matColumnDef="class">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Class</th>
+                    <td mat-cell *matCellDef="let row">
+                      <!-- <span class="header-label">days:</span> -->
+                      <!-- {{ row?.employeType?.name }} -->
+                      Mobile Plant
+                    </td>
+                  </ng-container>
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="type">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+                    <td mat-cell *matCellDef="let row">
+                      <!-- <span class="header-label">days:</span> -->
+                      <!-- {{ row?.employeeNo }} -->
+                     Compactor
+                    </td>
+                  </ng-container>
+    
+                  
+                    <!-- Name Column -->
+                  <ng-container matColumnDef="currentLocation">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Current Location</th>
+                      <td mat-cell *matCellDef="let row">
+                        <!-- <span class="header-label">days:</span> -->
+                        <!-- {{ row?.employeeNo }} -->
+                       857019 | Loy Yang
+                      </td>
+                    </ng-container>
+                     
+                     <!-- Name Column -->
+                  <ng-container matColumnDef="catA">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Cat A</th>
+                      <td mat-cell *matCellDef="let row">
+                        <!-- <span class="header-label">days:</span> -->
+                        <!-- {{ row?.employeeNo }} -->
+                        2 issues
+                      </td>
+                    </ng-container>
+                      <!-- Name Column -->
+                <ng-container matColumnDef="catB">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Cat B</th>
+                    <td mat-cell *matCellDef="let row">
+                      <!-- <span class="header-label">days:</span> -->
+                      <!-- {{ row?.employeeNo }} -->
+                      1 issues
+                    </td>
+                  </ng-container>
+                   <!-- Name Column -->
+                <ng-container matColumnDef="catC">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Cat C</th>
+                    <td mat-cell *matCellDef="let row">
+                      <!-- <span class="header-label">days:</span> -->
+                      <!-- {{ row?.employeeNo }} -->
+                      1 issues
+                    </td>
+                  </ng-container>
+                    <!-- Name Column -->
+                  <ng-container matColumnDef="conclusion">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Conclusion</th>
+                      <td mat-cell *matCellDef="let row">
+                        <!-- <span class="header-label">days:</span> -->
+                        <!-- {{ row?.employeeNo }} -->
+                        Need Fix
+                      </td>
+                    </ng-container>
+                     <!-- Name Column -->
+                <ng-container matColumnDef="doneBy">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Done By</th>
                   <td mat-cell *matCellDef="let row">
                     <!-- <span class="header-label">days:</span> -->
   
@@ -138,77 +232,8 @@
                   </td>
                 </ng-container>
   
-                <!-- Name Column -->
-                <ng-container matColumnDef="role">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Role</th>
-                  <td mat-cell *matCellDef="let row">
-                    <!-- <span class="header-label">days:</span> -->
-                    <!-- {{ row?.employeType?.name }} -->
-                    Dozer Operator
-                  </td>
-                </ng-container>
-                <!-- Name Column -->
-                <ng-container matColumnDef="department">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Department</th>
-                  <td mat-cell *matCellDef="let row">
-                    <!-- <span class="header-label">days:</span> -->
-                    <!-- {{ row?.employeeNo }} -->
-                    Transport
-                  </td>
-                </ng-container>
-  
-                <ng-container matColumnDef="job">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Job</th>
-                  <td mat-cell *matCellDef="let row">
-                    <!-- {{ row?.departments?.description }} -->
-                    Energy Australia
-                  </td>
-                </ng-container>
-  
-                <ng-container matColumnDef="gang">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Gang</th>
-                  <td mat-cell *matCellDef="let row">
-                    <!-- {{ row?.convertedStartDate }} -->
-                    GS2121
-                  </td>
-                </ng-container>
-                <!-- Name Column -->
-                <ng-container matColumnDef="shift">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Shift</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      <!-- {{ row?.employeeNo }} -->
-                      Day
-                    </td>
-                  </ng-container>
-                  <!-- Name Column -->
-                <ng-container matColumnDef="checkIn">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Check In</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      <!-- {{ row?.employeeNo }} -->
-                      16:00
-                    </td>
-                  </ng-container>
-                   
-                   <!-- Name Column -->
-                <ng-container matColumnDef="checkOut">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Check Out</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      <!-- {{ row?.employeeNo }} -->
-                      07:00
-                    </td>
-                  </ng-container>
-                  <!-- Name Column -->
-                <ng-container matColumnDef="hours">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Hours</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      <!-- {{ row?.employeeNo }} -->
-                      9
-                    </td>
-                  </ng-container>
+                
+                 
   
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr

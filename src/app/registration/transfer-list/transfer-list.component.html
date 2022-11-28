@@ -97,20 +97,37 @@
                       {{ row?.project }}GHJK5678
                     </td>
                   </ng-container>
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="toProject">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>To Project</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      {{ row?.project }}GHJK5678
-                    </td>
-                  </ng-container>
+                  
                   <!-- Name Column -->
                   <ng-container matColumnDef="fromGang">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>From Gang</th>
                     <td mat-cell *matCellDef="let row">
                       <!-- <span class="header-label">days:</span> -->
                       {{ row?.gang }}G56789
+                    </td>
+                  </ng-container>
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="fromWage">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>From Wage</th>
+                    <td mat-cell *matCellDef="let row">
+                      <!-- <span class="header-label">days:</span> -->
+                      {{ row?.wageClass }}Level 67
+                    </td>
+                  </ng-container>
+                   <!-- Name Column -->
+                   <ng-container matColumnDef="fromRate">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>From Rate</th>
+                    <td mat-cell *matCellDef="let row">
+                      <!-- <span class="header-label">days:</span> -->
+                      {{ row?.rate }}$6789
+                    </td>
+                  </ng-container>
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="toProject">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>To Project</th>
+                    <td mat-cell *matCellDef="let row">
+                      <!-- <span class="header-label">days:</span> -->
+                      {{ row?.project }}GHJK5678
                     </td>
                   </ng-container>
                   <!-- Name Column -->
@@ -122,14 +139,7 @@
                     </td>
                   </ng-container>
 
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="fromWage">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>From Wage</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      {{ row?.wageClass }}Level 67
-                    </td>
-                  </ng-container>
+                  
                   <!-- Name Column -->
                   <ng-container matColumnDef="toWage">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>To Wage</th>
@@ -139,14 +149,7 @@
                     </td>
                   </ng-container>
 
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="fromRate">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>From Rate</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      {{ row?.rate }}$6789
-                    </td>
-                  </ng-container>
+                 
                   <!-- Name Column -->
                   <ng-container matColumnDef="toRate">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>To Rate</th>
