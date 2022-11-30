@@ -1,115 +1,107 @@
 <div fxLayout="row wrap">
-    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
-      <div>
-        <mat-card class="m-0 m-t-20 m-b-5">
-          <mat-card-content class="p-15 p-b-5">
-            <div class="m-l-10 m-r-10">
-              <div fxLayout="row wrap" fxFlexAlign="center" class="row" style="align-items: center">
-                <div fxFlex.gt-sm="80" class="p-r-10" fxFlex="100"></div>
-                <div fxFlex.gt-sm="20" class="text-center" fxFlex="50">
-                    <button mat-icon-button>
-                        <mat-icon>cloud_download</mat-icon>
-                      Export List
-                      <mat-icon>arrow_drop_down</mat-icon>
-                      
-                    </button>
-                  </div>
-                <div fxFlex.gt-sm="20" class="p-r-10" fxFlex="100">
-                  <mat-form-field>
+  <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+    <div>
+      <mat-card class="m-0 m-t-20 m-b-5">
+        <mat-card-content class="p-15 p-b-5">
+          <div class="m-l-10 m-r-10">
+            <div fxLayout="row wrap" fxFlexAlign="center" class="row" style="align-items: center">
+              <div fxFlex.gt-sm="80" class="p-r-10" fxFlex="100"></div>
+              <div fxFlex.gt-sm="20" class="text-center" fxFlex="50">
+                <button mat-icon-button>
+                  <mat-icon>cloud_download</mat-icon>
+                  Export List
+                  <mat-icon>arrow_drop_down</mat-icon>
+                </button>
+              </div>
+              <div fxFlex.gt-sm="20" class="p-r-10" fxFlex="100">
+                <mat-form-field>
+                  <input matInput (keyup)="applyFilter(true)" [(ngModel)]="search" />
+                  <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+              </div>
+              <div fxFlex.gt-sm="15" class="p-r-10" fxFlex="100">
+                <!-- <mat-card-title class="mb-3">Basic Material select</mat-card-title> -->
+                <mat-form-field>
+                  <mat-select placeholder="Class">
+                    <mat-option value="Option1">Option1</mat-option>
+                    <mat-option value="Option2">Option2</mat-option>
+                    <mat-option value="Option3">Option3</mat-option>
+                    <!-- <mat-option [value]="item.id" *ngFor="let item of departmentList">
+                            {{ item.description }}
+                          </mat-option> -->
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div fxFlex.gt-sm="15" class="p-r-10" fxFlex="100">
+                <!-- <mat-card-title class="mb-3">Basic Material select</mat-card-title> -->
+                <mat-form-field>
+                  <mat-select placeholder="Type">
+                    <mat-option value="Option1">Option1</mat-option>
+                    <mat-option value="Option2">Option2</mat-option>
+                    <mat-option value="Option3">Option3</mat-option>
+                    <!-- <mat-option [value]="item.id" *ngFor="let item of departmentList">
+                            {{ item.description }}
+                          </mat-option> -->
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div fxFlex.gt-sm="15" class="p-r-10" fxFlex="100">
+                <!-- <mat-card-title class="mb-3">Basic Material select</mat-card-title> -->
+                <mat-form-field>
+                  <mat-select placeholder="Location">
+                    <mat-option value="Option1">Option1</mat-option>
+                    <mat-option value="Option2">Option2</mat-option>
+                    <mat-option value="Option3">Option3</mat-option>
+                    <!-- <mat-option [value]="item.id" *ngFor="let item of departmentList">
+                            {{ item.description }}
+                          </mat-option> -->
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div fxFlex.gt-sm="15" class="p-r-10" fxFlex="100"></div>
+              <div fxFlex.gt-sm="20" class="font-12">
+                <mat-form-field appearance="outline">
+                  <mat-label (click)="picker.open()">Select Date Range</mat-label>
+                  <mat-date-range-input [rangePicker]="picker">
                     <input
-                      matInput
-                      (keyup)="applyFilter(true)"
-                      [(ngModel)]="search"
-                      
+                      matStartDate
+                      [(ngModel)]="startDate"
+                      placeholder="Start date"
+                      readonly
+                      (dateChange)="applyFilter()"
+                      (click)="picker.open()"
                     />
-                    <mat-icon matSuffix>search</mat-icon>
-                  </mat-form-field>
-                </div>
-                <div fxFlex.gt-sm="15" class="p-r-10" fxFlex="100">
-                    <!-- <mat-card-title class="mb-3">Basic Material select</mat-card-title> -->
-                    <mat-form-field>
-                      <mat-select  placeholder="Class">
-                        <mat-option value="Option1">Option1</mat-option>
-                        <mat-option value="Option2">Option2</mat-option>
-                        <mat-option value="Option3">Option3</mat-option>
-                        <!-- <mat-option [value]="item.id" *ngFor="let item of departmentList">
-                            {{ item.description }}
-                          </mat-option> -->
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                  <div fxFlex.gt-sm="15" class="p-r-10" fxFlex="100">
-                    <!-- <mat-card-title class="mb-3">Basic Material select</mat-card-title> -->
-                    <mat-form-field>
-                      <mat-select  placeholder="Type">
-                        <mat-option value="Option1">Option1</mat-option>
-                        <mat-option value="Option2">Option2</mat-option>
-                        <mat-option value="Option3">Option3</mat-option>
-                        <!-- <mat-option [value]="item.id" *ngFor="let item of departmentList">
-                            {{ item.description }}
-                          </mat-option> -->
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                  <div fxFlex.gt-sm="15" class="p-r-10" fxFlex="100">
-                    <!-- <mat-card-title class="mb-3">Basic Material select</mat-card-title> -->
-                    <mat-form-field>
-                      <mat-select  placeholder="Location">
-                        <mat-option value="Option1">Option1</mat-option>
-                        <mat-option value="Option2">Option2</mat-option>
-                        <mat-option value="Option3">Option3</mat-option>
-                        <!-- <mat-option [value]="item.id" *ngFor="let item of departmentList">
-                            {{ item.description }}
-                          </mat-option> -->
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                  <div fxFlex.gt-sm="15" class="p-r-10" fxFlex="100">
-                    
-                  </div>
-                  <div fxFlex.gt-sm="20" class="font-12">
-                    <mat-form-field appearance="outline">
-                      <mat-label (click)="picker.open()">Select Date Range</mat-label>
-                      <mat-date-range-input [rangePicker]="picker">
-                        <input
-                          matStartDate
-                          [(ngModel)]="startDate"
-                          placeholder="Start date"
-                          readonly
-                          (dateChange)="applyFilter()"
-                          (click)="picker.open()"
-                        />
-                        <input
-                          matEndDate
-                          placeholder="End date"
-                          readonly
-                          [(ngModel)]="endDate"
-                          (dateChange)="applyFilter()"
-                          (click)="picker.open()"
-                        />
-                      </mat-date-range-input>
+                    <input
+                      matEndDate
+                      placeholder="End date"
+                      readonly
+                      [(ngModel)]="endDate"
+                      (dateChange)="applyFilter()"
+                      (click)="picker.open()"
+                    />
+                  </mat-date-range-input>
 
-                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                      <mat-date-range-picker #picker></mat-date-range-picker>
-                    </mat-form-field>
-                  </div>
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-date-range-picker #picker></mat-date-range-picker>
+                </mat-form-field>
               </div>
             </div>
-          </mat-card-content>
-        </mat-card>
-  
-        <mat-card class="m-0 m-t-5 m-b-5">
-          <mat-card-content>
-            <div class="table-responsive infinite-scroll">
-              <mat-table #table [dataSource]="dataSource" class="table employee-list no-wrap" matSort>
-                 <!-- Name Column -->
-                 <ng-container matColumnDef="assetId">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Asset ID</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-    
-                      <div style="display: flex; align-items: center">
-                        <!-- <img
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="m-0 m-t-5 m-b-5">
+        <mat-card-content>
+          <div class="table-responsive infinite-scroll">
+            <mat-table #table [dataSource]="dataSource" class="table employee-list no-wrap" matSort>
+              <!-- Name Column -->
+              <ng-container matColumnDef="assetId">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Asset ID</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+
+                  <div style="display: flex; align-items: center">
+                    <!-- <img
                           class="m-r-10 list-Img"
                           onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
                           [src]="
@@ -119,99 +111,98 @@
                           "
                           alt=""
                         /> -->
-                        <!-- {{ row?.employeeName }} -->
-                        <img
-                          class="m-r-10 list-Img-1"
-                          src="../../../assets/img/user-default-img.jpg"
-                          alt=""
-                        />
-                        CP1815
-                      </div>
-                    </td>
-                  </ng-container>
-                  <!-- Name Column -->
-                <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      <!-- {{ row?.employeType?.name }} -->
-                      CAT 825G COMPACTOR
-                    </td>
-                  </ng-container>
-                    <!-- Name Column -->
-                <ng-container matColumnDef="class">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Class</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      <!-- {{ row?.employeType?.name }} -->
-                      Mobile Plant
-                    </td>
-                  </ng-container>
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="type">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      <!-- {{ row?.employeeNo }} -->
-                     Compactor
-                    </td>
-                  </ng-container>
-    
-                  
-                    <!-- Name Column -->
-                  <ng-container matColumnDef="currentLocation">
-                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Current Location</th>
-                      <td mat-cell *matCellDef="let row">
-                        <!-- <span class="header-label">days:</span> -->
-                        <!-- {{ row?.employeeNo }} -->
-                       857019 | Loy Yang
-                      </td>
-                    </ng-container>
-                     
-                     <!-- Name Column -->
-                  <ng-container matColumnDef="catA">
-                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Cat A</th>
-                      <td mat-cell *matCellDef="let row">
-                        <!-- <span class="header-label">days:</span> -->
-                        <!-- {{ row?.employeeNo }} -->
-                        2 issues
-                      </td>
-                    </ng-container>
-                      <!-- Name Column -->
-                <ng-container matColumnDef="catB">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Cat B</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      <!-- {{ row?.employeeNo }} -->
-                      1 issues
-                    </td>
-                  </ng-container>
-                   <!-- Name Column -->
-                <ng-container matColumnDef="catC">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Cat C</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      <!-- {{ row?.employeeNo }} -->
-                      1 issues
-                    </td>
-                  </ng-container>
-                    <!-- Name Column -->
-                  <ng-container matColumnDef="conclusion">
-                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Conclusion</th>
-                      <td mat-cell *matCellDef="let row">
-                        <!-- <span class="header-label">days:</span> -->
-                        <!-- {{ row?.employeeNo }} -->
-                        Need Fix
-                      </td>
-                    </ng-container>
-                     <!-- Name Column -->
-                <ng-container matColumnDef="doneBy">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Done By</th>
-                  <td mat-cell *matCellDef="let row">
-                    <!-- <span class="header-label">days:</span> -->
-  
-                    <div style="display: flex; align-items: center">
-                      <!-- <img
+                    <!-- {{ row?.employeeName }} -->
+                    <img
+                      class="m-r-10 Asset-Img"
+                      src="../../../assets/img/user-default-img.jpg"
+                      alt=""
+                    />
+                    CP1815
+                  </div>
+                </td>
+              </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  <!-- {{ row?.employeType?.name }} -->
+                  CAT 825G COMPACTOR
+                </td>
+              </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="class">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Class</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  <!-- {{ row?.employeType?.name }} -->
+                  Mobile Plant
+                </td>
+              </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  <!-- {{ row?.employeeNo }} -->
+                  Compactor
+                </td>
+              </ng-container>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="currentLocation">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Current Location</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  <!-- {{ row?.employeeNo }} -->
+                  857019 | Loy Yang
+                </td>
+              </ng-container>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="catA">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Cat A</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  <!-- {{ row?.employeeNo }} -->
+                  2 issues
+                </td>
+              </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="catB">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Cat B</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  <!-- {{ row?.employeeNo }} -->
+                  1 issues
+                </td>
+              </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="catC">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Cat C</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  <!-- {{ row?.employeeNo }} -->
+                  1 issues
+                </td>
+              </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="conclusion">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Conclusion</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  <!-- {{ row?.employeeNo }} -->
+                  Need Fix
+                </td>
+              </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="doneBy">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Done By</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+
+                  <div style="display: flex; align-items: center">
+                    <!-- <img
                         class="m-r-10 list-Img"
                         onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
                         [src]="
@@ -221,33 +212,31 @@
                         "
                         alt=""
                       /> -->
-                      <!-- {{ row?.employeeName }} -->
-                      <img
-                        class="m-r-10 list-Img"
-                        src="../../../assets/img/user-default-img.jpg"
-                        alt=""
-                      />
-                      Hill Bradyon
-                    </div>
-                  </td>
-                </ng-container>
-  
-                
-                 
-  
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr
-                  mat-row
-                  *matRowDef="let element; columns: displayedColumns"
-                  class="example-element-row"
-                  [ngClass]="{ 'selected-row': selectedId == element.id }"
-                ></tr>
-                <tr class="mat-row" *matNoDataRow>
-                  <td class="mat-cell" [attr.colspan]="displayedColumns.length">No Client Data</td>
-                </tr>
-              </mat-table>
-  
-              <!-- <mat-paginator
+                    <!-- {{ row?.employeeName }} -->
+                    <img
+                      class="m-r-10 list-Img"
+                      src="../../../assets/img/user-default-img.jpg"
+                      alt=""
+                    />
+                    Hill Bradyon
+                  </div>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr
+                mat-row
+                *matRowDef="let element; columns: displayedColumns"
+                class="example-element-row"
+                [ngClass]="{ 'selected-row': selectedId == element.id }"
+                (click)="openDialog(element)"
+              ></tr>
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" [attr.colspan]="displayedColumns.length">No Prestart Data</td>
+              </tr>
+            </mat-table>
+
+            <!-- <mat-paginator
                 [length]="totalRecords"
                 [pageIndex]="pageNo"
                 [pageSizeOptions]="[5, 10, 20]"
@@ -255,10 +244,77 @@
                 aria-label="Select page"
               >
               </mat-paginator> -->
-            </div>
-          </mat-card-content>
-        </mat-card>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<ng-template #employeeDetailDialog>
+  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+    <h1
+      mat-dialog-title
+      align="center"
+      class="color_blue"
+      style="font-size: 20px; margin-bottom: 25px"
+    >
+      Prestart Report
+    </h1>
+    <mat-divider></mat-divider>
+
+    <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20">
+      <div class="popup-head">
+        <div>
+          <img class="m-r-10 list-Img" src="../../../assets/img/user-default-img.jpg" alt="" />
+          <mat-label><b>Brandon Hill</b></mat-label>
+        </div>
+      </div>
+      <div class="popup-head2">
+        <div>
+          <mat-label>Current Manager</mat-label>
+          <Small>Robert Shephard</Small>
+        </div>
+        <div>
+          <mat-label>Project</mat-label>
+          <Small>Energy Audtralia</Small>
+        </div>
+        <div>
+          <mat-label>Location</mat-label>
+          <Small>Longway</Small>
+        </div>
+        <div>
+          <mat-label>Gang</mat-label>
+          <Small>GS3CAS</Small>
+        </div>
+        <div>
+          <mat-label>Wage Classification</mat-label>
+          <Small>Level 2</Small>
+        </div>
+        <div>
+          <mat-label>Rate</mat-label>
+          <Small>57</Small>
+        </div>
+        <div>
+          <mat-label>Award Type</mat-label>
+          <Small>Casual</Small>
+        </div>
+      </div>
+
+      <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+        <mat-divider> </mat-divider>
+      </div>
+
+      <div fxFlex.gt-sm="50" fxFlex="100" class="p-10" align="end">
+        <button class="button m-5" mat-raised-button color="primary" (click)="onSubmit()">
+          Assign Mechanic
+        </button>
+      </div>
+      <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+        <button class="button m-5" mat-raised-button color="primary" (click)="onSubmit()">
+          Cancle
+        </button>
       </div>
     </div>
   </div>
-  
+</ng-template>

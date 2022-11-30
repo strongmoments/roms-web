@@ -64,3 +64,51 @@
 .l-h-26{
   line-height: 26px;
 }
+
+.selected-row {
+  background-color: lavender !important;
+}
+.list-Img {
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+}
+.popup-head {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.popup-head div {
+  display: flex;
+  align-items: center;
+}
+.popup-head mat-progress-bar {
+  width: 175px;
+}
+.popup-head2 {
+  width: 100%;
+  display: flex;
+  align-items: top;
+  justify-content: space-around;
+}
+.popup-head2 div {
+  text-align: center;
+}
+.popup-head2 {
+  padding: 15px 1px 7px;
+}
+.popup-head2 div mat-label {
+  display: block;
+}
+.fd-re {
+  flex-direction: column;
+  align-items: flex-end !important;
+}
+.mat-row.cdk-row.example-element-row {
+  cursor: pointer;
+}
+.progress-layout {
+  display: flex;
+}
+  

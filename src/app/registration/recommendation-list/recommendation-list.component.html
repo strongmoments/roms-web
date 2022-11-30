@@ -1,9 +1,9 @@
 <div fxLayout="row wrap">
-    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
-      <div>
-        <mat-tab-group mat-stretch-tabs>
-          <mat-tab label="Recommendations">
-            <!-- <mat-card class="m-0 m-t-20 m-b-5">
+  <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+    <div>
+      <!-- <mat-tab-group mat-stretch-tabs>
+          <mat-tab label="Recommendations"> -->
+      <!-- <mat-card class="m-0 m-t-20 m-b-5">
               <mat-card-content class="p-15">
                 <mat-card-title class="p-10 p-t-0 p-l-25 p-r-0 export-btn">
                   <button mat-icon-button [matMenuTriggerFor]="exportMenu">
@@ -42,119 +42,132 @@
                   </div>
               </mat-card-content>
             </mat-card> -->
-  
-            <mat-card class="m-0 m-t-5 m-b-5">
-              <mat-card-content>
-                <div class="table-responsive infinite-scroll">
-                  <mat-table #table [dataSource]="dataSource" class="table employee-list no-wrap" matSort>
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="employeeName">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Emp Name</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      <!-- {{ row?.firstName }}{{ row?.lastName }} -->
-                      <div style="display:flex; align-items: center;">
-                      <img class="m-r-10 list-Img" src="assets/images/users/1.jpg" alt="" />
-                      KunalSharmaa
-                    </div>
-                    </td>
-                  </ng-container>
 
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="employeeNo">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Emp No</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      {{ row?.employeeNo }}
-                    </td>
-                  </ng-container>
+      <mat-card class="m-0 m-t-5 m-b-5">
+        <mat-card-content>
+          <div class="table-responsive infinite-scroll">
+            <mat-table #table [dataSource]="dataSource" class="table employee-list no-wrap" matSort>
+              <!-- Name Column -->
+              <ng-container matColumnDef="demandNo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Demand No</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  <!-- {{ row?.wageClass }} -->
+                  67
+                </td>
+              </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  <!-- {{ row?.firstName }}{{ row?.lastName }} -->
+                  <div style="display: flex; align-items: center">
+                    <img class="m-r-10 list-Img" src="assets/images/users/1.jpg" alt="" />
+                    KunalSharmaa
+                  </div>
+                </td>
+              </ng-container>
 
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="wageClass">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Wage Classification</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      {{ row?.wageClass }}Level 67
-                    </td>
-                  </ng-container>
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="gang">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Gang</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      {{ row?.gang }}G56789
-                    </td>
-                  </ng-container>
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="rate">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Rate($)</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      {{ row?.rate }}$6789
-                    </td>
-                  </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="no">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>No</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  {{ row?.employeeNo }}
+                </td>
+              </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="gang">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Gang</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  {{ row?.gang }}G56789
+                </td>
+              </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="classification">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Classification</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  {{ row?.wageClass }}Level 67
+                </td>
+              </ng-container>
 
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="project">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Project#</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      {{ row?.project }}GHJK5678
-                    </td>
-                  </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="rate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Rate($)</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  {{ row?.rate }}$6789
+                </td>
+              </ng-container>
 
-                  <ng-container matColumnDef="location">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Location</th>
-                    <td mat-cell *matCellDef="let row">{{ row?.dateEffective }} Longyay</td>
-                  </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="project">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Project#</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  {{ row?.project }}GHJK5678
+                </td>
+              </ng-container>
 
-                  <ng-container matColumnDef="contract">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Contract</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span [ngClass]="getStatusColor(row?.status)">
+              <ng-container matColumnDef="location">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Location</th>
+                <td mat-cell *matCellDef="let row">{{ row?.dateEffective }} Longyay</td>
+              </ng-container>
+
+              <ng-container matColumnDef="contract">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Contract</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span [ngClass]="getStatusColor(row?.status)">
                         {{ row?.statusName }} Permanent
                       </span> -->Permanent
-                    </td>
-                  </ng-container>
-                  <ng-container matColumnDef="currentSuper">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Current Supervisor</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span [ngClass]="getStatusColor(row?.status)">
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="currentSuper">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Current Supervisor</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span [ngClass]="getStatusColor(row?.status)">
                         {{ row?.approvedDate }}Robert Sheppard
                       </span> -->Robert Sheppard
-                    </td>
-                  </ng-container>
-                  <ng-container matColumnDef="action">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span [ngClass]="getStatusColor(row?.status)">
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span [ngClass]="getStatusColor(row?.status)">
                        Approve
-                      </span> --><mat-icon>check_circle</mat-icon>
-                      <mat-icon>cancel</mat-icon>
-                    </td>
-                  </ng-container>
-  
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let element; columns: displayedColumns" class="example-element-row"
-                      [ngClass]="{ 'selected-row': selectedId== element.id }"></tr>
-                    <tr class="mat-row" *matNoDataRow>
-                      <td class="mat-cell" [attr.colspan]="displayedColumns.length">
-                        No Registration Data
-                      </td>
-                    </tr>
-                  </mat-table>
-  
-                  <!-- <mat-paginator [length]="totalRecords" [pageIndex]="pageNo" [pageSizeOptions]="[5, 10, 20]"
+                      </span> --><mat-icon>thumb_up</mat-icon>
+                  <mat-icon>thumb_down</mat-icon>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr
+                mat-row
+                *matRowDef="let element; columns: displayedColumns"
+                class="example-element-row"
+                [ngClass]="{ 'selected-row': selectedId == element.id }"
+              ></tr>
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+                  No Registration Data
+                </td>
+              </tr>
+            </mat-table>
+
+            <!-- <mat-paginator [length]="totalRecords" [pageIndex]="pageNo" [pageSizeOptions]="[5, 10, 20]"
                     [pageSize]="pageSize" aria-label="Select page">
                   </mat-paginator> -->
-                </div>
-              </mat-card-content>
-            </mat-card>
-          </mat-tab>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <!-- </mat-tab>
           <mat-tab label="History">
 
           </mat-tab>
-        </mat-tab-group>
-      </div>
+        </mat-tab-group> -->
     </div>
   </div>
+</div>

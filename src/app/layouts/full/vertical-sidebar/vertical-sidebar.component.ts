@@ -335,7 +335,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
 
           subMenu.push({
             state: '/registration/recommendation-list',
-            name: 'Recommended Employees',
+            name: 'Candidates',
             type: 'link',
             icon: 'account_box',
           });
@@ -384,7 +384,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
 
         menuItem.push({
           state: 'test',
-          name: 'Job Demands',
+          name: 'Staff Movements',
           type: 'sub',
           icon: 'assessment',
           children: subMenu,

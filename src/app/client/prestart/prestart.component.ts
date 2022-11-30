@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,TemplateRef} from '@angular/core';
 
 import {  OnChanges, SimpleChanges } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
@@ -18,6 +18,7 @@ import { Globals } from 'src/app/globals';
 import { ViewOptions } from 'src/app/_models';
 import { saveAs } from 'file-saver';
 import * as moment from 'moment';
+import { MatDialog } from '@angular/material/dialog';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { element } from 'protractor';
 
@@ -42,7 +43,7 @@ export class PrestartComponent implements OnInit, OnChanges {
     'doneBy',
     
   ];
-
+  @ViewChild('employeeDetailDialog') employeeDetailDialog!: TemplateRef<any>;
   // convertedStartDate: convertedStartDate,
   // employeeName: employeeName,
 
@@ -70,8 +71,10 @@ export class PrestartComponent implements OnInit, OnChanges {
   // departmentList: any = [];
   // removedRows: any = [];
   // selectedTabIndex: number = 0;
+  selectedRecord: any = {};
   selectedId: string = '';
   constructor(
+    private dialog: MatDialog,
     breakpointObserver: BreakpointObserver,
     public util: Utils,
     globals: Globals,
@@ -250,6 +253,29 @@ export class PrestartComponent implements OnInit, OnChanges {
       return elem.value == status;
     });
     return elem ? (isCheckbox == true ? elem.checkboxColorClass : elem.colorClass) : '';
+  }
+
+  onSubmit() {
+    this.submitted = true;
+    this.openDialog({});
+    // if (this.form.invalid) {
+    //   this.alertService.openSnackBar(CustomMessage.invalidForm);
+    //   return;
+    // }
+  }
+
+  openDialog(data: any) {
+    this.selectedRecord = data;
+    const dialogRef = this.dialog.open(this.employeeDetailDialog, {
+      width: '80em',
+      height: '30em',
+      // data: { data: data },
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      // this.router.navigate(['/registration/list']);
+      // console.log('The dialog was closed');
+    });
   }
 
   applyFilter(isTextSearch: boolean = false): void {
