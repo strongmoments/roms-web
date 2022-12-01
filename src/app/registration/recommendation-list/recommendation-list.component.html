@@ -70,8 +70,8 @@
               </ng-container>
 
               <!-- Name Column -->
-              <ng-container matColumnDef="no">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>No</th>
+              <ng-container matColumnDef="empNo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Emp No</th>
                 <td mat-cell *matCellDef="let row">
                   <!-- <span class="header-label">days:</span> -->
                   {{ row?.employeeNo }}
@@ -133,8 +133,8 @@
                       </span> -->Robert Sheppard
                 </td>
               </ng-container>
-              <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
                 <td mat-cell *matCellDef="let row">
                   <!-- <span [ngClass]="getStatusColor(row?.status)">
                        Approve

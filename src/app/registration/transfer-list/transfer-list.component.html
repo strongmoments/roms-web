@@ -68,6 +68,22 @@
                   class="table employee-list no-wrap"
                   matSort
                 >
+                <!-- Name Column -->
+                <ng-container matColumnDef="select">
+                  <th mat-header-cell *matHeaderCellDef>
+                    <!-- <mat-checkbox
+                                  (change)="$event ? masterToggle() : null"
+                                  > -->
+                    <!-- <mat-checkbox
+                                  
+                                  >
+                                </mat-checkbox> -->
+                  </th>
+                  <td mat-cell *matCellDef="let row; let index = dataIndex">
+                    <mat-checkbox [ngClass]="getStatusColor(row?.leaveStatus, true)" (click)="removeRow(row.id, index)">
+                    </mat-checkbox>
+                  </td>
+                </ng-container>
                   <!-- Name Column -->
                   <ng-container matColumnDef="employeeName">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Emp Name</th>

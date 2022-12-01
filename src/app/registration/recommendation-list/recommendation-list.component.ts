@@ -37,8 +37,8 @@ export class RecommendationListComponent implements OnInit, OnChanges {
     'contract',
     'currentSuper',
     'name',
-    'no',
-    'action',
+    'empNo',
+    'status',
   ];
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
