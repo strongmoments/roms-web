@@ -28,17 +28,17 @@ export class RecommendationListComponent implements OnInit, OnChanges {
   globals: Globals;
   submitted: boolean = false;
   displayedColumns: string[] = [
-    'employeeName',
-    'employeeNo',
-    'wageClass',
-    'gang',
-    'rate',
+    'demandNo',
     'project',
-    
     'location',
+    'gang',
+    'classification',
+    'rate',
     'contract',
     'currentSuper',
-    'action',
+    'name',
+    'empNo',
+    'status',
   ];
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();

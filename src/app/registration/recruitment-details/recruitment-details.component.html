@@ -140,10 +140,78 @@
         <div fxFlex.gt-sm="100" fxFlex="100">
           <div class="m-0 m-t-15" align="center">
             <button class="m-l-20 m-r-20" mat-raised-button color="primary">Recommend Employee</button>
-            <button class="m-l-20 m-r-20" mat-raised-button color="primary">View Recommendation</button>
+            <button class="m-l-20 m-r-20" mat-raised-button color="primary" (click)="onClick()">View Recommendation</button>
           </div>
         </div>
       </div>
     </form>
   </mat-card-content>
 </mat-card>
+
+<ng-template #employeeDetailDialog>
+  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+    <h1
+      mat-dialog-title
+      align="center"
+      class="color_blue"
+      style="font-size: 20px; margin-bottom: 25px"
+    >
+      Recommendation
+    </h1>
+    <mat-divider></mat-divider>
+
+    <div fxLayout="row wrap" fxFlexAlign="left" class="row m-t-20">
+      <div class="popup-head">
+        <div>
+          <img class="m-r-10 list-Img" src="../../../assets/img/user-default-img.jpg" alt="" />
+          <mat-label><b>Brandon Hill</b></mat-label>
+        </div>
+      </div>
+      <div class="popup-head2">
+        <div>
+          <mat-label>Current Manager</mat-label>
+          <Small>Robert Shephard</Small>
+        </div>
+        <div>
+          <mat-label>Project</mat-label>
+          <Small>Energy Audtralia</Small>
+        </div>
+        <div>
+          <mat-label>Location</mat-label>
+          <Small>Longway</Small>
+        </div>
+        <div>
+          <mat-label>Gang</mat-label>
+          <Small>GS3CAS</Small>
+        </div>
+        <div>
+          <mat-label>Wage Classification</mat-label>
+          <Small>Level 2</Small>
+        </div>
+        <div>
+          <mat-label>Rate</mat-label>
+          <Small>57</Small>
+        </div>
+        <div>
+          <mat-label>Award Type</mat-label>
+          <Small>Casual</Small>
+        </div>
+      </div>
+
+      <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+        <mat-divider> </mat-divider>
+      </div>
+
+      <div fxFlex.gt-sm="50" fxFlex="100" class="p-10" align="end">
+        <button class="button m-5" mat-raised-button color="primary" (click)="onSubmit()">
+          Approve
+        </button>
+      </div>
+      <div fxFlex.gt-sm="50" fxFlex="100" class="p-10">
+        <button class="button m-5" mat-raised-button color="primary" (click)="onSubmit()">
+          Decline
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
