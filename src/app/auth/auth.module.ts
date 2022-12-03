@@ -8,6 +8,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { PrivacyScreenComponent } from './privacy-screen/privacy-screen.component';
+import { SupportScreenComponent } from './support-screen/support-screen.component';
 
 
 @NgModule({
@@ -16,6 +17,6 @@ import { PrivacyScreenComponent } from './privacy-screen/privacy-screen.componen
     SharedModule,
     AuthRoutingModule
   ],
-  declarations: [LoginComponent, ChangePasswordComponent, ProfileComponent, RegisterComponent, PrivacyScreenComponent,]
+  declarations: [LoginComponent, ChangePasswordComponent, ProfileComponent, RegisterComponent, PrivacyScreenComponent, SupportScreenComponent,]
 })
 export class AuthModule { }
