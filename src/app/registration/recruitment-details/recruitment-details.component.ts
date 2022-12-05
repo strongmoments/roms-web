@@ -1,8 +1,9 @@
 import { Component, OnInit,TemplateRef} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-
+import { Router, ActivatedRoute } from '@angular/router';
+import { JobService } from 'src/app/core/services';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-recruitment-details',
@@ -12,14 +13,20 @@ import { Router } from '@angular/router';
 export class RecruitmentDetailsComponent implements OnInit {
   submitted: boolean = false;
   selectedRecord: any = {};
+  id : string = ''; 
+  demandDetails : any = {};
   @ViewChild('employeeDetailDialog') employeeDetailDialog!: TemplateRef<any>;
 
   constructor(
     private dialog: MatDialog,
-    private router: Router,
+    private router: Router, private activatedRoute: ActivatedRoute, private jobService: JobService
   ) { }
 
   ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.id = params['id'];
+    });
+    this.getDemandDetails();
   }
 
   onClick() {
@@ -29,6 +36,14 @@ export class RecruitmentDetailsComponent implements OnInit {
     //   this.alertService.openSnackBar(CustomMessage.invalidForm);
     //   return;
     // }
+  }
+
+  getDemandDetails(){
+    this.jobService.getDemandDetails(this.id).pipe(first())
+        .subscribe((result: any) => {
+          this.demandDetails = result.data;
+          console.log('Demand Details:',this.demandDetails);
+        });
   }
 
   openDialog(data: any) {
