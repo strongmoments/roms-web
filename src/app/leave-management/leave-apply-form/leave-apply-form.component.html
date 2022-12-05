@@ -660,7 +660,7 @@
                                         <ng-container *ngFor="let item of element?.attachments">
                                           <img *ngIf="item?.digitalAssets.fileType.includes( 'image')"
                                             (click)="openImageDialog(item?.digitalAssets?.url)"
-                                            [src]="item?.digitalAssets?.url" alt="" />
+                                            [src]="environmentUrl+item?.digitalAssets?.url" alt="" />
                                           <img *ngIf="item?.digitalAssets.fileType.includes('pdf')"
                                             (click)="openFile(item?.digitalAssets?.url)"
                                             src="../../../assets/images/pdf_icon.png" alt="" />

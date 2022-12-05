@@ -15,6 +15,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { ImagePreviewDialog } from 'src/app/shared/image-preview-dialog/image-preview-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: 'app-leave-apply-form',
@@ -58,6 +59,7 @@ export class LeaveApplyFormComponent implements OnInit {
   attachments: any = [];
   attachmentFiles: any = [];
   user: any;
+  environmentUrl = environment.apiUrl;
   constructor(private dialog: MatDialog, public util: Utils, globals: Globals, private fb: FormBuilder, private alertService: AlertService, private leaveService: LeaveService, private router: Router, private activatedRoute: ActivatedRoute, private authService: AuthenticationService) {
     // console.log(this.minDate, this.maxDate)
     this.globals = globals;
@@ -573,7 +575,7 @@ export class LeaveApplyFormComponent implements OnInit {
 
   openFile(url: string) {
 
-    window.open(url, '_blank');
+    window.open(this.environmentUrl+url, '_blank');
   }
   onFileChange(event: any) {
     if (event !== null && event.target !== null && event.target.files && event.target.files[0]) {
@@ -636,7 +638,7 @@ export class LeaveApplyFormComponent implements OnInit {
     const dialogRef = this.dialog.open(ImagePreviewDialog, {
       width: 'auto',
       height: '35em',
-      data: { selectedImage: data }
+      data: { selectedImage: this.environmentUrl+data }
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
