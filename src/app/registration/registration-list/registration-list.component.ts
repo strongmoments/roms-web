@@ -117,8 +117,11 @@ export class RegistrationListComponent implements OnInit, OnChanges {
     this.refresh(this.getDefaultOptions());
     // console.log('in listing');
     // this.authService.addedResigstration.subscribe((record: any) => (this.dataSource.data.unshift(record)));
+    this.getRegisrationList();
+  }
+
+  getRegisrationList(){
     this.authService.addedResigstration.subscribe((record: any) => {
-      console.log(record, 'in listing12');
       if (record) {
         this.totalRecords = this.totalRecords + 1;
         record.statusName = this.getStatus(record?.status);
@@ -296,7 +299,10 @@ export class RegistrationListComponent implements OnInit, OnChanges {
       console.log(result)
       if (result === true) {
         this.authService.removeRegistration(email).subscribe((res: any) => {
-          console.log(res, '================res')
+          if(res && res.data == 'success'){
+            this.getRegisrationList();
+            this.refresh(this.getDefaultOptions());
+          }
         })
       }
     });

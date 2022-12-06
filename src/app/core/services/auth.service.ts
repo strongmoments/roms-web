@@ -298,6 +298,6 @@ export class AuthenticationService {
 
 
     removeRegistration(emailId: string) {
-        return this.http.get<any>(`${environment.apiUrl}/v1/registration/delete/${emailId}`);
+        return this.http.delete<any>(`${environment.apiUrl}/v1/user/${emailId}`);
     }
 }
