@@ -11,8 +11,12 @@ export class JobService {
         return this.http.get<any>(`${environment.apiUrl}/v1/jobs/resource/demand`);
     }
 
-    getAllMyResourceDemand(id: string) {
+    getDemandDetails(id: string){
         return this.http.get<any>(`${environment.apiUrl}/v1/jobs/resource/demand/${id}`);
+    }
+
+    getAllMyResourceDemand(id: string) {
+        return this.http.get<any>(`${environment.apiUrl}/v1/jobs/resource/demand/mydemand/${id}`);
     }
 
 

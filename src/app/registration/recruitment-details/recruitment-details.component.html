@@ -7,49 +7,52 @@
           <mat-card class="m-0 my-mat-cardt d-wrap">
             <div fxFlex.gt-sm="12" fxFlex="100" class="p-b-10 p-t-10">
               <small>Role Title</small>
-              <mat-label class="d-block">Plant Operator</mat-label>
+              <mat-label class="d-block">{{demandDetails?.roleName}}</mat-label>
             </div>
             <div fxFlex.gt-sm="11" fxFlex="100" class="p-b-10 p-t-10">
               <small>Wage Role</small>
-              <mat-label class="d-block">Operator</mat-label>
+              <mat-label class="d-block">{{demandDetails?.clientProjectSubteam?.wageRole}}</mat-label>
             </div>
             <div fxFlex.gt-sm="10" fxFlex="100" class="p-b-10 p-t-10">
               <small>Type </small>
-              <mat-label class="d-block">Internal</mat-label>
+              <mat-label class="d-block">{{demandDetails?.demandType == 1 ? 'Internal' : (demandDetails?.demandType == 2 ? 'External' : 'Both')}}</mat-label>
             </div>
             <div fxFlex.gt-sm="11" fxFlex="100" class="p-b-10 p-t-10">
               <small>Project # </small>
-              <mat-label class="d-block">ESC2445</mat-label>
+              <mat-label class="d-block">{{demandDetails?.clientProjectSubteam?.clientProject?.name}}</mat-label>
             </div>
             <div fxFlex.gt-sm="11" fxFlex="100" class="p-b-10 p-t-10">
               <small>Location</small>
-              <mat-label class="d-block">Yallourn</mat-label>
+              <mat-label class="d-block">{{demandDetails?.clientProjectSubteam?.location?.address}}</mat-label>
             </div>
             <div fxFlex.gt-sm="11" fxFlex="100" class="p-b-10 p-t-10">
               <small>Gang</small>
-              <mat-label class="d-block">GS3</mat-label>
+              <mat-label class="d-block">{{demandDetails?.clientProjectSubteam?.teamName}}</mat-label>
             </div>
             <div fxFlex.gt-sm="11" fxFlex="100" class="p-b-10 p-t-10">
               <small>Award Type</small>
-              <mat-label class="d-block">Permanent</mat-label>
+              <mat-label class="d-block">{{demandDetails?.clientProjectSubteam?.awardType}}</mat-label>
             </div>
             <div fxFlex.gt-sm="13" fxFlex="100" class="p-b-10 p-t-10">
               <small>Wage Classification</small>
-              <mat-label class="d-block">Level 2</mat-label>
+              <mat-label class="d-block">{{demandDetails?.clientProjectSubteam?.wageClassification}}</mat-label>
             </div>
             <div fxFlex.gt-sm="10" fxFlex="100" class="p-b-10 p-t-10">
               <small>Rate(AUD)</small>
-              <mat-label class="d-block">$60</mat-label>
+              <mat-label class="d-block">${{demandDetails?.clientProjectSubteam?.rate}}</mat-label>
             </div>
           </mat-card>
         </div>
         <div fxFlex.gt-sm="100" fxFlex="100">
           <mat-card class="m-0 my-mat-cardb d-wrap">
             <div fxFlex.gt-sm="55" fxFlex="100" class="p-b-10 p-t-10">
-              <mat-label><span>Hiring Manager-</span> <span>Robert Shephard</span> </mat-label>
+              <mat-label><span>Demand ID </span> <span>{{demandDetails?.id}}</span> </mat-label>
+            </div>
+            <div fxFlex.gt-sm="55" fxFlex="100" class="p-b-10 p-t-10">
+              <mat-label><span>Hiring Manager - </span> <span>{{demandDetails?.hiringManager?.firstName + ' ' + demandDetails?.hiringManager?.lastName}}</span> </mat-label>
             </div>
             <div fxFlex.gt-sm="35" fxFlex="100" class="p-b-10 p-t-10">
-              <mat-label><small>Praposal start date</small> 22 September</mat-label>
+              <mat-label><small>Praposal start date </small> {{demandDetails?.hiringManager?.startDate | date: ' d MMM'}}</mat-label>
             </div>
             <div fxFlex.gt-sm="10" fxFlex="100" class="p-b-10 p-t-10">
               <button
@@ -70,11 +73,13 @@
             <mat-card-title class="p-10 color_blue" >Description</mat-card-title>
             <mat-form-field appearance="outline" class="m-t-0 p-l-10 p-r-10">
               <mat-label>Description</mat-label>
-              <textarea
+              <textarea 
                 matInput
                 formControlName="leaveReason"
                 placeholder="Comment"
+                value="{{demandDetails?.description}}"
                 rows="3"
+                readonly
               ></textarea>
               <mat-error> Comment is required </mat-error>
             </mat-form-field>
@@ -90,19 +95,28 @@
               >
               <div mat-dialog-content class="mat-flex d-wrap">
                 <h5 class="m-0"><b>Minimum Experiance:</b></h5>
-                <h5 class="m-0">45 Years</h5>
+                <h5 class="m-0">{{demandDetails?.minimumExperiecne}} Years</h5>
               </div>
               <div mat-dialog-content class="mat-flex d-wrap">
                 <h5 class="m-0"><b>Certification Required :</b></h5>
-                <h5 class="m-0">Certification 1 Certification 2 Certification 3</h5>
+                <h5 class="m-0"><text *ngFor="let item of demandDetails?.skilsMap?.certification | keyvalue;let first = first ;let last = last;"> 
+                  <text *ngIf="!last">{{item.value}}, </text>
+                  <text *ngIf="last"> {{item.value}}</text>
+                </text></h5>
               </div>
               <div mat-dialog-content class="mat-flex d-wrap">
                 <h5 class="m-0"><b>License Required :</b></h5>
-                <h5 class="m-0">License 1 License 2 License 3</h5>
+                <h5 class="m-0"><text *ngFor="let item of demandDetails?.skilsMap?.licenses | keyvalue;let first = first ;let last = last;"> 
+                  <text *ngIf="!last">{{item.value}}, </text>
+                  <text *ngIf="last"> {{item.value}}</text>
+                </text></h5>
               </div>
               <div mat-dialog-content class="mat-flex d-wrap">
                 <h5 class="m-0"><b>Plant Tickets :</b></h5>
-                <h5 class="m-0">Ticket 1 ticket 3 ticket 4</h5>
+                <h5 class="m-0"><text *ngFor="let item of demandDetails?.skilsMap?.plantTicket | keyvalue;let first = first ;let last = last;"> 
+                  <text *ngIf="!last">{{item.value}}, </text>
+                  <text *ngIf="last"> {{item.value}}</text>
+                </text></h5>
               </div>
             </div>
           </mat-card>
