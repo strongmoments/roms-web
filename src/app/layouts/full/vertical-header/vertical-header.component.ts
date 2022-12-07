@@ -257,6 +257,10 @@ export class VerticalAppHeaderComponent {
       this.router.navigate(['change-password']);
     } else if (type == 'profile') {
       this.router.navigate(['profile']);
+    } else if (type == 'support') {
+      this.router.navigate(['support']);
+    } else if (type == 'privacy') {
+      this.router.navigate(['privacy']);
     }
   }
   logOut() {
