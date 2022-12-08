@@ -86,6 +86,7 @@ export class CreateUserComponent implements OnInit {
       phoneCode: new FormControl(this.phoneCode, [Validators.required]),
       phone: new FormControl(this.userSessionData?.phone, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(this.utils.intRegex)]),
       // dob: new FormControl('', [Validators.required]),
+      paymentFrequency: new FormControl('', [Validators.required]),
       isManager: new FormControl(false),
       roleId: new FormControl('', [Validators.required]),
       managerId: new FormControl('', [Validators.required]),
@@ -148,6 +149,8 @@ export class CreateUserComponent implements OnInit {
 
     formValues['orgId'] = environment.orgId;
     formValues['gender'] = '';
+    formValues['paymentFrequency'] = formValues.paymentFrequency;
+
     console.log(formValues)
     this.authService.createUser(formValues).subscribe((result: any) => {
       if (result.status == "success") {

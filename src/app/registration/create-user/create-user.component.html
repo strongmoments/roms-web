@@ -127,14 +127,14 @@
             <div fxFlex.gt-sm="50" fxFlex="100" class="m-t-0 m-b-15">
               <section class="example-section">
                 <label class="example-margin">Payment Frequency :</label>
-                <mat-radio-group  class="m-l-15">
-                  <mat-radio-button class="example-margin" value="primary" class="m-r-15">
+                <mat-radio-group  class="m-l-15" formControlName="paymentFrequency" paymentFrequency>
+                  <mat-radio-button class="example-margin" value="w" class="m-r-15">
                     Weekly 
                   </mat-radio-button>
                   <mat-radio-button class="example-margin" value="accent" class="m-r-15">
-                     Fortnightly
+                     fortnightly
                   </mat-radio-button>
-                  <mat-radio-button class="example-margin" value="warn">  Monthly </mat-radio-button>
+                  <mat-radio-button class="example-margin" value="m">  Monthly </mat-radio-button>
                 </mat-radio-group>
               </section>
             </div>
