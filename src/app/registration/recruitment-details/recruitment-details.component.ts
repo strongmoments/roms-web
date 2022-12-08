@@ -29,6 +29,11 @@ export class RecruitmentDetailsComponent implements OnInit {
     this.getDemandDetails();
   }
 
+  recomendEmployee() {
+    let empId = this.id;
+    this.router.navigate(['/registration/recommend'], { queryParams: { empId } });
+  }
+
   onClick() {
     this.submitted = true;
     this.openDialog({});
