@@ -30,8 +30,8 @@ export class RecruitmentDetailsComponent implements OnInit {
   }
 
   recomendEmployee() {
-    let empId = this.id;
-    this.router.navigate(['/registration/recommend'], { queryParams: { empId } });
+    let dId = this.id;
+    this.router.navigate(['/registration/recommend'], { queryParams: { dId } });
   }
 
   onClick() {

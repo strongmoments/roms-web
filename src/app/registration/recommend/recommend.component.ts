@@ -4,6 +4,8 @@ import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { EmployeeService, JobService } from 'src/app/core/services';
 import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs';
+import { ViewOptions } from 'src/app/_models';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 export interface DemoColor {
   name: string;
   color: string;
@@ -26,6 +28,8 @@ export class RecommendComponent {
   // Enter, comma
   separatorKeysCodes = [ENTER, COMMA];
 
+  selectedEmployee : any = null;
+
   fruits = [{ name: 'Lemon' }, { name: 'Lime' }, { name: 'Apple' }];
 
   availableColors: DemoColor[] = [
@@ -42,8 +46,9 @@ export class RecommendComponent {
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
-      this.id = params['id'];
+      this.id = params['dId'];
     });
+    console.log('Inside recomment id:',this.id);
     this.getDemandDetails();
   }
 
@@ -79,9 +84,24 @@ export class RecommendComponent {
     console.log(event.target.value, 'event')
     this.employeeList = [];
     if (event.target.value) {
-      this.employeeService.searchEmployeeByName(event.target.value).subscribe((result: any) => {
-        this.employeeList = result ? result : [];
+      this.employeeService.searchEmployeeForJobDemand(event.target.value).subscribe((result: any) => {
+        this.employeeList = result ? result.data : [];
         console.log(result)
+      });
+      return true;
+    }
+  }
+
+  onEmployeeSelect(event: MatAutocompleteSelectedEvent){
+    this.selectedEmployee = this.employeeList.filter((emp : any) => emp.id == event.option.value)[0];
+    console.log('Selected employee:',this.selectedEmployee);
+    this.getEmployeeGangDetails(event.option.value);
+  }
+
+  getEmployeeGangDetails(empId: any){
+    if (empId) {
+      this.employeeService.getEmployeeGangDetails(empId).subscribe((result: any) => {
+        console.log('Employee gang Details:',result);
       });
       return true;
     }

@@ -71,6 +71,14 @@ export class EmployeeService {
         return this.http.get<any>(`${environment.apiUrl}/v1/subteammember/search?name=${value}`);
     }
 
+    searchEmployeeForJobDemand(value: string) {
+        return this.http.get<any>(`${environment.apiUrl}/v1/employee/load?page-0&size=15&empName=${value}`);
+    }
+
+    getEmployeeGangDetails(id: string) {
+        return this.http.get<any>(`${environment.apiUrl}/v1/subteammember/${id}`);
+    }
+
     resetPasswordById(employeeId: string) {
         return this.http.get<any>(`${environment.apiUrl}/v1/password/reset/${employeeId}`);
     }

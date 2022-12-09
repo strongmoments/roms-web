@@ -10,49 +10,52 @@
           <mat-card class="m-0 my-mat-cardt d-wrap">
             <div fxFlex.gt-sm="12" fxFlex="100" class="p-b-10 p-t-10">
               <small>Role Title</small>
-              <mat-label class="d-block">Plant Operator</mat-label>
+              <mat-label class="d-block">{{demandDetails?.roleName}}</mat-label>
             </div>
             <div fxFlex.gt-sm="11" fxFlex="100" class="p-b-10 p-t-10">
               <small>Wage Role</small>
-              <mat-label class="d-block">Operator</mat-label>
+              <mat-label class="d-block">{{demandDetails?.clientProjectSubteam?.wageRole}}</mat-label>
             </div>
             <div fxFlex.gt-sm="10" fxFlex="100" class="p-b-10 p-t-10">
               <small>Type </small>
-              <mat-label class="d-block">Internal</mat-label>
+              <mat-label class="d-block">{{demandDetails?.demandType == 1 ? 'Internal' : (demandDetails?.demandType == 2 ? 'External' : 'Both')}}</mat-label>
             </div>
             <div fxFlex.gt-sm="11" fxFlex="100" class="p-b-10 p-t-10">
               <small>Project # </small>
-              <mat-label class="d-block">ESC2445</mat-label>
+              <mat-label class="d-block">{{demandDetails?.clientProjectSubteam?.clientProject?.name}}</mat-label>
             </div>
             <div fxFlex.gt-sm="11" fxFlex="100" class="p-b-10 p-t-10">
               <small>Location</small>
-              <mat-label class="d-block">Yallourn</mat-label>
+              <mat-label class="d-block">{{demandDetails?.clientProjectSubteam?.location?.address}}</mat-label>
             </div>
             <div fxFlex.gt-sm="11" fxFlex="100" class="p-b-10 p-t-10">
               <small>Gang</small>
-              <mat-label class="d-block">GS3</mat-label>
+              <mat-label class="d-block">{{demandDetails?.clientProjectSubteam?.teamName}}</mat-label>
             </div>
             <div fxFlex.gt-sm="11" fxFlex="100" class="p-b-10 p-t-10">
               <small>Award Type</small>
-              <mat-label class="d-block">Permanent</mat-label>
+              <mat-label class="d-block">{{demandDetails?.clientProjectSubteam?.awardType}}</mat-label>
             </div>
             <div fxFlex.gt-sm="13" fxFlex="100" class="p-b-10 p-t-10">
               <small>Wage Classification</small>
-              <mat-label class="d-block">Level 2</mat-label>
+              <mat-label class="d-block">{{demandDetails?.clientProjectSubteam?.wageClassification}}</mat-label>
             </div>
             <div fxFlex.gt-sm="10" fxFlex="100" class="p-b-10 p-t-10">
               <small>Rate(AUD)</small>
-              <mat-label class="d-block">$60</mat-label>
+              <mat-label class="d-block">${{demandDetails?.clientProjectSubteam?.rate}}</mat-label>
             </div>
           </mat-card>
         </div>
         <div fxFlex.gt-sm="100" fxFlex="100">
           <mat-card class="m-0 my-mat-cardb d-wrap">
-            <div fxFlex.gt-sm="55" fxFlex="100" class="p-b-10 p-t-10">
-              <mat-label>Hiring Manager- Robert Shephard</mat-label>
+            <div fxFlex.gt-sm="20" fxFlex="100" class="p-b-10 p-t-10">
+              <mat-label><span>Demand ID </span> <span>{{demandDetails?.demandId}}</span> </mat-label>
             </div>
             <div fxFlex.gt-sm="35" fxFlex="100" class="p-b-10 p-t-10">
-              <mat-label><small>Proposal start date</small> 22 September</mat-label>
+              <mat-label><span>Hiring Manager - </span> <span>{{demandDetails?.hiringManager?.firstName + ' ' + demandDetails?.hiringManager?.lastName}}</span> </mat-label>
+            </div>
+            <div fxFlex.gt-sm="35" fxFlex="100" class="p-b-10 p-t-10">
+              <mat-label><span>Proposal start date </span> {{demandDetails?.hiringManager?.startDate | date: ' d MMM'}}</mat-label>
             </div>
             <div fxFlex.gt-sm="10" fxFlex="100" class="p-b-10 p-t-10">
               <button class="button p-0 p-l-30 p-r-30 l-h-26" style="border-radius:50px;" mat-flat-button color="primary">Firm</button>
@@ -69,8 +72,8 @@
           <mat-form-field appearance="outline">
             <mat-label>Search Employee</mat-label>
             <input type="text" placeholder="Search Employee" matInput [matAutocomplete]="auto" (keyup)="search($event)">
-            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" >
-              <mat-option *ngFor="let item of employeeList" [value]="item.id">{{item?.employee?.firstName}} {{ite?.employee?.lastName}}</mat-option>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onEmployeeSelect($event)" [displayWith]="displayFn" >
+              <mat-option *ngFor="let item of employeeList" [value]="item.id">{{item?.firstName + ' ' +item?.lastName}}</mat-option>
               <!-- <mat-option value="option">Option2</mat-option> -->
               <!-- <mat-option value="option">Option3</mat-option> -->
             </mat-autocomplete>
@@ -82,139 +85,141 @@
           </mat-form-field>
         </div>
       </div>
-      <div fxLayout="row wrap" fxFlexAlign="center" class="row m-0 border-full">
-        <div fxFlex.gt-sm="100" fxFlex="100">
-          <mat-card class="m-0 my-mat-cardf  d-wrap">
-            <div fxFlex.gt-sm="10" fxFlex="100" class="p-b-10 p-t-10 r-profileImg">
-              <img src="assets/images/users/1.jpg" alt="Manager Image">
-            </div>
-            <div fxFlex.gt-sm="40" fxFlex="100" class="p-b-10 p-t-10">
-              <small class="text-muted">Name</small>
-              <mat-label class="d-block">MAtheaw Wed</mat-label>
-              <mat-label class="emp-mat-label ">
-                <mat-icon>call</mat-icon>
-                <span class="p-l-10">+61 85749 85749</span>
-              </mat-label>
-              <!-- <mat-label class="emp-mat-label">
-                <mat-icon>date_range</mat-icon>
-                <span>23/02/95</span>
-                <span class="p-l-30">45 Years</span>
-              </mat-label> -->
-            </div>
-            <div fxFlex.gt-sm="50" fxFlex="100" class="p-b-10 p-t-10">
-              <small class="text-muted">Employee Number</small>
-              <mat-label class="d-block">RTL1199</mat-label>
-              <mat-label class="emp-mat-label email-lbl">
-                <mat-icon>mail</mat-icon>
-                <span class="p-l-5" style="word-break: break-word;">nandkumar.alobha@gmail.com</span>
-              </mat-label>
-            </div>
-            <!-- <div fxFlex.gt-sm="20" fxFlex="100" class="p-b-10 p-t-10">
-              <small class="text-muted v-hidden">hidden</small>
-              <mat-label class="emp-mat-label">
-                <mat-icon>male</mat-icon>
-                <span class="p-l-10">male</span>
-              </mat-label>
-              <mat-label class="emp-mat-label m-top-0">
-                <mat-icon>call</mat-icon>
-                <span class="p-l-10">+61 85749 85749</span>
-              </mat-label>
-            </div> -->
-          </mat-card>
-        </div>
-      </div>
-
-      <div fxLayout="row wrap" fxFlexAlign="center" class="row m-0 m-t-15">
-        <div fxFlex.gt-sm="30" fxFlex="100">
-          <mat-form-field>
-            <mat-label>Client :</mat-label>
-            <input matInput placeholder="Client :" />
-          </mat-form-field>
-        </div>
-        <div fxFlex.gt-sm="5" fxFlex="100"></div>
-        <div fxFlex.gt-sm="30" fxFlex="100">
-          <mat-form-field>
-            <mat-label>Contract :</mat-label>
-            <input matInput placeholder="Contract :" />
-          </mat-form-field>
-        </div>
-        <div fxFlex.gt-sm="5" fxFlex="100"></div>
-        <div fxFlex.gt-sm="30" fxFlex="100">
-          <mat-form-field>
-            <mat-label>Project#/ Job# :</mat-label>
-            <input matInput placeholder="Project :" />
-          </mat-form-field>
-        </div>
-       
-        <div fxFlex.gt-sm="30" fxFlex="100">
-          <mat-form-field>
-            <mat-label>Location :</mat-label>
-            <input matInput placeholder="Location" />
-          </mat-form-field>
-        </div>
-        <div fxFlex.gt-sm="5" fxFlex="100"></div>
-        <div fxFlex.gt-sm="30" fxFlex="100">
-          <mat-form-field>
-            <mat-label>Gang:</mat-label>
-            <input matInput placeholder="Gang:" />
-          </mat-form-field>
-        </div>
-        <div fxFlex.gt-sm="5" fxFlex="100"></div>
-        <div fxFlex.gt-sm="30" fxFlex="100">
-          <mat-form-field>
-            <mat-label>Wage Classification :</mat-label>
-            <input matInput placeholder="Wage Classification :" />
-          </mat-form-field>
-        </div>
-        
-        <div fxFlex.gt-sm="30" fxFlex="100">
-          <mat-form-field>
-            <mat-label>Role:</mat-label>
-            <input matInput placeholder="Role:" />
-          </mat-form-field>
-        </div>
-        
-        <div fxFlex.gt-sm="5" fxFlex="100"></div>
-        <div fxFlex.gt-sm="30" fxFlex="100">
-          <mat-form-field>
-            <mat-label>Award Type:</mat-label>
-            <input matInput placeholder="Award Type :" />
-          </mat-form-field>
-        </div>
-       
-        <div fxFlex.gt-sm="5" fxFlex="100"></div>
-        <div fxFlex.gt-sm="30" fxFlex="100">
-          <mat-form-field>
-            <mat-label>Rate:</mat-label>
-            <input matInput placeholder="Rate:" />
-          </mat-form-field>
-        </div>
-
-        <div fxFlex.gt-sm="65" fxFlex="100" class="border-full m-t-10">
-          <mat-card class="m-0 my-mat-cardf d-wrap">
-            <div fxFlex.gt-sm="20" fxFlex="100" class="p-b-10 p-t-10 emp-profileBottom">
-              <img src="assets/images/users/1.jpg" alt="Manager Image">
-            </div>
-            <div fxFlex.gt-sm="40" fxFlex="100" class="p-b-10 p-t-10">
-              <small class="text-muted">Supervisor Name</small>
-              <mat-label class="d-block">MAtt Macunley </mat-label>
-
-            </div>
-            <div fxFlex.gt-sm="40" fxFlex="100" class="p-b-10 p-t-10">
-              <small class="text-muted v-hidden">hidden</small>
-              <mat-label class="emp-mat-label m-top-0">
-                <mat-icon>call</mat-icon>
-                <span class="p-l-10">+61 85749 85749</span>
-              </mat-label>
-            </div>
-          </mat-card>
-        </div>
-        <div fxFlex.gt-sm="35" fxFlex="100">
-          <div class="m-0 m-t-30" align="center">
-            <button class=" m-t-10 m-b-10" mat-raised-button color="primary">Recommend</button>
+      <div class="selected-employee" *ngIf="selectedEmployee">
+        <div fxLayout="row wrap" fxFlexAlign="center" class="row m-0 border-full" >
+          <div fxFlex.gt-sm="100" fxFlex="100">
+            <mat-card class="m-0 my-mat-cardf  d-wrap">
+              <div fxFlex.gt-sm="10" fxFlex="100" class="p-b-10 p-t-10 r-profileImg">
+                <img src="assets/images/users/1.jpg" alt="Manager Image">
+              </div>
+              <div fxFlex.gt-sm="40" fxFlex="100" class="p-b-10 p-t-10">
+                <small class="text-muted">Name</small>
+                <mat-label class="d-block">{{selectedEmployee.firstName + ' ' + selectedEmployee.lastName}}</mat-label>
+                <mat-label class="emp-mat-label ">
+                  <mat-icon>call</mat-icon>
+                  <span class="p-l-10">{{selectedEmployee.phone}}</span>
+                </mat-label>
+                <!-- <mat-label class="emp-mat-label">
+                  <mat-icon>date_range</mat-icon>
+                  <span>23/02/95</span>
+                  <span class="p-l-30">45 Years</span>
+                </mat-label> -->
+              </div>
+              <div fxFlex.gt-sm="50" fxFlex="100" class="p-b-10 p-t-10">
+                <small class="text-muted">Employee Number</small>
+                <mat-label class="d-block">{{selectedEmployee.employeeNo}}</mat-label>
+                <mat-label class="emp-mat-label email-lbl">
+                  <mat-icon>mail</mat-icon>
+                  <span class="p-l-5" style="word-break: break-word;">{{selectedEmployee.email}}</span>
+                </mat-label>
+              </div>
+              <!-- <div fxFlex.gt-sm="20" fxFlex="100" class="p-b-10 p-t-10">
+                <small class="text-muted v-hidden">hidden</small>
+                <mat-label class="emp-mat-label">
+                  <mat-icon>male</mat-icon>
+                  <span class="p-l-10">male</span>
+                </mat-label>
+                <mat-label class="emp-mat-label m-top-0">
+                  <mat-icon>call</mat-icon>
+                  <span class="p-l-10">+61 85749 85749</span>
+                </mat-label>
+              </div> -->
+            </mat-card>
           </div>
         </div>
-      </div>
+
+        <div fxLayout="row wrap" fxFlexAlign="center" class="row m-0 m-t-15">
+          <div fxFlex.gt-sm="30" fxFlex="100">
+            <mat-form-field>
+              <mat-label>Client :</mat-label>
+              <input matInput placeholder="Client :" />
+            </mat-form-field>
+          </div>
+          <div fxFlex.gt-sm="5" fxFlex="100"></div>
+          <div fxFlex.gt-sm="30" fxFlex="100">
+            <mat-form-field>
+              <mat-label>Contract :</mat-label>
+              <input matInput placeholder="Contract :" />
+            </mat-form-field>
+          </div>
+          <div fxFlex.gt-sm="5" fxFlex="100"></div>
+          <div fxFlex.gt-sm="30" fxFlex="100">
+            <mat-form-field>
+              <mat-label>Project#/ Job# :</mat-label>
+              <input matInput placeholder="Project :" />
+            </mat-form-field>
+          </div>
+        
+          <div fxFlex.gt-sm="30" fxFlex="100">
+            <mat-form-field>
+              <mat-label>Location :</mat-label>
+              <input matInput placeholder="Location" />
+            </mat-form-field>
+          </div>
+          <div fxFlex.gt-sm="5" fxFlex="100"></div>
+          <div fxFlex.gt-sm="30" fxFlex="100">
+            <mat-form-field>
+              <mat-label>Gang:</mat-label>
+              <input matInput placeholder="Gang:" />
+            </mat-form-field>
+          </div>
+          <div fxFlex.gt-sm="5" fxFlex="100"></div>
+          <div fxFlex.gt-sm="30" fxFlex="100">
+            <mat-form-field>
+              <mat-label>Wage Classification :</mat-label>
+              <input matInput placeholder="Wage Classification :" />
+            </mat-form-field>
+          </div>
+          
+          <div fxFlex.gt-sm="30" fxFlex="100">
+            <mat-form-field>
+              <mat-label>Role:</mat-label>
+              <input matInput placeholder="Role:" />
+            </mat-form-field>
+          </div>
+          
+          <div fxFlex.gt-sm="5" fxFlex="100"></div>
+          <div fxFlex.gt-sm="30" fxFlex="100">
+            <mat-form-field>
+              <mat-label>Award Type:</mat-label>
+              <input matInput placeholder="Award Type :" />
+            </mat-form-field>
+          </div>
+        
+          <div fxFlex.gt-sm="5" fxFlex="100"></div>
+          <div fxFlex.gt-sm="30" fxFlex="100">
+            <mat-form-field>
+              <mat-label>Rate:</mat-label>
+              <input matInput placeholder="Rate:" />
+            </mat-form-field>
+          </div>
+
+          <div fxFlex.gt-sm="65" fxFlex="100" class="border-full m-t-10">
+            <mat-card class="m-0 my-mat-cardf d-wrap">
+              <div fxFlex.gt-sm="20" fxFlex="100" class="p-b-10 p-t-10 emp-profileBottom">
+                <img src="assets/images/users/1.jpg" alt="Manager Image">
+              </div>
+              <div fxFlex.gt-sm="40" fxFlex="100" class="p-b-10 p-t-10">
+                <small class="text-muted">Supervisor Name</small>
+                <mat-label class="d-block">MAtt Macunley </mat-label>
+
+              </div>
+              <div fxFlex.gt-sm="40" fxFlex="100" class="p-b-10 p-t-10">
+                <small class="text-muted v-hidden">hidden</small>
+                <mat-label class="emp-mat-label m-top-0">
+                  <mat-icon>call</mat-icon>
+                  <span class="p-l-10">+61 85749 85749</span>
+                </mat-label>
+              </div>
+            </mat-card>
+          </div>
+          <div fxFlex.gt-sm="35" fxFlex="100">
+            <div class="m-0 m-t-30" align="center">
+              <button class=" m-t-10 m-b-10" mat-raised-button color="primary">Recommend</button>
+            </div>
+          </div>
+        </div>
+    </div>
     </form>
   </mat-card-content>
 </mat-card>
