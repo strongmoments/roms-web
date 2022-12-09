@@ -9,7 +9,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
-import { AlertService, EmployeeService } from 'src/app/core/services';
+import { AlertService, JobService } from 'src/app/core/services';
 import { LeaveService } from 'src/app/core/services/leave.service';
 import { Utils } from 'src/app/core/_helpers/util';
 import { Globals } from 'src/app/globals';
@@ -76,19 +76,19 @@ export class RecommendationListComponent implements OnInit, OnChanges {
     private datePipe: DatePipe,
     private activatedRoute: ActivatedRoute,
     private authService: AuthenticationService,
-    private employeeService: EmployeeService,
+    private jobService: JobService,
     private router: Router,
   ) {
     this.globals = globals;
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
-    this.activatedRoute.queryParams.subscribe((queryParams) => {
-      if (queryParams['id']) {
-        this.selectedId = queryParams['id'];
-        // this.onTabChanged(1);
-      }
-    });
+    // this.activatedRoute.queryParams.subscribe((queryParams) => {
+    //   if (queryParams['id']) {
+    //     this.selectedId = queryParams['id'];
+    //     this.onTabChanged(1);
+    //   }
+    // });
     // this.authService.getAllEmployeeType().subscribe((result: any) => {
     //   this.employeeTypeList = result && result.data && result.data.length > 0 ? result.data : [];
     // });
@@ -132,6 +132,8 @@ export class RecommendationListComponent implements OnInit, OnChanges {
         this.dataSource.data = [record, ...this.dataSource.data];
       }
     });
+
+    this.getRecommendList();
   }
 
   ngOnChanges(changes: SimpleChanges): void {}
@@ -173,6 +175,12 @@ export class RecommendationListComponent implements OnInit, OnChanges {
   //     // this.dataSource = this.dataSource.concat(ELEMENT_DATA);
   //   }
   // }
+
+  getRecommendList() {
+    this.jobService.getRecommendationList(this.getDefaultOptions()).subscribe((result: any) => {
+      this.dataSource.data = result.data;
+    });
+  }
 
   refresh(options: ViewOptions, isScrolled: boolean = false) {
     // let startDate = this.startDate
