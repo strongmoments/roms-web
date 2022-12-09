@@ -31,6 +31,7 @@ export class EmployeeViewComponent implements OnInit {
   primarySuperAnnuation: any = null;
   otherSuperAnnuation: any = null;
   primaryMembership: any = null;
+  paymentFrequency: string = '';
   type: string = 'personal';
   tabIndex: number = 0;
   tabIndexList: any = ['personal', 'emergency', 'licence', 'payroll', 'leaves', 'membership', 'employment'];
@@ -85,6 +86,7 @@ export class EmployeeViewComponent implements OnInit {
             // this.primarySuperAnnuation = this.otherSuperAnnuation ? this.otherSuperAnnuation : this.otherSuperAnnuation;
 
             this.primaryMembership = this.record.membership && this.record.membership.length > 0 ? this.record.membership[0] : null;
+            this.paymentFrequency = this.record?.personal?.paymentFrequency == 'w' ? 'Weekly' : (this.record?.personal?.paymentFrequency == 'm' ? 'Monthly' : 'Fortnightly');
           }
           console.log(result);
         }, (error: any) => {
