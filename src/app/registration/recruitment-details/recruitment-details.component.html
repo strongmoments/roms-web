@@ -130,19 +130,19 @@
               >
               <div mat-dialog-content class="mat-flex d-wrap">
                 <h5 class="m-0"><b>Client :</b></h5>
-                <h5 class="m-0">Energy Australia</h5>
+                <h5 class="m-0">{{demandDetails?.client?.name}}</h5>
               </div>
               <div mat-dialog-content class="mat-flex d-wrap">
                 <h5 class="m-0"><b>Contract :</b></h5>
-                <h5 class="m-0">Good</h5>
+                <h5 class="m-0">{{demandDetails?.clientContract?.name}}</h5>
               </div>
               <div mat-dialog-content class="mat-flex d-wrap">
                 <h5 class="m-0"><b>Creator Name :</b></h5>
-                <h5 class="m-0">Robbert Mathew</h5>
+                <h5 class="m-0">{{demandDetails?.creatorName}}</h5>
               </div>
               <div mat-dialog-content class="mat-flex d-wrap">
                 <h5 class="m-0"><b>Creator Role :</b></h5>
-                <h5 class="m-0">Mathew</h5>
+                <h5 class="m-0">{{demandDetails?.creatorRole}}</h5>
               </div>
             </div>
           </mat-card>

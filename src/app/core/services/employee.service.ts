@@ -83,4 +83,8 @@ export class EmployeeService {
         return this.http.get<any>(`${environment.apiUrl}/v1/password/reset/${employeeId}`);
     }
 
+    recommendEmployee(param:any) {
+        return this.http.post<any>(`${environment.apiUrl}/v1/jobs/resource/demand/recommend`, param);
+    }
+
 }

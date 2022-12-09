@@ -136,49 +136,49 @@
           <div fxFlex.gt-sm="30" fxFlex="100">
             <mat-form-field>
               <mat-label>Client :</mat-label>
-              <input matInput placeholder="Client :" />
+              <input matInput placeholder="Client :" value="{{selectedEmployee?.gangDetails?.clientProject?.name}}"/>
             </mat-form-field>
           </div>
           <div fxFlex.gt-sm="5" fxFlex="100"></div>
           <div fxFlex.gt-sm="30" fxFlex="100">
             <mat-form-field>
               <mat-label>Contract :</mat-label>
-              <input matInput placeholder="Contract :" />
+              <input matInput placeholder="Contract :" value="{{selectedEmployee?.gangDetails?.clientProject?.contract}}" />
             </mat-form-field>
           </div>
           <div fxFlex.gt-sm="5" fxFlex="100"></div>
           <div fxFlex.gt-sm="30" fxFlex="100">
             <mat-form-field>
               <mat-label>Project#/ Job# :</mat-label>
-              <input matInput placeholder="Project :" />
+              <input matInput placeholder="Project :" value="{{selectedEmployee?.gangDetails?.project}}"/>
             </mat-form-field>
           </div>
         
           <div fxFlex.gt-sm="30" fxFlex="100">
             <mat-form-field>
               <mat-label>Location :</mat-label>
-              <input matInput placeholder="Location" />
+              <input matInput placeholder="Location" value="{{selectedEmployee?.gangDetails?.clientProject?.location}}"/>
             </mat-form-field>
           </div>
           <div fxFlex.gt-sm="5" fxFlex="100"></div>
           <div fxFlex.gt-sm="30" fxFlex="100">
             <mat-form-field>
               <mat-label>Gang:</mat-label>
-              <input matInput placeholder="Gang:" />
+              <input matInput placeholder="Gang:" value="{{selectedEmployee?.gangDetails?.teamName}}"/>
             </mat-form-field>
           </div>
           <div fxFlex.gt-sm="5" fxFlex="100"></div>
           <div fxFlex.gt-sm="30" fxFlex="100">
             <mat-form-field>
               <mat-label>Wage Classification :</mat-label>
-              <input matInput placeholder="Wage Classification :" />
+              <input matInput placeholder="Wage Classification :" value="{{selectedEmployee?.gangDetails?.wageClassification}}"/>
             </mat-form-field>
           </div>
           
           <div fxFlex.gt-sm="30" fxFlex="100">
             <mat-form-field>
               <mat-label>Role:</mat-label>
-              <input matInput placeholder="Role:" />
+              <input matInput placeholder="Role:" value="{{selectedEmployee?.gangDetails?.wageRole}}"/>
             </mat-form-field>
           </div>
           
@@ -186,7 +186,7 @@
           <div fxFlex.gt-sm="30" fxFlex="100">
             <mat-form-field>
               <mat-label>Award Type:</mat-label>
-              <input matInput placeholder="Award Type :" />
+              <input matInput placeholder="Award Type :" value="{{selectedEmployee?.gangDetails?.awardType}}"/>
             </mat-form-field>
           </div>
         
@@ -194,7 +194,7 @@
           <div fxFlex.gt-sm="30" fxFlex="100">
             <mat-form-field>
               <mat-label>Rate:</mat-label>
-              <input matInput placeholder="Rate:" />
+              <input matInput placeholder="Rate:" value="{{selectedEmployee?.gangDetails?.rate}}"/>
             </mat-form-field>
           </div>
 
@@ -205,21 +205,21 @@
               </div>
               <div fxFlex.gt-sm="40" fxFlex="100" class="p-b-10 p-t-10">
                 <small class="text-muted">Supervisor Name</small>
-                <mat-label class="d-block">MAtt Macunley </mat-label>
+                <mat-label class="d-block">{{selectedEmployee?.gangDetails?.clientProject?.supervisor}} </mat-label>
 
               </div>
               <div fxFlex.gt-sm="40" fxFlex="100" class="p-b-10 p-t-10">
                 <small class="text-muted v-hidden">hidden</small>
                 <mat-label class="emp-mat-label m-top-0">
                   <mat-icon>call</mat-icon>
-                  <span class="p-l-10">+61 85749 85749</span>
+                  <span class="p-l-10">{{selectedEmployee?.gangDetails?.clientProject?.phone}}</span>
                 </mat-label>
               </div>
             </mat-card>
           </div>
           <div fxFlex.gt-sm="35" fxFlex="100">
             <div class="m-0 m-t-30" align="center">
-              <button class=" m-t-10 m-b-10" mat-raised-button color="primary">Recommend</button>
+              <button class=" m-t-10 m-b-10" mat-raised-button color="primary" (click)="recommendEmployee();">Recommend</button>
             </div>
           </div>
         </div>

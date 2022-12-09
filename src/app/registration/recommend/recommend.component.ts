@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { EmployeeService, JobService } from 'src/app/core/services';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
 import { ViewOptions } from 'src/app/_models';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { environment } from "src/environments/environment";
 export interface DemoColor {
   name: string;
   color: string;
@@ -29,6 +30,7 @@ export class RecommendComponent {
   separatorKeysCodes = [ENTER, COMMA];
 
   selectedEmployee : any = null;
+  environmentUrl = environment.apiUrl;
 
   fruits = [{ name: 'Lemon' }, { name: 'Lime' }, { name: 'Apple' }];
 
@@ -40,7 +42,7 @@ export class RecommendComponent {
   ];
 
   constructor(private employeeService: EmployeeService, private activatedRoute: ActivatedRoute, 
-    private jobService: JobService) {
+    private jobService: JobService, private router: Router) {
 
   }
 
@@ -102,8 +104,8 @@ export class RecommendComponent {
     if (empId) {
       this.employeeService.getEmployeeGangDetails(empId).subscribe((result: any) => {
         console.log('Employee gang Details:',result);
+        this.selectedEmployee.gangDetails = result;
       });
-      return true;
     }
   }
 
@@ -114,4 +116,28 @@ export class RecommendComponent {
       this.fruits.splice(index, 1);
     }
   }
+
+  getImageUrl(){
+    return this.environmentUrl+ this.selectedEmployee?.profileImage[0]?.digitalAssets?.url;
+  }
+
+  recommendEmployee(){
+    let resourceDemandId = this.id;
+    let employeeId = this.selectedEmployee.id;
+    let subTeamId = this.selectedEmployee.gangDetails.id;
+
+    let inputPayload = {
+      "employeeId": employeeId,
+      "resourceDemandId": resourceDemandId,
+      "subTeamId": subTeamId
+    }
+
+    this.employeeService.recommendEmployee(inputPayload).subscribe((result: any) => {
+      console.log('Employee gang Details:',result);
+      alert('Employee Recommended Successfully!!!');
+      this.router.navigate(['/registration/job-recommend']);
+    });
+
+  }
+
 }
