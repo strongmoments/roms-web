@@ -49,13 +49,17 @@
         <div fxFlex.gt-sm="100" fxFlex="100">
           <mat-card class="m-0 my-mat-cardb d-wrap">
             <div fxFlex.gt-sm="20" fxFlex="100" class="p-b-10 p-t-10">
-              <mat-label><span>Demand ID </span> <span>{{demandDetails?.demandId}}</span> </mat-label>
+              <mat-label><span class="label-text">Demand ID </span> 
+                <span class="label-value">{{demandDetails?.demandId}}</span> </mat-label>
             </div>
             <div fxFlex.gt-sm="35" fxFlex="100" class="p-b-10 p-t-10">
-              <mat-label><span>Hiring Manager - </span> <span>{{demandDetails?.hiringManager?.firstName + ' ' + demandDetails?.hiringManager?.lastName}}</span> </mat-label>
+              <mat-label><span class="label-text">Hiring Manager - </span> 
+                <span class="label-value">{{demandDetails?.hiringManager?.firstName + ' ' + demandDetails?.hiringManager?.lastName}}</span> 
+              </mat-label>
             </div>
             <div fxFlex.gt-sm="35" fxFlex="100" class="p-b-10 p-t-10">
-              <mat-label><span>Proposal start date </span> {{demandDetails?.hiringManager?.startDate | date: ' d MMM'}}</mat-label>
+              <mat-label><span class="label-text">Proposal start date </span> 
+                <span class="label-value">{{demandDetails?.hiringManager?.startDate | date: ' d MMM'}}</span></mat-label>
             </div>
             <div fxFlex.gt-sm="10" fxFlex="100" class="p-b-10 p-t-10">
               <button class="button p-0 p-l-30 p-r-30 l-h-26" style="border-radius:50px;" mat-flat-button color="primary">Firm</button>
