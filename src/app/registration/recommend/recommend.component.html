@@ -227,3 +227,21 @@
     </form>
   </mat-card-content>
 </mat-card>
+
+<ng-template #recommendDialog>
+  <h2 mat-dialog-title align="center" class="color_blue" style="font-size: 20px; margin-bottom: 0">
+    Employee Recommended Successfully
+  </h2>
+  <div fxLayout="column wrap">
+    
+    <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
+      <p><span class="text-danger">Demand ID</span> 12345</p>
+    </div>
+    <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
+      <button class="m-b-20 m-t-20 button w-300" mat-raised-button color="primary">
+        Close
+      </button>
+    </div>
+   
+  </div>
+</ng-template>

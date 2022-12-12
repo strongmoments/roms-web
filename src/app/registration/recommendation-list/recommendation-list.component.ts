@@ -28,16 +28,16 @@ export class RecommendationListComponent implements OnInit, OnChanges {
   globals: Globals;
   submitted: boolean = false;
   displayedColumns: string[] = [
-    'demandNo',
-    'project',
+    'demandIdx',
+    'clientProject',
     'location',
     'gang',
     'classification',
     'rate',
     'contract',
-    'currentSuper',
     'name',
     'empNo',
+    'currentSuper',
     'status',
   ];
 
@@ -58,7 +58,9 @@ export class RecommendationListComponent implements OnInit, OnChanges {
   // expandedElement: any = null;
   startDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 1));
   endDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
-  // status: any = 0;
+  status: any = 0;
+  demandIdx: any = '';
+  clientProject: any = '';
   // departmentId: any = '';
   // employeeType: any = '';
   // employeeTypeList: any = [];
@@ -152,11 +154,11 @@ export class RecommendationListComponent implements OnInit, OnChanges {
     // });
   }
 
-  redirectForm(elem: any) {
-    console.log(elem);
-    sessionStorage.setItem(elem.id, JSON.stringify(elem));
-    this.router.navigate(['/registration/create-user'], { queryParams: { requestId: elem.id } });
-  }
+  // redirectForm(elem: any) {
+  //   console.log(elem);
+  //   sessionStorage.setItem(elem.id, JSON.stringify(elem));
+  //   this.router.navigate(['/registration/create-user'], { queryParams: { requestId: elem.id } });
+  // }
 
   // onTableScroll(e: any) {
   //   const tableViewHeight = e.target.offsetHeight; // viewport: ~500px

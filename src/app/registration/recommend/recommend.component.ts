@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,TemplateRef, ViewChild  } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { EmployeeService, JobService } from 'src/app/core/services';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 import { first } from 'rxjs';
 import { ViewOptions } from 'src/app/_models';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
@@ -17,7 +18,8 @@ export interface DemoColor {
   styleUrls: ['./recommend.component.scss']
 })
 export class RecommendComponent {
-
+  @ViewChild('recommendDialog') recommendDialog!: TemplateRef<any>;
+  submitted: boolean = false;
   visible = true;
   selectable = true;
   removable = true;
@@ -42,7 +44,7 @@ export class RecommendComponent {
   ];
 
   constructor(private employeeService: EmployeeService, private activatedRoute: ActivatedRoute, 
-    private jobService: JobService, private router: Router) {
+    private jobService: JobService, private router: Router,private dialog: MatDialog) {
 
   }
 
@@ -138,6 +140,27 @@ export class RecommendComponent {
       this.router.navigate(['/registration/job-recommend']);
     });
 
+  }
+  onSubmit() {
+    this.submitted = true;
+    this.openDialog({});
+    // if (this.form.invalid) {
+    //   this.alertService.openSnackBar(CustomMessage.invalidForm);
+    //   return;
+    // }
+  }
+
+  openDialog(data: any) {
+    const dialogRef = this.dialog.open(this.recommendDialog, {
+      width: '30em',
+      height: '15em',
+      data: { data: data },
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      // this.router.navigate(['/registration/list']);
+      console.log('The dialog was closed');
+    });
   }
 
 }

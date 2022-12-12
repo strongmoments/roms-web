@@ -48,12 +48,12 @@
           <div class="table-responsive infinite-scroll">
             <mat-table #table [dataSource]="dataSource" class="table employee-list no-wrap" matSort>
               <!-- Name Column -->
-              <ng-container matColumnDef="demandNo">
+              <ng-container matColumnDef="demandIdx">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Demand No</th>
                 <td mat-cell *matCellDef="let row">
                   <!-- <span class="header-label">days:</span> -->
-                  <!-- {{ row?.wageClass }} -->
-                  67
+                  {{ row?.demandIdx }}
+                  
                 </td>
               </ng-container>
               <!-- Name Column -->
@@ -105,11 +105,11 @@
               </ng-container>
 
               <!-- Name Column -->
-              <ng-container matColumnDef="project">
+              <ng-container matColumnDef="clientProject">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Project#</th>
                 <td mat-cell *matCellDef="let row">
                   <!-- <span class="header-label">days:</span> -->
-                  {{ row?.project }}GHJK5678
+                  {{ row?.clientProject }}
                 </td>
               </ng-container>
 
@@ -139,7 +139,8 @@
                 <td mat-cell *matCellDef="let row">
                   <!-- <span [ngClass]="getStatusColor(row?.status)">
                        Approve
-                      </span> --><mat-icon>thumb_up</mat-icon>
+                      </span> -->
+                      <mat-icon>thumb_up</mat-icon>
                   <mat-icon>thumb_down</mat-icon>
                 </td>
               </ng-container>
