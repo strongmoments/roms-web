@@ -59,8 +59,8 @@ const routes: Routes = [
             { path: 'demand-list', component: DemandListComponent },
             { path: 'recommendation-list', component: RecommendationListComponent,
             data: {
-                title: 'Recommendation List',
-                urls: [{ title: 'Dashboard', url: '/' }, { title: 'People & Culture' }],
+                title: 'Demand Candidates',
+                urls: [{ title: 'Dashboard', url: '/' }, { title: 'Staff movement' }],
             } },
             //   { path: 'form', component: EmployeeFormComponent },
             //   { path: 'view:id', component: EmployeeViewComponent },

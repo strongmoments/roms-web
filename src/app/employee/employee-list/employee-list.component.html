@@ -7,12 +7,24 @@
         <mat-card-content class="p-custom">
           <div class="m-l-10 m-r-10">
             <div fxLayout="row wrap" fxFlexAlign="center" class="row">
-              <div fxFlex.gt-sm="50" class="p-r-10" fxFlex="100">
+              <div fxFlex.gt-sm="40" class="p-r-10" fxFlex="100">
                 <mat-form-field>
                   <input matInput (keyup)="applyFilter(true)" [(ngModel)]="search" placeholder="Filter" />
                   <mat-icon matSuffix>search</mat-icon>
                 </mat-form-field>
               </div>
+              <div fxFlex.gt-sm="20" class="p-r-10" fxFlex="100"></div>
+              <div fxFlex.gt-sm="40" class="p-r-10" fxFlex="100">
+                <mat-form-field>
+                  <mat-select (selectionChange)="applyFilter()"  placeholder="Payment Frequency">
+                    <mat-option value="all">Weekly</mat-option>
+                    <mat-option value="pending">Fortnightly</mat-option>
+                    <mat-option value="completed">Monthly</mat-option>
+                    
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              
               <!-- <div fxFlex.gt-sm="50" class="font-12" align="right">
                
                 <div class="text-right">

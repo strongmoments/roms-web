@@ -131,12 +131,12 @@
                     <h3 class="m-0">Day(s)</h3>
                   </div>
 
-                  <div fxFlex.gt-sm="90" class="row p-l-10 p-t-0">
+                  <div fxFlex.gt-sm="100" class="row p-l-10 p-t-0">
                     <div fxLayout="row wrap" style="align-items: center">
-                      <div fxFlex.gt-sm="50">
+                      <div fxFlex.gt-sm="70">
                         <div fxLayout="row wrap">
                           <!-- column -->
-                          <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100" class="m-b-xsm20">
+                          <div fxFlex.gt-sm="14.28" fxFlex.gt-xs="100" fxFlex="100" class="m-b-xsm20">
                             <a href="javascript:void" (click)="calculateHours(1)">
                               <mat-card class="bg-info text-white text-center">
                                 <div class="p-20">
@@ -146,7 +146,7 @@
                             </a>
                           </div>
                           <!-- column -->
-                          <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100" class="m-b-xsm20">
+                          <div fxFlex.gt-sm="14.28" fxFlex.gt-xs="100" fxFlex="100" class="m-b-xsm20">
                             <a href="javascript:void" (click)="calculateHours(2)">
                               <mat-card class="bg-purple text-white text-center">
                                 <div class="p-20">
@@ -156,7 +156,7 @@
                             </a>
                           </div>
                           <!-- column -->
-                          <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100" class="m-b-xsm20">
+                          <div fxFlex.gt-sm="14.28" fxFlex.gt-xs="100" fxFlex="100" class="m-b-xsm20">
                             <a href="javascript:void" (click)="calculateHours(3)">
                               <mat-card class="bg-success text-white text-center">
                                 <div class="p-20">
@@ -166,11 +166,38 @@
                             </a>
                           </div>
                           <!-- column -->
-                          <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100" class="m-b-xsm20">
+                          <div fxFlex.gt-sm="14.28" fxFlex.gt-xs="100" fxFlex="100" class="m-b-xsm20">
                             <a href="javascript:void" (click)="calculateHours(4)">
                               <mat-card class="bg-inverse text-white text-center">
                                 <div class="p-20">
                                   <h4 class="m-0">4 <span>Hr</span></h4>
+                                </div>
+                              </mat-card>
+                            </a>
+                          </div>
+                          <div fxFlex.gt-sm="14.28" fxFlex.gt-xs="100" fxFlex="100" class="m-b-xsm20">
+                            <a href="javascript:void" (click)="calculateHours(5)">
+                              <mat-card class="bg-megna text-white text-center">
+                                <div class="p-20">
+                                  <h4 class="m-0">5 <span>Hr</span></h4>
+                                </div>
+                              </mat-card>
+                            </a>
+                          </div>
+                          <div fxFlex.gt-sm="14.28" fxFlex.gt-xs="100" fxFlex="100" class="m-b-xsm20">
+                            <a href="javascript:void" (click)="calculateHours(6)">
+                              <mat-card class="bg-info text-white text-center">
+                                <div class="p-20">
+                                  <h4 class="m-0">6 <span>Hr</span></h4>
+                                </div>
+                              </mat-card>
+                            </a>
+                          </div>
+                          <div fxFlex.gt-sm="14.28" fxFlex.gt-xs="100" fxFlex="100" class="m-b-xsm20">
+                            <a href="javascript:void" (click)="calculateHours(7)">
+                              <mat-card class="bg-purple text-white text-center">
+                                <div class="p-20">
+                                  <h4 class="m-0">7 <span>Hr</span></h4>
                                 </div>
                               </mat-card>
                             </a>
@@ -227,12 +254,12 @@
                           </div> -->
                         </div>
                       </div>
-                      <div fxFlex.gt-sm="50" style="align-items: center; flex-wrap: wrap">
-                        <div fxFlex.gt-sm="10" class="p-10">
+                      <div fxFlex.gt-sm="30" style="align-items: center; flex-wrap: wrap">
+                        <div fxFlex.gt-sm="13.33" class="p-10">
                           <h3>Or</h3>
                         </div>
 
-                        <div fxFlex.gt-sm="15">
+                        <div fxFlex.gt-sm="20">
                           <!-- <div class="mat-body-2">Or</div> -->
                           <mat-form-field appearance="outline" class="custom-mat-form-field">
                             <!-- <mat-label>--:--:--</mat-label> -->
@@ -241,10 +268,10 @@
                               (change)="calculateHoursByField()" class="text-center" />
                           </mat-form-field>
                         </div>
-                        <div fxFlex.gt-sm="10" class="p-10">
+                        <div fxFlex.gt-sm="13.33" class="p-10">
                           <h3>To</h3>
                         </div>
-                        <div fxFlex.gt-sm="15">
+                        <div fxFlex.gt-sm="20">
                           <mat-form-field appearance="outline" class="custom-mat-form-field">
                             <!-- <mat-label>--:--:--</mat-label> -->
                             <input formControlName="endTime" [readonly]="isTimeInputDisabled"
@@ -252,7 +279,7 @@
                               (change)="calculateHoursByField()" class="text-center" />
                           </mat-form-field>
                         </div>
-                        <div fxFlex.gt-sm="10">
+                        <div fxFlex.gt-sm="13.33">
                           <!-- <button mat-button type="button" color="primary" disabled>
                             {{ leaveHours }}
                           </button> -->

@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges,TemplateRef } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { DatePipe } from '@angular/common';
@@ -14,6 +14,7 @@ import { LeaveService } from 'src/app/core/services/leave.service';
 import { Utils } from 'src/app/core/_helpers/util';
 import { Globals } from 'src/app/globals';
 import { ViewOptions } from 'src/app/_models';
+import { MatDialog } from '@angular/material/dialog';
 import { saveAs } from 'file-saver';
 import * as moment from 'moment';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
@@ -25,18 +26,19 @@ import { element } from 'protractor';
   styleUrls: ['./recommendation-list.component.scss'],
 })
 export class RecommendationListComponent implements OnInit, OnChanges {
+  @ViewChild('recommendDialog') recommendDialog!: TemplateRef<any>;
   globals: Globals;
   submitted: boolean = false;
   displayedColumns: string[] = [
-    'demandIdx',
+    'demandId',
     'clientProject',
-    'location',
+    'locationType',
     'gang',
-    'classification',
+    'wageClassification',
     'rate',
     'contract',
     'name',
-    'empNo',
+    'employeeNo',
     'currentSuper',
     'status',
   ];
@@ -50,17 +52,20 @@ export class RecommendationListComponent implements OnInit, OnChanges {
   @ViewChild(MatSort, { static: false }) sort: MatSort = Object.create(null);
   // @ViewChild(MatSort, { static: false }) sortHistory: MatSort = Object.create(null);
   // pagesize = 10;
+  selectable = true;
   pageNo = 0;
   pageSize = 9999999999;
   totalRecords: number = 0;
   search: string = ''; //by default 0 for pending list
   // currentDate: any = new Date();
   // expandedElement: any = null;
-  startDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 1));
-  endDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
+  // startDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 1));
+  // endDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
   status: any = 0;
-  demandIdx: any = '';
+  demandId: any = '';
   clientProject: any = '';
+  wageClassification: any = '';
+  rate: any = '';
   // departmentId: any = '';
   // employeeType: any = '';
   // employeeTypeList: any = [];
@@ -80,6 +85,7 @@ export class RecommendationListComponent implements OnInit, OnChanges {
     private authService: AuthenticationService,
     private jobService: JobService,
     private router: Router,
+    private dialog: MatDialog
   ) {
     this.globals = globals;
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -257,6 +263,11 @@ export class RecommendationListComponent implements OnInit, OnChanges {
       return elem.value == status;
     })?.name;
   }
+  getStatusIcon(status: any) {
+    return this.globals.userApplicationStatus.find((elem: any) => {
+      return elem.value == status;
+    })?.icon;
+  }
 
   getStatusColor(status: any, isCheckbox: boolean = false) {
     let elem: any = this.globals.userApplicationStatus.find((elem: any) => {
@@ -274,5 +285,26 @@ export class RecommendationListComponent implements OnInit, OnChanges {
     } else {
       this.refresh(this.getDefaultOptions());
     }
+  }
+  onSubmit() {
+    this.submitted = true;
+    this.openDialog({});
+    // if (this.form.invalid) {
+    //   this.alertService.openSnackBar(CustomMessage.invalidForm);
+    //   return;
+    // }
+  }
+
+  openDialog(data: any) {
+    const dialogRef = this.dialog.open(this.recommendDialog, {
+      width: '30em',
+      height: '15em',
+      data: { data: data },
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      // this.router.navigate(['/registration/list']);
+      console.log('The dialog was closed');
+    });
   }
 }
