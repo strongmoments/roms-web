@@ -23,7 +23,7 @@
             </div>
             <div fxFlex.gt-sm="11" fxFlex="100" class="p-b-10 p-t-10">
               <small>Location</small>
-              <mat-label class="d-block">{{demandDetails?.clientProjectSubteam?.location?.address}}</mat-label>
+              <mat-label class="d-block">{{demandDetails?.clientProjectSubteam?.location?.description}}</mat-label>
             </div>
             <div fxFlex.gt-sm="11" fxFlex="100" class="p-b-10 p-t-10">
               <small>Gang</small>
@@ -46,13 +46,13 @@
         <div fxFlex.gt-sm="100" fxFlex="100">
           <mat-card class="m-0 my-mat-cardb d-wrap">
             <div fxFlex.gt-sm="20" fxFlex="100" class="p-b-10 p-t-10">
-              <mat-label><span>Demand ID </span> <span>{{demandDetails?.demandId}}</span> </mat-label>
+              <mat-label><span>Demand ID :- </span> <span>{{demandDetails?.demandId}}</span> </mat-label>
             </div>
             <div fxFlex.gt-sm="35" fxFlex="100" class="p-b-10 p-t-10">
-              <mat-label><span>Hiring Manager - </span> <span>{{demandDetails?.hiringManager?.firstName + ' ' + demandDetails?.hiringManager?.lastName}}</span> </mat-label>
+              <mat-label><span>Hiring Manager :- </span> <span>{{demandDetails?.hiringManager?.firstName + ' ' + demandDetails?.hiringManager?.lastName}}</span> </mat-label>
             </div>
             <div fxFlex.gt-sm="35" fxFlex="100" class="p-b-10 p-t-10">
-              <mat-label><span>Proposal start date </span> {{demandDetails?.hiringManager?.startDate | date: ' d MMM'}}</mat-label>
+              <mat-label><span>Proposal start date :- </span> {{demandDetails?.hiringManager?.startDate | date: ' d MMM'}}</mat-label>
             </div>
             <div fxFlex.gt-sm="10" fxFlex="100" class="p-b-10 p-t-10">
               <button
@@ -94,7 +94,7 @@
               >
               <div mat-dialog-content class="mat-flex d-wrap">
                 <h5 class="m-0"><b>Minimum Experiance:</b></h5>
-                <h5 class="m-0">{{demandDetails?.minimumExperiecne}} Years</h5>
+                <h5 class="m-0">{{demandDetails?.minimumExperiecne}}</h5>
               </div>
               <div mat-dialog-content class="mat-flex d-wrap">
                 <h5 class="m-0"><b>Certification Required :</b></h5>

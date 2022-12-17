@@ -39,4 +39,23 @@ export class JobService {
       `${environment.apiUrl}/v1/jobs/resource/demand/recommend?loadAll?page=${options.page}&size=${options.pageSize}`,
     );
   }
+  getapprovedTransferList(options: ViewOptions) {
+    return this.http.get<any>(
+      `${environment.apiUrl}/v1/jobs/resource/demand/approved/report?loadAll?page=${options.page}&size=${options.pageSize}`,
+    );
+  }
+  declineCandidate(data: any) {
+    return this.http.post<any>(
+      `${environment.apiUrl}/v1/jobs/resource/demand/employee/reject`,
+      data,
+    );
+  }
+  acceptCandidate(data: any) {
+    alert(data)
+    return this.http.post<any>(
+      `${environment.apiUrl}/v1/jobs/resource/demand/employee/approve`,
+      data,
+    );
+  }
+  
 }

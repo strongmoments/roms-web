@@ -75,7 +75,7 @@
         <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-5">
           <mat-form-field appearance="outline">
             <mat-label>Search Employee</mat-label>
-            <input type="text" placeholder="Search Employee" matInput [matAutocomplete]="auto" (keyup)="search($event)">
+            <input type="text" placeholder="Search Employee" matInput [matAutocomplete]="auto" (keyup)="searchSelfEmployee($event)">
             <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onEmployeeSelect($event)" [displayWith]="displayFn" >
               <mat-option *ngFor="let item of employeeList" [value]="item.id">{{item?.firstName + ' ' +item?.lastName}}</mat-option>
               <!-- <mat-option value="option">Option2</mat-option> -->

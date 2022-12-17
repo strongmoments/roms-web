@@ -15,10 +15,12 @@ import { Utils } from 'src/app/core/_helpers/util';
 import { Globals } from 'src/app/globals';
 import { ViewOptions } from 'src/app/_models';
 import { MatDialog } from '@angular/material/dialog';
+import { CustomMessage } from 'src/app/custom-message';
 import { saveAs } from 'file-saver';
 import * as moment from 'moment';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { element } from 'protractor';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-recommendation-list',
@@ -66,6 +68,7 @@ export class RecommendationListComponent implements OnInit, OnChanges {
   clientProject: any = '';
   wageClassification: any = '';
   rate: any = '';
+  selectedCandidateDetails: any = {};
   // departmentId: any = '';
   // employeeType: any = '';
   // employeeTypeList: any = [];
@@ -286,17 +289,54 @@ export class RecommendationListComponent implements OnInit, OnChanges {
       this.refresh(this.getDefaultOptions());
     }
   }
-  onSubmit() {
+  openConfermation(demandId:any,firstName:any,lastName:any,resourseDemandId:any,id:any) {
+    
+    
+    this.openDialog({demandId:demandId,firstName:firstName,lastName:lastName,resourseDemandId:resourseDemandId,id:id});
+    
+  }
+  acceptCandidate(data: any){
+    this.jobService.acceptCandidate({id:data?.id,resourceDemandId:data?.resourseDemandId}).subscribe({
+      next: (result: any) => {
+        
+        alert(JSON.parse(JSON.stringify(result)))
+       
+      },
+      error: (error: any) => {
+        this.alertService.openSnackBar(CustomMessage.candidateAccepted);
+        // alert(JSON.parse(JSON.stringify(error)))
+        // console.log(error, 'error')
+       
+      },
+    });
     this.submitted = true;
-    this.openDialog({});
-    // if (this.form.invalid) {
-    //   this.alertService.openSnackBar(CustomMessage.invalidForm);
-    //   return;
-    // }
+    
+    
+  }
+  declineCandidate(id: any,resourseDemandId:any){
+    this.jobService.declineCandidate({id:id,resourceDemandId:resourseDemandId}).subscribe({
+      next: (result: any) => {
+        // alert(JSON.parse(JSON.stringify(result)))
+        // this.alertService.openSnackBar("Successfully Rejected");
+        // this.alertService.openSnackBar(CustomMessage.candidateRejected);
+       
+      },
+      error: (error: any) => {
+        // alert(JSON.parse(JSON.stringify(error)))
+        // console.log(error, 'error')
+        this.alertService.openSnackBar(CustomMessage.candidateRejected);
+       
+      },
+    });
+    this.submitted = true;
+    
+    
   }
 
   openDialog(data: any) {
+    this.selectedCandidateDetails= data;
     const dialogRef = this.dialog.open(this.recommendDialog, {
+      
       width: '30em',
       height: '15em',
       data: { data: data },

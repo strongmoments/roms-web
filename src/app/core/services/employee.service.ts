@@ -74,6 +74,9 @@ export class EmployeeService {
     searchEmployeeForJobDemand(value: string) {
         return this.http.get<any>(`${environment.apiUrl}/v1/employee/load?page-0&size=15&empName=${value}`);
     }
+    searchEmployeeUnderManager(value: string) {
+        return this.http.get<any>(`${environment.apiUrl}/v1/employee/load/own?empName=${value}`);
+    }
 
     getEmployeeGangDetails(id: string) {
         return this.http.get<any>(`${environment.apiUrl}/v1/subteammember/${id}`);

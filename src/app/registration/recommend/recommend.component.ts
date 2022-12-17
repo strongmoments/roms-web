@@ -84,11 +84,11 @@ export class RecommendComponent {
     return  undefined;
   }
 
-  search(event: any) {
+  searchSelfEmployee(event: any) {
     console.log(event.target.value, 'event')
     this.employeeList = [];
     if (event.target.value) {
-      this.employeeService.searchEmployeeForJobDemand(event.target.value).subscribe((result: any) => {
+      this.employeeService.searchEmployeeUnderManager(event.target.value).subscribe((result: any) => {
         this.employeeList = result ? result.data : [];
         console.log(result)
       });

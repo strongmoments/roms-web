@@ -142,8 +142,30 @@
                     {{ row?.statusName }}
                     <mat-icon>{{ getStatusIcon(row?.status) }}</mat-icon>
                   </span> -->
-                  <mat-icon  style="cursor: pointer " (click)="onSubmit()">thumb_up</mat-icon>
-                  <mat-icon>thumb_down</mat-icon>
+                  <mat-icon
+                    style="cursor: pointer"
+                    (click)="
+                      openConfermation(
+                        row?.recommendDetails?.demandIdx?.demandId,
+                        row?.recommendDetails?.employeeIdx?.firstName,
+                        row?.recommendDetails?.employeeIdx?.lastName,
+                        row?.recommendDetails?.demandIdx?.id,
+                        row?.recommendDetails?.id
+                      )
+                    "
+                    >thumb_up</mat-icon
+                  >
+                  <mat-icon
+                    style="cursor: pointer"
+                    (click)="
+                      declineCandidate(
+                        row?.recommendDetails?.id,
+                        row?.recommendDetails?.demandIdx?.id
+                      )
+                    "
+                   
+                    >thumb_down</mat-icon
+                  >
                 </td>
               </ng-container>
 
@@ -183,21 +205,32 @@
 
 <ng-template #recommendDialog>
   <h2 mat-dialog-title align="center" class="color_blue" style="font-size: 20px; margin-bottom: 0">
-    Employee Recommended Successfully
+    Candidate Transfer
   </h2>
   <div fxLayout="column wrap">
     <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
-      <p><span class="text-danger">Demand ID</span> 12345</p>
-      <p>Kunal Sharma</p>
+      <p><span class="text-danger">Demand ID :</span> {{ selectedCandidateDetails?.demandId }}</p>
+      <mat-label
+        ><b class="text-center"
+          >{{ selectedCandidateDetails?.firstName }} {{ selectedCandidateDetails?.lastName }}</b
+        ></mat-label
+      >
     </div>
 
-    <div fxFlex.gt-sm="100%" fxFlex="100" class="m-20">
+    <div fxFlex.gt-sm="100%" fxFlex="100" class="m-t-20">
       <div fxFlex.gt-sm="50%" fxFlex="100" class="btm-ft">
-        <button mat-raised-button color="primary">Agree</button>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="acceptCandidate(selectedCandidateDetails)"
+          
+        >
+          Yes
+        </button>
       </div>
 
       <div fxFlex.gt-sm="50%" fxFlex="100" class="btm-ft">
-        <button mat-raised-button color="primary">Decline</button>
+        <button mat-raised-button color="primary" (click)="declineCandidate()">No</button>
       </div>
     </div>
   </div>

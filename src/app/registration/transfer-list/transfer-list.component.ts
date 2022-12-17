@@ -9,7 +9,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
-import { AlertService, EmployeeService } from 'src/app/core/services';
+import { AlertService, JobService } from 'src/app/core/services';
 import { LeaveService } from 'src/app/core/services/leave.service';
 import { Utils } from 'src/app/core/_helpers/util';
 import { Globals } from 'src/app/globals';
@@ -29,7 +29,7 @@ export class TransferListComponent implements OnInit, OnChanges {
   submitted: boolean = false;
   displayedColumns: string[] = [
     'select',
-    'dateEffective',
+    'requestedDate',
     'employeeName',
     'employeeNo',
     'fromProject',
@@ -80,7 +80,7 @@ export class TransferListComponent implements OnInit, OnChanges {
     private datePipe: DatePipe,
     private activatedRoute: ActivatedRoute,
     private authService: AuthenticationService,
-    private employeeService: EmployeeService,
+    private jobService: JobService,
     private router: Router,
   ) {
     this.globals = globals;
@@ -136,6 +136,8 @@ export class TransferListComponent implements OnInit, OnChanges {
         this.dataSource.data = [record, ...this.dataSource.data];
       }
     });
+
+    this.getapprovedTransferList();
   }
 
   ngOnChanges(changes: SimpleChanges): void {}
@@ -244,6 +246,11 @@ export class TransferListComponent implements OnInit, OnChanges {
         obj != undefined ? (obj.pageSize == null ? this.pageSize : obj.pageSize) : this.pageSize,
     };
     return options;
+  }
+  getapprovedTransferList() {
+    this.jobService.getapprovedTransferList(this.getDefaultOptions()).subscribe((result: any) => {
+      this.dataSource.data = result.data;
+    });
   }
 
   getStatus(status: any) {

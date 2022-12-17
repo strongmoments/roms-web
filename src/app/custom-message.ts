@@ -23,5 +23,7 @@ export enum CustomMessage {
     invalidLeaveAttachmentSize = 'File size exceeds maximum limit 2 MB.',
     recordNotFound = 'Record not found.',
     assetSuccess = 'Asset created succesfully',
-    fileUploadError = 'File not uploaded successfully. try again.'
+    fileUploadError = 'File not uploaded successfully. try again.',
+    candidateAccepted = 'Candidate Transfer Demand Created  succesfully',
+    candidateRejected = 'Candidate Transfer Demand Rejected succesfully',
 }
