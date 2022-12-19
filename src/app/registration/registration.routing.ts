@@ -38,18 +38,18 @@ const routes: Routes = [
             { path: 'recommend', component: RecommendComponent,
         
             data: {
-                title: 'Recruitment',
-                urls: [{ title: 'Dashboard', url: '/' }, { title: 'People & Culture' }],
+                title: 'Demand Management',
+                urls: [{ title: 'Dashboard', url: '/' }, { title: 'Staff Movements' } , { title: 'Demand Board' } , { title: 'Recommend Employee' }],
             }},
             { path: 'job-recommend', component: JobRecommendComponent,
                 data: {
                 title: 'Demand Board',
-                urls: [{ title: 'Dashboard', url: '/' }, { title: 'People & Culture' }],
+                urls: [{ title: 'Dashboard', url: '/' }, { title: 'Staff Movements' }],
             }},
             { path: 'recruitment-details', component: RecruitmentDetailsComponent,
             data: {
-                title: 'Recruitment',
-                urls: [{ title: 'Dashboard', url: '/' }, { title: 'People & Culture' }],
+                title: 'Demand Details',
+                urls: [{ title: 'Dashboard', url: '/' }, { title: 'Staff Movements' }],
             } },
             { path: 'transfer-list', component: TransferListComponent,
             data: {

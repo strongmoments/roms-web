@@ -44,6 +44,14 @@ export class JobService {
       `${environment.apiUrl}/v1/jobs/resource/demand/approved/report?loadAll?page=${options.page}&size=${options.pageSize}`,
     );
   }
+
+  approveRejectTransfer(data: any) {
+    return this.http.post<any>(
+      `${environment.apiUrl}/v1/jobs/resource/demand/process`,
+      data,
+    );
+  }
+
   declineCandidate(data: any) {
     return this.http.post<any>(
       `${environment.apiUrl}/v1/jobs/resource/demand/employee/reject`,

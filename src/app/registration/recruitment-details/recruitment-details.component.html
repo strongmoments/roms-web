@@ -52,7 +52,7 @@
               <mat-label><span>Hiring Manager :- </span> <span>{{demandDetails?.hiringManager?.firstName + ' ' + demandDetails?.hiringManager?.lastName}}</span> </mat-label>
             </div>
             <div fxFlex.gt-sm="35" fxFlex="100" class="p-b-10 p-t-10">
-              <mat-label><span>Proposal start date :- </span> {{demandDetails?.hiringManager?.startDate | date: ' d MMM'}}</mat-label>
+              <mat-label><span>Proposal start date :- </span> {{demandDetails?.perposedDate | date: ' d MMM'}}</mat-label>
             </div>
             <div fxFlex.gt-sm="10" fxFlex="100" class="p-b-10 p-t-10">
               <button
@@ -153,7 +153,7 @@
         <div fxFlex.gt-sm="100" fxFlex="100">
           <div class="m-0 m-t-15" align="center">
             <button class="m-l-20 m-r-20" mat-raised-button color="primary" (click)="recomendEmployee()">Recommend Employee</button>
-            <button class="m-l-20 m-r-20" mat-raised-button color="primary" (click)="onClick()">View Recommendation</button>
+            <button class="m-l-20 m-r-20" mat-raised-button color="primary" (click)="onClick()">View Recommendations</button>
           </div>
         </div>
       </div>

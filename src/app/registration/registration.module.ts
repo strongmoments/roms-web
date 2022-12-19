@@ -12,6 +12,7 @@ import { RecruitmentDetailsComponent } from './recruitment-details/recruitment-d
 import { TransferListComponent } from './transfer-list/transfer-list.component';
 import { DemandListComponent } from './demand-list/demand-list.component';
 import { RecommendationListComponent } from './recommendation-list/recommendation-list.component';
+import { MatCheckboxDefaultOptions, MAT_CHECKBOX_DEFAULT_OPTIONS } from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -20,6 +21,10 @@ import { RecommendationListComponent } from './recommendation-list/recommendatio
         SharedModule,
         RegistrationRoutingModule
     ],
+    providers: [{
+        provide: MAT_CHECKBOX_DEFAULT_OPTIONS, 
+        useValue: { clickAction: 'noop' } as MatCheckboxDefaultOptions
+    }],
     declarations: [
         RegistrationListComponent,
         CreateUserComponent,

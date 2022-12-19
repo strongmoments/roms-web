@@ -105,8 +105,7 @@ export class RecommendComponent {
   getEmployeeGangDetails(empId: any){
     if (empId) {
       this.employeeService.getEmployeeGangDetails(empId).subscribe((result: any) => {
-        console.log('Employee gang Details:',result);
-        this.selectedEmployee.gangDetails = result;
+        this.selectedEmployee.subteam = result;
       });
     }
   }
@@ -126,41 +125,53 @@ export class RecommendComponent {
   recommendEmployee(){
     let resourceDemandId = this.id;
     let employeeId = this.selectedEmployee.id;
-    let subTeamId = this.selectedEmployee.gangDetails.id;
+    let subTeamId = this.selectedEmployee.subteam?.gangDetails?.id;
 
-    let inputPayload = {
-      "employeeId": employeeId,
-      "resourceDemandId": resourceDemandId,
-      "subTeamId": subTeamId
+    if(resourceDemandId && employeeId && subTeamId){
+      let inputPayload = {
+        "employeeId": employeeId,
+        "resourceDemandId": resourceDemandId,
+        "subTeamId": subTeamId
+      }
+
+      this.employeeService.recommendEmployee(inputPayload).subscribe((result: any) => {
+        console.log('Employee gang Details:',result);
+        this.openDialog();
+      },
+      (error: any) => {
+        alert('Already requested');
+      },);
     }
-
-    this.employeeService.recommendEmployee(inputPayload).subscribe((result: any) => {
-      console.log('Employee gang Details:',result);
-      alert('Employee Recommended Successfully!!!');
-      this.router.navigate(['/registration/job-recommend']);
-    });
+    else{
+      alert('Employee gang details are not found.');
+    }
 
   }
   onSubmit() {
     this.submitted = true;
-    this.openDialog({});
+    this.openDialog();
     // if (this.form.invalid) {
     //   this.alertService.openSnackBar(CustomMessage.invalidForm);
     //   return;
     // }
   }
 
-  openDialog(data: any) {
+  openDialog() {
     const dialogRef = this.dialog.open(this.recommendDialog, {
       width: '30em',
       height: '15em',
-      data: { data: data },
+      disableClose: true
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
       // this.router.navigate(['/registration/list']);
       console.log('The dialog was closed');
     });
+  }
+
+  goToDemandBoard(){
+    this.dialog.closeAll();
+    this.router.navigate(['/registration/job-recommend']);
   }
 
 }

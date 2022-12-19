@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, TemplateRef } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { DatePipe } from '@angular/common';
@@ -18,6 +18,8 @@ import { saveAs } from 'file-saver';
 import * as moment from 'moment';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { element } from 'protractor';
+import { MatCheckboxChange } from '@angular/material/checkbox';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-transfer-list',
@@ -40,7 +42,6 @@ export class TransferListComponent implements OnInit, OnChanges {
     'toGang',
     'toWage',
     'toRate',
-    'statusName',
     'approvedDate',
     'approver',
   ];
@@ -52,24 +53,20 @@ export class TransferListComponent implements OnInit, OnChanges {
   // @ViewChild(MatPaginator, { static: false }) paginatorHistory: MatPaginator = Object.create(null);
 
   @ViewChild(MatSort, { static: false }) sort: MatSort = Object.create(null);
+
+  @ViewChild('confirmationDialog') confirmationDialog!: TemplateRef<any>;
   // @ViewChild(MatSort, { static: false }) sortHistory: MatSort = Object.create(null);
   // pagesize = 10;
   pageNo = 0;
   pageSize = 9999999999;
   totalRecords: number = 0;
   search: string = ''; //by default 0 for pending list
-  // currentDate: any = new Date();
-  // expandedElement: any = null;
   startDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 1));
   endDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
-  // status: any = 0;
-  // departmentId: any = '';
-  // employeeType: any = '';
-  // employeeTypeList: any = [];
-  // departmentList: any = [];
   removedRows: any = [];
   // selectedTabIndex: number = 0;
   selectedId: string = '';
+  dialogData : any;
   constructor(
     breakpointObserver: BreakpointObserver,
     public util: Utils,
@@ -82,6 +79,7 @@ export class TransferListComponent implements OnInit, OnChanges {
     private authService: AuthenticationService,
     private jobService: JobService,
     private router: Router,
+    private dialog: MatDialog
   ) {
     this.globals = globals;
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -122,7 +120,6 @@ export class TransferListComponent implements OnInit, OnChanges {
     // console.log('in listing');
     // this.authService.addedResigstration.subscribe((record: any) => (this.dataSource.data.unshift(record)));
     this.authService.addedResigstration.subscribe((record: any) => {
-      console.log(record, 'in listing12');
       if (record) {
         this.totalRecords = this.totalRecords + 1;
         record.statusName = this.getStatus(record?.status);
@@ -277,6 +274,49 @@ export class TransferListComponent implements OnInit, OnChanges {
 
     // console.log(index,data.splice(index,1))
     // this.dataSource.data = this.dataSource.data.filter((elem: any) => elem.id != id);
+  }
+
+  approveRejectBilling(event: MatCheckboxChange, row: any){
+    console.log('Selected:',event,' Row:',row);
+    //event.checked = false;
+    //event.checked=false;
+    //row.recommendDetails.externalSystemEntry = true;
+    this.dialogData = row;
+    this.openDialog();
+  }
+
+  approveReject(){
+    this.approveRejectDemand();
+  }
+  
+  openDialog() {
+    const dialogRef = this.dialog.open(this.confirmationDialog, {
+      width: '30em',
+      height: '15em',
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      // this.router.navigate(['/registration/list']);
+      console.log('The dialog was closed');
+    });
+  }
+
+  approveRejectDemand() {
+  let payload = {
+    "id" : this.dialogData.recommendDetails.employeeIdx.id,
+    "externalSystemEntry" : !this.dialogData.recommendDetails.externalSystemEntry
+  }
+    this.jobService.approveRejectTransfer(payload).subscribe((result: any) => {
+      this.dataSource.data = result.data;
+      this.dialogData.recommendDetails.externalSystemEntry = !this.dialogData.recommendDetails.externalSystemEntry;
+      this.cancel();
+      this.getapprovedTransferList();
+    });
+  }
+
+  cancel(){
+    this.dialog.closeAll();
   }
 
   applyFilter(isTextSearch: boolean = false): void {

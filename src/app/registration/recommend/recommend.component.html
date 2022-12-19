@@ -59,7 +59,7 @@
             </div>
             <div fxFlex.gt-sm="35" fxFlex="100" class="p-b-10 p-t-10">
               <mat-label><span class="label-text">Proposal start date </span> 
-                <span class="label-value">{{demandDetails?.hiringManager?.startDate | date: ' d MMM'}}</span></mat-label>
+                <span class="label-value">{{demandDetails?.perposedDate | date: ' d MMM'}}</span></mat-label>
             </div>
             <div fxFlex.gt-sm="10" fxFlex="100" class="p-b-10 p-t-10">
               <button class="button p-0 p-l-30 p-r-30 l-h-26" style="border-radius:50px;" mat-flat-button color="primary">Firm</button>
@@ -70,7 +70,7 @@
 
       <div fxLayout="row wrap" fxFlexAlign="center">
         <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-5 p-t-30">
-          <mat-card-title class="p-b-10 color_blue">Employee Details</mat-card-title>
+          <mat-card-title class="p-b-10 color_blue">Search Employee</mat-card-title>
         </div>
         <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-5">
           <mat-form-field appearance="outline">
@@ -90,11 +90,14 @@
         </div>
       </div>
       <div class="selected-employee" *ngIf="selectedEmployee">
+        <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-5 p-t-30">
+          <mat-card-title class="p-b-10 color_blue">Employee Details</mat-card-title>
+        </div>
         <div fxLayout="row wrap" fxFlexAlign="center" class="row m-0 border-full" >
           <div fxFlex.gt-sm="100" fxFlex="100">
             <mat-card class="m-0 my-mat-cardf  d-wrap">
               <div fxFlex.gt-sm="10" fxFlex="100" class="p-b-10 p-t-10 r-profileImg">
-                <img src="assets/images/users/1.jpg" alt="Manager Image">
+                <img src="{{this.environmentUrl+ this.selectedEmployee?.profileImage[0]?.digitalAssets?.url}}" alt="Manager Image">
               </div>
               <div fxFlex.gt-sm="40" fxFlex="100" class="p-b-10 p-t-10">
                 <small class="text-muted">Name</small>
@@ -136,49 +139,49 @@
           <div fxFlex.gt-sm="30" fxFlex="100">
             <mat-form-field>
               <mat-label>Client :</mat-label>
-              <input matInput placeholder="Client :" value="{{selectedEmployee?.gangDetails?.clientProject?.name}}"/>
+              <input matInput placeholder="Client :" value="{{selectedEmployee?.subteam?.gangDetails?.clientProject?.name}}" readonly/>
             </mat-form-field>
           </div>
           <div fxFlex.gt-sm="5" fxFlex="100"></div>
           <div fxFlex.gt-sm="30" fxFlex="100">
             <mat-form-field>
               <mat-label>Contract :</mat-label>
-              <input matInput placeholder="Contract :" value="{{selectedEmployee?.gangDetails?.clientProject?.contract}}" />
+              <input matInput placeholder="Contract :" value="{{selectedEmployee?.subteam?.gangDetails?.clientProject?.contract}}" readonly/>
             </mat-form-field>
           </div>
           <div fxFlex.gt-sm="5" fxFlex="100"></div>
           <div fxFlex.gt-sm="30" fxFlex="100">
             <mat-form-field>
               <mat-label>Project#/ Job# :</mat-label>
-              <input matInput placeholder="Project :" value="{{selectedEmployee?.gangDetails?.project}}"/>
+              <input matInput placeholder="Project :" value="{{selectedEmployee?.subteam?.gangDetails?.clientProject?.name}}" readonly/>
             </mat-form-field>
           </div>
         
           <div fxFlex.gt-sm="30" fxFlex="100">
             <mat-form-field>
               <mat-label>Location :</mat-label>
-              <input matInput placeholder="Location" value="{{selectedEmployee?.gangDetails?.clientProject?.location}}"/>
+              <input matInput placeholder="Location" value="{{selectedEmployee?.subteam?.gangDetails?.clientProject?.location}}" readonly/>
             </mat-form-field>
           </div>
           <div fxFlex.gt-sm="5" fxFlex="100"></div>
           <div fxFlex.gt-sm="30" fxFlex="100">
             <mat-form-field>
               <mat-label>Gang:</mat-label>
-              <input matInput placeholder="Gang:" value="{{selectedEmployee?.gangDetails?.teamName}}"/>
+              <input matInput placeholder="Gang:" value="{{selectedEmployee?.subteam?.gangDetails?.teamName}}" readonly/>
             </mat-form-field>
           </div>
           <div fxFlex.gt-sm="5" fxFlex="100"></div>
           <div fxFlex.gt-sm="30" fxFlex="100">
             <mat-form-field>
               <mat-label>Wage Classification :</mat-label>
-              <input matInput placeholder="Wage Classification :" value="{{selectedEmployee?.gangDetails?.wageClassification}}"/>
+              <input matInput placeholder="Wage Classification :" value="{{selectedEmployee?.subteam?.gangDetails?.wageClassification}}" readonly/>
             </mat-form-field>
           </div>
           
           <div fxFlex.gt-sm="30" fxFlex="100">
             <mat-form-field>
               <mat-label>Award Role:</mat-label>
-              <input matInput placeholder="Role:" value="{{selectedEmployee?.gangDetails?.wageRole}}"/>
+              <input matInput placeholder="Role:" value="{{selectedEmployee?.subteam?.gangDetails?.wageRole}}" readonly/>
             </mat-form-field>
           </div>
           
@@ -186,7 +189,7 @@
           <div fxFlex.gt-sm="30" fxFlex="100">
             <mat-form-field>
               <mat-label>Award Type:</mat-label>
-              <input matInput placeholder="Award Type :" value="{{selectedEmployee?.gangDetails?.awardType}}"/>
+              <input matInput placeholder="Award Type :" value="{{selectedEmployee?.subteam?.gangDetails?.awardType}}" readonly/>
             </mat-form-field>
           </div>
         
@@ -194,25 +197,25 @@
           <div fxFlex.gt-sm="30" fxFlex="100">
             <mat-form-field>
               <mat-label>Rate:</mat-label>
-              <input matInput placeholder="Rate:" value="{{selectedEmployee?.gangDetails?.rate}}"/>
+              <input matInput placeholder="Rate:" value="{{selectedEmployee?.subteam?.gangDetails?.rate}}" readonly/>
             </mat-form-field>
           </div>
 
           <div fxFlex.gt-sm="65" fxFlex="100" class="border-full m-t-10">
             <mat-card class="m-0 my-mat-cardf d-wrap">
               <div fxFlex.gt-sm="20" fxFlex="100" class="p-b-10 p-t-10 emp-profileBottom">
-                <img src="assets/images/users/1.jpg" alt="Manager Image">
+                <img src="{{this.environmentUrl+ this.selectedEmployee?.subteam?.manager?.profileImage[0]?.digitalAssets?.url}}" alt="Manager Image">
               </div>
               <div fxFlex.gt-sm="40" fxFlex="100" class="p-b-10 p-t-10">
                 <small class="text-muted">Supervisor Name</small>
-                <mat-label class="d-block">{{selectedEmployee?.gangDetails?.clientProject?.supervisor}} </mat-label>
+                <mat-label class="d-block">{{selectedEmployee?.subteam?.manager?.firstName + ' ' + selectedEmployee?.subteam?.manager?.lastName}} </mat-label>
 
               </div>
               <div fxFlex.gt-sm="40" fxFlex="100" class="p-b-10 p-t-10">
                 <small class="text-muted v-hidden">hidden</small>
                 <mat-label class="emp-mat-label m-top-0">
                   <mat-icon>call</mat-icon>
-                  <span class="p-l-10">{{selectedEmployee?.gangDetails?.clientProject?.phone}}</span>
+                  <span class="p-l-10">{{selectedEmployee?.subteam?.manager?.phone}}</span>
                 </mat-label>
               </div>
             </mat-card>
@@ -230,16 +233,17 @@
 
 <ng-template #recommendDialog>
   <h2 mat-dialog-title align="center" class="color_blue" style="font-size: 20px; margin-bottom: 0">
-    Employee Recommended Successfully
+    Employee Recommended
   </h2>
   <div fxLayout="column wrap">
     
     <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
-      <p><span class="text-danger">Demand ID</span> 12345</p>
+      <h5 class="dialog-text">Approval Request has been sent to</h5>
+      <h5 class="dialog-text center">{{demandDetails?.hiringManager?.firstName + ' ' + demandDetails?.hiringManager?.lastName}}</h5>
     </div>
     <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
-      <button class="m-b-20 m-t-20 button w-300" mat-raised-button color="primary" >
-        Close
+      <button class="m-b-20 m-t-20 button w-300" mat-raised-button color="primary" (click)="goToDemandBoard()">
+        View Demand Board
       </button>
     </div>
    
