@@ -80,7 +80,7 @@
                                 </mat-checkbox> -->
                   </th>
                   <td mat-cell *matCellDef="let row; let index = dataIndex">
-                    <mat-checkbox [ngClass]="getStatusColor(row?.leaveStatus, true)" (click)="removeRow(row.id, index)">
+                    <mat-checkbox [ngClass]="getStatusColor(row?.recommendDetails?.externalSystemEntry, true)" [checked]="row?.recommendDetails?.externalSystemEntry"  (click)="approveRejectBilling($event, row)">
                     </mat-checkbox>
                   </td>
                 </ng-container>
@@ -183,14 +183,6 @@
                     </td>
                   </ng-container>
 
-                  <ng-container matColumnDef="statusName">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-                    <td mat-cell *matCellDef="let row">
-                      <span [ngClass]="getStatusColor(row?.status)">
-                        {{ row?.statusName }}
-                      </span>
-                    </td>
-                  </ng-container>
                   <ng-container matColumnDef="approvedDate">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Approved On</th>
                     <td mat-cell *matCellDef="let row">
@@ -229,3 +221,20 @@
     </div>
   </div>
 </div>
+
+<ng-template #confirmationDialog>
+  <h6 mat-dialog-title align="center" class="color_blue" style="font-size: 15px; margin-bottom: 0">
+    Are you sure you want to Approve/reject {{ dialogData?.recommendDetails?.employeeIdx?.firstName + ' ' + dialogData?.recommendDetails?.employeeIdx?.lastName }}
+  </h6>
+  <div fxLayout="column wrap">
+    <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
+      <button class="m-b-20 m-t-20 button w-100" mat-raised-button color="primary" (click)="approveReject()">
+        Approve/Reject
+      </button>
+      <button class="m-b-20 m-t-20 button w-100" mat-raised-button color="primary" (click)="cancel()">
+        Cancel
+      </button>
+    </div>
+   
+  </div>
+</ng-template>
