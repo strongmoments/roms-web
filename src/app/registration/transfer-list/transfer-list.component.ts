@@ -31,9 +31,10 @@ export class TransferListComponent implements OnInit, OnChanges {
   submitted: boolean = false;
   displayedColumns: string[] = [
     'select',
-    'requestedDate',
+    'demandNo',
     'employeeName',
-    'employeeNo',
+    'requestedDate',
+    'hiringManager',
     'fromProject',
     'fromGang',
     'fromWage',
@@ -42,7 +43,9 @@ export class TransferListComponent implements OnInit, OnChanges {
     'toGang',
     'toWage',
     'toRate',
+    'createdDate',
     'approvedDate',
+    'recommendedBy',    
     'approver',
   ];
 
