@@ -41,7 +41,7 @@ export class JobService {
   }
   getapprovedTransferList(options: ViewOptions) {
     return this.http.get<any>(
-      `${environment.apiUrl}/v1/jobs/resource/demand/approved/report?loadAll?page=${options.page}&size=${options.pageSize}`,
+      `${environment.apiUrl}/v1/jobs/resource/demand/approved/report?page=0&size=10&fromDate=dd-mm-yyyy&toDate=dd-mm-yyyy&searchText=${options.page}&size=${options.pageSize}`,
     );
   }
 

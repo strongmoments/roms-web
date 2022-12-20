@@ -3,255 +3,287 @@
     <div>
       <!-- <mat-tab-group mat-stretch-tabs>
         <mat-tab label="Transfer List"> -->
-          <mat-card class="m-0 m-t-20 m-b-5">
-            <mat-card-content class="p-15">
-              <mat-card-title class="p-10 p-t-0 p-l-25 p-r-0 export-btn">
-                <button mat-icon-button [matMenuTriggerFor]="exportMenu">
-                  Export List
-                  <mat-icon>cloud_download</mat-icon>
-                </button>
-                <mat-menu #exportMenu="matMenu">
-                  <button mat-menu-item>Export CSV</button>
-                </mat-menu>
-              </mat-card-title>
-              <div class="m-l-10 m-r-10">
-                <div fxLayout="row wrap" fxFlexAlign="center" class="row">
-                  <div fxFlex.gt-sm="50" class="p-r-10" fxFlex="100">
-                    <mat-form-field>
-                      <input
-                        matInput
-                        (keyup)="applyFilter(true)"
-                        [(ngModel)]="search"
-                        placeholder="Filter"
-                      />
-                      <mat-icon matSuffix>search</mat-icon>
-                    </mat-form-field>
-                  </div>
-                  <div fxFlex.gt-sm="20" class="font-12"></div>
-                  <div fxFlex.gt-sm="30" class="font-12">
-                    <mat-form-field appearance="outline">
-                      <mat-label (click)="picker.open()">Select Date Range</mat-label>
-                      <mat-date-range-input [rangePicker]="picker">
-                        <input
-                          matStartDate
-                          [(ngModel)]="startDate"
-                          placeholder="Start date"
-                          readonly
-                          (dateChange)="applyFilter()"
-                          (click)="picker.open()"
-                        />
-                        <input
-                          matEndDate
-                          placeholder="End date"
-                          readonly
-                          [(ngModel)]="endDate"
-                          (dateChange)="applyFilter()"
-                          (click)="picker.open()"
-                        />
-                      </mat-date-range-input>
-
-                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                      <mat-date-range-picker #picker></mat-date-range-picker>
-                    </mat-form-field>
-                  </div>
-                </div>
+      <mat-card class="m-0 m-t-20 m-b-5">
+        <mat-card-content class="p-15">
+          <mat-card-title class="p-10 p-t-0 p-l-25 p-r-0 export-btn">
+            <button mat-icon-button [matMenuTriggerFor]="exportMenu">
+              Export List
+              <mat-icon>cloud_download</mat-icon>
+            </button>
+            <mat-menu #exportMenu="matMenu">
+              <button mat-menu-item>Export CSV</button>
+            </mat-menu>
+          </mat-card-title>
+          <div class="m-l-10 m-r-10">
+            <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+              <div fxFlex.gt-sm="50" class="p-r-10" fxFlex="100">
+                <mat-form-field>
+                  <input
+                    matInput
+                    (keyup)="applyFilter(true)"
+                    [(ngModel)]="search"
+                    placeholder="Filter"
+                  />
+                  <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
               </div>
-            </mat-card-content>
-          </mat-card>
+              <div fxFlex.gt-sm="20" class="font-12"></div>
+              <div fxFlex.gt-sm="30" class="font-12">
+                <mat-form-field appearance="outline">
+                  <mat-label (click)="picker.open()">Select Date Range</mat-label>
+                  <mat-date-range-input [rangePicker]="picker">
+                    <input
+                      matStartDate
+                      [(ngModel)]="startDate"
+                      placeholder="Start date"
+                      readonly
+                      (dateChange)="applyFilter()"
+                      (click)="picker.open()"
+                    />
+                    <input
+                      matEndDate
+                      placeholder="End date"
+                      readonly
+                      [(ngModel)]="endDate"
+                      (dateChange)="applyFilter()"
+                      (click)="picker.open()"
+                    />
+                  </mat-date-range-input>
 
-          <mat-card class="m-0 m-t-5 m-b-5">
-            <mat-card-content>
-              <div class="table-responsive infinite-scroll">
-                <mat-table
-                  #table
-                  [dataSource]="dataSource"
-                  class="table employee-list no-wrap"
-                  matSort
-                >
-                <!-- Name Column -->
-                <ng-container matColumnDef="select">
-                  <th mat-header-cell *matHeaderCellDef>
-                    <!-- <mat-checkbox
-                                  (change)="$event ? masterToggle() : null"
-                                  > -->
-                    <!-- <mat-checkbox
-                                  
-                                  >
-                                </mat-checkbox> -->
-                  </th>
-                  <td mat-cell *matCellDef="let row; let index = dataIndex">
-                    <mat-checkbox [ngClass]="getStatusColor(row?.recommendDetails?.externalSystemEntry, true)" [checked]="row?.recommendDetails?.externalSystemEntry"  (click)="approveRejectBilling($event, row)">
-                    </mat-checkbox>
-                  </td>
-                </ng-container>
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="demandNo">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Demand No</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      <!-- {{ row?.firstName }}{{ row?.lastName }} -->
-                        
-                        {{ row?.recommendDetails?.demandIdx?.demandId}}
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-date-range-picker #picker></mat-date-range-picker>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
 
-                    </td>
-                  </ng-container>
+      <mat-card class="m-0 m-t-5 m-b-5">
+        <mat-card-content>
+          <div class="table-responsive infinite-scroll">
+            <mat-table #table [dataSource]="dataSource" class="table employee-list no-wrap" matSort>
+              <!-- Name Column -->
+              <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                 
+                </th>
+                <td mat-cell *matCellDef="let row; let index = dataIndex" >
+                  <mat-checkbox
+                    [ngClass]="getStatusColor(row?.recommendDetails?.externalSystemEntry, true)"
+                    [checked]="row?.recommendDetails?.externalSystemEntry"
+                    (click)="approveRejectBilling($event, row)"
+                  >
+                  </mat-checkbox>
+                </td>
+              </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="demandNo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Demand No</th>
+                <td mat-cell *matCellDef="let row" style="color:#2ace58">
+                  <!-- <span class="header-label">days:</span> -->
+                  <!-- {{ row?.firstName }}{{ row?.lastName }} -->
 
-                  <ng-container matColumnDef="employeeName">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Emp Name</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      <!-- {{ row?.firstName }}{{ row?.lastName }} -->
-                      <div style="display: flex; align-items: center">
-                        <img class="m-r-10 list-Img" src="../../../assets/img/user-default-img.jpg" alt="" />
-                        {{ row?.recommendDetails?.employeeIdx?.firstName }}
-                    {{ row?.recommendDetails?.employeeIdx?.lastName }}
-                      </div>
-                    </td>
-                  </ng-container>
+                  {{ row?.recommendDetails?.demandIdx?.demandId }}
+                </td>
+              </ng-container>
 
-                  <!-- Name Column -->
-                  <!-- <ng-container matColumnDef="employeeNo">
+              <ng-container matColumnDef="employeeName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Emp Name</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  <!-- {{ row?.firstName }}{{ row?.lastName }} -->
+                  <div style="display: flex; align-items: top">
+                    <img
+                      class="m-r-10 list-Img"
+                      onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
+                      [src]="
+                      row?.recommendDetails?.employeeIdx?.profileImageURL
+                          ? globals.generateFileUrl(
+                              row?.recommendDetails?.employeeIdx?.profileImageURL,
+                              user.token
+                            )
+                          : ''
+                      "
+                      alt=""
+                    />
+                    {{
+                      row?.recommendDetails?.employeeIdx?.firstName +
+                        ' ' +
+                        row?.recommendDetails?.employeeIdx?.lastName
+                    }}
+                  </div>
+                </td>
+              </ng-container>
+
+              <!-- Name Column -->
+              <!-- <ng-container matColumnDef="employeeNo">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Emp No</th>
                     <td mat-cell *matCellDef="let row">
                        <span class="header-label">days:</span> 
                       {{ row?.recommendDetails?.employeeIdx?.employeeNo }}
                     </td>
                   </ng-container> -->
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="fromProject">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>From Project</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      {{ row?.recommendDetails?.fromSubteamIdx?.clientProject?.name }}
-                    </td>
-                  </ng-container>
-                  
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="fromGang">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>From Gang</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      {{ row?.recommendDetails?.fromSubteamIdx?.teamName }}
-                    </td>
-                  </ng-container>
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="fromWage">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>From Wage</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      {{ row?.recommendDetails?.fromSubteamIdx?.wageClassification }}
-                    </td>
-                  </ng-container>
-                   <!-- Name Column -->
-                   <ng-container matColumnDef="fromRate">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>From Rate</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      {{ row?.recommendDetails?.fromSubteamIdx?.rate }}
-                    </td>
-                  </ng-container>
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="toProject">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>To Project</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      {{ row?.recommendDetails?.toSubteamIdx?.clientProject?.name }}
-                    </td>
-                  </ng-container>
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="toGang">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>To Gang</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      {{ row?.recommendDetails?.toSubteamIdx?.teamName }}
-                    </td>
-                  </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="fromProject">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>From Project</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  {{ row?.recommendDetails?.fromSubteamIdx?.clientProject?.name }}
+                </td>
+              </ng-container>
 
-                  
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="toWage">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>To Wage</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      {{ row?.recommendDetails?.toSubteamIdx?.wageClassification }}
-                    </td>
-                  </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="fromGang">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>From Gang</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  {{ row?.recommendDetails?.fromSubteamIdx?.teamName }}
+                </td>
+              </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="fromWage">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>From Wage</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  {{ row?.recommendDetails?.fromSubteamIdx?.wageClassification }}
+                </td>
+              </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="fromRate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>From Rate</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  {{ row?.recommendDetails?.fromSubteamIdx?.rate }}
+                </td>
+              </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="toProject">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>To Project</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  {{ row?.recommendDetails?.toSubteamIdx?.clientProject?.name }}
+                </td>
+              </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="toGang">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>To Gang</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  {{ row?.recommendDetails?.toSubteamIdx?.teamName }}
+                </td>
+              </ng-container>
 
-                 
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="toRate">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>To Rate</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      {{ row?.recommendDetails?.toSubteamIdx?.rate }}
-                    </td>
-                  </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="toWage">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>To Wage</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  {{ row?.recommendDetails?.toSubteamIdx?.wageClassification }}
+                </td>
+              </ng-container>
 
-                  <ng-container matColumnDef="createdDate">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Created</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      {{ row?.recommendDetails?.createDate |    date: 'dd/MM/yyyy'  }}
-                    </td>
-                  </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="toRate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>To Rate</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  {{ row?.recommendDetails?.toSubteamIdx?.rate }}
+                </td>
+              </ng-container>
 
-                  <ng-container matColumnDef="hiringManager">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Hiring Manager</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      {{ row?.recommendDetails?.demandIdx?.hiringManager?.firstName + ' ' + row?.recommendDetails?.demandIdx?.hiringManager?.lastName}}
-                    </td>
-                  </ng-container>
+              <ng-container matColumnDef="createdDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Created</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  {{ row?.recommendDetails?.createDate | date: 'dd/MM/yyyy' }}
+                </td>
+              </ng-container>
 
-                  <ng-container matColumnDef="recommendedBy">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Recommended By</th>
-                    <td mat-cell *matCellDef="let row">
-                      <!-- <span class="header-label">days:</span> -->
-                      {{ row?.recommendDetails?.initiatedBy?.firstName + ' ' + row?.recommendDetails?.initiatedBy?.lastName}}
-                    </td>
-                  </ng-container>
+              <ng-container matColumnDef="hiringManager">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Hiring Manager</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  <div style="display: flex; align-items: top">
+                    <img
+                      class="m-r-10 list-Img"
+                      onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
+                      [src]="
+                      row?.recommendDetails?.demandIdx?.hiringManager?.profileImageURL
+                          ? globals.generateFileUrl(
+                              row?.recommendDetails?.demandIdx?.hiringManager?.profileImageURL,
+                              user.token
+                            )
+                          : ''
+                      "
+                      alt=""
+                    />
+                    {{
+                      row?.recommendDetails?.demandIdx?.hiringManager?.firstName +
+                        ' ' +
+                        row?.recommendDetails?.demandIdx?.hiringManager?.lastName
+                    }}
+                  </div>
+                </td>
+              </ng-container>
 
-                  <ng-container matColumnDef="requestedDate">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Effective</th>
-                    <td mat-cell *matCellDef="let row">
-                      {{ row?.recommendDetails?.requestedDate | date: 'dd/MM/yyyy' }}
-                    </td>
-                  </ng-container>
+              <ng-container matColumnDef="recommendedBy">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Recommended By</th>
+                <td mat-cell *matCellDef="let row">
+                  <!-- <span class="header-label">days:</span> -->
+                  {{
+                    row?.recommendDetails?.initiatedBy?.firstName +
+                      ' ' +
+                      row?.recommendDetails?.initiatedBy?.lastName
+                  }}
+                </td>
+              </ng-container>
 
-                  <ng-container matColumnDef="approvedDate">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Approved On</th>
-                    <td mat-cell *matCellDef="let row">
-                      {{ row?.recommendDetails?.lastUpdateDate | date: 'dd/MM/yyyy'}}
-                    </td>
-                  </ng-container>
-                  <ng-container matColumnDef="approver">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Approver</th>
-                    <td mat-cell *matCellDef="let row">
-                      {{ row?.recommendDetails?.acceptedBy?.firstName }} {{ row?.recommendDetails?.acceptedBy?.lastName }}
-                    </td>
-                  </ng-container>
+              <ng-container matColumnDef="requestedDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Effective</th>
+                <td mat-cell *matCellDef="let row">
+                  {{ row?.recommendDetails?.requestedDate | date: 'dd/MM/yyyy' }}
+                </td>
+              </ng-container>
 
-                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                  <tr
-                    mat-row
-                    *matRowDef="let element; columns: displayedColumns"
-                    class="example-element-row"
-                    [ngClass]="{ 'selected-row': selectedId == element.id }"
-                  ></tr>
-                  <tr class="mat-row" *matNoDataRow>
-                    <td class="mat-cell" [attr.colspan]="displayedColumns.length">
-                      No Transfer Data
-                    </td>
-                  </tr>
-                </mat-table>
+              <ng-container matColumnDef="approvedDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Approved On</th>
+                <td mat-cell *matCellDef="let row">
+                  {{ row?.recommendDetails?.lastUpdateDate | date: 'dd/MM/yyyy' }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="approver">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Approver</th>
+                <td mat-cell *matCellDef="let row">
+                  {{ row?.recommendDetails?.acceptedBy?.firstName }}
+                  {{ row?.recommendDetails?.acceptedBy?.lastName }}
+                </td>
+              </ng-container>
 
-                <!-- <mat-paginator [length]="totalRecords" [pageIndex]="pageNo" [pageSizeOptions]="[5, 10, 20]"
+              <tr
+                mat-header-row
+                style="vertical-align: top"
+                *matHeaderRowDef="displayedColumns"
+              ></tr>
+              <tr
+                mat-row
+                *matRowDef="let element; columns: displayedColumns"
+                class="example-element-row"
+                style="vertical-align: top"
+                [ngClass]="{ 'selected-row': selectedId == element.id }"
+              ></tr>
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" [attr.colspan]="displayedColumns.length">No Transfer Data</td>
+              </tr>
+            </mat-table>
+
+            <!-- <mat-paginator [length]="totalRecords" [pageIndex]="pageNo" [pageSizeOptions]="[5, 10, 20]"
                     [pageSize]="pageSize" aria-label="Select page">
                   </mat-paginator> -->
-              </div>
-            </mat-card-content>
-          </mat-card>
-        <!-- </mat-tab>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <!-- </mat-tab>
       </mat-tab-group> -->
     </div>
   </div>
@@ -259,17 +291,31 @@
 
 <ng-template #confirmationDialog>
   <h6 mat-dialog-title align="center" class="color_blue" style="font-size: 15px; margin-bottom: 0">
-    Are you sure you want to Approve/reject {{ dialogData?.recommendDetails?.employeeIdx?.firstName + ' ' + dialogData?.recommendDetails?.employeeIdx?.lastName }}
+    Are you sure you want to Approve/reject
+    {{
+      dialogData?.recommendDetails?.employeeIdx?.firstName +
+        ' ' +
+        dialogData?.recommendDetails?.employeeIdx?.lastName
+    }}
   </h6>
   <div fxLayout="column wrap">
     <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
-      <button class="m-b-20 m-t-20 button w-100" mat-raised-button color="primary" (click)="approveReject()">
+      <button
+        class="m-b-20 m-t-20 button w-100"
+        mat-raised-button
+        color="primary"
+        (click)="approveReject()"
+      >
         Approve/Reject
       </button>
-      <button class="m-b-20 m-t-20 button w-100" mat-raised-button color="primary" (click)="cancel()">
+      <button
+        class="m-b-20 m-t-20 button w-100"
+        mat-raised-button
+        color="primary"
+        (click)="cancel()"
+      >
         Cancel
       </button>
     </div>
-   
   </div>
 </ng-template>

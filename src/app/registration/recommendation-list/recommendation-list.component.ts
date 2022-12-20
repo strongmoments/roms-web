@@ -289,10 +289,10 @@ export class RecommendationListComponent implements OnInit, OnChanges {
       this.refresh(this.getDefaultOptions());
     }
   }
-  openConfermation(demandId:any,firstName:any,lastName:any,resourseDemandId:any,id:any) {
+  openConfermation(demandId:any,firstName:any,lastName:any,resourseDemandId:any,id:any,name:any) {
     
     
-    this.openDialog({demandId:demandId,firstName:firstName,lastName:lastName,resourseDemandId:resourseDemandId,id:id});
+    this.openDialog({demandId:demandId,firstName:firstName,lastName:lastName,resourseDemandId:resourseDemandId,id:id,name:name});
     
   }
   acceptCandidate(data: any){
@@ -310,6 +310,7 @@ export class RecommendationListComponent implements OnInit, OnChanges {
       },
     });
     this.submitted = true;
+    this.dialog.closeAll();
     
     
   }
@@ -328,6 +329,7 @@ export class RecommendationListComponent implements OnInit, OnChanges {
        
       },
     });
+    this.dialog.closeAll();
     this.submitted = true;
     
     

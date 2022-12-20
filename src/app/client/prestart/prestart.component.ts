@@ -258,6 +258,7 @@ export class PrestartComponent implements OnInit, OnChanges {
   onSubmit() {
     this.submitted = true;
     this.openDialog({});
+    this.dialog.closeAll();
     // if (this.form.invalid) {
     //   this.alertService.openSnackBar(CustomMessage.invalidForm);
     //   return;
@@ -292,5 +293,9 @@ export class PrestartComponent implements OnInit, OnChanges {
     // else {
     this.refresh(this.getDefaultOptions());
     // }
+  }
+  
+  cancel(){
+    this.dialog.closeAll();
   }
 }

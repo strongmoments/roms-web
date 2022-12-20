@@ -50,7 +50,7 @@
               <!-- Name Column -->
               <ng-container matColumnDef="demandId">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Demand No</th>
-                <td mat-cell *matCellDef="let row">
+                <td mat-cell *matCellDef="let row" style="color:#2ace58">
                   <!-- <span class="header-label">days:</span> -->
                   {{ row?.recommendDetails?.demandIdx?.demandId }}
                 </td>
@@ -84,14 +84,22 @@
                 <td mat-cell *matCellDef="let row">
                   <!-- <span class="header-label">days:</span> -->
                   <!-- {{ row?.firstName }}{{ row?.lastName }} -->
-                  <div style="display: flex; align-items: center">
+                  <div style="display: flex; align-items: top">
                     <img
                       class="m-r-10 list-Img"
-                      src="../../../assets/img/user-default-img.jpg"
+                      onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
+                      [src]="
+                      row?.recommendDetails?.employeeIdx?.profileImageURL
+                          ? globals.generateFileUrl(
+                              row?.recommendDetails?.employeeIdx?.profileImageURL,
+                              user.token
+                            )
+                          : ''
+                      "
                       alt=""
                     />
-                    {{ row?.recommendDetails?.employeeIdx?.firstName }}
-                    {{ row?.recommendDetails?.employeeIdx?.lastName }}
+                    {{ row?.recommendDetails?.employeeIdx?.firstName +
+                      ' ' + row?.recommendDetails?.employeeIdx?.lastName }}
                   </div>
                 </td>
               </ng-container>
@@ -150,7 +158,8 @@
                         row?.recommendDetails?.employeeIdx?.firstName,
                         row?.recommendDetails?.employeeIdx?.lastName,
                         row?.recommendDetails?.demandIdx?.id,
-                        row?.recommendDetails?.id
+                        row?.recommendDetails?.id,
+                        row?.recommendDetails?.demandIdx?.clientProject?.name
                       )
                     "
                     >thumb_up</mat-icon
@@ -208,12 +217,13 @@
     Candidate Transfer
   </h2>
   <div fxLayout="column wrap">
-    <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
-      <p><span class="text-danger">Demand ID :</span> {{ selectedCandidateDetails?.demandId }}</p>
-      <mat-label
-        ><b class="text-center"
-          >{{ selectedCandidateDetails?.firstName }} {{ selectedCandidateDetails?.lastName }}</b
-        ></mat-label
+    <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0" align="center">
+      <p><span class="text-danger">Demand ID #</span> {{ selectedCandidateDetails?.demandId }}</p>
+      <mat-label 
+        >Do you want to approve transfer of <b class="text-center"
+          > {{ selectedCandidateDetails?.firstName +
+            ' ' + selectedCandidateDetails?.lastName }} </b
+        > to Project <b> {{selectedCandidateDetails?.name}} ?</b> </mat-label
       >
     </div>
 
@@ -225,12 +235,12 @@
           (click)="acceptCandidate(selectedCandidateDetails)"
           
         >
-          Yes
+          Approve
         </button>
       </div>
 
       <div fxFlex.gt-sm="50%" fxFlex="100" class="btm-ft">
-        <button mat-raised-button color="primary" (click)="declineCandidate()">No</button>
+        <button mat-raised-button color="primary" (click)="declineCandidate()">Cancel</button>
       </div>
     </div>
   </div>
