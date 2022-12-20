@@ -71,6 +71,7 @@ export class TransferListComponent implements OnInit, OnChanges {
   // selectedTabIndex: number = 0;
   selectedId: string = '';
   dialogData : any;
+  user: any;
   constructor(
     breakpointObserver: BreakpointObserver,
     public util: Utils,
@@ -86,6 +87,7 @@ export class TransferListComponent implements OnInit, OnChanges {
     private dialog: MatDialog
   ) {
     this.globals = globals;
+    this.user = this.authService.getCurrentUser();
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };

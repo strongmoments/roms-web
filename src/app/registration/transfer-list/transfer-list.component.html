@@ -97,14 +97,7 @@
                     <img
                       class="m-r-10 list-Img"
                       onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
-                      [src]="
-                      row?.recommendDetails?.employeeIdx?.profileImageURL
-                          ? globals.generateFileUrl(
-                              row?.recommendDetails?.employeeIdx?.profileImageURL,
-                              user.token
-                            )
-                          : ''
-                      "
+                      [src]="row?.recommendDetails?.employeeIdx?.profileImage?.length>0?globals.generateFileUrl(row?.recommendDetails?.employeeIdx?.profileImage[0]?.digitalAssets?.url,user.token):''" 
                       alt=""
                     />
                     {{
@@ -206,14 +199,7 @@
                     <img
                       class="m-r-10 list-Img"
                       onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
-                      [src]="
-                      row?.recommendDetails?.demandIdx?.hiringManager?.profileImageURL
-                          ? globals.generateFileUrl(
-                              row?.recommendDetails?.demandIdx?.hiringManager?.profileImageURL,
-                              user.token
-                            )
-                          : ''
-                      "
+                      [src]="row?.recommendDetails?.demandIdx?.hiringManager?.profileImage?.length>0?globals.generateFileUrl(row?.recommendDetails?.demandIdx?.hiringManager?.profileImage[0]?.digitalAssets?.url,user.token):''" 
                       alt=""
                     />
                     {{
