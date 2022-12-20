@@ -39,9 +39,9 @@ export class JobService {
       `${environment.apiUrl}/v1/jobs/resource/demand/recommend?loadAll?page=${options.page}&size=${options.pageSize}`,
     );
   }
-  getapprovedTransferList(options: ViewOptions) {
+  getapprovedTransferList(options: ViewOptions, queryData: any) {
     return this.http.get<any>(
-      `${environment.apiUrl}/v1/jobs/resource/demand/approved/report?page=0&size=10&fromDate=dd-mm-yyyy&toDate=dd-mm-yyyy&searchText=${options.page}&size=${options.pageSize}`,
+      `${environment.apiUrl}/v1/jobs/resource/demand/approved/report?page=${options.page}&size=200&fromDate=${queryData.fromDate}&toDate=${queryData.toDate}&searchText=${queryData.searchText}`,
     );
   }
 

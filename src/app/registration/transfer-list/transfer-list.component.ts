@@ -55,6 +55,7 @@ export class TransferListComponent implements OnInit, OnChanges {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator = Object.create(null);
   // @ViewChild(MatPaginator, { static: false }) paginatorHistory: MatPaginator = Object.create(null);
 
+  //@ViewChild(MatSort, { static: false }) sort: MatSort = Object.create(null);
   @ViewChild(MatSort, { static: false }) sort: MatSort = Object.create(null);
 
   @ViewChild('confirmationDialog') confirmationDialog!: TemplateRef<any>;
@@ -119,41 +120,42 @@ export class TransferListComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     // this.displayedColumns = this.displayedColumnsLeave;
-    this.refresh(this.getDefaultOptions());
+    //this.refresh(this.getDefaultOptions());
     // console.log('in listing');
     // this.authService.addedResigstration.subscribe((record: any) => (this.dataSource.data.unshift(record)));
-    this.authService.addedResigstration.subscribe((record: any) => {
-      if (record) {
-        this.totalRecords = this.totalRecords + 1;
-        record.statusName = this.getStatus(record?.status);
-        record.convertedAppliedOn = this.datePipe.transform(record.appliedOn, 'dd/MM/yyyy');
-        // data.push({
-        //   ...record,
-        //   statusName: statusName,
-        //   convertedAppliedOn: convertedAppliedOn
-        // });
+    // this.authService.addedResigstration.subscribe((record: any) => {
+    //   if (record) {
+    //     this.totalRecords = this.totalRecords + 1;
+    //     record.statusName = this.getStatus(record?.status);
+    //     record.convertedAppliedOn = this.datePipe.transform(record.appliedOn, 'dd/MM/yyyy');
+    //     // data.push({
+    //     //   ...record,
+    //     //   statusName: statusName,
+    //     //   convertedAppliedOn: convertedAppliedOn
+    //     // });
 
-        this.dataSource.data = [record, ...this.dataSource.data];
-      }
-    });
+    //     this.dataSource.data = [record, ...this.dataSource.data];
+    //   }
+    // });
 
-    this.getapprovedTransferList();
+    this.refresh(this.getDefaultOptions());
   }
 
-  ngOnChanges(changes: SimpleChanges): void {}
+  ngOnChanges(changes: SimpleChanges): void {
+    this.dataSource.sort = this.sort
+  }
 
   /**
    * Set the paginator and sort after the view init since this component will
    * be able to query its view for the initialized paginator and sort.
    */
   ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
+    //this.dataSource.paginator = this.paginator;
     // this.dataSource.sort = this.sort;
     this.dataSource.sort = this.sort;
-    // this.paginator?.page.subscribe((page: PageEvent) => {
-    //   if (this.selectedTabIndex == 0) {
-    //   }
-    // });
+    this.paginator?.page.subscribe((page: PageEvent) => {
+      this.refresh(this.getDefaultOptions());
+    });
   }
 
   redirectForm(elem: any) {
@@ -197,37 +199,41 @@ export class TransferListComponent implements OnInit, OnChanges {
     // };
     // console.log(queryData, 'queryData');
 
-    this.authService
-      .getAllEmployeeRegisterReq()
-      .pipe(first())
-      .subscribe((result: any) => {
-        this.totalRecords = result.data.length;
-        let data: any = [];
-        result.data = result.data.sort((a: any, b: any) => {
-          return a.status - b.status;
-        });
-        result.data = result.data.sort((a: any, b: any) => {
-          var c: any = new Date(parseInt(a.appliedOn));
-          var d: any = new Date(parseInt(b.appliedOn));
-          // console.log(a,d);
-          return d - c;
-        });
+    let startDate = this.startDate
+      ? moment(new Date(new Date(this.startDate).setHours(0, 0, 0, 0)).toUTCString()).format('DD-MM-yyyy')
+      : '';
+    let endDate = this.endDate
+      ? moment(new Date(new Date(this.endDate).setHours(23, 59, 59, 59)).toUTCString()).format('DD-MM-yyyy')
+      : '';
 
+    let queryData = {
+      toDate: endDate,
+      fromDate: startDate,
+      searchText: `${this.search}`,
+    };
+
+    this.jobService.getapprovedTransferList(this.getDefaultOptions(), queryData).pipe(first()).subscribe((result: any) => {
+      this.totalRecords = result.totalElement;
+        let data: any = [];
         for (let i = 0; i < result.data.length; i++) {
-          let statusName = this.getStatus(result.data[i]?.status);
-          let convertedAppliedOn = this.datePipe.transform(result.data[i].appliedOn, 'dd/MM/yyyy');
+
+          let demandId = result.data[i]?.recommendDetails?.demandIdx?.demandId;
+          let employeeName = `${result.data[i].recommendDetails.employeeIdx.firstName},${result.data[i].recommendDetails.employeeIdx.lastName}`;
+          let createdDate = result.data[i]?.recommendDetails?.createDate;
+          let requestedDate = result.data[i]?.recommendDetails?.requestedDate;
+          let approvedDate = result.data[i]?.recommendDetails?.lastUpdateDate;
           data.push({
             ...result.data[i],
-            statusName: statusName,
-            convertedAppliedOn: convertedAppliedOn,
+            demandNo: demandId,
+            employeeName: employeeName,
+            createdDate: createdDate,
+            requestedDate: requestedDate,
+            approvedDate: approvedDate
           });
         }
-        // if (isScrolled == true) {
-        //   this.dataSource.data = [...this.dataSource.data, ...data];
-        // } else {
+
         this.dataSource.data = data;
-        // }
-      });
+    });
   }
 
   getDefaultOptions() {
@@ -247,11 +253,12 @@ export class TransferListComponent implements OnInit, OnChanges {
     };
     return options;
   }
-  getapprovedTransferList() {
-    this.jobService.getapprovedTransferList(this.getDefaultOptions()).subscribe((result: any) => {
-      this.dataSource.data = result.data;
-    });
-  }
+  // getapprovedTransferList() {
+  //   this.jobService.getapprovedTransferList(this.getDefaultOptions()).subscribe((result: any) => {
+  //     this.dataSource.data = result.data;
+  //     this.dataSource.sort = this.sort;
+  //   });
+  // }
 
   getStatus(status: any) {
     return this.globals.userApplicationStatus.find((elem: any) => {
@@ -307,14 +314,14 @@ export class TransferListComponent implements OnInit, OnChanges {
 
   approveRejectDemand() {
   let payload = {
-    "id" : this.dialogData.recommendDetails.employeeIdx.id,
+    "id" : this.dialogData.recommendDetails.id,
     "externalSystemEntry" : !this.dialogData.recommendDetails.externalSystemEntry
   }
     this.jobService.approveRejectTransfer(payload).subscribe((result: any) => {
       this.dataSource.data = result.data;
       this.dialogData.recommendDetails.externalSystemEntry = !this.dialogData.recommendDetails.externalSystemEntry;
       this.cancel();
-      this.getapprovedTransferList();
+      this.refresh(this.getDefaultOptions());
     });
   }
 
@@ -331,5 +338,33 @@ export class TransferListComponent implements OnInit, OnChanges {
     } else {
       this.refresh(this.getDefaultOptions());
     }
+  }
+
+  exportCsv() {
+    let csvArray: any = [
+      'Demand ID,Emp Name,Date Effective,Hiring Manager,From Project,From Gang,From Wage,From Rate,To Project,To Gang,To Wage,To Rate,Date Created,Approved On,Recommended By,Approver\r\n',
+    ];
+    for (let i = 0; i < this.dataSource.data.length; i++) {
+      let item = this.dataSource.data[i];
+      // console.log(this.dataSource.data[i], 'this.dataSource.data');
+      let row: string = `${item?.demandNo},${item?.recommendDetails.employeeIdx.firstName} ${item?.recommendDetails.employeeIdx.lastName
+      },${this.datePipe.transform(item.requestedDate, 'dd/MM/yyyy')},${item?.recommendDetails?.demandIdx?.hiringManager?.firstName
+      } ${item?.recommendDetails?.demandIdx?.hiringManager?.lastName
+      },${item?.recommendDetails?.fromSubteamIdx?.clientProject?.name
+      },${item?.recommendDetails?.fromSubteamIdx?.teamName},${item?.recommendDetails?.fromSubteamIdx?.wageClassification
+      },${item?.recommendDetails?.fromSubteamIdx?.rate},${item?.recommendDetails?.toSubteamIdx?.clientProject?.name
+      },${item?.recommendDetails?.toSubteamIdx?.teamName},${item?.recommendDetails?.toSubteamIdx?.wageClassification
+      },${item?.recommendDetails?.toSubteamIdx?.rate},${this.datePipe.transform(item.createdDate, 'dd/MM/yyyy')
+    },${this.datePipe.transform(item.approvedDate, 'dd/MM/yyyy')
+  },${item?.recommendDetails?.initiatedBy?.firstName} ${item?.recommendDetails?.initiatedBy?.lastName
+  },${item?.recommendDetails?.acceptedBy?.firstName} ${item?.recommendDetails?.acceptedBy?.lastName}\r\n`;
+      // console.log(row);
+      csvArray.push(row);
+    }
+    // console.log(csvArray)
+    let fileName = `transfer_list_${new Date().getTime()}.csv`;
+
+    var blob = new Blob(csvArray, { type: 'text/csv' });
+    saveAs(blob, fileName);
   }
 }

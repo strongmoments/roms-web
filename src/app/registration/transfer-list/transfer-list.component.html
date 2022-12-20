@@ -11,7 +11,7 @@
               <mat-icon>cloud_download</mat-icon>
             </button>
             <mat-menu #exportMenu="matMenu">
-              <button mat-menu-item>Export CSV</button>
+              <button mat-menu-item (click)="exportCsv()">Export CSV</button>
             </mat-menu>
           </mat-card-title>
           <div class="m-l-10 m-r-10">
@@ -84,7 +84,7 @@
                   <!-- <span class="header-label">days:</span> -->
                   <!-- {{ row?.firstName }}{{ row?.lastName }} -->
 
-                  {{ row?.recommendDetails?.demandIdx?.demandId }}
+                  {{ row?.demandNo }}
                 </td>
               </ng-container>
 
@@ -108,9 +108,7 @@
                       alt=""
                     />
                     {{
-                      row?.recommendDetails?.employeeIdx?.firstName +
-                        ' ' +
-                        row?.recommendDetails?.employeeIdx?.lastName
+                      row?.employeeName
                     }}
                   </div>
                 </td>
@@ -196,7 +194,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Created</th>
                 <td mat-cell *matCellDef="let row">
                   <!-- <span class="header-label">days:</span> -->
-                  {{ row?.recommendDetails?.createDate | date: 'dd/MM/yyyy' }}
+                  {{ row?.createdDate | date: 'dd/MM/yyyy' }}
                 </td>
               </ng-container>
 
@@ -242,14 +240,14 @@
               <ng-container matColumnDef="requestedDate">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Effective</th>
                 <td mat-cell *matCellDef="let row">
-                  {{ row?.recommendDetails?.requestedDate | date: 'dd/MM/yyyy' }}
+                  {{ row?.requestedDate | date: 'dd/MM/yyyy' }}
                 </td>
               </ng-container>
 
               <ng-container matColumnDef="approvedDate">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Approved On</th>
                 <td mat-cell *matCellDef="let row">
-                  {{ row?.recommendDetails?.lastUpdateDate | date: 'dd/MM/yyyy' }}
+                  {{ row?.approvedDate | date: 'dd/MM/yyyy' }}
                 </td>
               </ng-container>
               <ng-container matColumnDef="approver">

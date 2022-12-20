@@ -13,13 +13,17 @@ import { TransferListComponent } from './transfer-list/transfer-list.component';
 import { DemandListComponent } from './demand-list/demand-list.component';
 import { RecommendationListComponent } from './recommendation-list/recommendation-list.component';
 import { MatCheckboxDefaultOptions, MAT_CHECKBOX_DEFAULT_OPTIONS } from '@angular/material/checkbox';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
     imports: [
         CommonModule,
         SharedModule,
-        RegistrationRoutingModule
+        RegistrationRoutingModule,
+        MatSortModule, MatPaginatorModule, MatTableModule
     ],
     providers: [{
         provide: MAT_CHECKBOX_DEFAULT_OPTIONS, 
