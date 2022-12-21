@@ -303,8 +303,8 @@ export class TransferListComponent implements OnInit, OnChanges {
   
   openDialog() {
     const dialogRef = this.dialog.open(this.confirmationDialog, {
-      width: '30em',
-      height: '15em',
+      width: '32em',
+      height: '17em',
       disableClose: true
     });
 

@@ -17,8 +17,10 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  @ViewChild('resourceDemandDialog,') resourceDemandDialog!: TemplateRef<any>;
-  @ViewChild('resourceDemandDialog1,') resourceDemandDialog1!: TemplateRef<any>;
+  @ViewChild('cloudDialog,') cloudDialog!: TemplateRef<any>;
+  @ViewChild('androidDialog,') androidDialog!: TemplateRef<any>;
+  @ViewChild('iphoneDialog,') iphoneDialog!: TemplateRef<any>;
+  @ViewChild('notificationDialog,') notificationDialog!: TemplateRef<any>;
   global: Globals;
   submitted: boolean = false;
   stepper!: MatStepper;
@@ -108,27 +110,8 @@ export class RegisterComponent implements OnInit {
     this.submitted = true;
     this.openDialog({});
   }
-
-
   openDialog(data: any) {
-    const dialogRef = this.dialog.open(this.resourceDemandDialog, {
-      width: '50em',
-      height: '34em',
-      data: { data: data },
-    });
-
-    dialogRef.afterClosed().subscribe((result: any) => {
-      // this.router.navigate(['/registration/list']);
-      // console.log('The dialog was closed');
-    });
-  }
-
-  onClick1() {
-    this.submitted = true;
-    this.openDialog1({});
-  }
-  openDialog1(data: any) {
-    const dialogRef = this.dialog.open(this.resourceDemandDialog1, {
+    const dialogRef = this.dialog.open(this.cloudDialog, {
       width: '35em',
       height: '23em',
       data: { data: data },
@@ -137,6 +120,55 @@ export class RegisterComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result: any) => {
       // this.router.navigate(['/registration/list']);
       // console.log('The dialog was closed');
+    });
+  }
+  onClick1() {
+    this.submitted = true;
+    this.openDialog1({});
+  }
+  openDialog1(data: any) {
+    const dialogRef = this.dialog.open(this.androidDialog, {
+      width: '50em',
+      height: '32em',
+      data: { data: data },
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      
+    });
+  }
+  onClick2() {
+    this.submitted = true;
+    this.openDialog2({});
+  }
+
+
+  openDialog2(data: any) {
+    const dialogRef = this.dialog.open(this.iphoneDialog, {
+      width: '40em',
+      height: '30em',
+      data: { data: data },
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      
+    });
+  }
+  notify() {
+    this.submitted = true;
+    this.openDialog3({});
+  }
+
+
+  openDialog3(data: any) {
+    const dialogRef = this.dialog.open(this.notificationDialog, {
+      width: '30em',
+      height: '12em',
+      data: { data: data },
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      
     });
   }
 
