@@ -259,7 +259,7 @@
         <div *ngFor="let item of demandList" fxFlex.gt-sm="100" fxFlex="100" class="p-20 border-bottom-g" (click)="redirectView(item?.id)">
           <mat-label class="float-right"><small>Praposal Start Date : <b>{{item?.perposedDate | date: 'dd/MM/yyyy'}}</b></small>
           </mat-label>
-          <h4>{{item?.demandId + ' : ' + item?.clientContract?.name}}</h4>
+          <h4>{{item?.demandId + ' : ' + item?.roleName}}</h4>
           <div fxLayout="row wrap" fxFlexAlign="center">
             <div fxFlex.gt-sm="20" fxFlex="100">
               <mat-label class="emp-mat-label">

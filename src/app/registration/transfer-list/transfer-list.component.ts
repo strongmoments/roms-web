@@ -33,6 +33,7 @@ export class TransferListComponent implements OnInit, OnChanges {
     'select',
     'demandNo',
     'employeeName',
+    'employeeNo',
     'requestedDate',
     'hiringManager',
     'fromProject',
@@ -344,13 +345,13 @@ export class TransferListComponent implements OnInit, OnChanges {
 
   exportCsv() {
     let csvArray: any = [
-      'Demand ID,Emp Name,Date Effective,Hiring Manager,From Project,From Gang,From Wage,From Rate,To Project,To Gang,To Wage,To Rate,Date Created,Approved On,Recommended By,Approver\r\n',
+      'Demand ID,Emp Name,Emp No,Date Effective,Hiring Manager,From Project,From Gang,From Wage,From Rate,To Project,To Gang,To Wage,To Rate,Date Created,Approved On,Recommended By,Approver\r\n',
     ];
     for (let i = 0; i < this.dataSource.data.length; i++) {
       let item = this.dataSource.data[i];
       // console.log(this.dataSource.data[i], 'this.dataSource.data');
       let row: string = `${item?.demandNo},${item?.recommendDetails.employeeIdx.firstName} ${item?.recommendDetails.employeeIdx.lastName
-      },${this.datePipe.transform(item.requestedDate, 'dd/MM/yyyy')},${item?.recommendDetails?.demandIdx?.hiringManager?.firstName
+      },${item?.recommendDetails.employeeIdx.employeeNo},${this.datePipe.transform(item.requestedDate, 'dd/MM/yyyy')},${item?.recommendDetails?.demandIdx?.hiringManager?.firstName
       } ${item?.recommendDetails?.demandIdx?.hiringManager?.lastName
       },${item?.recommendDetails?.fromSubteamIdx?.clientProject?.name
       },${item?.recommendDetails?.fromSubteamIdx?.teamName},${item?.recommendDetails?.fromSubteamIdx?.wageClassification
