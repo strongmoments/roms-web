@@ -281,7 +281,7 @@ export class AuthenticationService {
     }
 
     getCertificationsList(value: string) {
-        return this.http.get<any>(`${environment.apiUrl}/v1/employeecertificates/search?name=${value}`);
+        return this.http.get<any>(`${environment.apiUrl}/v1/employeeskils/cirtificate/search?name=${value}`);
     }
 
     createCertification(data: any) {

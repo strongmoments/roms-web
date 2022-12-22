@@ -29,6 +29,7 @@ import { ThisReceiver } from '@angular/compiler';
 })
 export class RecommendationListComponent implements OnInit, OnChanges {
   @ViewChild('recommendDialog') recommendDialog!: TemplateRef<any>;
+  @ViewChild('rejectDialog') rejectDialog!: TemplateRef<any>;
   globals: Globals;
   submitted: boolean = false;
   displayedColumns: string[] = [
@@ -125,24 +126,24 @@ export class RecommendationListComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     // this.displayedColumns = this.displayedColumnsLeave;
-    this.refresh(this.getDefaultOptions());
+    //this.refresh(this.getDefaultOptions());
     // console.log('in listing');
     // this.authService.addedResigstration.subscribe((record: any) => (this.dataSource.data.unshift(record)));
-    this.authService.addedResigstration.subscribe((record: any) => {
-      console.log(record, 'in listing12');
-      if (record) {
-        this.totalRecords = this.totalRecords + 1;
-        record.statusName = this.getStatus(record?.status);
-        record.convertedAppliedOn = this.datePipe.transform(record.appliedOn, 'dd/MM/yyyy');
-        // data.push({
-        //   ...record,
-        //   statusName: statusName,
-        //   convertedAppliedOn: convertedAppliedOn
-        // });
+    // this.authService.addedResigstration.subscribe((record: any) => {
+    //   console.log(record, 'in listing12');
+    //   if (record) {
+    //     this.totalRecords = this.totalRecords + 1;
+    //     record.statusName = this.getStatus(record?.status);
+    //     record.convertedAppliedOn = this.datePipe.transform(record.appliedOn, 'dd/MM/yyyy');
+    //     data.push({
+    //       ...record,
+    //       statusName: statusName,
+    //       convertedAppliedOn: convertedAppliedOn
+    //     });
 
-        this.dataSource.data = [record, ...this.dataSource.data];
-      }
-    });
+    //     this.dataSource.data = [record, ...this.dataSource.data];
+    //   }
+    // });
 
     this.getRecommendList();
   }
@@ -219,26 +220,26 @@ export class RecommendationListComponent implements OnInit, OnChanges {
         result.data = result.data.sort((a: any, b: any) => {
           return a.status - b.status;
         });
-        result.data = result.data.sort((a: any, b: any) => {
-          var c: any = new Date(parseInt(a.appliedOn));
-          var d: any = new Date(parseInt(b.appliedOn));
-          // console.log(a,d);
-          return d - c;
-        });
+        // result.data = result.data.sort((a: any, b: any) => {
+        //   var c: any = new Date(parseInt(a.appliedOn));
+        //   var d: any = new Date(parseInt(b.appliedOn));
+        //   // console.log(a,d);
+        //   return d - c;
+        // });
 
-        for (let i = 0; i < result.data.length; i++) {
-          let statusName = this.getStatus(result.data[i]?.status);
-          let convertedAppliedOn = this.datePipe.transform(result.data[i].appliedOn, 'dd/MM/yyyy');
-          data.push({
-            ...result.data[i],
-            statusName: statusName,
-            convertedAppliedOn: convertedAppliedOn,
-          });
-        }
+        // for (let i = 0; i < result.data.length; i++) {
+        //   let statusName = this.getStatus(result.data[i]?.status);
+        //   let convertedAppliedOn = this.datePipe.transform(result.data[i].appliedOn, 'dd/MM/yyyy');
+        //   data.push({
+        //     ...result.data[i],
+        //     statusName: statusName,
+        //     convertedAppliedOn: convertedAppliedOn,
+        //   });
+        //}
         // if (isScrolled == true) {
         //   this.dataSource.data = [...this.dataSource.data, ...data];
         // } else {
-        this.dataSource.data = data;
+        this.dataSource.data = result.data;
         // }
       });
   }
@@ -289,6 +290,7 @@ export class RecommendationListComponent implements OnInit, OnChanges {
       this.refresh(this.getDefaultOptions());
     }
   }
+
   openConfermation(demandId:any,firstName:any,lastName:any,resourseDemandId:any,id:any,name:any) {
     
     
@@ -299,45 +301,61 @@ export class RecommendationListComponent implements OnInit, OnChanges {
     this.jobService.acceptCandidate({id:data?.id,resourceDemandId:data?.resourseDemandId}).subscribe({
       next: (result: any) => {
         
-        alert(JSON.parse(JSON.stringify(result)))
-       
-      },
-      error: (error: any) => {
         this.alertService.openSnackBar(CustomMessage.candidateAccepted);
-        // alert(JSON.parse(JSON.stringify(error)))
-        // console.log(error, 'error')
-       
-      },
+       this.getRecommendList();
+      }
     });
     this.submitted = true;
     this.dialog.closeAll();
-    
+    this.getRecommendList();
     
   }
-  declineCandidate(id: any,resourseDemandId:any){
-    this.jobService.declineCandidate({id:id,resourceDemandId:resourseDemandId}).subscribe({
+
+  closeDialog(){
+    this.dialog.closeAll();
+  }
+
+  openRejectConfirmation(demandId:any,firstName:any,lastName:any,resourseDemandId:any,id:any,name:any) {
+    
+    
+    this.openRejectDialog({demandId:demandId,firstName:firstName,lastName:lastName,resourseDemandId:resourseDemandId,id:id,name:name});
+    
+  }
+
+  declineCandidate(data: any){
+    this.jobService.declineCandidate({id:data?.id,resourceDemandId:data?.resourseDemandId}).subscribe({
       next: (result: any) => {
         // alert(JSON.parse(JSON.stringify(result)))
         // this.alertService.openSnackBar("Successfully Rejected");
         // this.alertService.openSnackBar(CustomMessage.candidateRejected);
-       
-      },
-      error: (error: any) => {
-        // alert(JSON.parse(JSON.stringify(error)))
-        // console.log(error, 'error')
         this.alertService.openSnackBar(CustomMessage.candidateRejected);
-       
-      },
+        this.getRecommendList();
+      }
     });
     this.dialog.closeAll();
     this.submitted = true;
-    
+    this.getRecommendList();
     
   }
 
   openDialog(data: any) {
     this.selectedCandidateDetails= data;
     const dialogRef = this.dialog.open(this.recommendDialog, {
+      
+      width: '30em',
+      height: '15em',
+      data: { data: data },
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      // this.router.navigate(['/registration/list']);
+      console.log('The dialog was closed');
+    });
+  }
+
+  openRejectDialog(data: any) {
+    this.selectedCandidateDetails= data;
+    const dialogRef = this.dialog.open(this.rejectDialog, {
       
       width: '30em',
       height: '15em',

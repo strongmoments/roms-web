@@ -127,7 +127,6 @@ export class RecommendComponent {
     let employeeId = this.selectedEmployee.id;
     let subTeamId = this.selectedEmployee.subteam?.gangDetails?.id;
 
-    if(resourceDemandId && employeeId && subTeamId){
       let inputPayload = {
         "employeeId": employeeId,
         "resourceDemandId": resourceDemandId,
@@ -141,10 +140,6 @@ export class RecommendComponent {
       (error: any) => {
         alert('Already requested');
       },);
-    }
-    else{
-      alert('Employee gang details are not found.');
-    }
 
   }
   onSubmit() {

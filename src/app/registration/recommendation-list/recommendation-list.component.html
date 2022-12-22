@@ -150,8 +150,8 @@
                     {{ row?.statusName }}
                     <mat-icon>{{ getStatusIcon(row?.status) }}</mat-icon>
                   </span> -->
-                  <mat-icon
-                    style="cursor: pointer"
+                  <mat-icon *ngIf="row?.recommendDetails?.status == 1"
+                    style="cursor: pointer;color: rgb(0, 128, 55);" 
                     (click)="
                       openConfermation(
                         row?.recommendDetails?.demandIdx?.demandId,
@@ -164,12 +164,17 @@
                     "
                     >thumb_up</mat-icon
                   >
-                  <mat-icon
-                    style="cursor: pointer"
+                  <mat-icon *ngIf="row?.recommendDetails?.status == 1 || row?.recommendDetails?.status == 3"
+                  [ngClass] = "{'isDisabled':row?.recommendDetails?.status == 3}"
+                    style="cursor: pointer;color:#ea0d0d;margin-left: 5px;"
                     (click)="
-                      declineCandidate(
-                        row?.recommendDetails?.id,
-                        row?.recommendDetails?.demandIdx?.id
+                    openRejectConfirmation(
+                      row?.recommendDetails?.demandIdx?.demandId,
+                      row?.recommendDetails?.employeeIdx?.firstName,
+                      row?.recommendDetails?.employeeIdx?.lastName,
+                      row?.recommendDetails?.demandIdx?.id,
+                      row?.recommendDetails?.id,
+                      row?.recommendDetails?.demandIdx?.clientProject?.name
                       )
                     "
                    
@@ -235,12 +240,47 @@
           (click)="acceptCandidate(selectedCandidateDetails)"
           
         >
-          Approve
+          Yes
         </button>
       </div>
 
       <div fxFlex.gt-sm="50%" fxFlex="100" class="btm-ft">
-        <button mat-raised-button color="primary" (click)="declineCandidate()">Cancel</button>
+        <button mat-raised-button color="primary" (click)="closeDialog()">No</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #rejectDialog>
+  <h2 mat-dialog-title align="center" class="color_blue" style="font-size: 20px; margin-bottom: 0">
+    Candidate Transfer
+  </h2>
+  <div fxLayout="column wrap">
+    <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0" align="center">
+      <p><span class="text-danger">Demand ID #</span> {{ selectedCandidateDetails?.demandId }}</p>
+      <mat-label 
+        >Do you want to reject transfer of <b class="text-center"
+          > {{ selectedCandidateDetails?.firstName +
+            ' ' + selectedCandidateDetails?.lastName }} </b
+        > to Project <b> {{selectedCandidateDetails?.name}} ?</b> </mat-label
+      >
+    </div>
+
+    <div fxFlex.gt-sm="100%" fxFlex="100" class="m-t-20">
+      <div fxFlex.gt-sm="50%" fxFlex="100" class="btm-ft">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="declineCandidate(selectedCandidateDetails)"
+          
+        >
+          Yes
+        </button>
+      </div>
+
+      <div fxFlex.gt-sm="50%" fxFlex="100" class="btm-ft">
+        <button mat-raised-button color="primary" (click)="closeDialog()">No</button>
       </div>
     </div>
   </div>

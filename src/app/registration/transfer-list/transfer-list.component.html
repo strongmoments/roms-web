@@ -71,7 +71,7 @@
                 <td mat-cell *matCellDef="let row; let index = dataIndex" >
                   <mat-checkbox
                     [ngClass]="getStatusColor(row?.recommendDetails?.externalSystemEntry, true)"
-                    [checked]="row?.recommendDetails?.externalSystemEntry"
+                    [checked]="row?.recommendDetails?.externalSystemEntry" [ngClass] = "{'isDisabled':row?.recommendDetails?.externalSystemEntry}"
                     (click)="approveRejectBilling($event, row)"
                   >
                   </mat-checkbox>
@@ -284,12 +284,12 @@
 
 <ng-template #confirmationDialog>
   <h6 mat-dialog-title align="center" class="color_blue" style="font-size: 15px; margin-bottom: 0">
-    Are you sure you want to Approve/reject
+    Mark
     {{
       dialogData?.recommendDetails?.employeeIdx?.firstName +
         ' ' +
         dialogData?.recommendDetails?.employeeIdx?.lastName
-    }}
+    }} transfer processed?
   </h6>
   <div fxLayout="column wrap">
     <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
@@ -299,7 +299,7 @@
         color="primary"
         (click)="approveReject()"
       >
-        Approve/Reject
+        Yes
       </button>
       <button
         class=" m-t-15 button w-100"

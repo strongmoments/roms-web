@@ -67,7 +67,7 @@ export class EmployeeListComponent implements OnInit, OnChanges {
   // departmentId: any = '';
   // employeeType: any = '';
   // employeeTypeList: any = [];
-  paymentFrequency: any = [];
+  paymentFrequency: string = 'wfm';
   paymentFrequencyList: any = [];
   // removedRows: any = [];
   selectedTabIndex: number = 0;
@@ -104,9 +104,7 @@ export class EmployeeListComponent implements OnInit, OnChanges {
     //   this.employeeTypeList = result && result.data && result.data.length > 0 ? result.data : [];
     // });
 
-    // this.employeeService.getEmployeeByPaymentFrequency().subscribe((result: any) => {
-    //   this.paymentFrequency = result && result.data && result.data.length > 0 ? result.data : [];
-    // });
+    
     // breakpointObserver.observe(['(max-width: 600px)']).subscribe((result) => {
     //   this.displayedColumns = result.matches
     //     ? ['id', 'name', 'progress', 'color']
@@ -170,8 +168,6 @@ export class EmployeeListComponent implements OnInit, OnChanges {
     this.router.navigate(['/registration/create-user'], { queryParams: { requestId: elem.id } })
   }
 
-
-
   // onTableScroll(e: any) {
   //   const tableViewHeight = e.target.offsetHeight; // viewport: ~500px
   //   const tableScrollHeight = e.target.scrollHeight; // length of all table
@@ -207,8 +203,14 @@ export class EmployeeListComponent implements OnInit, OnChanges {
     // };
     // console.log(queryData, 'queryData');
 
+    let payload = {
+      searchText: `${this.search}`,
+      frequency: `${this.paymentFrequency}`
+    }
+
     this.employeeService
-      .getAll(options)
+      //.getAll(options)
+      .getEmployeeList(options, payload)
       .pipe(first())
       .subscribe((result: any) => {
         this.totalRecords = result.totalElement;

@@ -89,8 +89,8 @@ export class EmployeeService {
     recommendEmployee(param:any) {
         return this.http.post<any>(`${environment.apiUrl}/v1/jobs/resource/demand/recommend`, param);
     }
-    getEmployeeByPaymentFrequency(value: string){
-        return this.http.get<any>(`${environment.apiUrl}/v1/employee/load?page=0&size=10&empName=test&payfrequency=${value}`);
+    getEmployeeList(options: ViewOptions, payload: any){
+        return this.http.get<any>(`${environment.apiUrl}/v1/employee/load?page=${options.page}&size=${options.pageSize}&empName=${payload.searchText}&payfrequency=${payload.frequency}`);
     }
 
 }

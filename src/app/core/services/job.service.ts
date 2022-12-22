@@ -36,7 +36,7 @@ export class JobService {
 
   getRecommendationList(options: ViewOptions) {
     return this.http.get<any>(
-      `${environment.apiUrl}/v1/jobs/resource/demand/recommend?loadAll?page=${options.page}&size=${options.pageSize}`,
+      `${environment.apiUrl}/v1/jobs/resource/demand/recommend`,
     );
   }
   getapprovedTransferList(options: ViewOptions, queryData: any) {
@@ -59,7 +59,6 @@ export class JobService {
     );
   }
   acceptCandidate(data: any) {
-    alert(data)
     return this.http.post<any>(
       `${environment.apiUrl}/v1/jobs/resource/demand/employee/approve`,
       data,

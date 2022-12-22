@@ -72,3 +72,8 @@
     height: 40px;
     border-radius: 50px;
 }
+
+.isDisabled{
+  pointer-events: none;
+  opacity: 0.5;
+}
