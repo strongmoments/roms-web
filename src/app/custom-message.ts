@@ -20,7 +20,7 @@ export enum CustomMessage {
     userCreatedSuccess = 'User created successfully',
     alreadyExist = 'User already exist.Please go to login to access your account.',
     invalidLeaveAttachment = 'Only jpeg,png,jpg and pdfs are allowed.',
-    invalidLeaveAttachmentSize = 'File size exceeds maximum limit 2 MB.',
+    invalidLeaveAttachmentSize = 'File size exceeds maximum limit 15 MB.',
     recordNotFound = 'Record not found.',
     assetSuccess = 'Asset created succesfully',
     fileUploadError = 'File not uploaded successfully. try again.',

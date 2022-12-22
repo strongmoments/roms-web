@@ -16,10 +16,12 @@
               <div fxFlex.gt-sm="20" class="p-r-10" fxFlex="100"></div>
               <div fxFlex.gt-sm="40" class="p-r-10" fxFlex="100">
                 <mat-form-field>
-                  <mat-select (selectionChange)="applyFilter()"  placeholder="Payment Frequency">
-                    <mat-option value="all">Weekly</mat-option>
-                    <mat-option value="pending">Fortnightly</mat-option>
-                    <mat-option value="completed">Monthly</mat-option>
+                  <mat-select (selectionChange)="applyFilter()" [(ngModel)]="paymentFrequency"  placeholder="Payment Frequency">
+                    <mat-option value="wfm">All</mat-option>
+                    <!-- <mat-option [value]="status.value" *ngFor="let item of paymentFrequencyList">{{ status.name }}</mat-option> -->
+                    <mat-option value="w">Weekly</mat-option>
+                    <mat-option value="f">Fortnightly</mat-option>
+                    <mat-option value="m">Monthly</mat-option>
                     
                   </mat-select>
                 </mat-form-field>

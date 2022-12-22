@@ -133,7 +133,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
           type: 'sub',
           icon: 'perm_contact_calendar',
           children: subMenu,
-          badge: [{ type: 'warning', value: 'new' }],
+          // badge: [{ type: 'warning', value: 'new' }],
 
         });
       }
@@ -254,6 +254,49 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         });
       }
 
+      menuItem.push({
+        state: '',
+        name: 'Operations',
+        type: 'saperator',
+        icon: 'av_timer',
+      });
+      if (this.userPermissions.reports && this.userPermissions.reports.length > 0) {
+        let subMenu: any = [];
+
+        if (this.userPermissions.reports.includes('add_user')) {
+
+          subMenu.push({
+            state: '/registration/job-recommend',
+            name: 'Demand Board',
+            type: 'link',
+            icon: 'account_box',
+          });
+
+          subMenu.push({
+            state: '/registration/recommendation-list',
+            name: 'Candidates',
+            type: 'link',
+            icon: 'account_box',
+          });
+
+          subMenu.push({
+            state: '/registration/transfer-list',
+            name: 'Internal Transfers',
+            type: 'link',
+            icon: 'account_box',
+          });
+        }
+       
+        menuItem.push({
+          state: 'report',
+          name: 'Staff Movements',
+          type: 'sub',
+          icon: 'assessment',
+          children: subMenu,
+          badge: [{ type: 'warning', value: 'new' }],
+        });
+       
+      }
 
       menuItem.push({
         state: '',
@@ -326,26 +369,26 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
           //   icon: 'account_box',
           // });
 
-          subMenu.push({
-            state: '/registration/job-recommend',
-            name: 'Demand Board',
-            type: 'link',
-            icon: 'account_box',
-          });
+          // subMenu.push({
+          //   state: '/registration/job-recommend',
+          //   name: 'Demand Board',
+          //   type: 'link',
+          //   icon: 'account_box',
+          // });
 
-          subMenu.push({
-            state: '/registration/recommendation-list',
-            name: 'Candidates',
-            type: 'link',
-            icon: 'account_box',
-          });
+          // subMenu.push({
+          //   state: '/registration/recommendation-list',
+          //   name: 'Candidates',
+          //   type: 'link',
+          //   icon: 'account_box',
+          // });
 
-          subMenu.push({
-            state: '/registration/transfer-list',
-            name: 'Internal Transfers',
-            type: 'link',
-            icon: 'account_box',
-          });
+          // subMenu.push({
+          //   state: '/registration/transfer-list',
+          //   name: 'Internal Transfers',
+          //   type: 'link',
+          //   icon: 'account_box',
+          // });
 
 
           // subMenu.push({
@@ -382,13 +425,14 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         }
 
 
-        menuItem.push({
-          state: 'test',
-          name: 'Staff Movements',
-          type: 'sub',
-          icon: 'assessment',
-          children: subMenu,
-        });
+        // menuItem.push({
+        //   state: 'test',
+        //   name: 'Staff Movements',
+        //   type: 'sub',
+        //   icon: 'assessment',
+        //   children: subMenu,
+        //   badge: [{ type: 'warning', value: 'new' }],
+        // });
       }
 
     }

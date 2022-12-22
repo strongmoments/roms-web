@@ -63,13 +63,14 @@ export class EmployeeListComponent implements OnInit, OnChanges {
   // expandedElement: any = null;
   startDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 1));
   endDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
-  // status: any = 0;
+  status: any = 0;
   // departmentId: any = '';
   // employeeType: any = '';
   // employeeTypeList: any = [];
-  // departmentList: any = [];
+  paymentFrequency: any = [];
+  paymentFrequencyList: any = [];
   // removedRows: any = [];
-  // selectedTabIndex: number = 0;
+  selectedTabIndex: number = 0;
   selectedId: string = '';
 
   addEMPmessage = new UntypedFormControl('Add Employee');
@@ -103,8 +104,8 @@ export class EmployeeListComponent implements OnInit, OnChanges {
     //   this.employeeTypeList = result && result.data && result.data.length > 0 ? result.data : [];
     // });
 
-    // this.authService.getAllDepartmentType().subscribe((result: any) => {
-    //   this.departmentList = result && result.data && result.data.length > 0 ? result.data : [];
+    // this.employeeService.getEmployeeByPaymentFrequency().subscribe((result: any) => {
+    //   this.paymentFrequency = result && result.data && result.data.length > 0 ? result.data : [];
     // });
     // breakpointObserver.observe(['(max-width: 600px)']).subscribe((result) => {
     //   this.displayedColumns = result.matches

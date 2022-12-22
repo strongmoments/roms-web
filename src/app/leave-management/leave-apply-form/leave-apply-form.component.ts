@@ -583,7 +583,7 @@ export class LeaveApplyFormComponent implements OnInit {
       // console.log(file, 'file')
       let filename = file.type.toLowerCase();
       if (["image/jpeg", "image/png", "image/jpg", "application/pdf"].includes(filename) == true) {
-        if (file.size <= 2000000) {
+        if (file.size <= 15000000) {
           var reader = new FileReader();
           reader.onload = (e: any) => {
             // console.log('Got here: ', e.target.result);
