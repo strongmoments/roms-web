@@ -1,5 +1,5 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { MatChipInputEvent } from '@angular/material/chips';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { MatChipInputEvent, MatChipList } from '@angular/material/chips';
 import { ENTER, COMMA, F, E } from '@angular/cdk/keycodes';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -9,7 +9,10 @@ import { Router } from '@angular/router';
 import { AlertService, EmployeeService, JobService } from 'src/app/core/services';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { Globals } from 'src/app/globals';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { Observable } from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+import * as moment from 'moment';
 export interface DemoColor {
   name: string;
   color: string;
@@ -28,30 +31,49 @@ export class RecruitmentComponent implements OnInit {
   roles: any = [];
   managers: any = [];
   employeeType: any = [];
+
   selectedCertifications: any = [];
-  selectedTickets: any = [];
-  selectedLicenses: any = [];
   certificateList: any = [];
+  filteredCertificate?: Observable<string[]>;
+  certificationCtrl = new FormControl(null, [Validators.required]);
+
+  selectedLicenses: any = [];
+  licenseList: any = [];
+  filteredLicense?: Observable<string[]>;
+  licenseCtrl = new FormControl(null, [Validators.required]);
+
+  selectedTickets: any = [];
+  ticketList: any = [];
+  filteredTicket?: Observable<string[]>;
+  ticketCtrl = new FormControl(null, [Validators.required]);
+
   clients: any = [];
 
   visible = true;
   selectable = true;
   removable = true;
-  addOnBlur = true;
+  addOnBlur = false;
 
   // Enter, comma
   separatorKeysCodes = [ENTER, COMMA];
-  fruits = [{ name: 'Lemon' }, { name: 'Lime' }, { name: 'Apple' }];
-  fruits2 = [{ name: 'Lemon2' }, { name: 'Lime2' }, { name: 'Apple2' }];
 
-  availableColors: DemoColor[] = [
-    { name: 'none', color: '' },
-    { name: 'Primary', color: 'primary' },
-    { name: 'Accent', color: 'accent' },
-    { name: 'Warn', color: 'warn' },
-  ];
+  @ViewChild('certificateInput', {static: false}) certificateInput?: ElementRef ;
+  @ViewChild('autoCertificate', {static: false}) autoCertificate?: MatAutocomplete;
+  @ViewChild("chipListCertificate") chipListCertificate ?: MatChipList;
 
-  constructor(private dialog: MatDialog, private fb: FormBuilder, private utils: Utils, private alertService: AlertService, private router: Router, private authService: AuthenticationService, private global: Globals, private employeeService: EmployeeService, private jobService: JobService) {
+  @ViewChild('licenseInput', {static: false}) licenseInput?: ElementRef ;
+  @ViewChild('autoLicense', {static: false}) autoLicense?: MatAutocomplete;
+  @ViewChild("chipListLicense") chipListLicense : any;
+
+  @ViewChild('ticketInput', {static: false}) ticketInput?: ElementRef ;
+  @ViewChild('autoTicket', {static: false}) autoTicket?: MatAutocomplete;
+  @ViewChild("chipListTicket") chipListTicket : any;
+
+  constructor(private dialog: MatDialog, 
+    private fb: FormBuilder, private utils: Utils, 
+    private alertService: AlertService, private router: Router, private authService: AuthenticationService, 
+    private global: Globals, private employeeService: EmployeeService, private jobService: JobService) 
+  {
     this.globals = global;
 
     this.authService.getAllEmployeeType().subscribe((result: any) => {
@@ -73,20 +95,19 @@ export class RecruitmentComponent implements OnInit {
       this.roles = result && result.data && result.data.length > 0 ? result.data : [];
     });
 
-    this.authService.getCertificationsList('').subscribe((result) => {
-      // console.log(result, 'sdsselectedCertifications')
-      this.certificateList = result;
-    });
-
+    this.getCertificationList();
+    this.getLicenseList();
+    this.getTicketList();
 
     this.form = this.fb.group({
       managerId: new FormControl('', [Validators.required]),
       roleId: new FormControl('', [Validators.required]),
       demandType: new FormControl('1', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.pattern(this.utils.emailRegex), Validators.maxLength(30)]),
+      demandTitle: new FormControl('', [Validators.required]),
+      //email: new FormControl('', [Validators.required, Validators.pattern(this.utils.emailRegex), Validators.maxLength(30)]),
       propsedStartDate: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
-      minExperience: new FormControl('0', [Validators.required]),
+      minExperience: new FormControl('', [Validators.required]),
       certifications: new FormControl('', [Validators.required]),
       licenses: new FormControl('', [Validators.required]),
       tickets: new FormControl('', [Validators.required]),
@@ -94,108 +115,163 @@ export class RecruitmentComponent implements OnInit {
       location: new FormControl('', [Validators.required]),
       contractType: new FormControl('', [Validators.required]),
       classification: new FormControl('', [Validators.required]),
-      role: new FormControl('', [Validators.required]),
-      rate: new FormControl('', [Validators.required]),
-      gang: new FormControl('', []),
+      //role: new FormControl('', [Validators.required]),
+      rate: new FormControl('', []),
+      gang: new FormControl('', [Validators.required]),
       commitment: new FormControl('', [Validators.required]),
+      client: new FormControl('', [Validators.required]),
+      awardType: new FormControl('', [Validators.required]),
     });
+
+    this.filteredCertificate = this.certificationCtrl.valueChanges.pipe(
+      startWith(null),
+      map((certificate: string | null) => certificate ? this._filterCertificate(certificate) : this.certificateList.slice()));
+      //this.setCertificateErrorState();
+
+    this.filteredLicense = this.licenseCtrl.valueChanges.pipe(
+      startWith(null),
+      map((license: string | null) => license ? this._filterLicense(license) : this.licenseList.slice()));
+      //this.setLicenseErrorState();
+
+    this.filteredTicket = this.ticketCtrl.valueChanges.pipe(
+      startWith(null),
+      map((ticket: string | null) => ticket ? this._filterTicket(ticket) : this.ticketList.slice()));
+      //this.setTicketErrorState();
   }
 
   ngOnInit(): void {
 
   }
 
+  getCertificationList(){
+    this.authService.getCertificationsList('').subscribe((result) => {
+      this.certificateList = result;
+    });
+  }
+
+  getLicenseList(){
+    this.authService.getLicenseList('').subscribe((result) => {
+      this.licenseList = result;
+    });
+  }
+
+  getTicketList(){
+    this.authService.getTicketsList('').subscribe((result) => {
+      this.ticketList = result;
+    });
+  }
+
   selected(event: MatAutocompleteSelectedEvent, type: string) {
-
-    console.log(event.option.value, 'qqqqqqqqqqqqq')
-    const value = event.option.viewValue;
-    if (type == 'certification' && (value || '').trim()) {
-      this.selectedCertifications.push((value).trim())
-    } else if (type == 'licence' && (value || '').trim()) {
-      this.selectedLicenses.push((value).trim())
-
-    } else if (type == 'ticket' && (value || '').trim()) {
-      this.selectedTickets.push((value).trim())
-
+    const value = event.option.value;
+    const code = value.code;
+    if (type == 'certification' ) {
+      this.selectedCertifications.push(value);
+      this.certificateInput!.nativeElement.value = '';
+      this.certificationCtrl.setValue(null);
+      this.setCerticateFormControl();
+    } else if (type == 'license') {
+      this.selectedLicenses.push(value);
+      this.licenseInput!.nativeElement.value = '';
+      this.licenseCtrl.setValue(null);
+      this.setLicenseFormControl();
+    } else if (type == 'ticket') {
+      this.selectedTickets.push(value);
+      this.ticketInput!.nativeElement.value = '';
+      this.ticketCtrl.setValue(null);
+      this.setTicketFormControl();
     }
 
   }
+
+  setCerticateFormControl(){
+    this.form.controls.certifications.setValue(this.selectedCertifications);
+  }
+
+  setLicenseFormControl(){
+    this.form.controls.licenses.setValue(this.selectedLicenses);
+  }
+
+  setTicketFormControl(){
+    this.form.controls.tickets.setValue(this.selectedTickets);
+  }
+
+  private _filterCertificate(value: any): any[] {
+    const filterValue = value.name ? value.name.toLowerCase() : value.toLowerCase();
+    return this.certificateList.filter((certificate : any) => certificate.name.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  private _filterLicense(value: any): any[] {
+    const filterValue = value.name ? value.name.toLowerCase() : value.toLowerCase();
+    return this.licenseList.filter((license : any) => license.name.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  private _filterTicket(value: any): any[] {
+    const filterValue = value.name ? value.name.toLowerCase() : value.toLowerCase();
+    return this.ticketList.filter((ticket : any) => ticket.name.toLowerCase().indexOf(filterValue) === 0);
+  }
+
   add(event: MatChipInputEvent, type: string): void {
-    console.log('asdsad')
-    // const input = event.input;
     const value = event.value.trim();
 
     if (type == 'certification' && value) {
-      if (!this.certificateList.some((elem: any) => value == elem.code)) {
-        this.authService.createCertification({ code: value, name: value }).subscribe((result) => {
-          if (result && result.status == 'success') {
-            this.selectedCertifications.push(value);
-            this.certificateList.push({ code: value, name: value });
-          }
-          console.log(result, 'asdcreateate');
+      if ((event.value || '').trim() && !this.autoCertificate!.isOpen) {
+        this.selectedCertifications.push({
+          code: value,
+          name: value
         });
-      } else {
-        if (!this.selectedCertifications.includes(value)) {
-          this.selectedCertifications.push(value);
-        }
+        this.certificateInput!.nativeElement.value = '';
+        this.certificationCtrl.setValue(null);
       }
-    } else if (type == 'licence' && value) {
-      this.selectedLicenses.push(value);
+      this.setCerticateFormControl();
+
+    } else if (type == 'license' && value) {
+      if ((event.value || '').trim() && !this.autoLicense!.isOpen) {
+        this.selectedLicenses.push({
+          code: value,
+          name: value
+        });
+        this.licenseInput!.nativeElement.value = '';
+        this.licenseCtrl.setValue(null);
+      }
+      this.setLicenseFormControl();
 
     } else if (type == 'ticket' && value) {
-      this.selectedTickets.push(value);
+      if ((event.value || '').trim() && !this.autoTicket!.isOpen) {
+        this.selectedTickets.push({
+          code: value,
+          name: value
+        });
+        this.ticketInput!.nativeElement.value = '';
+        this.ticketCtrl.setValue(null);
+      }
+      this.setTicketFormControl();
 
     }
 
-    // // Add our fruit
-    // if ((value || '').trim()) {
-    //   this.fruits.push({ name: value.trim() });
-    //   this.fruits2.push({ name: value.trim() });
-    // }
-
-    // Reset the input value
-    // if (input) {
-    //   input.value = '';
-    // }
-    event.chipInput!.clear();
 
   }
 
   remove(value: any, type: string): void {
-    console.log('sd', value, type);
-
     if (type == 'certification' && value) {
-
       const index = this.selectedCertifications.indexOf(value);
       if (index >= 0) {
-        // console.log(index, 'sd', value, type, this.selectedCertifications);
-
-        this.selectedCertifications = this.selectedCertifications.length > 1 ? this.selectedCertifications.splice(index, 1) : [];
+        this.selectedCertifications.splice(index, 1);
       }
-    } else if (type == 'licence' && value) {
-
+      this.setCerticateFormControl();
+    } else if (type == 'license' && value) {
       const index = this.selectedLicenses.indexOf(value);
-      // console.log(index, 'sd', value, type);
       if (index >= 0) {
-        this.selectedLicenses = this.selectedLicenses.length > 1 ? this.selectedLicenses.splice(index, 1) : [];
+        //this.selectedLicenses = this.selectedLicenses.length > 1 ? this.selectedLicenses.splice(index, 1) : [];
+        this.selectedLicenses.splice(index, 1);
       }
+      this.setLicenseFormControl();
     } else if (type == 'ticket' && value) {
-
       const index = this.selectedTickets.indexOf(value);
-      // console.log(index, 'sd', value, type);
       if (index >= 0) {
-        this.selectedTickets = this.selectedTickets.length > 1 ? this.selectedTickets.splice(index, 1) : [];
+        this.selectedTickets.splice(index, 1);
       }
+      this.setTicketFormControl();
     }
-    // const index = this.fruits.indexOf(item);
-    // const index2 = this.items2.indexOf(item);
-
-    // if (index >= 0) {
-    //   this.items.splice(index, 1);
-    // }
-    // if (index2 >= 0) {
-    //   this.items2.splice(index2, 1);
-    // }
   }
 
 
@@ -213,9 +289,97 @@ export class RecruitmentComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     // this.openDialog({});
+
     if (this.form.invalid) {
       this.alertService.openSnackBar(CustomMessage.invalidForm);
       return;
+    }
+    else{
+
+      let certString = ''
+      let certLength = this.selectedCertifications.length;
+      this.selectedCertifications.forEach((ele:any, i: number) => {
+        if(i == 0){
+          certString =  '{"' + ele.code + '":"' + ele.name + '"';
+        }
+        else if(certLength - 1 == i){
+          certString = certString + ',"' + ele.code + '":"' + ele.name + '"}';
+        }
+        else{
+          certString = certString + ',"' + ele.code + '":"' + ele.name + '"';
+        }
+      });
+
+      let licenseString = ''
+      let licenseLength = this.selectedCertifications.length;
+      this.selectedLicenses.forEach((ele:any, i: number) => {
+        if(i == 0){
+          licenseString =  '{"' + ele.code + '":"' + ele.name + '"';
+        }
+        else if(licenseLength - 1 == i){
+          licenseString = licenseString + ',"' + ele.code + '":"' + ele.name + '"}';
+        }
+        else{
+          licenseString = licenseString + ',"' + ele.code + '":"' + ele.name + '"';
+        }
+      });
+
+      let ticketString = ''
+      let ticketLength = this.selectedCertifications.length;
+      this.selectedTickets.forEach((ele:any, i: number) => {
+        if(i == 0){
+          ticketString =  '{"' + ele.code + '":"' + ele.name + '"';
+        }
+        else if(ticketLength - 1 == i){
+          ticketString = ticketString + ',"' + ele.code + '":"' + ele.name + '"}';
+        }
+        else{
+          ticketString = ticketString + ',"' + ele.code + '":"' + ele.name + '"';
+        }
+      });
+
+      let skills = {
+        "certification": JSON.parse(certString),
+        "licenses": JSON.parse(licenseString),
+        "plantTicket": JSON.parse(ticketString)
+      }
+      console.log('Skills:',JSON.stringify(skills));
+
+      let payload = {
+        "hiringManagerId" : this.form.controls.managerId.value,
+        "demandType" : this.form.controls.demandType.value,
+        "profileRole" : this.form.controls.demandTitle.value,
+        "perposedDate" : moment(this.form.controls.propsedStartDate.value).format('DD/MM/YYYY'),
+        "description" : this.form.controls.description.value,
+        "type" : '',
+
+        "classification" :'',
+        "minimumExperiecne" : this.form.controls.minExperience.value,
+        "clientProjectName" : this.form.controls.project.value,
+        "clientProjectNameId" : null,
+        "locationName" : this.form.controls.location.value,
+        "contractName" : this.form.controls.contractType.value,
+
+        "contractId" : null,
+        "clientProjectRoleId" : '',
+        "clientProjectRoleName" : '',
+        "rate" : this.form.controls.rate.value,
+        "clientProjectSubteamId" : '',
+        "clientProjectSubteamName" : this.form.controls.gang.value,
+
+        "clientId" : '',
+        "clientName" : this.form.controls.client.value,
+        "commitment" : this.form.controls.commitment.value,
+        "wageClassification" : this.form.controls.classification.value,
+        "wageRole" : this.form.controls.roleId.value,
+        "awardType" : this.form.controls.awardType.value,
+        "skils" : skills
+      }
+
+      console.log('Payload:',JSON.stringify(payload));
+      this.authService.createDemand(JSON.stringify(payload)).subscribe((result) => {
+        console.log('Demad return:',result);
+      });
     }
   }
 
@@ -249,7 +413,9 @@ export class RecruitmentComponent implements OnInit {
     });
   }
 
-  test(){
-    alert()
+  goToDemandBoard(){
+    this.dialog.closeAll();
+    this.router.navigate(['/registration/job-recommend']);
   }
+
 }

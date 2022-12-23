@@ -264,7 +264,7 @@ export class AuthenticationService {
 
 
     getTicketsList(value: string) {
-        return this.http.get<any>(`${environment.apiUrl}/v1/employeecetoken/search?name=${value}`);
+        return this.http.get<any>(`${environment.apiUrl}/v1/employeeskils/plant/search?name=${value}`);
     }
 
     cretaTicket(data: any) {
@@ -272,7 +272,7 @@ export class AuthenticationService {
     }
 
     getLicenseList(value: string) {
-        return this.http.get<any>(`${environment.apiUrl}/v1/employeelicence/search?name=${value}`);
+        return this.http.get<any>(`${environment.apiUrl}/v1/employeeskils/licence/search?name=${value}`);
     }
 
 
@@ -299,5 +299,9 @@ export class AuthenticationService {
 
     removeRegistration(emailId: string) {
         return this.http.delete<any>(`${environment.apiUrl}/v1/user/${emailId}`);
+    }
+
+    createDemand(data: any) {
+        return this.http.post<any>(`${environment.apiUrl}/v1/jobs/resource/demand`, data);
     }
 }
