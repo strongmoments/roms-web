@@ -32,10 +32,10 @@
                 <mat-label>Hiring Manager</mat-label>
                 <mat-select  formControlName="managerId" placeholder="Hiring Manager" managerId>
                   <input #managerAutoBox  mat-input class="search-box-select" aria-label="Hiring Manager"
-                    (keyup)="searchEmployee($event)">
+                    (keyup)="searchHiringManager($event)">
                   <!-- <mat-option value="">Select Employee</mat-option> -->
                   <mat-option *ngFor="let item of managers" [value]="item?.id">
-                    {{item?.employee?.firstName}} {{item?.employee?.lastName}}
+                    {{item?.name}} 
                   </mat-option>
                 </mat-select>
 
@@ -62,7 +62,7 @@
                   [ngClass]="{ 'is-invalid': submitted && f.propsedStartDate.hasError }" matInput
                   (click)="picker.open()" [matDatepicker]="picker" placeholder="Proposed Start Date" />
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+                <mat-datepicker #picker [startAt]="dateStartAt"></mat-datepicker>
                 <mat-error *ngIf="submitted && checkError('propsedStartDate', 'required')">
                   Proposed start date is required.
                 </mat-error>
@@ -71,11 +71,12 @@
 
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100" class="m-b-sm20">
-              <button class="button date-btn-default date-btn-active" mat-raised-button>
+              <button class="button date-btn-default" [ngClass]="{ 'date-btn-active': selectedButton == 1 }"
+               mat-raised-button (click)="setToday();$event.preventDefault()">
                 Today
               </button>
-              <button class="button date-btn-default" mat-raised-button>Tomorrow</button>
-              <button class="button date-btn-default" mat-raised-button>Next Monday</button>
+              <button class="button date-btn-default" [ngClass]="{ 'date-btn-active': selectedButton == 2 }" mat-raised-button (click)="setTomorrow();$event.preventDefault()">Tomorrow</button>
+              <button class="button date-btn-default" [ngClass]="{ 'date-btn-active': selectedButton == 3 }" mat-raised-button (click)="setNextMonday();$event.preventDefault()">Next Monday</button>
             </div>
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
 
@@ -100,12 +101,20 @@
 
             <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10 m-b-40">
               <mat-label>Description</mat-label>
-              <quill-editor formControlName="description" description
+              <!-- <quill-editor (onBlur)="getDescription($event)"  formControlName="description" description #editor
                 [ngClass]="{ 'is-invalid': submitted && f.description.hasError }" placeholder="Enter Description">
-              </quill-editor>
+              </quill-editor> 
               <mat-error *ngIf="submitted && checkError('description', 'required')">
                 Description type is required.
-              </mat-error>
+              </mat-error>-->
+
+              <mat-form-field appearance="outline">
+                <mat-label>Wage Description</mat-label>
+                <input matInput placeholder="Enter Description" formControlName="description"/>
+                <mat-error *ngIf="submitted && checkError('description', 'required')">
+                  Description is required.
+                </mat-error>
+              </mat-form-field>
             </div>
             <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10">
               <mat-divider> </mat-divider>
@@ -115,7 +124,7 @@
               <mat-card-title class="p-b-10 color_blue">Project Details</mat-card-title>
             </div> -->
 
-            <div fxFlex.gt-sm="30" fxFlex="100" class="p-b-10 p-t-10">
+            <!-- <div fxFlex.gt-sm="30" fxFlex="100" class="p-b-10 p-t-10">
               <mat-form-field appearance="outline">
                 <mat-label>Client</mat-label>
                 <input matInput placeholder="Client" formControlName="client"/>
@@ -123,44 +132,47 @@
                   Client is required.
                 </mat-error>
               </mat-form-field>
-            </div>
+            </div> -->
 
-            <!-- <div fxFlex.gt-sm="30" fxFlex="100">
+            <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Client</mat-label>
-                <mat-select placeholder="Client">
-                  <input mat-input class="search-box-select" aria-label="Hiring Manager"
+                <mat-select placeholder="Client" formControlName="client" client (selectionChange)="onClientSelect($event.value)">
+                  <input mat-input class="search-box-select" aria-label="Client"
                     (keyup)="searchClient($event)">
-                  <mat-option *ngFor="let item of clients" [value]="item?.id">
+                  <mat-option *ngFor="let item of clients" [value]="item">
                     {{item?.name}}
                   </mat-option>
                 </mat-select>
-
-                <mat-select placeholder="Client">
+                <mat-error *ngIf="submitted && checkError('client', 'required')">
+                  Client is required.
+                </mat-error>
+                <!-- <mat-select placeholder="Client">
                   <mat-option value="option">Option</mat-option>
                   <mat-option value="option">Option2</mat-option>
                   <mat-option value="option">Option3</mat-option>
-                </mat-select>
+                </mat-select> -->
               </mat-form-field>
-            </div> -->
+            </div>
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
-            <!-- <div fxFlex.gt-sm="30" fxFlex="100">
+            <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Contract/EA</mat-label>
-                <mat-select placeholder="Contract/EA" formControlName="contractType" contractType
-                  [ngClass]="{ 'is-invalid': submitted && f.contractType.hasError }">
-                  <mat-option value="option">Option</mat-option>
-                  <mat-option value="option">Option2</mat-option>
-                  <mat-option value="option">Option3</mat-option>
+                <mat-select placeholder="Contract/EA" formControlName="contractType" contractType (selectionChange)="onContractSearch($event.value)"
+                 [ngClass]="{ 'is-invalid': submitted && f.contractType.hasError }" >
+                  <input mat-input class="search-box-select" aria-label="ContractType"
+                    (keyup)="searchContract($event)">
+                  <mat-option *ngFor="let item of contracts" [value]="item">
+                    {{item?.name}}
+                  </mat-option>
                 </mat-select>
-
                 <mat-error *ngIf="submitted && checkError('contractType', 'required')">
                   contractType is required.
                 </mat-error>
               </mat-form-field>
-            </div> -->
+            </div>
 
-            <div fxFlex.gt-sm="30" fxFlex="100" class="p-b-10 p-t-10">
+            <!-- <div fxFlex.gt-sm="30" fxFlex="100" class="p-b-10 p-t-10">
               <mat-form-field appearance="outline">
                 <mat-label>Contract/EA</mat-label>
                 <input matInput placeholder="Contract/EA" formControlName="contractType"/>
@@ -168,11 +180,11 @@
                   Contract Type is required.
                 </mat-error>
               </mat-form-field>
-            </div>
+            </div> -->
 
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
 
-            <div fxFlex.gt-sm="30" fxFlex="100" class="p-b-10 p-t-10">
+            <!-- <div fxFlex.gt-sm="30" fxFlex="100" class="p-b-10 p-t-10">
               <mat-form-field appearance="outline">
                 <mat-label>Project#/Job#</mat-label>
                 <input matInput placeholder="Project#/Job#" formControlName="project"/>
@@ -180,22 +192,30 @@
                   Project is required.
                 </mat-error>
               </mat-form-field>
-            </div>
+            </div> -->
 
-            <!-- <div fxFlex.gt-sm="30" fxFlex="100">
+            <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Project#/Job#</mat-label>
-                <mat-select formControlName="project" project
+                <mat-select placeholder="Project#/Job#" formControlName="project" project (selectionChange)="onProjectSearch($event.value)"
+                 [ngClass]="{ 'is-invalid': submitted && f.project.hasError }" >
+                  <input mat-input class="search-box-select" aria-label="project"
+                    (keyup)="searchProject($event)">
+                  <mat-option *ngFor="let item of projects" [value]="item">
+                    {{item?.name}}
+                  </mat-option>
+                </mat-select>
+                <!-- <mat-select formControlName="project" project
                   [ngClass]="{ 'is-invalid': submitted && f.project.hasError }">
                   <mat-option value="option">Option</mat-option>
                   <mat-option value="option">Option2</mat-option>
                   <mat-option value="option">Option3</mat-option>
-                </mat-select>
+                </mat-select> -->
                 <mat-error *ngIf="submitted && checkError('project', 'required')">
                   Project is required.
                 </mat-error>
               </mat-form-field>
-            </div> -->
+            </div>
 
             <div fxFlex.gt-sm="30" fxFlex="100" class="p-b-10 p-t-10">
               <mat-form-field appearance="outline">
@@ -210,9 +230,23 @@
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
 
             <div fxFlex.gt-sm="30" fxFlex="100" class="p-b-10 p-t-10">
-              <mat-form-field appearance="outline">
+              <!-- <mat-form-field appearance="outline">
                 <mat-label>Gang</mat-label>
                 <input matInput placeholder="Gang" formControlName="gang"/>
+                <mat-error *ngIf="submitted && checkError('gang', 'required')">
+                  Gang is required.
+                </mat-error>
+              </mat-form-field> -->
+              <mat-form-field appearance="outline">
+                <mat-label>Gang</mat-label>
+                <mat-select placeholder="Gang" formControlName="gang" project (selectionChange)="onGangSelect($event.value)"
+                 [ngClass]="{ 'is-invalid': submitted && f.gang.hasError }" >
+                  <input mat-input class="search-box-select" aria-label="gang"
+                    (keyup)="searchGang($event)">
+                  <mat-option *ngFor="let item of gangs" [value]="item">
+                    {{item?.teamName}}
+                  </mat-option>
+                </mat-select>
                 <mat-error *ngIf="submitted && checkError('gang', 'required')">
                   Gang is required.
                 </mat-error>
@@ -486,7 +520,7 @@
       <button class="m-b-20 button" mat-raised-button color="primary">Visit Job Board</button>
     </div> -->
     <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
-      <p><span class="text-danger">Demand ID</span> 12345</p>
+      <p><span class="text-danger">Demand ID</span> {{dialogData?.demandId}}</p>
     </div>
     <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
       <button class="m-b-20 m-t-20 button w-300" mat-raised-button color="primary" (click)="goToDemandBoard()">
