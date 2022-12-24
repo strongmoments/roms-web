@@ -31,6 +31,10 @@ export class EmployeeService {
     searchEmployee(search: string) {
         return this.http.get<any>(`${environment.apiUrl}/v1/subteammember/search?name=${search}`);
     }
+
+    searchHiringManager(search: string) {
+        return this.http.get<any>(`${environment.apiUrl}/v1/employee/manager?name=${search}`);
+    }
     
     searchGang(search: string) {
         return this.http.get<any>(`${environment.apiUrl}/v1/projectsubteam/search?name=${search}`);
