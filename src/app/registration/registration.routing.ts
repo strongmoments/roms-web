@@ -31,7 +31,7 @@ const routes: Routes = [
             } },
             { path: 'recruitment', component: RecruitmentComponent,
                     data: {
-                    title: 'Recruitment',
+                    title: 'Resource Demand',
                     urls: [{ title: 'Dashboard', url: '/' }, { title: 'People & Culture' }],
                 }
             },

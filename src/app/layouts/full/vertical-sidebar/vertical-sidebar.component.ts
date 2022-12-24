@@ -259,6 +259,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         name: 'Operations',
         type: 'saperator',
         icon: 'av_timer',
+        badge: [{ type: 'warning', value: 'new' }],
       });
       if (this.userPermissions.reports && this.userPermissions.reports.length > 0) {
         let subMenu: any = [];
