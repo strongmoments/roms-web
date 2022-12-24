@@ -259,6 +259,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         name: 'Operations',
         type: 'saperator',
         icon: 'av_timer',
+        badge: [{ type: 'warning', value: 'new' }],
       });
       if (this.userPermissions.reports && this.userPermissions.reports.length > 0) {
         let subMenu: any = [];
@@ -292,8 +293,8 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
           name: 'Staff Movements',
           type: 'sub',
           icon: 'assessment',
-          children: subMenu,
-          badge: [{ type: 'warning', value: 'new' }],
+          children: subMenu
+          
         });
        
       }
@@ -348,7 +349,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
           //   ]
           // });
           // }
-          menuItem.push({ state: 'operation', name: 'Operation', type: 'sub', icon: 'commute', children: subMenu });
+          menuItem.push({ state: 'operation', name: 'Operation', type: 'sub', icon: 'commute', children: subMenu , badge: [{ type: 'warning', value: 'new' }]});
         }
 
         let subMenu: any = [];

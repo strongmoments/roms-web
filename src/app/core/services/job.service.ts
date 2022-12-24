@@ -28,9 +28,15 @@ export class JobService {
     );
   }
 
-  getAllClientContractProject(clientContractid: string, name: string) {
+  getAllClientContractProject(clientid: string, contractId: string, name: string) {
     return this.http.get<any>(
-      `${environment.apiUrl}/v1/client/project/search/{clientContractid}?name=${name}`,
+      `${environment.apiUrl}/v1/client/project/search/${clientid}/${contractId}?name=${name}`,
+    );
+  }
+
+  getAllGang(projectId: string,name: string) {
+    return this.http.get<any>(
+      `${environment.apiUrl}/v1/projectsubteam/search/${projectId}?name=${name}`,
     );
   }
 
