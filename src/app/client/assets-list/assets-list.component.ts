@@ -91,12 +91,12 @@ export class AssetsListComponent implements OnInit, OnChanges {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
-    this.activatedRoute.queryParams.subscribe((queryParams) => {
-      if (queryParams['id']) {
-        this.selectedId = queryParams['id'];
-        // this.onTabChanged(1);
-      }
-    });
+    // this.activatedRoute.queryParams.subscribe((queryParams) => {
+    //   if (queryParams['id']) {
+    //     this.selectedId = queryParams['id'];
+    //     // this.onTabChanged(1);
+    //   }
+    // });
     // this.authService.getAllEmployeeType().subscribe((result: any) => {
     //   this.employeeTypeList = result && result.data && result.data.length > 0 ? result.data : [];
     // });
@@ -118,11 +118,12 @@ export class AssetsListComponent implements OnInit, OnChanges {
 
     // Assign the data to the data source for the table to render
     // this.dataSource = new MatTableDataSource(users);
+    this.dataSource.data = ELEMENT_DATA;
   }
 
   ngOnInit(): void {
     // this.displayedColumns = this.displayedColumnsLeave;
-    this.refresh(this.getDefaultOptions());
+    //this.refresh(this.getDefaultOptions());
     // console.log('in listing');
     // this.authService.addedResigstration.subscribe((record: any) => (this.dataSource.data.unshift(record)));
     // this.authService.addedResigstration.subscribe((record: any) => {
@@ -487,3 +488,25 @@ export class AssetsListComponent implements OnInit, OnChanges {
     saveAs(blob, fileName);
   }
 }
+
+export interface AssetElement {
+  assetNo: string;
+  assetName: string;
+  make: string;
+  model: string;
+  ownership: string;
+  class: string;
+  type: string;
+  locationCode: string;
+  locationName: string;
+  status: string;
+}
+
+const ELEMENT_DATA: AssetElement[] = [
+  {assetNo: 'CP815', assetName: 'CAT 825 COMPACTOR', make: 'CAT', model: '825G', ownership: 'OWNED', 
+  class: 'Mobile Plant', type: 'Compactor', locationCode: '857019', locationName: 'Lo Yang', status: 'Available'},
+  {assetNo: 'EX1258', assetName: 'KOM PC1250', make: 'KOMATSU', model: 'PC1250', ownership: 'RENTAL', 
+  class: 'FIXED Plant', type: 'Dozer', locationCode: '857019', locationName: 'Lo Yang', status: 'Down'},
+  {assetNo: 'EX8107', assetName: 'Komatsu PC450LC-8', make: 'KOMATSU', model: 'PC450', ownership: 'OWNED', 
+  class: 'Mobile Plant', type: 'Crawler', locationCode: '857019', locationName: 'Lo Yang', status: 'Disposed'}
+];
