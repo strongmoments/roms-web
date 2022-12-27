@@ -1,0 +1,216 @@
+<mat-card>
+  <mat-card-content >
+    <h2 class="title text-center color_blue">Add new asset</h2>
+    <mat-card-title class="p-t-20 p-b-10 color_blue">Basic Details</mat-card-title>
+    <div fxLayout="row wrap">
+      <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
+        <form class="basic-form">
+          <div fxLayout="row wrap" fxFlexAlign="center" class="row m-0">
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Asset No</mat-label>
+                <input matInput placeholder="Ex: DZ1191" formControlName="assetNo" />
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Asset Name</mat-label>
+                <input matInput placeholder="Ex: CAT D11R" />
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Class</mat-label>
+                <input type="text" placeholder="Ex: Mobile Plant" aria-label="Class" matInput />
+              </mat-form-field>
+            </div>
+
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Type</mat-label>
+                <input
+                  type="text"
+                  placeholder="Ex: Dozer"
+                  aria-label="Type"
+                  matInput
+                  formControlName="assetType"
+                />
+              </mat-form-field>
+            </div>
+
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Category</mat-label>
+                <input type="text" placeholder="Ex: Small Dozer" aria-label="Category" matInput />
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-sm="35" fxFlex="100"></div>
+
+            <div fxFlex.gt-sm="65" fxFlex="100" class="p-b-10 p-t-10 m-b-40">
+              <mat-label>Description</mat-label>
+              <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea
+                  matInput
+                  placeholder="Textarea"
+                  rows="3"
+                  formControlName="description"
+                  description
+                ></textarea>
+              </mat-form-field>
+              
+            </div>
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="15" fxFlex="100" class="text-center">
+              <mat-label>Asset Image</mat-label>
+              <div class="m-t-10 asset-img">
+                <img
+                  src="../../../assets/img/image.png"
+                  alt=""
+                  style="max-height: 110px; width: auto"
+                />
+                <mat-icon>camera_alt</mat-icon>
+              </div>
+            </div>
+            <div fxFlex.gt-sm="15" fxFlex="100" class="text-center">
+              <mat-label>QR Code</mat-label>
+              <div class="m-t-10 asset-img">
+                <img
+                  src="../../../assets/img/image.png"
+                  alt=""
+                  style="max-height: 110px; width: auto"
+                />
+                <mat-icon>camera_alt</mat-icon>
+              </div>
+            </div>
+
+            <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10">
+              <mat-divider> </mat-divider>
+            </div>
+
+            <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
+              <mat-card-title class="p-b-10 color_blue">Make Details</mat-card-title>
+            </div>
+
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Make</mat-label>
+                <input matInput placeholder="Ex: CAT" formControlName="make" make />
+              </mat-form-field>
+            </div>
+
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Model</mat-label>
+                <input matInput placeholder="Ex: B11" formControlName="model" model />
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Year Of Make</mat-label>
+                <input matInput placeholder="2022" formControlName="yearOfMake" yearOfMake />
+              </mat-form-field>
+            </div>
+
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Country Of Origin</mat-label>
+                <input matInput placeholder="USA" formControlName="contryOfOrigin" contryOfOrigin />
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Current Rate</mat-label>
+                <input matInput placeholder="00.00" formControlName="currentRate" currentRate />
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Current Rate Rider</mat-label>
+                <input
+                  matInput
+                  placeholder="0"
+                  formControlName="currentRateRider"
+                  currentRateRider
+                />
+              </mat-form-field>
+            </div>
+
+            <mat-divider fxFlex.gt-sm="100" fxFlex="100"> </mat-divider>
+            <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
+              <mat-card-title class="p-b-10 color_blue">Status</mat-card-title>
+            </div>
+
+            <div fxFlex.gt-sm="30" fxFlex="100" class="m-t-20">
+              <mat-slide-toggle formControlName="allowWO" allowWO value="true"
+                >Allow Work Order</mat-slide-toggle
+              >
+            </div>
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Availability</mat-label>
+                <mat-select placeholder="Status" formControlName="status">
+                 
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-sm="5" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100" class="m-t-20">
+              <mat-slide-toggle formControlName="retireAsset" value="true" retireAsset
+                >Retire Asset</mat-slide-toggle
+              >
+            </div>
+            <div fxFlex.gt-sm="30" fxFlex="100" class="m-t-20">
+              <mat-slide-toggle formControlName="ownership" value="true" ownership
+                >Is this asset rented?</mat-slide-toggle
+              >
+            </div>
+            <div fxFlex.gt-sm="40" fxFlex="100"></div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Retirement Date</mat-label>
+
+                <input matInput placeholder="" formControlName="strRetirementDate" />
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Inspection List</mat-label>
+                <input
+                  type="text"
+                  placeholder="Ex: JCB Inspection"
+                  aria-label="Inspection"
+                  matInput
+                  formControlName="inspection"
+                />
+              </mat-form-field>
+            </div>
+
+            <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
+              <mat-divider> </mat-divider>
+            </div>
+
+            <div fxFlex.gt-sm="100" fxFlex="100" class="p-10 text-center">
+              <div class="m-0 m-t-15">
+                <button class="m-r-30" mat-raised-button color="primary">Update</button>
+                <button class="m-l-30" mat-raised-button color="primary">
+                  <mat-icon class="m-r-10">delete_outline</mat-icon>Delete Asset
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

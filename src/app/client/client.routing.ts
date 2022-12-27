@@ -5,9 +5,9 @@ import { ClientAddComponent } from './client-add/client-add.component';
 import { ClientListComponent } from './client-list/client-list.component';
 import { ProjectAddComponent } from './project-add/project-add.component';
 import { ProjectListComponent } from './project-list/project-list.component';
-
 import { AssetsListComponent } from './assets-list/assets-list.component';
 import { AssetsAddComponent } from './assets-add/assets-add.component';
+import { AssetsViewComponent } from './assets-view/assets-view.component';
 import { InspectionListComponent } from './inspection-list/inspection-list.component';
 import { InspectionAddComponent } from './inspection-add/inspection-add.component';
 import { AttandanceComponent } from './attandance/attandance.component';
@@ -25,97 +25,102 @@ const routes: Routes = [
         data: {
           title: 'Client list',
           urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
-      },
+        },
       },
       {
         path: 'client-add',
         component: ClientAddComponent,
-       data: {
+        data: {
           title: 'Add Client',
           urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
-      },
+        },
       },
       {
         path: 'project-add',
         component: ProjectAddComponent,
-       data: {
+        data: {
           title: 'Add Project',
           urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
-      },
+        },
       },
       {
         path: 'project-list',
         component: ProjectListComponent,
-       data: {
+        data: {
           title: 'Project List',
           urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
-      },
+        },
       },
       {
         path: 'assets-list',
         component: AssetsListComponent,
-       data: {
+        data: {
           title: 'Assets List',
           urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
-      },
+        },
       },
       {
         path: 'assets-add',
         component: AssetsAddComponent,
-       data: {
+        data: {
           title: 'Asset Add',
           urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
+        },
       },
+      {
+        path: 'assets-view',
+        component: AssetsViewComponent,
+        data: {
+          title: 'Asset View',
+          urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
+        },
       },
       {
         path: 'inspection-list',
         component: InspectionListComponent,
-       data: {
+        data: {
           title: 'Inspection List',
           urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
-      },
+        },
       },
       {
         path: 'inspection-add',
         component: InspectionAddComponent,
-       data: {
+        data: {
           title: 'Inspection Add',
           urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
-      },
+        },
       },
       {
         path: 'attendance',
         component: AttandanceComponent,
-       data: {
+        data: {
           title: 'Attendance',
           urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
-      },
+        },
       },
       {
         path: 'work-order',
         component: WorkOrderComponent,
-       data: {
+        data: {
           title: 'Work-Order',
           urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
-      },
+        },
       },
       {
         path: 'prestart',
         component: PrestartComponent,
-       data: {
+        data: {
           title: 'Prestart',
           urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
+        },
       },
-      },
-     
     ],
   },
 ];
 
-
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule],
-  })
-  export class ClientRoutingModule { }
-  
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class ClientRoutingModule {}

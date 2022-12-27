@@ -23,7 +23,7 @@ import { environment } from 'src/environments/environment';
 export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
   public config: PerfectScrollbarConfigInterface = {};
   mobileQuery: MediaQueryList;
-  
+
   @Input() showClass: boolean = false;
   @Output() notify: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -114,7 +114,12 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
       if (this.userPermissions.timeoff && this.userPermissions.timeoff.length > 0) {
         let subMenu = [];
         if (this.userPermissions.timeoff.includes('applyleave')) {
-          subMenu.push({ state: 'leave/apply-leave', name: 'Request leave', type: 'link', icon: '' });
+          subMenu.push({
+            state: 'leave/apply-leave',
+            name: 'Request leave',
+            type: 'link',
+            icon: '',
+          });
           // subMenu.push({ displayName: 'My Leaves', iconName: '', route: '/leave' });
           // subMenu.push({
           //   state: 'employee/resignation',
@@ -134,7 +139,6 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
           icon: 'perm_contact_calendar',
           children: subMenu,
           // badge: [{ type: 'warning', value: 'new' }],
-
         });
       }
 
@@ -177,7 +181,6 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         let subMenu: any = [];
 
         if (this.userPermissions.reports.includes('add_user')) {
-
           subMenu.push({
             state: '/employee/employee-list',
             name: 'Employees',
@@ -194,7 +197,6 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
             icon: 'account_box',
             badge: [{ type: 'warning', value: 'new' }],
           });
-
         }
 
         if (this.userPermissions.reports.includes('add_user')) {
@@ -221,10 +223,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
               type: 'link',
               icon: 'account_box',
             });
-
           }
-
-
 
           // if (this.userPermissions.reports.includes('add_user')) {
           //   subMenu.push({
@@ -236,11 +235,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
           //   });
 
           // }
-
-
-
         }
-
 
         // if (this.userPermissions.reports.includes('leave_export')) {
         //   subMenu.push({ displayName: 'Holidays', iconName: '', route: '/' });
@@ -265,7 +260,6 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         let subMenu: any = [];
 
         if (this.userPermissions.reports.includes('add_user')) {
-
           subMenu.push({
             state: '/registration/job-recommend',
             name: 'Demand Board',
@@ -287,16 +281,14 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
             icon: 'account_box',
           });
         }
-       
+
         menuItem.push({
           state: 'report',
           name: 'Staff Movements',
           type: 'sub',
           icon: 'assessment',
-          children: subMenu
-          
+          children: subMenu,
         });
-       
       }
 
       menuItem.push({
@@ -307,11 +299,22 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
       });
 
       if (this.userPermissions.reports && this.userPermissions.reports.length > 0) {
-
         if (this.userPermissions.operations && this.userPermissions.operations.length > 0) {
           let subMenu = [];
 
-
+          subMenu.push({
+            state: '/client/assets-list',
+            name: 'Assets',
+            type: 'link',
+            icon: 'commute',
+          });
+          subMenu.push({
+            state: '/client/attendance',
+            name: 'Attendance',
+            type: 'link',
+            icon: 'commute',
+          });
+         
           subMenu.push({
             state: '/client/client-list',
             name: 'Client',
@@ -326,11 +329,19 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
             icon: 'account_box',
           });
           // if (this.userPermissions.operations.includes('assets')) {
-          subMenu.push({ state: '/client/assets-list', name: 'Assets', type: 'link', icon: 'commute' });
-          subMenu.push({ state: '/client/assets-add', name: 'Asset Add', type: 'link', icon: 'commute' });
-          subMenu.push({ state: '/client/attendance', name: 'Attendance', type: 'link', icon: 'commute' });
-          subMenu.push({ state: '/client/prestart', name: 'Prestart', type: 'link', icon: 'commute' });
-          subMenu.push({ state: '/client/work-order', name: 'Work-Order', type: 'link', icon: 'commute' });
+          
+          subMenu.push({
+            state: '/client/prestart',
+            name: 'Prestart',
+            type: 'link',
+            icon: 'commute',
+          });
+          subMenu.push({
+            state: '/client/work-order',
+            name: 'Work-Order',
+            type: 'link',
+            icon: 'commute',
+          });
           // }
           // if (this.userPermissions.operations.includes('inspection')) {
           //   subMenu.push({
@@ -349,14 +360,19 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
           //   ]
           // });
           // }
-          menuItem.push({ state: 'operation', name: 'Operation', type: 'sub', icon: 'commute', children: subMenu , badge: [{ type: 'warning', value: 'new' }]});
+          menuItem.push({
+            state: 'operation',
+            name: 'Operation',
+            type: 'sub',
+            icon: 'commute',
+            children: subMenu,
+            badge: [{ type: 'warning', value: 'new' }],
+          });
         }
 
         let subMenu: any = [];
 
-
         if (this.userPermissions.reports.includes('add_user')) {
-
           // subMenu.push({
           //   state: '/client/client-list',
           //   name: 'Client List',
@@ -369,54 +385,42 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
           //   type: 'link',
           //   icon: 'account_box',
           // });
-
           // subMenu.push({
           //   state: '/registration/job-recommend',
           //   name: 'Demand Board',
           //   type: 'link',
           //   icon: 'account_box',
           // });
-
           // subMenu.push({
           //   state: '/registration/recommendation-list',
           //   name: 'Candidates',
           //   type: 'link',
           //   icon: 'account_box',
           // });
-
           // subMenu.push({
           //   state: '/registration/transfer-list',
           //   name: 'Internal Transfers',
           //   type: 'link',
           //   icon: 'account_box',
           // });
-
-
           // subMenu.push({
           //   state: '/registration/recruitment',
           //   name: 'Post New Role',
           //   type: 'link',
           //   icon: 'account_box',
           // });
-
-
           // subMenu.push({
           //   state: '/registration/recruitment-details',
           //   name: 'Job Details',
           //   type: 'link',
           //   icon: 'account_box',
           // });
-
-
-
-
           // subMenu.push({
           //   state: '/client/project-list',
           //   name: 'Project List',
           //   type: 'link',
           //   icon: 'account_box',
           // });
-
           // subMenu.push({
           //   state: '/client/project-add',
           //   name: 'Project Add',
@@ -424,7 +428,6 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
           //   icon: 'account_box',
           // });
         }
-
 
         // menuItem.push({
         //   state: 'test',
@@ -435,7 +438,6 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
         //   badge: [{ type: 'warning', value: 'new' }],
         // });
       }
-
     }
 
     // this.navItems.push({ displayName: 'Dashboard', iconName: 'dashboard', route: '/' },

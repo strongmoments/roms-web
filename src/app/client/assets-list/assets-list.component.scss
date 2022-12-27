@@ -134,5 +134,47 @@
     width: 30px;
     font-size: 30px;
   }
+  .ownership{
+    .owned{
+      color: #7367F0 !important;
+    }
+    .rental{
+      color: #9D6E36 !important;
+    }
+    .ownership-icon{
+      margin-left: 15px;
+    }
+    .ownership-text{
+      position: absolute;
+      margin-top: 20px;
+      text-align: justify;
+      margin-left: -35px;
+      font-size: 12px;
+    }
+  }
+
+.list-Img{
+  height: 50px !important;
+}
+
+//   .mat-table {
+//     overflow-x: scroll;
+//   }
+
+// .mat-cell,
+// .mat-header-cell {
+//   word-wrap: initial;
+//   display: table-cell;
+//   padding: 0px 10px;
+//   line-break: unset;
+//   width: 100%;
+//   white-space: nowrap;
+//   overflow: hidden;
+//   vertical-align: middle;
+// }
+// .mat-row,
+// .mat-header-row {
+//   display: table-row;
+// }
   
   

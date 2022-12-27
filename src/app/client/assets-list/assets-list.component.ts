@@ -43,7 +43,7 @@ export class AssetsListComponent implements OnInit, OnChanges {
     'status'
 
   ];
-  @ViewChild('employeeDetailDialog') employeeDetailDialog!: TemplateRef<any>;
+  // @ViewChild('employeeDetailDialog') employeeDetailDialog!: TemplateRef<any>;
   totalData: any = [];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   // dataSourceHistory: MatTableDataSource<any> = new MatTableDataSource<any>();
@@ -91,12 +91,12 @@ export class AssetsListComponent implements OnInit, OnChanges {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
-    this.activatedRoute.queryParams.subscribe((queryParams) => {
-      if (queryParams['id']) {
-        this.selectedId = queryParams['id'];
-        // this.onTabChanged(1);
-      }
-    });
+    // this.activatedRoute.queryParams.subscribe((queryParams) => {
+    //   if (queryParams['id']) {
+    //     this.selectedId = queryParams['id'];
+    //     // this.onTabChanged(1);
+    //   }
+    // });
     // this.authService.getAllEmployeeType().subscribe((result: any) => {
     //   this.employeeTypeList = result && result.data && result.data.length > 0 ? result.data : [];
     // });
@@ -118,11 +118,12 @@ export class AssetsListComponent implements OnInit, OnChanges {
 
     // Assign the data to the data source for the table to render
     // this.dataSource = new MatTableDataSource(users);
+    this.dataSource.data = ELEMENT_DATA;
   }
 
   ngOnInit(): void {
     // this.displayedColumns = this.displayedColumnsLeave;
-    this.refresh(this.getDefaultOptions());
+    //this.refresh(this.getDefaultOptions());
     // console.log('in listing');
     // this.authService.addedResigstration.subscribe((record: any) => (this.dataSource.data.unshift(record)));
     // this.authService.addedResigstration.subscribe((record: any) => {
@@ -313,117 +314,117 @@ export class AssetsListComponent implements OnInit, OnChanges {
     }
   }
 
-  onSubmit() {
-    this.submitted = true;
-    this.openDialog({});
+  // onSubmit() {
+  //   this.submitted = true;
+  //   this.openDialog({});
 
-  }
+  // }
 
-  openDialog(data: any) {
-    this.selectedRecord = data;
-    const dialogRef = this.dialog.open(this.employeeDetailDialog, {
-      width: '40em',
-      height: '35em',
-      // data: { data: data },
-    });
+  // openDialog(data: any) {
+  //   this.selectedRecord = data;
+  //   const dialogRef = this.dialog.open(this.employeeDetailDialog, {
+  //     width: '40em',
+  //     height: '35em',
+  //     // data: { data: data },
+  //   });
 
-    dialogRef.afterClosed().subscribe((result: any) => {
+  //   dialogRef.afterClosed().subscribe((result: any) => {
 
-    });
-  }
+  //   });
+  // }
 
-  getProgressValue(item: any) {
-    // let totalFinal = 600;
-    let currentProgress = 0;
-    // console.log(item, 'item')
+  // getProgressValue(item: any) {
+  //   // let totalFinal = 600;
+  //   let currentProgress = 0;
+  //   // console.log(item, 'item')
 
-    if (item.banking != undefined && item.banking.completionProgress != "null") {
-      currentProgress += item.banking.completionProgress ? parseFloat(item.banking.completionProgress) : 0;
-    }
-    // console.log(currentProgress, '1')
+  //   if (item.banking != undefined && item.banking.completionProgress != "null") {
+  //     currentProgress += item.banking.completionProgress ? parseFloat(item.banking.completionProgress) : 0;
+  //   }
+  //   // console.log(currentProgress, '1')
 
-    if (item.emergency != undefined && item.emergency && item.emergency.completionProgress != "null") {
-      currentProgress += item.emergency.completionProgress ? parseFloat(item.emergency.completionProgress) : 0;
-    }
-
-
-    // console.log(currentProgress, '2')
-
-    if (item.licence != undefined && item.licence && item.licence.completionProgress != "null") {
-      currentProgress += item.licence.completionProgress ? parseFloat(item.licence.completionProgress) : 0;
-    }
-    // console.log(item.licence, '3')
+  //   if (item.emergency != undefined && item.emergency && item.emergency.completionProgress != "null") {
+  //     currentProgress += item.emergency.completionProgress ? parseFloat(item.emergency.completionProgress) : 0;
+  //   }
 
 
-    if (item.personal != undefined && item.personal && item.personal.completionProgress != "null") {
-      currentProgress += item.personal.completionProgress ? parseFloat(item.personal.completionProgress) : 0;
-    }
-    // console.log(currentProgress, '4')
+  //   // console.log(currentProgress, '2')
 
-    if (item.superannuation != undefined && item.superannuation && item.superannuation.completionProgress != "null") {
-      currentProgress += item.superannuation.completionProgress ? parseFloat(item.superannuation.completionProgress) : 0;
-    }
-    // console.log(currentProgress, '5')
+  //   if (item.licence != undefined && item.licence && item.licence.completionProgress != "null") {
+  //     currentProgress += item.licence.completionProgress ? parseFloat(item.licence.completionProgress) : 0;
+  //   }
+  //   // console.log(item.licence, '3')
 
 
-    if (item.tfn != undefined && item.tfn && item.tfn.completionProgress != "null") {
-      currentProgress += item.tfn.completionProgress ? parseFloat(item.tfn.completionProgress) : 0;
-    }
+  //   if (item.personal != undefined && item.personal && item.personal.completionProgress != "null") {
+  //     currentProgress += item.personal.completionProgress ? parseFloat(item.personal.completionProgress) : 0;
+  //   }
+  //   // console.log(currentProgress, '4')
 
-    // console.log(currentProgress, '6')
-
-    if (item.membership != undefined && item.membership && item.membership.completionProgress != "null") {
-      currentProgress += item.membership.completionProgress ? parseFloat(item.membership.completionProgress) : 0;
-    }
-
-    // console.log(currentProgress, '7')
+  //   if (item.superannuation != undefined && item.superannuation && item.superannuation.completionProgress != "null") {
+  //     currentProgress += item.superannuation.completionProgress ? parseFloat(item.superannuation.completionProgress) : 0;
+  //   }
+  //   // console.log(currentProgress, '5')
 
 
-    let final = (currentProgress / 700) * 100;
-    return Math.ceil(final);
-    // console.log(final);
-  }
+  //   if (item.tfn != undefined && item.tfn && item.tfn.completionProgress != "null") {
+  //     currentProgress += item.tfn.completionProgress ? parseFloat(item.tfn.completionProgress) : 0;
+  //   }
 
-  getColor(type: String) {
-    let item: any = this.selectedRecord;
-    let progress: any = 0;
-    switch (type) {
-      case 'personal':
-        progress = item && item.personal != undefined && item.personal.completionProgress != undefined ? item.personal.completionProgress : 0;
-        break;
-      case 'banking':
-        progress = item && item.banking != undefined && item.banking.completionProgress != undefined ? item.banking.completionProgress : 0;
-        break;
-      case 'emergency':
-        progress = item && item.emergency != undefined && item.emergency.completionProgress != undefined ? item.emergency.completionProgress : 0;
-        break;
-      case 'tfn':
-        progress = item && item.tfn != undefined && item.tfn.completionProgress != undefined ? item.tfn.completionProgress : 0;
-        break;
-      case 'superannuation':
-        progress = item && item.superannuation != undefined && item.superannuation.completionProgress != undefined ? item.superannuation.completionProgress : 0;
-        break;
-      case 'licence':
-        progress = item && item.licence != undefined && item.licence.completionProgress != undefined ? item.licence.completionProgress : 0;
-        break;
-      case 'membership':
-        progress = item && item.membership != undefined && item.membership.completionProgress != undefined ? item.membership.completionProgress : 0;
-        break;
-      case 'total':
-        progress = this.getProgressValue(this.selectedRecord);
-        break;
+  //   // console.log(currentProgress, '6')
 
-      default:
-        break;
-    }
-    let className = 'warn';
-    if (progress == '100') {
-      className = 'accent';
-    } else if (progress > 0 && progress < 100) {
-      className = 'primary';
-    }
-    return className;
-  }
+  //   if (item.membership != undefined && item.membership && item.membership.completionProgress != "null") {
+  //     currentProgress += item.membership.completionProgress ? parseFloat(item.membership.completionProgress) : 0;
+  //   }
+
+  //   // console.log(currentProgress, '7')
+
+
+  //   let final = (currentProgress / 700) * 100;
+  //   return Math.ceil(final);
+  //   // console.log(final);
+  // }
+
+  // getColor(type: String) {
+  //   let item: any = this.selectedRecord;
+  //   let progress: any = 0;
+  //   switch (type) {
+  //     case 'personal':
+  //       progress = item && item.personal != undefined && item.personal.completionProgress != undefined ? item.personal.completionProgress : 0;
+  //       break;
+  //     case 'banking':
+  //       progress = item && item.banking != undefined && item.banking.completionProgress != undefined ? item.banking.completionProgress : 0;
+  //       break;
+  //     case 'emergency':
+  //       progress = item && item.emergency != undefined && item.emergency.completionProgress != undefined ? item.emergency.completionProgress : 0;
+  //       break;
+  //     case 'tfn':
+  //       progress = item && item.tfn != undefined && item.tfn.completionProgress != undefined ? item.tfn.completionProgress : 0;
+  //       break;
+  //     case 'superannuation':
+  //       progress = item && item.superannuation != undefined && item.superannuation.completionProgress != undefined ? item.superannuation.completionProgress : 0;
+  //       break;
+  //     case 'licence':
+  //       progress = item && item.licence != undefined && item.licence.completionProgress != undefined ? item.licence.completionProgress : 0;
+  //       break;
+  //     case 'membership':
+  //       progress = item && item.membership != undefined && item.membership.completionProgress != undefined ? item.membership.completionProgress : 0;
+  //       break;
+  //     case 'total':
+  //       progress = this.getProgressValue(this.selectedRecord);
+  //       break;
+
+  //     default:
+  //       break;
+  //   }
+  //   let className = 'warn';
+  //   if (progress == '100') {
+  //     className = 'accent';
+  //   } else if (progress > 0 && progress < 100) {
+  //     className = 'primary';
+  //   }
+  //   return className;
+  // }
 
 
 
@@ -487,3 +488,25 @@ export class AssetsListComponent implements OnInit, OnChanges {
     saveAs(blob, fileName);
   }
 }
+
+export interface AssetElement {
+  assetNo: string;
+  assetName: string;
+  make: string;
+  model: string;
+  ownership: string;
+  class: string;
+  type: string;
+  locationCode: string;
+  locationName: string;
+  status: string;
+}
+
+const ELEMENT_DATA: AssetElement[] = [
+  {assetNo: 'CP815', assetName: 'CAT 825 COMPACTOR', make: 'CAT', model: '825G', ownership: 'OWNED', 
+  class: 'Mobile Plant', type: 'Compactor', locationCode: '857019', locationName: 'Lo Yang', status: 'Available'},
+  {assetNo: 'EX1258', assetName: 'KOM PC1250', make: 'KOMATSU', model: 'PC1250', ownership: 'RENTAL', 
+  class: 'FIXED Plant', type: 'Dozer', locationCode: '857019', locationName: 'Lo Yang', status: 'Down'},
+  {assetNo: 'EX8107', assetName: 'Komatsu PC450LC-8', make: 'KOMATSU', model: 'PC450', ownership: 'OWNED', 
+  class: 'Mobile Plant', type: 'Crawler', locationCode: '857019', locationName: 'Lo Yang', status: 'Disposed'}
+];

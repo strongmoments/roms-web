@@ -316,6 +316,21 @@
                 </mat-error>
               </mat-form-field>
             </div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline">
+                <mat-label>Inspection List</mat-label>
+                <input type="text" placeholder="Ex: JCB Inspection" aria-label="Inspection" matInput
+                formControlName="inspection" inspection [matAutocomplete]="autoInspection"
+                [ngClass]="{ 'is-invalid': submitted && f.inspection.hasError}"/>
+                <mat-autocomplete #autoInspection="matAutocomplete">
+
+                </mat-autocomplete>
+                <mat-error *ngIf="submitted && checkError('inspection', 'required')">
+                  Inspection is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+            
             <!-- <div fxFlex.gt-sm="30" fxFlex="100">
               <small>Ownership</small>
               <div>
