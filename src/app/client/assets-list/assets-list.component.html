@@ -239,6 +239,7 @@
               mat-row
               *matRowDef="let element; columns: displayedColumns"
               class="example-element-row"
+              [routerLink]="['/client/assets-view']"
               [ngClass]="{ 'selected-row': selectedId == element.id }"
             ></tr>
             <tr class="mat-row" *matNoDataRow>

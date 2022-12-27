@@ -13,6 +13,7 @@ import { InspectionAddComponent } from './inspection-add/inspection-add.componen
 import { AttandanceComponent } from './attandance/attandance.component';
 import { WorkOrderComponent } from './work-order/work-order.component';
 import { PrestartComponent } from './prestart/prestart.component';
+import { AssetsViewComponent } from './assets-view/assets-view.component';
 
 
 
@@ -28,7 +29,8 @@ import { PrestartComponent } from './prestart/prestart.component';
     InspectionAddComponent,
     AttandanceComponent,
     WorkOrderComponent,
-    PrestartComponent
+    PrestartComponent,
+    AssetsViewComponent
   ],
   imports: [
     CommonModule,
