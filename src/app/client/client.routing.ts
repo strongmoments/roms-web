@@ -71,7 +71,7 @@ const routes: Routes = [
         path: 'assets-view',
         component: AssetsViewComponent,
         data: {
-          title: 'Asset View',
+          title: 'Assets',
           urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
         },
       },
