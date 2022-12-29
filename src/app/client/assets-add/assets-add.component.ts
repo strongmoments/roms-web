@@ -29,7 +29,7 @@ export class AssetsAddComponent implements OnInit {
       assetClass: new FormControl('', [Validators.required]),
       assetType: new FormControl('', [Validators.required]),
       category: new FormControl('', [Validators.required]),
-      inspection: new FormControl('', [Validators.required]),
+      location: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
       make: new FormControl('', [Validators.required]),
       model: new FormControl('', [Validators.required]),
@@ -134,8 +134,8 @@ export class AssetsAddComponent implements OnInit {
     formValues['categoryName'] = formValues.category;
     formValues.category = '';
 
-    formValues['inspectionName'] = formValues.inspection;
-    formValues.inspection = '';
+    formValues['locationName'] = formValues.location;
+    formValues.location = '';
 
     formValues.ownership = formValues.ownership == true ? 'owned' : 'rented';
     formValues.strRetirementDate = moment(formValues.strRetirementDate).utc().format('DD/MM/YYYY');
