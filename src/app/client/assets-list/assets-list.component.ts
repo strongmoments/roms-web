@@ -58,7 +58,16 @@ export class AssetsListComponent implements OnInit, OnChanges {
   pageSize = 10;
   totalRecords: number = 0;
   search: string = ''; //by default 0 for pending list
-  status: string = '';
+  assetNo: string = '';
+  assetName: string ='';
+  make: string ='';
+  model: string ='';
+  ownership: string ='';
+  class: string ='';
+  type: string ='';
+  locationCode: string ='';
+  locationName: string ='';
+  status: string ='';
   // currentDate: any = new Date();
   // expandedElement: any = null;
   startDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 1));
@@ -118,7 +127,7 @@ export class AssetsListComponent implements OnInit, OnChanges {
 
     // Assign the data to the data source for the table to render
     // this.dataSource = new MatTableDataSource(users);
-    this.dataSource.data = ELEMENT_DATA;
+    // this.dataSource.data = ELEMENT_DATA;
   }
 
   ngOnInit(): void {
@@ -141,6 +150,7 @@ export class AssetsListComponent implements OnInit, OnChanges {
     //     this.dataSource.data = [record, ...this.dataSource.data];
     //   }
     // });
+    this.getAssetList();
   }
 
   redirect() {
@@ -186,6 +196,11 @@ export class AssetsListComponent implements OnInit, OnChanges {
   //     // this.dataSource = this.dataSource.concat(ELEMENT_DATA);
   //   }
   // }
+  getAssetList() {
+    this.authService.getFullAssetList(this.getDefaultOptions()).subscribe((result: any) => {
+      this.dataSource.data = result.data;
+    });
+  }
 
   refresh(options: ViewOptions, isScrolled: boolean = false) {
     // let startDate = this.startDate
@@ -489,24 +504,24 @@ export class AssetsListComponent implements OnInit, OnChanges {
   }
 }
 
-export interface AssetElement {
-  assetNo: string;
-  assetName: string;
-  make: string;
-  model: string;
-  ownership: string;
-  class: string;
-  type: string;
-  locationCode: string;
-  locationName: string;
-  status: string;
-}
+// export interface AssetElement {
+//   assetNo: string;
+//   assetName: string;
+//   make: string;
+//   model: string;
+//   ownership: string;
+//   class: string;
+//   type: string;
+//   locationCode: string;
+//   locationName: string;
+//   status: string;
+// }
 
-const ELEMENT_DATA: AssetElement[] = [
-  {assetNo: 'CP815', assetName: 'CAT 825 COMPACTOR', make: 'CAT', model: '825G', ownership: 'OWNED', 
-  class: 'Mobile Plant', type: 'Compactor', locationCode: '857019', locationName: 'Lo Yang', status: 'Available'},
-  {assetNo: 'EX1258', assetName: 'KOM PC1250', make: 'KOMATSU', model: 'PC1250', ownership: 'RENTAL', 
-  class: 'FIXED Plant', type: 'Dozer', locationCode: '857019', locationName: 'Lo Yang', status: 'Down'},
-  {assetNo: 'EX8107', assetName: 'Komatsu PC450LC-8', make: 'KOMATSU', model: 'PC450', ownership: 'OWNED', 
-  class: 'Mobile Plant', type: 'Crawler', locationCode: '857019', locationName: 'Lo Yang', status: 'Disposed'}
-];
+// const ELEMENT_DATA: AssetElement[] = [
+//   {assetNo: 'CP815', assetName: 'CAT 825 COMPACTOR', make: 'CAT', model: '825G', ownership: 'OWNED', 
+//   class: 'Mobile Plant', type: 'Compactor', locationCode: '857019', locationName: 'Lo Yang', status: 'Available'},
+//   {assetNo: 'EX1258', assetName: 'KOM PC1250', make: 'KOMATSU', model: 'PC1250', ownership: 'RENTAL', 
+//   class: 'FIXED Plant', type: 'Dozer', locationCode: '857019', locationName: 'Lo Yang', status: 'Down'},
+//   {assetNo: 'EX8107', assetName: 'Komatsu PC450LC-8', make: 'KOMATSU', model: 'PC450', ownership: 'OWNED', 
+//   class: 'Mobile Plant', type: 'Crawler', locationCode: '857019', locationName: 'Lo Yang', status: 'Disposed'}
+// ];

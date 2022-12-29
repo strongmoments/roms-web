@@ -315,7 +315,7 @@ export class AuthenticationService {
     return this.http.post<any>(`${environment.apiUrl}/v1/jobs/resource/demand`, data);
   }
 
-  getAssetList(data: any) {
-    return this.http.get<any>(`${environment.apiUrl}/v1/assets?page=0&size=${data}`);
+  getFullAssetList(options: ViewOptions) {
+    return this.http.get<any>(`${environment.apiUrl}/v1/assets?page=0&size=10`);
   }
 }

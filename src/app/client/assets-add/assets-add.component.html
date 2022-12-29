@@ -63,7 +63,7 @@
 
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
-                <mat-label>Type</mat-label>
+                <mat-label>Asset Type</mat-label>
                 <input type="text" placeholder="Ex: Dozer" aria-label="Type" matInput formControlName="assetType"
                   assetType [matAutocomplete]="autoType"
                   [ngClass]="{ 'is-invalid': submitted && f.assetType.hasError }" />
@@ -91,7 +91,7 @@
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
-                <mat-label>Category</mat-label>
+                <mat-label>Asset Category</mat-label>
                 <input type="text" placeholder="Ex: Small Dozer" aria-label="Category" matInput
                   formControlName="category" category [matAutocomplete]="autoCategory"
                   [ngClass]="{ 'is-invalid': submitted && f.category.hasError }" />
