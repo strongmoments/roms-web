@@ -194,7 +194,7 @@
                   [ngClass]="{ 'is-invalid': submitted && f.model.hasError }" />
 
                 <mat-error *ngIf="submitted && checkError('model', 'required')">
-                  Model is required
+                  Model is required Ex: B11
                 </mat-error>
               </mat-form-field>
             </div>
@@ -210,7 +210,7 @@
                 </mat-error>
                 <mat-error
                   *ngIf="(checkError('yearOfMake', 'pattern') ||checkError('yearOfMake', 'minlength') || checkError('yearOfMake', 'maxlength'))">
-                  Invalid value.
+                  Invalid value Ex: 2022.
                 </mat-error>
               </mat-form-field>
             </div>
@@ -222,7 +222,7 @@
                   [ngClass]="{ 'is-invalid': submitted && f.contryOfOrigin.hasError }" />
 
                 <mat-error *ngIf="submitted && checkError('contryOfOrigin', 'required')">
-                  Country is required
+                  Country is required Ex USA
                 </mat-error>
               </mat-form-field>
             </div>
@@ -237,7 +237,7 @@
                   Current rate is required
                 </mat-error>
                 <mat-error *ngIf="checkError('currentRate', 'pattern')">
-                  Invalid value.
+                  Invalid value. Ex:00.00
                 </mat-error>
               </mat-form-field>
             </div>
@@ -253,7 +253,7 @@
                   Current rate rider is required
                 </mat-error>
                 <mat-error *ngIf="checkError('currentRateRider', 'pattern')">
-                  Invalid value.
+                  Invalid value. Ex:00.00
                 </mat-error>
               </mat-form-field>
             </div>

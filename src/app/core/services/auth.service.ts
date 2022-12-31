@@ -318,4 +318,17 @@ export class AuthenticationService {
   getFullAssetList(options: ViewOptions) {
     return this.http.get<any>(`${environment.apiUrl}/v1/assets?page=0&size=10`);
   }
+
+  getAllLocations() {
+    return this.http.get<any>(`${environment.apiUrl}/v1/location/load`);
+  }
+  getAllAssetsType() {
+    return this.http.get<any>(`${environment.apiUrl}/v1/assetstype/load`);
+  }
+  getAllAssetsClass() {
+    return this.http.get<any>(`${environment.apiUrl}/v1/assetsclass/load`);
+  }
+  getAllAssetsCategory() {
+    return this.http.get<any>(`${environment.apiUrl}/v1/assetscategory/load`);
+  }
 }
