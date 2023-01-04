@@ -11,7 +11,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
-import { AlertService, AssetsService, EmployeeService } from 'src/app/core/services';
+import { AlertService, AssetsService, EmployeeService ,} from 'src/app/core/services';
 import { LeaveService } from 'src/app/core/services/leave.service';
 import { Utils } from 'src/app/core/_helpers/util';
 import { Globals } from 'src/app/globals';
@@ -60,6 +60,8 @@ export class AssetsListComponent implements OnInit, OnChanges {
   search: string = ''; //by default 0 for pending list
   assetNo: string = '';
   assetName: string ='';
+  selectedAssetClassId: string ='';
+  selectedAssetTypeId: string ='';
   make: string ='';
   model: string ='';
   ownership: string ='';
@@ -73,12 +75,13 @@ export class AssetsListComponent implements OnInit, OnChanges {
   startDate: Date = new Date(new Date().setMonth(new Date().getMonth() - 1));
   endDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
   // status: any = 0;
-  // departmentId: any = '';
-  // employeeType: any = '';
+  // assetId: any = '';
+  assetType: any = '';
   // employeeTypeList: any = [];
-  // departmentList: any = [];
-  // removedRows: any = [];
-  // selectedTabIndex: number = 0;
+  assetClass: any = [];
+  assetList: any = [];
+  selectedClassId: any = [];
+  selectedTabIndex: number = 0;
   selectedId: string = '';
   selectedRecord: any = {};
   constructor(
@@ -110,9 +113,12 @@ export class AssetsListComponent implements OnInit, OnChanges {
     //   this.employeeTypeList = result && result.data && result.data.length > 0 ? result.data : [];
     // });
 
-    // this.authService.getAllDepartmentType().subscribe((result: any) => {
-    //   this.departmentList = result && result.data && result.data.length > 0 ? result.data : [];
-    // });
+    this.assetsService.getAllAssetsClass().subscribe((result: any) => {
+      this.assetClass = result && result.data && result.data.length > 0 ? result.data : [];
+    });
+    this.assetsService.getAllAssetsType().subscribe((result: any) => {
+      this.assetList = result && result.data && result.data.length > 0 ? result.data : [];
+    });
     // breakpointObserver.observe(['(max-width: 600px)']).subscribe((result) => {
     //   this.displayedColumns = result.matches
     //     ? ['id', 'name', 'progress', 'color']
@@ -150,7 +156,7 @@ export class AssetsListComponent implements OnInit, OnChanges {
     //     this.dataSource.data = [record, ...this.dataSource.data];
     //   }
     // });
-    this.getAssetList();
+    this.getAllAssetList();
   }
 
   redirect() {
@@ -196,8 +202,8 @@ export class AssetsListComponent implements OnInit, OnChanges {
   //     // this.dataSource = this.dataSource.concat(ELEMENT_DATA);
   //   }
   // }
-  getAssetList() {
-    this.authService.getFullAssetList(this.getDefaultOptions()).subscribe((result: any) => {
+  getAllAssetList() {
+    this.assetsService.getFullAssetList(this.getDefaultOptions()).subscribe((result: any) => {
       this.dataSource.data = result.data;
     });
   }
@@ -210,14 +216,14 @@ export class AssetsListComponent implements OnInit, OnChanges {
     //   ? moment(new Date(this.endDate).toUTCString()).format('DD-MM-YYYY')
     //   : '';
 
-    // let queryData = {
+    let queryData = {
     //   toDate: endDate,
     //   fromDate: startDate,
-    //   departmentId: this.departmentId == 'all' ? '' : this.departmentId,
-    //   employeeTypeId: this.employeeType == 'all' ? '' : this.employeeType,
+      assetClass: this.assetClass == 'all' ? '' : this.assetClass,
+      assetType: this.assetType == 'all' ? '' : this.assetType,
     //   status: `${this.status}`,
-    // };
-    // console.log(queryData, 'queryData');
+    };
+    console.log(queryData, 'queryData');
 
     this.assetsService
       .getAll(options)
@@ -282,14 +288,14 @@ export class AssetsListComponent implements OnInit, OnChanges {
     let obj = this.paginator;
     let sort = this.sort;
     let pageSize = obj != undefined ? (obj.pageIndex == null ? 1 : obj.pageIndex + 1) : 1;
-
+   let query ='class='.concat(this.selectedAssetClassId).concat("&type=") .concat(this.selectedAssetTypeId);
     const options: ViewOptions = {
       sortField: sort !== undefined ? sort.active : 'convertedRegistrationDate',
       sortDirection: sort !== undefined ? sort.direction : 'desc',
       // page: (obj != undefined ? (obj.pageIndex == null ? 1 : obj.pageIndex + 1) : 1),
       page: pageSize - 1,
       search: '',
-      query: 'class=&type=&status=',
+      query: query,
       pageSize:
         obj != undefined ? (obj.pageSize == null ? this.pageSize : obj.pageSize) : this.pageSize,
     };
@@ -298,6 +304,8 @@ export class AssetsListComponent implements OnInit, OnChanges {
 
 
   applyFilter(isTextSearch: boolean = false): void {
+    console.log("getAllAssetList");
+    this.getAllAssetList();
     // console.log(this.search, 'search', this.startDate, 'startdate', this.endDate, 'enddate');
     this.search = this.search.trim(); // Remove whitespace
     this.search = this.search.toLowerCase(); // Datasource defaults to lowercase matches
@@ -305,28 +313,26 @@ export class AssetsListComponent implements OnInit, OnChanges {
       this.dataSource.filter = this.search;
     } else {
       let data = this.totalData;
-      if (this.startDate && this.endDate) {
-        console.log(data, 'asas');
-        // this.startDate = new Date(new Date(this.startDate).setHours(0, 0, 0, 0));
-        // this.endDate = new Date(new Date(this.endDate).setHours(23, 59, 59, 59));
-        // this.dataSource.data = data.filter((elem: any) => {
-        //   let date: any = new Date(parseInt(elem.startdDate));
-        //   date.setHours(0, 0, 0, 0);
-        //   date = new Date(date);
-        //   // console.log(this.startDate, this.endDate, date)
-        //   return (date >= this.startDate && date <= this.endDate)
-        // });
-        // console.log(this.status, this.endDate)
-
-        // this.dataSource.data = data.filter((elem: any) => {
-        //   // console.log(elem.totalProgress,(this.status == 'all' || this.status == '' ? parseInt(elem.totalProgress) <= 100 : (this.status == 'pending' ? parseInt(elem.totalProgress) < 100 : parseInt(elem.totalProgress) == 100)),'asaskj')
-        //   // return true;
-        //   return (this.status == 'all' || this.status == '' ? parseInt(elem.totalProgress) <= 100 : (this.status == 'pending' ? parseInt(elem.totalProgress) < 100 : parseInt(elem.totalProgress) == 100));
-        //   // return (date >= this.startDate && date <= this.endDate)
-        // });
-      }
+      
       // this.refresh(this.getDefaultOptions());
     }
+  }
+
+  getStatus(status: any) {
+    return this.globals.assetStatus.find((elem: any) => {
+      return elem.value == status;
+    })?.name;
+  }
+  getStatusIcon(status: any) {
+    return this.globals.assetStatus.find((elem: any) => {
+      return elem.value == status;
+    })?.icon;
+  }
+
+  getStatusColor(status: any,) {
+    let elem: any = this.globals.assetStatus.find((elem: any) => {
+      return elem.value == status;
+    });
   }
 
   // onSubmit() {
@@ -473,17 +479,17 @@ export class AssetsListComponent implements OnInit, OnChanges {
     // csv.unshift(header.join(','));
     // let csvArray = csv.join('\r\n');
     let csvArray: any = [
-      'Employee Name,Employee No,Email,Phone,DOB,Gender,Temporary Address,Permanent Address,Licence Number,Licence Issued at,Licence Expiry,Emergency Contact Person,Emergency Email, Emergency Contact No,Emergency Contact Address,Tfn Number,Annutation CurrentFund Account Name,Annutation CurrentFund Member Name,Bank Holder Name, Bank Ac No, Bank Name,Bank BSB no,Bank Fixed Amount,Registration Date,Start Date,End Date\r\n',
+      'Asset Name,Asset No,Make,Model,Ownership,Asset Class,Asset Type,Location Code,Location Name,Status\r\n',
     ];
     for (let i = 0; i < this.dataSource.data.length; i++) {
       let item = this.dataSource.data[i];
       // console.log(this.dataSource.data[i], 'this.dataSource.data');
-      let row: string = `${item?.employeeName},${item?.personal?.employeeNo},${item?.personal?.email},${item?.personal?.phone},${item?.personal?.birthdate},${item?.personal?.gender},${item?.personal?.tempAddress?.address} ${item?.personal?.tempAddress?.suburb} ${item?.personal?.tempAddress?.state} ${item?.personal?.tempAddress?.postcode},${item?.personal?.permanentAddress?.address} ${item?.personal?.permanentAddress?.suburb} ${item?.personal?.permanentAddress?.state} ${item?.personal?.permanentAddress?.postcode},${item?.licence?.licenceNumber},${item?.licence?.issuedIn},${item?.licence?.expiryDate},${item?.emergency?.firstName} ${item?.emergency?.lastName},${item?.emergency?.email},${item?.emergency?.mobile},${item?.emergency?.address?.address} ${item?.emergency?.address?.suburb} ${item?.emergency?.address?.state} ${item?.emergency?.address?.postcode},${item?.tfn?.tfnnumber},${item?.superannuation?.currentFund?.accountName},${item?.superannuation?.currentFund?.membername},${item?.banking?.defaultBank?.accountHolderName},${item?.banking?.defaultBank?.accountNumber},${item?.banking?.defaultBank?.bankName},${item?.banking?.defaultBank?.bsbNumber},${item?.banking?.defaultBank?.fixedAmount},${item?.convertedRegistrationDate},${item?.convertedStartdDate},${item?.convertedEndDate}\r\n`;
+      let row: string = `${item?.assetNo},${item?.name},${item?.make},${item?.model},${item?.ownership},${item?.assetClass?.name},${item?.personal?.assetType?.name} ${item?.location?.code} ${item?.location?.description} ${item?.status}\r\n`;
       // console.log(row);
       csvArray.push(row);
     }
     // console.log(csvArray)
-    let fileName = `oboarding_report_${new Date().getTime()}.csv`;
+    let fileName = `Asset_report_${new Date().getTime()}.csv`;
     // let data = {
     //   reportName: fileName,
     //   dateRange: `${this.datePipe.transform(
