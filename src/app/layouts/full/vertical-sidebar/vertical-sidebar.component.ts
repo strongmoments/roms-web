@@ -309,6 +309,12 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
             icon: 'commute',
           });
           subMenu.push({
+            state: '/client/prestart',
+            name: 'Prestart',
+            type: 'link',
+            icon: 'commute',
+          });
+          subMenu.push({
             state: '/client/attendance',
             name: 'Attendance',
             type: 'link',
@@ -330,12 +336,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
           });
           // if (this.userPermissions.operations.includes('assets')) {
           
-          subMenu.push({
-            state: '/client/prestart',
-            name: 'Prestart',
-            type: 'link',
-            icon: 'commute',
-          });
+          
           subMenu.push({
             state: '/client/work-order',
             name: 'Work-Order',
