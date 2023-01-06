@@ -77,7 +77,7 @@ export class AssetsListComponent implements OnInit, OnChanges {
   // status: any = 0;
   // assetId: any = '';
   assetType: any = '';
-  // employeeTypeList: any = [];
+  statusList: any = [];
   assetClass: any = [];
   assetList: any = [];
   selectedClassId: any = [];
@@ -314,7 +314,7 @@ export class AssetsListComponent implements OnInit, OnChanges {
     } else {
       let data = this.totalData;
       
-      // this.refresh(this.getDefaultOptions());
+      this.refresh(this.getDefaultOptions());
     }
   }
 
@@ -329,10 +329,12 @@ export class AssetsListComponent implements OnInit, OnChanges {
     })?.icon;
   }
 
-  getStatusColor(status: any,) {
+  
+  getStatusColor(status: any, isCheckbox: boolean = false) {
     let elem: any = this.globals.assetStatus.find((elem: any) => {
       return elem.value == status;
     });
+  return elem ? (isCheckbox == true ? elem.checkboxColorClass : elem.colorClass) : '';
   }
 
   // onSubmit() {
@@ -484,7 +486,7 @@ export class AssetsListComponent implements OnInit, OnChanges {
     for (let i = 0; i < this.dataSource.data.length; i++) {
       let item = this.dataSource.data[i];
       // console.log(this.dataSource.data[i], 'this.dataSource.data');
-      let row: string = `${item?.assetNo},${item?.name},${item?.make},${item?.model},${item?.ownership},${item?.assetClass?.name},${item?.personal?.assetType?.name} ${item?.location?.code} ${item?.location?.description} ${item?.status}\r\n`;
+      let row: string = `${item?.assetNo},${item?.name},${item?.make},${item?.model},${item?.ownership},${item?.assetClass?.name},${item?.assetType?.name},${item?.location?.code},${item?.location?.description},${item?.status}\r\n`;
       // console.log(row);
       csvArray.push(row);
     }

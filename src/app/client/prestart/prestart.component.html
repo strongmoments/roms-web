@@ -15,7 +15,7 @@
               </div>
               <div fxFlex.gt-sm="20" class="p-r-10" fxFlex="100">
                 <mat-form-field>
-                  <input matInput (keyup)="applyFilter(true)" [(ngModel)]="search" />
+                  <input matInput (keyup)="applyFilter(true)" [(ngModel)]="search" placeholder="Filter"/>
                   <mat-icon matSuffix>search</mat-icon>
                 </mat-form-field>
               </div>
@@ -197,7 +197,7 @@
               </ng-container>
               <!-- Name Column -->
               <ng-container matColumnDef="doneBy">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Done By</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Prestart Done By</th>
                 <td mat-cell *matCellDef="let row">
                   <!-- <span class="header-label">days:</span> -->
 

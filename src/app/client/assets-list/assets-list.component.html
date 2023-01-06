@@ -74,11 +74,11 @@
                   placeholder="Status"
                 >
                   <mat-option value="all">All</mat-option>
-                  <mat-option value="pending">Pending</mat-option>
-                  <mat-option value="completed">Completed</mat-option>
-                  <!-- <mat-option [value]="item.id" *ngFor="let item of departmentList">
-                      {{ item.description }}
-                    </mat-option> -->
+                  <!-- <mat-option value="pending">Pending</mat-option>
+                  <mat-option value="completed">Completed</mat-option> -->
+                  <mat-option [value]="item.id" *ngFor="let item of statusList">
+                      {{ item.status }}
+                    </mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -119,7 +119,7 @@
                   <img
                     class="m-r-10 list-Img"
                     onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
-                    [src]="row?.personal?.profileImageURL"
+                    [src]="row?.assetImage?.assetImageURL"
                     alt=""
                   />
                   {{ row?.assetNo }}
@@ -152,7 +152,10 @@
             <ng-container matColumnDef="ownership">
               <th mat-header-cell *matHeaderCellDef>Ownership</th>
               <td mat-cell *matCellDef="let row">
-                {{ row?.ownership }}
+                <span [ngClass]="getStatusColor('assetOwnership',row?.status)">
+                   <mat-icon>{{globals.getIcon('assetOwnership',row?.status)}}</mat-icon>
+                 </span>
+                <!-- {{ row?.ownership }} -->
                 <!-- <div class="ownership">
                   <span class="ownership-icon">
                     <mat-icon *ngIf="row?.ownership == 'OWNED'" class="owned"
@@ -195,7 +198,7 @@
               <th mat-header-cell *matHeaderCellDef>Status</th>
               <td mat-cell *matCellDef="let row">
                 <span [ngClass]="getStatusColor('assetStatus',row?.status)">
-                  <!-- {{ row?.statusName }} -->
+                  {{ row?.status }}
                   <mat-icon>{{globals.getIcon('assetStatus',row?.status)}}</mat-icon>
                 </span>
                 <!-- <mat-icon>{{globals.getIcon('assetStatus',row?.status)}}</mat-icon> -->
