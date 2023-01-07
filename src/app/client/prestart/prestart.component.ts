@@ -11,7 +11,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
-import { AlertService, EmployeeService } from 'src/app/core/services';
+import { AlertService,AssetsService, EmployeeService } from 'src/app/core/services';
 import { LeaveService } from 'src/app/core/services/leave.service';
 import { Utils } from 'src/app/core/_helpers/util';
 import { Globals } from 'src/app/globals';
@@ -86,6 +86,7 @@ export class PrestartComponent implements OnInit, OnChanges {
     private authService: AuthenticationService,
     private employeeService: EmployeeService,
     private router: Router,
+    private assetsService: AssetsService,
   ) {
     this.globals = globals;
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -140,6 +141,7 @@ export class PrestartComponent implements OnInit, OnChanges {
     //     this.dataSource.data = [record, ...this.dataSource.data];
     //   }
     // });
+    this.getAllPrestartList();
   }
 
   ngOnChanges(changes: SimpleChanges): void {}
@@ -157,11 +159,11 @@ export class PrestartComponent implements OnInit, OnChanges {
     });
   }
 
-  redirectForm(elem: any) {
-    console.log(elem);
-    sessionStorage.setItem(elem.id, JSON.stringify(elem));
-    this.router.navigate(['/registration/create-user'], { queryParams: { requestId: elem.id } });
-  }
+  // redirectForm(elem: any) {
+  //   console.log(elem);
+  //   sessionStorage.setItem(elem.id, JSON.stringify(elem));
+  //   this.router.navigate(['/registration/create-user'], { queryParams: { requestId: elem.id } });
+  // }
 
   // onTableScroll(e: any) {
   //   const tableViewHeight = e.target.offsetHeight; // viewport: ~500px
@@ -180,6 +182,12 @@ export class PrestartComponent implements OnInit, OnChanges {
   //     // this.dataSource = this.dataSource.concat(ELEMENT_DATA);
   //   }
   // }
+  getAllPrestartList() {
+    // alert("hii");
+    this.assetsService.getPrestartList(this.getDefaultOptions()).subscribe((result: any) => {
+      this.dataSource.data = result.data;
+    });
+  }
 
   refresh(options: ViewOptions, isScrolled: boolean = false) {
     // let startDate = this.startDate
