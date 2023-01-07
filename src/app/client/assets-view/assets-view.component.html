@@ -85,15 +85,20 @@
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="15" fxFlex="100" class="text-center" style="cursor: pointer">
               <mat-label>Asset Image</mat-label>
-              
-              <!-- <div class="m-t-10 asset-img">
+              <!-- <img *ngIf="assetDetails?.assetImage.fileType.includes( 'image')"
+                                (click)="openImageDialog($event.target.src)"
+                                [src]="globals.generateFileUrl(assetDetails?.assetImage?.url,user.token)" alt="" />
+                              <img *ngIf="assetDetails?.assetImage.fileType.includes('pdf')"
+                                (click)="openFile(globals.generateFileUrl(assetDetails?.assetImage?.url,user.token))"
+                                src="../../../assets/img/add-image.png" alt="" /> -->
+              <div class="m-t-10 asset-img">
                 <img
                   src="../../../assets/img/add-image.png"
                   alt=""
                   style="max-height: 110px; width: auto"
                 />
                 <mat-icon>camera_alt</mat-icon>
-              </div> -->
+              </div>
             </div>
             <div fxFlex.gt-sm="15" fxFlex="100" class="text-center" style="cursor: pointer">
               <mat-label>QR Code</mat-label>

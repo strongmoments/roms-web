@@ -4,6 +4,8 @@ import {MatDialog} from '@angular/material/dialog';
 import {ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { JobService, AssetsService } from 'src/app/core/services';
+
+import { ImagePreviewDialog } from 'src/app/shared/image-preview-dialog/image-preview-dialog.component';
 import { first } from 'rxjs';
 
 @Component({
@@ -37,7 +39,25 @@ export class AssetsViewComponent implements OnInit {
         });
   }
  
-  
+  openImageDialog(data: any) {
+    // alert();
+    // this.selectedImage = data;
+    const dialogRef = this.dialog.open(ImagePreviewDialog, {
+      width: 'auto',
+      height: '35em',
+      data: { selectedImage: data }
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      // this.router.navigate(['/registration/list']);
+      // console.log('The dialog was closed');
+    });
+  }
+
+  openFile(url: string) {
+
+    window.open(url, '_blank');
+  }
 
   
 

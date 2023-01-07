@@ -91,7 +91,14 @@
 
                   <div style="display: flex; align-items: center">
                     <!-- <img
-                          class="m-r-10 list-Img"
+                      class="m-r-10 list-Img"
+                      onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
+                      [src]="row?.recommendDetails?.employeeIdx?.profileImage?.length>0?globals.generateFileUrl
+                      (row?.recommendDetails?.employeeIdx?.profileImage[0]?.digitalAssets?.url,user.token):''" 
+                      alt=""
+                    /> -->
+                    <img
+                          class="m-r-10 Asset-Img"
                           onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
                           [src]="
                             row && row.profileImage && row.profileImage.length > 0
@@ -99,14 +106,9 @@
                               : ''
                           "
                           alt=""
-                        /> -->
-                    <!-- {{ row?.employeeName }} -->
-                    <img
-                      class="m-r-10 Asset-Img"
-                      src="../../../assets/img/user-default-img.jpg"
-                      alt=""
-                    />
-                    CP1815
+                        />
+                    
+                    {{ row?.assets?.assetNo }}
                   </div>
                 </td>
               </ng-container>
@@ -116,7 +118,7 @@
                 <td mat-cell *matCellDef="let row">
                   <!-- <span class="header-label">days:</span> -->
                   <!-- {{ row?.employeType?.name }} -->
-                  CAT 825G COMPACTOR
+                  {{ row?.assets?.name }}
                 </td>
               </ng-container>
               <!-- Name Column -->
@@ -124,17 +126,14 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Class</th>
                 <td mat-cell *matCellDef="let row">
                   <!-- <span class="header-label">days:</span> -->
-                  <!-- {{ row?.employeType?.name }} -->
-                  Mobile Plant
+                  {{ row?.assets?.assetClass?.name }}
                 </td>
               </ng-container>
               <!-- Name Column -->
               <ng-container matColumnDef="type">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
                 <td mat-cell *matCellDef="let row">
-                  <!-- <span class="header-label">days:</span> -->
-                  <!-- {{ row?.employeeNo }} -->
-                  Compactor
+                  {{ row?.assets?.assetType?.name }}
                 </td>
               </ng-container>
 
@@ -142,9 +141,7 @@
               <ng-container matColumnDef="currentLocation">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Current Location</th>
                 <td mat-cell *matCellDef="let row">
-                  <!-- <span class="header-label">days:</span> -->
-                  <!-- {{ row?.employeeNo }} -->
-                  857019 | Loy Yang
+                  {{ row?.assets?.location?.code }}
                 </td>
               </ng-container>
 
@@ -152,36 +149,28 @@
               <ng-container matColumnDef="catA">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Cat A</th>
                 <td mat-cell *matCellDef="let row">
-                  <!-- <span class="header-label">days:</span> -->
-                  <!-- {{ row?.employeeNo }} -->
-                  2 issues
+                  {{ row?.assets?.assetClass }}
                 </td>
               </ng-container>
               <!-- Name Column -->
               <ng-container matColumnDef="catB">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Cat B</th>
                 <td mat-cell *matCellDef="let row">
-                  <!-- <span class="header-label">days:</span> -->
-                  <!-- {{ row?.employeeNo }} -->
-                  1 issues
+                  {{ row?.assets?.assetClass }}
                 </td>
               </ng-container>
               <!-- Name Column -->
               <ng-container matColumnDef="catC">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Cat C</th>
                 <td mat-cell *matCellDef="let row">
-                  <!-- <span class="header-label">days:</span> -->
-                  <!-- {{ row?.employeeNo }} -->
-                  1 issues
+                  {{ row?.assets?.assetClass }}
                 </td>
               </ng-container>
               <!-- Name Column -->
               <ng-container matColumnDef="conclusion">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Conclusion</th>
                 <td mat-cell *matCellDef="let row">
-                  <!-- <span class="header-label">days:</span> -->
-                  <!-- {{ row?.employeeNo }} -->
-                  Need Fix
+                  {{ row?.assets?.assetClass }}
                 </td>
               </ng-container>
               <!-- Name Column -->
@@ -191,23 +180,18 @@
                   <!-- <span class="header-label">days:</span> -->
 
                   <div style="display: flex; align-items: center">
-                    <!-- <img
+                    <img
                         class="m-r-10 list-Img"
                         onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
                         [src]="
-                          row && row.profileImage && row.profileImage.length > 0
+                          row && row.assetImage && row.assetImage.length > 0
                             ? row.profileImage[0]?.digitalAssets?.url
                             : ''
                         "
                         alt=""
-                      /> -->
-                    <!-- {{ row?.employeeName }} -->
-                    <img
-                      class="m-r-10 list-Img"
-                      src="../../../assets/img/user-default-img.jpg"
-                      alt=""
-                    />
-                    Hill Bradyon
+                      />
+                    
+                    {{ row?.assets?.assetClass?.name }}
                   </div>
                 </td>
               </ng-container>
