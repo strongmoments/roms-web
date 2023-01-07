@@ -103,12 +103,12 @@ export class AssetsListComponent implements OnInit, OnChanges {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
-    // this.activatedRoute.queryParams.subscribe((queryParams) => {
-    //   if (queryParams['id']) {
-    //     this.selectedId = queryParams['id'];
-    //     // this.onTabChanged(1);
-    //   }
-    // });
+    this.activatedRoute.queryParams.subscribe((queryParams) => {
+      if (queryParams['id']) {
+        this.selectedId = queryParams['id'];
+        // this.onTabChanged(1);
+      }
+    });
     // this.authService.getAllEmployeeType().subscribe((result: any) => {
     //   this.employeeTypeList = result && result.data && result.data.length > 0 ? result.data : [];
     // });
@@ -159,9 +159,9 @@ export class AssetsListComponent implements OnInit, OnChanges {
     this.getAllAssetList();
   }
 
-  redirect() {
-    this.router.navigate(['/client/assets-add'])
-  }
+  // redirect() {
+  //   this.router.navigate(['/client/assets-add'])
+  // }
 
   ngOnChanges(changes: SimpleChanges): void { }
 
@@ -179,11 +179,11 @@ export class AssetsListComponent implements OnInit, OnChanges {
     // });
   }
 
-  redirectForm(elem: any) {
-    // console.log(elem);
-    sessionStorage.setItem(elem.id, JSON.stringify(elem));
-    this.router.navigate(['/registration/create-user'], { queryParams: { requestId: elem.id } });
-  }
+  // redirectForm(elem: any) {
+  //   // console.log(elem);
+  //   sessionStorage.setItem(elem.id, JSON.stringify(elem));
+  //   this.router.navigate(['/client/assets-view'], { queryParams: { id: elem.id } });
+  // }
 
   // onTableScroll(e: any) {
   //   const tableViewHeight = e.target.offsetHeight; // viewport: ~500px

@@ -10,7 +10,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
-import { AlertService, EmployeeService } from 'src/app/core/services';
+import { AlertService, EmployeeService,AssetsService } from 'src/app/core/services';
 import { LeaveService } from 'src/app/core/services/leave.service';
 import { Utils } from 'src/app/core/_helpers/util';
 import { Globals } from 'src/app/globals';
@@ -84,6 +84,7 @@ export class AttandanceComponent implements OnInit, OnChanges {
     private authService: AuthenticationService,
     private employeeService: EmployeeService,
     private router: Router,
+    private assetsService: AssetsService,
   ) {
     this.globals = globals;
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -138,6 +139,7 @@ export class AttandanceComponent implements OnInit, OnChanges {
     //     this.dataSource.data = [record, ...this.dataSource.data];
     //   }
     // });
+    this.getAllAttandancetList();
   }
 
   ngOnChanges(changes: SimpleChanges): void {}
@@ -178,6 +180,12 @@ export class AttandanceComponent implements OnInit, OnChanges {
   //     // this.dataSource = this.dataSource.concat(ELEMENT_DATA);
   //   }
   // }
+  getAllAttandancetList() {
+    // alert("hii");
+    this.assetsService.getAttandanceList(this.getDefaultOptions()).subscribe((result: any) => {
+      this.dataSource.data = result.data;
+    });
+  }
 
   refresh(options: ViewOptions, isScrolled: boolean = false) {
     // let startDate = this.startDate

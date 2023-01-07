@@ -1,5 +1,5 @@
 <mat-card>
-  <mat-card-content >
+  <mat-card-content>
     <h2 class="title text-center color_blue">Asset Details</h2>
     <mat-card-title class="p-t-20 p-b-10 color_blue">Basic Details</mat-card-title>
     <div fxLayout="row wrap">
@@ -9,21 +9,36 @@
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Asset No</mat-label>
-                <input matInput placeholder="Ex: DZ1191" formControlName="assetNo" />
+                <input
+                  matInput
+                  [readonly]="!isEditEnable"
+                  value="{{ assetDetails?.assetNo }}"
+                  placeholder="Ex: DZ1191"
+                />
               </mat-form-field>
             </div>
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Asset Name</mat-label>
-                <input matInput placeholder="Ex: CAT D11R" />
+                <input
+                  matInput
+                  [readonly]="!isEditEnable"
+                  value="{{ assetDetails?.name }}"
+                  placeholder="Ex: CAT D11R"
+                />
               </mat-form-field>
             </div>
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Class</mat-label>
-                <input type="text" placeholder="Ex: Mobile Plant" aria-label="Class" matInput />
+                <input
+                  matInput
+                  [readonly]="!isEditEnable"
+                  value="{{ assetDetails?.assetClass?.name }}"
+                  placeholder="Ex: Mobile Plant"
+                />
               </mat-form-field>
             </div>
 
@@ -31,11 +46,10 @@
               <mat-form-field appearance="outline">
                 <mat-label>Type</mat-label>
                 <input
-                  type="text"
-                  placeholder="Ex: Dozer"
-                  aria-label="Type"
                   matInput
-                  formControlName="assetType"
+                  [readonly]="!isEditEnable"
+                  value="{{ assetDetails?.assetType?.name }}"
+                  placeholder="Ex: Dozer"
                 />
               </mat-form-field>
             </div>
@@ -44,7 +58,12 @@
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Category</mat-label>
-                <input type="text" placeholder="Ex: Small Dozer" aria-label="Category" matInput />
+                <input
+                  matInput
+                  [readonly]="!isEditEnable"
+                  value="{{ assetDetails?.assetCategory?.name }}"
+                  placeholder="Ex: Small Dozer"
+                />
               </mat-form-field>
             </div>
             <div fxFlex.gt-sm="35" fxFlex="100"></div>
@@ -55,31 +74,32 @@
                 <mat-label>Description</mat-label>
                 <textarea
                   matInput
+                  [readonly]="!isEditEnable"
+                  value="{{ assetDetails?.description }}"
                   placeholder="Textarea"
                   rows="3"
-                  formControlName="description"
-                  description
+                  
                 ></textarea>
               </mat-form-field>
-              
             </div>
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
-            <div fxFlex.gt-sm="15" fxFlex="100" class="text-center" style="cursor: pointer;">
+            <div fxFlex.gt-sm="15" fxFlex="100" class="text-center" style="cursor: pointer">
               <mat-label>Asset Image</mat-label>
-              <div class="m-t-10 asset-img">
+              
+              <!-- <div class="m-t-10 asset-img">
                 <img
-                  src="../../../assets/img/image.png"
+                  src="../../../assets/img/add-image.png"
                   alt=""
                   style="max-height: 110px; width: auto"
                 />
                 <mat-icon>camera_alt</mat-icon>
-              </div>
+              </div> -->
             </div>
-            <div fxFlex.gt-sm="15" fxFlex="100" class="text-center" style="cursor: pointer;">
+            <div fxFlex.gt-sm="15" fxFlex="100" class="text-center" style="cursor: pointer">
               <mat-label>QR Code</mat-label>
               <div class="m-t-10 asset-img">
                 <img
-                  src="../../../assets/img/image.png"
+                  src="../../../assets/img/add-image.png"
                   alt=""
                   style="max-height: 110px; width: auto"
                 />
@@ -98,7 +118,12 @@
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Make</mat-label>
-                <input matInput placeholder="Ex: CAT" formControlName="make" make />
+                <input
+                  matInput
+                  [readonly]="!isEditEnable"
+                  value="{{ assetDetails?.make }}"
+                  placeholder="Ex: CAT"
+                />
               </mat-form-field>
             </div>
 
@@ -106,28 +131,48 @@
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Model</mat-label>
-                <input matInput placeholder="Ex: B11" formControlName="model" model />
+                <input
+                  matInput
+                  [readonly]="!isEditEnable"
+                  value="{{ assetDetails?.model }}"
+                  placeholder="Ex: B11"
+                />
               </mat-form-field>
             </div>
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Year Of Make</mat-label>
-                <input matInput placeholder="2022" formControlName="yearOfMake" yearOfMake />
+                <input
+                  matInput
+                  [readonly]="!isEditEnable"
+                  value="{{ assetDetails?.yearOfMake }}"
+                  placeholder="2022"
+                />
               </mat-form-field>
             </div>
 
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Country Of Origin</mat-label>
-                <input matInput placeholder="USA" formControlName="contryOfOrigin" contryOfOrigin />
+                <input
+                  matInput
+                  [readonly]="!isEditEnable"
+                  value="{{ assetDetails?.contryOfOrigin}}"
+                  placeholder="USA"
+                />
               </mat-form-field>
             </div>
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Current Rate</mat-label>
-                <input matInput placeholder="00.00" formControlName="currentRate" currentRate />
+                <input
+                  matInput
+                  [readonly]="!isEditEnable"
+                  value="{{ assetDetails?.currentRate }}"
+                  placeholder="00.00"
+                />
               </mat-form-field>
             </div>
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
@@ -136,9 +181,9 @@
                 <mat-label>Current Rate Rider</mat-label>
                 <input
                   matInput
+                  [readonly]="!isEditEnable"
+                  value="{{ assetDetails?.currentRateRider }}"
                   placeholder="0"
-                  formControlName="currentRateRider"
-                  currentRateRider
                 />
               </mat-form-field>
             </div>
@@ -157,9 +202,7 @@
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
                 <mat-label>Availability</mat-label>
-                <mat-select placeholder="Status" formControlName="status">
-                 
-                </mat-select>
+                <mat-select placeholder="Status" formControlName="status"> </mat-select>
               </mat-form-field>
             </div>
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
@@ -178,7 +221,8 @@
               <mat-form-field appearance="outline">
                 <mat-label>Retirement Date</mat-label>
 
-                <input matInput placeholder="" formControlName="strRetirementDate" />
+                <input matInput [readonly]="!isEditEnable"
+                value="{{ assetDetails?.retirementDate }}" placeholder=""  />
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
