@@ -63,7 +63,7 @@ const routes: Routes = [
         path: 'assets-add',
         component: AssetsAddComponent,
         data: {
-          title: 'Asset Add',
+          title: 'Add Asset ',
           urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
         },
       },
@@ -95,7 +95,7 @@ const routes: Routes = [
         path: 'attendance',
         component: AttandanceComponent,
         data: {
-          title: 'Attendance',
+          title: 'Daily CheckIn',
           urls: [{ title: 'Dashboard', url: '/' }, { title: 'Operations' }],
         },
       },

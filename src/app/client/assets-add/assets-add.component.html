@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-content class="create_user_page">
-    <h2 class="title text-center color_blue">Add new asset</h2>
+    <h2 class="title text-center color_blue">Add Asset</h2>
     <mat-card-title class="p-t-20 p-b-10 color_blue">Basic Details</mat-card-title>
     <div fxLayout="row wrap">
       <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
@@ -226,6 +226,26 @@
                 </mat-error>
               </mat-form-field>
             </div>
+            <div fxFlex.gt-sm="70" fxFlex="100"></div>
+
+            <mat-divider fxFlex.gt-sm="100" fxFlex="100"> </mat-divider>
+            <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
+              <mat-card-title class="p-b-10 color_blue">Country</mat-card-title>
+            </div>
+            <div fxFlex.gt-sm="30" fxFlex="100">
+              <mat-form-field appearance="outline" >
+                <mat-label>Default Project Location</mat-label>
+                <input type="text" placeholder="Ex: Yallorn" aria-label="Location" matInput
+                formControlName="location" location [matAutocomplete]="autoLocation"
+                [ngClass]="{ 'is-invalid': submitted && f.location.hasError}"/>
+                <mat-autocomplete #autoLocation="matAutocomplete">
+
+                </mat-autocomplete>
+                <mat-error *ngIf="submitted && checkError('location', 'required')">
+                  Default Location is required
+                </mat-error>
+              </mat-form-field>
+            </div>
             <div fxFlex.gt-sm="5" fxFlex="100"></div>
             <div fxFlex.gt-sm="30" fxFlex="100">
               <mat-form-field appearance="outline">
@@ -316,20 +336,7 @@
                 </mat-error>
               </mat-form-field> -->
             </div>
-            <div fxFlex.gt-sm="30" fxFlex="100">
-              <mat-form-field appearance="outline" class="m-t-30">
-                <mat-label>Default Project Location</mat-label>
-                <input type="text" placeholder="Ex: Yallorn" aria-label="Location" matInput
-                formControlName="location" location [matAutocomplete]="autoLocation"
-                [ngClass]="{ 'is-invalid': submitted && f.location.hasError}"/>
-                <mat-autocomplete #autoLocation="matAutocomplete">
-
-                </mat-autocomplete>
-                <mat-error *ngIf="submitted && checkError('location', 'required')">
-                  Default Location is required
-                </mat-error>
-              </mat-form-field>
-            </div>
+            
             
             <!-- <div fxFlex.gt-sm="30" fxFlex="100">
               <small>Ownership</small>

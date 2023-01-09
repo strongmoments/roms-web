@@ -19,6 +19,7 @@ export class AssetsViewComponent implements OnInit {
   id : string = ''; 
   assetDetails : any = {};
   isEditEnable: boolean = false;
+  generatedCode: boolean = false;
   // @ViewChild('employeeDetailDialog') employeeDetailDialog!: TemplateRef<any>;
 
   constructor(
@@ -59,6 +60,13 @@ export class AssetsViewComponent implements OnInit {
     window.open(url, '_blank');
   }
 
+  generateQrcode() {
+    // if (this.form.controls['assetNo']!.value) {
+      this.generatedCode = true;
+    // } else {
+    //   this.alertService.openSnackBar('Please enter asset no to generate QR code.');
+    // }
+  }
   
 
   
