@@ -20,6 +20,8 @@ export class AssetsAddComponent implements OnInit {
   currentDate: Date = new Date();
   selectedFile: string = '';
   attachmentFile: any;
+  item: any = 1;
+  status: any = 1;
   generatedCode: boolean = false;
   constructor(globals: Globals, private fb: FormBuilder, private alertService: AlertService, public util: Utils, private leaveService: LeaveService, private authService: AuthenticationService, private assetsService: AssetsService, private router: Router) {
     this.globals = globals;

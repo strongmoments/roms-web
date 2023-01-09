@@ -316,7 +316,7 @@ export class VerticalAppSidebarComponent implements OnInit, OnDestroy {
           });
           subMenu.push({
             state: '/client/attendance',
-            name: 'Attendance',
+            name: 'Daily CheckIn',
             type: 'link',
             icon: 'commute',
           });

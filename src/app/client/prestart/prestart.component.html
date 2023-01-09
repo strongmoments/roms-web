@@ -84,8 +84,8 @@
           <div class="table-responsive infinite-scroll">
             <mat-table #table [dataSource]="dataSource" class="table employee-list no-wrap" matSort>
               <!-- Name Column -->
-              <ng-container matColumnDef="assetId">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Asset ID</th>
+              <ng-container matColumnDef="assetNo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Asset No</th>
                 <td mat-cell *matCellDef="let row">
                   <!-- <span class="header-label">days:</span> -->
 
@@ -149,28 +149,28 @@
               <ng-container matColumnDef="catA">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Cat A</th>
                 <td mat-cell *matCellDef="let row">
-                  {{ row?.assets?.assetClass }}
+                  <!-- {{ row?.assets?.assetClass }} -->
                 </td>
               </ng-container>
               <!-- Name Column -->
               <ng-container matColumnDef="catB">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Cat B</th>
                 <td mat-cell *matCellDef="let row">
-                  {{ row?.assets?.assetClass }}
+                  <!-- {{ row?.assets?.assetClass }} -->
                 </td>
               </ng-container>
               <!-- Name Column -->
               <ng-container matColumnDef="catC">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Cat C</th>
                 <td mat-cell *matCellDef="let row">
-                  {{ row?.assets?.assetClass }}
+                  <!-- {{ row?.assets?.assetClass }} -->
                 </td>
               </ng-container>
               <!-- Name Column -->
               <ng-container matColumnDef="conclusion">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Conclusion</th>
                 <td mat-cell *matCellDef="let row">
-                  {{ row?.assets?.assetClass }}
+                  <!-- {{ row?.assets?.assetClass }} -->
                 </td>
               </ng-container>
               <!-- Name Column -->
