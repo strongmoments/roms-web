@@ -31,7 +31,7 @@ export class PrestartComponent implements OnInit, OnChanges {
   globals: Globals;
   submitted: boolean = false;
   displayedColumns: string[] = [
-    'assetId',
+    'assetNo',
     'name',
     'class',
     'type',
