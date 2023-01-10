@@ -1,0 +1,427 @@
+<mat-card>
+  <mat-card-content class="create_user_page">
+    <h3 class="color_blue"><b>Prestart</b></h3>
+    <mat-card-title class="p-t-10 p-b-10 color_blue">Asset Details</mat-card-title>
+    <div fxLayout="row wrap">
+      <div fxFlex.gt-sm="100" fxFlex="100" fxFlexAlign="center" class="row m-0">
+        <form class="basic-form">
+          <div fxLayout="row wrap" fxFlexAlign="center" class="row m-0">
+            <div fxFlex.gt-sm="35" fxFlex="100">
+              <div fxFlex.gt-sm="50" fxFlex="100">
+                <div class="m-t-10 asset-img">
+                  <img
+                    src="../../../assets/img/add-image.png"
+                    alt=""
+                    style="max-height: 110px; width: auto"
+                  />
+                </div>
+              </div>
+              <div fxFlex.gt-sm="50" fxFlex="100">
+                <div class="m-t-10 asset-img">
+                  <img
+                    src="../../../assets/img/add-image.png"
+                    alt=""
+                    style="max-height: 110px; width: auto"
+                  />
+                </div>
+              </div>
+            </div>
+            <div fxFlex.gt-sm="65" fxFlex="100" class="m-0 my-mat-cardt d-wrap">
+              <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-b-10 p-t-10">
+                <small>Asset No:</small>
+                <mat-label class="d-block">EX1258</mat-label>
+              </div>
+              <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-b-10 p-t-10">
+                <small>Asset Name:</small>
+                <mat-label class="d-block">KOM PC1250</mat-label>
+              </div>
+              <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-b-10 p-t-10">
+                <small>Conclusion: </small>
+                <mat-label class="d-block text-red">Need Fix</mat-label>
+              </div>
+              <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-b-10 p-t-10">
+                <small>Class:</small>
+                <mat-label class="d-block">Mobile Plant</mat-label>
+              </div>
+              <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-b-10 p-t-10">
+                <small>Type:</small>
+                <mat-label class="d-block">DOZER</mat-label>
+              </div>
+              <div fxFlex.gt-sm="33.33" fxFlex="100" class="p-b-10 p-t-10">
+                <small>Meter Unit:</small>
+                <mat-label class="d-block"> 44621</mat-label>
+              </div>
+            </div>
+            <mat-divider fxFlex.gt-sm="100" fxFlex="100" class="m-t-10 m-b-10"> </mat-divider>
+            <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
+              <mat-card-title class="p-t-10 p-b-10 color_blue">Done & Attested By</mat-card-title>
+            </div>
+            <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
+              <div fxFlex.gt-sm="15" fxFlex="100">
+                <div class="p-b-10 p-t-10 User-Img">
+                  <img
+                    src="../../../assets/img/user-default-img.jpg"
+                    alt=""
+                    style="max-height: 100px; width: auto"
+                  />
+                </div>
+              </div>
+
+              <div fxFlex.gt-sm="25" fxFlex="100" class="p-b-10 p-t-10">
+                <small>Name:</small>
+                <mat-label class="d-block">Matthew Mcconaughey</mat-label>
+              </div>
+              <div fxFlex.gt-sm="30" fxFlex="100" class="p-b-10 p-t-10">
+                <small>Employee Number:</small>
+                <mat-label class="d-block">RTL1199</mat-label>
+              </div>
+              <div fxFlex.gt-sm="30" fxFlex="100" class="p-b-10 p-t-10">
+                <small>Current Location: </small>
+                <mat-label class="d-block">857019 | Lay Yang</mat-label>
+              </div>
+            </div>
+            <mat-divider fxFlex.gt-sm="100" fxFlex="100" class="m-t-10 m-b-10"> </mat-divider>
+            <div fxFlex.gt-sm="100" fxFlex="100" class="p-b-10 p-t-10">
+              <mat-card-title class="p-b-10 color_blue">Inspection Details</mat-card-title>
+            </div>
+            <div fxFlex.gt-sm="100" fxFlex="100" class=" p-t-10">
+              <mat-card>
+                <!-- <mat-card-title>Basic Expansion</mat-card-title> -->
+
+                <mat-accordion>
+                  <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title><b>Category A </b> </mat-panel-title>
+                      <mat-panel-description class="text-red"> 2 Issues</mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-card class="m-0 m-t-5 m-b-5">
+                      <mat-card-content>
+                        <div class="table-responsive infinite-scroll">
+                          <mat-table
+                            #table
+                            [dataSource]="dataSource"
+                            class="table employee-list no-wrap"
+                            matSort
+                          >
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="inspectionName">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                Inspection Name
+                              </th>
+                              <td mat-cell *matCellDef="let row">
+                                <!-- <span class="header-label">days:</span> -->
+                                <!-- {{ row?.employeType?.name }} -->
+                                LIX098
+                              </td>
+                            </ng-container>
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="response">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Response</th>
+                              <td mat-cell *matCellDef="let row">
+                                <!-- {{ row?.convertedStartDate }} -->
+                                Yallorn Mining
+                              </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="remark">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Remark</th>
+                              <td mat-cell *matCellDef="let row">
+                                <!-- <span class="header-label">days:</span> -->
+
+                                <div style="display: flex; align-items: center">
+                                  <!-- <img
+                                      class="m-r-10 list-Img"
+                                      onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
+                                      [src]="
+                                        row && row.profileImage && row.profileImage.length > 0
+                                          ? row.profileImage[0]?.digitalAssets?.url
+                                          : ''
+                                      "
+                                      alt=""
+                                    /> -->
+                                  <!-- {{ row?.employeeName }} -->
+                                  <img
+                                    class="m-r-10 list-Img"
+                                    src="../../../assets/img/user-default-img.jpg"
+                                    alt=""
+                                  />
+                                  Energy Australia
+                                </div>
+                              </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="media">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Media</th>
+                              <td mat-cell *matCellDef="let row">
+                                <!-- <span class="header-label">days:</span> -->
+                                <!-- {{ row?.employeType?.name }} -->
+                                Yellorn
+                              </td>
+                            </ng-container>
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="action">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                              <td mat-cell *matCellDef="let row">
+                                <!-- <span class="header-label">days:</span> -->
+                                <!-- {{ row?.employeeNo }} -->
+                                Neo Anderson
+                              </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr
+                              mat-row
+                              *matRowDef="let element; columns: displayedColumns"
+                              class="example-element-row"
+                              [ngClass]="{ 'selected-row': selectedId == element.id }"
+                            ></tr>
+                            <tr class="mat-row" *matNoDataRow>
+                              <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+                                No Asset Data
+                              </td>
+                            </tr>
+                          </mat-table>
+
+                          <!-- <mat-paginator
+                              [length]="totalRecords"
+                              [pageIndex]="pageNo"
+                              [pageSizeOptions]="[5, 10, 20]"
+                              [pageSize]="pageSize"
+                              aria-label="Select page"
+                            >
+                            </mat-paginator> -->
+                        </div>
+                      </mat-card-content>
+                    </mat-card>
+                  </mat-expansion-panel>
+                  <mat-expansion-panel
+                    (opened)="panelOpenState = true"
+                    (closed)="panelOpenState = false"
+                  >
+                    <mat-expansion-panel-header>
+                      <mat-panel-title><b>Category B </b></mat-panel-title>
+                      <mat-panel-description class="text-red"> 1 Issues </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-card class="m-0 m-t-5 m-b-5">
+                      <mat-card-content>
+                        <div class="table-responsive infinite-scroll">
+                          <mat-table
+                            #table
+                            [dataSource]="dataSource"
+                            class="table employee-list no-wrap"
+                            matSort
+                          >
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="inspectionName">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Project #</th>
+                              <td mat-cell *matCellDef="let row">
+                                <!-- <span class="header-label">days:</span> -->
+                                <!-- {{ row?.employeType?.name }} -->
+                                LIX098
+                              </td>
+                            </ng-container>
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="response">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                Project Name
+                              </th>
+                              <td mat-cell *matCellDef="let row">
+                                <!-- {{ row?.convertedStartDate }} -->
+                                Yallorn Mining
+                              </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="remark">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Client Name</th>
+                              <td mat-cell *matCellDef="let row">
+                                <!-- <span class="header-label">days:</span> -->
+
+                                <div style="display: flex; align-items: center">
+                                  <!-- <img
+                                      class="m-r-10 list-Img"
+                                      onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
+                                      [src]="
+                                        row && row.profileImage && row.profileImage.length > 0
+                                          ? row.profileImage[0]?.digitalAssets?.url
+                                          : ''
+                                      "
+                                      alt=""
+                                    /> -->
+                                  <!-- {{ row?.employeeName }} -->
+                                  <img
+                                    class="m-r-10 list-Img"
+                                    src="../../../assets/img/user-default-img.jpg"
+                                    alt=""
+                                  />
+                                  Energy Australia
+                                </div>
+                              </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="media">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Media</th>
+                              <td mat-cell *matCellDef="let row">
+                                <!-- <span class="header-label">days:</span> -->
+                                <!-- {{ row?.employeType?.name }} -->
+                                Yellorn
+                              </td>
+                            </ng-container>
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="action">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                              <td mat-cell *matCellDef="let row">
+                                <!-- <span class="header-label">days:</span> -->
+                                <!-- {{ row?.employeeNo }} -->
+                                Neo Anderson
+                              </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr
+                              mat-row
+                              *matRowDef="let element; columns: displayedColumns"
+                              class="example-element-row"
+                              [ngClass]="{ 'selected-row': selectedId == element.id }"
+                            ></tr>
+                            <tr class="mat-row" *matNoDataRow>
+                              <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+                                No Asset Data
+                              </td>
+                            </tr>
+                          </mat-table>
+
+                          <!-- <mat-paginator
+                              [length]="totalRecords"
+                              [pageIndex]="pageNo"
+                              [pageSizeOptions]="[5, 10, 20]"
+                              [pageSize]="pageSize"
+                              aria-label="Select page"
+                            >
+                            </mat-paginator> -->
+                        </div>
+                      </mat-card-content>
+                    </mat-card>
+                  </mat-expansion-panel>
+                  <mat-expansion-panel
+                    (opened)="panelOpenState = true"
+                    (closed)="panelOpenState = false"
+                  >
+                    <mat-expansion-panel-header>
+                      <mat-panel-title><b>Category C </b></mat-panel-title>
+                      <mat-panel-description class="text-red"> 1 Issues </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-card class="m-0 m-t-5 m-b-5">
+                      <mat-card-content>
+                        <div class="table-responsive infinite-scroll">
+                          <mat-table
+                            #table
+                            [dataSource]="dataSource"
+                            class="table employee-list no-wrap"
+                            matSort
+                          >
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="inspectionName">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Project #</th>
+                              <td mat-cell *matCellDef="let row">
+                                <!-- <span class="header-label">days:</span> -->
+                                <!-- {{ row?.employeType?.name }} -->
+                                LIX098
+                              </td>
+                            </ng-container>
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="response">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                Project Name
+                              </th>
+                              <td mat-cell *matCellDef="let row">
+                                <!-- {{ row?.convertedStartDate }} -->
+                                Yallorn Mining
+                              </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="remark">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Client Name</th>
+                              <td mat-cell *matCellDef="let row">
+                                <!-- <span class="header-label">days:</span> -->
+
+                                <div style="display: flex; align-items: center">
+                                  <!-- <img
+                                      class="m-r-10 list-Img"
+                                      onerror="this.onerror=null;this.src='../../assets/img/user-default-img.jpg';"
+                                      [src]="
+                                        row && row.profileImage && row.profileImage.length > 0
+                                          ? row.profileImage[0]?.digitalAssets?.url
+                                          : ''
+                                      "
+                                      alt=""
+                                    /> -->
+                                  <!-- {{ row?.employeeName }} -->
+                                  <img
+                                    class="m-r-10 list-Img"
+                                    src="../../../assets/img/user-default-img.jpg"
+                                    alt=""
+                                  />
+                                  Energy Australia
+                                </div>
+                              </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="media">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Media</th>
+                              <td mat-cell *matCellDef="let row">
+                                <!-- <span class="header-label">days:</span> -->
+                                <!-- {{ row?.employeType?.name }} -->
+                                Yellorn
+                              </td>
+                            </ng-container>
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="action">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                              <td mat-cell *matCellDef="let row">
+                                <!-- <span class="header-label">days:</span> -->
+                                <!-- {{ row?.employeeNo }} -->
+                                Neo Anderson
+                              </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr
+                              mat-row
+                              *matRowDef="let element; columns: displayedColumns"
+                              class="example-element-row"
+                              [ngClass]="{ 'selected-row': selectedId == element.id }"
+                            ></tr>
+                            <tr class="mat-row" *matNoDataRow>
+                              <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+                                No Asset Data
+                              </td>
+                            </tr>
+                          </mat-table>
+
+                          <!-- <mat-paginator
+                              [length]="totalRecords"
+                              [pageIndex]="pageNo"
+                              [pageSizeOptions]="[5, 10, 20]"
+                              [pageSize]="pageSize"
+                              aria-label="Select page"
+                            >
+                            </mat-paginator> -->
+                        </div>
+                      </mat-card-content>
+                    </mat-card>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </mat-card>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

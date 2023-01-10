@@ -1,0 +1,129 @@
+.example-h2 {
+    margin: 10px;
+  }
+  
+  .example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+  }
+  
+  .example-margin {
+    margin: 10px;
+  }
+  
+  .color_blue {
+    color: #009efb;
+  }
+  .demo-chip-list {
+    width: 100%;
+  }
+  .d-block {
+    display: block;
+  }
+  .border-bottom-g {
+    border-bottom: 1px solid darkgray;
+  }
+  .border-full {
+    border: 1px solid lightgray;
+    border-radius: 8px;
+  }
+  .mat-flex {
+    display: flex;
+  }
+  .mat-flex h5:first-child {
+    width: 225px;
+  }
+  .mat-flex h5 {
+    margin: 7px 1px;
+  }
+  .my-mat-card{
+    padding: 0px 12px !important;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+  .my-mat-cardt{
+    padding: 0px 12px !important;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  .my-mat-cardb{
+    padding: 0px 12px !important;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+  
+  .my-mat-cardf{
+    padding: 0px 12px !important;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  .l-h-26{
+    line-height: 26px;
+  }
+  
+  .selected-row {
+    background-color: lavender !important;
+  }
+  .User-Img {
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+  }
+  .popup-head {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .popup-head div {
+    display: flex;
+    align-items: center;
+  }
+  .popup-head mat-progress-bar {
+    width: 175px;
+  }
+  .popup-head2 {
+    width: 100%;
+    display: flex;
+    align-items: top;
+    justify-content: space-around;
+  }
+  .popup-head2 div {
+    text-align: center;
+  }
+  .popup-head2 {
+    padding: 15px 1px 7px;
+  }
+  .popup-head2 div mat-label {
+    display: block;
+  }
+  .fd-re {
+    flex-direction: column;
+    align-items: flex-end !important;
+  }
+  .mat-row.cdk-row.example-element-row {
+    cursor: pointer;
+  }
+  .progress-layout {
+    display: flex;
+  }
+  .text-red{
+    color: red;
+  }
+  .example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+  
+    
+  

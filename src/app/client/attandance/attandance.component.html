@@ -185,6 +185,7 @@
                   mat-row
                   *matRowDef="let element; columns: displayedColumns"
                   class="example-element-row"
+                  style="vertical-align: top"
                   [ngClass]="{ 'selected-row': selectedId == element.id }"
                 ></tr>
                 <tr class="mat-row" *matNoDataRow>

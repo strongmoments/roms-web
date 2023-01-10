@@ -201,8 +201,10 @@
                 mat-row
                 *matRowDef="let element; columns: displayedColumns"
                 class="example-element-row"
+                style="vertical-align: top"
+                [routerLink]="['/report/prestart']"
                 [ngClass]="{ 'selected-row': selectedId == element.id }"
-                (click)="openDialog(element)"
+                
               ></tr>
               <tr class="mat-row" *matNoDataRow>
                 <td class="mat-cell" [attr.colspan]="displayedColumns.length">No Prestart Data</td>

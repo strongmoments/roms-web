@@ -4,6 +4,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ReportRoutingModule } from './report.routing';
 import { LeaveReportComponent } from './leave-report/leave-report.component';
 import { ResignationReportComponent } from './resignation-report/resignation-report.component';
+import { PrestartReportComponent } from './prestart-report/prestart-report.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ResignationReportComponent } from './resignation-report/resignation-rep
     ],
     declarations: [
         LeaveReportComponent,
-        ResignationReportComponent
+        ResignationReportComponent,
+        PrestartReportComponent
     ]
 })
 export class ReportModule { }
